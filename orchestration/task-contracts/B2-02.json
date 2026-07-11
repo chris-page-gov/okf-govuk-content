@@ -1,0 +1,51 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for B2-02",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "B2-01"
+  ],
+  "human_gate": null,
+  "idempotency_key": "412b5f935f59c2588a67d43601a55a2fe4931e313b8ef7cb6c3c9114b3018bb7",
+  "model_profile": "coding_and_research",
+  "objective": "okf profile",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "semantic/profile/govuk-okf-v1.md"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-035",
+    "REQ-036",
+    "REQ-037",
+    "REQ-038",
+    "REQ-039",
+    "REQ-041",
+    "REQ-042"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "B2-02"
+}

@@ -1,0 +1,29 @@
+schema_version: 1
+programme_id: afhf-govuk-okf
+title: "What’s on GOV.UK — OKF Bundle Wiki"
+repository: https://github.com/chris-page-gov/okf-govuk-content
+started_at: "2026-07-11T00:00:00Z"
+authority:
+  controlling_brief: WHATS_ON_GOVUK_OKF.md
+  execution_contract: planning/RUN_AFHF_GOVUK_OKF_UNATTENDED.md
+  acceptance_criteria: planning/AFHF_GOVUK_OKF_REQUIREMENTS_REGISTER.md
+  traceability: planning/AFHF_GOVUK_OKF_BRIEF_TRACEABILITY.md
+  source_preflight: planning/PLAN_SOURCE_PREFLIGHT.json
+scope:
+  host_boundary: www.gov.uk
+  included:
+    - public canonical content items in the frozen official-source union
+    - locale documents and publicly observable lifecycle metadata
+    - routes, redirects, tombstones and replacement relationships
+    - discoverable attachment and machine-representation metadata
+    - official navigation, taxonomy and organisation relationships
+  excluded:
+    - complete page bodies
+    - authenticated or internal-only sources
+    - independently operated wildcard gov.uk domains
+    - simulated transactions
+completion:
+  permitted_without_human_study: AFHF_GOVUK_OKF_MACHINE_RELEASE_CANDIDATE_V1
+  full_programme_requires_authorised_human_study: true
+  unexplained_omissions_required: 0
+

@@ -1,0 +1,45 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for B1-03",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "B1-02"
+  ],
+  "human_gate": null,
+  "idempotency_key": "206c8dcb0b6c0573c6a44e5157dccb543b7b43d3e65b874df8c90fb777a69777",
+  "model_profile": "deterministic",
+  "objective": "capacity spike",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "reports/capacity-spike.json"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-048"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "B1-03"
+}

@@ -1,0 +1,49 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for F1-00",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "A2-01",
+    "E1-02",
+    "E2-01"
+  ],
+  "human_gate": null,
+  "idempotency_key": "c728a6a5b0989155cc706040caacfc578a22b7b36227c6fb1a95c24d34e60d66",
+  "model_profile": "coding_and_research",
+  "objective": "provisional machine synthesis",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "reports/aims-scorecard.md"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-001",
+    "REQ-080",
+    "REQ-095"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "F1-00"
+}

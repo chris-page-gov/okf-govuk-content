@@ -1,0 +1,47 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for A1-01",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "G0-01"
+  ],
+  "human_gate": null,
+  "idempotency_key": "63632ae013d797239c3594cab5451e861f93d361ead8dea7e59bdd9493e66a87",
+  "model_profile": "coding_and_research",
+  "objective": "source doc audit",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "research/source-registry.yaml"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-024",
+    "REQ-025",
+    "REQ-026"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "A1-01"
+}

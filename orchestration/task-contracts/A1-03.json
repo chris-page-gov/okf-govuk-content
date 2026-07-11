@@ -1,0 +1,47 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for A1-03",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "A1-01",
+    "A1-02"
+  ],
+  "human_gate": null,
+  "idempotency_key": "9ac1bcbae08820499a0b290a31cb7973f353ac8191f2e7ea98c701a122259f3d",
+  "model_profile": "coding_and_research",
+  "objective": "freshness sla",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "governance/decisions/ADR-003-freshness.md"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-010",
+    "REQ-034"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "A1-03"
+}

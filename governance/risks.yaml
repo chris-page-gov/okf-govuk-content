@@ -1,0 +1,34 @@
+schema_version: 1
+risks:
+  - id: RISK-001
+    title: No single authoritative public bulk enumerator
+    likelihood: high
+    impact: high
+    mitigation: Freeze and reconcile sitemap, partitioned Search API, structured links and curated route families.
+    veto: Do not claim whole-corpus coverage unless every admitted candidate has one disposition.
+  - id: RISK-002
+    title: Site drift during acquisition
+    likelihood: high
+    impact: medium
+    mitigation: T0/T1 watermarks, immutable source manifests, closing delta and published drift report.
+  - id: RISK-003
+    title: Rights or robots restriction
+    likelihood: medium
+    impact: high
+    mitigation: Metadata allowlist, source-specific rights evidence and exception ledger; stop affected source only.
+  - id: RISK-004
+    title: GitHub Pages capacity or browser memory limit
+    likelihood: medium
+    impact: high
+    mitigation: Static control plane, immutable hashed shards, capacity spike and bootstrap/query budgets.
+  - id: RISK-005
+    title: Synthetic evidence overstates human value
+    likelihood: high
+    impact: high
+    mitigation: Human claims remain not yet testable until authorised participant work is completed.
+  - id: RISK-006
+    title: Public content carries active instructions or unsafe markup
+    likelihood: medium
+    impact: high
+    mitigation: Treat source text as data, retain metadata only, escape rendered values, CSP and read-only agent operations.
+

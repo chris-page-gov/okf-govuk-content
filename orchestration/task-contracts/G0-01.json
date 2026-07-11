@@ -1,0 +1,45 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for G0-01",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [],
+  "human_gate": null,
+  "idempotency_key": "06707fb3dd4c9c6846885a01d3d45e170f39d6b47507cef4be57bc0d4733f744",
+  "model_profile": "deterministic",
+  "objective": "import contract",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "governance/requirements.yaml"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-086",
+    "REQ-094",
+    "REQ-095"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "G0-01"
+}

@@ -1,0 +1,49 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for C2-01",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "B2-02",
+    "C1-02"
+  ],
+  "human_gate": null,
+  "idempotency_key": "148c8d9f5e085751a590e190a4296ee7255394c76781f8e64f0157ac5c6c7e2c",
+  "model_profile": "coding_and_research",
+  "objective": "explorer baseline",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "explorer/design/baseline-gap-matrix.yaml"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-043",
+    "REQ-046",
+    "REQ-075",
+    "REQ-076"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "C2-01"
+}

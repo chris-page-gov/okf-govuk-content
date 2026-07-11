@@ -1,0 +1,48 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for E1-02",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "E1-01",
+    "D1-02"
+  ],
+  "human_gate": null,
+  "idempotency_key": "c4e4a429b71375cc5c8d9aef7f1f0c04441f41ba463b7cc5e8a09d42074c72bc",
+  "model_profile": "independent_verification",
+  "objective": "reconcile",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "corpus/reconciliation/closing.json"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-026",
+    "REQ-033",
+    "REQ-034"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "E1-02"
+}

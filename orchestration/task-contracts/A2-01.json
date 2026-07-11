@@ -1,0 +1,51 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for A2-01",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "G0-01"
+  ],
+  "human_gate": null,
+  "idempotency_key": "4dfbe620b3a5534eda016cd4ed6ed049f9197ed1700bb7ee378344ec8ec2fd69",
+  "model_profile": "coding_and_research",
+  "objective": "comparator sweeps",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "research/comparator-catalogue.yaml"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-078",
+    "REQ-079",
+    "REQ-081",
+    "REQ-082",
+    "REQ-083",
+    "REQ-084",
+    "REQ-085"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "A2-01"
+}

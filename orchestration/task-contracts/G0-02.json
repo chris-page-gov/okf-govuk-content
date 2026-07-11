@@ -1,0 +1,47 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for G0-02",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "G0-01"
+  ],
+  "human_gate": null,
+  "idempotency_key": "f37f1d4c35b427319771dddbf418fc47136e81ed34413823e433aaa761e865cf",
+  "model_profile": "deterministic",
+  "objective": "preflight budget",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "reports/cost-and-capacity.md"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-087",
+    "REQ-089",
+    "REQ-091"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "G0-02"
+}

@@ -1,0 +1,18 @@
+schema_version: 1
+locked_at: "2026-07-11T00:00:00Z"
+profiles:
+  deterministic:
+    implementation: CPython standard library
+    version_floor: "3.12"
+    cost: 0
+  coding_and_research:
+    implementation: OpenAI Codex current session
+    model_family: GPT-5
+    exact_backend_version: unavailable_to_session
+    cost: unavailable_in_product_session
+    use: bounded implementation and official-source synthesis only
+  independent_verification:
+    implementation: deterministic validators plus separate agent pass
+    independence_limit: same provider/model family; not accepted as sole judge for human or disputed semantic conclusions
+external_model_api_calls: false
+
