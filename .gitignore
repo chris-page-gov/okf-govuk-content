@@ -1,0 +1,46 @@
+# Finder and editor artefacts
+.DS_Store
+._*
+*~
+*.swp
+.idea/
+.vscode/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# JavaScript and static builds
+node_modules/
+.svelte-kit/
+dist/
+build/
+_site/
+
+# Local controller and acquisition state
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+.cache/
+.tmp/
+tmp/
+corpus/cache/
+runs/*/work/
+runs/*/leases/
+
+# Logs and operating-system noise
+*.log
+.tool-versions.local

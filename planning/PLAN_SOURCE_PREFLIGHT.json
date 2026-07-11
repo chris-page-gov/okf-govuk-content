@@ -1,0 +1,584 @@
+{
+  "schema_version": "1.0",
+  "checked_date": "2026-07-11",
+  "plan_file": "AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md",
+  "plan_sha256": "64986f4926b7904f91bc023a7e5032b9119f9d928218cc997cebbc553d9eb274",
+  "methodology": "Each unique Markdown URL was opened on 11 July 2026 and its returned title/publisher or document identity was checked. This is a URL-and-identity preflight, not full locator or claim verification.",
+  "stage_definitions": {
+    "url_identity_preflight": "URL resolved sufficiently to identify the intended source.",
+    "locator_verified": "Exact line, section, paragraph, page, commit or JSON Pointer was re-found in the pinned source.",
+    "claim_verified": "An independent verifier confirmed that the cited evidence supports the exact claim."
+  },
+  "summary": {
+    "unique_urls": 93,
+    "url_identity_preflight_pass": 93,
+    "url_identity_preflight_fail": 0,
+    "locator_verified": 0,
+    "claim_verified": 0
+  },
+  "replaced_candidate": {
+    "url": "https://dl.acm.org/doi/10.1145/1571941.1572114",
+    "result": "automated_access_403",
+    "action": "Replaced in the plan by the authors' University of Waterloo PDF; DOI retained as metadata."
+  },
+  "sources": [
+    {
+      "url": "https://a2a-protocol.org/latest/announcing-1.0/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://a2a-protocol.org/latest/topics/agent-discovery/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://aclanthology.org/2021.naacl-main.200.pdf",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://aclanthology.org/2023.eacl-main.148/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://aclanthology.org/2024.eacl-demo.16/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://aclanthology.org/2024.emnlp-main.505/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://arxiv.org/abs/2004.12832",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://arxiv.org/abs/2104.08663",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://arxiv.org/abs/2109.10086",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://arxiv.org/abs/2307.13854",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://blog.canada.ca/2026/02/12/ai-help-design.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://content-api.publishing.service.gov.uk/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://content-api.publishing.service.gov.uk/reference.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://data.europa.eu/en/about/sparql",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://design-system.service.gov.uk/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://design.canada.ca/continuous-improvement/research.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://design.canada.ca/specifications/information-findability/organizing-content.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/agent-evals",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/batch",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/deep-research",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/responses-multi-agent",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/models",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://digital.nhs.uk/blog/transformation-blog/2019/modularised-content-the-future-of-the-nhs-website",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://digital.nhs.uk/developer/api-catalogue/nhs-website-content/v2",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/content-schemas/mainstream_browse_page.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/content-schemas/taxon.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/document-types.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/manual/architecture-deep-dive.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/manual/govuk-search.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/manual/govuk-sitemap.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/manual/organisations-api.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/manual/taxonomy.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/manual/world-taxonomy.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/repos/collections.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/repos/content-store/content-store-api.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-gcp/how-to-write-queries.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-gcp/technical-debt.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-search.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/repos/publishing-api/api.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/repos/search-api-v2.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/repos/search-api-v2/search_api_compatibility.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/repos/search-api/schemas.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/repos/search-api/search-quality-metrics.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://docs.publishing.service.gov.uk/repos/search-api/using-the-search-api.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://github.com/alphagov/data-community-tech-docs/blob/main/source/data-sources/govgraph/index.html.md.erb",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://github.com/alphagov/publishing-api/tree/main/content_schemas",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://github.com/chris-page-gov/ai-infrastructure-wiki/blob/main/docs/explorer-overview-context.md",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://insidegovuk.blog.gov.uk/2026/03/16/5-things-we-learned-testing-gov-uk-chat-an-ai-assistant-for-government/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://insidegovuk.blog.gov.uk/2026/04/07/why-gov-uk-apis-are-changing-and-how-you-can-get-involved/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://insidegovuk.blog.gov.uk/2026/05/15/developing-gov-uk-chat-our-data-science-and-ai-engineering-journey/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://learn.chatgpt.com/docs/models",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/resources",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://open.gsa.gov/api/searchgov-results/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://openai.com/index/browsecomp/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://pages.gseis.ucla.edu/faculty/bates/articles/berrypicking.pdf",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/25ae35b5b1738d80f1f03a8713e405ec-Abstract-Conference.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/6ddc001d07ca4f319af96a3024f6dbd1-Paper-Conference.pdf",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://schema.org/GovernmentService",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://schema.org/WebPage",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://semiceu.github.io/CPSV-AP/releases/3.2.0/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://semiceu.github.io/DCAT-AP/releases/3.0.1/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://spec.openapis.org/arazzo/v1.1.0.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://spec.openapis.org/oas/v3.2.0.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://userresearch.blog.gov.uk/2017/06/29/how-we-researched-the-new-navigation-on-gov-uk/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.gov.uk/guidance/government-design-principles",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.gov.uk/help/reuse-govuk-content",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.gov.uk/help/terms-conditions",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.gov.uk/robots.txt",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/assisted-digital-support-introduction",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/testing-for-accessibility",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.gov.uk/service-manual/measuring-success/measuring-the-success-of-your-service",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.gov.uk/service-manual/measuring-success/usability-benchmarking-a-website-or-whole-service",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.gov.uk/service-manual/user-research/understanding-users-who-dont-use-digital-services",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.nist.gov/programs-projects/combinatorial-testing",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.researchobject.org/ro-crate/specification/1.3/index.html",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.usa.gov/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.w3.org/TR/2024/REC-rdf-canon-20240521/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.w3.org/TR/json-ld11/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.w3.org/TR/prov-o/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.w3.org/TR/shacl/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.w3.org/TR/skos-reference/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.w3.org/TR/vocab-dcat-3/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.w3.org/TR/vocab-org/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    },
+    {
+      "url": "https://www.w3.org/TR/yaml-ld-10/",
+      "url_identity_preflight": "pass",
+      "locator_verified": "not_run",
+      "claim_verified": "not_run"
+    }
+  ]
+}
