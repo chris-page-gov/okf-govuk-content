@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-07-11T23:21:00Z",
+  "constraints": [
+    {
+      "id": "SRC-CONSTRAINT-001",
+      "source": "govuk-sitemap",
+      "status": "active",
+      "class": "coverage",
+      "reason": "Official reuse guidance says the sitemap covers the majority, not all, of GOV.UK pages.",
+      "disposition": "Union with Search, Organisations, structured Content API traversal and bounded gap detectors."
+    },
+    {
+      "id": "SRC-CONSTRAINT-002",
+      "source": "govuk-sitemap",
+      "status": "active",
+      "class": "snapshot_consistency",
+      "reason": "The final sitemap shard changed during the preflight while the index watermark remained older.",
+      "disposition": "Hash and refetch every shard; reject a mixed T0 or T1 set."
+    },
+    {
+      "id": "SRC-CONSTRAINT-003",
+      "source": "search-api-v1",
+      "status": "active",
+      "class": "unsupported_interface",
+      "reason": "The public Search API is unsupported, English/format-limited and has no unique immutable cursor.",
+      "disposition": "Opposing timestamp passes, page overlap, deduplication, T1 repeat and independent enumerators."
+    },
+    {
+      "id": "SRC-CONSTRAINT-004",
+      "source": "content-api",
+      "status": "active",
+      "class": "non_enumerating_and_partial_coverage",
+      "reason": "Path lookup covers known www.gov.uk HTML-backed content and omits documented dynamic, asset and historic classes.",
+      "disposition": "Use only as a hydrator and structured graph expander."
+    },
+    {
+      "id": "SRC-CONSTRAINT-005",
+      "source": "publishing-api-govgraph-search-v2",
+      "status": "blocked",
+      "class": "authenticated_internal_access",
+      "reason": "Bulk authoritative and current search/graph surfaces are not publicly reproducible.",
+      "disposition": "Comparator-only; no authenticated source permission was granted."
+    },
+    {
+      "id": "SRC-CONSTRAINT-006",
+      "source": "govuk-rights",
+      "status": "active",
+      "class": "item_specific_rights",
+      "reason": "OGL does not automatically cover third-party rights, logos, personal data or every attachment.",
+      "disposition": "Metadata-and-link default plus per-item rights evidence and exception triggers."
+    },
+    {
+      "id": "SRC-CONSTRAINT-007",
+      "source": "pirolli-information-foraging-pdf",
+      "status": "blocked",
+      "class": "transport_security",
+      "reason": "Current Python/OpenSSL rejected the source server's legacy TLS parameters with DH_KEY_TOO_SMALL.",
+      "disposition": "Do not weaken TLS; locate a lawful secure primary copy or block dependent citation."
+    },
+    {
+      "id": "SRC-CONSTRAINT-008",
+      "source": "global-redirect-gone-history",
+      "status": "non_enumerable_publicly",
+      "class": "coverage",
+      "reason": "No public complete inventory of historic redirects, gone routes and unpublishings was found.",
+      "disposition": "Represent every instance found by admitted sources and publish the residual public-enumerability limit."
+    }
+  ]
+}
+
