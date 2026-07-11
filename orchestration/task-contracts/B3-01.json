@@ -1,0 +1,52 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for B3-01",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "A2-01",
+    "A3-01",
+    "B1-02"
+  ],
+  "human_gate": null,
+  "idempotency_key": "efd98ee215908771e0306bbea18c2fb7e8f8ce81b3a291cc9234b23dbf43bfb5",
+  "model_profile": "coding_and_research",
+  "objective": "use ontology",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "personas/use-ontology.yamlld"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-049",
+    "REQ-050",
+    "REQ-051",
+    "REQ-052",
+    "REQ-053",
+    "REQ-054"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "B3-01"
+}

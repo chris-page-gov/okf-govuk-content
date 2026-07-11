@@ -1,0 +1,52 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for A3-01",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "G0-01"
+  ],
+  "human_gate": null,
+  "idempotency_key": "7b08e66493c8b9031c32b6fb8b169d943549707aa886e34b9c81f02936c8ca9b",
+  "model_profile": "coding_and_research",
+  "objective": "preregistration",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "evaluation/protocol/preregistration.yaml"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-069",
+    "REQ-070",
+    "REQ-071",
+    "REQ-072",
+    "REQ-073",
+    "REQ-074",
+    "REQ-077",
+    "REQ-080"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "A3-01"
+}

@@ -1,0 +1,46 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for D2-04",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "D2-03"
+  ],
+  "human_gate": null,
+  "idempotency_key": "c895348177416435ae90d06ba1f8cdbcd89d394e6f8713a79331fe76e2b1f25c",
+  "model_profile": "independent_verification",
+  "objective": "security redteam",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "reports/security.md"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-093",
+    "REQ-094"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "D2-04"
+}

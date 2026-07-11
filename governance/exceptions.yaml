@@ -1,0 +1,19 @@
+schema_version: 1
+exceptions:
+  - id: EXC-HUMAN-001
+    scope: E3-01 human evaluation
+    status: blocked
+    reason: No ethics, recruitment, consent, accommodation or participant-data authority was supplied.
+    evidence: governance/launch-manifest.yaml
+    owner: human-research-sponsor
+    next_action: Authorise and govern a preregistered participant study.
+    consequence: Human UI of choice remains not_yet_testable; machine work continues.
+  - id: EXC-MODEL-001
+    scope: external paid model fan-out
+    status: blocked
+    reason: No numeric paid-model budget or provider billing authority was supplied.
+    evidence: governance/launch-manifest.yaml
+    owner: programme-sponsor
+    next_action: None required for deterministic machine RC; authorise only if future enrichment needs it.
+    consequence: Model-assisted enrichment is omitted, labelled, and does not reduce source-native coverage.
+

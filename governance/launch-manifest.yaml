@@ -1,0 +1,28 @@
+schema_version: 1
+recorded_at: "2026-07-11T00:00:00Z"
+authority_basis: explicit user instruction in the initiating Codex task
+publication_authorisation: true
+authenticated_source_permission: false
+external_storage_permission: false
+human_study_authorisation: false
+provider_allowlist:
+  - openai-codex-current-session
+data_region_allowlist:
+  - local-workspace
+  - public-internet-official-sources
+ceilings:
+  external_paid_model_cost_gbp: 0
+  external_paid_model_tokens: 0
+  official_source_requests: 1000000
+  retained_metadata_storage_gib: 10
+  wall_time_hours: null
+rate_limits:
+  content-api.publishing.service.gov.uk_requests_per_second: 8
+  www.gov.uk_requests_per_second: 2
+  other_hosts_requests_per_second: 2
+  overall_other_hosts_requests_per_second: 8
+notes:
+  - No external paid model fan-out is authorised; deterministic generation and the current Codex session remain available.
+  - The explicit request authorises public repository, Pages, release and registry publication.
+  - Genuine participant research remains blocked pending ethics, recruitment and consent authority.
+

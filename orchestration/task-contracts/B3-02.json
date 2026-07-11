@@ -1,0 +1,49 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for B3-02",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "B3-01"
+  ],
+  "human_gate": null,
+  "idempotency_key": "a3ca5becda5da2e35e22297f5b457512e2615cc6e27e858c3a66f91d78058525",
+  "model_profile": "coding_and_research",
+  "objective": "personas stories",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "stories/catalogue.jsonl"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-054",
+    "REQ-055",
+    "REQ-056",
+    "REQ-057",
+    "REQ-058"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "B3-02"
+}

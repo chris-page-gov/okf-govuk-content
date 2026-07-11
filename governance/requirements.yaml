@@ -1,0 +1,1052 @@
+{
+  "acceptance_gates": [
+    {
+      "criterion": "every brief/prompt clause maps to a requirement; no orphan requirement or hidden blocking decision.",
+      "id": "GATE-01",
+      "status": "pending",
+      "title": "Requirements"
+    },
+    {
+      "criterion": "every candidate source has verified contract, coverage, count, access, reuse, identifier and retrieval evidence.",
+      "id": "GATE-02",
+      "status": "pending",
+      "title": "Sources"
+    },
+    {
+      "criterion": "the frozen union of verified public enumerators is reconciled; every discovered item is a record or explicit exception; unexplained omissions are zero; counts, watermark, checksums and drift are published.",
+      "id": "GATE-03",
+      "status": "pending",
+      "title": "Full corpus"
+    },
+    {
+      "criterion": "artefacts validate; identifiers resolve; YAML-LD and JSON-LD are semantically equivalent; 100% of generated relationships have complete provenance.",
+      "id": "GATE-04",
+      "status": "pending",
+      "title": "Semantics"
+    },
+    {
+      "criterion": "every persona is evidenced; the dimensional coverage matrix has no unexplained gap; challenge passes reach documented saturation.",
+      "id": "GATE-05",
+      "status": "pending",
+      "title": "Personas"
+    },
+    {
+      "criterion": "exactly 100 valid instances exist per approved story and exactly 100 validated curated questions exist per approved primary persona; every story is represented in its persona suite; all gold targets and citations verify; duplicate and leakage tests pass.",
+      "id": "GATE-06",
+      "status": "pending",
+      "title": "Questions"
+    },
+    {
+      "criterion": "all machine-applicable frozen questions run against proposal and machine baselines under matched conditions; a preregistered, powered and coverage-balanced subset is used for human comparison, including representatives of every high-harm class; paired effectiveness/efficiency results, failures and confidence intervals are retained.",
+      "id": "GATE-07",
+      "status": "pending",
+      "title": "Evaluation"
+    },
+    {
+      "criterion": "no “UI of choice” claim is made from synthetic evidence alone; it requires pre-registered accessible tests with people from the claimed populations.",
+      "id": "GATE-08",
+      "status": "pending",
+      "title": "Human evidence"
+    },
+    {
+      "criterion": "every released citation passes link, locator and claim-support checks; redirects and inaccessible evidence are visible.",
+      "id": "GATE-09",
+      "status": "pending",
+      "title": "Citations"
+    },
+    {
+      "criterion": "a clean run from pinned inputs reproduces manifests, corpus checksums, tests and reports within declared tolerances.",
+      "id": "GATE-10",
+      "status": "pending",
+      "title": "Reproducibility"
+    },
+    {
+      "criterion": "each original aim receives an evidenced status and confidence, including negative findings.",
+      "id": "GATE-11",
+      "status": "pending",
+      "title": "Assessment"
+    }
+  ],
+  "controlling_sha256": "b20bc92537970e8593e69d193db27d8a86c342d4e78b0e3c901b1b953291aab9",
+  "counts": {
+    "acceptance_gates": 11,
+    "requirements": 95
+  },
+  "generated_from": "planning/AFHF_GOVUK_OKF_REQUIREMENTS_REGISTER.md",
+  "requirements": [
+    {
+      "clause_ids": [
+        "PROMPT-001",
+        "PROMPT-006"
+      ],
+      "id": "REQ-001",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Treat AF/HF as a falsifiable proposal and report where it succeeds, partly succeeds, fails or remains untested."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-001",
+        "BRIEF-002"
+      ],
+      "id": "REQ-002",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Publish an independent OKF Bundle Wiki mapping GOV.UK structure, organisation, content/navigation models, publishers, metadata, taxonomies and relationships."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003"
+      ],
+      "id": "REQ-003",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Support people navigating and understanding GOV.UK through OKF Explorer."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003"
+      ],
+      "id": "REQ-004",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Support systems in understanding identifiers, types, provenance, hierarchy, lifecycle and relationships."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003"
+      ],
+      "id": "REQ-005",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Support agents retrieving and citing authoritative GOV.UK content without flattening the site into an unstructured collection."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003"
+      ],
+      "id": "REQ-006",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Enable comparison of source metadata, public presentation and search/discovery behaviour."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003"
+      ],
+      "id": "REQ-007",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Establish a reusable semantic and provenance layer for later GOV.UK-derived bundles."
+    },
+    {
+      "clause_ids": [],
+      "derived_control_rationale": "Derived deterministic, security, reproducibility or statistical control under PROMPT-007/008.",
+      "id": "REQ-008",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Identify the bundle prominently as derived and non-authoritative; GOV.UK remains the authoritative destination."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-011",
+        "USER-001"
+      ],
+      "id": "REQ-009",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Cover the complete bounded public metadata corpus in release 1."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-011",
+        "USER-001"
+      ],
+      "id": "REQ-010",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Declare an acquisition window and closing watermark so completeness is measurable on a changing site."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-011",
+        "USER-001"
+      ],
+      "id": "REQ-011",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Do not mirror complete page bodies in release 1."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-011",
+        "USER-001"
+      ],
+      "id": "REQ-012",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Publish the precise host, subdomain, campaign, form, API, asset and external-service boundary."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-010",
+        "BRIEF-011",
+        "USER-001"
+      ],
+      "id": "REQ-013",
+      "section": "Purpose and boundary",
+      "status": "accepted",
+      "text": "Keep a small representative fixture solely for pre-release pipeline and Explorer QA."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-002",
+        "BRIEF-004"
+      ],
+      "id": "REQ-014",
+      "section": "Required metadata coverage",
+      "status": "accepted",
+      "text": "Model canonical content items and public URLs."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-002",
+        "BRIEF-004"
+      ],
+      "id": "REQ-015",
+      "section": "Required metadata coverage",
+      "status": "accepted",
+      "text": "Model GOV.UK content types and schema families."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-002",
+        "BRIEF-004"
+      ],
+      "id": "REQ-016",
+      "section": "Required metadata coverage",
+      "status": "accepted",
+      "text": "Model publishing and owning organisations distinctly."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-002",
+        "BRIEF-004"
+      ],
+      "id": "REQ-017",
+      "section": "Required metadata coverage",
+      "status": "accepted",
+      "text": "Model mainstream browse, topics, taxonomies and navigation nodes."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-002",
+        "BRIEF-004",
+        "BRIEF-008"
+      ],
+      "id": "REQ-018",
+      "section": "Required metadata coverage",
+      "status": "accepted",
+      "text": "Model parent, child, related, collection and part-of relationships."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004"
+      ],
+      "id": "REQ-019",
+      "section": "Required metadata coverage",
+      "status": "accepted",
+      "text": "Model lifecycle state, first publication, updates, redirects and replacement."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004"
+      ],
+      "id": "REQ-020",
+      "section": "Required metadata coverage",
+      "status": "accepted",
+      "text": "Model attachments, downloads and machine-readable representations."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004"
+      ],
+      "id": "REQ-021",
+      "section": "Required metadata coverage",
+      "status": "accepted",
+      "text": "Model language, jurisdiction, audience and service/content distinctions."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004"
+      ],
+      "id": "REQ-022",
+      "section": "Required metadata coverage",
+      "status": "accepted",
+      "text": "Model source systems, evidence URLs, retrieval times and confidence."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004"
+      ],
+      "id": "REQ-023",
+      "section": "Required metadata coverage",
+      "status": "accepted",
+      "text": "Provide fields suitable for full-corpus static search and discovery indexes."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-005",
+        "BRIEF-010"
+      ],
+      "id": "REQ-024",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Begin with a fresh, dated audit of official source families."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-005",
+        "BRIEF-010"
+      ],
+      "id": "REQ-025",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Verify each source's current contract, schema and version."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-005"
+      ],
+      "id": "REQ-026",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Verify source coverage and reconcile independent counts."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-005"
+      ],
+      "id": "REQ-027",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Verify access controls, authentication, rate limits, robots policy and operational constraints."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-005"
+      ],
+      "id": "REQ-028",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Verify copyright, licensing and reuse terms before acquisition design."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-005"
+      ],
+      "id": "REQ-029",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Establish stable identifier and canonicalisation rules before deduplication."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-006"
+      ],
+      "id": "REQ-030",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Silently omit no feature class because of access, reuse or licensing constraints."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-006"
+      ],
+      "id": "REQ-031",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Record every constraint and exception in a machine-readable escalation ledger."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-005",
+        "BRIEF-011"
+      ],
+      "id": "REQ-032",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Use public reproducible sources as the unattended default."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-005",
+        "USER-001"
+      ],
+      "id": "REQ-033",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Reconcile the union of official public enumerators so each discovered identifier maps to a record or an explicit exception and `unexplained_omissions = 0`."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-005",
+        "USER-001"
+      ],
+      "id": "REQ-034",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Produce closing-watermark and subsequent drift/delta reports."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-002",
+        "BRIEF-007",
+        "BRIEF-008"
+      ],
+      "id": "REQ-035",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Define an extensible type and relationship vocabulary covering all examples in the brief without treating unlike classes as identical."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-008"
+      ],
+      "id": "REQ-036",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Give every generated relationship evidence type, evidence URL, retrieval time, derivation method and confidence."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-007",
+        "BRIEF-010"
+      ],
+      "id": "REQ-037",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Crosswalk GOV.UK fields to OKF, Schema.org, DCAT and relevant government vocabularies."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-007",
+        "BRIEF-010"
+      ],
+      "id": "REQ-038",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Preserve source-native structure before enrichment and label each inferred assertion."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-007",
+        "BRIEF-010"
+      ],
+      "id": "REQ-039",
+      "section": "Sources, completeness and semantics",
+      "status": "accepted",
+      "text": "Validate YAML-LD/JSON-LD equivalence, context expansion, identifiers, referential integrity and relationship direction."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-001",
+        "BRIEF-009"
+      ],
+      "id": "REQ-040",
+      "section": "Publication and Explorer",
+      "status": "accepted",
+      "text": "Use an independent repository, CI, release cadence and GitHub Pages publication."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-009"
+      ],
+      "id": "REQ-041",
+      "section": "Publication and Explorer",
+      "status": "accepted",
+      "text": "Provide human-maintained Markdown plus YAML-LD concepts and narrative."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-009"
+      ],
+      "id": "REQ-042",
+      "section": "Publication and Explorer",
+      "status": "accepted",
+      "text": "Generate canonical `okf-bundle.yamlld` and semantically equivalent JSON-LD."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-009"
+      ],
+      "id": "REQ-043",
+      "section": "Publication and Explorer",
+      "status": "accepted",
+      "text": "Generate the Explorer descriptor and data manifest."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-009",
+        "BRIEF-010"
+      ],
+      "id": "REQ-044",
+      "section": "Publication and Explorer",
+      "status": "accepted",
+      "text": "Generate static search shards for the full corpus."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-009",
+        "BRIEF-010"
+      ],
+      "id": "REQ-045",
+      "section": "Publication and Explorer",
+      "status": "accepted",
+      "text": "Generate deterministic route-scoped relationship adjacency."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-009",
+        "BRIEF-010"
+      ],
+      "id": "REQ-046",
+      "section": "Publication and Explorer",
+      "status": "accepted",
+      "text": "Remain directly loadable by URL and provide an OKF Explorer registry entry."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-009",
+        "BRIEF-010"
+      ],
+      "id": "REQ-047",
+      "section": "Publication and Explorer",
+      "status": "accepted",
+      "text": "Run compatibility and provenance checks from the first fixture onwards."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-009"
+      ],
+      "id": "REQ-048",
+      "section": "Publication and Explorer",
+      "status": "accepted",
+      "text": "Set and test budgets for shard size, first useful render, query latency, browser memory and relationship expansion."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "id": "REQ-049",
+      "section": "Personas and user stories",
+      "status": "accepted",
+      "text": "Create a detailed taxonomy of human, organisational, intermediary and agent use archetypes."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "id": "REQ-050",
+      "section": "Personas and user stories",
+      "status": "accepted",
+      "text": "Ground every persona in cited evidence rather than invented demographics."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "id": "REQ-051",
+      "section": "Personas and user stories",
+      "status": "accepted",
+      "text": "Prefer needs, tasks and situational characteristics over stereotyping."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "id": "REQ-052",
+      "section": "Personas and user stories",
+      "status": "accepted",
+      "text": "Include accessibility, assisted-digital, low-literacy, multilingual, mobile, urgent/high-stakes and professional/research contexts."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "id": "REQ-053",
+      "section": "Personas and user stories",
+      "status": "accepted",
+      "text": "Include agents acting for individuals, agents supporting staff, content-serving systems, audit/governance agents and bulk-research agents."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "id": "REQ-054",
+      "section": "Personas and user stories",
+      "status": "accepted",
+      "text": "Give each persona stable IDs, evidence, goals, contexts, capabilities, constraints, risks, success criteria and applicable content families."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "id": "REQ-055",
+      "section": "Personas and user stories",
+      "status": "accepted",
+      "text": "Express stories consistently as actor/context–need–outcome statements with acceptance criteria and failure harms."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "id": "REQ-056",
+      "section": "Personas and user stories",
+      "status": "accepted",
+      "text": "Map every official content/schema family and every evidenced use-class dimension to at least one story."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "id": "REQ-057",
+      "section": "Personas and user stories",
+      "status": "accepted",
+      "text": "Run independent gap-challenge and saturation passes and retain residual gaps."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "id": "REQ-058",
+      "section": "Personas and user stories",
+      "status": "accepted",
+      "text": "Version personas and stories as GOV.UK, public needs and agent capabilities change."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "id": "REQ-059",
+      "section": "Evaluation-question corpus",
+      "status": "accepted",
+      "text": "Generate 100 valid, deterministically renderable question instances per approved story and exactly 100 curated canonical questions per approved primary persona for each evaluation release."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "id": "REQ-060",
+      "section": "Evaluation-question corpus",
+      "status": "accepted",
+      "text": "Ensure every story for each persona is represented in its curated persona suite."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "id": "REQ-061",
+      "section": "Evaluation-question corpus",
+      "status": "accepted",
+      "text": "Store persona/story IDs, wording, intent, target entities and relationships, answer shape, difficulty, ambiguity, time, jurisdiction, language and provenance requirements."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "id": "REQ-062",
+      "section": "Evaluation-question corpus",
+      "status": "accepted",
+      "text": "Store verified gold content IDs/URLs or an explicit deliberately-unanswerable classification, with evidence and snapshot date."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "id": "REQ-063",
+      "section": "Evaluation-question corpus",
+      "status": "accepted",
+      "text": "Stratify questions across lookup, browse, taxonomy, publisher/owner, lifecycle, redirects, attachments, language, jurisdiction, multi-hop, comparison and negative tasks."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "id": "REQ-064",
+      "section": "Evaluation-question corpus",
+      "status": "accepted",
+      "text": "Distinguish metadata-only discovery from discovery-plus-authoritative-source retrieval."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "id": "REQ-065",
+      "section": "Evaluation-question corpus",
+      "status": "accepted",
+      "text": "Include ambiguous, stale, adversarial, unsupported-premise and no-result cases."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "id": "REQ-066",
+      "section": "Evaluation-question corpus",
+      "status": "accepted",
+      "text": "Detect semantic duplicates and leakage into implementation prompts or tuning data."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "id": "REQ-067",
+      "section": "Evaluation-question corpus",
+      "status": "accepted",
+      "text": "Freeze and checksum question manifests before comparative testing."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "id": "REQ-068",
+      "section": "Evaluation-question corpus",
+      "status": "accepted",
+      "text": "Validate every gold target independently of the model that generated the question."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-003",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "id": "REQ-069",
+      "section": "Evaluation, UI and comparison",
+      "status": "accepted",
+      "text": "Test effectiveness and efficiency separately for humans and agents."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-003",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "id": "REQ-070",
+      "section": "Evaluation, UI and comparison",
+      "status": "accepted",
+      "text": "Compare Explorer with GOV.UK search/navigation for humans and with raw official metadata/search surfaces for agents."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-003",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "id": "REQ-071",
+      "section": "Evaluation, UI and comparison",
+      "status": "accepted",
+      "text": "Measure agent target recall, ranking, relationship accuracy, citation correctness, provenance completeness, abstention and answerability classification."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-003",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "id": "REQ-072",
+      "section": "Evaluation, UI and comparison",
+      "status": "accepted",
+      "text": "Measure agent latency, tool calls, tokens, bytes/shards read, query steps and cost."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-003",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "id": "REQ-073",
+      "section": "Evaluation, UI and comparison",
+      "status": "accepted",
+      "text": "Measure human task success, time, errors, backtracking, reformulations, click depth, comprehension and preference."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "id": "REQ-074",
+      "section": "Evaluation, UI and comparison",
+      "status": "accepted",
+      "text": "Test accessibility against WCAG 2.2 AA using automation, expert review and representative users where available."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003",
+        "BRIEF-010",
+        "PROMPT-001",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "id": "REQ-075",
+      "section": "Evaluation, UI and comparison",
+      "status": "accepted",
+      "text": "Audit Explorer's reader, search, facets, graph, links, type, timeline, resources and narrative behaviours."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "id": "REQ-076",
+      "section": "Evaluation, UI and comparison",
+      "status": "accepted",
+      "text": "Turn every evidenced UI gap into a prioritised change with affected stories, rationale, component, acceptance test and dependency."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "id": "REQ-077",
+      "section": "Evaluation, UI and comparison",
+      "status": "accepted",
+      "text": "Pre-register “UI of choice” for defined people and tasks and do not infer it from agent or synthetic tests."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-005",
+        "PROMPT-008"
+      ],
+      "id": "REQ-078",
+      "section": "Evaluation, UI and comparison",
+      "status": "accepted",
+      "text": "Conduct a reproducible review of comparable government catalogues, knowledge graphs, linked-data portals, content APIs, search systems, data catalogues and agent/GraphRAG discovery layers."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-005",
+        "PROMPT-008"
+      ],
+      "id": "REQ-079",
+      "section": "Evaluation, UI and comparison",
+      "status": "accepted",
+      "text": "Compare purpose, scope, semantics, acquisition, provenance, freshness, scale, agent interface, human UI, governance and published evidence."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-003",
+        "BRIEF-010",
+        "PROMPT-001",
+        "PROMPT-006",
+        "PROMPT-008"
+      ],
+      "id": "REQ-080",
+      "section": "Evaluation, UI and comparison",
+      "status": "accepted",
+      "text": "Assess each stated aim independently as fulfilled, partly fulfilled, not fulfilled or not yet testable, with evidence and confidence."
+    },
+    {
+      "clause_ids": [
+        "PROMPT-005",
+        "PROMPT-009"
+      ],
+      "id": "REQ-081",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Use a dated SOTA protocol with reproducible searches, inclusion/exclusion rules and primary-source preference."
+    },
+    {
+      "clause_ids": [
+        "PROMPT-005",
+        "PROMPT-009"
+      ],
+      "id": "REQ-082",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Maintain a complete bibliography with direct URLs wherever available."
+    },
+    {
+      "clause_ids": [
+        "PROMPT-005",
+        "PROMPT-009"
+      ],
+      "id": "REQ-083",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Give each citation its strongest stable locator: PDF page/section; repository commit/path/lines; HTML heading plus paragraph ordinal and snapshot; or API JSON Pointer."
+    },
+    {
+      "clause_ids": [
+        "PROMPT-005",
+        "PROMPT-009"
+      ],
+      "id": "REQ-084",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Verify every citation's URL, redirect destination, source identity, locator and semantic support for the linked claim."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-008",
+        "PROMPT-005",
+        "PROMPT-009"
+      ],
+      "id": "REQ-085",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Record retrieval date, version/commit, content hash and a lawful evidence snapshot where feasible."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "id": "REQ-086",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Express implementation as a dependency-aware multi-agent DAG with safe parallel workstreams."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "id": "REQ-087",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Assign model tiers by task: browsing/research, frontier synthesis/ontology, coding, economical constrained generation and independent adjudication."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "id": "REQ-088",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Use deterministic code—not an LLM—for counts, schema checks, hashes, URL checks, deduplication and metric calculation."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "id": "REQ-089",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Give every agent a bounded input/output schema, source policy, budget, retry rule, completion gate and escalation condition."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "id": "REQ-090",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Make runs resumable and idempotent using checkpoints, immutable manifests and content-addressed artefacts."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007",
+        "PROMPT-008"
+      ],
+      "id": "REQ-091",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Record prompts, exact model/version, parameters, tool calls, timestamps, source snapshots, outputs, validation and cost."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "id": "REQ-092",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Prevent the same model/run from being the sole generator and judge of evidence, questions or conclusions."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-006",
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "id": "REQ-093",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Fail closed on the affected scope for unresolved access, rights, robots, security, citation or completeness issues; continue independent workstreams safely."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-006",
+        "PROMPT-008"
+      ],
+      "id": "REQ-094",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Record decisions, design changes, commits, tests, evaluations, failures and waivers in human- and machine-readable forms."
+    },
+    {
+      "clause_ids": [
+        "BRIEF-006",
+        "PROMPT-006",
+        "PROMPT-008"
+      ],
+      "id": "REQ-095",
+      "section": "Evidence and unattended execution",
+      "status": "accepted",
+      "text": "Produce a final machine-readable status report mapping every requirement to tests, evidence, exceptions and unresolved dependencies."
+    }
+  ],
+  "schema_version": 1
+}

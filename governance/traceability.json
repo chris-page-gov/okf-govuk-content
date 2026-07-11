@@ -1,0 +1,426 @@
+{
+  "brief_sha256": "d9dcf21a6dfc3eb5497e377ba8c978c3006229d83efffaf951c8d798d4a908c0",
+  "clauses": [
+    {
+      "cells": [
+        "1–5",
+        "`18adf5e9e31cc5df69eee04e92e3edda42c9d0cd8510457fe9e1f989734c726e`",
+        "Project identity, date and proposed repository"
+      ],
+      "clause_id": "BRIEF-001",
+      "requirement_ids": [
+        "REQ-002",
+        "REQ-040"
+      ]
+    },
+    {
+      "cells": [
+        "9–12",
+        "`7d1d14c3969831abd87e972c536f3fd4264bbd61af87c1e6bb0d6912f1f51a61`",
+        "Independent bundle mapping GOV.UK structure, content/navigation, organisations, metadata, taxonomies and relationships"
+      ],
+      "clause_id": "BRIEF-002",
+      "requirement_ids": [
+        "REQ-002",
+        "REQ-014",
+        "REQ-015",
+        "REQ-016",
+        "REQ-017",
+        "REQ-018",
+        "REQ-035"
+      ]
+    },
+    {
+      "cells": [
+        "14–24",
+        "`34004a7057cf61b22ea9e0e72de26ef84f929567404ab13ae248f8eb07143f0a`",
+        "Human navigation; system understanding; agent retrieval/citation; source/presentation/search comparison; reusable layer"
+      ],
+      "clause_id": "BRIEF-003",
+      "requirement_ids": [
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006",
+        "REQ-007",
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-073",
+        "REQ-074",
+        "REQ-075",
+        "REQ-076",
+        "REQ-077",
+        "REQ-078",
+        "REQ-079",
+        "REQ-080"
+      ]
+    },
+    {
+      "cells": [
+        "28–40",
+        "`7a23d01b6e43942712a08d9c86fd4147bd54c3f0c73f1dd8b5c35a1bf132d642`",
+        "Metadata-led scope and ten required metadata families"
+      ],
+      "clause_id": "BRIEF-004",
+      "requirement_ids": [
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "REQ-012",
+        "REQ-013",
+        "REQ-014",
+        "REQ-015",
+        "REQ-016",
+        "REQ-017",
+        "REQ-018",
+        "REQ-019",
+        "REQ-020",
+        "REQ-021",
+        "REQ-022",
+        "REQ-023",
+        "REQ-037",
+        "REQ-038",
+        "REQ-039"
+      ]
+    },
+    {
+      "cells": [
+        "44–49",
+        "`695c635054f5eb8f9bb86b96d3a6489ed6ba43fb09b6e210662d0c75654dcedb`",
+        "Fresh official-source audit; contract, coverage, access and reuse verification before acquisition design"
+      ],
+      "clause_id": "BRIEF-005",
+      "requirement_ids": [
+        "REQ-024",
+        "REQ-025",
+        "REQ-026",
+        "REQ-027",
+        "REQ-028",
+        "REQ-029",
+        "REQ-032",
+        "REQ-033",
+        "REQ-034"
+      ]
+    },
+    {
+      "cells": [
+        "51–53",
+        "`efa25dc253f6a490a4b78b6c9d03c2e9bf32af448118d2b5a4c9584a804544d3`",
+        "No silent omission; machine-readable constraint/escalation ledger"
+      ],
+      "clause_id": "BRIEF-006",
+      "requirement_ids": [
+        "REQ-030",
+        "REQ-031",
+        "REQ-093",
+        "REQ-094",
+        "REQ-095"
+      ]
+    },
+    {
+      "cells": [
+        "57–69",
+        "`745f705516cbf68f8dd37bbd1c4f51664cd485a323c33738af99c3b889cd1ac2`",
+        "Example GOV.UK and Schema.org node types"
+      ],
+      "clause_id": "BRIEF-007",
+      "requirement_ids": [
+        "REQ-035",
+        "REQ-037",
+        "REQ-038",
+        "REQ-039"
+      ]
+    },
+    {
+      "cells": [
+        "71–87",
+        "`3be8f756485e02bd4272f29a4c8e44b477dba78b3cc6e99f19cd139603d3b95b`",
+        "Relationship vocabulary and evidence/provenance per relationship"
+      ],
+      "clause_id": "BRIEF-008",
+      "requirement_ids": [
+        "REQ-018",
+        "REQ-035",
+        "REQ-036",
+        "REQ-085"
+      ]
+    },
+    {
+      "cells": [
+        "91–100",
+        "`d22b464eb2cf7fe76fb405a6168185430d7953412506eeab10803a2a54903ad9`",
+        "Federated repository, formats, descriptors, shards, adjacency, registry and checks"
+      ],
+      "clause_id": "BRIEF-009",
+      "requirement_ids": [
+        "REQ-040",
+        "REQ-041",
+        "REQ-042",
+        "REQ-043",
+        "REQ-044",
+        "REQ-045",
+        "REQ-046",
+        "REQ-047",
+        "REQ-048"
+      ]
+    },
+    {
+      "cells": [
+        "104–118",
+        "`adb4e95570e53db79bc414fe3fa28f2457ed0a0b6eaa77814927bd8a77f6e572`",
+        "Source audit, crosswalk, fixture, Explorer evaluation, full corpus, publication and labelled enrichment phases"
+      ],
+      "clause_id": "BRIEF-010",
+      "requirement_ids": [
+        "REQ-013",
+        "REQ-024",
+        "REQ-025",
+        "REQ-037",
+        "REQ-038",
+        "REQ-039",
+        "REQ-044",
+        "REQ-045",
+        "REQ-046",
+        "REQ-047",
+        "REQ-075",
+        "REQ-080"
+      ]
+    },
+    {
+      "cells": [
+        "122–127",
+        "`dd36e89d52baed679f523786f4b6852969de41f6015deddd68e8f4ed7ae895a7`",
+        "Repository, first-corpus scope, initial questions/personas and authenticated-source decisions"
+      ],
+      "clause_id": "BRIEF-011",
+      "requirement_ids": [
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "REQ-012",
+        "REQ-013",
+        "REQ-032",
+        "REQ-049",
+        "REQ-050",
+        "REQ-051",
+        "REQ-052",
+        "REQ-053",
+        "REQ-054",
+        "REQ-055",
+        "REQ-056",
+        "REQ-057",
+        "REQ-058",
+        "REQ-059",
+        "REQ-060",
+        "REQ-061",
+        "REQ-062",
+        "REQ-063",
+        "REQ-064",
+        "REQ-065",
+        "REQ-066",
+        "REQ-067",
+        "REQ-068",
+        "REQ-086",
+        "REQ-087",
+        "REQ-088",
+        "REQ-089",
+        "REQ-090",
+        "REQ-091",
+        "REQ-092",
+        "REQ-093"
+      ]
+    },
+    {
+      "cells": [
+        "Test the Agent First, Human Friendly discovery-layer proposal",
+        "`ec744f9cb343594de19f849608e844589040899d1033e32428069fc363b59f05`"
+      ],
+      "clause_id": "PROMPT-001",
+      "requirement_ids": [
+        "REQ-001",
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-073",
+        "REQ-074",
+        "REQ-075",
+        "REQ-076",
+        "REQ-077",
+        "REQ-078",
+        "REQ-079",
+        "REQ-080"
+      ]
+    },
+    {
+      "cells": [
+        "Comprehensive detailed personas and stories covering each/every GOV.UK use",
+        "`a7e0cc3962c3f5196e2da649a737d37ffa361b10f4814fe6131aeea59933b580`"
+      ],
+      "clause_id": "PROMPT-002",
+      "requirement_ids": [
+        "REQ-049",
+        "REQ-050",
+        "REQ-051",
+        "REQ-052",
+        "REQ-053",
+        "REQ-054",
+        "REQ-055",
+        "REQ-056",
+        "REQ-057",
+        "REQ-058"
+      ]
+    },
+    {
+      "cells": [
+        "Construct 100 questions for each to test OKF/YAML-LD/Explorer effectiveness and efficiency",
+        "`e59a1f9fdea5f1ea307e47a0d3803d040a6ac2db2fdcd9790bf100e7210a8d68`"
+      ],
+      "clause_id": "PROMPT-003",
+      "requirement_ids": [
+        "REQ-059",
+        "REQ-060",
+        "REQ-061",
+        "REQ-062",
+        "REQ-063",
+        "REQ-064",
+        "REQ-065",
+        "REQ-066",
+        "REQ-067",
+        "REQ-068",
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-073"
+      ]
+    },
+    {
+      "cells": [
+        "Detail Explorer changes needed for Human UI of choice",
+        "`0cf80b72f6c91752ca190c009978af85b852f92093a84078509b896167f0e586`"
+      ],
+      "clause_id": "PROMPT-004",
+      "requirement_ids": [
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-073",
+        "REQ-074",
+        "REQ-075",
+        "REQ-076",
+        "REQ-077"
+      ]
+    },
+    {
+      "cells": [
+        "Compare with similar work from any source",
+        "`1da7a5f1c79c0207e4ccefbec87c0cd23ec5e978a889a923913df4ec82dbc5a6`"
+      ],
+      "clause_id": "PROMPT-005",
+      "requirement_ids": [
+        "REQ-078",
+        "REQ-079",
+        "REQ-081",
+        "REQ-082",
+        "REQ-083",
+        "REQ-084",
+        "REQ-085"
+      ]
+    },
+    {
+      "cells": [
+        "Analyse aims/objectives and how far the proposal fulfils them",
+        "`f17203e62a15f6b1c5f553373865e2dd15b7a917b1b8bb36610dfa67f9dd81e4`"
+      ],
+      "clause_id": "PROMPT-006",
+      "requirement_ids": [
+        "REQ-001",
+        "REQ-080",
+        "REQ-095"
+      ]
+    },
+    {
+      "cells": [
+        "Fully detailed parallel multi-agent/model plan executable unattended",
+        "`9c7996a537a670a129c3c4c1b0bdc49e46fabf2cacd9ad1660b364b9fb524cfa`"
+      ],
+      "clause_id": "PROMPT-007",
+      "requirement_ids": [
+        "REQ-086",
+        "REQ-087",
+        "REQ-088",
+        "REQ-089",
+        "REQ-090",
+        "REQ-091",
+        "REQ-092",
+        "REQ-093"
+      ]
+    },
+    {
+      "cells": [
+        "Transparent record of human/agent design, implementation, testing and evaluation",
+        "`ed54937db41b11b12b0d5cc9214cb2f324410d5f357b298a4e4fe6721e077eeb`"
+      ],
+      "clause_id": "PROMPT-008",
+      "requirement_ids": [
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-073",
+        "REQ-074",
+        "REQ-075",
+        "REQ-076",
+        "REQ-077",
+        "REQ-078",
+        "REQ-079",
+        "REQ-080",
+        "REQ-091",
+        "REQ-094",
+        "REQ-095"
+      ]
+    },
+    {
+      "cells": [
+        "Detailed URL bibliography, precise locators and verification of every citation/URL",
+        "`f5a2cf0b4a92c4944667b98bdd6cf93df12268dfa61431cba51f69a96658d3ac`"
+      ],
+      "clause_id": "PROMPT-009",
+      "requirement_ids": [
+        "REQ-081",
+        "REQ-082",
+        "REQ-083",
+        "REQ-084",
+        "REQ-085"
+      ]
+    },
+    {
+      "cells": [
+        "“The initial implementation should include the entire gov.uk contents”",
+        "`5041bb1b36a945eb8ff53cf118a3d128e0973c999196da73acd1890ab89871d9`"
+      ],
+      "clause_id": "USER-001",
+      "requirement_ids": [
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "REQ-012",
+        "REQ-013",
+        "REQ-033",
+        "REQ-034"
+      ]
+    }
+  ],
+  "controlling_sha256": "5f85604f759ed562a0809da4013e73a27a1007de65d1b3204cf24871ae74c5a9",
+  "counts": {
+    "clauses": 21,
+    "mapped_requirements": 94,
+    "requirements": 95
+  },
+  "generated_from": "planning/AFHF_GOVUK_OKF_BRIEF_TRACEABILITY.md",
+  "schema_version": 1
+}

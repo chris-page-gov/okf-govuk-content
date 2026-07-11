@@ -1,0 +1,48 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for C1-02",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "C1-01",
+    "B1-02"
+  ],
+  "human_gate": null,
+  "idempotency_key": "77a6c153df3a5def1a45c111cf0867199a524e0c4b37bf405fa99e2e8936368f",
+  "model_profile": "independent_verification",
+  "objective": "gold verification",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "questions/gold/manifest.json"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-062",
+    "REQ-068",
+    "REQ-092"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "C1-02"
+}

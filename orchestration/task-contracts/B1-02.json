@@ -1,0 +1,46 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for B1-02",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "B1-01"
+  ],
+  "human_gate": null,
+  "idempotency_key": "f33122b0a4bc0ad0d1a4de2e99f8479b1b77d9f4acf5dcd4637fb336dc6d7d4a",
+  "model_profile": "deterministic",
+  "objective": "freeze union",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "corpus/inventory/t0-candidates.jsonl"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-029",
+    "REQ-033"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "B1-02"
+}

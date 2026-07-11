@@ -1,0 +1,55 @@
+{
+  "acceptance_tests": [
+    "deterministic validation for D2-03",
+    "requirements trace is non-empty"
+  ],
+  "allowed_sources": [
+    "declared public official sources",
+    "repository inputs"
+  ],
+  "budgets": {
+    "attempts": 3,
+    "external_paid_model_gbp": 0,
+    "network_attempts": 5
+  },
+  "dependencies": [
+    "D1-02",
+    "D2-01",
+    "D2-02"
+  ],
+  "human_gate": null,
+  "idempotency_key": "fae4e93716a06fd55a553b748a8cee677720e66651379a3e46af3c476f1ad5f3",
+  "model_profile": "deterministic",
+  "objective": "full corpus integration",
+  "on_block": "continue_independent",
+  "output_artifacts": [
+    "bundle/index.html"
+  ],
+  "prohibited_actions": [
+    "invent evidence",
+    "bypass rights or robots",
+    "publish secrets"
+  ],
+  "requirement_ids": [
+    "REQ-003",
+    "REQ-004",
+    "REQ-005",
+    "REQ-006",
+    "REQ-007",
+    "REQ-008",
+    "REQ-040",
+    "REQ-046",
+    "REQ-048"
+  ],
+  "retry_policy": {
+    "max_attempts": 3,
+    "network_backoff": "exponential_with_jitter"
+  },
+  "schema_version": 1,
+  "source_priority": [
+    "official primary",
+    "normative standard",
+    "peer reviewed"
+  ],
+  "task_id": "D2-03"
+}
