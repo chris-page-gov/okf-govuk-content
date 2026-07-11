@@ -1,0 +1,137 @@
+schema_version: 1
+snapshot_date: "2026-07-11"
+observation_window: "2026-07-11T22:45:09Z/2026-07-11T23:21:00Z"
+policy:
+  public_reproducible_only: true
+  metadata_only: true
+  identified_user_agent: govuk-okf/0.1 (+https://github.com/chris-page-gov/okf-govuk-content)
+  content_api_rate_limit_requests_per_second: 10
+  configured_content_api_requests_per_second: 8
+  default_www_gov_uk_requests_per_second: 2
+sources:
+  - id: govuk-sitemap
+    family: official_enumerator
+    url: https://www.gov.uk/sitemap.xml
+    role: Majority-page URL enumerator and last-modified observation.
+    coverage_claim: majority_not_complete
+    authentication: none
+    acquisition: full XML index and every declared shard at T0 and T1
+    rights: OGL v3 subject to GOV.UK terms and item-level exclusions
+    observed_shards: 35
+    observed_raw_entries: 869875
+    observed_unique_urls: 683070
+    observed_duplicate_keys: 186759
+    snapshot_consistency: unstable_during_preflight
+  - id: search-api-v1
+    family: official_enumerator_and_comparator
+    url: https://www.gov.uk/api/search.json
+    role: Public search-index enumerator using provably exhaustive partition leaves.
+    coverage_claim: unsupported_public_interface_with_known_exclusions
+    authentication: none
+    acquisition: count-only root then disjoint document-type/date partitions
+    constraint: Never treat a 1500-result request as corpus coverage.
+    observed_total: 715465
+    observed_document_types: 137
+    observed_external_content: 461
+    maximum_page_size: 1500
+    pages_at_maximum: 477
+    stable_cursor: false
+  - id: content-api
+    family: official_metadata_hydrator
+    url: https://content-api.publishing.service.gov.uk/content/{path}
+    role: Source-native metadata, public details and expanded link relationships by route.
+    coverage_claim: www_gov_uk_html_content_with_documented_exclusions
+    authentication: none
+    acquisition: globally rate-limited GET by admitted canonical path
+    published_rate_limit_requests_per_second: 10
+  - id: structured-linked-content
+    family: derived_enumerator
+    url: https://content-api.publishing.service.gov.uk/reference.html
+    role: Breadth-first discovery through allowlisted source-native link fields.
+    coverage_claim: admitted_records_only
+    authentication: none
+    acquisition: deterministic extraction with visited content-ID set
+  - id: curated-route-families
+    family: official_gap_enumerator
+    url: https://docs.publishing.service.gov.uk/repos/collections.html
+    role: Organisations, mainstream browse, taxonomy, world, step-by-step and collections roots.
+    coverage_claim: documented_navigation_families
+    authentication: none
+    acquisition: declared route prefixes and public APIs only
+  - id: rendered-link-gap-detector
+    family: bounded_gap_detector
+    url: https://www.gov.uk/help/reuse-govuk-content
+    role: Robots/reuse-compliant same-host link difference detector.
+    coverage_claim: corroborating_not_authoritative_relationships
+    authentication: none
+    acquisition: transient metadata/link extraction; body text discarded
+  - id: publishing-content-schemas
+    family: official_contract
+    url: https://github.com/alphagov/publishing-api/tree/main/content_schemas
+    role: Version-pinned source schema and document-type contract.
+    coverage_claim: schema_contract_not_public_content_enumerator
+    authentication: none
+    acquisition: pin main commit at T0 and vendor schema identifiers/hashes
+    pinned_commit: b1e987aa7b3e62c105ff2b2db87667f7638726f8
+    source_schema_families: 83
+  - id: robots
+    family: policy
+    url: https://www.gov.uk/robots.txt
+    role: Crawl-policy input checked before and during acquisition.
+    authentication: none
+  - id: reuse-and-terms
+    family: rights
+    url: https://www.gov.uk/help/reuse-govuk-content
+    role: Public API, scraping, sitemap and reuse constraints.
+    authentication: none
+  - id: ogl-v3
+    family: rights
+    url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+    role: Default Crown copyright reuse licence where applicable.
+    authentication: none
+  - id: search-api-v2
+    family: official_comparator
+    url: https://docs.publishing.service.gov.uk/repos/search-api-v2.html
+    role: Current site-search architecture; documentation/comparison only without a public reproducible endpoint.
+    coverage_claim: no_public_reproducible_bulk_access_verified
+    authentication: not_used
+  - id: govsearch-govgraph
+    family: official_comparator
+    url: https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-gcp/how-to-write-queries.html
+    role: Source-native identity/relationship model and internal comparator.
+    coverage_claim: not_public_release_dependency
+    authentication: not_authorised
+  - id: organisations-api
+    family: official_enumerator
+    url: https://www.gov.uk/api/organisations
+    role: Complete public inventory of live, closed and exempt organisations plus hierarchy and supersession.
+    authentication: none
+    observed_total: 1256
+    page_size: 20
+    pages: 63
+  - id: topic-taxonomy-root
+    family: official_recursive_enumerator
+    url: https://www.gov.uk/api/content
+    role: Root for recursive level-one and child taxon traversal.
+    authentication: none
+    observed_root_count: 20
+  - id: world-taxonomy-root
+    family: official_recursive_enumerator
+    url: https://www.gov.uk/api/content/world/all
+    role: Root for recursive world taxonomy traversal.
+    authentication: none
+    observed_root_count: 233
+  - id: mainstream-browse-root
+    family: official_recursive_enumerator
+    url: https://www.gov.uk/api/content/browse
+    role: Root for mainstream browse traversal.
+    authentication: none
+    observed_top_level_count: 16
+  - id: atom-feeds
+    family: official_delta_gap_detector
+    url: https://www.gov.uk/government/organisations/government-digital-service.atom
+    role: Route-specific recent-change corroboration only; not an enumerator.
+    authentication: none
+    observed_page_size: 20
+    observed_next_link: false
+

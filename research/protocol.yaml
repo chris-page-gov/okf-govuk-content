@@ -1,0 +1,15 @@
+schema_version: 1
+review_cutoff: "2026-07-11T23:21:00Z"
+languages: [en, cy]
+source_priority: [official_primary, normative_standard, peer_reviewed, maintainer_authored]
+inclusion:
+  - Materially informs a research question, source contract, comparator or evaluation method.
+  - URL, source identity, version and strongest available locator can be verified.
+exclusion:
+  - Undated derivative marketing or unsupported commentary.
+  - Inaccessible claims without independently verifiable metadata.
+  - Generic AI work with no discovery or evaluation connection.
+negative_evidence_required: true
+independent_screening_required: true
+human_only_claims: [human_ui_of_choice, participant_preference]
+

@@ -34,6 +34,7 @@ Python 3.12 or later is sufficient for the deterministic core.
 
 ```sh
 python3 scripts/import_contract.py --check
+python3 scripts/preflight_sources.py --check
 python3 scripts/run_pipeline.py build --fixture
 python3 -m unittest discover -s tests -v
 python3 scripts/check_publication.py
@@ -42,6 +43,10 @@ python3 scripts/build_checksums.py --check
 
 Current operational decisions, source constraints, costs and human-only gates
 are published under `governance/`, `research/`, `provenance/` and `reports/`.
+Running the network preflight itself requires `python3
+scripts/preflight_sources.py --live`; the normal CI check is offline and verifies
+the frozen response metadata, counts, hashes and explicit failures.
+
 
 ## Licensing and attribution
 
@@ -50,4 +55,3 @@ copyright metadata is attributed and made available under the Open Government
 Licence v3.0 where that licence applies. Item-level third-party or restricted
 material remains governed by its source terms and is not silently republished.
 See [LICENSE.md](LICENSE.md) and the machine-readable constraint ledger.
-

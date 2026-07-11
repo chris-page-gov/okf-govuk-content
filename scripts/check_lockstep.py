@@ -23,6 +23,11 @@ REQUIRED = [
     "governance/launch-manifest.yaml",
     "orchestration/dag.yaml",
     "orchestration/models.lock.yaml",
+    "research/source-registry.yaml",
+    "research/source-preflight.json",
+    "research/source-constraints.json",
+    "research/official-source-audit.md",
+    "provenance/activity-ledger.jsonl",
 ]
 
 
@@ -38,6 +43,15 @@ def main() -> int:
         trace = json.loads(trace_path.read_text(encoding="utf-8"))
         if trace.get("counts", {}).get("requirements") != 95:
             errors.append("traceability projection has the wrong requirement denominator")
+
+    preflight_path = ROOT / "research" / "source-preflight.json"
+    if preflight_path.is_file():
+        preflight = json.loads(preflight_path.read_text(encoding="utf-8"))
+        summary = preflight.get("summary", {})
+        if summary.get("official_total") != 32 or summary.get("official_failed") != 0:
+            errors.append("official-source preflight is not the accepted 32/32 result")
+        if summary.get("plan_total") != 93:
+            errors.append("plan-source preflight does not account for all 93 URLs")
 
     contracts = sorted((ROOT / "orchestration" / "task-contracts").glob("*.json"))
     dag = json.loads((ROOT / "orchestration" / "dag.yaml").read_text(encoding="utf-8"))
