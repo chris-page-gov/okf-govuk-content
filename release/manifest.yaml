@@ -1,0 +1,49 @@
+{
+  "artifacts": {
+    "aim_assessment": "release/aim-assessment.json",
+    "browser_validation": null,
+    "bundle": "bundle",
+    "checksums": "bundle/checksums.json",
+    "citation_verification": null,
+    "clean_room_reproduction": "release/clean-room-reproduction.json",
+    "descriptor": "bundle/okf-explorer.json",
+    "evaluation": null,
+    "full_repository_tests": null,
+    "question_contract": null,
+    "provenance_validation": "release/provenance-validation.json",
+    "reconciliation": null,
+    "rights_privacy_audit": "release/rights-privacy-audit.json",
+    "sbom": "release/sbom.cdx.json",
+    "security_scan": null,
+    "semantic_validation": null,
+    "status": "release/status.json"
+  },
+  "counts": {
+    "publication_records": 14
+  },
+  "gates": {
+    "aim_assessment_passed": false,
+    "browser_validation_passed": false,
+    "checksum_validation_passed": false,
+    "citation_verification_passed": false,
+    "clean_room_reproduction_passed": false,
+    "evaluation_passed": false,
+    "full_corpus_reconciled": false,
+    "full_repository_tests_passed": false,
+    "provenance_validation_passed": false,
+    "question_contract_passed": false,
+    "rights_privacy_audit_passed": false,
+    "sbom_validation_passed": false,
+    "security_scan_passed": false,
+    "semantic_validation_passed": false
+  },
+  "publication_ready": false,
+  "release_id": "fixture-2026-07-11",
+  "release_kind": "fixture",
+  "schema": "afhf-govuk-okf-release-manifest.v1",
+  "snapshot": {
+    "id": "fixture-2026-07-11",
+    "kind": "fixture",
+    "sampled": true
+  }
+}
