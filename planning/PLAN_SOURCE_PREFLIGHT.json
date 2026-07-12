@@ -1,9 +1,10 @@
 {
   "schema_version": "1.0",
-  "checked_date": "2026-07-11",
+  "checked_date": "2026-07-12",
+  "initial_checked_date": "2026-07-11",
   "plan_file": "AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md",
-  "plan_sha256": "64986f4926b7904f91bc023a7e5032b9119f9d928218cc997cebbc553d9eb274",
-  "methodology": "Each unique Markdown URL was opened on 11 July 2026 and its returned title/publisher or document identity was checked. This is a URL-and-identity preflight, not full locator or claim verification.",
+  "plan_sha256": "90ea71425e9010d66c71bf4c526782810a4e8648c85b407fa69637755cf0ee56",
+  "methodology": "The 92 unchanged Markdown URLs retain their 11 July 2026 URL-and-identity results. The one controlling-plan replacement, the strict-TLS Crossref DOI record for Pirolli and Card, was checked on 12 July 2026 from a bounded response already retained by the citation verifier. This is a URL-and-identity preflight, not full locator or claim verification.",
   "stage_definitions": {
     "url_identity_preflight": "URL resolved sufficiently to identify the intended source.",
     "locator_verified": "Exact line, section, paragraph, page, commit or JSON Pointer was re-found in the pinned source.",
@@ -21,6 +22,22 @@
     "result": "automated_access_403",
     "action": "Replaced in the plan by the authors' University of Waterloo PDF; DOI retained as metadata."
   },
+  "access_restriction_history": [
+    {
+      "url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf",
+      "original_url_identity_preflight": "pass",
+      "live_result": "transport_failed_DH_KEY_TOO_SMALL",
+      "checked_at": "2026-07-11T23:02:40.149327+00:00",
+      "action": "TLS was not weakened. The URL and its original result remain in research/source-preflight.json history after replacement in the controlling plan."
+    },
+    {
+      "url": "https://www.researchgate.net/publication/229101074_Information_Foraging",
+      "live_result": "HTTP_403_for_publication_record_and_exact_author_PDF",
+      "checked_at": "2026-07-12T07:18:36Z",
+      "attempts": 3,
+      "action": "No access-control bypass was attempted. Use the Crossref DOI record for bibliographic identity only; do not use inaccessible full text as section-level evidence."
+    }
+  ],
   "sources": [
     {
       "url": "https://a2a-protocol.org/latest/announcing-1.0/",
@@ -59,10 +76,12 @@
       "claim_verified": "not_run"
     },
     {
-      "url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf",
+      "url": "https://api.crossref.org/works/10.1037%2F0033-295X.106.4.643",
       "url_identity_preflight": "pass",
       "locator_verified": "not_run",
-      "claim_verified": "not_run"
+      "claim_verified": "not_run",
+      "checked_at": "2026-07-12T07:39:52Z",
+      "verification_basis": "Strict-TLS Crossref response retained as EVD-9A1C5A95621D3384 with document SHA-256 622f5862d0700bd176a09386280aea8e044db82f1dc9d17307c2f59ec55ce0d3."
     },
     {
       "url": "https://arxiv.org/abs/2004.12832",

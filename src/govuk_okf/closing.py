@@ -531,15 +531,39 @@ def _validate_reconciliation(path: Path, role: str) -> tuple[dict[str, Any], str
             ):
                 raise ClosingError(f"T1 Search partition proof {index} does not use opposing orders")
             for pass_index, row in enumerate(passes):
+                if not isinstance(row, dict):
+                    raise ClosingError(
+                        f"T1 Search partition proof {index} pass {pass_index} did not close"
+                    )
+                unique_source_rows = row.get("unique_source_rows")
+                if unique_source_rows is None:
+                    # Compatibility with pre-source-row proof fixtures. Live
+                    # Search acquisitions always emit unique_source_rows.
+                    unique_source_rows = row.get("unique_urls")
+                unique_urls = row.get("unique_urls")
+                alias_rows = row.get("canonical_alias_rows", 0)
                 if (
-                    not isinstance(row, dict)
-                    or row.get("closed") is not True
+                    row.get("closed") is not True
                     or row.get("returned_rows") != expected
-                    or row.get("unique_urls") != expected
+                    or unique_source_rows != expected
+                    or not isinstance(unique_urls, int)
+                    or not isinstance(alias_rows, int)
+                    or unique_urls < 0
+                    or alias_rows < 0
+                    or unique_urls + alias_rows != expected
                 ):
                     raise ClosingError(
                         f"T1 Search partition proof {index} pass {pass_index} did not close"
                     )
+            identities = {
+                str(row.get("identity_sha256") or "")
+                for row in passes
+                if isinstance(row, dict) and row.get("identity_sha256")
+            }
+            if identities and len(identities) != 1:
+                raise ClosingError(
+                    f"T1 Search partition proof {index} opposing passes disagree"
+                )
     return value, hashlib.sha256(canonical_json_bytes(value)).hexdigest()
 
 

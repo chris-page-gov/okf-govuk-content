@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import gzip
 import hashlib
+import io
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -43,6 +44,13 @@ def _headers(message: Message) -> dict[str, str]:
     return {key.lower(): value for key, value in message.items() if key.lower() in allowed}
 
 
+def _bounded_gzip_decompress(raw: bytes, limit: int) -> tuple[bytes, bool]:
+    """Decompress no more than limit bytes from an untrusted gzip response."""
+    with gzip.GzipFile(fileobj=io.BytesIO(raw)) as stream:
+        value = stream.read(limit + 1)
+    return value[:limit], len(value) > limit
+
+
 def fetch_probe(probe: Probe, attempts: int = 3) -> dict[str, Any]:
     headers = {"User-Agent": USER_AGENT, "Accept": "*/*", "Accept-Encoding": "gzip"}
     if probe.partial:
@@ -58,8 +66,9 @@ def fetch_probe(probe: Probe, attempts: int = 3) -> dict[str, Any]:
                 raw = raw[: probe.max_bytes]
                 if response.headers.get("Content-Encoding", "").lower() == "gzip":
                     try:
-                        raw = gzip.decompress(raw)
-                    except (gzip.BadGzipFile, EOFError):
+                        raw, decompressed_truncated = _bounded_gzip_decompress(raw, probe.max_bytes)
+                        truncated = truncated or decompressed_truncated
+                    except (gzip.BadGzipFile, EOFError, OSError):
                         pass
                 return {
                     "id": probe.id,
@@ -79,7 +88,7 @@ def fetch_probe(probe: Probe, attempts: int = 3) -> dict[str, Any]:
                 }
         except HTTPError as exc:
             last_error = f"HTTP {exc.code}"
-            if exc.code not in {408, 429, 500, 502, 503, 504}:
+            if exc.code not in {408, 429, 500, 502, 503, 504} or attempt == attempts:
                 return {
                     "id": probe.id,
                     "family": probe.family,
@@ -122,4 +131,3 @@ def fetch_probe(probe: Probe, attempts: int = 3) -> dict[str, Any]:
 
 def public_result(result: dict[str, Any]) -> dict[str, Any]:
     return {key: value for key, value in result.items() if key != "body"}
-

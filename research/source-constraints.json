@@ -53,10 +53,17 @@
     {
       "id": "SRC-CONSTRAINT-007",
       "source": "pirolli-information-foraging-pdf",
-      "status": "blocked",
+      "status": "bibliographic_fallback_verified_full_text_blocked",
       "class": "transport_security",
       "reason": "Current Python/OpenSSL rejected the source server's legacy TLS parameters with DH_KEY_TOO_SMALL.",
-      "disposition": "Do not weaken TLS; locate a lawful secure primary copy or block dependent citation."
+      "disposition": "TLS and access controls were not weakened. ResearchGate and its exact author PDF returned HTTP 403. The strict-TLS Crossref DOI record now supports bibliographic identity only; no section-level full-text claim is released.",
+      "secure_resolution_url": "https://api.crossref.org/works/10.1037%2F0033-295X.106.4.643",
+      "latest_verifier_attempt": {
+        "checked_at": "2026-07-12T07:18:36Z",
+        "attempts": 3,
+        "result": "HTTP 403 Forbidden",
+        "tls_policy": "python_default_strict_context"
+      }
     },
     {
       "id": "SRC-CONSTRAINT-008",
@@ -68,4 +75,3 @@
     }
   ]
 }
-

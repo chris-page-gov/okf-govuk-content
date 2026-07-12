@@ -234,6 +234,7 @@ class CorpusHydrator:
     def prepare(self, connection: sqlite3.Connection) -> int:
         digest = hashlib.sha256()
         count = 0
+        insert_batch: list[tuple[str, str, str]] = []
         connection.execute("BEGIN")
         try:
             for record in read_source_records(self.source_path):
@@ -241,11 +242,21 @@ class CorpusHydrator:
                 record["canonical_url"] = url
                 payload = canonical_json_bytes(record)
                 digest.update(payload)
-                connection.execute(
-                    "INSERT OR IGNORE INTO queue(url, locale, input_json, state) VALUES (?, ?, ?, 'pending')",
-                    (url, locale, payload.decode("utf-8")),
-                )
+                insert_batch.append((url, locale, payload.decode("utf-8")))
+                if len(insert_batch) >= 10_000:
+                    connection.executemany(
+                        "INSERT OR IGNORE INTO queue(url, locale, input_json, state) "
+                        "VALUES (?, ?, ?, 'pending')",
+                        insert_batch,
+                    )
+                    insert_batch.clear()
                 count += 1
+            if insert_batch:
+                connection.executemany(
+                    "INSERT OR IGNORE INTO queue(url, locale, input_json, state) "
+                    "VALUES (?, ?, ?, 'pending')",
+                    insert_batch,
+                )
             source_digest = digest.hexdigest()
             previous = connection.execute("SELECT value FROM meta WHERE key='source_sha256'").fetchone()
             if previous and previous[0] != source_digest:

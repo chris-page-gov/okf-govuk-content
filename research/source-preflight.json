@@ -1,6 +1,6 @@
 {
-  "completed_at": "2026-07-11T23:03:38.312405+00:00",
-  "method": "bounded GET with redirects, identified user agent, retries and retained response hashes",
+  "completed_at": "2026-07-12T07:39:52+00:00",
+  "method": "The original bounded GET preflight used redirects, an identified user agent, retries and retained response hashes. Its 92 unchanged active plan results are preserved byte-for-byte; the controlling plan's sole replacement reuses the bounded strict-TLS Crossref response retained by the citation verifier.",
   "official_sources": [
     {
       "attempts": 1,
@@ -1038,6 +1038,58 @@
       "status": 200
     }
   ],
+  "plan_source_history": {
+    "access_restrictions": [
+      {
+        "action": "TLS was not weakened; the result is preserved as the superseded plan result below.",
+        "checked_at": "2026-07-11T23:02:40.149327+00:00",
+        "result": "transport_failed_DH_KEY_TOO_SMALL",
+        "url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf"
+      },
+      {
+        "action": "No access-control bypass was attempted. Crossref now supplies bibliographic identity only; the inaccessible full text supports no section-level release claim.",
+        "attempts": 3,
+        "checked_at": "2026-07-12T07:18:36Z",
+        "exact_author_pdf_result": "HTTP 403 Forbidden",
+        "publication_record_result": "HTTP 403 Forbidden",
+        "url": "https://www.researchgate.net/publication/229101074_Information_Foraging"
+      }
+    ],
+    "original_completed_at": "2026-07-11T23:03:38.312405+00:00",
+    "original_summary": {
+      "plan_failed": 1,
+      "plan_ok": 92,
+      "plan_total": 93
+    },
+    "original_results_canonicalization": "UTF-8 JSON array with lexicographically sorted object keys and compact separators",
+    "original_results_sha256": "c16a845f8797f117c5a6b1f0ccb970136e20f40962d25aa944f3ab211cc8c8a9",
+    "preserved_original_result_count": 93,
+    "replacement": {
+      "active_id": "plan-007",
+      "from_url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf",
+      "to_url": "https://api.crossref.org/works/10.1037%2F0033-295X.106.4.643"
+    },
+    "superseded_results": [
+      {
+        "attempts": 2,
+        "bytes_retained": 0,
+        "elapsed_ms": 0,
+        "error": "<urlopen error [SSL: DH_KEY_TOO_SMALL] dh key too small (_ssl.c:1081)>",
+        "expected_identity_status": "pass",
+        "family": "plan-citation",
+        "final_url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf",
+        "headers": {},
+        "id": "plan-007",
+        "ok": false,
+        "partial": true,
+        "requested_url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf",
+        "retrieved_at": "2026-07-11T23:02:40.149327+00:00",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status": 0
+      }
+    ],
+    "unchanged_results_retained_in_plan_sources": 92
+  },
   "plan_sources": [
     {
       "attempts": 1,
@@ -1173,21 +1225,23 @@
       "status": 206
     },
     {
-      "attempts": 2,
-      "bytes_retained": 0,
-      "elapsed_ms": 0,
-      "error": "<urlopen error [SSL: DH_KEY_TOO_SMALL] dh key too small (_ssl.c:1081)>",
+      "attempts": 1,
+      "bytes_retained": 1956,
+      "elapsed_ms": 292,
       "expected_identity_status": "pass",
       "family": "plan-citation",
-      "final_url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf",
-      "headers": {},
+      "final_url": "https://api.crossref.org/works/10.1037%2F0033-295X.106.4.643",
+      "headers": {
+        "content-length": "1956",
+        "content-type": "application/json"
+      },
       "id": "plan-007",
-      "ok": false,
+      "ok": true,
       "partial": true,
-      "requested_url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf",
-      "retrieved_at": "2026-07-11T23:02:40.149327+00:00",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "status": 0
+      "requested_url": "https://api.crossref.org/works/10.1037%2F0033-295X.106.4.643",
+      "retrieved_at": "2026-07-12T07:39:52+00:00",
+      "sha256": "622f5862d0700bd176a09386280aea8e044db82f1dc9d17307c2f59ec55ce0d3",
+      "status": 200
     },
     {
       "attempts": 1,
@@ -3068,8 +3122,8 @@
     "official_failed": 0,
     "official_ok": 32,
     "official_total": 32,
-    "plan_failed": 1,
-    "plan_ok": 92,
+    "plan_failed": 0,
+    "plan_ok": 93,
     "plan_total": 93
   }
 }

@@ -23,7 +23,7 @@ tombstone, external boundary link or explicit exception.
 | Source | Observed result | Contract and constraint |
 |---|---|---|
 | [Content API overview](https://content-api.publishing.service.gov.uk/) and [v1.0.0 reference](https://content-api.publishing.service.gov.uk/reference.html) | Public path lookup at `https://www.gov.uk/api/content/{path}`; no authentication; root exposes 20 level-one taxons; documented 10 requests/s/client | Path-addressed, beta, `www.gov.uk` HTML-backed content only; no enumeration, direct asset bytes, dynamic or historic-content API. Shared acquisition ceiling is 8 requests/s. |
-| [Search API v1](https://www.gov.uk/api/search.json) and [usage documentation](https://docs.publishing.service.gov.uk/repos/search-api/using-the-search-api.html) | `total=715465`; 137 content-store document types; 461 external records; maximum page size 1,500 | Unsupported public interface, English/selected formats, no redirects/gone inventory and no immutable cursor. Use opposing timestamp passes, overlaps, deduplication and T1 repeat; 477 maximum-sized requests is only an offset-walk estimate. |
+| [Search API v1](https://www.gov.uk/api/search.json) and [usage documentation](https://docs.publishing.service.gov.uk/repos/search-api/using-the-search-api.html) | T0 count-only root at `2026-07-12T07:15:57Z`: `total=715467`; 137 content-store document types; 461 external source rows; maximum page size 1,500 | Unsupported public interface, English/selected formats, no redirects/gone inventory and no immutable cursor. Use opposing timestamp passes, source-row identities, canonical-route alias accounting, deduplication and T1 repeat; 477 maximum-sized requests is only an offset-walk estimate. |
 | [Sitemap index](https://www.gov.uk/sitemap.xml) and [generation documentation](https://docs.publishing.service.gov.uk/manual/govuk-sitemap.html) | 35 shards; 869,875 raw entries; 683,070 unique URLs; 186,759 duplicate URL keys | GOV.UK describes coverage as the “majority”. Shard 35 changed during the preflight; store/hash/refetch every shard and reject mixed snapshots. |
 | [Organisations API](https://www.gov.uk/api/organisations) and [documentation](https://docs.publishing.service.gov.uk/manual/organisations-api.html) | 1,256 records, 63 pages of 20; includes live, closed and exempt bodies plus hierarchy/supersession | Use as organisation inventory. Preserve the smaller public navigation index as a separate view, not a denominator. |
 | [Topic taxonomy](https://docs.publishing.service.gov.uk/manual/taxonomy.html) | Content API root has 20 `level_one_taxons` | Recursively traverse typed parent/child/translation fields. Search’s taxon count is a gap detector only. |
@@ -81,7 +81,12 @@ the live Search index exposes 137 document types. These remain distinct fields.
 
 The execution preflight opened all 93 URLs from
 `planning/PLAN_SOURCE_PREFLIGHT.json` with a bounded, identified client. Ninety
-two passed. The Pirolli PDF host negotiates a legacy Diffie-Hellman key that the
-current Python/OpenSSL client rejects (`DH_KEY_TOO_SMALL`); it is retained as an
-explicit citation-access constraint and is not treated as verified by fallback.
-
+two passed. The original Pirolli PDF host negotiates a legacy Diffie-Hellman key
+that the current Python/OpenSSL client rejects (`DH_KEY_TOO_SMALL`); TLS was not
+weakened. The first secure fallback, ResearchGate, and its exact author PDF both
+returned HTTP 403 to bounded strict-TLS requests on 12 July 2026; no access-control
+bypass was attempted. Citation verification now uses the public
+[Crossref DOI record](https://api.crossref.org/works/10.1037%2F0033-295X.106.4.643)
+only for bibliographic identity. The release makes no section-level claim from
+the inaccessible full text. Every failed route remains in the source preflight
+and citation access-history ledger.
