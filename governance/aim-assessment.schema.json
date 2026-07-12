@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chris-page-gov.github.io/okf-govuk-content/schema/aim-assessment-v1.json",
+  "title": "AF/HF GOV.UK OKF aim assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "assessment_id",
+    "assessment_date",
+    "assessment_tier",
+    "snapshot",
+    "method",
+    "inputs",
+    "coverage",
+    "counts",
+    "gate_11",
+    "aims"
+  ],
+  "properties": {
+    "schema": {"const": "afhf-govuk-okf-aim-assessment.v1"},
+    "assessment_id": {"type": "string", "minLength": 1},
+    "assessment_date": {"type": "string", "format": "date"},
+    "assessment_tier": {
+      "enum": ["fixture_checkpoint", "machine_release_candidate", "full_programme"]
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["release_id", "kind", "sampled"],
+      "properties": {
+        "release_id": {"type": "string", "minLength": 1},
+        "kind": {"type": "string", "minLength": 1},
+        "sampled": {"type": "boolean"}
+      }
+    },
+    "method": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "status_vocabulary", "veto_rule", "human_rule", "unfavourable_results_permitted"],
+      "properties": {
+        "kind": {"const": "deterministic_non_compensatory_evidence_decision_table"},
+        "status_vocabulary": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {"$ref": "#/$defs/status"}
+        },
+        "veto_rule": {"type": "string", "minLength": 1},
+        "human_rule": {"type": "string", "minLength": 1},
+        "unfavourable_results_permitted": {"const": true}
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assessment_source", "requirements", "traceability", "release_manifest", "release_status"],
+      "properties": {
+        "assessment_source": {"$ref": "#/$defs/fileDigest"},
+        "requirements": {"$ref": "#/$defs/fileDigest"},
+        "traceability": {"$ref": "#/$defs/fileDigest"},
+        "release_manifest": {"$ref": "#/$defs/fileDigest"},
+        "release_status": {"$ref": "#/$defs/fileDigest"}
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["aims", "requirements", "controlling_clauses"],
+      "properties": {
+        "aims": {"const": 9},
+        "requirements": {"const": 95},
+        "controlling_clauses": {"const": 21}
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["aims", "by_status"],
+      "properties": {
+        "aims": {"const": 9},
+        "by_status": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fulfilled", "partly_fulfilled", "not_fulfilled", "not_yet_testable"],
+          "properties": {
+            "fulfilled": {"type": "integer", "minimum": 0, "maximum": 9},
+            "partly_fulfilled": {"type": "integer", "minimum": 0, "maximum": 9},
+            "not_fulfilled": {"type": "integer", "minimum": 0, "maximum": 9},
+            "not_yet_testable": {"type": "integer", "minimum": 0, "maximum": 9}
+          }
+        }
+      }
+    },
+    "gate_11": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passed", "status", "required_check_ids", "unmet_check_ids", "evidence", "qualification"],
+      "properties": {
+        "passed": {"type": "boolean"},
+        "status": {"enum": ["passed", "pending"]},
+        "required_check_ids": {"$ref": "#/$defs/checkIds"},
+        "unmet_check_ids": {"$ref": "#/$defs/checkIds"},
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/evidence"}
+        },
+        "qualification": {"type": "string", "minLength": 1}
+      }
+    },
+    "aims": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {"$ref": "#/$defs/aim"}
+    }
+  },
+  "$defs": {
+    "status": {
+      "enum": ["fulfilled", "partly_fulfilled", "not_fulfilled", "not_yet_testable"]
+    },
+    "confidence": {"enum": ["low", "medium", "high"]},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "nullableSha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "fileDigest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "checkIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^E-[A-Z0-9-]+$"}
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["check_id", "description", "path", "sha256", "operator", "matched", "observed"],
+      "properties": {
+        "check_id": {"type": "string", "pattern": "^E-[A-Z0-9-]+$"},
+        "description": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/nullableSha256"},
+        "operator": {
+          "enum": ["path_exists", "json_equals", "json_in", "json_string_contains", "json_array_nonempty", "referenced_path_exists"]
+        },
+        "pointer": {"type": "string"},
+        "expected": true,
+        "observed": true,
+        "matched": {"type": "boolean"},
+        "resolved_path": {"type": "string", "minLength": 1},
+        "resolved_sha256": {"$ref": "#/$defs/nullableSha256"},
+        "error": {"type": "string", "minLength": 1}
+      }
+    },
+    "negativeFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["finding_id", "text", "evidence_check_id"],
+      "properties": {
+        "finding_id": {"type": "string", "pattern": "^AIM-\\d{3}-NEG-(BOUNDARY|\\d{2})$"},
+        "text": {"type": "string", "minLength": 1},
+        "evidence_check_id": {
+          "type": ["string", "null"],
+          "pattern": "^E-[A-Z0-9-]+$"
+        }
+      }
+    },
+    "exception": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["exception_id", "path", "sha256"],
+      "properties": {
+        "exception_id": {"type": "string", "pattern": "^EXC-[A-Z0-9-]+$"},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "aim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "aim_id",
+        "title",
+        "status",
+        "confidence",
+        "brief_clause_ids",
+        "requirement_ids",
+        "research_question_ids",
+        "hypothesis_ids",
+        "interpretation",
+        "boundary",
+        "strongest_supporting_evidence",
+        "evidence",
+        "negative_findings",
+        "exceptions",
+        "next_actions"
+      ],
+      "properties": {
+        "aim_id": {"type": "string", "pattern": "^AIM-\\d{3}$"},
+        "title": {"type": "string", "minLength": 1},
+        "status": {"$ref": "#/$defs/status"},
+        "confidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["level", "basis"],
+          "properties": {
+            "level": {"$ref": "#/$defs/confidence"},
+            "basis": {"type": "string", "minLength": 1}
+          }
+        },
+        "brief_clause_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^(BRIEF|PROMPT|USER)-\\d{3}$"}
+        },
+        "requirement_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^REQ-\\d{3}$"}
+        },
+        "research_question_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^RQ-\\d{2}$"}
+        },
+        "hypothesis_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^H-\\d{2}$"}
+        },
+        "interpretation": {"type": "string", "minLength": 1},
+        "boundary": {"type": "string", "minLength": 1},
+        "strongest_supporting_evidence": {"$ref": "#/$defs/checkIds"},
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/evidence"}
+        },
+        "negative_findings": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/negativeFinding"}
+        },
+        "exceptions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/exception"}
+        },
+        "next_actions": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}
