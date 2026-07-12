@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "cf48af6cd06e89b671446e341b37c4895c50b9d8c0779b43662473d8beb400bf",
-    "before_sha256": "cf48af6cd06e89b671446e341b37c4895c50b9d8c0779b43662473d8beb400bf",
+    "after_sha256": "241e4a8a0c454f5098039516bccaf5c673b3840a77373f9eea4e73ec18d2141d",
+    "before_sha256": "241e4a8a0c454f5098039516bccaf5c673b3840a77373f9eea4e73ec18d2141d",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -396,10 +396,10 @@
         "tree_sha256": "a856a2fc2266de8205901fae641c34d2166584b9460cd6670e5a028e0161e692"
       },
       {
-        "bytes": 141735,
+        "bytes": 143545,
         "file_count": 14,
         "path": "explorer/src",
-        "tree_sha256": "caca45dc59b6109f34cdbfb5eb2a2890ed55bfc52f3dca269253925c9dea4c75"
+        "tree_sha256": "56231cb4891e2c71537d675f18b84c63f26eb0ae0cf0c7cb2be527983af98e9b"
       },
       {
         "bytes": 47929,
@@ -416,7 +416,7 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "b11c9b4d18a06005f47367ad0361fb99df55b56bc34f6184b68f70b0dba7e490"
+    "tree_sha256": "f97d3e185940c48fe29108d9b88fc7b3a21fa4ba64193754b04c60b3e8754ac2"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
@@ -460,17 +460,17 @@
   "outputs": {
     "bundle": {
       "actual": {
-        "bytes": 971149,
+        "bytes": 972959,
         "file_count": 779,
-        "tree_sha256": "ab0455f1131bd147eee7de2016b4a488caf92f3ad938ce37331d9a4ea20892a6"
+        "tree_sha256": "d47010f8befc81646e75cf3e0b687e1b50e0c9b539541aedb62c503caf1872a7"
       },
       "difference_count": 0,
       "differences": [],
       "exact_match": true,
       "expected": {
-        "bytes": 971149,
+        "bytes": 972959,
         "file_count": 779,
-        "tree_sha256": "ab0455f1131bd147eee7de2016b4a488caf92f3ad938ce37331d9a4ea20892a6"
+        "tree_sha256": "d47010f8befc81646e75cf3e0b687e1b50e0c9b539541aedb62c503caf1872a7"
       }
     },
     "sbom": {
@@ -481,7 +481,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-12T16:43:40Z",
+  "recorded_at": "2026-07-12T18:57:52Z",
   "release_input_failures": [
     "release kind is a fixture checkpoint",
     "snapshot is not an unsampled full corpus",

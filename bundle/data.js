@@ -51,25 +51,50 @@ export function integrityReference(reference, metadataRows, label = "resource") 
   return { path, sha256: referenceHash(metadata) };
 }
 
-async function digestText(text) {
-  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+async function digestBytes(bytes) {
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
   return [...new Uint8Array(digest)].map((value) => value.toString(16).padStart(2, "0")).join("");
 }
 
-async function readText(response, url) {
-  let readable = response;
-  if (url.toLowerCase().endsWith(".gz") && !response.headers.get("content-encoding")?.toLowerCase().includes("gzip")) {
-    if (!response.body || typeof DecompressionStream === "undefined") throw new Error("This browser cannot decompress the advertised gzip resource");
-    readable = new Response(response.body.pipeThrough(new DecompressionStream("gzip")));
-  }
-  const reported = Number(readable.headers.get("content-length") || 0);
+async function readBoundedBytes(response) {
+  const reported = Number(response.headers.get("content-length") || 0);
   if (reported > MAX_JSON_BYTES) throw new Error("JSON resource exceeds the 64 MiB response limit");
-  if (!readable.body) {
-    const text = await readable.text();
-    if (new TextEncoder().encode(text).byteLength > MAX_JSON_BYTES) throw new Error("JSON resource exceeds the 64 MiB response limit");
-    return text;
+  if (!response.body) {
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    if (bytes.byteLength > MAX_JSON_BYTES) throw new Error("JSON resource exceeds the 64 MiB response limit");
+    return bytes;
   }
-  const reader = readable.body.getReader();
+  const reader = response.body.getReader();
+  const chunks = [];
+  let received = 0;
+  while (true) {
+    const part = await reader.read();
+    if (part.done) break;
+    received += part.value.byteLength;
+    if (received > MAX_JSON_BYTES) {
+      await reader.cancel();
+      throw new Error("JSON resource exceeds the 64 MiB response limit");
+    }
+    chunks.push(part.value);
+  }
+  const bytes = new Uint8Array(received);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return bytes;
+}
+
+async function decodeJsonBytes(bytes, response, url) {
+  if (!url.toLowerCase().endsWith(".gz")) return new TextDecoder().decode(bytes);
+  if (response.headers.get("content-encoding")?.toLowerCase().includes("gzip")) {
+    throw new Error("Pre-compressed JSON resources must be served without Content-Encoding so their published bytes can be verified");
+  }
+  if (typeof DecompressionStream === "undefined") throw new Error("This browser cannot decompress the advertised gzip resource");
+  const body = new Response(bytes).body;
+  if (!body) throw new Error("This browser cannot stream the advertised gzip resource");
+  const reader = body.pipeThrough(new DecompressionStream("gzip")).getReader();
   const decoder = new TextDecoder();
   let received = 0;
   let text = "";
@@ -79,7 +104,7 @@ async function readText(response, url) {
     received += part.value.byteLength;
     if (received > MAX_JSON_BYTES) {
       await reader.cancel();
-      throw new Error("JSON resource exceeds the 64 MiB response limit");
+      throw new Error("JSON resource exceeds the 64 MiB decoded response limit");
     }
     text += decoder.decode(part.value, { stream: true });
   }
@@ -102,9 +127,10 @@ export async function fetchJson(reference, baseUrl, options = {}) {
         }
         throw error;
       }
-      const text = await readText(response, url);
+      const bytes = await readBoundedBytes(response);
       const expectedHash = referenceHash(reference);
-      if (expectedHash && await digestText(text) !== expectedHash) throw new Error("Resource integrity check failed for " + url);
+      if (expectedHash && await digestBytes(bytes) !== expectedHash) throw new Error("Resource integrity check failed for " + url);
+      const text = await decodeJsonBytes(bytes, response, url);
       return { url, value: JSON.parse(text) };
     } catch (error) {
       if (error && error.name === "AbortError") throw error;
