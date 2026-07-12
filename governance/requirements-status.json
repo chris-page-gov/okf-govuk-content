@@ -1,0 +1,1938 @@
+{
+  "as_of": "2026-07-12",
+  "counts": {
+    "by_implementation_status": {
+      "blocked": 1,
+      "in_progress": 33,
+      "produced": 61
+    },
+    "passed": 0,
+    "requirements": 95
+  },
+  "generated_from": "governance/implementation-status-source.json",
+  "generated_from_sha256": "621e0a16c0b9e47102c6cfab28811c080e5d34011462424a4c7b9c409e6b75f7",
+  "interpretation": "accepted is the contract status; produced is not passed or release-verified",
+  "milestone": "t0_census_closed",
+  "publication_ready": false,
+  "requirements": [
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "PROMPT-001",
+        "PROMPT-006"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "requirement_id": "REQ-001"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-001",
+        "BRIEF-002"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-002"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-003"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-004"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-005"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-006"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-007"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-008"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-011",
+        "USER-001"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "scripts/acquire_corpus.py",
+        "scripts/hydrate_corpus.py",
+        "corpus/source-manifests/T0-20260712/manifest.json",
+        "corpus/reconciliation/T0-20260712.json",
+        "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
+        "reports/cost-and-capacity.md",
+        "release/status.json"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "requirement_id": "REQ-009"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-011",
+        "USER-001"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "scripts/acquire_corpus.py",
+        "scripts/hydrate_corpus.py",
+        "corpus/source-manifests/T0-20260712/manifest.json",
+        "corpus/reconciliation/T0-20260712.json",
+        "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
+        "reports/cost-and-capacity.md",
+        "release/status.json"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "requirement_id": "REQ-010"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-011",
+        "USER-001"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-011"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-011",
+        "USER-001"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-012"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-010",
+        "BRIEF-011",
+        "USER-001"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-013"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-002",
+        "BRIEF-004"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-014"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-002",
+        "BRIEF-004"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-015"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-002",
+        "BRIEF-004"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-016"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-002",
+        "BRIEF-004"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-017"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-002",
+        "BRIEF-004",
+        "BRIEF-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-018"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-004"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-019"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-004"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-020"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-004"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-021"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-004"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-022"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-004"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-023"
+    },
+    {
+      "artifact_tier": "dated_source_audit",
+      "clause_ids": [
+        "BRIEF-005",
+        "BRIEF-010"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "research/source-registry.yaml",
+        "research/source-preflight.json",
+        "research/source-constraints.json",
+        "research/official-source-audit.md",
+        "release/rights-privacy-audit.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The dated public-source audit and preflight exist. The fixture rights/privacy scan has zero hard body/credential findings and two policy-controlled structural review triggers, but it does not substitute for T0/T1 source-union closure, the final snapshot-bound rights scan, or citation verification.",
+      "requirement_id": "REQ-024"
+    },
+    {
+      "artifact_tier": "dated_source_audit",
+      "clause_ids": [
+        "BRIEF-005",
+        "BRIEF-010"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "research/source-registry.yaml",
+        "research/source-preflight.json",
+        "research/source-constraints.json",
+        "research/official-source-audit.md",
+        "release/rights-privacy-audit.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The dated public-source audit and preflight exist. The fixture rights/privacy scan has zero hard body/credential findings and two policy-controlled structural review triggers, but it does not substitute for T0/T1 source-union closure, the final snapshot-bound rights scan, or citation verification.",
+      "requirement_id": "REQ-025"
+    },
+    {
+      "artifact_tier": "dated_source_audit",
+      "clause_ids": [
+        "BRIEF-005"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "research/source-registry.yaml",
+        "research/source-preflight.json",
+        "research/source-constraints.json",
+        "research/official-source-audit.md",
+        "release/rights-privacy-audit.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The dated public-source audit and preflight exist. The fixture rights/privacy scan has zero hard body/credential findings and two policy-controlled structural review triggers, but it does not substitute for T0/T1 source-union closure, the final snapshot-bound rights scan, or citation verification.",
+      "requirement_id": "REQ-026"
+    },
+    {
+      "artifact_tier": "dated_source_audit",
+      "clause_ids": [
+        "BRIEF-005"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "research/source-registry.yaml",
+        "research/source-preflight.json",
+        "research/source-constraints.json",
+        "research/official-source-audit.md",
+        "release/rights-privacy-audit.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The dated public-source audit and preflight exist. The fixture rights/privacy scan has zero hard body/credential findings and two policy-controlled structural review triggers, but it does not substitute for T0/T1 source-union closure, the final snapshot-bound rights scan, or citation verification.",
+      "requirement_id": "REQ-027"
+    },
+    {
+      "artifact_tier": "dated_source_audit",
+      "clause_ids": [
+        "BRIEF-005"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "research/source-registry.yaml",
+        "research/source-preflight.json",
+        "research/source-constraints.json",
+        "research/official-source-audit.md",
+        "release/rights-privacy-audit.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The dated public-source audit and preflight exist. The fixture rights/privacy scan has zero hard body/credential findings and two policy-controlled structural review triggers, but it does not substitute for T0/T1 source-union closure, the final snapshot-bound rights scan, or citation verification.",
+      "requirement_id": "REQ-028"
+    },
+    {
+      "artifact_tier": "dated_source_audit",
+      "clause_ids": [
+        "BRIEF-005"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "research/source-registry.yaml",
+        "research/source-preflight.json",
+        "research/source-constraints.json",
+        "research/official-source-audit.md",
+        "release/rights-privacy-audit.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The dated public-source audit and preflight exist. The fixture rights/privacy scan has zero hard body/credential findings and two policy-controlled structural review triggers, but it does not substitute for T0/T1 source-union closure, the final snapshot-bound rights scan, or citation verification.",
+      "requirement_id": "REQ-029"
+    },
+    {
+      "artifact_tier": "dated_source_audit",
+      "clause_ids": [
+        "BRIEF-006"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "research/source-registry.yaml",
+        "research/source-preflight.json",
+        "research/source-constraints.json",
+        "research/official-source-audit.md",
+        "release/rights-privacy-audit.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The dated public-source audit and preflight exist. The fixture rights/privacy scan has zero hard body/credential findings and two policy-controlled structural review triggers, but it does not substitute for T0/T1 source-union closure, the final snapshot-bound rights scan, or citation verification.",
+      "requirement_id": "REQ-030"
+    },
+    {
+      "artifact_tier": "dated_source_audit",
+      "clause_ids": [
+        "BRIEF-006"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "research/source-registry.yaml",
+        "research/source-preflight.json",
+        "research/source-constraints.json",
+        "research/official-source-audit.md",
+        "release/rights-privacy-audit.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The dated public-source audit and preflight exist. The fixture rights/privacy scan has zero hard body/credential findings and two policy-controlled structural review triggers, but it does not substitute for T0/T1 source-union closure, the final snapshot-bound rights scan, or citation verification.",
+      "requirement_id": "REQ-031"
+    },
+    {
+      "artifact_tier": "dated_source_audit",
+      "clause_ids": [
+        "BRIEF-005",
+        "BRIEF-011"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "research/source-registry.yaml",
+        "research/source-preflight.json",
+        "research/source-constraints.json",
+        "research/official-source-audit.md",
+        "release/rights-privacy-audit.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The dated public-source audit and preflight exist. The fixture rights/privacy scan has zero hard body/credential findings and two policy-controlled structural review triggers, but it does not substitute for T0/T1 source-union closure, the final snapshot-bound rights scan, or citation verification.",
+      "requirement_id": "REQ-032"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-005",
+        "USER-001"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "scripts/acquire_corpus.py",
+        "scripts/hydrate_corpus.py",
+        "corpus/source-manifests/T0-20260712/manifest.json",
+        "corpus/reconciliation/T0-20260712.json",
+        "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
+        "reports/cost-and-capacity.md",
+        "release/status.json"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "requirement_id": "REQ-033"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-005",
+        "USER-001"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "scripts/acquire_corpus.py",
+        "scripts/hydrate_corpus.py",
+        "corpus/source-manifests/T0-20260712/manifest.json",
+        "corpus/reconciliation/T0-20260712.json",
+        "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
+        "reports/cost-and-capacity.md",
+        "release/status.json"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "requirement_id": "REQ-034"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-002",
+        "BRIEF-007",
+        "BRIEF-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-035"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-036"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-007",
+        "BRIEF-010"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-037"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-007",
+        "BRIEF-010"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-038"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-004",
+        "BRIEF-007",
+        "BRIEF-010"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-039"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-001",
+        "BRIEF-009"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-040"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-009"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-041"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-009"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-042"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-009"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-043"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-009",
+        "BRIEF-010"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-044"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-009",
+        "BRIEF-010"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-045"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-009",
+        "BRIEF-010"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-046"
+    },
+    {
+      "artifact_tier": "fixture_foundation",
+      "clause_ids": [
+        "BRIEF-009",
+        "BRIEF-010"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "requirement_id": "REQ-047"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-009"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "scripts/acquire_corpus.py",
+        "scripts/hydrate_corpus.py",
+        "corpus/source-manifests/T0-20260712/manifest.json",
+        "corpus/reconciliation/T0-20260712.json",
+        "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
+        "reports/cost-and-capacity.md",
+        "release/status.json"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "requirement_id": "REQ-048"
+    },
+    {
+      "artifact_tier": "development_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "personas/manifest.json",
+        "personas/use-ontology.yamlld",
+        "personas/coverage-matrix.json",
+        "personas/overlay-covering-array.json",
+        "personas/saturation.json",
+        "stories/manifest.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The machine-applicable persona gate passes for 48 evidenced research hypotheses, 17 cross-cutting overlays, 11 required dimensions, all 83 pinned schema families, exhaustive 136-pair overlay scenarios, five high-risk t-way scenarios and two successive held-out no-new challenge passes. One genuine omission, privacy-sensitive context, was added as a contract-supported hypothesis. Human validation remains not authorised, evidence claim-support verification remains an F2 dependency, and the six release-v2 stories per persona must still be regenerated against the final snapshot; no UI preference claim is made.",
+      "requirement_id": "REQ-049"
+    },
+    {
+      "artifact_tier": "development_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "personas/manifest.json",
+        "personas/use-ontology.yamlld",
+        "personas/coverage-matrix.json",
+        "personas/overlay-covering-array.json",
+        "personas/saturation.json",
+        "stories/manifest.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The machine-applicable persona gate passes for 48 evidenced research hypotheses, 17 cross-cutting overlays, 11 required dimensions, all 83 pinned schema families, exhaustive 136-pair overlay scenarios, five high-risk t-way scenarios and two successive held-out no-new challenge passes. One genuine omission, privacy-sensitive context, was added as a contract-supported hypothesis. Human validation remains not authorised, evidence claim-support verification remains an F2 dependency, and the six release-v2 stories per persona must still be regenerated against the final snapshot; no UI preference claim is made.",
+      "requirement_id": "REQ-050"
+    },
+    {
+      "artifact_tier": "development_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "personas/manifest.json",
+        "personas/use-ontology.yamlld",
+        "personas/coverage-matrix.json",
+        "personas/overlay-covering-array.json",
+        "personas/saturation.json",
+        "stories/manifest.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The machine-applicable persona gate passes for 48 evidenced research hypotheses, 17 cross-cutting overlays, 11 required dimensions, all 83 pinned schema families, exhaustive 136-pair overlay scenarios, five high-risk t-way scenarios and two successive held-out no-new challenge passes. One genuine omission, privacy-sensitive context, was added as a contract-supported hypothesis. Human validation remains not authorised, evidence claim-support verification remains an F2 dependency, and the six release-v2 stories per persona must still be regenerated against the final snapshot; no UI preference claim is made.",
+      "requirement_id": "REQ-051"
+    },
+    {
+      "artifact_tier": "development_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "personas/manifest.json",
+        "personas/use-ontology.yamlld",
+        "personas/coverage-matrix.json",
+        "personas/overlay-covering-array.json",
+        "personas/saturation.json",
+        "stories/manifest.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The machine-applicable persona gate passes for 48 evidenced research hypotheses, 17 cross-cutting overlays, 11 required dimensions, all 83 pinned schema families, exhaustive 136-pair overlay scenarios, five high-risk t-way scenarios and two successive held-out no-new challenge passes. One genuine omission, privacy-sensitive context, was added as a contract-supported hypothesis. Human validation remains not authorised, evidence claim-support verification remains an F2 dependency, and the six release-v2 stories per persona must still be regenerated against the final snapshot; no UI preference claim is made.",
+      "requirement_id": "REQ-052"
+    },
+    {
+      "artifact_tier": "development_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "personas/manifest.json",
+        "personas/use-ontology.yamlld",
+        "personas/coverage-matrix.json",
+        "personas/overlay-covering-array.json",
+        "personas/saturation.json",
+        "stories/manifest.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The machine-applicable persona gate passes for 48 evidenced research hypotheses, 17 cross-cutting overlays, 11 required dimensions, all 83 pinned schema families, exhaustive 136-pair overlay scenarios, five high-risk t-way scenarios and two successive held-out no-new challenge passes. One genuine omission, privacy-sensitive context, was added as a contract-supported hypothesis. Human validation remains not authorised, evidence claim-support verification remains an F2 dependency, and the six release-v2 stories per persona must still be regenerated against the final snapshot; no UI preference claim is made.",
+      "requirement_id": "REQ-053"
+    },
+    {
+      "artifact_tier": "development_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "personas/manifest.json",
+        "personas/use-ontology.yamlld",
+        "personas/coverage-matrix.json",
+        "personas/overlay-covering-array.json",
+        "personas/saturation.json",
+        "stories/manifest.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The machine-applicable persona gate passes for 48 evidenced research hypotheses, 17 cross-cutting overlays, 11 required dimensions, all 83 pinned schema families, exhaustive 136-pair overlay scenarios, five high-risk t-way scenarios and two successive held-out no-new challenge passes. One genuine omission, privacy-sensitive context, was added as a contract-supported hypothesis. Human validation remains not authorised, evidence claim-support verification remains an F2 dependency, and the six release-v2 stories per persona must still be regenerated against the final snapshot; no UI preference claim is made.",
+      "requirement_id": "REQ-054"
+    },
+    {
+      "artifact_tier": "development_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "personas/manifest.json",
+        "personas/use-ontology.yamlld",
+        "personas/coverage-matrix.json",
+        "personas/overlay-covering-array.json",
+        "personas/saturation.json",
+        "stories/manifest.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The machine-applicable persona gate passes for 48 evidenced research hypotheses, 17 cross-cutting overlays, 11 required dimensions, all 83 pinned schema families, exhaustive 136-pair overlay scenarios, five high-risk t-way scenarios and two successive held-out no-new challenge passes. One genuine omission, privacy-sensitive context, was added as a contract-supported hypothesis. Human validation remains not authorised, evidence claim-support verification remains an F2 dependency, and the six release-v2 stories per persona must still be regenerated against the final snapshot; no UI preference claim is made.",
+      "requirement_id": "REQ-055"
+    },
+    {
+      "artifact_tier": "development_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "personas/manifest.json",
+        "personas/use-ontology.yamlld",
+        "personas/coverage-matrix.json",
+        "personas/overlay-covering-array.json",
+        "personas/saturation.json",
+        "stories/manifest.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The machine-applicable persona gate passes for 48 evidenced research hypotheses, 17 cross-cutting overlays, 11 required dimensions, all 83 pinned schema families, exhaustive 136-pair overlay scenarios, five high-risk t-way scenarios and two successive held-out no-new challenge passes. One genuine omission, privacy-sensitive context, was added as a contract-supported hypothesis. Human validation remains not authorised, evidence claim-support verification remains an F2 dependency, and the six release-v2 stories per persona must still be regenerated against the final snapshot; no UI preference claim is made.",
+      "requirement_id": "REQ-056"
+    },
+    {
+      "artifact_tier": "development_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "personas/manifest.json",
+        "personas/use-ontology.yamlld",
+        "personas/coverage-matrix.json",
+        "personas/overlay-covering-array.json",
+        "personas/saturation.json",
+        "stories/manifest.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The machine-applicable persona gate passes for 48 evidenced research hypotheses, 17 cross-cutting overlays, 11 required dimensions, all 83 pinned schema families, exhaustive 136-pair overlay scenarios, five high-risk t-way scenarios and two successive held-out no-new challenge passes. One genuine omission, privacy-sensitive context, was added as a contract-supported hypothesis. Human validation remains not authorised, evidence claim-support verification remains an F2 dependency, and the six release-v2 stories per persona must still be regenerated against the final snapshot; no UI preference claim is made.",
+      "requirement_id": "REQ-057"
+    },
+    {
+      "artifact_tier": "development_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-002"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "personas/manifest.json",
+        "personas/use-ontology.yamlld",
+        "personas/coverage-matrix.json",
+        "personas/overlay-covering-array.json",
+        "personas/saturation.json",
+        "stories/manifest.json"
+      ],
+      "implementation_status": "produced",
+      "qualification": "The machine-applicable persona gate passes for 48 evidenced research hypotheses, 17 cross-cutting overlays, 11 required dimensions, all 83 pinned schema families, exhaustive 136-pair overlay scenarios, five high-risk t-way scenarios and two successive held-out no-new challenge passes. One genuine omission, privacy-sensitive context, was added as a contract-supported hypothesis. Human validation remains not authorised, evidence claim-support verification remains an F2 dependency, and the six release-v2 stories per persona must still be regenerated against the final snapshot; no UI preference claim is made.",
+      "requirement_id": "REQ-058"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "questions/README.md",
+        "evaluation/protocol/question-contract-v2.json",
+        "scripts/build_question_matrix_v2.py",
+        "scripts/verify_question_matrix_v2.py"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The corpus-anchored v2 generator and separate verifier exist. They have not run against a complete release snapshot; the checked-in v1 matrix is development-only and cannot pass the question gate.",
+      "requirement_id": "REQ-059"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "questions/README.md",
+        "evaluation/protocol/question-contract-v2.json",
+        "scripts/build_question_matrix_v2.py",
+        "scripts/verify_question_matrix_v2.py"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The corpus-anchored v2 generator and separate verifier exist. They have not run against a complete release snapshot; the checked-in v1 matrix is development-only and cannot pass the question gate.",
+      "requirement_id": "REQ-060"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "questions/README.md",
+        "evaluation/protocol/question-contract-v2.json",
+        "scripts/build_question_matrix_v2.py",
+        "scripts/verify_question_matrix_v2.py"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The corpus-anchored v2 generator and separate verifier exist. They have not run against a complete release snapshot; the checked-in v1 matrix is development-only and cannot pass the question gate.",
+      "requirement_id": "REQ-061"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "questions/README.md",
+        "evaluation/protocol/question-contract-v2.json",
+        "scripts/build_question_matrix_v2.py",
+        "scripts/verify_question_matrix_v2.py"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The corpus-anchored v2 generator and separate verifier exist. They have not run against a complete release snapshot; the checked-in v1 matrix is development-only and cannot pass the question gate.",
+      "requirement_id": "REQ-062"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "questions/README.md",
+        "evaluation/protocol/question-contract-v2.json",
+        "scripts/build_question_matrix_v2.py",
+        "scripts/verify_question_matrix_v2.py"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The corpus-anchored v2 generator and separate verifier exist. They have not run against a complete release snapshot; the checked-in v1 matrix is development-only and cannot pass the question gate.",
+      "requirement_id": "REQ-063"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "questions/README.md",
+        "evaluation/protocol/question-contract-v2.json",
+        "scripts/build_question_matrix_v2.py",
+        "scripts/verify_question_matrix_v2.py"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The corpus-anchored v2 generator and separate verifier exist. They have not run against a complete release snapshot; the checked-in v1 matrix is development-only and cannot pass the question gate.",
+      "requirement_id": "REQ-064"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "questions/README.md",
+        "evaluation/protocol/question-contract-v2.json",
+        "scripts/build_question_matrix_v2.py",
+        "scripts/verify_question_matrix_v2.py"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The corpus-anchored v2 generator and separate verifier exist. They have not run against a complete release snapshot; the checked-in v1 matrix is development-only and cannot pass the question gate.",
+      "requirement_id": "REQ-065"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "questions/README.md",
+        "evaluation/protocol/question-contract-v2.json",
+        "scripts/build_question_matrix_v2.py",
+        "scripts/verify_question_matrix_v2.py"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The corpus-anchored v2 generator and separate verifier exist. They have not run against a complete release snapshot; the checked-in v1 matrix is development-only and cannot pass the question gate.",
+      "requirement_id": "REQ-066"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "questions/README.md",
+        "evaluation/protocol/question-contract-v2.json",
+        "scripts/build_question_matrix_v2.py",
+        "scripts/verify_question_matrix_v2.py"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The corpus-anchored v2 generator and separate verifier exist. They have not run against a complete release snapshot; the checked-in v1 matrix is development-only and cannot pass the question gate.",
+      "requirement_id": "REQ-067"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-003"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "questions/README.md",
+        "evaluation/protocol/question-contract-v2.json",
+        "scripts/build_question_matrix_v2.py",
+        "scripts/verify_question_matrix_v2.py"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The corpus-anchored v2 generator and separate verifier exist. They have not run against a complete release snapshot; the checked-in v1 matrix is development-only and cannot pass the question gate.",
+      "requirement_id": "REQ-068"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-003",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "requirement_id": "REQ-069"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-003",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "requirement_id": "REQ-070"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-003",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "requirement_id": "REQ-071"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-003",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "requirement_id": "REQ-072"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-003",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "requirement_id": "REQ-073"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "requirement_id": "REQ-074"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-003",
+        "BRIEF-010",
+        "PROMPT-001",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "requirement_id": "REQ-075"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "requirement_id": "REQ-076"
+    },
+    {
+      "artifact_tier": "not_authorised",
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-004",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "governance/launch-manifest.yaml",
+        "governance/exceptions.yaml"
+      ],
+      "implementation_status": "blocked",
+      "qualification": "No participant-study authority was supplied. The UI-of-choice claim must remain not_yet_testable.",
+      "requirement_id": "REQ-077"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-005",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "requirement_id": "REQ-078"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-003",
+        "PROMPT-001",
+        "PROMPT-005",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "requirement_id": "REQ-079"
+    },
+    {
+      "artifact_tier": "implementation_only",
+      "clause_ids": [
+        "BRIEF-003",
+        "BRIEF-010",
+        "PROMPT-001",
+        "PROMPT-006",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "requirement_id": "REQ-080"
+    },
+    {
+      "artifact_tier": "preflight_only",
+      "clause_ids": [
+        "PROMPT-005",
+        "PROMPT-009"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "planning/PLAN_SOURCE_PREFLIGHT.json",
+        "research/protocol.yaml",
+        "research/source-preflight.json",
+        "research/citations.jsonl",
+        "research/citation-support-reviews.jsonl",
+        "research/claim-support-reviews.jsonl",
+        "release/citation-verification.json"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. Independent ledgers verify 171/171 citation bindings and 40/40 joint claims with zero waivers or blockers. The evidence is currently bound to the fixture release identifier and must be regenerated with the final closing snapshot before publication.",
+      "requirement_id": "REQ-081"
+    },
+    {
+      "artifact_tier": "preflight_only",
+      "clause_ids": [
+        "PROMPT-005",
+        "PROMPT-009"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "planning/PLAN_SOURCE_PREFLIGHT.json",
+        "research/protocol.yaml",
+        "research/source-preflight.json",
+        "research/citations.jsonl",
+        "research/citation-support-reviews.jsonl",
+        "research/claim-support-reviews.jsonl",
+        "release/citation-verification.json"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. Independent ledgers verify 171/171 citation bindings and 40/40 joint claims with zero waivers or blockers. The evidence is currently bound to the fixture release identifier and must be regenerated with the final closing snapshot before publication.",
+      "requirement_id": "REQ-082"
+    },
+    {
+      "artifact_tier": "preflight_only",
+      "clause_ids": [
+        "PROMPT-005",
+        "PROMPT-009"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "planning/PLAN_SOURCE_PREFLIGHT.json",
+        "research/protocol.yaml",
+        "research/source-preflight.json",
+        "research/citations.jsonl",
+        "research/citation-support-reviews.jsonl",
+        "research/claim-support-reviews.jsonl",
+        "release/citation-verification.json"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. Independent ledgers verify 171/171 citation bindings and 40/40 joint claims with zero waivers or blockers. The evidence is currently bound to the fixture release identifier and must be regenerated with the final closing snapshot before publication.",
+      "requirement_id": "REQ-083"
+    },
+    {
+      "artifact_tier": "preflight_only",
+      "clause_ids": [
+        "PROMPT-005",
+        "PROMPT-009"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "planning/PLAN_SOURCE_PREFLIGHT.json",
+        "research/protocol.yaml",
+        "research/source-preflight.json",
+        "research/citations.jsonl",
+        "research/citation-support-reviews.jsonl",
+        "research/claim-support-reviews.jsonl",
+        "release/citation-verification.json"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. Independent ledgers verify 171/171 citation bindings and 40/40 joint claims with zero waivers or blockers. The evidence is currently bound to the fixture release identifier and must be regenerated with the final closing snapshot before publication.",
+      "requirement_id": "REQ-084"
+    },
+    {
+      "artifact_tier": "preflight_only",
+      "clause_ids": [
+        "BRIEF-008",
+        "PROMPT-005",
+        "PROMPT-009"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "planning/PLAN_SOURCE_PREFLIGHT.json",
+        "research/protocol.yaml",
+        "research/source-preflight.json",
+        "research/citations.jsonl",
+        "research/citation-support-reviews.jsonl",
+        "research/claim-support-reviews.jsonl",
+        "release/citation-verification.json"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. Independent ledgers verify 171/171 citation bindings and 40/40 joint claims with zero waivers or blockers. The evidence is currently bound to the fixture release identifier and must be regenerated with the final closing snapshot before publication.",
+      "requirement_id": "REQ-085"
+    },
+    {
+      "artifact_tier": "pre_release_foundation",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "orchestration/dag.yaml",
+        "orchestration/task-contracts",
+        "orchestration/models.lock.yaml",
+        "provenance/activity-ledger.jsonl",
+        "provenance/activity-ledger.schema.json",
+        "provenance/source-request-budget.json",
+        "provenance/reproduction-declarations.json",
+        "scripts/check_provenance.py",
+        "release/provenance-validation.json",
+        "release/sbom.cdx.json",
+        "release/clean-room-reproduction.json",
+        "scripts/reproduce_release.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "requirement_id": "REQ-086"
+    },
+    {
+      "artifact_tier": "pre_release_foundation",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "orchestration/dag.yaml",
+        "orchestration/task-contracts",
+        "orchestration/models.lock.yaml",
+        "provenance/activity-ledger.jsonl",
+        "provenance/activity-ledger.schema.json",
+        "provenance/source-request-budget.json",
+        "provenance/reproduction-declarations.json",
+        "scripts/check_provenance.py",
+        "release/provenance-validation.json",
+        "release/sbom.cdx.json",
+        "release/clean-room-reproduction.json",
+        "scripts/reproduce_release.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "requirement_id": "REQ-087"
+    },
+    {
+      "artifact_tier": "pre_release_foundation",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "orchestration/dag.yaml",
+        "orchestration/task-contracts",
+        "orchestration/models.lock.yaml",
+        "provenance/activity-ledger.jsonl",
+        "provenance/activity-ledger.schema.json",
+        "provenance/source-request-budget.json",
+        "provenance/reproduction-declarations.json",
+        "scripts/check_provenance.py",
+        "release/provenance-validation.json",
+        "release/sbom.cdx.json",
+        "release/clean-room-reproduction.json",
+        "scripts/reproduce_release.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "requirement_id": "REQ-088"
+    },
+    {
+      "artifact_tier": "pre_release_foundation",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "orchestration/dag.yaml",
+        "orchestration/task-contracts",
+        "orchestration/models.lock.yaml",
+        "provenance/activity-ledger.jsonl",
+        "provenance/activity-ledger.schema.json",
+        "provenance/source-request-budget.json",
+        "provenance/reproduction-declarations.json",
+        "scripts/check_provenance.py",
+        "release/provenance-validation.json",
+        "release/sbom.cdx.json",
+        "release/clean-room-reproduction.json",
+        "scripts/reproduce_release.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "requirement_id": "REQ-089"
+    },
+    {
+      "artifact_tier": "pre_release_foundation",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "orchestration/dag.yaml",
+        "orchestration/task-contracts",
+        "orchestration/models.lock.yaml",
+        "provenance/activity-ledger.jsonl",
+        "provenance/activity-ledger.schema.json",
+        "provenance/source-request-budget.json",
+        "provenance/reproduction-declarations.json",
+        "scripts/check_provenance.py",
+        "release/provenance-validation.json",
+        "release/sbom.cdx.json",
+        "release/clean-room-reproduction.json",
+        "scripts/reproduce_release.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "requirement_id": "REQ-090"
+    },
+    {
+      "artifact_tier": "pre_release_foundation",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "orchestration/dag.yaml",
+        "orchestration/task-contracts",
+        "orchestration/models.lock.yaml",
+        "provenance/activity-ledger.jsonl",
+        "provenance/activity-ledger.schema.json",
+        "provenance/source-request-budget.json",
+        "provenance/reproduction-declarations.json",
+        "scripts/check_provenance.py",
+        "release/provenance-validation.json",
+        "release/sbom.cdx.json",
+        "release/clean-room-reproduction.json",
+        "scripts/reproduce_release.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "requirement_id": "REQ-091"
+    },
+    {
+      "artifact_tier": "pre_release_foundation",
+      "clause_ids": [
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "orchestration/dag.yaml",
+        "orchestration/task-contracts",
+        "orchestration/models.lock.yaml",
+        "provenance/activity-ledger.jsonl",
+        "provenance/activity-ledger.schema.json",
+        "provenance/source-request-budget.json",
+        "provenance/reproduction-declarations.json",
+        "scripts/check_provenance.py",
+        "release/provenance-validation.json",
+        "release/sbom.cdx.json",
+        "release/clean-room-reproduction.json",
+        "scripts/reproduce_release.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "requirement_id": "REQ-092"
+    },
+    {
+      "artifact_tier": "pre_release_foundation",
+      "clause_ids": [
+        "BRIEF-006",
+        "BRIEF-011",
+        "PROMPT-007"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "orchestration/dag.yaml",
+        "orchestration/task-contracts",
+        "orchestration/models.lock.yaml",
+        "provenance/activity-ledger.jsonl",
+        "provenance/activity-ledger.schema.json",
+        "provenance/source-request-budget.json",
+        "provenance/reproduction-declarations.json",
+        "scripts/check_provenance.py",
+        "release/provenance-validation.json",
+        "release/sbom.cdx.json",
+        "release/clean-room-reproduction.json",
+        "scripts/reproduce_release.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "requirement_id": "REQ-093"
+    },
+    {
+      "artifact_tier": "pre_release_foundation",
+      "clause_ids": [
+        "BRIEF-006",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "orchestration/dag.yaml",
+        "orchestration/task-contracts",
+        "orchestration/models.lock.yaml",
+        "provenance/activity-ledger.jsonl",
+        "provenance/activity-ledger.schema.json",
+        "provenance/source-request-budget.json",
+        "provenance/reproduction-declarations.json",
+        "scripts/check_provenance.py",
+        "release/provenance-validation.json",
+        "release/sbom.cdx.json",
+        "release/clean-room-reproduction.json",
+        "scripts/reproduce_release.py"
+      ],
+      "implementation_status": "produced",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "requirement_id": "REQ-094"
+    },
+    {
+      "artifact_tier": "checkpoint",
+      "clause_ids": [
+        "BRIEF-006",
+        "PROMPT-006",
+        "PROMPT-008"
+      ],
+      "contract_status": "accepted",
+      "evidence": [
+        "release/status.json",
+        "release/manifest.yaml",
+        "release/aim-assessment.json",
+        "release/sbom.cdx.json",
+        "release/clean-room-reproduction.json"
+      ],
+      "implementation_status": "in_progress",
+      "qualification": "The fixture now reproduces exactly in a clean temporary directory and has a lock-bound SBOM, while clean_room_reproduction_passed remains false. The current status is not the final 95-requirement release disposition.",
+      "requirement_id": "REQ-095"
+    }
+  ],
+  "requirements_contract_sha256": "d898ec1dd4d6a402d457c3cf37562269aad16df5ade84bc1c57a23751d6668da",
+  "schema": "afhf-govuk-okf-requirements-status.v1"
+}

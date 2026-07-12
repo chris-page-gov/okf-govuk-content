@@ -1,0 +1,435 @@
+{
+  "as_of": "2026-07-12",
+  "clauses": [
+    {
+      "clause_id": "BRIEF-001",
+      "implementation_status": "produced",
+      "requirement_ids": [
+        "REQ-002",
+        "REQ-040"
+      ],
+      "requirement_statuses": {
+        "produced": 2
+      }
+    },
+    {
+      "clause_id": "BRIEF-002",
+      "implementation_status": "produced",
+      "requirement_ids": [
+        "REQ-002",
+        "REQ-014",
+        "REQ-015",
+        "REQ-016",
+        "REQ-017",
+        "REQ-018",
+        "REQ-035"
+      ],
+      "requirement_statuses": {
+        "produced": 7
+      }
+    },
+    {
+      "clause_id": "BRIEF-003",
+      "implementation_status": "blocked",
+      "requirement_ids": [
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006",
+        "REQ-007",
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-073",
+        "REQ-074",
+        "REQ-075",
+        "REQ-076",
+        "REQ-077",
+        "REQ-078",
+        "REQ-079",
+        "REQ-080"
+      ],
+      "requirement_statuses": {
+        "blocked": 1,
+        "in_progress": 11,
+        "produced": 5
+      }
+    },
+    {
+      "clause_id": "BRIEF-004",
+      "implementation_status": "in_progress",
+      "requirement_ids": [
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "REQ-012",
+        "REQ-013",
+        "REQ-014",
+        "REQ-015",
+        "REQ-016",
+        "REQ-017",
+        "REQ-018",
+        "REQ-019",
+        "REQ-020",
+        "REQ-021",
+        "REQ-022",
+        "REQ-023",
+        "REQ-037",
+        "REQ-038",
+        "REQ-039"
+      ],
+      "requirement_statuses": {
+        "in_progress": 2,
+        "produced": 16
+      }
+    },
+    {
+      "clause_id": "BRIEF-005",
+      "implementation_status": "in_progress",
+      "requirement_ids": [
+        "REQ-024",
+        "REQ-025",
+        "REQ-026",
+        "REQ-027",
+        "REQ-028",
+        "REQ-029",
+        "REQ-032",
+        "REQ-033",
+        "REQ-034"
+      ],
+      "requirement_statuses": {
+        "in_progress": 2,
+        "produced": 7
+      }
+    },
+    {
+      "clause_id": "BRIEF-006",
+      "implementation_status": "in_progress",
+      "requirement_ids": [
+        "REQ-030",
+        "REQ-031",
+        "REQ-093",
+        "REQ-094",
+        "REQ-095"
+      ],
+      "requirement_statuses": {
+        "in_progress": 1,
+        "produced": 4
+      }
+    },
+    {
+      "clause_id": "BRIEF-007",
+      "implementation_status": "produced",
+      "requirement_ids": [
+        "REQ-035",
+        "REQ-037",
+        "REQ-038",
+        "REQ-039"
+      ],
+      "requirement_statuses": {
+        "produced": 4
+      }
+    },
+    {
+      "clause_id": "BRIEF-008",
+      "implementation_status": "in_progress",
+      "requirement_ids": [
+        "REQ-018",
+        "REQ-035",
+        "REQ-036",
+        "REQ-085"
+      ],
+      "requirement_statuses": {
+        "in_progress": 1,
+        "produced": 3
+      }
+    },
+    {
+      "clause_id": "BRIEF-009",
+      "implementation_status": "in_progress",
+      "requirement_ids": [
+        "REQ-040",
+        "REQ-041",
+        "REQ-042",
+        "REQ-043",
+        "REQ-044",
+        "REQ-045",
+        "REQ-046",
+        "REQ-047",
+        "REQ-048"
+      ],
+      "requirement_statuses": {
+        "in_progress": 1,
+        "produced": 8
+      }
+    },
+    {
+      "clause_id": "BRIEF-010",
+      "implementation_status": "in_progress",
+      "requirement_ids": [
+        "REQ-013",
+        "REQ-024",
+        "REQ-025",
+        "REQ-037",
+        "REQ-038",
+        "REQ-039",
+        "REQ-044",
+        "REQ-045",
+        "REQ-046",
+        "REQ-047",
+        "REQ-075",
+        "REQ-080"
+      ],
+      "requirement_statuses": {
+        "in_progress": 2,
+        "produced": 10
+      }
+    },
+    {
+      "clause_id": "BRIEF-011",
+      "implementation_status": "in_progress",
+      "requirement_ids": [
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "REQ-012",
+        "REQ-013",
+        "REQ-032",
+        "REQ-049",
+        "REQ-050",
+        "REQ-051",
+        "REQ-052",
+        "REQ-053",
+        "REQ-054",
+        "REQ-055",
+        "REQ-056",
+        "REQ-057",
+        "REQ-058",
+        "REQ-059",
+        "REQ-060",
+        "REQ-061",
+        "REQ-062",
+        "REQ-063",
+        "REQ-064",
+        "REQ-065",
+        "REQ-066",
+        "REQ-067",
+        "REQ-068",
+        "REQ-086",
+        "REQ-087",
+        "REQ-088",
+        "REQ-089",
+        "REQ-090",
+        "REQ-091",
+        "REQ-092",
+        "REQ-093"
+      ],
+      "requirement_statuses": {
+        "in_progress": 12,
+        "produced": 22
+      }
+    },
+    {
+      "clause_id": "PROMPT-001",
+      "implementation_status": "blocked",
+      "requirement_ids": [
+        "REQ-001",
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-073",
+        "REQ-074",
+        "REQ-075",
+        "REQ-076",
+        "REQ-077",
+        "REQ-078",
+        "REQ-079",
+        "REQ-080"
+      ],
+      "requirement_statuses": {
+        "blocked": 1,
+        "in_progress": 12
+      }
+    },
+    {
+      "clause_id": "PROMPT-002",
+      "implementation_status": "produced",
+      "requirement_ids": [
+        "REQ-049",
+        "REQ-050",
+        "REQ-051",
+        "REQ-052",
+        "REQ-053",
+        "REQ-054",
+        "REQ-055",
+        "REQ-056",
+        "REQ-057",
+        "REQ-058"
+      ],
+      "requirement_statuses": {
+        "produced": 10
+      }
+    },
+    {
+      "clause_id": "PROMPT-003",
+      "implementation_status": "in_progress",
+      "requirement_ids": [
+        "REQ-059",
+        "REQ-060",
+        "REQ-061",
+        "REQ-062",
+        "REQ-063",
+        "REQ-064",
+        "REQ-065",
+        "REQ-066",
+        "REQ-067",
+        "REQ-068",
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-073"
+      ],
+      "requirement_statuses": {
+        "in_progress": 15
+      }
+    },
+    {
+      "clause_id": "PROMPT-004",
+      "implementation_status": "blocked",
+      "requirement_ids": [
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-073",
+        "REQ-074",
+        "REQ-075",
+        "REQ-076",
+        "REQ-077"
+      ],
+      "requirement_statuses": {
+        "blocked": 1,
+        "in_progress": 8
+      }
+    },
+    {
+      "clause_id": "PROMPT-005",
+      "implementation_status": "in_progress",
+      "requirement_ids": [
+        "REQ-078",
+        "REQ-079",
+        "REQ-081",
+        "REQ-082",
+        "REQ-083",
+        "REQ-084",
+        "REQ-085"
+      ],
+      "requirement_statuses": {
+        "in_progress": 7
+      }
+    },
+    {
+      "clause_id": "PROMPT-006",
+      "implementation_status": "in_progress",
+      "requirement_ids": [
+        "REQ-001",
+        "REQ-080",
+        "REQ-095"
+      ],
+      "requirement_statuses": {
+        "in_progress": 3
+      }
+    },
+    {
+      "clause_id": "PROMPT-007",
+      "implementation_status": "produced",
+      "requirement_ids": [
+        "REQ-086",
+        "REQ-087",
+        "REQ-088",
+        "REQ-089",
+        "REQ-090",
+        "REQ-091",
+        "REQ-092",
+        "REQ-093"
+      ],
+      "requirement_statuses": {
+        "produced": 8
+      }
+    },
+    {
+      "clause_id": "PROMPT-008",
+      "implementation_status": "blocked",
+      "requirement_ids": [
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-073",
+        "REQ-074",
+        "REQ-075",
+        "REQ-076",
+        "REQ-077",
+        "REQ-078",
+        "REQ-079",
+        "REQ-080",
+        "REQ-091",
+        "REQ-094",
+        "REQ-095"
+      ],
+      "requirement_statuses": {
+        "blocked": 1,
+        "in_progress": 12,
+        "produced": 2
+      }
+    },
+    {
+      "clause_id": "PROMPT-009",
+      "implementation_status": "in_progress",
+      "requirement_ids": [
+        "REQ-081",
+        "REQ-082",
+        "REQ-083",
+        "REQ-084",
+        "REQ-085"
+      ],
+      "requirement_statuses": {
+        "in_progress": 5
+      }
+    },
+    {
+      "clause_id": "USER-001",
+      "implementation_status": "in_progress",
+      "requirement_ids": [
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "REQ-012",
+        "REQ-013",
+        "REQ-033",
+        "REQ-034"
+      ],
+      "requirement_statuses": {
+        "in_progress": 4,
+        "produced": 3
+      }
+    }
+  ],
+  "counts": {
+    "by_implementation_status": {
+      "blocked": 4,
+      "in_progress": 12,
+      "produced": 5
+    },
+    "clauses": 21
+  },
+  "generated_from": "governance/implementation-status-source.json",
+  "generated_from_sha256": "621e0a16c0b9e47102c6cfab28811c080e5d34011462424a4c7b9c409e6b75f7",
+  "interpretation": "Clause status is the least advanced mapped requirement status; mapping coverage does not prove implementation acceptance.",
+  "milestone": "t0_census_closed",
+  "schema": "afhf-govuk-okf-traceability-status.v1",
+  "traceability_contract_sha256": "f98f6b0601d63ee54f6b479ab7e0f456ec020636566bc214bb409546fb9808b6"
+}

@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-07-12",
+  "milestone": "t0_census_closed",
+  "publication_ready": false,
+  "status_vocabulary": {
+    "produced": "A foundation artefact exists, but its release acceptance gate has not been passed.",
+    "in_progress": "Implementation or evidence remains incomplete for the release contract.",
+    "blocked": "The remaining work requires authority that has not been granted."
+  },
+  "requirement_status_groups": [
+    {
+      "name": "fixture_profile_and_discovery_foundation",
+      "status": "produced",
+      "artifact_tier": "fixture_foundation",
+      "requirement_ids": [
+        "REQ-002..REQ-008",
+        "REQ-011..REQ-023",
+        "REQ-035..REQ-047"
+      ],
+      "evidence": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "bundle/okf-explorer.json",
+        "explorer/src/index.html",
+        "explorer/tests/browser.e2e.mjs",
+        "explorer/requirements/browser-budgets.json",
+        "src/govuk_okf/discovery.py"
+      ],
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending."
+    },
+    {
+      "name": "official_source_audit_foundation",
+      "status": "produced",
+      "artifact_tier": "dated_source_audit",
+      "requirement_ids": ["REQ-024..REQ-032"],
+      "evidence": [
+        "research/source-registry.yaml",
+        "research/source-preflight.json",
+        "research/source-constraints.json",
+        "research/official-source-audit.md",
+        "release/rights-privacy-audit.json"
+      ],
+      "qualification": "The dated public-source audit and preflight exist. The fixture rights/privacy scan has zero hard body/credential findings and two policy-controlled structural review triggers, but it does not substitute for T0/T1 source-union closure, the final snapshot-bound rights scan, or citation verification."
+    },
+    {
+      "name": "persona_and_story_design_foundation",
+      "status": "produced",
+      "artifact_tier": "development_only",
+      "requirement_ids": ["REQ-049..REQ-058"],
+      "evidence": [
+        "personas/manifest.json",
+        "personas/use-ontology.yamlld",
+        "personas/coverage-matrix.json",
+        "personas/overlay-covering-array.json",
+        "personas/saturation.json",
+        "stories/manifest.json"
+      ],
+      "qualification": "The machine-applicable persona gate passes for 48 evidenced research hypotheses, 17 cross-cutting overlays, 11 required dimensions, all 83 pinned schema families, exhaustive 136-pair overlay scenarios, five high-risk t-way scenarios and two successive held-out no-new challenge passes. One genuine omission, privacy-sensitive context, was added as a contract-supported hypothesis. Human validation remains not authorised, evidence claim-support verification remains an F2 dependency, and the six release-v2 stories per persona must still be regenerated against the final snapshot; no UI preference claim is made."
+    },
+    {
+      "name": "deterministic_execution_foundation",
+      "status": "produced",
+      "artifact_tier": "pre_release_foundation",
+      "requirement_ids": ["REQ-086..REQ-094"],
+      "evidence": [
+        "orchestration/dag.yaml",
+        "orchestration/task-contracts",
+        "orchestration/models.lock.yaml",
+        "provenance/activity-ledger.jsonl",
+        "provenance/activity-ledger.schema.json",
+        "provenance/source-request-budget.json",
+        "provenance/reproduction-declarations.json",
+        "scripts/check_provenance.py",
+        "release/provenance-validation.json",
+        "release/sbom.cdx.json",
+        "release/clean-room-reproduction.json",
+        "scripts/reproduce_release.py"
+      ],
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work."
+    },
+    {
+      "name": "full_corpus_and_capacity",
+      "status": "in_progress",
+      "artifact_tier": "implementation_only",
+      "requirement_ids": ["REQ-009..REQ-010", "REQ-033..REQ-034", "REQ-048"],
+      "evidence": [
+        "scripts/acquire_corpus.py",
+        "scripts/hydrate_corpus.py",
+        "corpus/source-manifests/T0-20260712/manifest.json",
+        "corpus/reconciliation/T0-20260712.json",
+        "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
+        "reports/cost-and-capacity.md",
+        "release/status.json"
+      ],
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress."
+    },
+    {
+      "name": "release_question_matrix",
+      "status": "in_progress",
+      "artifact_tier": "implementation_only",
+      "requirement_ids": ["REQ-059..REQ-068"],
+      "evidence": [
+        "questions/README.md",
+        "evaluation/protocol/question-contract-v2.json",
+        "scripts/build_question_matrix_v2.py",
+        "scripts/verify_question_matrix_v2.py"
+      ],
+      "qualification": "The corpus-anchored v2 generator and separate verifier exist. They have not run against a complete release snapshot; the checked-in v1 matrix is development-only and cannot pass the question gate."
+    },
+    {
+      "name": "evaluation_comparison_and_assessment",
+      "status": "in_progress",
+      "artifact_tier": "implementation_only",
+      "requirement_ids": ["REQ-001", "REQ-069..REQ-076", "REQ-078..REQ-080"],
+      "evidence": [
+        "evaluation/protocol/automated-evaluation-v1.json",
+        "evaluation/protocol/preregistration.json",
+        "evaluation/baselines/catalogue.json",
+        "scripts/run_evaluation.py",
+        "src/govuk_okf/evaluation.py",
+        "evaluation/results/status.json",
+        "explorer/src/evidence/fixture-browser.json",
+        "explorer/tests/browser.e2e.mjs",
+        "reports/comparators.md",
+        "release/aim-assessment.json",
+        "reports/aim-scorecard.md"
+      ],
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding."
+    },
+    {
+      "name": "citation_and_research_verification",
+      "status": "in_progress",
+      "artifact_tier": "preflight_only",
+      "requirement_ids": ["REQ-081..REQ-085"],
+      "evidence": [
+        "planning/PLAN_SOURCE_PREFLIGHT.json",
+        "research/protocol.yaml",
+        "research/source-preflight.json",
+        "research/citations.jsonl",
+        "research/citation-support-reviews.jsonl",
+        "research/claim-support-reviews.jsonl",
+        "release/citation-verification.json"
+      ],
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. Independent ledgers verify 171/171 citation bindings and 40/40 joint claims with zero waivers or blockers. The evidence is currently bound to the fixture release identifier and must be regenerated with the final closing snapshot before publication."
+    },
+    {
+      "name": "final_machine_status",
+      "status": "in_progress",
+      "artifact_tier": "checkpoint",
+      "requirement_ids": ["REQ-095"],
+      "evidence": [
+        "release/status.json",
+        "release/manifest.yaml",
+        "release/aim-assessment.json",
+        "release/sbom.cdx.json",
+        "release/clean-room-reproduction.json"
+      ],
+      "qualification": "The fixture now reproduces exactly in a clean temporary directory and has a lock-bound SBOM, while clean_room_reproduction_passed remains false. The current status is not the final 95-requirement release disposition."
+    },
+    {
+      "name": "human_ui_of_choice_evidence",
+      "status": "blocked",
+      "artifact_tier": "not_authorised",
+      "requirement_ids": ["REQ-077"],
+      "evidence": [
+        "governance/launch-manifest.yaml",
+        "governance/exceptions.yaml"
+      ],
+      "qualification": "No participant-study authority was supplied. The UI-of-choice claim must remain not_yet_testable."
+    }
+  ],
+  "task_status_groups": [
+    {
+      "status": "produced",
+      "artifact_tier": "foundation_or_fixture",
+      "task_ids": [
+        "G0-01", "G0-02", "G0-03", "A1-01", "A1-02", "A1-03", "A3-01",
+        "B2-01", "B2-02", "B3-01", "B3-02", "C1-01", "C2-01", "C2-02",
+        "D1-02", "D2-01", "D2-02", "D3-01"
+      ],
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied."
+    },
+    {
+      "status": "in_progress",
+      "artifact_tier": "not_accepted",
+      "task_ids": [
+        "A2-01", "B1-01", "B1-02", "B1-03", "C1-02", "D1-01", "D2-03", "D2-04",
+        "E1-01", "E1-02", "E2-01", "F1-00", "F1-01", "F2-00", "F2-01", "F2-02", "F2-03"
+      ],
+      "qualification": "The task's declared promotion gate has not been satisfied."
+    },
+    {
+      "status": "blocked",
+      "artifact_tier": "not_authorised",
+      "task_ids": ["E3-01"],
+      "qualification": "Human research requires ethics, recruitment, consent, accommodation and participant-data authority."
+    }
+  ]
+}

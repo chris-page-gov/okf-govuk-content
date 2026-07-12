@@ -1,0 +1,622 @@
+{
+  "as_of": "2026-07-12",
+  "counts": {
+    "accepted": 0,
+    "by_implementation_status": {
+      "blocked": 1,
+      "in_progress": 17,
+      "produced": 18
+    },
+    "tasks": 36
+  },
+  "generated_from": "governance/implementation-status-source.json",
+  "generated_from_sha256": "621e0a16c0b9e47102c6cfab28811c080e5d34011462424a4c7b9c409e6b75f7",
+  "interpretation": "A produced task has an artefact foundation only; the controller promotion gate has not accepted it unless separate run evidence says so.",
+  "milestone": "t0_census_closed",
+  "schema": "afhf-govuk-okf-task-status.v1",
+  "tasks": [
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "research/source-registry.yaml"
+      ],
+      "implementation_status": "produced",
+      "objective": "source doc audit",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-024",
+        "REQ-025",
+        "REQ-026"
+      ],
+      "task_id": "A1-01"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "research/source-preflight.json"
+      ],
+      "implementation_status": "produced",
+      "objective": "policy probes",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-027",
+        "REQ-028",
+        "REQ-030",
+        "REQ-031",
+        "REQ-032"
+      ],
+      "task_id": "A1-02"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "governance/decisions/ADR-003-snapshot-and-freshness.md"
+      ],
+      "implementation_status": "produced",
+      "objective": "freshness sla",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-010",
+        "REQ-034"
+      ],
+      "task_id": "A1-03"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "research/comparator-catalogue.yaml"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "comparator sweeps",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-078",
+        "REQ-079",
+        "REQ-081",
+        "REQ-082",
+        "REQ-083",
+        "REQ-084",
+        "REQ-085"
+      ],
+      "task_id": "A2-01"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "evaluation/protocol/preregistration.json"
+      ],
+      "implementation_status": "produced",
+      "objective": "preregistration",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-073",
+        "REQ-074",
+        "REQ-077",
+        "REQ-080"
+      ],
+      "task_id": "A3-01"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "corpus/source-manifests/<snapshot-label>/manifest.json"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "enumerate t0",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-009",
+        "REQ-010",
+        "REQ-026",
+        "REQ-033"
+      ],
+      "task_id": "B1-01"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "corpus/inventory/<snapshot-label>-candidates.jsonl.gz"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "freeze union",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-029",
+        "REQ-033"
+      ],
+      "task_id": "B1-02"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "reports/capacity-spike.json"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "capacity spike",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-048"
+      ],
+      "task_id": "B1-03"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "semantic/profile/source-model.md"
+      ],
+      "implementation_status": "produced",
+      "objective": "source model",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-014",
+        "REQ-015",
+        "REQ-016",
+        "REQ-017",
+        "REQ-018",
+        "REQ-019",
+        "REQ-020",
+        "REQ-021",
+        "REQ-022",
+        "REQ-035"
+      ],
+      "task_id": "B2-01"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "semantic/profile/govuk-okf-profile-v1.yamlld"
+      ],
+      "implementation_status": "produced",
+      "objective": "okf profile",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-035",
+        "REQ-036",
+        "REQ-037",
+        "REQ-038",
+        "REQ-039",
+        "REQ-041",
+        "REQ-042"
+      ],
+      "task_id": "B2-02"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "personas/use-ontology.yamlld"
+      ],
+      "implementation_status": "produced",
+      "objective": "use ontology",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-049",
+        "REQ-050",
+        "REQ-051",
+        "REQ-052",
+        "REQ-053",
+        "REQ-054"
+      ],
+      "task_id": "B3-01"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "stories/catalogue.jsonl"
+      ],
+      "implementation_status": "produced",
+      "objective": "personas stories",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-054",
+        "REQ-055",
+        "REQ-056",
+        "REQ-057",
+        "REQ-058"
+      ],
+      "task_id": "B3-02"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "questions/release-v2/manifest.json"
+      ],
+      "implementation_status": "produced",
+      "objective": "question bindings",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-059",
+        "REQ-060",
+        "REQ-061",
+        "REQ-063",
+        "REQ-064",
+        "REQ-065",
+        "REQ-066",
+        "REQ-067"
+      ],
+      "task_id": "C1-01"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "questions/release-v2/verification-report.json"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "gold verification",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-062",
+        "REQ-068",
+        "REQ-092"
+      ],
+      "task_id": "C1-02"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "explorer/design/baseline-gap-matrix.yaml"
+      ],
+      "implementation_status": "produced",
+      "objective": "explorer baseline",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-043",
+        "REQ-046",
+        "REQ-075",
+        "REQ-076"
+      ],
+      "task_id": "C2-01"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "tests/fixtures/corpus/source-records.jsonl"
+      ],
+      "implementation_status": "produced",
+      "objective": "representative fixture",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-013",
+        "REQ-047"
+      ],
+      "task_id": "C2-02"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "corpus/records/<snapshot-label>/manifest.json"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "hydrate corpus",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-009",
+        "REQ-014",
+        "REQ-015",
+        "REQ-016",
+        "REQ-017",
+        "REQ-018",
+        "REQ-019",
+        "REQ-020",
+        "REQ-021",
+        "REQ-022",
+        "REQ-023"
+      ],
+      "task_id": "D1-01"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "bundle"
+      ],
+      "implementation_status": "produced",
+      "objective": "compile release",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-039",
+        "REQ-042",
+        "REQ-043",
+        "REQ-044",
+        "REQ-045",
+        "REQ-047",
+        "REQ-048"
+      ],
+      "task_id": "D1-02"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "explorer/src"
+      ],
+      "implementation_status": "produced",
+      "objective": "build explorer fixture",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-003",
+        "REQ-040",
+        "REQ-046",
+        "REQ-048",
+        "REQ-074",
+        "REQ-075",
+        "REQ-076"
+      ],
+      "task_id": "D2-01"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "src/govuk_okf/discovery.py"
+      ],
+      "implementation_status": "produced",
+      "objective": "build agent fixture",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-004",
+        "REQ-005",
+        "REQ-007"
+      ],
+      "task_id": "D2-02"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "bundle/index.html"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "full corpus integration",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006",
+        "REQ-007",
+        "REQ-008",
+        "REQ-040",
+        "REQ-046",
+        "REQ-048"
+      ],
+      "task_id": "D2-03"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "reports/security.md"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "security redteam",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-093",
+        "REQ-094"
+      ],
+      "task_id": "D2-04"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "evaluation/baselines"
+      ],
+      "implementation_status": "produced",
+      "objective": "build eval harness",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-073",
+        "REQ-088",
+        "REQ-092"
+      ],
+      "task_id": "D3-01"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "corpus/source-manifests/<T1-label>/manifest.json"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "enumerate t1",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-010",
+        "REQ-034"
+      ],
+      "task_id": "E1-01"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "corpus/reconciliation/closing.json"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "reconcile",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-026",
+        "REQ-033",
+        "REQ-034"
+      ],
+      "task_id": "E1-02"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "evaluation/results/agent.json"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "automated evaluation",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-069",
+        "REQ-070",
+        "REQ-071",
+        "REQ-072",
+        "REQ-080"
+      ],
+      "task_id": "E2-01"
+    },
+    {
+      "artifact_tier": "not_authorised",
+      "contract_outputs": [
+        "evaluation/human-runs"
+      ],
+      "implementation_status": "blocked",
+      "objective": "human evaluation",
+      "qualification": "Human research requires ethics, recruitment, consent, accommodation and participant-data authority.",
+      "requirement_ids": [
+        "REQ-069",
+        "REQ-070",
+        "REQ-073",
+        "REQ-074",
+        "REQ-077"
+      ],
+      "task_id": "E3-01"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "reports/aims-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "provisional machine synthesis",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-001",
+        "REQ-080",
+        "REQ-095"
+      ],
+      "task_id": "F1-00"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "reports/final-aims-scorecard.md"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "full aims synthesis",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-001",
+        "REQ-077",
+        "REQ-080"
+      ],
+      "task_id": "F1-01"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "release/citation-verification.json"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "machine citation and trace",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-082",
+        "REQ-083",
+        "REQ-084",
+        "REQ-085",
+        "REQ-095"
+      ],
+      "task_id": "F2-00"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "release/status.json"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "machine clean room rc",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-040",
+        "REQ-090",
+        "REQ-094",
+        "REQ-095"
+      ],
+      "task_id": "F2-01"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "release/final-verification.json"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "full verification delta",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-082",
+        "REQ-083",
+        "REQ-084",
+        "REQ-085",
+        "REQ-095"
+      ],
+      "task_id": "F2-02"
+    },
+    {
+      "artifact_tier": "not_accepted",
+      "contract_outputs": [
+        "release/final-status.json"
+      ],
+      "implementation_status": "in_progress",
+      "objective": "full clean room release",
+      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "requirement_ids": [
+        "REQ-040",
+        "REQ-090",
+        "REQ-094",
+        "REQ-095"
+      ],
+      "task_id": "F2-03"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "governance/requirements.yaml"
+      ],
+      "implementation_status": "produced",
+      "objective": "import contract",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-086",
+        "REQ-094",
+        "REQ-095"
+      ],
+      "task_id": "G0-01"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "reports/cost-and-capacity.md"
+      ],
+      "implementation_status": "produced",
+      "objective": "preflight budget",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-087",
+        "REQ-089",
+        "REQ-091"
+      ],
+      "task_id": "G0-02"
+    },
+    {
+      "artifact_tier": "foundation_or_fixture",
+      "contract_outputs": [
+        "orchestration/task-contracts"
+      ],
+      "implementation_status": "produced",
+      "objective": "bootstrap controller",
+      "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied.",
+      "requirement_ids": [
+        "REQ-086",
+        "REQ-089",
+        "REQ-090"
+      ],
+      "task_id": "G0-03"
+    }
+  ]
+}

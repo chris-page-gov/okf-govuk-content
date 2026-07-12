@@ -1,0 +1,541 @@
+{
+  "schema": "afhf-govuk-okf-aim-assessment-source.v1",
+  "assessment_date": "2026-07-12",
+  "status_vocabulary": [
+    "fulfilled",
+    "partly_fulfilled",
+    "not_fulfilled",
+    "not_yet_testable"
+  ],
+  "confidence_vocabulary": [
+    "low",
+    "medium",
+    "high"
+  ],
+  "gate_11_required_checks": [
+    "E-SNAPSHOT-FULL",
+    "E-SNAPSHOT-UNSAMPLED",
+    "E-FULL-CORPUS",
+    "E-ZERO-OMISSIONS",
+    "E-SEMANTIC-RELEASE",
+    "E-QUESTIONS-RELEASE",
+    "E-AGENT-EVALUATION",
+    "E-CITATIONS-RELEASE",
+    "E-CLEAN-ROOM-RELEASE",
+    "E-CHECKSUMS-RELEASE",
+    "E-RIGHTS-RELEASE"
+  ],
+  "evidence_checks": {
+    "E-ACTIVITY-LEDGER": {
+      "description": "The append-only activity ledger exists.",
+      "path": "provenance/activity-ledger.jsonl",
+      "operator": "path_exists",
+      "negative_finding": "The append-only activity ledger is absent."
+    },
+    "E-AGENT-AIM-FAILED": {
+      "description": "An independent final evaluation explicitly found the agent-retrieval aim not fulfilled.",
+      "path": "evaluation/results/aim-findings.json",
+      "pointer": "/aim_statuses/AIM-006/status",
+      "operator": "json_equals",
+      "expected": "not_fulfilled",
+      "negative_finding": "Independent evaluation found that the agent-retrieval aim was not fulfilled."
+    },
+    "E-AGENT-AIM-FULFILLED": {
+      "description": "An independent final evaluation explicitly found the agent-retrieval aim fulfilled.",
+      "path": "evaluation/results/aim-findings.json",
+      "pointer": "/aim_statuses/AIM-006/status",
+      "operator": "json_equals",
+      "expected": "fulfilled",
+      "negative_finding": "No independent final finding establishes that matched agent effectiveness and efficiency fulfilled the aim."
+    },
+    "E-AGENT-EVALUATION": {
+      "description": "The release status records a completed machine evaluation.",
+      "path": "release/status.json",
+      "pointer": "/agent_evaluation_status",
+      "operator": "json_equals",
+      "expected": "completed",
+      "negative_finding": "The complete release question suite has not produced a completed machine evaluation."
+    },
+    "E-BUNDLE-DESCRIPTOR": {
+      "description": "The generated Explorer descriptor exists.",
+      "path": "bundle/okf-explorer.json",
+      "operator": "path_exists",
+      "negative_finding": "The generated Explorer descriptor is absent."
+    },
+    "E-CHECKSUMS-RELEASE": {
+      "description": "The release status records passing bundle checksums.",
+      "path": "release/status.json",
+      "pointer": "/checksum_validation_passed",
+      "operator": "json_equals",
+      "expected": true,
+      "negative_finding": "Full release checksum validation has not passed."
+    },
+    "E-CITATIONS-RELEASE": {
+      "description": "The release status records passing citation verification.",
+      "path": "release/status.json",
+      "pointer": "/citation_verification_passed",
+      "operator": "json_equals",
+      "expected": true,
+      "negative_finding": "The release-bound citation gate has not passed."
+    },
+    "E-CLEAN-ROOM-FIXTURE": {
+      "description": "The fixture reproduces byte-for-byte in the isolated reproduction harness.",
+      "path": "release/clean-room-reproduction.json",
+      "pointer": "/fixture_reproduction_passed",
+      "operator": "json_equals",
+      "expected": true,
+      "negative_finding": "Even the representative fixture has not reproduced exactly."
+    },
+    "E-CLEAN-ROOM-RELEASE": {
+      "description": "The release status records a passing full-snapshot clean-room reproduction.",
+      "path": "release/status.json",
+      "pointer": "/clean_room_reproduction_passed",
+      "operator": "json_equals",
+      "expected": true,
+      "negative_finding": "Only fixture reproduction, not full-snapshot clean-room reproduction, has passed."
+    },
+    "E-COMPARATOR-REPORT": {
+      "description": "The reproducible comparator report exists.",
+      "path": "reports/comparators.md",
+      "operator": "path_exists",
+      "negative_finding": "The comparator synthesis is absent."
+    },
+    "E-EVALUATION-HARNESS": {
+      "description": "The matched deterministic evaluation harness exists.",
+      "path": "scripts/run_evaluation.py",
+      "operator": "path_exists",
+      "negative_finding": "The matched evaluation harness is absent."
+    },
+    "E-EXPLORER-FOUNDATION": {
+      "description": "The static Explorer implementation exists.",
+      "path": "explorer/src/index.html",
+      "operator": "path_exists",
+      "negative_finding": "The static Explorer implementation is absent."
+    },
+    "E-EXPLORER-NONBROWSER-TESTS": {
+      "description": "The recorded deterministic Explorer fixture checks have no failure.",
+      "path": "explorer/src/evidence/fixture-browser.json",
+      "pointer": "/completed_non_browser_checks/failed",
+      "operator": "json_equals",
+      "expected": 0,
+      "negative_finding": "The recorded deterministic Explorer fixture checks contain failures or no result."
+    },
+    "E-FULL-CORPUS": {
+      "description": "The release status records full-corpus reconciliation.",
+      "path": "release/status.json",
+      "pointer": "/full_corpus_reconciled",
+      "operator": "json_equals",
+      "expected": true,
+      "negative_finding": "The frozen T0/T1 source union has not been reconciled as a full corpus."
+    },
+    "E-HUMAN-AIM-FAILED": {
+      "description": "Completed participant evidence explicitly found the preferred-human-UI aim not fulfilled.",
+      "path": "release/status.json",
+      "pointer": "/human_ui_of_choice_status",
+      "operator": "json_equals",
+      "expected": "not_fulfilled",
+      "negative_finding": "Participant evidence found that Explorer was not a UI of choice for the preregistered populations and tasks."
+    },
+    "E-HUMAN-AIM-FULFILLED": {
+      "description": "Completed participant evidence explicitly found the preferred-human-UI aim fulfilled.",
+      "path": "release/status.json",
+      "pointer": "/human_ui_of_choice_status",
+      "operator": "json_equals",
+      "expected": "fulfilled",
+      "negative_finding": "No completed participant evidence establishes the preferred-human-UI outcome."
+    },
+    "E-HUMAN-AIM-PARTLY": {
+      "description": "Completed participant evidence explicitly found the preferred-human-UI aim partly fulfilled.",
+      "path": "release/status.json",
+      "pointer": "/human_ui_of_choice_status",
+      "operator": "json_equals",
+      "expected": "partly_fulfilled",
+      "negative_finding": "No completed participant evidence establishes even partial preferred-UI fulfilment."
+    },
+    "E-HUMAN-COMPLETE": {
+      "description": "The release status records a completed authorised participant study.",
+      "path": "release/status.json",
+      "pointer": "/human_evaluation_status",
+      "operator": "json_equals",
+      "expected": "completed",
+      "negative_finding": "No authorised participant study has completed; synthetic or agent evidence cannot substitute."
+    },
+    "E-HUMAN-NOT-AVAILABLE": {
+      "description": "Human evaluation remains unavailable or incomplete.",
+      "path": "release/status.json",
+      "pointer": "/human_evaluation_status",
+      "operator": "json_in",
+      "expected": [
+        "not_authorised",
+        "blocked",
+        "not_yet_testable"
+      ],
+      "negative_finding": "The participant-evidence gate is not complete."
+    },
+    "E-INDEPENDENT-WIKI": {
+      "description": "The bundle identifies itself as independently derived and non-authoritative.",
+      "path": "bundle/okf-explorer.json",
+      "pointer": "/description",
+      "operator": "json_string_contains",
+      "expected": "Derived, non-authoritative",
+      "negative_finding": "The descriptor does not carry the required derived/non-authoritative declaration."
+    },
+    "E-MACHINE-RESULTS": {
+      "description": "A completed immutable release evaluation result exists.",
+      "path": "evaluation/results/status.json",
+      "pointer": "/agent_evaluation_status",
+      "operator": "json_equals",
+      "expected": "completed",
+      "negative_finding": "The checked-in evaluation result remains a development checkpoint rather than a complete release run."
+    },
+    "E-PAIRED-COMPARISONS": {
+      "description": "The matched paired comparison artefact exists.",
+      "path": "evaluation/results/paired-comparisons.json",
+      "operator": "path_exists",
+      "negative_finding": "No release-bound paired comparison artefact is present."
+    },
+    "E-PERSONA-FOUNDATION": {
+      "description": "The persona manifest exists.",
+      "path": "personas/manifest.json",
+      "operator": "path_exists",
+      "negative_finding": "The persona evidence foundation is absent."
+    },
+    "E-PORTABILITY-AIM-FAILED": {
+      "description": "Independent portability evidence explicitly found the reusable-layer aim not fulfilled.",
+      "path": "release/portability-validation.json",
+      "pointer": "/aim_status",
+      "operator": "json_equals",
+      "expected": "not_fulfilled",
+      "negative_finding": "Independent consumers found the semantic/provenance layer was not portable."
+    },
+    "E-PORTABILITY-AIM-FULFILLED": {
+      "description": "Independent portability evidence explicitly found the reusable-layer aim fulfilled.",
+      "path": "release/portability-validation.json",
+      "pointer": "/aim_status",
+      "operator": "json_equals",
+      "expected": "fulfilled",
+      "negative_finding": "No independent-consumer portability result establishes full reuse beyond Explorer."
+    },
+    "E-PROFILE": {
+      "description": "The source-native GOV.UK OKF semantic profile exists.",
+      "path": "semantic/profile/govuk-okf-profile-v1.yamlld",
+      "operator": "path_exists",
+      "negative_finding": "The source-native semantic profile is absent."
+    },
+    "E-QUESTIONS-RELEASE": {
+      "description": "The release status records an independently verified release-v2 question contract.",
+      "path": "release/status.json",
+      "pointer": "/question_contract_passed",
+      "operator": "json_equals",
+      "expected": true,
+      "negative_finding": "The independently verified release-v2 question contract has not passed."
+    },
+    "E-RECONCILIATION-ARTEFACT": {
+      "description": "The release manifest references an existing closing reconciliation artefact.",
+      "path": "release/manifest.yaml",
+      "pointer": "/artifacts/reconciliation",
+      "operator": "referenced_path_exists",
+      "negative_finding": "The release manifest has no existing closing reconciliation artefact."
+    },
+    "E-REQUIREMENT-COVERAGE": {
+      "description": "The generated requirement status covers all 95 requirements.",
+      "path": "governance/requirements-status.json",
+      "pointer": "/counts/requirements",
+      "operator": "json_equals",
+      "expected": 95,
+      "negative_finding": "The implementation status does not cover all 95 requirements."
+    },
+    "E-RIGHTS-RELEASE": {
+      "description": "The final snapshot-bound rights and privacy audit passed.",
+      "path": "release/rights-privacy-audit.json",
+      "pointer": "/rights_privacy_audit_passed",
+      "operator": "json_equals",
+      "expected": true,
+      "negative_finding": "The rights/privacy audit is a sampled checkpoint and has not passed for the final snapshot."
+    },
+    "E-SEMANTIC-FIXTURE": {
+      "description": "The representative fixture passes the semantic validator.",
+      "path": "release/semantic-validation.json",
+      "pointer": "/passed",
+      "operator": "json_equals",
+      "expected": true,
+      "negative_finding": "The representative fixture does not pass semantic validation."
+    },
+    "E-SEMANTIC-RELEASE": {
+      "description": "The release status records passing full-snapshot semantic validation.",
+      "path": "release/status.json",
+      "pointer": "/semantic_validation_passed",
+      "operator": "json_equals",
+      "expected": true,
+      "negative_finding": "Semantic validation has passed only for the fixture, not the final full snapshot."
+    },
+    "E-SNAPSHOT-FULL": {
+      "description": "The release manifest identifies a full-corpus snapshot.",
+      "path": "release/manifest.yaml",
+      "pointer": "/snapshot/kind",
+      "operator": "json_equals",
+      "expected": "full_corpus",
+      "negative_finding": "The active release artefacts are bound to a fixture rather than a full-corpus snapshot."
+    },
+    "E-SNAPSHOT-UNSAMPLED": {
+      "description": "The release manifest identifies an unsampled snapshot.",
+      "path": "release/manifest.yaml",
+      "pointer": "/snapshot/sampled",
+      "operator": "json_equals",
+      "expected": false,
+      "negative_finding": "The active release snapshot is sampled."
+    },
+    "E-SOURCE-PREFLIGHT": {
+      "description": "The dated official-source preflight has zero official-source failures.",
+      "path": "research/source-preflight.json",
+      "pointer": "/summary/official_failed",
+      "operator": "json_equals",
+      "expected": 0,
+      "negative_finding": "The dated official-source preflight contains a failed official source."
+    },
+    "E-STATIC-SEARCH": {
+      "description": "The generated static search manifest exists.",
+      "path": "bundle/data/search/manifest.json",
+      "operator": "path_exists",
+      "negative_finding": "The static search manifest is absent."
+    },
+    "E-TRACEABILITY-COVERAGE": {
+      "description": "The generated traceability status covers all 21 controlling clauses.",
+      "path": "governance/traceability-status.json",
+      "pointer": "/counts/clauses",
+      "operator": "json_equals",
+      "expected": 21,
+      "negative_finding": "The generated traceability status does not cover every controlling clause."
+    },
+    "E-ZERO-OMISSIONS": {
+      "description": "The release status records zero unexplained omissions.",
+      "path": "release/status.json",
+      "pointer": "/unexplained_omissions",
+      "operator": "json_equals",
+      "expected": 0,
+      "negative_finding": "Zero unexplained omissions has not been established for the full source union."
+    }
+  },
+  "aims": [
+    {
+      "aim_id": "AIM-001",
+      "title": "Independent OKF Bundle Wiki mapping GOV.UK",
+      "brief_clause_ids": ["BRIEF-001", "BRIEF-002", "BRIEF-004", "BRIEF-007", "BRIEF-008", "BRIEF-009"],
+      "requirement_ids": ["REQ-002", "REQ-008", "REQ-014", "REQ-015", "REQ-016", "REQ-017", "REQ-018", "REQ-019", "REQ-020", "REQ-021", "REQ-022", "REQ-023", "REQ-035", "REQ-036", "REQ-037", "REQ-038", "REQ-039", "REQ-040", "REQ-041", "REQ-042", "REQ-043", "REQ-044", "REQ-045", "REQ-046", "REQ-047", "REQ-048"],
+      "research_question_ids": ["RQ-02", "RQ-07"],
+      "hypothesis_ids": ["H-02", "H-06"],
+      "interpretation": "Publish a derived, non-authoritative, independently loadable federated bundle that maps the declared GOV.UK metadata boundary.",
+      "boundary": "A fixture demonstrates the pipeline but cannot fulfil an independent full release.",
+      "standing_negative_finding": "The bundle is independently published but remains derived and non-authoritative; GOV.UK is the authoritative destination.",
+      "evidence_check_ids": ["E-BUNDLE-DESCRIPTOR", "E-INDEPENDENT-WIKI", "E-SNAPSHOT-FULL", "E-SNAPSHOT-UNSAMPLED", "E-CHECKSUMS-RELEASE", "E-CLEAN-ROOM-RELEASE"],
+      "decision": {
+        "not_yet_testable_if_any": [],
+        "not_fulfilled_if_any": [],
+        "fulfilled_if_all": ["E-BUNDLE-DESCRIPTOR", "E-INDEPENDENT-WIKI", "E-SNAPSHOT-FULL", "E-SNAPSHOT-UNSAMPLED", "E-CHECKSUMS-RELEASE", "E-CLEAN-ROOM-RELEASE"],
+        "partly_fulfilled_if_any": ["E-BUNDLE-DESCRIPTOR", "E-INDEPENDENT-WIKI"]
+      },
+      "negative_check_ids": ["E-SNAPSHOT-FULL", "E-CHECKSUMS-RELEASE", "E-CLEAN-ROOM-RELEASE"],
+      "next_actions": [
+        {"unless": "E-SNAPSHOT-FULL", "action": "Build and bind the publication artefacts to the closing unsampled full-corpus snapshot."},
+        {"unless": "E-CLEAN-ROOM-RELEASE", "action": "Reproduce the full release from pinned frozen inputs before publication."}
+      ],
+      "exceptions": [],
+      "confidence": {"fulfilled": "high", "partly_fulfilled": "high", "not_fulfilled": "high", "not_yet_testable": "high"}
+    },
+    {
+      "aim_id": "AIM-002",
+      "title": "Whole bounded public GOV.UK metadata coverage",
+      "brief_clause_ids": ["BRIEF-004", "BRIEF-005", "BRIEF-006", "BRIEF-010", "BRIEF-011", "USER-001"],
+      "requirement_ids": ["REQ-009", "REQ-010", "REQ-011", "REQ-012", "REQ-013", "REQ-024", "REQ-025", "REQ-026", "REQ-027", "REQ-028", "REQ-029", "REQ-030", "REQ-031", "REQ-032", "REQ-033", "REQ-034", "REQ-048", "REQ-093"],
+      "research_question_ids": ["RQ-01", "RQ-07", "RQ-08"],
+      "hypothesis_ids": ["H-01"],
+      "interpretation": "Close the declared T0/T1 union with one disposition per candidate and zero unexplained omissions; this is not a claim about every *.gov.uk site or complete page bodies.",
+      "boundary": "A source audit or sampled capacity run is supporting evidence only, not corpus closure.",
+      "standing_negative_finding": "Completeness is bounded to the declared public-source union and cannot prove that an unknown, non-enumerated item does not exist.",
+      "evidence_check_ids": ["E-SOURCE-PREFLIGHT", "E-SNAPSHOT-FULL", "E-SNAPSHOT-UNSAMPLED", "E-FULL-CORPUS", "E-ZERO-OMISSIONS", "E-RECONCILIATION-ARTEFACT", "E-RIGHTS-RELEASE"],
+      "decision": {
+        "not_yet_testable_if_any": [],
+        "not_fulfilled_if_any": [],
+        "fulfilled_if_all": ["E-SNAPSHOT-FULL", "E-SNAPSHOT-UNSAMPLED", "E-FULL-CORPUS", "E-ZERO-OMISSIONS", "E-RECONCILIATION-ARTEFACT", "E-RIGHTS-RELEASE"],
+        "partly_fulfilled_if_any": ["E-SOURCE-PREFLIGHT"]
+      },
+      "negative_check_ids": ["E-SNAPSHOT-FULL", "E-FULL-CORPUS", "E-ZERO-OMISSIONS", "E-RIGHTS-RELEASE"],
+      "next_actions": [
+        {"unless": "E-FULL-CORPUS", "action": "Complete T0 hydration, T1 closure and per-class reconciliation."},
+        {"unless": "E-RIGHTS-RELEASE", "action": "Run and resolve the rights/privacy review against the final unsampled snapshot."}
+      ],
+      "exceptions": [],
+      "confidence": {"fulfilled": "high", "partly_fulfilled": "high", "not_fulfilled": "high", "not_yet_testable": "high"}
+    },
+    {
+      "aim_id": "AIM-003",
+      "title": "Help people navigate and understand GOV.UK",
+      "brief_clause_ids": ["BRIEF-003", "BRIEF-010", "BRIEF-011", "PROMPT-001", "PROMPT-002", "PROMPT-003", "PROMPT-004"],
+      "requirement_ids": ["REQ-003", "REQ-049", "REQ-050", "REQ-051", "REQ-052", "REQ-053", "REQ-054", "REQ-055", "REQ-056", "REQ-057", "REQ-058", "REQ-069", "REQ-070", "REQ-073", "REQ-074", "REQ-075", "REQ-076"],
+      "research_question_ids": ["RQ-04", "RQ-05"],
+      "hypothesis_ids": ["H-04", "H-05"],
+      "interpretation": "Provide an accessible discovery surface and establish human task benefit with genuine evidence, while retaining GOV.UK as the authoritative destination.",
+      "boundary": "Fixture UI and automated checks support only partial fulfilment without completed participant evidence.",
+      "standing_negative_finding": "Metadata discovery cannot replace reading authoritative guidance or completing a government transaction.",
+      "evidence_check_ids": ["E-EXPLORER-FOUNDATION", "E-EXPLORER-NONBROWSER-TESTS", "E-PERSONA-FOUNDATION", "E-HUMAN-COMPLETE", "E-HUMAN-AIM-FULFILLED", "E-HUMAN-AIM-PARTLY", "E-HUMAN-AIM-FAILED"],
+      "decision": {
+        "not_yet_testable_if_any": [],
+        "not_fulfilled_if_any": ["E-HUMAN-AIM-FAILED"],
+        "fulfilled_if_all": ["E-EXPLORER-FOUNDATION", "E-HUMAN-COMPLETE", "E-HUMAN-AIM-FULFILLED"],
+        "partly_fulfilled_if_any": ["E-EXPLORER-FOUNDATION", "E-EXPLORER-NONBROWSER-TESTS", "E-PERSONA-FOUNDATION", "E-HUMAN-AIM-PARTLY"]
+      },
+      "negative_check_ids": ["E-HUMAN-COMPLETE", "E-HUMAN-AIM-FULFILLED"],
+      "next_actions": [
+        {"unless": "E-HUMAN-COMPLETE", "action": "After authority and ethics approval, run the preregistered accessible participant study."},
+        {"unless": "E-HUMAN-AIM-FULFILLED", "action": "Retain task failures and report a partial or negative human outcome if that is what the evidence shows."}
+      ],
+      "exceptions": [{"id": "EXC-HUMAN-001", "path": "governance/exceptions.yaml", "unless": "E-HUMAN-COMPLETE"}],
+      "confidence": {"fulfilled": "medium", "partly_fulfilled": "high", "not_fulfilled": "medium", "not_yet_testable": "high"}
+    },
+    {
+      "aim_id": "AIM-004",
+      "title": "Become a Human UI of choice for defined populations and tasks",
+      "brief_clause_ids": ["BRIEF-003", "PROMPT-001", "PROMPT-004", "PROMPT-006"],
+      "requirement_ids": ["REQ-003", "REQ-052", "REQ-069", "REQ-070", "REQ-073", "REQ-074", "REQ-075", "REQ-076", "REQ-077", "REQ-080"],
+      "research_question_ids": ["RQ-04"],
+      "hypothesis_ids": ["H-04"],
+      "interpretation": "Make a preference/effectiveness conclusion only for preregistered populations and tasks after genuine accessible participant research.",
+      "boundary": "Synthetic, automated, expert-only or agent evidence cannot satisfy this aim.",
+      "standing_negative_finding": "Any preferred-UI result is population- and task-specific, not a universal preference claim.",
+      "evidence_check_ids": ["E-HUMAN-NOT-AVAILABLE", "E-HUMAN-COMPLETE", "E-HUMAN-AIM-FULFILLED", "E-HUMAN-AIM-PARTLY", "E-HUMAN-AIM-FAILED"],
+      "decision": {
+        "not_yet_testable_if_any": ["E-HUMAN-NOT-AVAILABLE"],
+        "not_fulfilled_if_any": ["E-HUMAN-AIM-FAILED"],
+        "fulfilled_if_all": ["E-HUMAN-COMPLETE", "E-HUMAN-AIM-FULFILLED"],
+        "partly_fulfilled_if_any": ["E-HUMAN-AIM-PARTLY"]
+      },
+      "negative_check_ids": ["E-HUMAN-COMPLETE", "E-HUMAN-AIM-FULFILLED"],
+      "next_actions": [
+        {"unless": "E-HUMAN-COMPLETE", "action": "Obtain human-study authority and complete the preregistered participant comparison."}
+      ],
+      "exceptions": [{"id": "EXC-HUMAN-001", "path": "governance/exceptions.yaml", "unless": "E-HUMAN-COMPLETE"}],
+      "confidence": {"fulfilled": "medium", "partly_fulfilled": "medium", "not_fulfilled": "medium", "not_yet_testable": "high"}
+    },
+    {
+      "aim_id": "AIM-005",
+      "title": "Help systems understand GOV.UK identities, hierarchy, lifecycle and relationships",
+      "brief_clause_ids": ["BRIEF-003", "BRIEF-004", "BRIEF-007", "BRIEF-008"],
+      "requirement_ids": ["REQ-004", "REQ-014", "REQ-015", "REQ-016", "REQ-017", "REQ-018", "REQ-019", "REQ-020", "REQ-021", "REQ-022", "REQ-023", "REQ-035", "REQ-036", "REQ-037", "REQ-038", "REQ-039", "REQ-044", "REQ-045", "REQ-047"],
+      "research_question_ids": ["RQ-02", "RQ-05"],
+      "hypothesis_ids": ["H-02", "H-06"],
+      "interpretation": "Expose source-native entity distinctions and evidence-bearing typed relationships through validated machine-readable artefacts.",
+      "boundary": "Passing fixture semantics demonstrates the model, not complete full-corpus system coverage.",
+      "standing_negative_finding": "Public metadata cannot expose source-native edition or internal publishing detail that GOV.UK does not publish.",
+      "evidence_check_ids": ["E-PROFILE", "E-SEMANTIC-FIXTURE", "E-STATIC-SEARCH", "E-SNAPSHOT-FULL", "E-FULL-CORPUS", "E-SEMANTIC-RELEASE"],
+      "decision": {
+        "not_yet_testable_if_any": [],
+        "not_fulfilled_if_any": [],
+        "fulfilled_if_all": ["E-PROFILE", "E-SNAPSHOT-FULL", "E-FULL-CORPUS", "E-SEMANTIC-RELEASE"],
+        "partly_fulfilled_if_any": ["E-PROFILE", "E-SEMANTIC-FIXTURE", "E-STATIC-SEARCH"]
+      },
+      "negative_check_ids": ["E-SNAPSHOT-FULL", "E-FULL-CORPUS", "E-SEMANTIC-RELEASE"],
+      "next_actions": [
+        {"unless": "E-SEMANTIC-RELEASE", "action": "Run JSON Schema, SHACL, RDFC equivalence and referential checks across every final release shard."}
+      ],
+      "exceptions": [],
+      "confidence": {"fulfilled": "high", "partly_fulfilled": "high", "not_fulfilled": "high", "not_yet_testable": "high"}
+    },
+    {
+      "aim_id": "AIM-006",
+      "title": "Help agents retrieve and cite authoritative GOV.UK content",
+      "brief_clause_ids": ["BRIEF-003", "BRIEF-008", "BRIEF-011", "PROMPT-001", "PROMPT-003", "PROMPT-006", "PROMPT-009"],
+      "requirement_ids": ["REQ-005", "REQ-059", "REQ-060", "REQ-061", "REQ-062", "REQ-063", "REQ-064", "REQ-065", "REQ-066", "REQ-067", "REQ-068", "REQ-069", "REQ-070", "REQ-071", "REQ-072", "REQ-081", "REQ-082", "REQ-083", "REQ-084", "REQ-085", "REQ-088", "REQ-092"],
+      "research_question_ids": ["RQ-03", "RQ-05"],
+      "hypothesis_ids": ["H-03", "H-05"],
+      "interpretation": "Demonstrate metadata discovery, typed traversal, authoritative hand-off, citation correctness and abstention under matched frozen conditions.",
+      "boundary": "This is not a claim that the metadata layer itself answers substantive body-content questions.",
+      "standing_negative_finding": "The layer supports discovery and evidence hand-off; substantive answers still require retrieval from authoritative GOV.UK content.",
+      "evidence_check_ids": ["E-EVALUATION-HARNESS", "E-QUESTIONS-RELEASE", "E-AGENT-EVALUATION", "E-MACHINE-RESULTS", "E-CITATIONS-RELEASE", "E-PAIRED-COMPARISONS", "E-AGENT-AIM-FULFILLED", "E-AGENT-AIM-FAILED"],
+      "decision": {
+        "not_yet_testable_if_any": [],
+        "not_fulfilled_if_any": ["E-AGENT-AIM-FAILED"],
+        "fulfilled_if_all": ["E-QUESTIONS-RELEASE", "E-AGENT-EVALUATION", "E-MACHINE-RESULTS", "E-CITATIONS-RELEASE", "E-PAIRED-COMPARISONS", "E-AGENT-AIM-FULFILLED"],
+        "partly_fulfilled_if_any": ["E-EVALUATION-HARNESS", "E-AGENT-EVALUATION", "E-CITATIONS-RELEASE"]
+      },
+      "negative_check_ids": ["E-QUESTIONS-RELEASE", "E-AGENT-EVALUATION", "E-PAIRED-COMPARISONS", "E-AGENT-AIM-FULFILLED"],
+      "next_actions": [
+        {"unless": "E-AGENT-EVALUATION", "action": "Run every frozen release-v2 question against every matched machine system."},
+        {"unless": "E-AGENT-AIM-FULFILLED", "action": "Issue an independent H-03 disposition from the paired effectiveness, efficiency and failure evidence; retain an unfavourable result."}
+      ],
+      "exceptions": [{"id": "EXC-MODEL-001", "path": "governance/exceptions.yaml", "unless": "E-PAIRED-COMPARISONS"}],
+      "confidence": {"fulfilled": "medium", "partly_fulfilled": "high", "not_fulfilled": "medium", "not_yet_testable": "high"}
+    },
+    {
+      "aim_id": "AIM-007",
+      "title": "Compare source metadata, public presentation and search or discovery behaviour",
+      "brief_clause_ids": ["BRIEF-003", "BRIEF-005", "BRIEF-010", "PROMPT-005", "PROMPT-009"],
+      "requirement_ids": ["REQ-006", "REQ-024", "REQ-025", "REQ-026", "REQ-069", "REQ-070", "REQ-078", "REQ-079", "REQ-081", "REQ-082", "REQ-083", "REQ-084", "REQ-085"],
+      "research_question_ids": ["RQ-05", "RQ-06"],
+      "hypothesis_ids": [],
+      "interpretation": "Publish reproducible comparator evidence and matched behaviour comparisons without fabricating unavailable external-system results.",
+      "boundary": "Architecture and source comparison without complete matched runs is partial fulfilment.",
+      "standing_negative_finding": "Internal or unavailable comparators cannot be represented as matched empirical results without authorised reproducible access.",
+      "evidence_check_ids": ["E-SOURCE-PREFLIGHT", "E-COMPARATOR-REPORT", "E-PAIRED-COMPARISONS", "E-CITATIONS-RELEASE", "E-AGENT-EVALUATION"],
+      "decision": {
+        "not_yet_testable_if_any": [],
+        "not_fulfilled_if_any": [],
+        "fulfilled_if_all": ["E-SOURCE-PREFLIGHT", "E-COMPARATOR-REPORT", "E-PAIRED-COMPARISONS", "E-CITATIONS-RELEASE", "E-AGENT-EVALUATION"],
+        "partly_fulfilled_if_any": ["E-SOURCE-PREFLIGHT", "E-COMPARATOR-REPORT"]
+      },
+      "negative_check_ids": ["E-PAIRED-COMPARISONS", "E-AGENT-EVALUATION", "E-CITATIONS-RELEASE"],
+      "next_actions": [
+        {"unless": "E-PAIRED-COMPARISONS", "action": "Publish the frozen paired comparisons and preserve explicit exclusions for unavailable external systems."}
+      ],
+      "exceptions": [],
+      "confidence": {"fulfilled": "high", "partly_fulfilled": "high", "not_fulfilled": "medium", "not_yet_testable": "high"}
+    },
+    {
+      "aim_id": "AIM-008",
+      "title": "Establish a reusable semantic and provenance layer",
+      "brief_clause_ids": ["BRIEF-003", "BRIEF-007", "BRIEF-008", "BRIEF-009"],
+      "requirement_ids": ["REQ-007", "REQ-035", "REQ-036", "REQ-037", "REQ-038", "REQ-039", "REQ-040", "REQ-041", "REQ-042", "REQ-043", "REQ-044", "REQ-045", "REQ-046", "REQ-047", "REQ-085", "REQ-090", "REQ-095"],
+      "research_question_ids": ["RQ-02", "RQ-07"],
+      "hypothesis_ids": ["H-02", "H-06"],
+      "interpretation": "Provide portable source-native semantics, equivalent YAML-LD and JSON-LD, assertion provenance and stable static distribution for later consumers.",
+      "boundary": "Internal validation proves conformance; full reuse requires independent-consumer evidence.",
+      "standing_negative_finding": "Profile extensions exceed the minimal OKF base and require consumers to support the declared versioned profile.",
+      "evidence_check_ids": ["E-PROFILE", "E-SEMANTIC-FIXTURE", "E-SEMANTIC-RELEASE", "E-CLEAN-ROOM-RELEASE", "E-PORTABILITY-AIM-FULFILLED", "E-PORTABILITY-AIM-FAILED"],
+      "decision": {
+        "not_yet_testable_if_any": [],
+        "not_fulfilled_if_any": ["E-PORTABILITY-AIM-FAILED"],
+        "fulfilled_if_all": ["E-PROFILE", "E-SEMANTIC-RELEASE", "E-CLEAN-ROOM-RELEASE", "E-PORTABILITY-AIM-FULFILLED"],
+        "partly_fulfilled_if_any": ["E-PROFILE", "E-SEMANTIC-FIXTURE", "E-SEMANTIC-RELEASE"]
+      },
+      "negative_check_ids": ["E-SEMANTIC-RELEASE", "E-CLEAN-ROOM-RELEASE", "E-PORTABILITY-AIM-FULFILLED"],
+      "next_actions": [
+        {"unless": "E-PORTABILITY-AIM-FULFILLED", "action": "Validate the released profile with an independent consumer that does not depend on Explorer-specific code."}
+      ],
+      "exceptions": [],
+      "confidence": {"fulfilled": "medium", "partly_fulfilled": "high", "not_fulfilled": "medium", "not_yet_testable": "high"}
+    },
+    {
+      "aim_id": "AIM-009",
+      "title": "Transparent, unattended and reproducible execution",
+      "brief_clause_ids": ["BRIEF-005", "BRIEF-006", "BRIEF-009", "BRIEF-010", "PROMPT-006", "PROMPT-007", "PROMPT-008", "PROMPT-009"],
+      "requirement_ids": ["REQ-001", "REQ-024", "REQ-025", "REQ-026", "REQ-027", "REQ-028", "REQ-029", "REQ-030", "REQ-031", "REQ-032", "REQ-033", "REQ-034", "REQ-040", "REQ-047", "REQ-081", "REQ-082", "REQ-083", "REQ-084", "REQ-085", "REQ-086", "REQ-087", "REQ-088", "REQ-089", "REQ-090", "REQ-091", "REQ-092", "REQ-093", "REQ-094", "REQ-095"],
+      "research_question_ids": ["RQ-07", "RQ-08"],
+      "hypothesis_ids": ["H-01", "H-06"],
+      "interpretation": "Make deterministic work, evidence, exceptions, usage, checks and final dispositions inspectable and reproducible from pinned inputs.",
+      "boundary": "A reproducible fixture and implemented controller are partial until the final full release reproduces and every requirement is dispositioned.",
+      "standing_negative_finding": "A frozen release can reproduce its artefacts but cannot make a changing live GOV.UK snapshot permanently current.",
+      "evidence_check_ids": ["E-ACTIVITY-LEDGER", "E-REQUIREMENT-COVERAGE", "E-TRACEABILITY-COVERAGE", "E-CLEAN-ROOM-FIXTURE", "E-SNAPSHOT-FULL", "E-CLEAN-ROOM-RELEASE", "E-CHECKSUMS-RELEASE"],
+      "decision": {
+        "not_yet_testable_if_any": [],
+        "not_fulfilled_if_any": [],
+        "fulfilled_if_all": ["E-ACTIVITY-LEDGER", "E-REQUIREMENT-COVERAGE", "E-TRACEABILITY-COVERAGE", "E-SNAPSHOT-FULL", "E-CLEAN-ROOM-RELEASE", "E-CHECKSUMS-RELEASE"],
+        "partly_fulfilled_if_any": ["E-ACTIVITY-LEDGER", "E-REQUIREMENT-COVERAGE", "E-TRACEABILITY-COVERAGE", "E-CLEAN-ROOM-FIXTURE"]
+      },
+      "negative_check_ids": ["E-SNAPSHOT-FULL", "E-CLEAN-ROOM-RELEASE", "E-CHECKSUMS-RELEASE"],
+      "next_actions": [
+        {"unless": "E-CLEAN-ROOM-RELEASE", "action": "Run the full-snapshot clean-room replay and bind the result to release checksums and the SBOM."}
+      ],
+      "exceptions": [],
+      "confidence": {"fulfilled": "high", "partly_fulfilled": "high", "not_fulfilled": "high", "not_yet_testable": "high"}
+    }
+  ]
+}
