@@ -1,0 +1,38 @@
+{
+  "schema": "govuk-okf-explorer-browser-budgets.v1",
+  "applies_to": [
+    "representative_fixture",
+    "full_release_snapshot"
+  ],
+  "performance": {
+    "bootstrap_encoded_bytes_max": 2097152,
+    "first_useful_render_p75_ms_max": 2500,
+    "cold_search_p95_ms_max": 1500,
+    "warm_search_p95_ms_max": 500,
+    "route_hydration_p95_ms_max": 1500,
+    "steady_js_heap_bytes_max": 536870912
+  },
+  "accessibility": {
+    "reflow_viewport_css_px": 320,
+    "required_landmarks": [
+      "banner",
+      "navigation",
+      "main",
+      "search",
+      "contentinfo"
+    ],
+    "missing_accessible_names_max": 0,
+    "duplicate_ids_max": 0,
+    "computed_contrast_failures_max": 0,
+    "keyboard_skip_target": "main-content",
+    "reduced_motion_max_duration_ms": 1
+  },
+  "qualifications": {
+    "automated_fixture_pass_is_wcag_conformance": false,
+    "automated_full_release_pass_is_wcag_conformance": false,
+    "expert_review_required": true,
+    "screen_reader_review_required": true,
+    "representative_user_review_required_when_authorised": true,
+    "full_release_must_be_measured_separately": true
+  }
+}

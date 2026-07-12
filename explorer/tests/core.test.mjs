@@ -12,13 +12,14 @@ import {
   paginate,
   parseExplorerState,
   relationshipBucket,
+  routeFromHash,
   safeExternalUrl,
   serialiseExplorerState,
   whyThisResult
 } from "../src/core.js";
 
 test("replayable state round trips without losing an existing bundle URL", () => {
-  const original = "https://example.test/explorer/?bundle=https%3A%2F%2Fdata.example%2Fokf-explorer.json&q=driving&facet=language%3Acy&facet=status%3Awithdrawn&view=timeline&mode=evidence&lang=cy&route=dataset%2Flicence&snapshot=snap-1&pin=dataset%2Fa&pin=dataset%2Fb&page=3";
+  const original = "https://example.test/explorer/?bundle=https%3A%2F%2Fdata.example%2Fokf-explorer.json&q=driving&facet=language%3Acy&facet=status%3Awithdrawn&view=timeline&mode=evidence&lang=cy&snapshot=snap-1&pin=dataset%2Fa&pin=dataset%2Fb&page=3#dataset/licence";
   const state = parseExplorerState(original);
   assert.equal(state.query, "driving");
   assert.deepEqual(state.facets, { language: ["cy"], status: ["withdrawn"] });
@@ -29,7 +30,21 @@ test("replayable state round trips without losing an existing bundle URL", () =>
   assert.deepEqual(state.pins, ["dataset/a", "dataset/b"]);
   const replay = serialiseExplorerState(state, original);
   assert.equal(replay.searchParams.get("bundle"), "https://data.example/okf-explorer.json");
+  assert.equal(replay.searchParams.has("route"), false);
+  assert.equal(routeFromHash(replay.hash), "dataset/licence");
   assert.deepEqual(parseExplorerState(replay), state);
+});
+
+test("hash routes are canonical while legacy route query links remain aliases", () => {
+  const legacy = parseExplorerState("https://example.test/project/?route=dataset%2Fold&q=tax");
+  assert.equal(legacy.route, "dataset/old");
+  const canonical = serialiseExplorerState(legacy, "https://example.test/project/?route=dataset%2Fold&q=tax");
+  assert.equal(canonical.searchParams.has("route"), false);
+  assert.equal(routeFromHash(canonical.hash), "dataset/old");
+  assert.equal(parseExplorerState("https://example.test/project/?route=dataset%2Fold#dataset/new").route, "dataset/new");
+  assert.equal(routeFromHash("#overview"), "");
+  assert.equal(routeFromHash("#main-content"), "");
+  assert.equal(routeFromHash("#%E0%A4%A"), "%E0%A4%A");
 });
 
 test("state parser constrains unsupported modes, unsafe routes and invalid facet keys", () => {

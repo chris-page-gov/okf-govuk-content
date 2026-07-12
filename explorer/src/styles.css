@@ -712,6 +712,20 @@ body[data-mode="explore"] .mode-evidence {
   padding: 1rem;
 }
 
+.statement-page,
+.fallback-page {
+  padding-block: 2.5rem 4rem;
+}
+
+.statement-page section {
+  margin-top: 2.5rem;
+}
+
+.statement-page li {
+  max-width: 70ch;
+  margin-bottom: 0.45rem;
+}
+
 @media (max-width: 52rem) {
   .workspace,
   .workspace-controls,
@@ -797,6 +811,14 @@ body[data-mode="explore"] .mode-evidence {
   .compare-table tr {
     border-bottom: 0.2rem solid var(--black);
     padding: 0.5rem 0;
+  }
+
+  .relationship-table td::before,
+  .compare-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 0.2rem;
+    font-weight: 700;
   }
 }
 

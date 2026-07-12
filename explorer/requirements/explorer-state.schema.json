@@ -2,6 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://chris-page-gov.github.io/okf-govuk-content/explorer/explorer-state.schema.json",
   "title": "What’s on GOV.UK replayable Explorer state",
+  "x-url-codec": {
+    "query_parameters": ["q", "facet", "view", "mode", "lang", "lifecycle", "jurisdiction", "page", "snapshot", "pin"],
+    "canonical_record_route": "decoded URL fragment",
+    "legacy_alias": "the route query parameter is accepted on input and canonicalised to the URL fragment"
+  },
   "type": "object",
   "required": ["query", "facets", "view", "mode", "language", "route", "page", "snapshot", "pins"],
   "properties": {
