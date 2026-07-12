@@ -1,5 +1,7 @@
 {
   "catalogue_id": "govuk-persona-overlays-v1",
+  "current_overlay_count": 17,
+  "initial_overlay_count": 16,
   "overlays": [
     {
       "dimensions": [
@@ -7,6 +9,11 @@
         "keyboard operation",
         "meaningful link labels"
       ],
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Screen reader or keyboard-only access",
       "overlay_id": "screen-reader-keyboard"
     },
@@ -16,6 +23,11 @@
         "sequenced tasks",
         "visible uncertainty"
       ],
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Cognitive load, memory or neurodivergent access",
       "overlay_id": "cognitive-access"
     },
@@ -25,6 +37,11 @@
         "term explanation",
         "assisted route"
       ],
+      "evidence_ids": [
+        "ev-user-needs",
+        "ev-non-digital-users"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Low literacy or unfamiliar government language",
       "overlay_id": "low-literacy"
     },
@@ -34,6 +51,11 @@
         "recoverable steps",
         "support hand-off"
       ],
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Low digital confidence",
       "overlay_id": "low-digital-confidence"
     },
@@ -43,6 +65,11 @@
         "stable URLs",
         "offline-readable export"
       ],
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-use-ontology-contract"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Low bandwidth or intermittent connectivity",
       "overlay_id": "low-bandwidth"
     },
@@ -52,6 +79,11 @@
         "touch target clarity",
         "handoff preservation"
       ],
+      "evidence_ids": [
+        "ev-user-needs",
+        "ev-use-ontology-contract"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Mobile-only access",
       "overlay_id": "mobile-only"
     },
@@ -61,6 +93,11 @@
         "equivalent-source linking",
         "locale declaration"
       ],
+      "evidence_ids": [
+        "ev-user-needs",
+        "ev-use-ontology-contract"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Welsh-language route",
       "overlay_id": "welsh-language"
     },
@@ -70,6 +107,11 @@
         "source-language disclosure",
         "no silent translation drift"
       ],
+      "evidence_ids": [
+        "ev-user-needs",
+        "ev-use-ontology-contract"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "English as an additional language or translation support",
       "overlay_id": "language-support"
     },
@@ -79,6 +121,11 @@
         "shared task state",
         "no digital-only assumption"
       ],
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Assisted digital support",
       "overlay_id": "assisted-digital"
     },
@@ -88,6 +135,11 @@
         "authority boundary",
         "privacy-minimised context"
       ],
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Proxy, delegate or intermediary",
       "overlay_id": "proxy-delegate"
     },
@@ -97,6 +149,11 @@
         "date and jurisdiction",
         "authoritative escalation"
       ],
+      "evidence_ids": [
+        "ev-user-needs",
+        "ev-use-ontology-contract"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "High-stakes or urgent use",
       "overlay_id": "high-stakes"
     },
@@ -106,6 +163,11 @@
         "typed relationships",
         "provenance fields"
       ],
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-mcp-resources"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Machine-readable agent output",
       "overlay_id": "structured-output"
     },
@@ -115,6 +177,11 @@
         "missing evidence",
         "authoritative hand-off"
       ],
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-kilt"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Agent safe-abstention boundary",
       "overlay_id": "safe-abstention"
     },
@@ -124,6 +191,10 @@
         "withdrawal state",
         "replacement relationship"
       ],
+      "evidence_ids": [
+        "ev-content-api"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Current and historical comparison",
       "overlay_id": "historical-comparison"
     },
@@ -133,6 +204,10 @@
         "third-party material",
         "reuse trigger"
       ],
+      "evidence_ids": [
+        "ev-ogl"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Licensing and fair-use review",
       "overlay_id": "licensing-review"
     },
@@ -142,10 +217,29 @@
         "attachment alternatives",
         "test evidence"
       ],
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
       "label": "Accessibility review workflow",
       "overlay_id": "accessibility-review"
+    },
+    {
+      "dimensions": [
+        "data minimisation",
+        "delegation boundary",
+        "private authoritative hand-off"
+      ],
+      "evidence_ids": [
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "label": "Privacy-sensitive or shared-context use",
+      "overlay_id": "privacy-sensitive-context"
     }
   ],
   "schema_version": 1,
-  "status": "cross-cutting test dimensions; not primary personas or prevalence claims"
+  "status": "cross-cutting research hypotheses; not primary personas, prevalence or human validation claims"
 }

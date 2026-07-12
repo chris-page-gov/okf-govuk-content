@@ -1,7 +1,15 @@
 {
   "archetype_class": "public_life_event",
+  "capabilities_and_context": [
+    "channel:human_assisted",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_assisted",
-  "checksum": "68498fe3d10691b5e22248d67d063a44c1ff868d1dad0213963467275cb0d98a",
+  "checksum": "fb66ffd18e45a1ee676bb984797f7c8bf48f7b8b18f260b05a2190ad4f1616a3",
+  "constraints": [
+    "overlay:assisted-digital",
+    "overlay:high-stakes"
+  ],
   "context": "A life event crosses organisational boundaries and the correct order is not obvious.",
   "evidence_ids": [
     "ev-user-needs",
@@ -9,8 +17,20 @@
     "ev-user-stories"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "coordinate related steps across several public bodies",
+  "jobs_to_be_done": [
+    "coordinate related steps across several public bodies"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -19,12 +39,25 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-multi-service-life-event",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-assisted-digital",
+    "ev-non-digital-users",
+    "ev-use-ontology-contract",
+    "ev-user-needs"
+  ],
   "overlay_ids": [
     "assisted-digital",
     "high-stakes"
   ],
   "persona_id": "persona-public-multi-service-life-event",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "coordinate related steps across several public bodies",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -32,5 +65,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Person navigating a multi-service life event"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Person navigating a multi-service life event",
+  "trigger": "A life event crosses organisational boundaries and the correct order is not obvious.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

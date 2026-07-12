@@ -1,277 +1,327 @@
 {
   "counts": {
-    "overlays": 16,
+    "challenge_passes": 3,
+    "coverage_dimensions": 11,
+    "current_overlays": 17,
+    "high_risk_tway_scenarios": 5,
+    "initial_overlays": 16,
+    "overlay_pair_scenarios": 136,
     "primary_personas": 48
   },
   "files": [
     {
-      "bytes": 1002,
+      "bytes": 2866,
+      "path": "personas/README.md",
+      "sha256": "ab10464869519a712e62a2838b8ddefd425fa5b2c4b70cbd5d12243e1bbeff39"
+    },
+    {
+      "bytes": 4792,
+      "path": "personas/challenges/persona-gap-pass-01-contract.json",
+      "sha256": "cc382aecbbabc456301249fa93cea3d08231614e807f593a7565741b7ccef689"
+    },
+    {
+      "bytes": 1551,
+      "path": "personas/challenges/persona-gap-pass-02-schema-question-contract.json",
+      "sha256": "0544119e21dff22c108507c82ef80e985b14b35885dd49575cd7b074065cf982"
+    },
+    {
+      "bytes": 1305,
+      "path": "personas/challenges/persona-gap-pass-03-high-harm-intersections.json",
+      "sha256": "4e46d99c94fdf263bac70823cce957f72d8f0750bdd1c20d6d73303c1e83b902"
+    },
+    {
+      "bytes": 7471,
+      "path": "personas/checksums.txt",
+      "sha256": "47b96273703a5118e2fd9911071905ede9b68a3eeca15c8697998fbf3344cb17"
+    },
+    {
+      "bytes": 111091,
+      "path": "personas/coverage-matrix.json",
+      "sha256": "da386424615b45ca344b8936e130e349e880bdb8de4fb92a8a439636a7cd1ae1"
+    },
+    {
+      "bytes": 94446,
+      "path": "personas/coverage-matrix.jsonl",
+      "sha256": "ac506e998dc2226f79efcf2100466931f79763b91aac373420bac922e6e2c32a"
+    },
+    {
+      "bytes": 1285,
       "path": "personas/coverage.json",
-      "sha256": "6c4ec6dcd006f6a9a2c81ff210201cada3b648abf0d9f920e0c3912bd649c2d7"
+      "sha256": "048ca551b26290f997970e568495960400ef0163664fed581421f3bda53dc723"
     },
     {
-      "bytes": 8879,
+      "bytes": 9680,
       "path": "personas/evidence.json",
-      "sha256": "2ca53ff0164edcd21e13a9dd03ec29601b15405d02f68096bd3c6b17511fc595"
+      "sha256": "e273c14e9f7959c946472b994d94eef99268f7b4b6a08e2bc3eb768fa5a7b574"
     },
     {
-      "bytes": 3793,
+      "bytes": 103096,
+      "path": "personas/overlay-covering-array.json",
+      "sha256": "1a7fb5bb6b0ad896a313fa2d6d9dab38eac206c3ae059ed6acf82d09a8d1a639"
+    },
+    {
+      "bytes": 6748,
       "path": "personas/overlays/catalogue.json",
-      "sha256": "519bc084488c205998785d1b6440ace662420598894d0ebb2a891196242918b5"
+      "sha256": "1395fa0417757ae46715f7b1d76500e8eefadc008e6379a2cf2396d2ea8ef16e"
     },
     {
-      "bytes": 1440,
+      "bytes": 3053,
       "path": "personas/profiles/persona-agent-business-compliance-agent.json",
-      "sha256": "ce7def8fb1ae17036cb9ee0b576a01d9afa389cb7b7eadd829b75d1a31cc2ca7"
+      "sha256": "9d789ea7d49e63681903af299fa0df8855beb159369669df0e944b8f633279ac"
     },
     {
-      "bytes": 1437,
+      "bytes": 2991,
       "path": "personas/profiles/persona-agent-change-monitor-agent.json",
-      "sha256": "edda99cd8cb44d30b6a41d13e5ff27fcccd84211cebcf53c966e015b9d50a4bc"
+      "sha256": "4de1e39400e70785ef2f6cf12166234c25e8cb951424f6ec7305e9b3c4a920a4"
     },
     {
-      "bytes": 1422,
+      "bytes": 2985,
       "path": "personas/profiles/persona-agent-content-reuse-agent.json",
-      "sha256": "1640f155f3553d36661ff1af5b8fd2e40e2e9313518ca213904a566cd8a6f75c"
+      "sha256": "2fdb19d0d00f674fd589eade7145750563b05f39a6d4fdcc54c458caaad8bf68"
     },
     {
-      "bytes": 1414,
+      "bytes": 2979,
       "path": "personas/profiles/persona-agent-crawler-indexer-agent.json",
-      "sha256": "8d207a6bc4386f161c5126aad0d4364a80c498996d8f21a428a00362ca056047"
+      "sha256": "7a5c6888422ea8ddfd94b62631373317e1a66b1a233076617de15404351af9ff"
     },
     {
-      "bytes": 1451,
+      "bytes": 3028,
       "path": "personas/profiles/persona-agent-data-api-discovery-agent.json",
-      "sha256": "151bd2527329044d51b4f784c037d65311486e3ba840b237150952c41af1b71b"
+      "sha256": "7fd97d3d73b99ea85fbad13f4f238865a1ae87a02494dbdfd97c827d48c08e41"
     },
     {
-      "bytes": 1439,
+      "bytes": 3142,
       "path": "personas/profiles/persona-agent-eligibility-obligation-agent.json",
-      "sha256": "f401748a2f0ab91373a9b211035dd182283ed92a61ad9ec45a270ec3968ffca2"
+      "sha256": "85198dfa1dd447b06ba0c0bcc20b94d85005b5d7ebac7ad0681cdcbf3cb18979"
     },
     {
-      "bytes": 1453,
+      "bytes": 3028,
       "path": "personas/profiles/persona-agent-grounded-qa-agent.json",
-      "sha256": "e66d80beb8948f17b0d66f359c1990940230c5a657ec6b0eecab87be0192efb8"
+      "sha256": "bd2b738bcbd307a6781ec572a199485c249f128d161bf54da4bef230f2b0d9eb"
     },
     {
-      "bytes": 1433,
+      "bytes": 3043,
       "path": "personas/profiles/persona-agent-life-event-planner-agent.json",
-      "sha256": "da55012aff154ae4dbdbbb4a89086b2977c9e6feb862186eb782cf944d88d9e8"
+      "sha256": "7a3101ee60d161f3cc97f7a3f91d3358d668d738f99a7fcea8cad1501af90ee9"
     },
     {
-      "bytes": 1422,
+      "bytes": 2963,
       "path": "personas/profiles/persona-agent-navigation-agent.json",
-      "sha256": "4a80e17999a18fa17dc1ac789e5baa24d4d0ee9488a3bd5de52c2c1751be3411"
+      "sha256": "3190df9c383730454a5b99e561d4868d32dd7863d49c65f607ac9d9a0572796b"
     },
     {
-      "bytes": 1444,
+      "bytes": 2997,
       "path": "personas/profiles/persona-agent-policy-legal-research-agent.json",
-      "sha256": "a43e3c2c988fe120462b32251285150c9d081485d1cf189383d8d7b3be71ef23"
+      "sha256": "4ed7f9772d7d0c0b8a7e821d9e6dd80d53a34145e35a7d2e9800d1396bb8e312"
     },
     {
-      "bytes": 1476,
+      "bytes": 3052,
       "path": "personas/profiles/persona-agent-provenance-audit-agent.json",
-      "sha256": "7e674db85b0717b2dab5e9137f03e5b350294463ce7dbacb16e594ac892f1df4"
+      "sha256": "ab02a7725f23f061306d6795a5a5100079dcb650c61e29f3d75327c05c1584d6"
     },
     {
-      "bytes": 1438,
+      "bytes": 3178,
       "path": "personas/profiles/persona-agent-transaction-handoff-agent.json",
-      "sha256": "ce5586adb9067fde45437e8002d015286202d58eda58f3b386deff09b0d23fdc"
+      "sha256": "9d026aa4d86dc6f5f93315cf7744e5e9c7de969478ec0ac432a3d2a2f2bf3b8d"
     },
     {
-      "bytes": 1399,
+      "bytes": 2945,
       "path": "personas/profiles/persona-business-charity-community-body.json",
-      "sha256": "de2dcc443815d2e20bb7f2f9f31236a94d68fb0a617c70d619a09b4be1d0a70f"
+      "sha256": "e0c5e2032c6c9ac25f346359709dab3b611233e70a560b3d4673aa2c45b49f79"
     },
     {
-      "bytes": 1470,
+      "bytes": 3042,
       "path": "personas/profiles/persona-business-commercial-data-reuser.json",
-      "sha256": "a427a09170d8312f903503c75621f7c22b0e053337728500b95b13d38c4d4516"
+      "sha256": "94ca08cc214081becb7bbda0a04173ceabe02104ecfa842fb042fa2e651eb688"
     },
     {
-      "bytes": 1413,
+      "bytes": 3006,
       "path": "personas/profiles/persona-business-founder-sole-trader.json",
-      "sha256": "676984b722f1113fe1160f656d3d33fbf622f8cc9495f50383a7ac694c01320d"
+      "sha256": "fb0ce0a45d7c326bb67182be9b3069f5c3514e4d3cb21cc6aaf91d6a4061298b"
     },
     {
-      "bytes": 1430,
+      "bytes": 3004,
       "path": "personas/profiles/persona-business-importer-exporter.json",
-      "sha256": "fd659c8e88f757191b18e2d1c04df49f1f8ff243ce7a4cd251273340b86d69f4"
+      "sha256": "84d67f2c5a7c2d38938d440232f4ab80e3836bd6be73177ee401276d4113aa0a"
     },
     {
-      "bytes": 1446,
+      "bytes": 3047,
       "path": "personas/profiles/persona-business-large-regulated-organisation.json",
-      "sha256": "d163e4c2b3e6af4dbf96d4f66a1d4a6ff869c2b91208968dac637c71eaa3a1d0"
+      "sha256": "3b2e149836f6a96a052f2e2f9a70956388a4be59cf68ebd096f1d73ed710c1c2"
     },
     {
-      "bytes": 1472,
+      "bytes": 3107,
       "path": "personas/profiles/persona-business-professional-adviser-business.json",
-      "sha256": "520302bdea12db991c4981c06ac85e46d477cc82b58a629f5e9c7c063a14a360"
+      "sha256": "b4878b25d716895f7ce5a4f3199d02431341517360f865e3b61ee04f926bb1ba"
     },
     {
-      "bytes": 1431,
+      "bytes": 3035,
       "path": "personas/profiles/persona-business-sme-employer.json",
-      "sha256": "5984a33d2d0b2d7070403b040127ad638e09cdcda0afffe80ddab10789df3ba8"
+      "sha256": "2f9ba8fcd2b8f3aff746f767a54f03fe18d880a8502fb098c142827d6adbd287"
     },
     {
-      "bytes": 1450,
+      "bytes": 3053,
       "path": "personas/profiles/persona-business-supplier-grant-applicant.json",
-      "sha256": "f88368d739836071554cdbab47ce3b042afc358e57115c43f0cc51667e675ee5"
+      "sha256": "0726e1015145d25c545afef8080756b28d952bc2cb80054fcc2b6ced01f29d39"
     },
     {
-      "bytes": 1474,
+      "bytes": 3067,
       "path": "personas/profiles/persona-professional-accessibility-specialist.json",
-      "sha256": "8ff98ed5911da846cd66583e64e59a918366ea2c822f814c1e470be3adc10013"
+      "sha256": "8eaa2e592cae1e74a2e8c5edb71ace3aa773dd71d7a2cca81b97869eb9504171"
     },
     {
-      "bytes": 1453,
+      "bytes": 2998,
       "path": "personas/profiles/persona-professional-analyst-statistician.json",
-      "sha256": "14f295e0f4bf467831a160c46ad3776c75c80d25285c3deefa28287358e7a2ec"
+      "sha256": "36aa765b5e29a796e45ff63e6f923446f66fbf7d4409810bf26c2cc25d1a5980"
     },
     {
-      "bytes": 1464,
+      "bytes": 3079,
       "path": "personas/profiles/persona-professional-content-publisher.json",
-      "sha256": "dc7a0325f6570be1095d29adbe3be694325a15f994932beaf6b9096435791363"
+      "sha256": "7d1ab2eea37256b40169e8322f574f7c84f59094444990a8c8a5a00588c6654e"
     },
     {
-      "bytes": 1433,
+      "bytes": 3123,
       "path": "personas/profiles/persona-professional-frontline-adviser.json",
-      "sha256": "55059c67ea1b744ebd0cbfa4cf90bc445835c9475b6dd24b305be8f206a87695"
+      "sha256": "08c6f1cf9472ba88e3b5cd50e4a0a17066892133f09df3ae91b1bdef94d9a725"
     },
     {
-      "bytes": 1432,
+      "bytes": 3116,
       "path": "personas/profiles/persona-professional-government-caseworker.json",
-      "sha256": "741cf64aa60c4dd410bb8f2c6ca4b9b614394c5780a22696262f0d41ae3896fb"
+      "sha256": "cc9171a7b845188e0c7ed5c21f78fa9aa2e8f3f3d228a5d8a968cf668578ad4c"
     },
     {
-      "bytes": 1451,
+      "bytes": 2987,
       "path": "personas/profiles/persona-professional-journalist-archivist-auditor.json",
-      "sha256": "f629fd359ecb822e3d5250301571d68481d902c09202c41b8b7373d05ae42980"
+      "sha256": "eec1b09293a057876d445c091f9326ca12304b21ee13976f742b17081a262366"
     },
     {
-      "bytes": 1445,
+      "bytes": 3022,
       "path": "personas/profiles/persona-professional-legal-parliamentary-researcher.json",
-      "sha256": "b2c6bc2465018c6d1cd0e283966d39db3f70a286a5a45e6ed9f5126cf2c3c2a4"
+      "sha256": "27c60d78fc7d3e04a595829c69279f3febb2b05729b911b781650ca80d45ee1b"
     },
     {
-      "bytes": 1459,
+      "bytes": 3041,
       "path": "personas/profiles/persona-professional-local-public-service-officer.json",
-      "sha256": "01a0b59e6c0ff71d08f621e85be0072df1c2efe8906f4eedf316a060fe1eac86"
+      "sha256": "a2990a97f3d42634527b9297ab316cd70e00a1cf0403653dfe80fa3f2e27910b"
     },
     {
-      "bytes": 1452,
+      "bytes": 3023,
       "path": "personas/profiles/persona-professional-policy-official.json",
-      "sha256": "e9c817b37614387041dc952fefb1276f2daf2aa52575cfb5166952a128dd59f1"
+      "sha256": "784023eda68c9392f81d19573e2a68ca65712b745e12994250702a408432061e"
     },
     {
-      "bytes": 1497,
+      "bytes": 3115,
       "path": "personas/profiles/persona-professional-service-user-researcher.json",
-      "sha256": "ed245dd9b73d203cdec9228223c3583631d6aa4b854c2562df42f2e4c2ca22c0"
+      "sha256": "f37c8e0b3ed7971758f1393ec89db990aa3ada32acd473805c151780cd434a78"
     },
     {
-      "bytes": 1461,
+      "bytes": 3063,
       "path": "personas/profiles/persona-public-appeal-historical-evidence-user.json",
-      "sha256": "ec1521b8e7c1c55000a4afd1ddcfe01889cf4ce32ff578241022e21bdc70308a"
+      "sha256": "5db4aa533a26a514011a7e9227199fb4de18532efc0c3d89c350f519cc1ba104"
     },
     {
-      "bytes": 1520,
+      "bytes": 3206,
       "path": "personas/profiles/persona-public-benefits-support-claimant.json",
-      "sha256": "6312d4c17acb024119a98c35c9d5c49ed07700263606da62455404812ac8f8e9"
+      "sha256": "2c692ac10a54125149db34c359c97e8be62061e0c1b66ca3ccdbecd0b53cba68"
     },
     {
-      "bytes": 1408,
+      "bytes": 2985,
       "path": "personas/profiles/persona-public-bereaved-person.json",
-      "sha256": "bcebac44f85c032b3ded457ac94f9140d4c4cc9df7deab7b96dcf519aede4156"
+      "sha256": "774628f0f9d50aa2284cd28958d61c358eb6c4be131c14d567841f51f4cbe537"
     },
     {
-      "bytes": 1415,
+      "bytes": 2976,
       "path": "personas/profiles/persona-public-driver-traveller.json",
-      "sha256": "1ba76aedbf08bbaeecc53815c73ad1dc85f3efdf997ee858c45c7d62b4d57dc0"
+      "sha256": "79edfa553fddca2eae7ebba815cfee6f50013273ed3ad1c79972068567af278f"
     },
     {
-      "bytes": 1479,
+      "bytes": 3123,
       "path": "personas/profiles/persona-public-government-activity-follower.json",
-      "sha256": "0d5ef5c28afa74c21dccc31f4559aebc0b8f0868b5e490394bcb12ecbd5c4250"
+      "sha256": "b21da76b90ac77c048f7b25c967f87469928d3d1993c077151493cdbd05ae33b"
     },
     {
-      "bytes": 1472,
+      "bytes": 3118,
       "path": "personas/profiles/persona-public-health-safety-environment-user.json",
-      "sha256": "648017678a2f30fb47e2a91846a0bbbaf759646e7907e608e69edf66f3fb7a3e"
+      "sha256": "950acb9a66826be98f58f3b8134608e2d201e311845159e703b9beadcd06527a"
     },
     {
-      "bytes": 1444,
+      "bytes": 3045,
       "path": "personas/profiles/persona-public-housing-local-services-user.json",
-      "sha256": "de4dd4ead0b640f03499a9d8edf3311c652841e5a42986b1614fdd2b1c1c447b"
+      "sha256": "6089de34304140c176e4b50662bf5a6d170363a5921fe3282e487da0b8e9fdef"
     },
     {
-      "bytes": 1456,
+      "bytes": 3116,
       "path": "personas/profiles/persona-public-immigration-citizenship-user.json",
-      "sha256": "2dce7fa986d6bc0971ea78b69f194676670337bbec3398635093750c2a50665f"
+      "sha256": "0a963ba5e3f2ffbad7352ca04dbd81c4283e76f3b14730b364d41abab55c0fb4"
     },
     {
-      "bytes": 1461,
+      "bytes": 3118,
       "path": "personas/profiles/persona-public-justice-rights-user.json",
-      "sha256": "704e25bad75e7bb3332d51b9048659a6e73946f32f0ec0b497e05255d2095fb2"
+      "sha256": "cbac5a94450f7b37c40b32abc22137ba8c6bba7bbb49852675832297878b9d46"
     },
     {
-      "bytes": 1456,
+      "bytes": 3032,
       "path": "personas/profiles/persona-public-learner-education-user.json",
-      "sha256": "63156383a16f4ff2717b20e6531512f999ece2eaed5b40a0b3505aad787d34d2"
+      "sha256": "728e8435bbd7f7a773aa52d2fd102a6659c53e36f296b870dc7d844831d68a46"
     },
     {
-      "bytes": 1453,
+      "bytes": 3034,
       "path": "personas/profiles/persona-public-multi-service-life-event.json",
-      "sha256": "9ca152cf78f67ebb770656e48e81be329164317dd402ca8b962d49ec8709c260"
+      "sha256": "9cc5973e1b2401cbf068054a46b34387ffb01b4bce49387f9e291bc50fa2584f"
     },
     {
-      "bytes": 1407,
+      "bytes": 2920,
       "path": "personas/profiles/persona-public-overseas-visitor.json",
-      "sha256": "4bf2c7f17496696643d1f89d037ce58b23cea63b8cd6da97bc7b17f9533deae2"
+      "sha256": "db601aad651d719ee0a312933c4a586b1ff228994eac37f46466aa2963bc9c2a"
     },
     {
-      "bytes": 1451,
+      "bytes": 3135,
       "path": "personas/profiles/persona-public-parent-carer.json",
-      "sha256": "1e48b4532d792bb969451ebd14cd562721d3a96798f7f16bb3b9019b5ac9a207"
+      "sha256": "65feec66e48181a1a303b4e3b778b3a33eb89fe898498627ada1660e5b724d23"
     },
     {
-      "bytes": 1422,
+      "bytes": 3008,
       "path": "personas/profiles/persona-public-routine-resident.json",
-      "sha256": "a100833d22b6aee3d64903fb725e407cf7bfa4261d14168356bf0bdd37ccae36"
+      "sha256": "0336e4caf4c747b2551a698f704baedbdae846af9924bd992d3cdfd2f135557c"
     },
     {
-      "bytes": 1409,
+      "bytes": 2989,
       "path": "personas/profiles/persona-public-tax-pensions-user.json",
-      "sha256": "60196141993e6038182e931a12a2abbdb96c7eac663d11a72281079f8ec1f541"
+      "sha256": "e9beed393a82816c98ae5be449426a2790a54a369e6965e134a045990b93301b"
     },
     {
-      "bytes": 1412,
+      "bytes": 2947,
       "path": "personas/profiles/persona-public-uk-national-abroad.json",
-      "sha256": "331454d9599f560c9edb331ff82c70b6629dae9332be1c19a57a5d912cbb503e"
+      "sha256": "91b33f02ed68462eeb6af7e6ec8a70db781747f9690a2c1ad1bb19b43bd5ae91"
     },
     {
-      "bytes": 1475,
+      "bytes": 3083,
       "path": "personas/profiles/persona-public-urgent-high-stakes-user.json",
-      "sha256": "ab967087b917dc624c147a3a4a600a5831846fb1de48c18334ea6a9452b6e83c"
+      "sha256": "607f8c4358d07889e8b8711588c504ebb4573d690d446d1294fb82623c4ff95f"
     },
     {
-      "bytes": 1386,
+      "bytes": 2940,
       "path": "personas/profiles/persona-public-worker-jobseeker.json",
-      "sha256": "7ea85ad04a8dc2d80165daea5d27c426c9d08622b3bace7e73c8e2d20dc1692f"
+      "sha256": "ef0f758060db0435c9a2dd476884573e0f3e63bb41d29f33dc294adbb95627cb"
     },
     {
-      "bytes": 22796,
+      "bytes": 5496,
+      "path": "personas/saturation.json",
+      "sha256": "cb4dc65e5e0cb839f0eec2def31205bf0bdcd2cc424135470383b6e75c2896e5"
+    },
+    {
+      "bytes": 23236,
       "path": "personas/seed.json",
-      "sha256": "dd5ed735141c8bb468e6a9e1d7ae42ee5a51dc4fed24c00e05d059f9e05246ce"
+      "sha256": "47577dc27d2a089126786c3cf3cb62cba6bd9411995ec6000852a7aa942d63a7"
     },
     {
-      "bytes": 1066,
+      "bytes": 1892,
       "path": "personas/use-ontology.yamlld",
-      "sha256": "ae2fa384f64581eef107fbc552b5cc459803ff72d08651e13f26d80610e0a1bf"
+      "sha256": "062d61275613083f6b3b77ebdb95cd9aa1e1b939aa13b638a0dbe0937a8b3e58"
     }
   ],
   "generation_method": "deterministic-question-factory-v1",
-  "root_sha256": "d53dc464ce246e1f894bc1d2f202f477c80a88c9c3c69f689393cd1878cb5ddc",
+  "root_sha256": "4d0a4daec5a243e534661e5062a5d1d6e09f421599b1292f02c8807bce466d5b",
   "schema_version": 1,
   "scope": "personas"
 }

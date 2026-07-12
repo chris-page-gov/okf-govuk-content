@@ -1,15 +1,35 @@
 {
   "archetype_class": "business_organisation",
+  "capabilities_and_context": [
+    "channel:human_self_service",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_self_service",
-  "checksum": "1280170d35f78878086081a8fa0229515f24758c6f2eed9f052cb68ab50fe952",
+  "checksum": "cf8406eb2209143345fe6bacad8781645ac93617a5311b88deb562efbe2cd794",
+  "constraints": [
+    "overlay:high-stakes",
+    "overlay:cognitive-access"
+  ],
   "context": "Requirements change with workforce, location and dates, and several departments may publish evidence.",
   "evidence_ids": [
     "ev-user-needs",
     "ev-content-api"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "understand employer obligations and complete recurring processes",
+  "jobs_to_be_done": [
+    "understand employer obligations and complete recurring processes"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,25 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-sme-employer",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-accessibility-testing",
+    "ev-use-ontology-contract",
+    "ev-user-needs",
+    "ev-wcag"
+  ],
   "overlay_ids": [
     "high-stakes",
     "cognitive-access"
   ],
   "persona_id": "persona-business-sme-employer",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "understand employer obligations and complete recurring processes",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +64,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Small or medium employer"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Small or medium employer",
+  "trigger": "Requirements change with workforce, location and dates, and several departments may publish evidence.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

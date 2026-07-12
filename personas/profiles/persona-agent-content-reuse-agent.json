@@ -1,15 +1,35 @@
 {
   "archetype_class": "agent_system",
+  "capabilities_and_context": [
+    "channel:agent_or_system",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "agent_or_system",
-  "checksum": "fd3e03f6c64afc46e2854ee455b77813bc126b582722f8b62e40b0fd1a0680c6",
+  "checksum": "d16a65724e8f7d1f206dbc6633972be38e9460482b576e7df3a5530f2165f20d",
+  "constraints": [
+    "overlay:licensing-review",
+    "overlay:structured-output"
+  ],
   "context": "The agent applies licensing and fair-use triggers and flags third-party material for review.",
   "evidence_ids": [
     "ev-ogl",
     "ev-content-api"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "find reusable records and preserve attribution and source links",
+  "jobs_to_be_done": [
+    "find reusable records and preserve attribution and source links"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,24 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-content-reuse-agent",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-content-api",
+    "ev-mcp-resources",
+    "ev-ogl"
+  ],
   "overlay_ids": [
     "licensing-review",
     "structured-output"
   ],
   "persona_id": "persona-agent-content-reuse-agent",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "find reusable records and preserve attribution and source links",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +63,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Content reuse and adaptation agent"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Content reuse and adaptation agent",
+  "trigger": "The agent applies licensing and fair-use triggers and flags third-party material for review.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

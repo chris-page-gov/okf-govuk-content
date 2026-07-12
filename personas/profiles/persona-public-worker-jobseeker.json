@@ -1,15 +1,35 @@
 {
   "archetype_class": "public_life_event",
+  "capabilities_and_context": [
+    "channel:human_self_service",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_self_service",
-  "checksum": "e29617641b80f69229735e09b297ad3c5e07bc8dd3543cedcd962c5f68dcf22d",
+  "checksum": "c0281dee3fea7fb6d914e6bb35b0f6b64e32e312965ed85002cc63f3b6c25e72",
+  "constraints": [
+    "overlay:low-literacy",
+    "overlay:welsh-language"
+  ],
   "context": "The person may use informal terms and needs clear applicability boundaries.",
   "evidence_ids": [
     "ev-user-needs",
     "ev-wcag"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "understand rights, support and employment-related procedures",
+  "jobs_to_be_done": [
+    "understand rights, support and employment-related procedures"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,24 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-worker-jobseeker",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-non-digital-users",
+    "ev-use-ontology-contract",
+    "ev-user-needs"
+  ],
   "overlay_ids": [
     "low-literacy",
     "welsh-language"
   ],
   "persona_id": "persona-public-worker-jobseeker",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "understand rights, support and employment-related procedures",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +63,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Worker or jobseeker"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Worker or jobseeker",
+  "trigger": "The person may use informal terms and needs clear applicability boundaries.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

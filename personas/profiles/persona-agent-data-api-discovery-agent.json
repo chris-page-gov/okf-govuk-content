@@ -1,15 +1,35 @@
 {
   "archetype_class": "agent_system",
+  "capabilities_and_context": [
+    "channel:agent_or_system",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "agent_or_system",
-  "checksum": "bb1a674ccfdd17f18e98c3759d49492735460a89bb06d54b011459c4dd2abcd0",
+  "checksum": "242d0866dee1e64a1eb0c1ca7266c501d7ae8ea0e5ebdae082f5090e77c63010",
+  "constraints": [
+    "overlay:structured-output",
+    "overlay:safe-abstention"
+  ],
   "context": "The agent identifies representations and attachments without inventing their content or availability.",
   "evidence_ids": [
     "ev-content-api",
     "ev-mcp-resources"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "locate machine-readable resources and describe their provenance",
+  "jobs_to_be_done": [
+    "locate machine-readable resources and describe their provenance"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,24 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-data-api-discovery-agent",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-content-api",
+    "ev-kilt",
+    "ev-mcp-resources"
+  ],
   "overlay_ids": [
     "structured-output",
     "safe-abstention"
   ],
   "persona_id": "persona-agent-data-api-discovery-agent",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "locate machine-readable resources and describe their provenance",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +63,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Data, API and attachment discovery agent"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Data, API and attachment discovery agent",
+  "trigger": "The agent identifies representations and attachments without inventing their content or availability.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

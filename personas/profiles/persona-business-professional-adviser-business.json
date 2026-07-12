@@ -1,15 +1,35 @@
 {
   "archetype_class": "business_organisation",
+  "capabilities_and_context": [
+    "channel:human_assisted",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_assisted",
-  "checksum": "3909d235b88a2f706defbdc5646c394ecf7882ef713a63e6e0224413780249cd",
+  "checksum": "589a945fb433f893e58bec8644fa31c523ccd1ff3b819fd75df1e86de5893b58",
+  "constraints": [
+    "overlay:proxy-delegate",
+    "overlay:high-stakes"
+  ],
   "context": "The adviser acts for another party and requires current, citable sources and clear limitations.",
   "evidence_ids": [
     "ev-content-api",
     "ev-ogl"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated critical consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "assemble source-backed guidance for a client without replacing professional judgement",
+  "jobs_to_be_done": [
+    "assemble source-backed guidance for a client without replacing professional judgement"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,24 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-professional-adviser-business",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-assisted-digital",
+    "ev-use-ontology-contract",
+    "ev-user-needs"
+  ],
   "overlay_ids": [
     "proxy-delegate",
     "high-stakes"
   ],
   "persona_id": "persona-business-professional-adviser-business",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "assemble source-backed guidance for a client without replacing professional judgement",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +63,16 @@
   ],
   "risk_level": "critical",
   "schema_version": 1,
-  "title": "Professional adviser supporting a business"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Professional adviser supporting a business",
+  "trigger": "The adviser acts for another party and requires current, citable sources and clear limitations.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

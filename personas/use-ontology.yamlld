@@ -12,15 +12,57 @@
   },
   "@id": "govuk-use-ontology-v1",
   "@type": "UseOntology",
+  "coverageMatrix": "coverage-matrix.json",
   "dimensions": [
-    "goal and information need",
-    "task and journey stage",
-    "jurisdiction and language",
-    "channel and access constraints",
-    "risk and consequence of error",
-    "provenance and structured-output requirements"
+    {
+      "@id": "actor",
+      "label": "actor"
+    },
+    {
+      "@id": "goal",
+      "label": "goal"
+    },
+    {
+      "@id": "journey_stage",
+      "label": "journey stage"
+    },
+    {
+      "@id": "content_service_type",
+      "label": "content service type"
+    },
+    {
+      "@id": "relationship_need",
+      "label": "relationship need"
+    },
+    {
+      "@id": "jurisdiction",
+      "label": "jurisdiction"
+    },
+    {
+      "@id": "language",
+      "label": "language"
+    },
+    {
+      "@id": "accessibility_need",
+      "label": "accessibility need"
+    },
+    {
+      "@id": "device_context",
+      "label": "device context"
+    },
+    {
+      "@id": "urgency_risk",
+      "label": "urgency risk"
+    },
+    {
+      "@id": "agent_involvement",
+      "label": "agent involvement"
+    }
   ],
   "evidenceRule": "Every profile and story cites evidence IDs and keeps unvalidated assumptions explicit.",
+  "humanValidationStatus": "not_authorised_not_run",
+  "overlayCoveringArray": "overlay-covering-array.json",
+  "preferenceClaimStatus": "not_yet_testable",
   "primaryArchetypeClasses": [
     {
       "@id": "public_life_event",
@@ -38,5 +80,6 @@
       "@id": "agent_system",
       "label": "Agent and system users"
     }
-  ]
+  ],
+  "saturationLedger": "saturation.json"
 }

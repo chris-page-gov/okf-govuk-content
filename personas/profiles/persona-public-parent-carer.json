@@ -1,15 +1,37 @@
 {
   "archetype_class": "public_life_event",
+  "capabilities_and_context": [
+    "channel:human_assisted",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_assisted",
-  "checksum": "43462b2cf894fef6b4d3e02d6ecd035dd6aafadcd2edc502b9c34ec4c01cb9db",
+  "checksum": "b598275c9a6a763c5826b094f8ea6fbbb5dd91c6efef55b6d941459b519d5eb0",
+  "constraints": [
+    "overlay:proxy-delegate",
+    "overlay:low-bandwidth",
+    "overlay:privacy-sensitive-context"
+  ],
   "context": "The user acts for another person and may need local, national and delegated routes.",
   "evidence_ids": [
     "ev-user-needs",
-    "ev-assisted-digital"
+    "ev-assisted-digital",
+    "ev-use-ontology-contract"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "find and sequence services for a child or dependent person",
+  "jobs_to_be_done": [
+    "find and sequence services for a child or dependent person"
+  ],
   "jurisdiction": [
     "England",
     "Scotland",
@@ -21,12 +43,26 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-parent-carer",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-assisted-digital",
+    "ev-non-digital-users",
+    "ev-use-ontology-contract",
+    "ev-user-needs"
+  ],
   "overlay_ids": [
     "proxy-delegate",
-    "low-bandwidth"
+    "low-bandwidth",
+    "privacy-sensitive-context"
   ],
   "persona_id": "persona-public-parent-carer",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "find and sequence services for a child or dependent person",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -34,5 +70,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Parent or carer"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Parent or carer",
+  "trigger": "The user acts for another person and may need local, national and delegated routes.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

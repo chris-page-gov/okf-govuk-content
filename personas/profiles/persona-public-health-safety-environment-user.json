@@ -1,15 +1,35 @@
 {
   "archetype_class": "public_life_event",
+  "capabilities_and_context": [
+    "channel:human_self_service",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_self_service",
-  "checksum": "2fcf5d4c4e8244c0a5c996b8c1dd722aea636576d08497a1e4769ab670d54476",
+  "checksum": "dcda6187859d3d19b92a96d1cde9f0ce3144c1956c6a585ffd3a48894b91b7d0",
+  "constraints": [
+    "overlay:high-stakes",
+    "overlay:screen-reader-keyboard"
+  ],
   "context": "The topic can be urgent or safety critical and may require a specialist service hand-off.",
   "evidence_ids": [
     "ev-user-needs",
     "ev-accessibility-testing"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "find authoritative protective guidance without mistaking it for personal advice",
+  "jobs_to_be_done": [
+    "find authoritative protective guidance without mistaking it for personal advice"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,25 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-health-safety-environment-user",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-accessibility-testing",
+    "ev-use-ontology-contract",
+    "ev-user-needs",
+    "ev-wcag"
+  ],
   "overlay_ids": [
     "high-stakes",
     "screen-reader-keyboard"
   ],
   "persona_id": "persona-public-health-safety-environment-user",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "find authoritative protective guidance without mistaking it for personal advice",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +64,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Health, safety or environment user"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Health, safety or environment user",
+  "trigger": "The topic can be urgent or safety critical and may require a specialist service hand-off.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

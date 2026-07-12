@@ -1,15 +1,37 @@
 {
   "archetype_class": "professional_intermediary",
+  "capabilities_and_context": [
+    "channel:human_assisted",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_assisted",
-  "checksum": "bf2401b917257f871709eea8d2a89123dfd40679aa7d67da7f64117169bf1f54",
+  "checksum": "de3597b4dff3a08f8b680bbbf9a1b21d358f2cfdaed1871612354ddb5bd4afba",
+  "constraints": [
+    "overlay:proxy-delegate",
+    "overlay:high-stakes",
+    "overlay:privacy-sensitive-context"
+  ],
   "context": "The adviser must work quickly, preserve uncertainty and hand off to the authoritative service.",
   "evidence_ids": [
     "ev-assisted-digital",
-    "ev-user-needs"
+    "ev-user-needs",
+    "ev-use-ontology-contract"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "find and explain official information during a supported interaction",
+  "jobs_to_be_done": [
+    "find and explain official information during a supported interaction"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +40,25 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-frontline-adviser",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-assisted-digital",
+    "ev-use-ontology-contract",
+    "ev-user-needs"
+  ],
   "overlay_ids": [
     "proxy-delegate",
-    "high-stakes"
+    "high-stakes",
+    "privacy-sensitive-context"
   ],
   "persona_id": "persona-professional-frontline-adviser",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "find and explain official information during a supported interaction",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +66,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Frontline adviser"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Frontline adviser",
+  "trigger": "The adviser must work quickly, preserve uncertainty and hand off to the authoritative service.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

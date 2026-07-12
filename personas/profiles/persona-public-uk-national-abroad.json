@@ -1,15 +1,35 @@
 {
   "archetype_class": "public_life_event",
+  "capabilities_and_context": [
+    "channel:human_self_service",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_self_service",
-  "checksum": "39f6bdcadb3d42a86ecddace2a2c1dfa70dac16db59dc0e14a026f8b4f0a7034",
+  "checksum": "ee3030c932d743895c85dbc6ca0f6e5bcd881c025608d188a17c923554287c45",
+  "constraints": [
+    "overlay:low-bandwidth",
+    "overlay:language-support"
+  ],
   "context": "The person must distinguish host-country responsibility from UK government support.",
   "evidence_ids": [
     "ev-user-needs",
     "ev-content-api"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "find UK guidance and overseas service routes",
+  "jobs_to_be_done": [
+    "find UK guidance and overseas service routes"
+  ],
   "jurisdiction": [
     "UK",
     "overseas"
@@ -19,12 +39,24 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-uk-national-abroad",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-non-digital-users",
+    "ev-use-ontology-contract",
+    "ev-user-needs"
+  ],
   "overlay_ids": [
     "low-bandwidth",
     "language-support"
   ],
   "persona_id": "persona-public-uk-national-abroad",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "find UK guidance and overseas service routes",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -32,5 +64,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "UK national living abroad"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "UK national living abroad",
+  "trigger": "The person must distinguish host-country responsibility from UK government support.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

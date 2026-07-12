@@ -1,15 +1,37 @@
 {
   "archetype_class": "professional_intermediary",
+  "capabilities_and_context": [
+    "channel:human_assisted",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_assisted",
-  "checksum": "973cb5b0abde3d4221f6c833a80c0c218bb275b838d91506f224484abedc63a2",
+  "checksum": "1fb8b2ab9efabaafb232fb9622e16c17a91559f0d7d732e6b1c8f1789194c2b8",
+  "constraints": [
+    "overlay:proxy-delegate",
+    "overlay:high-stakes",
+    "overlay:privacy-sensitive-context"
+  ],
   "context": "Personal decisions require facts outside the bundle, so the system must not decide the case.",
   "evidence_ids": [
     "ev-user-needs",
-    "ev-content-api"
+    "ev-content-api",
+    "ev-use-ontology-contract"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated critical consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "locate applicable guidance and record a source-backed hand-off",
+  "jobs_to_be_done": [
+    "locate applicable guidance and record a source-backed hand-off"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +40,25 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-government-caseworker",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-assisted-digital",
+    "ev-use-ontology-contract",
+    "ev-user-needs"
+  ],
   "overlay_ids": [
     "proxy-delegate",
-    "high-stakes"
+    "high-stakes",
+    "privacy-sensitive-context"
   ],
   "persona_id": "persona-professional-government-caseworker",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "locate applicable guidance and record a source-backed hand-off",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +66,16 @@
   ],
   "risk_level": "critical",
   "schema_version": 1,
-  "title": "Government caseworker"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Government caseworker",
+  "trigger": "Personal decisions require facts outside the bundle, so the system must not decide the case.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

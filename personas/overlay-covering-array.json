@@ -1,0 +1,2777 @@
+{
+  "all_pairs_covered": true,
+  "array_id": "govuk-persona-overlay-covering-array-v1",
+  "expected_pair_count": 136,
+  "high_risk_tway_scenario_count": 5,
+  "limitations": [
+    "Scenario coverage does not show that a combination is common, compatible or well described.",
+    "The final release-v2 question matrix must be regenerated against the closing snapshot to bind these scenarios.",
+    "No participant research or preference test has been run."
+  ],
+  "method": "exhaustive_pair_enumeration_plus_explicit_high_risk_tway",
+  "overlay_count": 17,
+  "overlay_ids": [
+    "accessibility-review",
+    "assisted-digital",
+    "cognitive-access",
+    "high-stakes",
+    "historical-comparison",
+    "language-support",
+    "licensing-review",
+    "low-bandwidth",
+    "low-digital-confidence",
+    "low-literacy",
+    "mobile-only",
+    "privacy-sensitive-context",
+    "proxy-delegate",
+    "safe-abstention",
+    "screen-reader-keyboard",
+    "structured-output",
+    "welsh-language"
+  ],
+  "pair_scenario_count": 136,
+  "pairwise_strength": 2,
+  "rows": [
+    {
+      "assigned_persona_id": "persona-professional-service-user-researcher",
+      "checksum": "1afa44f3ca4542e39168965ff33a6d91dd8278720c46c44a534ca5f3e5830d30",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "assisted-digital"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-001",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-bereaved-person",
+      "checksum": "fbc215270577587328692f0f1ff4fac1cb476cb502d9c4e2f7f50b7ea787b4d7",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "cognitive-access"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-002",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-professional-adviser-business",
+      "checksum": "7ff6d417287de2b1ff5029400cbb6ca96f1cd95cbd5c10d838902a9a5252e1f4",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "high-stakes"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-003",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-legal-parliamentary-researcher",
+      "checksum": "6463d222f7202b8c7894063929b17c9c3316eeae3ab32b319bc20aa41c02a85e",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-content-api",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "historical-comparison"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-004",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-immigration-citizenship-user",
+      "checksum": "833b1eca045a4fd59c208370000338aa66ce40554b157df915ed4c0f979942e9",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "language-support"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-005",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-journalist-archivist-auditor",
+      "checksum": "9bf9b929aceca4e373216084ded68136f9e1b82d7e5d2d769c18c2d0075aecbc",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-ogl",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "licensing-review"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-006",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-importer-exporter",
+      "checksum": "a6249084cd2a00dde128c55ff7fb12c2c2f070ea8569c27d93db7557d4f2a730",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "low-bandwidth"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-007",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-accessibility-specialist",
+      "checksum": "58f248f62e8cdad8f5f22ad853d695a7fb8d690fab044ee0bdad0324d0bfc093",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "low-digital-confidence"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-008",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-worker-jobseeker",
+      "checksum": "e69b6dfa0b28ff9e16b79047e4bb85045d92b6f4d3685f6962ba274f7f91204d",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-non-digital-users",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "low-literacy"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-009",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-driver-traveller",
+      "checksum": "97bb33c4b4df4f084593252522ab50e6f802a3fe61bd875e3ed54e995a4ee4d3",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "mobile-only"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-010",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "605d22477a2d78fe823823b0e3e6e664cb10bef30b32b28e45a5de8aa177115a",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "privacy-sensitive-context"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-011",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-large-regulated-organisation",
+      "checksum": "27e7fd73c14dd5264df589ec00100005a5895359130374be8a3366f8402bd221",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-assisted-digital",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-012",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-business-compliance-agent",
+      "checksum": "13f0078ffb5e34b5b67a7d70e07b1c0f4f0b00538ed98bb2c6facc97cc2dbdaf",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-content-api",
+        "ev-kilt",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-013",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-accessibility-specialist",
+      "checksum": "681f87cfd9e711d2f63781dc26acd8a011a89b0b382ea27dc392b3cc94f4cf6c",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-014",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-content-publisher",
+      "checksum": "996003d032650f5a3eed0d6ac1f9ff7505db84e15fe319ee53793d1862b7893c",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-015",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-local-public-service-officer",
+      "checksum": "0c251e947b36d97d4bfe2e74aeca2749c558c12192e62cfc00a85b995d093b28",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "accessibility-review",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-016",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "7897d704e0424e99aad0aec1f0c4551ca8adcfa1bc72fedfbc030c2d2507a7cb",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "cognitive-access"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-017",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "b9ae1c9985ea3c7a61704461789bcad82955aa108c13e552c7bc6a2407aa0a85",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "high-stakes"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-018",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "ccdb50bce36c5864058f2ebdf11d3f6943779ec5e4aab4d0796b6096614ecd39",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-content-api",
+        "ev-non-digital-users"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "historical-comparison"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-019",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "12c3a2687a6a27ffe41dd1b360416c0e93e450afca4b4fe66b016306eb9ff82a",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "language-support"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-020",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "903db7710965b5687a70c3948429392eacc450eaa240735ac260445dc9fe89a7",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-ogl"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "licensing-review"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-021",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "8eaed48e093633b9160e07a7ef6684f769c14420227bfa232d677a287f6a29a6",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "low-bandwidth"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-022",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "61327b7ca451324fc06f296fae196d7c0eb9a0b81954bccf76e9a891720dbd21",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "low-digital-confidence"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-023",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-charity-community-body",
+      "checksum": "d6a058cc1b892bb6ed81b88fdb64e5f77616dac1dda614a171ef259504285827",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "low-literacy"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-024",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "53ffb778b77557899ebe80dfa7e47a7d349dca66428e0bc3d17ea93a812e8ad0",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "mobile-only"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-025",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "b8c6bfcadef952a62043f2fc1f38ca503a812dece160146a2b317ed1abb65113",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "privacy-sensitive-context"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-026",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-large-regulated-organisation",
+      "checksum": "ab59b9b5251a278881f78fa9a75dd08e90328081a3aa4356297acac1156f6b2f",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-027",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-business-compliance-agent",
+      "checksum": "203c0c86d9183ed209dcf55e3c56d2a7dae7b56f112bee4b1152b7418312e363",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-content-api",
+        "ev-kilt",
+        "ev-non-digital-users"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-028",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "678ef780532b6163dd4ab50c85039753b50d041e320478820e4fd0820f2eca0e",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-029",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "cf78931f576935815f6ad149b38179cb8a31f6503c1fb749017feb67a739bb87",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-non-digital-users"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-030",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "048e112f8e44bec6b1a75f2e1244169e8d0b1eac1a60836716f0edcd19f6dc3e",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-031",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-sme-employer",
+      "checksum": "13c442f0af11fa85ecddbb224dac01254f3b4ebb659bfaa56f3567109d20e8bc",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "high-stakes"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-032",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-policy-legal-research-agent",
+      "checksum": "efad2c5367a91ad6051b4e3b7c67751f5e25d44add5926c050020158dfdc9a40",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-content-api",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "historical-comparison"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-033",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-tax-pensions-user",
+      "checksum": "7f7bb742b8b16cf1d956c0b42c77bfa7489e6e7d360ec1e6c5386ce36b9a901d",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "language-support"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-034",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-tax-pensions-user",
+      "checksum": "3f929337f282195ace06fb71a80fe168ed538c48e89f2bdf5a7ad2b88b872601",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-ogl",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "licensing-review"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-035",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-importer-exporter",
+      "checksum": "5ffaa399e5ee55e15354d8bb4785648f07fb24b41d0ba1536b4f511796ecf62b",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "low-bandwidth"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-036",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-bereaved-person",
+      "checksum": "1502fadd8a1da754eff369c8d6f7292b0529544f6239728d1a0087d86a4e713e",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "low-digital-confidence"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-037",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-bereaved-person",
+      "checksum": "1304130f453c535b458a4f8bf1f514e9ae0e93a5995377988820dd08e3e4c7fc",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-non-digital-users",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "low-literacy"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-038",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-sme-employer",
+      "checksum": "d4a56c0fe3a1e7639eee1d5f161f916f34791782d55d5f61949a78cff60a49f6",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "mobile-only"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-039",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "2b83318de0d9deeb3f4a68fa50be8d0d01b24d0e1d26dfa2275de1e05d95da48",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "privacy-sensitive-context"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-040",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-large-regulated-organisation",
+      "checksum": "d3998c7481a236112b516df6e5c83c081507fa0a48b6541de6dbd08827186992",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-assisted-digital",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-041",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-eligibility-obligation-agent",
+      "checksum": "e9cbbf2bf215808985257de7043f9df2cfc65e5a21a5bee9b41e2b4bf686b8da",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-content-api",
+        "ev-kilt",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-042",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-sme-employer",
+      "checksum": "33d677f16b581ef00385f945b5291f29f2c1128e2a479496ca8db39b42eca38e",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-043",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-data-api-discovery-agent",
+      "checksum": "d952c1812f6cd90cde48071191d10a047c74a70c30441d23aff2c9fbb2c97c8e",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-044",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-learner-education-user",
+      "checksum": "256618d90cb2a751a4ba17160eb01abb0d574ca7f742c278eb748b9fa4038c89",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "cognitive-access",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-045",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-legal-parliamentary-researcher",
+      "checksum": "07482280f8e6c908f3929054546f076cffff8e69d355ab6cf3a1e36f143c0b0c",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "historical-comparison"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-046",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-immigration-citizenship-user",
+      "checksum": "32f727fed111e5d5d43aecafc11748be718839031d74de30585f09817ce2d638",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "language-support"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-047",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-importer-exporter",
+      "checksum": "57366b29d5ad34055e0e96d657678f83a7d101a448d5e2d0854a07e074c0d61d",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-ogl",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "licensing-review"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-048",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-importer-exporter",
+      "checksum": "87a343b744e866ed177eabae6d92d0a3faacd9ee1532c20334957d41305c63ac",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "low-bandwidth"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-049",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-founder-sole-trader",
+      "checksum": "ccf297531e9d0a65c1263cb7fa7b3e6787cfcb05676b42f0bbb96c1e8f163059",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "low-digital-confidence"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-050",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-benefits-support-claimant",
+      "checksum": "a0f96e781119c8699b8ee314525ea40aa57d71ec75e70106a36cbb65957d9528",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "low-literacy"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-051",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-business-compliance-agent",
+      "checksum": "2fe68973d7fc0ad4d41924d691c08d7aeb4a73c2122075b3f0d9dda515ee90a4",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "mobile-only"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-052",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "bff0084311a1ab396abf32d6ceaffc54a767869a100e4b00a54226bd7d9a04a6",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "privacy-sensitive-context"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-053",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "4a8d5e82fc0b3f538659c64e3b1a33c004e8217351dc6a56ebad9d4e9efcfd00",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-054",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-business-compliance-agent",
+      "checksum": "e13593b3f25cad606c7c9b8bdc3c81893ffb2044762ebf32c66e44ca1fef5573",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-kilt",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-055",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-health-safety-environment-user",
+      "checksum": "b00b55411e872f46764a9b77fad33b2d496674206ce5dc568c40b0d3dbbc6a01",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-056",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-life-event-planner-agent",
+      "checksum": "c5151e3a7500b890abe924a633b2e254da6898a9577eea34ab990ae9591fc2ab",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-057",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-large-regulated-organisation",
+      "checksum": "08e28ff5da71935edf26b4ba71f279bf12a19b72a2461e9411204748442bd6ff",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-058",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-policy-legal-research-agent",
+      "checksum": "c0e3eec77f5b955386485c79c7b684c85230526c945f1a624579601ac60b1e1e",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "historical-comparison",
+        "language-support"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-059",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-journalist-archivist-auditor",
+      "checksum": "5c773b043d83432d37723797e9d9c9183d51cc7051f5ffa0f7a2130d887de9bb",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-ogl"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "historical-comparison",
+        "licensing-review"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-060",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-importer-exporter",
+      "checksum": "c01010cad0549d6f567a4b79992179142f7ea605a53de7b2a1aee5868e7e8399",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "historical-comparison",
+        "low-bandwidth"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-061",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-legal-parliamentary-researcher",
+      "checksum": "e0d794dff87d36a8b58497a1dc44f35f193d1974d0a633e527ee4f89716bb2fc",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-content-api",
+        "ev-non-digital-users"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "historical-comparison",
+        "low-digital-confidence"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-062",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-legal-parliamentary-researcher",
+      "checksum": "370779d00c5d173f818c5bc0a5d71fbe198a070c1c40397fa6137113cf70698e",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-non-digital-users",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "historical-comparison",
+        "low-literacy"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-063",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-legal-parliamentary-researcher",
+      "checksum": "aea232918d74116e1ecd48e658f80bc2be5932df4a48788f61daef248c36d54f",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "historical-comparison",
+        "mobile-only"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-064",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-eligibility-obligation-agent",
+      "checksum": "54bc0375c3a3b6aee25e555a303261351636c896ef933b9a64577ed7092d5347",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "historical-comparison",
+        "privacy-sensitive-context"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-065",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-legal-parliamentary-researcher",
+      "checksum": "c04f6e904a5c292576dfe491bd06f4e6722e75176dd040cfdc6faaadb6730f96",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-content-api",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "historical-comparison",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-066",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-policy-legal-research-agent",
+      "checksum": "f47203b73f4d8558e7e68e53f4586865014948c7302d4a60edabfaeb78cc68df",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-kilt"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "historical-comparison",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-067",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-legal-parliamentary-researcher",
+      "checksum": "bf35622dcbe0e779d826e634327110df5981a3473c4e293afb25d4ba9e63bec2",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-content-api",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "historical-comparison",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-068",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-analyst-statistician",
+      "checksum": "c45507ff1ec91512f9dccc6fa775971f94c0f1095853f8e1f218677e52ba92bf",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-mcp-resources"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "historical-comparison",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-069",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-policy-legal-research-agent",
+      "checksum": "e76db03fbec79c436d9ffa96ec0018f4b8c9964ec60109cbea80991db11c6c82",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "historical-comparison",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-070",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-uk-national-abroad",
+      "checksum": "2b17aabc5967de64e950d5647a640468751e95e5fc1061367723c8c0331b6832",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-ogl",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "language-support",
+        "licensing-review"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-071",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-uk-national-abroad",
+      "checksum": "b7a416361ff8121698d2266994cb5000f10a9de2e6689d50513cf5a94f64d5b0",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "language-support",
+        "low-bandwidth"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-072",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-immigration-citizenship-user",
+      "checksum": "5bd4f33221b6b205f68f29afd362403d23bc733ec9035373b04bd4c14036324a",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "language-support",
+        "low-digital-confidence"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-073",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-benefits-support-claimant",
+      "checksum": "64cee9b69565c1581a8232559bb9c0f71ee8ae938cbc4264533c02faaabd39ff",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "language-support",
+        "low-literacy"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-074",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-overseas-visitor",
+      "checksum": "f9e2f7649289e63ebda1316aa10b1d637091850080c87ca2ae07c546a7c47631",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "language-support",
+        "mobile-only"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-075",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-immigration-citizenship-user",
+      "checksum": "acfd70d77fa19ab23c807d1f35401b8672b5a6a6e127cc36e0d7bc4e0b844280",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "language-support",
+        "privacy-sensitive-context"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-076",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-professional-adviser-business",
+      "checksum": "985ec9da2975801a0539ef9f906ae4498b1b6e2008222bacf2e37e68dca60892",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "language-support",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-077",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-policy-legal-research-agent",
+      "checksum": "942cb633f4f2d9726022d0a81b426c5fe3c39e38c29977330455374e5e651f6f",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-kilt",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "language-support",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-078",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-immigration-citizenship-user",
+      "checksum": "59fcd02060f4ef2fa266a64df5c630f681cb3a50f95b2c9a67f5e5e883323f45",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "language-support",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-079",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-policy-official",
+      "checksum": "f04b9a01d30e02c44dc04f4d5059f623d71bf4ec1c6a23afc7eeae1495aa38bc",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "language-support",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-080",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-immigration-citizenship-user",
+      "checksum": "4c8eeb0a218c440dc52ecaf9c3a6b6f0353e155d041110261ed53335ba8de28a",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "language-support",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-081",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-importer-exporter",
+      "checksum": "0016b46dc1f9bef88e2d425ebbba5b23a168620fb8b19d829ff82108541c3969",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-ogl",
+        "ev-use-ontology-contract"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "licensing-review",
+        "low-bandwidth"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-082",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-founder-sole-trader",
+      "checksum": "410d2c74360eeaa26ac8bea7af95aed08f43764dac951546a7ce9bbbc96e9a1d",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-ogl"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "licensing-review",
+        "low-digital-confidence"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-083",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-content-reuse-agent",
+      "checksum": "d285c6d384a7e0c7fdd1582ffbda07afa9f1fd6f68c28eee18425a4385056318",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-ogl",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "licensing-review",
+        "low-literacy"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-084",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-provenance-audit-agent",
+      "checksum": "e5375a7b250c396cd63848ded2ff1ca34702015d4da64eeecb82ba2d3d1da76f",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-ogl",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "licensing-review",
+        "mobile-only"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-085",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "5e936179585a52a42d71789502e0aa199b82e8f959ed07fb0b85b2692d52c832",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-ogl",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "licensing-review",
+        "privacy-sensitive-context"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-086",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "82b9e789da7e55b8303fb2f4c091413e3b1a7f39ce04dae95f492aa5d1542ca7",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-ogl",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "licensing-review",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-087",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-policy-legal-research-agent",
+      "checksum": "4324016455de9ffc4cdcf98a5cee25d2ed4aa0f9e7bfcd18dd6eb505b8e735e6",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-kilt",
+        "ev-ogl"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "licensing-review",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-088",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-accessibility-specialist",
+      "checksum": "7d8b0c47385456ed2aaafb858c94a84e0ba276805fe17446189ea9d80c7eeefd",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-ogl",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "licensing-review",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-089",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-provenance-audit-agent",
+      "checksum": "471904c0ce702a8a214aeb4ad5b3b1d5485aa574f2a3964cad9ef9aa55ce9f3d",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-ogl"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "licensing-review",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-090",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-content-reuse-agent",
+      "checksum": "8ec9cd6d1faefe4566c05f42e3bff419d05a55a8611247f09826e02ceef81778",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-ogl",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "licensing-review",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-091",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-routine-resident",
+      "checksum": "9bd62e131d6992ae28a514b0e0221baba3c22d86454985c5de77600f91b90756",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-bandwidth",
+        "low-digital-confidence"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-092",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-importer-exporter",
+      "checksum": "54123ee4c862ef2ea3bb1e9b264af56add6de63f97a1c4c47d97ffa1abace6f6",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-bandwidth",
+        "low-literacy"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-093",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-driver-traveller",
+      "checksum": "c1954ede3a79ff2cbdff9e6270985861d575b3684ba21e01614839d55795dc21",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-bandwidth",
+        "mobile-only"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-094",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-parent-carer",
+      "checksum": "4967afae28a5dc91452807d6219890e083f34f1e761bd2319b6a0494493660f2",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-bandwidth",
+        "privacy-sensitive-context"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-095",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-parent-carer",
+      "checksum": "8a47eb908d0999ba3a1dd16c4175e2965c5bf30a62febcd0715a17305cef44d9",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-bandwidth",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-096",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-policy-legal-research-agent",
+      "checksum": "e15f7d36a9797b002c4f4256cacfb91312c793b6d0d4f176ab0d831c6eb9660a",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-kilt",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-bandwidth",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-097",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-government-activity-follower",
+      "checksum": "628666099525fcbaa2577fd6d809a38ee684a82c7fffc38e39963533bd3c47ba",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-bandwidth",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-098",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-importer-exporter",
+      "checksum": "801eaac119a378bbe67f55c14c668ee646a8a2e4611b1e3d91fc42adb388d4f5",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-bandwidth",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-099",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-importer-exporter",
+      "checksum": "3ea2c53ab867f28cddcc3c5fa5628017e05527031b8e6f0dceb7632a781f06f5",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-bandwidth",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-100",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-founder-sole-trader",
+      "checksum": "5581f3795abba50e5c245939e377012a3ab0e9a39768edb8d42d2c477c66d0e0",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-digital-confidence",
+        "low-literacy"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-101",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-overseas-visitor",
+      "checksum": "3cac6e94d4a76c7702d60e0b642a424af7750b383ac178365557b92e8cd12f40",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-digital-confidence",
+        "mobile-only"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-102",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "419e2a1f7da93e44a60e89dc9bd20f314ff30d78c65ec0487d4a97f21e96e06a",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-digital-confidence",
+        "privacy-sensitive-context"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-103",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "8357569e0381d4297004bad256aebb66d1c1d468aeeef9c735180f935b15340f",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-digital-confidence",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-104",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-business-compliance-agent",
+      "checksum": "21ae7f12172c369792cb956f04c9d68fe2a21a94f819a2b51ea7596e625ab69a",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-content-api",
+        "ev-kilt",
+        "ev-non-digital-users"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-digital-confidence",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-105",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-founder-sole-trader",
+      "checksum": "00defde1aba9904651cb20a036a11cc4e5d23ea655f2c2e8fc20a2a52ac4abfb",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-digital-confidence",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-106",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-content-publisher",
+      "checksum": "d97eb2f4d0be88fc09ee3dcb256e75510be3ba462ad8f3a734541ce76475cd05",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-non-digital-users"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-digital-confidence",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-107",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-founder-sole-trader",
+      "checksum": "72e2e6044bccaadf42452459678b9a5062c6e4f4f809e57f85fce1fef0349c3c",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-digital-confidence",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-108",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-driver-traveller",
+      "checksum": "316826e7db0815193e50a42a9ff00c65914b529af911a9ca009c346cd6edfbcc",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-literacy",
+        "mobile-only"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-109",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-benefits-support-claimant",
+      "checksum": "333d7ac113e7a3ad9501da8cf3e5cfd76da70ef3f9eed30591bc5f0c5e6fa436",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-literacy",
+        "privacy-sensitive-context"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-110",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "d5457b3fa74ad9c18f2c546fd5a3f65f0f42eb9d129214ff7a7662d9897f4b73",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-literacy",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-111",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-eligibility-obligation-agent",
+      "checksum": "3fadb6b590eb57e1102254205e87172255cbb6fccb0ca470636f21d490c2095c",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-kilt",
+        "ev-non-digital-users",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-literacy",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-112",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-accessibility-specialist",
+      "checksum": "7a4ed1d339b3adc84ae96f1a63a7d15b3f1e6743e56f508652ebc001626ffc4b",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-non-digital-users",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-literacy",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-113",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-benefits-support-claimant",
+      "checksum": "8be6017cc1c0072d08bfb149ee50deaa9b49ff605e20da8eb53742b07b838c5e",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-non-digital-users",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-literacy",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-114",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-worker-jobseeker",
+      "checksum": "f2a2ee3b0d462fbcb9f52844f86f1f7a0860e2f59a5c5b96f9fabe2c8dff09d4",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "low-literacy",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-115",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "741a99b7e39b434eaa411f9156acaac0c7e2957c25f56f2ae1cfa73b68042017",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "mobile-only",
+        "privacy-sensitive-context"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-116",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-professional-adviser-business",
+      "checksum": "0df4382f94450f248f9315af6a4f456600f0f75a1471b293b98dedaf8b1a7d89",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "mobile-only",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-117",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-business-compliance-agent",
+      "checksum": "6a1de226bf0ccc99ee38af00e356c2da7c5b797b4a5c9e0b2dfa692e66e1492b",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-kilt",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "mobile-only",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-118",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-accessibility-specialist",
+      "checksum": "27142ebdd9bce7e17c6061ecacafe18aabdccfb9d900c37df2f3e415a6ef9d1f",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "mobile-only",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-119",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-analyst-statistician",
+      "checksum": "282ab7f704e1b7b93c28c967cfe96a5fae82c608c193e0e8382e2ab71f7230a7",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "mobile-only",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-120",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-driver-traveller",
+      "checksum": "157c31040f96d349ae963b47467daa1ebe13dcc5d2cdb8bdc3d717d036df4bc3",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "mobile-only",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-121",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "5713d078fd02d1e7fafb2eb4aad8f7dc4128097266f7dc6b459ae7d8981fd538",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "privacy-sensitive-context",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-122",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-eligibility-obligation-agent",
+      "checksum": "6fa68d8d0d43f4a425e8b2990b2ce0016c6be69e1002d6a359e3a121abbc1a31",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-kilt",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "privacy-sensitive-context",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-123",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-eligibility-obligation-agent",
+      "checksum": "d6d5d499a0910fb9d24337bcac0d2451d50b019f7db19e16f9c6655c5c3d7e86",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "privacy-sensitive-context",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-124",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-transaction-handoff-agent",
+      "checksum": "04b2af237412b8d05c2a45bdb8be4f5bad3692ea476520f1597cc7b1cf3dc779",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "privacy-sensitive-context",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-125",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-eligibility-obligation-agent",
+      "checksum": "42b79f989bb7b21786177e84874af53cd31925f8be40f0a029ce16f5fce57e98",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "privacy-sensitive-context",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-126",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-professional-adviser-business",
+      "checksum": "f6d245f682bc278a222491abaeb96fd54f84a96a4b4ec4777fff9a9d69cad15b",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-content-api",
+        "ev-kilt",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "proxy-delegate",
+        "safe-abstention"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-127",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "7d8c0bc9b0ea91d92e703fa7fc816af6ee239a5f7114d219697f82b309b58759",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-assisted-digital",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "proxy-delegate",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-128",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-large-regulated-organisation",
+      "checksum": "1deb4e11b9e543572666e1d20f6f62d43d085549f31d555d994e37d9219da080",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "proxy-delegate",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-129",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-professional-local-public-service-officer",
+      "checksum": "4adcf2d11a1ea57477fb29ab5140380e69f513b7843d013370ea4ab693d774ed",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "proxy-delegate",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-130",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-business-compliance-agent",
+      "checksum": "d98354558dc536316ce17734ae906878ba9f6a2e672c276abce6c930caeb3ab3",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-content-api",
+        "ev-kilt",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "safe-abstention",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-131",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-data-api-discovery-agent",
+      "checksum": "8da4e46d38d85795a492a9f449556dc51ad766d03844f2644e605d9a993bcaea",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-kilt",
+        "ev-mcp-resources"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "safe-abstention",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-132",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-eligibility-obligation-agent",
+      "checksum": "a53e8b886007d41a13b382a0032fb9ee125d5d6b3499914d887d48041426ddff",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-kilt",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "safe-abstention",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-133",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-transaction-handoff-agent",
+      "checksum": "f53f7af1f4634446dfe28b6815e7836e36d8f26a20bcd61e6dfb1eada154e199",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "screen-reader-keyboard",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-134",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-business-supplier-grant-applicant",
+      "checksum": "fcc7affbf2d2c240a72e53dfa07fa7c224637cce23c7095f455b94f707318792",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "screen-reader-keyboard",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-135",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-agent-grounded-qa-agent",
+      "checksum": "925d31de34a0c6d1ea2640233f2551201880a21afdc6c328806dc38e47fdf00c",
+      "claim_boundary": "Covering-array scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-mcp-resources",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "structured-output",
+        "welsh-language"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-pair-136",
+      "schema_version": 1,
+      "strength": 2
+    },
+    {
+      "assigned_persona_id": "persona-public-urgent-high-stakes-user",
+      "checksum": "df92736689f7833c32968f7356258e675c996d21a5925196a5f391ab98a7f040",
+      "claim_boundary": "High-risk t-way scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "high-stakes",
+        "low-literacy"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-high-risk-tway-01",
+      "schema_version": 1,
+      "strength": 3
+    },
+    {
+      "assigned_persona_id": "persona-public-immigration-citizenship-user",
+      "checksum": "a3e396ee07e1deed54ab837a09261ae7e6fd918d705b4fee44a684ebf7552961",
+      "claim_boundary": "High-risk t-way scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "language-support",
+        "mobile-only"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-high-risk-tway-02",
+      "schema_version": 1,
+      "strength": 3
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "3392fd71119153a85e844c19fd7314914acce6ac4a086dc4a0fd4468e9701c42",
+      "claim_boundary": "High-risk t-way scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-accessibility-testing",
+        "ev-assisted-digital",
+        "ev-use-ontology-contract",
+        "ev-user-needs",
+        "ev-wcag"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "proxy-delegate",
+        "screen-reader-keyboard"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-high-risk-tway-03",
+      "schema_version": 1,
+      "strength": 3
+    },
+    {
+      "assigned_persona_id": "persona-agent-business-compliance-agent",
+      "checksum": "8f09d8bd85608405af2a6c16e578c04875e94ad88d44be45504b156b99e6914f",
+      "claim_boundary": "High-risk t-way scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-content-api",
+        "ev-kilt",
+        "ev-mcp-resources",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "high-stakes",
+        "safe-abstention",
+        "structured-output"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-high-risk-tway-04",
+      "schema_version": 1,
+      "strength": 3
+    },
+    {
+      "assigned_persona_id": "persona-professional-government-caseworker",
+      "checksum": "568c1fc8c973bbb25ddc8c483f803c9de8093ed3a19e3a817a041b805cae1128",
+      "claim_boundary": "High-risk t-way scenario, not a prevalence or compatibility claim.",
+      "evidence_ids": [
+        "ev-assisted-digital",
+        "ev-non-digital-users",
+        "ev-use-ontology-contract",
+        "ev-user-needs"
+      ],
+      "evidence_status": "research_hypothesis_not_human_validated",
+      "overlay_ids": [
+        "assisted-digital",
+        "privacy-sensitive-context",
+        "proxy-delegate"
+      ],
+      "question_binding_status": "pending_final_snapshot_question_v2_regeneration",
+      "scenario_id": "overlay-high-risk-tway-05",
+      "schema_version": 1,
+      "strength": 3
+    }
+  ],
+  "schema_version": 1,
+  "status": "machine_scenario_coverage_complete_human_validation_pending"
+}

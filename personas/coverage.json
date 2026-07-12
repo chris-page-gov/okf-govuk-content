@@ -9,14 +9,18 @@
     },
     "primary_personas": 48
   },
-  "coverage_status": "seeded_hypotheses_complete; human validation not authorised",
-  "evidence_references": 17,
+  "coverage_status": "machine_saturation_artifacts_generated; human validation not authorised",
+  "current_overlay_count": 17,
+  "evidence_references": 18,
   "expected_class_counts": {
     "agent_system": 12,
     "business_organisation": 8,
     "professional_intermediary": 10,
     "public_life_event": 18
   },
+  "human_validation_status": "not_authorised_not_run",
+  "initial_overlay_count": 16,
+  "machine_applicable_saturation": "passed",
   "overlay_coverage": {
     "accessibility-review": 3,
     "assisted-digital": 5,
@@ -29,11 +33,14 @@
     "low-digital-confidence": 2,
     "low-literacy": 3,
     "mobile-only": 2,
+    "privacy-sensitive-context": 8,
     "proxy-delegate": 8,
     "safe-abstention": 7,
     "screen-reader-keyboard": 4,
     "structured-output": 13,
     "welsh-language": 3
   },
-  "schema_version": 1
+  "required_dimensions": 11,
+  "schema_version": 1,
+  "unexplained_machine_dimension_gaps": []
 }

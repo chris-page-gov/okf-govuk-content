@@ -1,15 +1,35 @@
 {
   "archetype_class": "professional_intermediary",
+  "capabilities_and_context": [
+    "channel:human_self_service",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_self_service",
-  "checksum": "a8432ccf941b5fbddc7c94449047886425bfd6be518bf0b38e457b5a3b79ca54",
+  "checksum": "f0ae6bc4703c9d274fde107058f1faeb6d8c054fdc8f6d0fea5ce7cd3491ccc3",
+  "constraints": [
+    "overlay:historical-comparison",
+    "overlay:licensing-review"
+  ],
   "context": "The user needs reproducible discovery, lifecycle evidence and transparent gaps.",
   "evidence_ids": [
     "ev-content-api",
     "ev-ogl"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "verify provenance, chronology and organisational attribution",
+  "jobs_to_be_done": [
+    "verify provenance, chronology and organisational attribution"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,23 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-journalist-archivist-auditor",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-content-api",
+    "ev-ogl"
+  ],
   "overlay_ids": [
     "historical-comparison",
     "licensing-review"
   ],
   "persona_id": "persona-professional-journalist-archivist-auditor",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "verify provenance, chronology and organisational attribution",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +62,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Journalist, librarian, archivist or auditor"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Journalist, librarian, archivist or auditor",
+  "trigger": "The user needs reproducible discovery, lifecycle evidence and transparent gaps.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }
