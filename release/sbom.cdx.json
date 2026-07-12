@@ -1,0 +1,1366 @@
+{
+  "$schema": "https://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:npm/%40digitalbazaar/http-client@4.3.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@digitalbazaar/http-client/-/http-client-4.3.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "ea5329c69b7d04e9aa1ca1acf579ba0cfe0b9594c115eaff6631ef3f715c5b721a516608582eddc39445667bf0e1f3f9ee4015726d5da77205f98e74aa106f03"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "name": "@digitalbazaar/http-client",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "npm"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "semantic/package-lock.json"
+        }
+      ],
+      "purl": "pkg:npm/%40digitalbazaar/http-client@4.3.0",
+      "type": "library",
+      "version": "4.3.0"
+    },
+    {
+      "bom-ref": "pkg:npm/canonicalize@2.1.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/canonicalize/-/canonicalize-2.1.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "17bd393b7c6bb14b60b7df23ee579eb4d85358f7bee52ef6ae52f93b88c0d692aa05543f753d4ed43e8f1719925ef7344943a29d64b9ec32b1d08dc21eb5c91d"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "canonicalize",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "npm"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "semantic/package-lock.json"
+        }
+      ],
+      "purl": "pkg:npm/canonicalize@2.1.0",
+      "type": "library",
+      "version": "2.1.0"
+    },
+    {
+      "bom-ref": "pkg:npm/jsonld@9.0.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/jsonld/-/jsonld-9.0.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "a633087645df0b54f6c2b5fd07d8b6b978467720a681e737aa0321b7e4c38fe4b4a97ddb8d631051f2fb35ea8486e4538bc1b9112ce62fdb869524fb9f34845a"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "name": "jsonld",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "npm"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "semantic/package-lock.json"
+        }
+      ],
+      "purl": "pkg:npm/jsonld@9.0.0",
+      "type": "library",
+      "version": "9.0.0"
+    },
+    {
+      "bom-ref": "pkg:npm/ky@1.14.3",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/ky/-/ky-1.14.3.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "f73cbd9648da73e4d1d5cdad1be9a4352565c8ea489e759d48c8ae7b817e92af13c094a0bfaa3c8e12d183c1e8e929d9f7039852aff2a33b6cf6a4027e4edb23"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "ky",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "npm"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "semantic/package-lock.json"
+        }
+      ],
+      "purl": "pkg:npm/ky@1.14.3",
+      "type": "library",
+      "version": "1.14.3"
+    },
+    {
+      "bom-ref": "pkg:npm/lru-cache@6.0.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/lru-cache/-/lru-cache-6.0.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "268e9d274e029928eece7c09492de951e5a677f1f47df4e59175e0c198be7aad540a6a90c0287e78bb183980b063df758b615a878875044302c78a938466ec88"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "name": "lru-cache",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "npm"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "semantic/package-lock.json"
+        }
+      ],
+      "purl": "pkg:npm/lru-cache@6.0.0",
+      "type": "library",
+      "version": "6.0.0"
+    },
+    {
+      "bom-ref": "pkg:npm/rdf-canonize@5.0.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/rdf-canonize/-/rdf-canonize-5.0.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "83c394ae0317011f72b3f66e2557c1af4e6c3cfa0c03b9c7215b3c544be0f50c0ce56e06476a921441078ecc8717579694169ff04bf8d1636340543e9c94cedf"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "name": "rdf-canonize",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "npm"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "semantic/package-lock.json"
+        }
+      ],
+      "purl": "pkg:npm/rdf-canonize@5.0.0",
+      "type": "library",
+      "version": "5.0.0"
+    },
+    {
+      "bom-ref": "pkg:npm/setimmediate@1.0.5",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/setimmediate/-/setimmediate-1.0.5.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "3004c9759a7cb0ba8397febc2df4266cff3328f2d0355e81219a0882bb1c14343e46cbcafc1c5e0d03a0cb128aa21d32ffc87706a5459c2a90fe077eade8885c"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "setimmediate",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "npm"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "semantic/package-lock.json"
+        }
+      ],
+      "purl": "pkg:npm/setimmediate@1.0.5",
+      "type": "library",
+      "version": "1.0.5"
+    },
+    {
+      "bom-ref": "pkg:npm/undici@6.27.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/undici/-/undici-6.27.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "6267d5dd89c40f35d10b9959da35ad5961ca1949b5cc8b7c0217ac475b5e9ecf874cdbfe61994dfdda7a1bbdbb2cebcc27cc633fd05eed8d9276bf7a2c39bea6"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "undici",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "npm"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "semantic/package-lock.json"
+        }
+      ],
+      "purl": "pkg:npm/undici@6.27.0",
+      "type": "library",
+      "version": "6.27.0"
+    },
+    {
+      "bom-ref": "pkg:npm/yallist@4.0.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/yallist/-/yallist-4.0.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "df074689d672ab93c1d3ce172c44b94e9392440df08d7025216321ba6da445cbffe354a7d9e990d1dc9c416e2e6572de8f02af83a12cbdb76554bf8560472dec"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "name": "yallist",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "npm"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "semantic/package-lock.json"
+        }
+      ],
+      "purl": "pkg:npm/yallist@4.0.0",
+      "type": "library",
+      "version": "4.0.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/arrow@1.4.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "ed0cc050e98001b8779e84d461b0098c4ac597e88704a655582b21d116e526d7"
+        }
+      ],
+      "name": "arrow",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/arrow@1.4.0",
+      "type": "library",
+      "version": "1.4.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/attrs@26.1.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d03ceb89cb322a8fd706d4fb91940737b6642aa36998fe130a9bc96c985eff32"
+        }
+      ],
+      "name": "attrs",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/attrs@26.1.0",
+      "type": "library",
+      "version": "26.1.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/fqdn@1.5.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "105ed3677e767fb5ca086a0c1f4bb66ebc3c100be518f0e0d755d9eae164d89f"
+        }
+      ],
+      "name": "fqdn",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/fqdn@1.5.1",
+      "type": "library",
+      "version": "1.5.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/govuk-okf@0.1.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "govuk-okf",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/govuk-okf@0.1.0",
+      "type": "library",
+      "version": "0.1.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/html5rdf@1.2.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "ace9b420ce52995bb4f05e7425eedf19e433c981dfe7a831ab391e2fa2e1a195"
+        }
+      ],
+      "name": "html5rdf",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/html5rdf@1.2.1",
+      "type": "library",
+      "version": "1.2.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/idna@3.18",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "ffb385a7e039654cef1ab9ef32c6fafe283c0c0467bba1d9029738ce4a14a848"
+        }
+      ],
+      "name": "idna",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/idna@3.18",
+      "type": "library",
+      "version": "3.18"
+    },
+    {
+      "bom-ref": "pkg:pypi/isoduration@20.11.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "ac2f9015137935279eac671f94f89eb00584f940f5dc49462a0c4ee692ba1bd9"
+        }
+      ],
+      "name": "isoduration",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/isoduration@20.11.0",
+      "type": "library",
+      "version": "20.11.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/jsonpointer@3.1.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0b801c7db33a904024f6004d526dcc53bbb8a4a0f4e32bfd10beadf60adf1900"
+        }
+      ],
+      "name": "jsonpointer",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/jsonpointer@3.1.1",
+      "type": "library",
+      "version": "3.1.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/jsonschema-specifications@2025.9.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b540987f239e745613c7a9176f3edb72b832a4ac465cf02712288397832b5e8d"
+        }
+      ],
+      "name": "jsonschema-specifications",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/jsonschema-specifications@2025.9.1",
+      "type": "library",
+      "version": "2025.9.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/jsonschema@4.26.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0c26707e2efad8aa1bfc5b7ce170f3fccc2e4918ff85989ba9ffa9facb2be326"
+        }
+      ],
+      "name": "jsonschema",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/jsonschema@4.26.0",
+      "type": "library",
+      "version": "4.26.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/owlrl@7.6.2",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c743f35c2d908396e77823852bb1ebbce88340cd49961493983bec42c93283a8"
+        }
+      ],
+      "name": "owlrl",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/owlrl@7.6.2",
+      "type": "library",
+      "version": "7.6.2"
+    },
+    {
+      "bom-ref": "pkg:pypi/packaging@26.2",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "ff452ff5a3e828ce110190feff1178bb1f2ea2281fa2075aadb987c2fb221661"
+        }
+      ],
+      "name": "packaging",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/packaging@26.2",
+      "type": "library",
+      "version": "26.2"
+    },
+    {
+      "bom-ref": "pkg:pypi/prettytable@3.18.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "439217116152244369caf3d9f1caf2f9fe29b03bd79e88d2928c8e718c95d680"
+        }
+      ],
+      "name": "prettytable",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/prettytable@3.18.0",
+      "type": "library",
+      "version": "3.18.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/pyparsing@3.3.2",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c777f4d763f140633dcb6d8a3eda953bf7a214dc4eff598413c070bcdc117cbc"
+        }
+      ],
+      "name": "pyparsing",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/pyparsing@3.3.2",
+      "type": "library",
+      "version": "3.3.2"
+    },
+    {
+      "bom-ref": "pkg:pypi/pyshacl@0.40.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d9cd86f108266a157162afb69a106689c868388e5d7be80c1fcf16070cf6ad08"
+        }
+      ],
+      "name": "pyshacl",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/pyshacl@0.40.0",
+      "type": "library",
+      "version": "0.40.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/python-dateutil@2.9.0.post0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3"
+        }
+      ],
+      "name": "python-dateutil",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/python-dateutil@2.9.0.post0",
+      "type": "library",
+      "version": "2.9.0.post0"
+    },
+    {
+      "bom-ref": "pkg:pypi/rdflib@7.6.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "6c831288d5e4a5a7ece85d0ccde9877d512a3d0f02d7c06455d00d6d0ea379df"
+        }
+      ],
+      "name": "rdflib",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/rdflib@7.6.0",
+      "type": "library",
+      "version": "7.6.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/referencing@0.37.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "44aefc3142c5b842538163acb373e24cce6632bd54bdb01b21ad5863489f50d8"
+        }
+      ],
+      "name": "referencing",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/referencing@0.37.0",
+      "type": "library",
+      "version": "0.37.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/rfc3339-validator@0.1.4",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "138a2abdf93304ad60530167e51d2dfb9549521a836871b88d7f4695d0022f6b"
+        }
+      ],
+      "name": "rfc3339-validator",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/rfc3339-validator@0.1.4",
+      "type": "library",
+      "version": "0.1.4"
+    },
+    {
+      "bom-ref": "pkg:pypi/rfc3987@1.3.8",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d3c4d257a560d544e9826b38bc81db676890c79ab9d7ac92b39c7a253d5ca733"
+        }
+      ],
+      "name": "rfc3987",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/rfc3987@1.3.8",
+      "type": "library",
+      "version": "1.3.8"
+    },
+    {
+      "bom-ref": "pkg:pypi/rpds-py@2026.6.3",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1cebd1337c242e4ec2293e541f712b2da849b29f48f0c293684b71c0632625d4"
+        }
+      ],
+      "name": "rpds-py",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/rpds-py@2026.6.3",
+      "type": "library",
+      "version": "2026.6.3"
+    },
+    {
+      "bom-ref": "pkg:pypi/six@1.17.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"
+        }
+      ],
+      "name": "six",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/six@1.17.0",
+      "type": "library",
+      "version": "1.17.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/typing-extensions@4.16.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5"
+        }
+      ],
+      "name": "typing-extensions",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/typing-extensions@4.16.0",
+      "type": "library",
+      "version": "4.16.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/tzdata@2026.3",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4a1518b8993086a7982523e071643f3c0e5f213e75b21318e78bcabfff9d1415"
+        }
+      ],
+      "name": "tzdata",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/tzdata@2026.3",
+      "type": "library",
+      "version": "2026.3"
+    },
+    {
+      "bom-ref": "pkg:pypi/uri-template@1.3.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0e00f8eb65e18c7de20d595a14336e9f337ead580c70934141624b6d1ffdacc7"
+        }
+      ],
+      "name": "uri-template",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/uri-template@1.3.0",
+      "type": "library",
+      "version": "1.3.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/wcwidth@0.8.2",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "91fbef97204b96a3d4d421609b80340b760cf33e26da123ff243d76b1fda8dda"
+        }
+      ],
+      "name": "wcwidth",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/wcwidth@0.8.2",
+      "type": "library",
+      "version": "0.8.2"
+    },
+    {
+      "bom-ref": "pkg:pypi/webcolors@25.10.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "62abae86504f66d0f6364c2a8520de4a0c47b80c03fc3a5f1815fedbef7c19bf"
+        }
+      ],
+      "name": "webcolors",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "python"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "uv.lock"
+        }
+      ],
+      "purl": "pkg:pypi/webcolors@25.10.0",
+      "type": "library",
+      "version": "25.10.0"
+    },
+    {
+      "bom-ref": "urn:govuk-okf:component:semantic-validation",
+      "name": "@okf/govuk-content-semantic-validation",
+      "properties": [
+        {
+          "name": "govuk-okf:ecosystem",
+          "value": "npm"
+        },
+        {
+          "name": "govuk-okf:lockfile",
+          "value": "semantic/package-lock.json"
+        }
+      ],
+      "type": "application",
+      "version": "private-lock-v3"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:npm/ky@1.14.3",
+        "pkg:npm/undici@6.27.0"
+      ],
+      "ref": "pkg:npm/%40digitalbazaar/http-client@4.3.0"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:npm/canonicalize@2.1.0"
+    },
+    {
+      "dependsOn": [
+        "pkg:npm/%40digitalbazaar/http-client@4.3.0",
+        "pkg:npm/canonicalize@2.1.0",
+        "pkg:npm/lru-cache@6.0.0",
+        "pkg:npm/rdf-canonize@5.0.0"
+      ],
+      "ref": "pkg:npm/jsonld@9.0.0"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:npm/ky@1.14.3"
+    },
+    {
+      "dependsOn": [
+        "pkg:npm/yallist@4.0.0"
+      ],
+      "ref": "pkg:npm/lru-cache@6.0.0"
+    },
+    {
+      "dependsOn": [
+        "pkg:npm/setimmediate@1.0.5"
+      ],
+      "ref": "pkg:npm/rdf-canonize@5.0.0"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:npm/setimmediate@1.0.5"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:npm/undici@6.27.0"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:npm/yallist@4.0.0"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/python-dateutil@2.9.0.post0",
+        "pkg:pypi/tzdata@2026.3"
+      ],
+      "ref": "pkg:pypi/arrow@1.4.0"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/attrs@26.1.0"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/fqdn@1.5.1"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/jsonschema@4.26.0",
+        "pkg:pypi/pyshacl@0.40.0"
+      ],
+      "ref": "pkg:pypi/govuk-okf@0.1.0"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/html5rdf@1.2.1"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/idna@3.18"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/arrow@1.4.0"
+      ],
+      "ref": "pkg:pypi/isoduration@20.11.0"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/jsonpointer@3.1.1"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/referencing@0.37.0"
+      ],
+      "ref": "pkg:pypi/jsonschema-specifications@2025.9.1"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/attrs@26.1.0",
+        "pkg:pypi/jsonschema-specifications@2025.9.1",
+        "pkg:pypi/referencing@0.37.0",
+        "pkg:pypi/rpds-py@2026.6.3"
+      ],
+      "ref": "pkg:pypi/jsonschema@4.26.0"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/rdflib@7.6.0"
+      ],
+      "ref": "pkg:pypi/owlrl@7.6.2"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/packaging@26.2"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/wcwidth@0.8.2"
+      ],
+      "ref": "pkg:pypi/prettytable@3.18.0"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/pyparsing@3.3.2"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/owlrl@7.6.2",
+        "pkg:pypi/packaging@26.2",
+        "pkg:pypi/prettytable@3.18.0",
+        "pkg:pypi/rdflib@7.6.0"
+      ],
+      "ref": "pkg:pypi/pyshacl@0.40.0"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/six@1.17.0"
+      ],
+      "ref": "pkg:pypi/python-dateutil@2.9.0.post0"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/pyparsing@3.3.2"
+      ],
+      "ref": "pkg:pypi/rdflib@7.6.0"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/attrs@26.1.0",
+        "pkg:pypi/rpds-py@2026.6.3",
+        "pkg:pypi/typing-extensions@4.16.0"
+      ],
+      "ref": "pkg:pypi/referencing@0.37.0"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/six@1.17.0"
+      ],
+      "ref": "pkg:pypi/rfc3339-validator@0.1.4"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/rfc3987@1.3.8"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/rpds-py@2026.6.3"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/six@1.17.0"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/typing-extensions@4.16.0"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/tzdata@2026.3"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/uri-template@1.3.0"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/wcwidth@0.8.2"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:pypi/webcolors@25.10.0"
+    },
+    {
+      "dependsOn": [
+        "pkg:pypi/govuk-okf@0.1.0",
+        "urn:govuk-okf:component:semantic-validation"
+      ],
+      "ref": "urn:govuk-okf:application:okf-govuk-content"
+    },
+    {
+      "dependsOn": [
+        "pkg:npm/jsonld@9.0.0",
+        "pkg:npm/rdf-canonize@5.0.0"
+      ],
+      "ref": "urn:govuk-okf:component:semantic-validation"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "urn:govuk-okf:application:okf-govuk-content",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "okf-govuk-content",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "govuk-okf:lock:uv.sha256",
+        "value": "6eb2b15eafc3098b2143dab5be3449bc3b98c5b4aefd1912ed00fba7abce0ca4"
+      },
+      {
+        "name": "govuk-okf:lock:semantic-package-lock.sha256",
+        "value": "8b0c1b1644e9c3f05bea5f8f6aa406c75fdd01f00848f7f39287dd1307fb4795"
+      },
+      {
+        "name": "govuk-okf:input:pyproject.sha256",
+        "value": "dd2b33fedfb334ecfa289d6c4d6bf0d91afc6b9e09a1c18f88bc227730ea8676"
+      },
+      {
+        "name": "govuk-okf:generator",
+        "value": "scripts/build_sbom.py"
+      }
+    ]
+  },
+  "serialNumber": "urn:uuid:d4d00a63-7e55-5e05-8294-cf024fd1df6f",
+  "specVersion": "1.6",
+  "version": 1
+}

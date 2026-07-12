@@ -1,0 +1,401 @@
+{
+  "checkout": {
+    "after_sha256": "a9b4afddbc801d0741e917f6d18922ee9acd6f118bea4016467ccd19e261945e",
+    "before_sha256": "a9b4afddbc801d0741e917f6d18922ee9acd6f118bea4016467ccd19e261945e",
+    "unchanged": true,
+    "verification_mode_mutates_checkout": false
+  },
+  "clean_room_reproduction_passed": false,
+  "commands": [
+    {
+      "command": [
+        "{python}",
+        "scripts/build_bundle.py",
+        "--source",
+        "{workspace}/inputs/source-records.jsonl",
+        "--output",
+        "{workspace}/bundle",
+        "--generated-at",
+        "2026-07-11T23:30:00Z",
+        "--snapshot-id",
+        "fixture-2026-07-11",
+        "--compiler",
+        "auto"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "f71501008f6e92e8396eef82b201d0f55510d2b0162e571609124c91bda2edf2",
+      "stdout_tail": "built {workspace}/bundle\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "scripts/check_publication.py",
+        "--bundle",
+        "{workspace}/bundle"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "eac0acff45c2fb71b65d771f6eee715e4a19c3a89d42ad4d57d11985deab5173",
+      "stdout_tail": "publication validated: 14 datasets, 1 resources, 6 publishers, 16 provenance-complete relationships, 126 semantic node occurrences\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "scripts/build_checksums.py",
+        "--bundle",
+        "{workspace}/bundle"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "549119a24ff32d17da7cfb1beca02a1f10ec4982d2203d399b167c9ad7220480",
+      "stdout_tail": "wrote checksums for 773 files\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "scripts/build_checksums.py",
+        "--bundle",
+        "{workspace}/bundle",
+        "--check"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "aabde134a4790c3461311c29a847a633a4b3b0cd3be21b8aae024767f84df56e",
+      "stdout_tail": "checksums verified for 773 files\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "scripts/build_sbom.py",
+        "--output",
+        "{workspace}/release/sbom.cdx.json"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "f886f5ab0216a4108712f8d1ec2343d4774b2ead887f0806885b1c49a9a19d31",
+      "stdout_tail": "wrote SBOM: 37 locked components\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "scripts/build_sbom.py",
+        "--output",
+        "{workspace}/release/sbom.cdx.json",
+        "--check"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "24e4d30ce7191380b2a07067e8757810372bea010cd50b63d2640f93ea850f39",
+      "stdout_tail": "SBOM verified: 37 locked components\n"
+    }
+  ],
+  "compiler": "auto",
+  "environment": {
+    "machine": "arm64",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "python": {
+      "executable": "/Users/crpage/repos/okf-govuk-content/.venv/bin/python",
+      "implementation": "CPython",
+      "version": "3.12.11"
+    },
+    "tools": {
+      "git": "git version 2.54.0",
+      "node": "v25.9.0",
+      "npm": "11.12.1",
+      "uv": "uv 0.11.8 (Homebrew 2026-04-27 aarch64-apple-darwin)"
+    }
+  },
+  "fallbacks": [
+    {
+      "constraint_id": "SRC-CONSTRAINT-007",
+      "fallback": "A strict-TLS author-uploaded publication record and exact PDF URL were tried after the original server failed modern TLS negotiation.",
+      "id": "FALLBACK-CITATION-PIROLLI-001",
+      "outcome": "HTTP 403; dependent citations remain blocked and no access control or TLS policy was bypassed.",
+      "succeeded": false,
+      "used": true
+    }
+  ],
+  "fixture_reproduction_passed": true,
+  "generated_at": "2026-07-11T23:30:00Z",
+  "inputs": {
+    "component_count": 26,
+    "components": [
+      {
+        "bytes": 1652,
+        "file_count": 1,
+        "path": "LICENSE.md",
+        "tree_sha256": "5074788418fb13578520e4b3e81fbadf54ddded0d913b2eb9509b35150ac8ea0"
+      },
+      {
+        "bytes": 1091,
+        "file_count": 1,
+        "path": "governance/launch-manifest.yaml",
+        "tree_sha256": "9039e30f2e981f646f1bb4145d278d497f31ec62fcd33c10ee991fc743a9ad23"
+      },
+      {
+        "bytes": 669,
+        "file_count": 1,
+        "path": "orchestration/models.lock.yaml",
+        "tree_sha256": "42bd854ce458e3209ebd991a3d2c4af1741faa8e1f6ea8b3cf31f63a96e81d1f"
+      },
+      {
+        "bytes": 578,
+        "file_count": 1,
+        "path": "pyproject.toml",
+        "tree_sha256": "0e7f1b4dc121977ae4a7a816c55a4bd12e3cd31758562b025b12f5b127c3fc06"
+      },
+      {
+        "bytes": 2341,
+        "file_count": 1,
+        "path": "provenance/activity-ledger.jsonl",
+        "tree_sha256": "5f8b73a616c3d190625cb25435ceee77885bc9cf61abb15e90750a44c4601562"
+      },
+      {
+        "bytes": 2831,
+        "file_count": 1,
+        "path": "provenance/reproduction-declarations.json",
+        "tree_sha256": "0ad60993c6e1250eaa0104d973029b50f64dc7a3797e512cbb6a64bbcac74572"
+      },
+      {
+        "bytes": 963,
+        "file_count": 1,
+        "path": "release/manifest.yaml",
+        "tree_sha256": "b8f298d1c5b883d5aa603ea6b53cac57cea90291d0bcb844bd483f8be5ead454"
+      },
+      {
+        "bytes": 7423,
+        "file_count": 1,
+        "path": "research/official-source-audit.md",
+        "tree_sha256": "b70a3f1dee5904b1ae50dadbb25e8673087887355f126613608144c995acc6ec"
+      },
+      {
+        "bytes": 3536,
+        "file_count": 1,
+        "path": "research/source-constraints.json",
+        "tree_sha256": "5eff26615be089f5d22a8cc72d82f4b1ff7136ac776652b443a079598b566702"
+      },
+      {
+        "bytes": 743796,
+        "file_count": 21,
+        "path": "src",
+        "tree_sha256": "fa2f8e0febe9ccc18132dc715f64e27ea4be6680db8ee6b007bb0cc24d6b517d"
+      },
+      {
+        "bytes": 1652,
+        "file_count": 1,
+        "path": "scripts/build_bundle.py",
+        "tree_sha256": "41f479fd0c7ba5680db5e2f1fe688f8b37bd403247033507bbc950fdd55dc0fd"
+      },
+      {
+        "bytes": 2146,
+        "file_count": 1,
+        "path": "scripts/build_checksums.py",
+        "tree_sha256": "f62a914b2b71406503f7441e7af8f7301808072ef7d6e9dcb022ce31bac04c4e"
+      },
+      {
+        "bytes": 14836,
+        "file_count": 1,
+        "path": "scripts/build_sbom.py",
+        "tree_sha256": "f432305e93e8900571c6d07f066c7f1c09d9271719d94eb3e904e703ff8f0f2f"
+      },
+      {
+        "bytes": 1314,
+        "file_count": 1,
+        "path": "scripts/check_publication.py",
+        "tree_sha256": "41fe9d143ef6498121f144e4f42d77e6134669a43c0bcec92843a7f4e041a014"
+      },
+      {
+        "bytes": 25572,
+        "file_count": 1,
+        "path": "scripts/check_release.py",
+        "tree_sha256": "95d1aa8c028e733e05308e05d7101c90551553d1c210e0526c0b43b3441deb3a"
+      },
+      {
+        "bytes": 29331,
+        "file_count": 1,
+        "path": "scripts/reproduce_release.py",
+        "tree_sha256": "1f0dbcce3cdef929a07362a3b331ad1f80446dc6d7f6f235bdd754061aacdd35"
+      },
+      {
+        "bytes": 805,
+        "file_count": 1,
+        "path": "semantic/README.md",
+        "tree_sha256": "c963ebc2c63c9cd4adcb7cbe11d38c2aac6294cdf48425264f5d4ab5110554f4"
+      },
+      {
+        "bytes": 11179,
+        "file_count": 1,
+        "path": "semantic/context",
+        "tree_sha256": "4c2122e177d7a744a4d89326dc5661af1b46dddb1e831161047d3bfbad77cdee"
+      },
+      {
+        "bytes": 21197,
+        "file_count": 2,
+        "path": "semantic/crosswalks",
+        "tree_sha256": "d92fbfaa238e97357352de4dc73880a226a760609f7d6fd80de6e5b71b709826"
+      },
+      {
+        "bytes": 3776,
+        "file_count": 1,
+        "path": "semantic/package-lock.json",
+        "tree_sha256": "abd10b58bf7a0e152ec2027d20bc94cded585fe106faf7fb5926acfe40bd0a9f"
+      },
+      {
+        "bytes": 11469,
+        "file_count": 2,
+        "path": "semantic/profile",
+        "tree_sha256": "963916c42461a146da19c871fdae2f301f66b259c05c22f90fcf4bb3a113c62b"
+      },
+      {
+        "bytes": 25855,
+        "file_count": 4,
+        "path": "semantic/schemas",
+        "tree_sha256": "d4c86aa55d98a28b07a61ff3d07926e1fc9dfe3e3fad9e38f3c91efd0700c4dc"
+      },
+      {
+        "bytes": 16042,
+        "file_count": 1,
+        "path": "semantic/shapes",
+        "tree_sha256": "a856a2fc2266de8205901fae641c34d2166584b9460cd6670e5a028e0161e692"
+      },
+      {
+        "bytes": 116376,
+        "file_count": 9,
+        "path": "explorer/src",
+        "tree_sha256": "1f88660d0aaada8902234575af28ec4da0ad679ebb26b328c197583afe927ea5"
+      },
+      {
+        "bytes": 47929,
+        "file_count": 1,
+        "path": "uv.lock",
+        "tree_sha256": "0d4987efad4ee721111dad0b38e5b449e91d90d2ed3398631d29ca00ea78be95"
+      },
+      {
+        "bytes": 8710,
+        "file_count": 1,
+        "path": "frozen_source",
+        "source": "tests/fixtures/corpus/source-records.jsonl",
+        "tree_sha256": "e028d0e5974918ba8732ee551005c732f0c2241f4f0d11b723cc8d27980bf9a2"
+      }
+    ],
+    "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
+    "tree_sha256": "56d5b2f97cf45882f87342079865629e5eeee430fd023945fe04be0ca9030106"
+  },
+  "model_and_cost": {
+    "activity_ledger_summary": {
+      "activities": 4,
+      "activities_with_unavailable_cost": 3,
+      "activities_with_unavailable_tokens": 3,
+      "external_paid_model_api_calls": 0,
+      "known_cost_gbp": 0.0,
+      "known_tokens": 0,
+      "ledger_sha256": "aeb3a90d7f2684d7e6144d3bc63be665850edc3c6d5ef01a81bb7e8e5eb31fb6"
+    },
+    "declaration": {
+      "activity_ledger": "provenance/activity-ledger.jsonl",
+      "external_paid_model_api_calls_for_reproduction": 0,
+      "external_paid_model_cost_gbp_for_reproduction": 0,
+      "model_assistance_for_reproduction": false,
+      "product_session_exact_backend_version": "unavailable_to_session",
+      "product_session_marginal_cost": "unavailable_in_product_session",
+      "product_session_tokens": "unavailable_in_product_session",
+      "rule": "Unavailable product-session usage is never restated as zero; deterministic reproduction itself records exact zero model calls, tokens and marginal model cost."
+    }
+  },
+  "network": {
+    "external_model_requests": 0,
+    "official_source_requests": 0,
+    "reacquires_current_govuk": false,
+    "required": false,
+    "rule": "Reproduction consumes frozen local metadata inputs and must not contact GOV.UK or a model provider."
+  },
+  "outputs": {
+    "bundle": {
+      "actual": {
+        "bytes": 944361,
+        "file_count": 774,
+        "tree_sha256": "fb29d570b3490d9f54c4e010827ae352a2d9e1c64e05c7efb9936061a4605218"
+      },
+      "difference_count": 0,
+      "differences": [],
+      "exact_match": true,
+      "expected": {
+        "bytes": 944361,
+        "file_count": 774,
+        "tree_sha256": "fb29d570b3490d9f54c4e010827ae352a2d9e1c64e05c7efb9936061a4605218"
+      }
+    },
+    "sbom": {
+      "exact_match": true,
+      "expected_sha256": "332ff7dff879dfe3a3a714397f8a1b0f13f7180929d26f83c950b6907a15f354",
+      "path": "release/sbom.cdx.json",
+      "reproduced_sha256": "332ff7dff879dfe3a3a714397f8a1b0f13f7180929d26f83c950b6907a15f354"
+    }
+  },
+  "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
+  "recorded_at": "2026-07-12T07:52:13Z",
+  "release_input_failures": [
+    "release kind is a fixture checkpoint",
+    "snapshot is not an unsampled full corpus",
+    "snapshot identifier contains a non-release marker",
+    "fixture source cannot pass clean-room release",
+    "release manifest does not identify an unsampled full corpus",
+    "independent full-repository test evidence is missing"
+  ],
+  "release_inputs_passed": false,
+  "release_kind": "fixture",
+  "rights_and_fair_use": {
+    "default_classification": "ogl_v3_except_where_otherwise_stated",
+    "fair_use_or_item_review_triggers": [
+      "personal data",
+      "third-party credits or rights",
+      "logos, crests, Royal Arms or insignia",
+      "patents, trademarks or design rights",
+      "identity documents",
+      "complete page, attachment or image bytes",
+      "a source-specific licence notice"
+    ],
+    "metadata_only": true,
+    "policy_artifacts": [
+      "LICENSE.md",
+      "research/official-source-audit.md",
+      "research/source-constraints.json"
+    ],
+    "retains_complete_page_bodies": false
+  },
+  "sampled": true,
+  "schema": "afhf-govuk-okf-clean-room-reproduction.v1",
+  "snapshot": "fixture-2026-07-11",
+  "snapshot_kind": "fixture",
+  "source": "tests/fixtures/corpus/source-records.jsonl",
+  "source_access_restrictions": [
+    {
+      "constraint_id": "SRC-CONSTRAINT-005",
+      "disposition": "Publishing API, GovGraph/GovSearch and Search API v2 remain comparator-only; no authenticated source is a release dependency."
+    },
+    {
+      "constraint_id": "SRC-CONSTRAINT-006",
+      "disposition": "Publish metadata and authoritative links by default; trigger item-level rights review for excluded classes."
+    },
+    {
+      "constraint_id": "SRC-CONSTRAINT-007",
+      "disposition": "Keep strict TLS and access controls; dependent citations remain blocked until a normally accessible copy is verified."
+    },
+    {
+      "constraint_id": "SRC-CONSTRAINT-008",
+      "disposition": "Represent observed redirect/gone history and publish the residual public-enumerability limit."
+    }
+  ],
+  "test_evidence": null,
+  "validators": {
+    "passed": true,
+    "scope": "clean_temp_publication_build_checksums_and_sbom"
+  }
+}
