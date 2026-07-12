@@ -1,0 +1,27 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/pu.json",
+    "token": "public"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pu.json",
+    "token": "publication"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pu.json",
+    "token": "publications"
+  },
+  {
+    "df": 13,
+    "postings": "data/search/postings/pu.json",
+    "token": "published"
+  },
+  {
+    "df": 7,
+    "postings": "data/search/postings/pu.json",
+    "token": "publisher"
+  }
+]

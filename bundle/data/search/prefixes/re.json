@@ -1,0 +1,270 @@
+{
+  "red": [
+    {
+      "df": 2,
+      "token": "redirect"
+    },
+    {
+      "df": 1,
+      "token": "redirect_destination"
+    },
+    {
+      "df": 1,
+      "token": "redundancy"
+    }
+  ],
+  "redi": [
+    {
+      "df": 2,
+      "token": "redirect"
+    },
+    {
+      "df": 1,
+      "token": "redirect_destination"
+    }
+  ],
+  "redir": [
+    {
+      "df": 2,
+      "token": "redirect"
+    },
+    {
+      "df": 1,
+      "token": "redirect_destination"
+    }
+  ],
+  "redire": [
+    {
+      "df": 2,
+      "token": "redirect"
+    },
+    {
+      "df": 1,
+      "token": "redirect_destination"
+    }
+  ],
+  "redirec": [
+    {
+      "df": 2,
+      "token": "redirect"
+    },
+    {
+      "df": 1,
+      "token": "redirect_destination"
+    }
+  ],
+  "redirect": [
+    {
+      "df": 2,
+      "token": "redirect"
+    },
+    {
+      "df": 1,
+      "token": "redirect_destination"
+    }
+  ],
+  "redirect_": [
+    {
+      "df": 1,
+      "token": "redirect_destination"
+    }
+  ],
+  "redirect_d": [
+    {
+      "df": 1,
+      "token": "redirect_destination"
+    }
+  ],
+  "redirect_de": [
+    {
+      "df": 1,
+      "token": "redirect_destination"
+    }
+  ],
+  "redirect_des": [
+    {
+      "df": 1,
+      "token": "redirect_destination"
+    }
+  ],
+  "redu": [
+    {
+      "df": 1,
+      "token": "redundancy"
+    }
+  ],
+  "redun": [
+    {
+      "df": 1,
+      "token": "redundancy"
+    }
+  ],
+  "redund": [
+    {
+      "df": 1,
+      "token": "redundancy"
+    }
+  ],
+  "redunda": [
+    {
+      "df": 1,
+      "token": "redundancy"
+    }
+  ],
+  "redundan": [
+    {
+      "df": 1,
+      "token": "redundancy"
+    }
+  ],
+  "redundanc": [
+    {
+      "df": 1,
+      "token": "redundancy"
+    }
+  ],
+  "redundancy": [
+    {
+      "df": 1,
+      "token": "redundancy"
+    }
+  ],
+  "rel": [
+    {
+      "df": 1,
+      "token": "relationship"
+    }
+  ],
+  "rela": [
+    {
+      "df": 1,
+      "token": "relationship"
+    }
+  ],
+  "relat": [
+    {
+      "df": 1,
+      "token": "relationship"
+    }
+  ],
+  "relati": [
+    {
+      "df": 1,
+      "token": "relationship"
+    }
+  ],
+  "relatio": [
+    {
+      "df": 1,
+      "token": "relationship"
+    }
+  ],
+  "relation": [
+    {
+      "df": 1,
+      "token": "relationship"
+    }
+  ],
+  "relations": [
+    {
+      "df": 1,
+      "token": "relationship"
+    }
+  ],
+  "relationsh": [
+    {
+      "df": 1,
+      "token": "relationship"
+    }
+  ],
+  "relationshi": [
+    {
+      "df": 1,
+      "token": "relationship"
+    }
+  ],
+  "relationship": [
+    {
+      "df": 1,
+      "token": "relationship"
+    }
+  ],
+  "rep": [
+    {
+      "df": 1,
+      "token": "report"
+    }
+  ],
+  "repo": [
+    {
+      "df": 1,
+      "token": "report"
+    }
+  ],
+  "repor": [
+    {
+      "df": 1,
+      "token": "report"
+    }
+  ],
+  "report": [
+    {
+      "df": 1,
+      "token": "report"
+    }
+  ],
+  "res": [
+    {
+      "df": 1,
+      "token": "responsible"
+    }
+  ],
+  "resp": [
+    {
+      "df": 1,
+      "token": "responsible"
+    }
+  ],
+  "respo": [
+    {
+      "df": 1,
+      "token": "responsible"
+    }
+  ],
+  "respon": [
+    {
+      "df": 1,
+      "token": "responsible"
+    }
+  ],
+  "respons": [
+    {
+      "df": 1,
+      "token": "responsible"
+    }
+  ],
+  "responsi": [
+    {
+      "df": 1,
+      "token": "responsible"
+    }
+  ],
+  "responsib": [
+    {
+      "df": 1,
+      "token": "responsible"
+    }
+  ],
+  "responsibl": [
+    {
+      "df": 1,
+      "token": "responsible"
+    }
+  ],
+  "responsible": [
+    {
+      "df": 1,
+      "token": "responsible"
+    }
+  ]
+}

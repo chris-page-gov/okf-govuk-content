@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/ap.json",
+    "token": "api"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ap.json",
+    "token": "apply.example.service.gov.uk"
+  }
+]

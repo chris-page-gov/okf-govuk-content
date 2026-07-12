@@ -1,0 +1,34 @@
+{
+  "cardinality": {
+    "datasets": 14,
+    "document_types": 13,
+    "languages": 2,
+    "publishers": 6,
+    "records": 14,
+    "relationships": 16,
+    "resources": 1,
+    "schema_families": 13
+  },
+  "coverage": {
+    "authoritative_destination": "https://www.gov.uk/",
+    "boundary": "frozen union of verified official public enumerators",
+    "page_bodies": "not mirrored",
+    "unexplained_omissions": 0
+  },
+  "generated_at": "2026-07-11T23:30:00Z",
+  "long_tail": {
+    "document_types": 13,
+    "publishers": 7,
+    "schema_families": 13
+  },
+  "performance": {
+    "bootstrap_compressed_budget_bytes": 2097152,
+    "graph_expansion_edges": 500,
+    "graph_expansion_nodes": 250,
+    "ordinary_shard_compressed_budget_bytes": 5242880,
+    "search_cold_p95_budget_ms": 1500,
+    "search_warm_p95_budget_ms": 500
+  },
+  "schema": "okf-explorer-analysis.v1",
+  "snapshot": "fixture-2026-07-11"
+}

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en" data-default-bundle="./okf-explorer.json">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0c0c">
+  <meta name="description" content="Explore the structure, lifecycle and provenance of public GOV.UK metadata.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https:; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; manifest-src 'self'; require-trusted-types-for 'script'">
+  <title>What’s on GOV.UK</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-mode="simple">
+  <a class="skip-link" id="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="derived-banner" role="note">
+    <div class="page-width">
+      <strong id="derived-label">Derived, non-authoritative service</strong>
+      <span id="derived-description">Use this catalogue to find and understand records, then follow the link to GOV.UK for authoritative guidance and transactions.</span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="page-width header-layout">
+      <div class="identity-block">
+        <a class="govuk-wordmark" href="https://www.gov.uk/" rel="external">GOV.UK</a>
+        <span class="service-divider" aria-hidden="true"></span>
+        <a class="service-name" href="./" id="service-name">What’s on GOV.UK</a>
+      </div>
+      <nav class="language-switch" aria-label="Language" id="language-switch">
+        <button type="button" data-language="en" lang="en" aria-pressed="true">English</button>
+        <button type="button" data-language="cy" lang="cy" aria-pressed="false">Cymraeg</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="page-width" tabindex="-1">
+    <div id="fatal-error" class="error-summary" role="alert" hidden>
+      <h1 id="fatal-error-title">The catalogue could not be loaded</h1>
+      <p id="fatal-error-message"></p>
+      <button type="button" id="retry-load">Try again</button>
+    </div>
+
+    <section class="hero" aria-labelledby="page-heading">
+      <p class="eyebrow" id="page-eyebrow">Public GOV.UK metadata discovery</p>
+      <h1 id="page-heading">Find GOV.UK content and connections</h1>
+      <p class="lede" id="page-lede">Search titles and metadata, browse official structures, and inspect lifecycle and source evidence. This is a discovery tool, not an answer chatbot.</p>
+      <form id="search-form" role="search" class="search-form">
+        <label for="search-input" id="search-label">What are you trying to find?</label>
+        <div class="search-row">
+          <input id="search-input" name="q" type="search" maxlength="240" autocomplete="off" aria-describedby="search-hint" aria-controls="search-suggestions">
+          <button type="submit" id="search-submit">Search</button>
+        </div>
+        <p class="hint" id="search-hint">Try a title, organisation, topic, service, attachment or natural-language description.</p>
+        <div id="search-suggestions" class="suggestions" aria-live="polite"></div>
+      </form>
+      <div class="examples" id="search-examples" aria-label="Example searches">
+        <span id="examples-label">Examples:</span>
+        <button type="button" data-query="renew a driving licence">renew a driving licence</button>
+        <button type="button" data-query="Welsh language guidance">Welsh language guidance</button>
+        <button type="button" data-query="withdrawn immigration guidance">withdrawn immigration guidance</button>
+      </div>
+    </section>
+
+    <section id="scope-panel" class="scope-panel" aria-labelledby="scope-heading" aria-busy="true">
+      <div class="section-heading-row">
+        <div>
+          <h2 id="scope-heading">What this catalogue covers</h2>
+          <p id="scope-description">Loading the snapshot, coverage and source summary.</p>
+        </div>
+        <button type="button" class="secondary-button" id="scope-toggle" aria-expanded="true" aria-controls="scope-content">Hide details</button>
+      </div>
+      <div id="scope-content">
+        <dl id="scope-metrics" class="metric-grid"></dl>
+        <div id="scope-notices" class="notice-list"></div>
+      </div>
+    </section>
+
+    <section class="workspace-controls" aria-labelledby="presentation-heading">
+      <div>
+        <h2 id="presentation-heading" class="small-heading">Presentation</h2>
+        <div class="segmented-control" id="mode-control" role="group" aria-label="Presentation mode">
+          <button type="button" data-mode="simple" aria-pressed="true">Simple</button>
+          <button type="button" data-mode="explore" aria-pressed="false">Explore</button>
+          <button type="button" data-mode="evidence" aria-pressed="false">Evidence / Developer</button>
+        </div>
+        <p class="hint" id="mode-hint">Modes change detail and layout only. They do not change the record set.</p>
+      </div>
+      <details class="instrumentation-control">
+        <summary id="instrumentation-heading">Optional research events</summary>
+        <label>
+          <input type="checkbox" id="instrumentation-consent">
+          <span id="instrumentation-label">Allow anonymous events for this browser session</span>
+        </label>
+        <p class="hint" id="instrumentation-hint">Off by default. Events stay in memory, use an allowlist, and never retain search text.</p>
+      </details>
+    </section>
+
+    <nav class="view-tabs" aria-label="Catalogue views" id="view-tabs">
+      <button type="button" data-view="results" aria-current="page">Results</button>
+      <button type="button" data-view="browse">Browse paths</button>
+      <button type="button" data-view="relationships">Relationships</button>
+      <button type="button" data-view="timeline">Lifecycle</button>
+      <button type="button" data-view="compare">Pinned / compare</button>
+    </nav>
+
+    <div class="workspace">
+      <aside class="filters" aria-labelledby="filter-heading">
+        <div class="filter-heading-row">
+          <h2 id="filter-heading">Filter this context</h2>
+          <button type="button" class="link-button" id="clear-filters">Clear</button>
+        </div>
+        <p class="hint" id="filter-hint">The same filters apply to results, browse, lifecycle and relationships.</p>
+        <div id="active-context" class="active-context" aria-live="polite"></div>
+        <div id="facet-list"></div>
+      </aside>
+
+      <div class="primary-column">
+        <div id="load-status" class="status-message" role="status" aria-live="polite">Loading the catalogue…</div>
+        <div id="view-heading" class="section-heading-row"></div>
+        <section id="view-content" aria-live="polite" aria-busy="true"></section>
+        <nav id="pagination" class="pagination" aria-label="Result pages"></nav>
+      </div>
+    </div>
+
+    <section id="detail-panel" class="detail-panel" aria-labelledby="detail-heading" hidden>
+      <div class="section-heading-row">
+        <div>
+          <p class="eyebrow" id="detail-kind">Selected record</p>
+          <h2 id="detail-heading" tabindex="-1"></h2>
+        </div>
+        <button type="button" class="secondary-button" id="close-detail">Close</button>
+      </div>
+      <div id="detail-content"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-width footer-grid">
+      <section>
+        <h2 id="footer-about-heading">About this service</h2>
+        <p id="footer-about">An independently published, metadata-led catalogue derived from public GOV.UK sources. It does not replace GOV.UK.</p>
+      </section>
+      <section>
+        <h2 id="accessibility-heading">Accessibility and privacy</h2>
+        <details id="accessibility-details">
+          <summary>Accessibility statement and test status</summary>
+          <p>This source is designed for keyboard use, reflow, 400% zoom, screen readers, forced colours and reduced motion. Automated fixture evidence does not replace expert or representative-user testing.</p>
+        </details>
+        <p><a href="accessibility.html">Read the accessibility statement and automated test record</a></p>
+        <p><a href="https://www.gov.uk/help/privacy-notice" rel="external">GOV.UK privacy information</a></p>
+      </section>
+    </div>
+  </footer>
+
+  <noscript><p class="page-width noscript">JavaScript is required to search the static bundle. The canonical YAML-LD, JSON-LD and data manifests remain directly available.</p></noscript>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

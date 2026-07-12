@@ -1,0 +1,367 @@
+"@context": ../context/govuk-okf-v1.jsonld
+"@id": https://chris-page-gov.github.io/okf-govuk-content/semantic/crosswalks/entities-v1
+"@type": Crosswalk
+title: GOV.UK source entity and interoperability crosswalk
+description: >-
+  Reversible mappings from public GOV.UK observations to profile entities.
+  External vocabulary entries are qualified alignments, not blanket equivalence claims.
+version: 1.0.0
+sourceCommit: b1e987aa7b3e62c105ff2b2db87667f7638726f8
+mappings:
+  - term: ContentItem
+    iri: govuk:ContentItem
+    sourceEntities:
+      - Content API content item
+      - Publishing API ContentItem model
+    sourceFields:
+      - /content_id
+      - /base_path
+    identityRule: urn:govuk:content-item:{content_id}
+    externalMappings:
+      - "schema:CreativeWork where the item is a creative work"
+      - "prov:Entity"
+    mappingStatus: source_native
+    caveat: Never identify a content item by route alone.
+  - term: Document
+    iri: govuk:Document
+    sourceEntities:
+      - Publishing API Document model
+      - Content API locale observation
+    sourceFields:
+      - /content_id
+      - /locale
+    identityRule: urn:govuk:document:{content_id}:{locale}
+    externalMappings:
+      - "prov:Entity"
+      - "schema:CreativeWork language variant where applicable"
+    mappingStatus: normalized
+    caveat: A locale document is not an edition or a rendered route.
+  - term: Edition
+    iri: govuk:Edition
+    sourceEntities:
+      - Publishing API Edition model
+      - publicly observable lifecycle/version metadata
+    sourceFields:
+      - /publication_change_note
+      - /public_updated_at
+      - /withdrawn_notice
+    identityRule: urn:govuk:edition:{document-key}:{public-edition-key}
+    externalMappings:
+      - "prov:Entity"
+      - "dcat:Resource version only when DCAT semantics fit"
+    mappingStatus: conditional_public_observation
+    caveat: Do not fabricate an edition when public evidence exposes only the current document.
+  - term: Route
+    iri: govuk:Route
+    sourceEntities:
+      - Content API base path
+      - sitemap URL
+      - resolved public HTTP route
+    sourceFields:
+      - /base_path
+      - sitemap/url/loc
+      - HTTP final URL and status
+    identityRule: urn:govuk:route:{sha256(normalized-path)}
+    externalMappings:
+      - "schema:url"
+      - "prov:Entity"
+    mappingStatus: source_native
+    caveat: Route identity and content identity remain separate.
+  - term: Part
+    iri: govuk:Part
+    sourceEntities:
+      - source-schema structured parts
+      - GovGraph page-part model used as a comparator
+    sourceFields:
+      - /details/parts/{index}
+      - version-pinned schema path
+    identityRule: urn:govuk:part:{content_id}:{locale}:{source-part-key}
+    externalMappings:
+      - "schema:WebPageElement where rendered semantics fit"
+      - "schema:hasPart"
+    mappingStatus: source_native_when_structured
+    caveat: Never infer parts by retaining or splitting complete page bodies in the released corpus.
+  - term: ContentType
+    iri: govuk:ContentType
+    sourceEntities:
+      - Content API document type
+      - Search API document_type
+    sourceFields:
+      - /document_type
+    identityRule: urn:govuk:content-type:{source-name}
+    externalMappings:
+      - "dcterms:type"
+      - "skos:Concept"
+    mappingStatus: source_native
+    caveat: Keep the 137 observed Search document types distinct from schema-family counts.
+  - term: SchemaFamily
+    iri: govuk:SchemaFamily
+    sourceEntities:
+      - Publishing API content_schemas tree
+      - Content API schema_name
+    sourceFields:
+      - /schema_name
+      - pinned repository schema path
+    identityRule: urn:govuk:schema-family:{commit}:{schema-name}
+    externalMappings:
+      - "dcterms:Standard"
+      - "schema:DefinedTerm"
+    mappingStatus: source_native_contract
+    caveat: Schema family is not a synonym for document/content type.
+  - term: Organisation
+    iri: govuk:Organisation
+    sourceEntities:
+      - Organisations API record
+      - Content API organisation link
+    sourceFields:
+      - /organisations/{index}/id
+      - /links/organisations
+      - /links/lead_organisations
+    identityRule: urn:govuk:organisation:{source-id-or-content-id}
+    externalMappings:
+      - "org:Organization"
+      - "schema:GovernmentOrganization where supported"
+    mappingStatus: source_native
+    caveat: Publishing, owning, lead and sponsoring roles are separate assertions.
+  - term: Taxon
+    iri: govuk:Taxon
+    sourceEntities:
+      - Content API taxon
+      - topic and world taxonomy roots
+    sourceFields:
+      - /links/level_one_taxons
+      - /links/child_taxons
+      - /links/parent_taxons
+    identityRule: urn:govuk:taxon:{content_id}:{locale}
+    externalMappings:
+      - "skos:Concept"
+      - "skos:broader and skos:narrower"
+    mappingStatus: source_native
+    caveat: Preserve topic/world taxonomy kind and translation links.
+  - term: Browse
+    iri: govuk:Browse
+    sourceEntities:
+      - mainstream browse page
+      - Collections browse hierarchy
+    sourceFields:
+      - /document_type=mainstream_browse_page
+      - /links/children
+      - /links/parents
+    identityRule: urn:govuk:browse:{content_id}:{locale}
+    externalMappings:
+      - "skos:Concept as a qualified navigation alignment"
+    mappingStatus: source_native
+    caveat: Do not collapse mainstream browse into Taxon or Collection.
+  - term: Service
+    iri: govuk:Service
+    sourceEntities:
+      - source-supported public service record
+      - source-supported transaction or service link
+    sourceFields:
+      - version-pinned service schema field
+      - explicit service relationship
+    identityRule: urn:govuk:service:{source-native-service-id}
+    externalMappings:
+      - "cpsv:PublicService"
+      - "schema:GovernmentService"
+    mappingStatus: conditional_source_native
+    applicableWhen: An official field or contract demonstrates a genuine service, operator and public outcome.
+    caveat: Never type general guidance, news or a link to a service as the service itself.
+  - term: Collection
+    iri: govuk:Collection
+    sourceEntities:
+      - collection content item
+      - step-by-step or curated journey grouping
+    sourceFields:
+      - /document_type
+      - /links/ordered_related_items
+      - /details/step_by_step_nav
+    identityRule: urn:govuk:collection:{content_id}:{locale}
+    externalMappings:
+      - "schema:CollectionPage where the public page is a collection page"
+      - "skos:Collection where membership semantics fit"
+    mappingStatus: source_native
+    caveat: Collection membership is not taxonomy classification.
+  - term: Attachment
+    iri: govuk:Attachment
+    sourceEntities:
+      - Content API structured attachment metadata
+    sourceFields:
+      - /details/attachments/{index}/id
+      - /details/attachments/{index}/url
+    identityRule: urn:govuk:attachment:{attachment-id-or-url-hash}
+    externalMappings:
+      - "schema:MediaObject or schema:DigitalDocument where applicable"
+      - "dcat:Distribution only for a real distributable dataset/resource"
+    mappingStatus: source_native
+    caveat: Publish metadata and authoritative URL, not attachment bytes; retain item-level rights status.
+  - term: Redirect
+    iri: govuk:Redirect
+    sourceEntities:
+      - observed HTTP redirect
+      - public unpublishing/redirect metadata where exposed
+    sourceFields:
+      - HTTP redirect chain
+      - source-native redirect field
+    identityRule: urn:govuk:redirect:{from-route-hash}:{observation-time}
+    externalMappings:
+      - "prov:alternateOf only as a qualified mapping"
+      - "dcterms:isReplacedBy when replacement semantics are explicit"
+    mappingStatus: source_native_observation
+    caveat: Preserve the source and target routes and observation time; do not erase route history as an alias.
+  - term: Tombstone
+    iri: govuk:Tombstone
+    sourceEntities:
+      - observed gone/withdrawn/unpublished route
+      - Content API withdrawn notice
+    sourceFields:
+      - HTTP 404 or 410 observation
+      - /withdrawn_notice
+      - source-native unpublishing field
+    identityRule: urn:govuk:tombstone:{route-hash}:{observation-time}
+    externalMappings:
+      - "prov:Entity with prov:invalidatedAtTime"
+    mappingStatus: source_native_observation
+    caveat: Absence from one enumerator alone is not a tombstone.
+  - term: BasePath
+    iri: govuk:BasePath
+    sourceEntities: [Content API base_path, resolved public URL path]
+    sourceFields: [/base_path, HTTP final URL path]
+    identityRule: urn:govuk:base-path:{sha256(normalized-path)}
+    externalMappings: [schema:url]
+    mappingStatus: source_native
+    caveat: A path value is not route behaviour or content identity.
+  - term: RenderedPage
+    iri: govuk:RenderedPage
+    sourceEntities: [transient public HTML observation]
+    sourceFields: [HTTP final URL and body hash, canonical link, schema.org types]
+    identityRule: urn:govuk:rendered-page:{route-hash}:{observation-time}
+    externalMappings: [schema:WebPage where applicable, prov:Entity]
+    mappingStatus: source_native_observation
+    caveat: Body bytes are discarded after bounded extraction.
+  - term: WorldTaxon
+    iri: govuk:WorldTaxon
+    sourceEntities: [Content API world taxonomy node]
+    sourceFields: [/links/child_taxons, /links/parent_taxons, /locale]
+    identityRule: urn:govuk:world-taxon:{content_id}:{locale}
+    externalMappings: [skos:Concept]
+    mappingStatus: source_native
+    caveat: Never collapse world taxonomy into topic taxonomy.
+  - term: MainstreamBrowsePage
+    iri: govuk:MainstreamBrowsePage
+    sourceEntities: [Content API mainstream_browse_page]
+    sourceFields: [/document_type, /base_path]
+    identityRule: urn:govuk:mainstream-browse:{content_id}:{locale}
+    externalMappings: [skos:Concept as qualified navigation alignment]
+    mappingStatus: source_native
+    caveat: Preserve its source-native class.
+  - term: StepByStep
+    iri: govuk:StepByStep
+    sourceEntities: [Content API step_by_step_nav]
+    sourceFields: [/details/step_by_step_nav, /links/part_of_step_navs]
+    identityRule: urn:govuk:step-by-step:{content_id}:{locale}
+    externalMappings: [schema:ItemList where ordered semantics fit]
+    mappingStatus: source_native
+    caveat: Ordered steps are not generic collection membership.
+  - term: GovernmentService
+    iri: govuk:GovernmentService
+    sourceEntities: [official source-supported public service]
+    sourceFields: [explicit service schema or relationship]
+    identityRule: urn:govuk:government-service:{source-native-service-id}
+    externalMappings: [cpsv:PublicService, schema:GovernmentService]
+    mappingStatus: conditional_source_native
+    caveat: Do not infer a service from general guidance.
+  - term: Distribution
+    iri: govuk:Distribution
+    sourceEntities: [declared distributable data resource]
+    sourceFields: [/details/attachments, declared data or API representation]
+    identityRule: urn:govuk:distribution:{resource-id-or-url-hash}
+    externalMappings: [dcat:Distribution where semantics fit]
+    mappingStatus: conditional_normalized
+    caveat: An ordinary attachment is not automatically a DCAT distribution.
+  - term: MachineRepresentation
+    iri: govuk:MachineRepresentation
+    sourceEntities: [declared JSON XML RDF API or data representation]
+    sourceFields: [structured representation URL and media type]
+    identityRule: urn:govuk:machine-representation:{url-hash}
+    externalMappings: [dcat:Distribution where applicable, schema:DataDownload]
+    mappingStatus: source_native
+    caveat: Store metadata and authoritative links only.
+  - term: Withdrawal
+    iri: govuk:Withdrawal
+    sourceEntities: [Content API withdrawn notice]
+    sourceFields: [/withdrawn_notice]
+    identityRule: urn:govuk:withdrawal:{content_id}:{observation-time}
+    externalMappings: [prov:Invalidation]
+    mappingStatus: source_native_observation
+    caveat: Withdrawal is not inferred from absence.
+  - term: Replacement
+    iri: govuk:Replacement
+    sourceEntities: [explicit source replacement or substitution]
+    sourceFields: [source-native replacement relationship]
+    identityRule: urn:govuk:replacement:{original-id}:{replacement-id}
+    externalMappings: [dcterms:isReplacedBy]
+    mappingStatus: source_native_observation
+    caveat: Similarity is not replacement evidence.
+  - term: EvidenceSource
+    iri: govuk:EvidenceSource
+    sourceEntities: [official response or version-pinned contract]
+    sourceFields: [requested URL, locator, retrieval time, SHA-256]
+    identityRule: urn:govuk:evidence-source:{evidence-hash}
+    externalMappings: [prov:Entity]
+    mappingStatus: source_native
+    caveat: Evidence remains retrievable and precisely located.
+  - term: AcquisitionActivity
+    iri: govuk:AcquisitionActivity
+    sourceEntities: [bounded public acquisition run]
+    sourceFields: [run ledger, software version, source and timing]
+    identityRule: urn:govuk:acquisition:{run-id}:{source-id}
+    externalMappings: [prov:Activity]
+    mappingStatus: source_native
+    caveat: Rate and policy controls are part of the activity evidence.
+  - term: InferenceActivity
+    iri: govuk:InferenceActivity
+    sourceEntities: [governed deterministic or model derivation]
+    sourceFields: [derivation method, inputs, reviewer and output]
+    identityRule: urn:govuk:inference:{activity-hash}
+    externalMappings: [prov:Activity]
+    mappingStatus: inferred
+    caveat: Cannot overwrite source-native statements.
+  - term: ConstraintRecord
+    iri: govuk:ConstraintRecord
+    sourceEntities: [access rights security or coverage constraint]
+    sourceFields: [reason, evidence, owner, status and review date]
+    identityRule: urn:govuk:constraint:{constraint-id}
+    externalMappings: [prov:Entity]
+    mappingStatus: source_native
+    caveat: A constraint is visible accounting, not permission to omit silently.
+  - term: Evidence
+    iri: govuk:Evidence
+    sourceEntities:
+      - immutable acquisition observation
+      - version-pinned official contract observation
+    sourceFields:
+      - requested/final URL and HTTP metadata
+      - JSON Pointer or source path
+      - retrieval time and SHA-256
+    identityRule: urn:govuk:evidence:{sha256(source-url|locator|retrieval|payload-hash)}
+    externalMappings:
+      - "prov:Entity"
+      - "dcterms:BibliographicResource where applicable"
+    mappingStatus: source_native
+    caveat: Store the minimum lawful evidence metadata, never an unnecessary complete page body.
+  - term: Assertion
+    iri: govuk:Assertion
+    sourceEntities:
+      - source-native relationship field
+      - deterministic normalization or explicitly governed inference
+    sourceFields:
+      - subject, predicate and object IDs
+      - source-native field or link type
+      - evidence and derivation activity
+    identityRule: urn:govuk:assertion:{sha256(snapshot|subject|predicate|object|authority|evidence-ids)}
+    externalMappings:
+      - "prov:Entity"
+      - "portable project reification; no RDF-star dependency"
+    mappingStatus: mixed_explicit_authority
+    caveat: Convenience edges must be reproducible from and point back to this assertion.

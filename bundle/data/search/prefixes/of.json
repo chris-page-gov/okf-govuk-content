@@ -1,0 +1,26 @@
+{
+  "off": [
+    {
+      "df": 2,
+      "token": "office"
+    }
+  ],
+  "offi": [
+    {
+      "df": 2,
+      "token": "office"
+    }
+  ],
+  "offic": [
+    {
+      "df": 2,
+      "token": "office"
+    }
+  ],
+  "office": [
+    {
+      "df": 2,
+      "token": "office"
+    }
+  ]
+}

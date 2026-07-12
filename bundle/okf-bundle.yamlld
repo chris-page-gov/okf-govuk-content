@@ -1,0 +1,46 @@
+"@context": "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v1.jsonld"
+"@id": "https://chris-page-gov.github.io/okf-govuk-content/okf-bundle.yamlld"
+"@type": "okf:Bundle"
+title: "What’s on GOV.UK"
+description: "Derived, non-authoritative, snapshot-bounded semantic catalogue of the public GOV.UK metadata estate."
+version: "0.1.0"
+status: "preview"
+generatedAt: "2026-07-11T23:30:00Z"
+snapshot: "fixture-2026-07-11"
+derivedNotice: "GOV.UK remains authoritative; this bundle does not reproduce complete page bodies or transactions."
+descriptor:
+  "@id": "https://chris-page-gov.github.io/okf-govuk-content/okf-explorer.json"
+semanticDescriptor:
+  "@id": "https://chris-page-gov.github.io/okf-govuk-content/okf-bundle.yamlld"
+home:
+  "@id": "https://chris-page-gov.github.io/okf-govuk-content/"
+profile:
+  "@id": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/"
+publisher:
+  "@id": "https://github.com/chris-page-gov"
+license:
+  "@id": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+dataManifest:
+  "@id": "https://chris-page-gov.github.io/okf-govuk-content/data/manifest.json"
+sourceRegistry:
+  "@id": "https://github.com/chris-page-gov/okf-govuk-content/blob/main/research/source-registry.yaml"
+constraintLedger:
+  "@id": "https://github.com/chris-page-gov/okf-govuk-content/blob/main/research/source-constraints.json"
+semanticProjectionManifest:
+  "@id": "https://chris-page-gov.github.io/okf-govuk-content/data/semantic/manifest.json"
+counts:
+  datasets: 14
+  document_types: 13
+  languages: 2
+  publishers: 6
+  records: 14
+  relationships: 16
+  resources: 1
+  schema_families: 13
+extensions:
+  - "govuk-okf-profile.v1"
+  - "govuk-okf-semantic-projection.v1"
+  - "okf-explorer-large-corpus.v1"
+  - "okf-static-search.v1"
+  - "okf-relationship-adjacency.v1"
+  - "okf-route-index.v1"

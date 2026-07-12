@@ -1,0 +1,74 @@
+{
+  "lea": [
+    {
+      "df": 1,
+      "token": "learn"
+    },
+    {
+      "df": 1,
+      "token": "learn-to-drive-a-car"
+    }
+  ],
+  "lear": [
+    {
+      "df": 1,
+      "token": "learn"
+    },
+    {
+      "df": 1,
+      "token": "learn-to-drive-a-car"
+    }
+  ],
+  "learn": [
+    {
+      "df": 1,
+      "token": "learn"
+    },
+    {
+      "df": 1,
+      "token": "learn-to-drive-a-car"
+    }
+  ],
+  "learn-": [
+    {
+      "df": 1,
+      "token": "learn-to-drive-a-car"
+    }
+  ],
+  "learn-t": [
+    {
+      "df": 1,
+      "token": "learn-to-drive-a-car"
+    }
+  ],
+  "learn-to": [
+    {
+      "df": 1,
+      "token": "learn-to-drive-a-car"
+    }
+  ],
+  "learn-to-": [
+    {
+      "df": 1,
+      "token": "learn-to-drive-a-car"
+    }
+  ],
+  "learn-to-d": [
+    {
+      "df": 1,
+      "token": "learn-to-drive-a-car"
+    }
+  ],
+  "learn-to-dr": [
+    {
+      "df": 1,
+      "token": "learn-to-drive-a-car"
+    }
+  ],
+  "learn-to-dri": [
+    {
+      "df": 1,
+      "token": "learn-to-drive-a-car"
+    }
+  ]
+}

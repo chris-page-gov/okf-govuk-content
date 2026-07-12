@@ -1,0 +1,22 @@
+[
+  {
+    "df": 2,
+    "postings": "data/search/postings/wo.json",
+    "token": "work"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/wo.json",
+    "token": "working"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/wo.json",
+    "token": "world"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/wo.json",
+    "token": "world_location"
+  }
+]

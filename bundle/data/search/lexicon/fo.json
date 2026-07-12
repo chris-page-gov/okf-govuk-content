@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/fo.json",
+    "token": "foreign"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/fo.json",
+    "token": "foreign-travel-advice"
+  }
+]

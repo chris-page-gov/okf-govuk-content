@@ -1,0 +1,116 @@
+{
+  "exa": [
+    {
+      "df": 1,
+      "token": "example"
+    }
+  ],
+  "exam": [
+    {
+      "df": 1,
+      "token": "example"
+    }
+  ],
+  "examp": [
+    {
+      "df": 1,
+      "token": "example"
+    }
+  ],
+  "exampl": [
+    {
+      "df": 1,
+      "token": "example"
+    }
+  ],
+  "example": [
+    {
+      "df": 1,
+      "token": "example"
+    }
+  ],
+  "ext": [
+    {
+      "df": 1,
+      "token": "external"
+    },
+    {
+      "df": 1,
+      "token": "external_content"
+    }
+  ],
+  "exte": [
+    {
+      "df": 1,
+      "token": "external"
+    },
+    {
+      "df": 1,
+      "token": "external_content"
+    }
+  ],
+  "exter": [
+    {
+      "df": 1,
+      "token": "external"
+    },
+    {
+      "df": 1,
+      "token": "external_content"
+    }
+  ],
+  "extern": [
+    {
+      "df": 1,
+      "token": "external"
+    },
+    {
+      "df": 1,
+      "token": "external_content"
+    }
+  ],
+  "externa": [
+    {
+      "df": 1,
+      "token": "external"
+    },
+    {
+      "df": 1,
+      "token": "external_content"
+    }
+  ],
+  "external": [
+    {
+      "df": 1,
+      "token": "external"
+    },
+    {
+      "df": 1,
+      "token": "external_content"
+    }
+  ],
+  "external_": [
+    {
+      "df": 1,
+      "token": "external_content"
+    }
+  ],
+  "external_c": [
+    {
+      "df": 1,
+      "token": "external_content"
+    }
+  ],
+  "external_co": [
+    {
+      "df": 1,
+      "token": "external_content"
+    }
+  ],
+  "external_con": [
+    {
+      "df": 1,
+      "token": "external_content"
+    }
+  ]
+}

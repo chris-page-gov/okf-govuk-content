@@ -1,0 +1,38 @@
+{
+  "pay": [
+    {
+      "df": 1,
+      "token": "payments"
+    }
+  ],
+  "paym": [
+    {
+      "df": 1,
+      "token": "payments"
+    }
+  ],
+  "payme": [
+    {
+      "df": 1,
+      "token": "payments"
+    }
+  ],
+  "paymen": [
+    {
+      "df": 1,
+      "token": "payments"
+    }
+  ],
+  "payment": [
+    {
+      "df": 1,
+      "token": "payments"
+    }
+  ],
+  "payments": [
+    {
+      "df": 1,
+      "token": "payments"
+    }
+  ]
+}

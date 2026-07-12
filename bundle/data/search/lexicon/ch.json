@@ -1,0 +1,17 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "change"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "check"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child"
+  }
+]

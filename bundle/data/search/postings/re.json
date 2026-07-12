@@ -1,0 +1,51 @@
+{
+  "tokens": {
+    "redirect": [
+      [
+        12,
+        31,
+        313
+      ],
+      [
+        11,
+        16,
+        1
+      ]
+    ],
+    "redirect_destination": [
+      [
+        11,
+        7,
+        40
+      ]
+    ],
+    "redundancy": [
+      [
+        2,
+        5,
+        4
+      ]
+    ],
+    "relationship": [
+      [
+        13,
+        5,
+        4
+      ]
+    ],
+    "report": [
+      [
+        4,
+        5,
+        4
+      ]
+    ],
+    "responsible": [
+      [
+        3,
+        5,
+        4
+      ]
+    ]
+  }
+}

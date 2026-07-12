@@ -1,0 +1,26 @@
+{
+  "nee": [
+    {
+      "df": 1,
+      "token": "need"
+    }
+  ],
+  "need": [
+    {
+      "df": 1,
+      "token": "need"
+    }
+  ],
+  "new": [
+    {
+      "df": 1,
+      "token": "news"
+    }
+  ],
+  "news": [
+    {
+      "df": 1,
+      "token": "news"
+    }
+  ]
+}

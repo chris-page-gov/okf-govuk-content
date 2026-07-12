@@ -1,0 +1,70 @@
+{
+  "sig": [
+    {
+      "df": 1,
+      "token": "sign"
+    },
+    {
+      "df": 1,
+      "token": "sign-in-universal-credit"
+    }
+  ],
+  "sign": [
+    {
+      "df": 1,
+      "token": "sign"
+    },
+    {
+      "df": 1,
+      "token": "sign-in-universal-credit"
+    }
+  ],
+  "sign-": [
+    {
+      "df": 1,
+      "token": "sign-in-universal-credit"
+    }
+  ],
+  "sign-i": [
+    {
+      "df": 1,
+      "token": "sign-in-universal-credit"
+    }
+  ],
+  "sign-in": [
+    {
+      "df": 1,
+      "token": "sign-in-universal-credit"
+    }
+  ],
+  "sign-in-": [
+    {
+      "df": 1,
+      "token": "sign-in-universal-credit"
+    }
+  ],
+  "sign-in-u": [
+    {
+      "df": 1,
+      "token": "sign-in-universal-credit"
+    }
+  ],
+  "sign-in-un": [
+    {
+      "df": 1,
+      "token": "sign-in-universal-credit"
+    }
+  ],
+  "sign-in-uni": [
+    {
+      "df": 1,
+      "token": "sign-in-universal-credit"
+    }
+  ],
+  "sign-in-univ": [
+    {
+      "df": 1,
+      "token": "sign-in-universal-credit"
+    }
+  ]
+}

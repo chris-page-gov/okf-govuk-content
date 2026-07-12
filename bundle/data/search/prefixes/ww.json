@@ -1,0 +1,50 @@
+{
+  "www": [
+    {
+      "df": 13,
+      "token": "www.gov.uk"
+    }
+  ],
+  "www.": [
+    {
+      "df": 13,
+      "token": "www.gov.uk"
+    }
+  ],
+  "www.g": [
+    {
+      "df": 13,
+      "token": "www.gov.uk"
+    }
+  ],
+  "www.go": [
+    {
+      "df": 13,
+      "token": "www.gov.uk"
+    }
+  ],
+  "www.gov": [
+    {
+      "df": 13,
+      "token": "www.gov.uk"
+    }
+  ],
+  "www.gov.": [
+    {
+      "df": 13,
+      "token": "www.gov.uk"
+    }
+  ],
+  "www.gov.u": [
+    {
+      "df": 13,
+      "token": "www.gov.uk"
+    }
+  ],
+  "www.gov.uk": [
+    {
+      "df": 13,
+      "token": "www.gov.uk"
+    }
+  ]
+}

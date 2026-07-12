@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chris-page-gov.github.io/okf-govuk-content/semantic/schemas/evidence.schema.json",
+  "title": "GOV.UK OKF evidence observation",
+  "type": "object",
+  "required": [
+    "@id",
+    "@type",
+    "title",
+    "evidenceUrl",
+    "sourceSystem",
+    "sourceAuthority",
+    "locator",
+    "retrievedAt",
+    "sha256",
+    "mediaType",
+    "license",
+    "rightsStatus",
+    "snapshotId",
+    "authority"
+  ],
+  "properties": {
+    "@id": {"$ref": "common.schema.json#/$defs/iri"},
+    "@type": {"const": "govuk:Evidence"},
+    "title": {"$ref": "common.schema.json#/$defs/nonEmptyString"},
+    "evidenceUrl": {"$ref": "common.schema.json#/$defs/iri"},
+    "sourceSystem": {"$ref": "common.schema.json#/$defs/nonEmptyString"},
+    "sourceAuthority": {
+      "enum": ["official", "official_contract", "derived_gap_detector", "comparator", "unknown"]
+    },
+    "locator": {
+      "type": "object",
+      "required": ["locatorKind", "locatorValue"],
+      "properties": {
+        "locatorKind": {
+          "enum": [
+            "json_pointer",
+            "source_field",
+            "api_path",
+            "http_header",
+            "html_selector",
+            "dom_link",
+            "schema_path",
+            "commit_lines",
+            "other"
+          ]
+        },
+        "locatorValue": {"type": "string", "minLength": 1},
+        "textFingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "retrievedAt": {"$ref": "common.schema.json#/$defs/dateTime"},
+    "sha256": {"$ref": "common.schema.json#/$defs/sha256"},
+    "mediaType": {"type": "string", "minLength": 1},
+    "httpStatus": {"type": "integer", "minimum": 100, "maximum": 599},
+    "license": {"$ref": "common.schema.json#/$defs/iriReference"},
+    "rightsStatus": {
+      "enum": [
+        "ogl_v3_except_where_otherwise_stated",
+        "source_declared",
+        "third_party_review_required",
+        "restricted",
+        "unknown"
+      ]
+    },
+    "snapshotId": {"$ref": "common.schema.json#/$defs/nonEmptyString"},
+    "authority": {"const": "source_native"}
+  },
+  "additionalProperties": false
+}

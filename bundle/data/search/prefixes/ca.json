@@ -1,0 +1,84 @@
+{
+  "car": [
+    {
+      "df": 1,
+      "token": "car"
+    }
+  ],
+  "cat": [
+    {
+      "df": 1,
+      "token": "catalogue"
+    },
+    {
+      "df": 1,
+      "token": "catalogues"
+    }
+  ],
+  "cata": [
+    {
+      "df": 1,
+      "token": "catalogue"
+    },
+    {
+      "df": 1,
+      "token": "catalogues"
+    }
+  ],
+  "catal": [
+    {
+      "df": 1,
+      "token": "catalogue"
+    },
+    {
+      "df": 1,
+      "token": "catalogues"
+    }
+  ],
+  "catalo": [
+    {
+      "df": 1,
+      "token": "catalogue"
+    },
+    {
+      "df": 1,
+      "token": "catalogues"
+    }
+  ],
+  "catalog": [
+    {
+      "df": 1,
+      "token": "catalogue"
+    },
+    {
+      "df": 1,
+      "token": "catalogues"
+    }
+  ],
+  "catalogu": [
+    {
+      "df": 1,
+      "token": "catalogue"
+    },
+    {
+      "df": 1,
+      "token": "catalogues"
+    }
+  ],
+  "catalogue": [
+    {
+      "df": 1,
+      "token": "catalogue"
+    },
+    {
+      "df": 1,
+      "token": "catalogues"
+    }
+  ],
+  "catalogues": [
+    {
+      "df": 1,
+      "token": "catalogues"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/ma.json",
+    "token": "mainstream_browse_page"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ma.json",
+    "token": "maintenance"
+  }
+]

@@ -1,0 +1,90 @@
+{
+  "add": [
+    {
+      "df": 1,
+      "token": "add"
+    },
+    {
+      "df": 1,
+      "token": "addysg"
+    }
+  ],
+  "addy": [
+    {
+      "df": 1,
+      "token": "addysg"
+    }
+  ],
+  "addys": [
+    {
+      "df": 1,
+      "token": "addysg"
+    }
+  ],
+  "addysg": [
+    {
+      "df": 1,
+      "token": "addysg"
+    }
+  ],
+  "adm": [
+    {
+      "df": 7,
+      "token": "admitted"
+    }
+  ],
+  "admi": [
+    {
+      "df": 7,
+      "token": "admitted"
+    }
+  ],
+  "admit": [
+    {
+      "df": 7,
+      "token": "admitted"
+    }
+  ],
+  "admitt": [
+    {
+      "df": 7,
+      "token": "admitted"
+    }
+  ],
+  "admitte": [
+    {
+      "df": 7,
+      "token": "admitted"
+    }
+  ],
+  "admitted": [
+    {
+      "df": 7,
+      "token": "admitted"
+    }
+  ],
+  "adv": [
+    {
+      "df": 1,
+      "token": "advice"
+    }
+  ],
+  "advi": [
+    {
+      "df": 1,
+      "token": "advice"
+    }
+  ],
+  "advic": [
+    {
+      "df": 1,
+      "token": "advice"
+    }
+  ],
+  "advice": [
+    {
+      "df": 1,
+      "token": "advice"
+    }
+  ]
+}

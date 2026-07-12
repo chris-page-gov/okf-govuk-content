@@ -1,0 +1,26 @@
+{
+  "ski": [
+    {
+      "df": 1,
+      "token": "skills"
+    }
+  ],
+  "skil": [
+    {
+      "df": 1,
+      "token": "skills"
+    }
+  ],
+  "skill": [
+    {
+      "df": 1,
+      "token": "skills"
+    }
+  ],
+  "skills": [
+    {
+      "df": 1,
+      "token": "skills"
+    }
+  ]
+}

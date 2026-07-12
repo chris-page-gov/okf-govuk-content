@@ -1,0 +1,40 @@
+{
+  "fin": [
+    {
+      "df": 1,
+      "token": "find"
+    },
+    {
+      "df": 1,
+      "token": "finding"
+    }
+  ],
+  "find": [
+    {
+      "df": 1,
+      "token": "find"
+    },
+    {
+      "df": 1,
+      "token": "finding"
+    }
+  ],
+  "findi": [
+    {
+      "df": 1,
+      "token": "finding"
+    }
+  ],
+  "findin": [
+    {
+      "df": 1,
+      "token": "finding"
+    }
+  ],
+  "finding": [
+    {
+      "df": 1,
+      "token": "finding"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "see": [
+    {
+      "df": 1,
+      "token": "see"
+    }
+  ],
+  "ser": [
+    {
+      "df": 2,
+      "token": "service"
+    },
+    {
+      "df": 1,
+      "token": "services"
+    }
+  ],
+  "serv": [
+    {
+      "df": 2,
+      "token": "service"
+    },
+    {
+      "df": 1,
+      "token": "services"
+    }
+  ],
+  "servi": [
+    {
+      "df": 2,
+      "token": "service"
+    },
+    {
+      "df": 1,
+      "token": "services"
+    }
+  ],
+  "servic": [
+    {
+      "df": 2,
+      "token": "service"
+    },
+    {
+      "df": 1,
+      "token": "services"
+    }
+  ],
+  "service": [
+    {
+      "df": 2,
+      "token": "service"
+    },
+    {
+      "df": 1,
+      "token": "services"
+    }
+  ],
+  "services": [
+    {
+      "df": 1,
+      "token": "services"
+    }
+  ]
+}

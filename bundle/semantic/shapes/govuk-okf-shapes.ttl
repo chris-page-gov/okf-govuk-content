@@ -1,0 +1,267 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix govuk: <https://chris-page-gov.github.io/okf-govuk-content/ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# This shape graph mirrors the release JSON Schemas at graph level. A release
+# validator may compile these constraints to full SHACL, but it must not weaken
+# the cardinality or source-native/inferred separation below.
+
+govuk:CommonEntityShape
+    a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:path dcterms:title ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:sourceNativeId ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:sourceSystem ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:snapshotId ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path govuk:authority ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "source_native" "normalized" "inferred" "model_derived" )
+    ] ;
+    sh:property [ sh:path govuk:evidence ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path prov:generatedAtTime ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+
+govuk:ContentItemShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:ContentItem ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:contentId ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:basePath ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^/" ] ;
+    sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:contentType ; sh:minCount 1 ; sh:maxCount 1 ; sh:class govuk:ContentType ] ;
+    sh:property [ sh:path govuk:schemaFamily ; sh:minCount 1 ; sh:maxCount 1 ; sh:class govuk:SchemaFamily ] .
+
+govuk:DocumentShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Document ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:contentItem ; sh:minCount 1 ; sh:maxCount 1 ; sh:class govuk:ContentItem ] ;
+    sh:property [ sh:path dcterms:language ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:EditionShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Edition ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:document ; sh:minCount 1 ; sh:maxCount 1 ; sh:class govuk:Document ] ;
+    sh:property [ sh:path govuk:editionId ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:lifecycleState ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:effectiveAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+
+govuk:RouteShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Route ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:path ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^/" ] ;
+    sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:routeKind ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:PartShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Part ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:contentItem ; sh:minCount 1 ; sh:maxCount 1 ; sh:class govuk:ContentItem ] ;
+    sh:property [ sh:path govuk:partKind ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path schema:position ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ] ;
+    sh:property [ sh:path govuk:sourceLocator ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:ContentTypeShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:ContentType ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:sourceName ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:SchemaFamilyShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:SchemaFamily ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:schemaName ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:schemaUri ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:sourceCommit ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^[0-9a-f]{40}$" ] .
+
+govuk:OrganisationShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Organisation ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:slug ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:organisationStatus ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:TaxonShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Taxon ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:basePath ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^/" ] ;
+    sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:taxonomyKind ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:BrowseShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Browse ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:basePath ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^/" ] ;
+    sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:browseKind ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:ServiceShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Service ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:serviceStatus ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:serviceBasis ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:CollectionShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Collection ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:collectionKind ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:AttachmentShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Attachment ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:contentItem ; sh:minCount 1 ; sh:maxCount 1 ; sh:class govuk:ContentItem ] ;
+    sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path dcterms:format ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:filename ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:rightsStatus ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:RedirectShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Redirect ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:fromRoute ; sh:minCount 1 ; sh:maxCount 1 ; sh:class govuk:Route ] ;
+    sh:property [ sh:path govuk:target ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:httpStatus ; sh:minCount 1 ; sh:maxCount 1 ; sh:minInclusive 300 ; sh:maxInclusive 399 ] ;
+    sh:property [ sh:path govuk:observedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+
+govuk:TombstoneShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Tombstone ;
+    sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:route ; sh:minCount 1 ; sh:maxCount 1 ; sh:class govuk:Route ] ;
+    sh:property [ sh:path govuk:tombstoneKind ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:observedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+
+govuk:BasePathShape a sh:NodeShape ; sh:targetClass govuk:BasePath ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:path ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^/" ] ;
+    sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] .
+
+govuk:RenderedPageShape a sh:NodeShape ; sh:targetClass govuk:RenderedPage ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:route ; sh:minCount 1 ; sh:maxCount 1 ; sh:class govuk:Route ] ;
+    sh:property [ sh:path govuk:observedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:property [ sh:path govuk:bodySha256 ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^[0-9a-f]{64}$" ] .
+
+govuk:WorldTaxonShape a sh:NodeShape ; sh:targetClass govuk:WorldTaxon ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:basePath ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^/world/" ] ;
+    sh:property [ sh:path dcterms:language ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:MainstreamBrowsePageShape a sh:NodeShape ; sh:targetClass govuk:MainstreamBrowsePage ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:basePath ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^/browse/" ] .
+
+govuk:StepByStepShape a sh:NodeShape ; sh:targetClass govuk:StepByStep ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:stepCount ; sh:minCount 1 ; sh:maxCount 1 ; sh:minInclusive 1 ] .
+
+govuk:GovernmentServiceShape a sh:NodeShape ; sh:targetClass govuk:GovernmentService ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:serviceBasis ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:DistributionShape a sh:NodeShape ; sh:targetClass govuk:Distribution ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:resource ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path dcterms:format ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:rightsStatus ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:MachineRepresentationShape a sh:NodeShape ; sh:targetClass govuk:MachineRepresentation ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:contentItem ; sh:minCount 1 ; sh:maxCount 1 ; sh:class govuk:ContentItem ] ;
+    sh:property [ sh:path schema:url ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:representationType ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:WithdrawalShape a sh:NodeShape ; sh:targetClass govuk:Withdrawal ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:contentItem ; sh:minCount 1 ; sh:maxCount 1 ; sh:class govuk:ContentItem ] ;
+    sh:property [ sh:path govuk:notice ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:observedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+
+govuk:ReplacementShape a sh:NodeShape ; sh:targetClass govuk:Replacement ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:original ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:replacement ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] .
+
+govuk:EvidenceSourceShape a sh:NodeShape ; sh:targetClass govuk:EvidenceSource ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path prov:hadPrimarySource ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:sha256 ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^[0-9a-f]{64}$" ] .
+
+govuk:AcquisitionActivityShape a sh:NodeShape ; sh:targetClass govuk:AcquisitionActivity ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path prov:startedAtTime ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:property [ sh:path prov:endedAtTime ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+
+govuk:InferenceActivityShape a sh:NodeShape ; sh:targetClass govuk:InferenceActivity ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path prov:startedAtTime ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:property [ sh:path govuk:derivationMethod ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+govuk:ConstraintRecordShape a sh:NodeShape ; sh:targetClass govuk:ConstraintRecord ; sh:node govuk:CommonEntityShape ;
+    sh:property [ sh:path govuk:constraintClass ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:reason ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:evidence ; sh:minCount 1 ; sh:nodeKind sh:IRI ] .
+
+govuk:EvidenceShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Evidence ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:path dcterms:title ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:hadPrimarySource ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:sourceSystem ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:sourceAuthority ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:locator ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:generatedAtTime ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:property [ sh:path govuk:sha256 ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^[0-9a-f]{64}$" ] ;
+    sh:property [ sh:path dcterms:license ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:rightsStatus ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:snapshotId ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:authority ; sh:minCount 1 ; sh:maxCount 1 ; sh:hasValue "source_native" ] .
+
+govuk:AssertionShape
+    a sh:NodeShape ;
+    sh:targetClass govuk:Assertion ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:path govuk:subject ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:predicate ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:object ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:sourceNativePredicate ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:evidence ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path prov:generatedAtTime ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:property [ sh:path prov:wasGeneratedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path govuk:derivationMethod ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path govuk:assertionStatus ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "source_native" "normalized" "inferred" "model_derived" ) ] ;
+    sh:property [ sh:path govuk:authority ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "source_native" "normalized" "inferred" "model_derived" ) ] ;
+    sh:property [ sh:path govuk:confidence ; sh:minCount 1 ; sh:maxCount 1 ; sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
+    sh:property [ sh:path govuk:snapshotId ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:or (
+        [
+            sh:property [ sh:path govuk:assertionStatus ; sh:hasValue "source_native" ] ;
+            sh:property [ sh:path govuk:authority ; sh:hasValue "source_native" ]
+        ]
+        [
+            sh:property [ sh:path govuk:assertionStatus ; sh:hasValue "normalized" ] ;
+            sh:property [ sh:path govuk:authority ; sh:hasValue "normalized" ] ;
+            sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ; sh:nodeKind sh:IRI ]
+        ]
+        [
+            sh:property [ sh:path govuk:assertionStatus ; sh:hasValue "inferred" ] ;
+            sh:property [ sh:path govuk:authority ; sh:hasValue "inferred" ] ;
+            sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
+            sh:property [ sh:path govuk:reviewStatus ; sh:minCount 1 ; sh:maxCount 1 ] ;
+            sh:property [ sh:path govuk:reviewer ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ]
+        ]
+        [
+            sh:property [ sh:path govuk:assertionStatus ; sh:hasValue "model_derived" ] ;
+            sh:property [ sh:path govuk:authority ; sh:hasValue "model_derived" ] ;
+            sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
+            sh:property [ sh:path govuk:reviewStatus ; sh:minCount 1 ; sh:maxCount 1 ] ;
+            sh:property [ sh:path govuk:reviewer ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ]
+        ]
+    ) .

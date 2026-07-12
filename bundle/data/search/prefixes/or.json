@@ -1,0 +1,102 @@
+{
+  "org": [
+    {
+      "df": 2,
+      "token": "organisations"
+    },
+    {
+      "df": 1,
+      "token": "organisation"
+    }
+  ],
+  "orga": [
+    {
+      "df": 2,
+      "token": "organisations"
+    },
+    {
+      "df": 1,
+      "token": "organisation"
+    }
+  ],
+  "organ": [
+    {
+      "df": 2,
+      "token": "organisations"
+    },
+    {
+      "df": 1,
+      "token": "organisation"
+    }
+  ],
+  "organi": [
+    {
+      "df": 2,
+      "token": "organisations"
+    },
+    {
+      "df": 1,
+      "token": "organisation"
+    }
+  ],
+  "organis": [
+    {
+      "df": 2,
+      "token": "organisations"
+    },
+    {
+      "df": 1,
+      "token": "organisation"
+    }
+  ],
+  "organisa": [
+    {
+      "df": 2,
+      "token": "organisations"
+    },
+    {
+      "df": 1,
+      "token": "organisation"
+    }
+  ],
+  "organisat": [
+    {
+      "df": 2,
+      "token": "organisations"
+    },
+    {
+      "df": 1,
+      "token": "organisation"
+    }
+  ],
+  "organisati": [
+    {
+      "df": 2,
+      "token": "organisations"
+    },
+    {
+      "df": 1,
+      "token": "organisation"
+    }
+  ],
+  "organisatio": [
+    {
+      "df": 2,
+      "token": "organisations"
+    },
+    {
+      "df": 1,
+      "token": "organisation"
+    }
+  ],
+  "organisation": [
+    {
+      "df": 2,
+      "token": "organisations"
+    },
+    {
+      "df": 1,
+      "token": "organisation"
+    }
+  ]
+}

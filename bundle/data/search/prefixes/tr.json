@@ -1,0 +1,164 @@
+{
+  "tra": [
+    {
+      "df": 2,
+      "token": "transaction"
+    },
+    {
+      "df": 1,
+      "token": "training"
+    },
+    {
+      "df": 1,
+      "token": "travel"
+    },
+    {
+      "df": 1,
+      "token": "travel_advice"
+    }
+  ],
+  "trai": [
+    {
+      "df": 1,
+      "token": "training"
+    }
+  ],
+  "train": [
+    {
+      "df": 1,
+      "token": "training"
+    }
+  ],
+  "traini": [
+    {
+      "df": 1,
+      "token": "training"
+    }
+  ],
+  "trainin": [
+    {
+      "df": 1,
+      "token": "training"
+    }
+  ],
+  "training": [
+    {
+      "df": 1,
+      "token": "training"
+    }
+  ],
+  "tran": [
+    {
+      "df": 2,
+      "token": "transaction"
+    }
+  ],
+  "trans": [
+    {
+      "df": 2,
+      "token": "transaction"
+    }
+  ],
+  "transa": [
+    {
+      "df": 2,
+      "token": "transaction"
+    }
+  ],
+  "transac": [
+    {
+      "df": 2,
+      "token": "transaction"
+    }
+  ],
+  "transact": [
+    {
+      "df": 2,
+      "token": "transaction"
+    }
+  ],
+  "transacti": [
+    {
+      "df": 2,
+      "token": "transaction"
+    }
+  ],
+  "transactio": [
+    {
+      "df": 2,
+      "token": "transaction"
+    }
+  ],
+  "transaction": [
+    {
+      "df": 2,
+      "token": "transaction"
+    }
+  ],
+  "trav": [
+    {
+      "df": 1,
+      "token": "travel"
+    },
+    {
+      "df": 1,
+      "token": "travel_advice"
+    }
+  ],
+  "trave": [
+    {
+      "df": 1,
+      "token": "travel"
+    },
+    {
+      "df": 1,
+      "token": "travel_advice"
+    }
+  ],
+  "travel": [
+    {
+      "df": 1,
+      "token": "travel"
+    },
+    {
+      "df": 1,
+      "token": "travel_advice"
+    }
+  ],
+  "travel_": [
+    {
+      "df": 1,
+      "token": "travel_advice"
+    }
+  ],
+  "travel_a": [
+    {
+      "df": 1,
+      "token": "travel_advice"
+    }
+  ],
+  "travel_ad": [
+    {
+      "df": 1,
+      "token": "travel_advice"
+    }
+  ],
+  "travel_adv": [
+    {
+      "df": 1,
+      "token": "travel_advice"
+    }
+  ],
+  "travel_advi": [
+    {
+      "df": 1,
+      "token": "travel_advice"
+    }
+  ],
+  "travel_advic": [
+    {
+      "df": 1,
+      "token": "travel_advice"
+    }
+  ]
+}
