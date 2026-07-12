@@ -24,16 +24,16 @@ Run the independent deterministic verifier as a separate process:
 ```sh
 python3 scripts/build_question_matrix_v2.py \
   --mode release \
-  --corpus corpus/runs/T0/source-records.jsonl.gz \
+  --corpus corpus/records/T0-YYYYMMDD/source-records.jsonl.gz \
   --snapshot-id T0-YYYYMMDD \
   --snapshot-date YYYY-MM-DD \
-  --snapshot-manifest corpus/runs/T0/manifest.json \
-  --reconciliation corpus/runs/T0/reconciliation.json \
+  --snapshot-manifest corpus/records/T0-YYYYMMDD/manifest.json \
+  --reconciliation corpus/reconciliation/T0-YYYYMMDD-hydrated.json \
   --output questions/release-v2
 
 python3 scripts/verify_question_matrix_v2.py \
   --matrix questions/release-v2 \
-  --corpus corpus/runs/T0/source-records.jsonl.gz \
+  --corpus corpus/records/T0-YYYYMMDD/source-records.jsonl.gz \
   --require-release
 ```
 
@@ -43,4 +43,3 @@ the reconciliation is absent or has non-zero unexplained omissions, fewer than
 path, resource, near miss, split, checksum, duplicate or leakage check fails.
 The verifier validates metadata discovery gold only; authoritative body-content
 answers and human preference require their separately authorised evaluation.
-

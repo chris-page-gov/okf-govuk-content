@@ -7,13 +7,14 @@ generated manifest, gold and split decisions as untrusted inputs.
 
 from __future__ import annotations
 
-import gzip
 import hashlib
 import json
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Iterator
+
+from govuk_okf.sharded_jsonl import input_sha256, iter_jsonl_records
 
 VERIFIER_VERSION = "deterministic-corpus-anchor-validator-v2"
 EXPECTED_OPERATIONS = {
@@ -108,15 +109,7 @@ def digest_file(path: Path) -> str:
 
 
 def iter_jsonl(path: Path) -> Iterator[dict[str, Any]]:
-    handle = gzip.open(path, "rt", encoding="utf-8") if path.suffix == ".gz" else path.open("r", encoding="utf-8")
-    with handle:
-        for line_number, line in enumerate(handle, start=1):
-            if not line.strip():
-                continue
-            value = json.loads(line)
-            if not isinstance(value, dict):
-                raise ValueError(f"{path}:{line_number}: expected object")
-            yield value
+    yield from iter_jsonl_records(path)
 
 
 def checked_record(record: dict[str, Any]) -> bool:
@@ -371,7 +364,7 @@ def verify(root: Path, corpus: Path) -> dict[str, Any]:
     manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
     contract = json.loads((root / "contract.json").read_text(encoding="utf-8"))
     verify_manifest(root, manifest, validation)
-    validation.require(digest_file(corpus) == contract.get("snapshot", {}).get("corpus_sha256"), "frozen_corpus_sha256")
+    validation.require(input_sha256(corpus) == contract.get("snapshot", {}).get("corpus_sha256"), "frozen_corpus_sha256")
     gold_records, wanted = collect_gold(root, validation)
     snapshot = contract.get("snapshot", {})
     for question_id, gold_record in gold_records.items():

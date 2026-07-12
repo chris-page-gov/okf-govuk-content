@@ -7,7 +7,6 @@ generator cannot be the sole judge of its own gold labels.
 
 from __future__ import annotations
 
-import gzip
 import hashlib
 import heapq
 import json
@@ -18,6 +17,7 @@ from pathlib import Path
 from typing import Any, Iterable, Iterator
 
 from govuk_okf.question_factory import SUITE_QUOTAS, canonical_json, record_with_checksum, sha256_text
+from govuk_okf.sharded_jsonl import input_sha256, iter_jsonl_records
 
 MATRIX_VERSION = "govuk-question-matrix-v2"
 GENERATOR_VERSION = "deterministic-corpus-anchor-generator-v2"
@@ -114,23 +114,11 @@ class CorpusRecord:
 
 
 def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+    return input_sha256(path)
 
 
 def iter_jsonl(path: Path) -> Iterator[dict[str, Any]]:
-    handle = gzip.open(path, "rt", encoding="utf-8") if path.suffix == ".gz" else path.open("r", encoding="utf-8")
-    with handle:
-        for line_number, line in enumerate(handle, start=1):
-            if not line.strip():
-                continue
-            value = json.loads(line)
-            if not isinstance(value, dict):
-                raise ValueError(f"{path}:{line_number}: source record must be an object")
-            yield value
+    yield from iter_jsonl_records(path)
 
 
 def canonical_url(record: dict[str, Any]) -> str:
