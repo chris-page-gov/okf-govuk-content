@@ -1,0 +1,174 @@
+name: Publish verified release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify-package:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+    outputs:
+      artifact-name: ${{ steps.metadata.outputs.artifact-name }}
+      channel: ${{ steps.metadata.outputs.channel }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Fetch protected main reference
+        run: git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+      - name: Validate annotated release tag and protected-main ancestry
+        id: metadata
+        run: |
+          python3 scripts/check_release_ref.py \
+            --tag "$GITHUB_REF_NAME" \
+            --commit "$GITHUB_SHA" > "$RUNNER_TEMP/release-ref.json"
+          cat "$RUNNER_TEMP/release-ref.json"
+          channel="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["channel"])' < "$RUNNER_TEMP/release-ref.json")"
+          echo "channel=$channel" >> "$GITHUB_OUTPUT"
+          echo "artifact-name=verified-release-${GITHUB_REF_NAME}-${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: python3 -m pip install uv==0.11.8
+      - run: uv sync --frozen --cache-dir .tmp/uv-cache
+      - run: npm ci --prefix semantic
+      - name: Validate repository and release evidence
+        env:
+          RELEASE_CHANNEL: ${{ steps.metadata.outputs.channel }}
+        run: |
+          .venv/bin/python scripts/check_repository_policy.py
+          .venv/bin/python -m unittest discover -s tests -v
+          .venv/bin/python scripts/import_contract.py --check
+          .venv/bin/python scripts/preflight_sources.py --check
+          .venv/bin/python scripts/build_research_assets.py --check
+          .venv/bin/python scripts/check_persona_saturation.py
+          .venv/bin/python scripts/build_status_projections.py --check
+          .venv/bin/python scripts/build_aim_scorecard.py --check
+          .venv/bin/python scripts/check_publication.py
+          .venv/bin/python scripts/build_checksums.py --check
+          .venv/bin/python scripts/build_sbom.py --check
+          .venv/bin/python scripts/validate_semantics.py --require-shard-metadata --check
+          .venv/bin/python scripts/audit_rights_privacy.py --check --require-release
+          npm test --prefix explorer
+          npm test --prefix semantic
+          .venv/bin/python scripts/check_lockstep.py
+          if [[ "$RELEASE_CHANNEL" == "release-candidate" ]]; then
+            .venv/bin/python scripts/check_provenance.py --require-candidate \
+              --output "$RUNNER_TEMP/provenance-validation.json"
+            .venv/bin/python scripts/check_release.py --publication-ready
+          else
+            .venv/bin/python scripts/check_provenance.py --require-release \
+              --output "$RUNNER_TEMP/provenance-validation.json"
+            .venv/bin/python scripts/check_release.py --finalized
+          fi
+          git diff --check
+      - name: Capture full browser evidence from verified checkout bytes
+        run: >-
+          node explorer/tests/browser-evidence.mjs
+          --mode release
+          --bundle bundle
+          --output "$RUNNER_TEMP/browser-validation.json"
+          --iterations 5
+          --generated-at "$(git show -s --format=%cI "$GITHUB_SHA")"
+      - name: Package without rebuilding
+        run: >-
+          .venv/bin/python scripts/package_release.py
+          --tag "$GITHUB_REF_NAME"
+          --channel "${{ steps.metadata.outputs.channel }}"
+          --bundle bundle
+          --browser-evidence "$RUNNER_TEMP/browser-validation.json"
+          --output "$RUNNER_TEMP/verified"
+      - name: Recheck packaged bytes
+        run: .venv/bin/python scripts/package_release.py --check "$RUNNER_TEMP/verified"
+      - name: Create immutable provenance attestations for release assets
+        uses: actions/attest@v4
+        with:
+          subject-path: |
+            ${{ runner.temp }}/verified/verified-artifact.json
+            ${{ runner.temp }}/verified/assets/*
+      - name: Upload verified Release and Pages source
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-release-${{ github.ref_name }}-${{ github.sha }}
+          path: ${{ runner.temp }}/verified
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0
+
+  publish-release:
+    needs: verify-package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      attestations: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Download immutable verified bytes
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.verify-package.outputs.artifact-name }}
+          path: ${{ runner.temp }}/verified
+      - name: Verify bytes and cryptographic provenance before publishing
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/package_release.py --check "$RUNNER_TEMP/verified"
+          for asset in "$RUNNER_TEMP"/verified/assets/* "$RUNNER_TEMP"/verified/verified-artifact.json; do
+            gh attestation verify "$asset" \
+              --repo "$GITHUB_REPOSITORY" \
+              --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/release.yml" \
+              --source-ref "$GITHUB_REF" \
+              --source-digest "$GITHUB_SHA" \
+              --deny-self-hosted-runners
+          done
+      - name: Refuse replacement of an existing release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            echo "release already exists and will not be replaced: $GITHUB_REF_NAME" >&2
+            exit 1
+          fi
+      - name: Publish immutable GitHub Release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_CHANNEL: ${{ needs.verify-package.outputs.channel }}
+        run: |
+          options=(--verify-tag --title "$GITHUB_REF_NAME" --generate-notes)
+          if [[ "$RELEASE_CHANNEL" == "release-candidate" ]]; then
+            options+=(--prerelease)
+          fi
+          gh release create "$GITHUB_REF_NAME" \
+            "$RUNNER_TEMP"/verified/assets/* \
+            "${options[@]}"
+
+  deploy-pages:
+    needs:
+      - verify-package
+      - publish-release
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml
+    with:
+      artifact_name: ${{ needs.verify-package.outputs.artifact-name }}

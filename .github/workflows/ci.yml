@@ -15,9 +15,35 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python3 -m unittest discover -s tests -v
-      - run: python3 scripts/import_contract.py --check
-      - run: python3 scripts/run_controller.py check
-      - run: python3 scripts/preflight_sources.py --check
-      - run: python3 scripts/check_lockstep.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: python3 -m pip install uv==0.11.8
+      - run: uv sync --frozen --cache-dir .tmp/uv-cache
+      - run: npm ci --prefix semantic
+      - run: .venv/bin/python -m unittest discover -s tests -v
+      - run: .venv/bin/python scripts/import_contract.py --check
+      - run: .venv/bin/python scripts/run_controller.py check
+      - run: .venv/bin/python scripts/check_repository_policy.py
+      - run: .venv/bin/python scripts/preflight_sources.py --check
+      - run: .venv/bin/python scripts/build_research_assets.py --check
+      - run: .venv/bin/python scripts/check_persona_saturation.py
+      - run: .venv/bin/python scripts/build_status_projections.py --check
+      - run: .venv/bin/python scripts/build_aim_scorecard.py --check
+      - run: .venv/bin/python scripts/build_bundle.py --check
+      - run: .venv/bin/python scripts/check_publication.py
+      - run: .venv/bin/python scripts/build_checksums.py --check
+      - run: .venv/bin/python scripts/build_sbom.py --check
+      - run: .venv/bin/python scripts/reproduce_release.py --check
+      - run: .venv/bin/python scripts/check_provenance.py
+      - run: .venv/bin/python scripts/validate_semantics.py --require-shard-metadata --check
+      - run: .venv/bin/python scripts/audit_rights_privacy.py --check
+      - run: .venv/bin/python scripts/check_release.py
+      - run: npm test --prefix explorer
+      - name: Real-browser Explorer gate
+        run: npm run test:browser --prefix explorer
+      - run: npm test --prefix semantic
+      - run: .venv/bin/python scripts/check_lockstep.py
+      - name: Clean fixture generation
+        run: .venv/bin/python scripts/build_bundle.py --output "$RUNNER_TEMP/bundle" --generated-at 2026-07-11T23:30:00Z --snapshot-id fixture-2026-07-11
       - run: git diff --check

@@ -1,0 +1,60 @@
+{
+  "schema": "govuk-okf-repository-policy.v1",
+  "repository": "chris-page-gov/okf-govuk-content",
+  "default_branch": "main",
+  "branch_protection": {
+    "api_endpoint": "/repos/chris-page-gov/okf-govuk-content/branches/main/protection",
+    "policy_path": ".github/branch-protection.json",
+    "required_check_contexts": [
+      "validate"
+    ]
+  },
+  "codeowners": {
+    "path": ".github/CODEOWNERS",
+    "required_owner": "@chris-page-gov",
+    "required_patterns": [
+      "*",
+      "/.github/",
+      "/scripts/check_repository_policy.py",
+      "/src/govuk_okf/repository_policy.py"
+    ]
+  },
+  "release": {
+    "candidate_tag_pattern": "^v(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)-rc\\.[1-9][0-9]*$",
+    "final_tag_pattern": "^v(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)$",
+    "require_annotated_tag": true,
+    "signature_policy": "verify_if_present",
+    "require_main_ancestry": true,
+    "candidate_gate": "scripts/check_release.py --publication-ready",
+    "final_gate": "scripts/check_release.py --finalized",
+    "artifact_attestations_required": true,
+    "checksums_required": true,
+    "immutable_artifact_name": "verified-release-${{ github.ref_name }}-${{ github.sha }}",
+    "workflow": ".github/workflows/release.yml"
+  },
+  "release_metadata": {
+    "citation_path": "CITATION.cff",
+    "citation_version_source": "pyproject.toml:project.version",
+    "doi": null
+  },
+  "pages": {
+    "workflow": ".github/workflows/pages.yml",
+    "source": "verified release artifact only",
+    "rebuild_forbidden": true,
+    "post_deploy_smoke_required": true
+  },
+  "workflow_policy": {
+    "allowed_action_owners": [
+      "actions",
+      "github"
+    ],
+    "forbidden_events": [
+      "pull_request_target"
+    ],
+    "forbidden_tokens": [
+      "permissions: write-all",
+      "persist-credentials: true",
+      "--clobber"
+    ]
+  }
+}
