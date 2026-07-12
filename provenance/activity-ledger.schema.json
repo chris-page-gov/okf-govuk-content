@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chris-page-gov.github.io/okf-govuk-content/schemas/activity-ledger.v2.json",
+  "title": "AFHF GOV.UK OKF activity ledger entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ledger_schema_version",
+    "activity_id",
+    "previous_entry_sha256",
+    "status",
+    "work_class",
+    "started_at",
+    "ended_at",
+    "recorded_at",
+    "agent",
+    "prompt",
+    "model",
+    "tool_calls",
+    "source_snapshots",
+    "outputs",
+    "validation",
+    "source_request_usage",
+    "usage",
+    "tokens",
+    "cost_gbp",
+    "external_paid_model_api_calls"
+  ],
+  "properties": {
+    "ledger_schema_version": {"const": "2.0"},
+    "activity_id": {"type": "string", "pattern": "^ACT-[A-Z0-9][A-Z0-9-]*$"},
+    "previous_entry_sha256": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      ]
+    },
+    "status": {
+      "enum": ["completed", "in_progress", "blocked", "failed", "superseded"]
+    },
+    "work_class": {
+      "enum": ["deterministic", "model_assisted", "mixed", "human"]
+    },
+    "started_at": {"$ref": "#/$defs/timeOrUnavailable"},
+    "ended_at": {
+      "oneOf": [
+        {"$ref": "#/$defs/timeOrUnavailable"},
+        {"type": "null"}
+      ]
+    },
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "commit": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^[a-f0-9]{7,40}$"}
+      ]
+    },
+    "supersedes_activity_ids": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^ACT-[A-Z0-9][A-Z0-9-]*$"},
+      "uniqueItems": true
+    },
+    "agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "role", "relationship"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "role": {"type": "string", "minLength": 1},
+        "relationship": {
+          "enum": ["root", "subagent", "deterministic_process", "human"]
+        }
+      }
+    },
+    "prompt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capture_status", "objective", "reference"],
+      "properties": {
+        "capture_status": {
+          "enum": [
+            "exact_verbatim",
+            "reference_only",
+            "bounded_objective_only",
+            "not_applicable"
+          ]
+        },
+        "objective": {"type": "string"},
+        "reference": {"type": ["string", "null"]},
+        "sha256": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+          ]
+        }
+      }
+    },
+    "model": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["provider_product", "family", "exact_version", "parameters", "independence_limit"],
+          "properties": {
+            "provider_product": {"type": "string", "minLength": 1},
+            "family": {"type": "string", "minLength": 1},
+            "exact_version": {"$ref": "#/$defs/knownOrUnavailable"},
+            "parameters": {"$ref": "#/$defs/knownOrUnavailable"},
+            "independence_limit": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    },
+    "tool_calls": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capture_status", "calls"],
+      "properties": {
+        "capture_status": {
+          "enum": ["complete", "known_calls_only", "not_applicable"]
+        },
+        "calls": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["tool", "purpose"],
+            "properties": {
+              "tool": {"type": "string", "minLength": 1},
+              "command": {"type": ["string", "null"]},
+              "purpose": {"type": "string", "minLength": 1},
+              "call_count": {
+                "oneOf": [
+                  {"type": "integer", "minimum": 0},
+                  {"const": "unavailable_to_session"}
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "source_snapshots": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "state"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "state": {"enum": ["produced", "modified", "pending"]},
+          "sha256": {
+            "oneOf": [
+              {"type": "null"},
+              {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+            ]
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capture_status", "results"],
+      "properties": {
+        "capture_status": {"enum": ["complete", "known_results_only", "pending"]},
+        "results": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "source_request_usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "attempts", "budget_ledger", "included_in_model_cost"],
+      "properties": {
+        "status": {"enum": ["not_applicable", "exact", "checkpoint", "pending_final"]},
+        "attempts": {
+          "oneOf": [
+            {"type": "integer", "minimum": 0},
+            {"enum": ["not_applicable", "pending_final"]}
+          ]
+        },
+        "budget_ledger": {"type": ["string", "null"]},
+        "observation_at": {
+          "oneOf": [
+            {"type": "string", "format": "date-time"},
+            {"type": "null"}
+          ]
+        },
+        "included_in_model_cost": {"const": false},
+        "evidence": {"type": ["string", "null"]}
+      }
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["external_paid_model", "product_session"],
+      "properties": {
+        "external_paid_model": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["api_calls", "input_tokens", "output_tokens", "cost_gbp"],
+          "properties": {
+            "api_calls": {"type": "integer", "minimum": 0},
+            "input_tokens": {"type": "integer", "minimum": 0},
+            "output_tokens": {"type": "integer", "minimum": 0},
+            "cost_gbp": {"type": "number", "minimum": 0}
+          }
+        },
+        "product_session": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["input_tokens", "output_tokens", "marginal_cost_gbp"],
+          "properties": {
+            "input_tokens": {"$ref": "#/$defs/nonNegativeOrUnavailable"},
+            "output_tokens": {"$ref": "#/$defs/nonNegativeOrUnavailable"},
+            "marginal_cost_gbp": {"$ref": "#/$defs/nonNegativeNumberOrUnavailable"}
+          }
+        }
+      }
+    },
+    "tokens": {"$ref": "#/$defs/nonNegativeOrUnavailable"},
+    "cost_gbp": {"$ref": "#/$defs/nonNegativeNumberOrUnavailable"},
+    "external_paid_model_api_calls": {"type": "integer", "minimum": 0}
+  },
+  "$defs": {
+    "timeOrUnavailable": {
+      "oneOf": [
+        {"type": "string", "format": "date-time"},
+        {"const": "unavailable_to_session"}
+      ]
+    },
+    "knownOrUnavailable": {
+      "oneOf": [
+        {"type": "object"},
+        {"type": "string", "minLength": 1}
+      ]
+    },
+    "nonNegativeOrUnavailable": {
+      "oneOf": [
+        {"type": "integer", "minimum": 0},
+        {"const": "unavailable"},
+        {"const": "unavailable_in_product_session"}
+      ]
+    },
+    "nonNegativeNumberOrUnavailable": {
+      "oneOf": [
+        {"type": "number", "minimum": 0},
+        {"const": "unavailable"},
+        {"const": "unavailable_in_product_session"}
+      ]
+    }
+  }
+}

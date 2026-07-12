@@ -1,0 +1,97 @@
+{
+  "schema": "afhf-govuk-okf-citation-request-aggregate.v1",
+  "scope": "citation collection, explicit fallbacks and independent semantic-review re-fetches",
+  "started_at": "2026-07-12T07:12:57.554Z",
+  "ended_at": "2026-07-12T07:54:31Z",
+  "attempt_semantics": "One client-level source request is one attempt; redirect hops remain within the initiating attempt.",
+  "runs": [
+    {
+      "id": "complete-verifier-passes",
+      "run_count": 7,
+      "attempts": 725,
+      "http_200": 704,
+      "http_403": 12,
+      "strict_tls_failures": 9,
+      "other": 0,
+      "details": [
+        {
+          "attempts": 104,
+          "occurrences": 3,
+          "result": "101 HTTP 200 sources and one ResearchGate source retried three times per pass"
+        },
+        {
+          "attempts": 108,
+          "occurrences": 1,
+          "result": "99 HTTP 200 sources; both TNA HTML sources and the OpenAI article retried three times"
+        },
+        {
+          "attempts": 103,
+          "occurrences": 1,
+          "result": "100 HTTP 200 sources and the TNA CDN fallback retried three times"
+        },
+        {
+          "attempts": 101,
+          "occurrences": 2,
+          "result": "Every source succeeded on the first attempt"
+        }
+      ]
+    },
+    {
+      "id": "explicit-fallback-probes",
+      "run_count": 5,
+      "attempts": 5,
+      "http_200": 2,
+      "http_403": 1,
+      "strict_tls_failures": 0,
+      "other": 2,
+      "details": [
+        "ResearchGate exact author PDF: HTTP 403",
+        "Crossref DOI record: HTTP 200",
+        "CiteSeerX followed GET: final HTTP 404 after redirect",
+        "CiteSeerX HEAD diagnostic: HTTP 301",
+        "BrowseComp CDN PDF: HTTP 200"
+      ]
+    },
+    {
+      "id": "independent-review-refetches",
+      "run_count": 7,
+      "attempts": 7,
+      "http_200": 7,
+      "http_403": 0,
+      "strict_tls_failures": 0,
+      "other": 0,
+      "details": [
+        "Five BrowseComp evidence fetches",
+        "One Crossref evidence fetch",
+        "One GOV.UK licensing-guide evidence fetch"
+      ]
+    }
+  ],
+  "totals": {
+    "attempts": 737,
+    "http_200": 713,
+    "http_403": 13,
+    "strict_tls_failures": 9,
+    "http_404_after_redirect": 1,
+    "http_301_diagnostic": 1
+  },
+  "accounting_boundaries": {
+    "cmu_strict_tls_attempts": 2,
+    "cmu_accounted_in": "127-attempt plan source preflight",
+    "citation_chain_plus_cmu_attempts": 739,
+    "sandbox_dns_probe": "excluded because it never reached the W3C source",
+    "rejected_reviewer_command_attempts": 0,
+    "product_web_search_internal_fanout": "unavailable and outside this deterministic command-level aggregate"
+  },
+  "terminal_evidence": {
+    "sources": 101,
+    "http_200": 101,
+    "attempts_per_source": 1,
+    "citations_verified": 171,
+    "citations_total": 171,
+    "joint_reviews_verified": 40,
+    "joint_reviews_total": 40,
+    "waivers": 0,
+    "blockers": 0
+  }
+}
