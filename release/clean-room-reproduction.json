@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "a9b4afddbc801d0741e917f6d18922ee9acd6f118bea4016467ccd19e261945e",
-    "before_sha256": "a9b4afddbc801d0741e917f6d18922ee9acd6f118bea4016467ccd19e261945e",
+    "after_sha256": "55bc02faaf3e7bde48bb156af4b1599c051e48f3f1fe54af121158aec220f222",
+    "before_sha256": "55bc02faaf3e7bde48bb156af4b1599c051e48f3f1fe54af121158aec220f222",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -51,8 +51,8 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "549119a24ff32d17da7cfb1beca02a1f10ec4982d2203d399b167c9ad7220480",
-      "stdout_tail": "wrote checksums for 773 files\n"
+      "stdout_sha256": "8304387a7208224c0f02378dbd1e3ed67c87d961c130e92584abdbf90debb56c",
+      "stdout_tail": "wrote checksums for 777 files\n"
     },
     {
       "command": [
@@ -65,8 +65,8 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "aabde134a4790c3461311c29a847a633a4b3b0cd3be21b8aae024767f84df56e",
-      "stdout_tail": "checksums verified for 773 files\n"
+      "stdout_sha256": "fb4333e1419b90787fa70de5d7575d6e9d42086e71382ee1bb57ae23c8065e3a",
+      "stdout_tail": "checksums verified for 777 files\n"
     },
     {
       "command": [
@@ -114,18 +114,124 @@
   },
   "fallbacks": [
     {
+      "attempt_chain": [
+        {
+          "evidence": "planning/PLAN_SOURCE_PREFLIGHT.json#/replaced_candidate",
+          "result": "HTTP 403",
+          "url": "https://dl.acm.org/doi/10.1145/1571941.1572114"
+        },
+        {
+          "evidence": "planning/PLAN_SOURCE_PREFLIGHT.json#/sources",
+          "result": "HTTP 200 identity preflight",
+          "url": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf"
+        }
+      ],
+      "constraint_id": "PLAN-SOURCE-AUTOMATED-ACCESS",
+      "id": "FALLBACK-ACM-RRF-001",
+      "outcome": "The authors' University of Waterloo copy is used as evidence; the DOI remains bibliographic metadata.",
+      "policy": "No access-control bypass was attempted.",
+      "succeeded": true,
+      "trigger": "The ACM landing page for DOI 10.1145/1571941.1572114 returned HTTP 403 to automated preflight.",
+      "used": true
+    },
+    {
+      "attempt_chain": [
+        {
+          "checked_at": "2026-07-11T23:02:40.149327Z",
+          "evidence": "research/source-preflight.json#/plan_source_history/superseded_results",
+          "result": "transport_failed_DH_KEY_TOO_SMALL",
+          "url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf"
+        },
+        {
+          "checked_at": "2026-07-12T07:18:36Z",
+          "evidence": "research/citation-policy.json#/source_access_history",
+          "result": "HTTP 403 for publication record and exact author PDF after three bounded attempts",
+          "url": "https://www.researchgate.net/publication/229101074_Information_Foraging"
+        },
+        {
+          "checked_at": "2026-07-12T07:50:06Z",
+          "document_sha256": "622f5862d0700bd176a09386280aea8e044db82f1dc9d17307c2f59ec55ce0d3",
+          "evidence_id": "EVD-9A1C5A95621D3384",
+          "result": "HTTP 200; bibliographic identity only",
+          "source_id": "SRC-4294AE934D7F240A",
+          "url": "https://api.crossref.org/works/10.1037%2F0033-295X.106.4.643"
+        }
+      ],
       "constraint_id": "SRC-CONSTRAINT-007",
-      "fallback": "A strict-TLS author-uploaded publication record and exact PDF URL were tried after the original server failed modern TLS negotiation.",
       "id": "FALLBACK-CITATION-PIROLLI-001",
-      "outcome": "HTTP 403; dependent citations remain blocked and no access control or TLS policy was bypassed.",
-      "succeeded": false,
+      "outcome": "Crossref supports title, authors, journal, date, pages, publisher and DOI identity only; no section-level full-text claim is released.",
+      "policy": "TLS and access controls were not weakened.",
+      "succeeded": true,
+      "trigger": "The CMU ACT-R PDF failed Python default strict TLS with DH_KEY_TOO_SMALL.",
+      "used": true
+    },
+    {
+      "attempt_chain": [
+        {
+          "checked_at": "2026-07-12T07:38:00Z",
+          "result": "CERTIFICATE_VERIFY_FAILED self-signed chain; no HTTP redirect chain",
+          "source_id": "SRC-4FDEEF30B3509EC8",
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+        },
+        {
+          "checked_at": "2026-07-12T07:38:00Z",
+          "result": "CERTIFICATE_VERIFY_FAILED self-signed chain; no HTTP redirect chain",
+          "source_id": "SRC-C88BCC6FAD040F3C",
+          "url": "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/open-government-licence/exceptions-to-ogl/"
+        },
+        {
+          "checked_at": "2026-07-12T07:41:00Z",
+          "result": "CERTIFICATE_VERIFY_FAILED self-signed chain",
+          "source_id": "SRC-95E81AD99C170883",
+          "url": "https://cdn.nationalarchives.gov.uk/documents/information-management/ogl-user-guidance.pdf"
+        },
+        {
+          "checked_at": "2026-07-12T07:50:09Z",
+          "document_sha256": "28bea8312a5dde0d9f4f678cf173d7eb0950533b2e6c345fb8d5bff9cfd1abc1",
+          "evidence_id": "EVD-98E4DAE33C3876E1",
+          "result": "HTTP 200 under strict TLS; no redirects",
+          "source_id": "SRC-613122E13409B137",
+          "url": "https://www.gov.uk/government/publications/knowledge-asset-commercialisation-guide/the-knowledge-asset-commercialisation-guide"
+        }
+      ],
+      "constraint_id": "SRC-CONSTRAINT-006",
+      "id": "FALLBACK-TNA-OGL-001",
+      "outcome": "The current GOV.UK Knowledge Asset Commercialisation Guide sections 7.5 and 7.6 support the OGL default, characteristics and exclusions.",
+      "policy": "Certificate verification was not weakened; failed National Archives sources remain visible.",
+      "succeeded": true,
+      "trigger": "The National Archives OGL and exceptions HTML sources presented a self-signed certificate in Python's default strict chain.",
+      "used": true
+    },
+    {
+      "attempt_chain": [
+        {
+          "checked_at": "2026-07-12T07:38:00Z",
+          "result": "HTTP 403; no bypass",
+          "source_id": "SRC-785ECA3E6476B4A3",
+          "url": "https://openai.com/index/browsecomp/"
+        },
+        {
+          "checked_at": "2026-07-12T07:50:16Z",
+          "document_sha256": "1bd473341db82cb66ad7cdff3ee911f9d157c083bad08d33440fa7244a4b1916",
+          "evidence_id": "EVD-D05CA22CE65F0282",
+          "result": "HTTP 200 under strict TLS; no redirects",
+          "source_id": "SRC-AD94BC9AC99DF114",
+          "url": "https://cdn.openai.com/pdf/5e10f4ab-d6f7-442e-9508-59515c65e35d/browsecomp.pdf"
+        }
+      ],
+      "constraint_id": "CITATION-SOURCE-ACCESS",
+      "id": "FALLBACK-OPENAI-BROWSECOMP-001",
+      "outcome": "The official OpenAI CDN paper supplies the release evidence.",
+      "policy": "No access-control bypass was attempted.",
+      "succeeded": true,
+      "trigger": "The OpenAI BrowseComp article returned HTTP 403 to the identified verifier.",
       "used": true
     }
   ],
   "fixture_reproduction_passed": true,
   "generated_at": "2026-07-11T23:30:00Z",
   "inputs": {
-    "component_count": 26,
+    "component_count": 30,
     "components": [
       {
         "bytes": 1652,
@@ -134,16 +240,16 @@
         "tree_sha256": "5074788418fb13578520e4b3e81fbadf54ddded0d913b2eb9509b35150ac8ea0"
       },
       {
-        "bytes": 1091,
+        "bytes": 1911,
         "file_count": 1,
         "path": "governance/launch-manifest.yaml",
-        "tree_sha256": "9039e30f2e981f646f1bb4145d278d497f31ec62fcd33c10ee991fc743a9ad23"
+        "tree_sha256": "7dbe7dad911986990172b3a5216b4818c129b60c05a4f785eb48a7c3b5e89294"
       },
       {
-        "bytes": 669,
+        "bytes": 1798,
         "file_count": 1,
         "path": "orchestration/models.lock.yaml",
-        "tree_sha256": "42bd854ce458e3209ebd991a3d2c4af1741faa8e1f6ea8b3cf31f63a96e81d1f"
+        "tree_sha256": "6b5317df6359b40ad98119bd9098de213e8b66f1062c01f7419c9d7be76c6047"
       },
       {
         "bytes": 578,
@@ -152,22 +258,40 @@
         "tree_sha256": "0e7f1b4dc121977ae4a7a816c55a4bd12e3cd31758562b025b12f5b127c3fc06"
       },
       {
-        "bytes": 2341,
+        "bytes": 44759,
         "file_count": 1,
         "path": "provenance/activity-ledger.jsonl",
-        "tree_sha256": "5f8b73a616c3d190625cb25435ceee77885bc9cf61abb15e90750a44c4601562"
+        "tree_sha256": "8471ec1e0321cdf3665a984b3cda95ce9ec2431605d4f909b2c126f19f7f7431"
       },
       {
-        "bytes": 2831,
+        "bytes": 7999,
+        "file_count": 1,
+        "path": "provenance/activity-ledger.schema.json",
+        "tree_sha256": "8cb5b69781abb1fbf99921c2bf331a8315a54915e03d472cff74e11514174893"
+      },
+      {
+        "bytes": 11675,
         "file_count": 1,
         "path": "provenance/reproduction-declarations.json",
-        "tree_sha256": "0ad60993c6e1250eaa0104d973029b50f64dc7a3797e512cbb6a64bbcac74572"
+        "tree_sha256": "65e1e06c20926482e16cf1d3dd4cbb0aadffd832f948a68ab745dbb266886fb7"
       },
       {
-        "bytes": 963,
+        "bytes": 1273,
+        "file_count": 1,
+        "path": "provenance/source-request-budget.json",
+        "tree_sha256": "f4b4cbbae1a2bb985bb5ec351663777f6a38de8cad59d3619e4537fca3026e2f"
+      },
+      {
+        "bytes": 11158,
+        "file_count": 1,
+        "path": "release/provenance-validation.json",
+        "tree_sha256": "925799e9d1d0966bbb006b990671afc27da8eb6501269f3864a1c4eced0abbaf"
+      },
+      {
+        "bytes": 1574,
         "file_count": 1,
         "path": "release/manifest.yaml",
-        "tree_sha256": "b8f298d1c5b883d5aa603ea6b53cac57cea90291d0bcb844bd483f8be5ead454"
+        "tree_sha256": "8f8b76adab0651d4e1090e097c0a3d8e490d0f096ff9e356be23b470ed20d7d7"
       },
       {
         "bytes": 7423,
@@ -182,10 +306,10 @@
         "tree_sha256": "5eff26615be089f5d22a8cc72d82f4b1ff7136ac776652b443a079598b566702"
       },
       {
-        "bytes": 743796,
-        "file_count": 21,
+        "bytes": 852905,
+        "file_count": 26,
         "path": "src",
-        "tree_sha256": "fa2f8e0febe9ccc18132dc715f64e27ea4be6680db8ee6b007bb0cc24d6b517d"
+        "tree_sha256": "b1ebef335691cc25156b705606d79ecbacb22104218ef1af7277b9c8588a00da"
       },
       {
         "bytes": 1652,
@@ -212,16 +336,22 @@
         "tree_sha256": "41fe9d143ef6498121f144e4f42d77e6134669a43c0bcec92843a7f4e041a014"
       },
       {
-        "bytes": 25572,
+        "bytes": 40110,
         "file_count": 1,
-        "path": "scripts/check_release.py",
-        "tree_sha256": "95d1aa8c028e733e05308e05d7101c90551553d1c210e0526c0b43b3441deb3a"
+        "path": "scripts/check_provenance.py",
+        "tree_sha256": "bd78690a78b9e9aaaa269256129a261fe3af487746b53cafddc6fd98dc58f734"
       },
       {
-        "bytes": 29331,
+        "bytes": 48655,
+        "file_count": 1,
+        "path": "scripts/check_release.py",
+        "tree_sha256": "0a01068d00cf6e92f8f2dd6b09c2c189f8fe5a2bed593907317c44d4adbbeb93"
+      },
+      {
+        "bytes": 32170,
         "file_count": 1,
         "path": "scripts/reproduce_release.py",
-        "tree_sha256": "1f0dbcce3cdef929a07362a3b331ad1f80446dc6d7f6f235bdd754061aacdd35"
+        "tree_sha256": "aa978295998c4b26844d92222d34b55375520f1abf55be56e8ba143e7613b9ae"
       },
       {
         "bytes": 805,
@@ -266,10 +396,10 @@
         "tree_sha256": "a856a2fc2266de8205901fae641c34d2166584b9460cd6670e5a028e0161e692"
       },
       {
-        "bytes": 116376,
-        "file_count": 9,
+        "bytes": 130815,
+        "file_count": 13,
         "path": "explorer/src",
-        "tree_sha256": "1f88660d0aaada8902234575af28ec4da0ad679ebb26b328c197583afe927ea5"
+        "tree_sha256": "f489a7e49c519e719a8ff73f4cb2437d2ec3f42e8fc216bb4f4241e1e155d24d"
       },
       {
         "bytes": 47929,
@@ -286,27 +416,38 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "56d5b2f97cf45882f87342079865629e5eeee430fd023945fe04be0ca9030106"
+    "tree_sha256": "88f731d400c79bc65e808535b56bfe5d5de488c8a714a258f04b28da6b0cd487"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
-      "activities": 4,
-      "activities_with_unavailable_cost": 3,
-      "activities_with_unavailable_tokens": 3,
+      "activities": 21,
+      "activities_with_unavailable_cost": 15,
+      "activities_with_unavailable_tokens": 15,
       "external_paid_model_api_calls": 0,
+      "external_paid_model_cost_gbp": 0.0,
+      "external_paid_model_input_tokens": 0,
+      "external_paid_model_output_tokens": 0,
       "known_cost_gbp": 0.0,
       "known_tokens": 0,
-      "ledger_sha256": "aeb3a90d7f2684d7e6144d3bc63be665850edc3c6d5ef01a81bb7e8e5eb31fb6"
+      "latest_source_request_checkpoint": 4283,
+      "ledger_sha256": "cb20de37494a2ffe18ecec765a79160706b544d9f27b28c9627542cee21666d8",
+      "source_request_activities_pending_final_count": 2,
+      "source_request_exact_attempts": 11579,
+      "source_requests_included_in_model_cost": false
     },
     "declaration": {
       "activity_ledger": "provenance/activity-ledger.jsonl",
+      "external_paid_model_api_calls_for_programme_to_checkpoint": 0,
       "external_paid_model_api_calls_for_reproduction": 0,
+      "external_paid_model_cost_gbp_for_programme_to_checkpoint": 0,
       "external_paid_model_cost_gbp_for_reproduction": 0,
       "model_assistance_for_reproduction": false,
       "product_session_exact_backend_version": "unavailable_to_session",
       "product_session_marginal_cost": "unavailable_in_product_session",
       "product_session_tokens": "unavailable_in_product_session",
-      "rule": "Unavailable product-session usage is never restated as zero; deterministic reproduction itself records exact zero model calls, tokens and marginal model cost."
+      "rule": "Unavailable product-session usage is never restated as zero; deterministic reproduction itself records exact zero model calls, tokens and marginal model cost.",
+      "source_request_budget": "provenance/source-request-budget.json",
+      "source_requests_are_model_cost": false
     }
   },
   "network": {
@@ -319,17 +460,17 @@
   "outputs": {
     "bundle": {
       "actual": {
-        "bytes": 944361,
-        "file_count": 774,
-        "tree_sha256": "fb29d570b3490d9f54c4e010827ae352a2d9e1c64e05c7efb9936061a4605218"
+        "bytes": 959403,
+        "file_count": 778,
+        "tree_sha256": "1247cd4b58fe985ddea11c3de7b8c819f3903392f9dc53bd6d52797e26757208"
       },
       "difference_count": 0,
       "differences": [],
       "exact_match": true,
       "expected": {
-        "bytes": 944361,
-        "file_count": 774,
-        "tree_sha256": "fb29d570b3490d9f54c4e010827ae352a2d9e1c64e05c7efb9936061a4605218"
+        "bytes": 959403,
+        "file_count": 778,
+        "tree_sha256": "1247cd4b58fe985ddea11c3de7b8c819f3903392f9dc53bd6d52797e26757208"
       }
     },
     "sbom": {
@@ -340,7 +481,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-12T07:52:13Z",
+  "recorded_at": "2026-07-12T15:21:50Z",
   "release_input_failures": [
     "release kind is a fixture checkpoint",
     "snapshot is not an unsampled full corpus",
