@@ -1,0 +1,31 @@
+{
+  "canonical_sha256": "f8fa9825fb5a5b7de11d49ca43de6d88084b767870bb426d654f06566658bbc9",
+  "max_compressed_bytes_per_shard": 52428800,
+  "max_records_per_shard": 10000,
+  "max_uncompressed_bytes_per_shard": 33554432,
+  "records": 27707,
+  "schema": "govuk-okf-jsonl-shards.v1",
+  "shards": [
+    {
+      "bytes": 1225109,
+      "canonical_sha256": "66f4cf5c3c5afcd4e5cc0546de5e01ea4130c6d6246ad9e07d95f7931bd2a49b",
+      "file_sha256": "560cefe83cc6094be91a626b8bcf652d25e3358a9356fd0a15fe0e64945c23db",
+      "path": "part-00000.jsonl.gz",
+      "records": 10000
+    },
+    {
+      "bytes": 1223185,
+      "canonical_sha256": "9a056a663b9842ce31b4b4ad2b23e3e79e3807883ae09aa0816145e1a87ff0bf",
+      "file_sha256": "3e4d0fcb0d70aa07d5af313ed926f407330a6209a592ea1227dc79d5b5381d2e",
+      "path": "part-00001.jsonl.gz",
+      "records": 10000
+    },
+    {
+      "bytes": 941390,
+      "canonical_sha256": "edeaea17972b80a6b8baf51d5725e482a7e41723e50f65d6a8f4ac567d8dfaff",
+      "file_sha256": "e9946eb6735bb9d3a9d061b8043fe7ce3e56a940d5a478ad883436de1ce05e1d",
+      "path": "part-00002.jsonl.gz",
+      "records": 7707
+    }
+  ]
+}
