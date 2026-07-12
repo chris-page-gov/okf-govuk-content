@@ -1,15 +1,35 @@
 {
   "archetype_class": "professional_intermediary",
+  "capabilities_and_context": [
+    "channel:human_self_service",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_self_service",
-  "checksum": "039686a9350135e5f5f85bb7e180ae75dd7fee69d55388219238c61b3687418b",
+  "checksum": "c6892b5c936569837da2aa386dbb335685d0bfad3fcf8facdc54944931f5aa70",
+  "constraints": [
+    "overlay:structured-output",
+    "overlay:accessibility-review"
+  ],
   "context": "The publisher needs schema-aware evidence and must preserve canonical and replacement relationships.",
   "evidence_ids": [
     "ev-content-schemas",
     "ev-content-api"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "understand record types, relationships and publishing consequences",
+  "jobs_to_be_done": [
+    "understand record types, relationships and publishing consequences"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,25 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-content-publisher",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-accessibility-testing",
+    "ev-content-api",
+    "ev-mcp-resources",
+    "ev-wcag"
+  ],
   "overlay_ids": [
     "structured-output",
     "accessibility-review"
   ],
   "persona_id": "persona-professional-content-publisher",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "understand record types, relationships and publishing consequences",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +64,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Government content publisher"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Government content publisher",
+  "trigger": "The publisher needs schema-aware evidence and must preserve canonical and replacement relationships.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

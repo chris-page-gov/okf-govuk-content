@@ -1,0 +1,35 @@
+{
+  "checks": {
+    "actor_families": 4,
+    "agent_system_personas": 12,
+    "high_harm_personas": 40,
+    "high_risk_tway_scenarios": 5,
+    "overlay_pairs": 136,
+    "risk_strata": 3
+  },
+  "checksum": "5f6b63c306255fc5ba48cc4796bbb728f2268834810cfa8745a72ccee04a3ad1",
+  "findings": [],
+  "held_out_from": [
+    "pass-01 controlling clause",
+    "pass-02 schema and question contracts"
+  ],
+  "independence": "method_and_input_partition_independent_only",
+  "independence_limit": "The covering array proves scenario enumeration only; compatibility, prevalence and human validity remain untested.",
+  "input_artifacts": [
+    {
+      "path": "personas/seed.json",
+      "sha256": "47577dc27d2a089126786c3cf3cb62cba6bd9411995ec6000852a7aa942d63a7"
+    },
+    {
+      "overlay_covering_array_sha256": "1a7fb5bb6b0ad896a313fa2d6d9dab38eac206c3ae059ed6acf82d09a8d1a639"
+    }
+  ],
+  "input_partition": "actor families, risk strata, agent involvement, exhaustive overlay pairs and explicit high-risk triples",
+  "method": "held_out_actor_risk_agent_and_overlay_intersection_challenge",
+  "novel_fraction": 0.0,
+  "novel_valid_use_classes": 0,
+  "pass_id": "persona-gap-pass-03-high-harm-intersections",
+  "result": "no_new_machine_evidenced_dimension_or_use_class",
+  "schema_version": 1,
+  "sequence": 3
+}

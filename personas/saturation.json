@@ -1,0 +1,129 @@
+{
+  "acceptance_gate": "GATE-05-personas",
+  "as_of": "2026-07-12",
+  "challenge_passes": [
+    {
+      "novel_valid_use_classes": 1,
+      "pass_id": "persona-gap-pass-01-contract",
+      "path": "personas/challenges/persona-gap-pass-01-contract.json",
+      "result": "gap_found_and_resolved",
+      "sha256": "cc382aecbbabc456301249fa93cea3d08231614e807f593a7565741b7ccef689"
+    },
+    {
+      "novel_valid_use_classes": 0,
+      "pass_id": "persona-gap-pass-02-schema-question-contract",
+      "path": "personas/challenges/persona-gap-pass-02-schema-question-contract.json",
+      "result": "no_new_machine_evidenced_dimension_or_use_class",
+      "sha256": "0544119e21dff22c108507c82ef80e985b14b35885dd49575cd7b074065cf982"
+    },
+    {
+      "novel_valid_use_classes": 0,
+      "pass_id": "persona-gap-pass-03-high-harm-intersections",
+      "path": "personas/challenges/persona-gap-pass-03-high-harm-intersections.json",
+      "result": "no_new_machine_evidenced_dimension_or_use_class",
+      "sha256": "4e46d99c94fdf263bac70823cce957f72d8f0750bdd1c20d6d73303c1e83b902"
+    }
+  ],
+  "checksum": "a8bf6935c5a7088f4af6782fcf2bb1368081d57bef4e90d463a201ed82a8cc70",
+  "claim_boundary": "This closes machine-applicable dimensional, challenge and scenario enumeration only. It makes no UI-of-choice, preference, prevalence or observed-user claim.",
+  "coverage_matrix": {
+    "path": "personas/coverage-matrix.json",
+    "sha256": "da386424615b45ca344b8936e130e349e880bdb8de4fb92a8a439636a7cd1ae1",
+    "unexplained_machine_dimension_gaps": []
+  },
+  "current_overlays": 17,
+  "fallbacks_used": [
+    "The controlling plan supplied the privacy-sensitive hypothesis when direct-observation data was unavailable.",
+    "Pinned schema families and generator contracts supplied deterministic machine coverage without pretending to be observed use.",
+    "Exhaustive overlay pairs and explicit high-risk triples replaced an unverified claim of empirical intersectional saturation."
+  ],
+  "human_ui_preference_status": "not_yet_testable",
+  "human_validation_status": "not_authorised_not_run",
+  "independence_limit": "Passes use disjoint inputs and methods but share one deterministic repository implementation. They are not independent participant evidence or independent human/model adjudication.",
+  "initial_overlays": 16,
+  "licensing_and_fair_use_triggers": [
+    "No page, attachment or participant-data body was read, retained or republished for this saturation build.",
+    "External references remain links and short metadata; any later evidence snapshot remains subject to the rights gate.",
+    "Final question anchors may expose item-level third-party review triggers and must retain source links only."
+  ],
+  "machine_applicable_gate_status": "passed",
+  "model_usage": {
+    "design_assistance": {
+      "accounting_status": "recorded_unknown_not_zero",
+      "cost_gbp": "unavailable_to_repository_process",
+      "exact_model_id": "unavailable_to_repository_process",
+      "input_tokens": "unavailable_to_repository_process",
+      "output_tokens": "unavailable_to_repository_process",
+      "role": "Codex collaborating implementation agent"
+    },
+    "deterministic_generation": {
+      "cost_gbp": 0.0,
+      "input_tokens": 0,
+      "model_calls": 0,
+      "output_tokens": 0
+    }
+  },
+  "new_overlay_hypotheses": [
+    "privacy-sensitive-context"
+  ],
+  "overlay_covering_array": {
+    "high_risk_tway_scenarios": 5,
+    "pair_scenarios": 136,
+    "pairwise_strength": 2,
+    "path": "personas/overlay-covering-array.json",
+    "sha256": "1a7fb5bb6b0ad896a313fa2d6d9dab38eac206c3ae059ed6acf82d09a8d1a639"
+  },
+  "primary_personas": 48,
+  "required_dimensions": [
+    "actor",
+    "goal",
+    "journey_stage",
+    "content_service_type",
+    "relationship_need",
+    "jurisdiction",
+    "language",
+    "accessibility_need",
+    "device_context",
+    "urgency_risk",
+    "agent_involvement"
+  ],
+  "requirements": [
+    "REQ-049",
+    "REQ-050",
+    "REQ-051",
+    "REQ-052",
+    "REQ-053",
+    "REQ-054",
+    "REQ-055",
+    "REQ-056",
+    "REQ-057",
+    "REQ-058"
+  ],
+  "residual_known_gaps": [
+    "No authorised participant research validates the personas, overlays or their compatibility/prevalence.",
+    "No authorised query/support/contact corpus was available for direct-observation saturation.",
+    "Final corpus type frequencies and long-tail anchors remain unknown until T0/T1 closes.",
+    "The privacy-sensitive overlay is a controlling-contract hypothesis, not an observed population result.",
+    "Final release-v2 stories and questions must be regenerated and independently verified against the closing snapshot.",
+    "Evidence locator and claim-support verification remains the separate F2 citation gate."
+  ],
+  "saturation_id": "govuk-persona-machine-saturation-v1",
+  "schema_version": 1,
+  "source_access_restrictions": [
+    "Participant research and de-identified query/support/contact themes were not authorised or supplied.",
+    "Most persona references remain URL-identity evidence pending the separate locator/support gate.",
+    "Final-corpus frequencies and long-tail anchors are unavailable until the T0/T1 snapshot closes."
+  ],
+  "stopping_rule": {
+    "passed": true,
+    "qualifying_novel_fractions": [
+      0.0,
+      0.0
+    ],
+    "qualifying_pass_ids": [
+      "persona-gap-pass-02-schema-question-contract",
+      "persona-gap-pass-03-high-harm-intersections"
+    ],
+    "required_successive_below_one_percent_passes": 2
+  }
+}

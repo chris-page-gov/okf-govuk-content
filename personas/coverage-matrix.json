@@ -1,0 +1,2756 @@
+{
+  "as_of": "2026-07-12",
+  "cells": [
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "actor",
+      "persona_count": 12,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent"
+      ],
+      "value": "agent_system"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "actor",
+      "persona_count": 8,
+      "persona_ids": [
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant"
+      ],
+      "value": "business_organisation"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "actor",
+      "persona_count": 10,
+      "persona_ids": [
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher"
+      ],
+      "value": "professional_intermediary"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "actor",
+      "persona_count": 18,
+      "persona_ids": [
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "public_life_event"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "goal",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "check_lifecycle"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "goal",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "compare_decide"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "goal",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "determine_applicability"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "goal",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "explain_define"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "goal",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "follow_process"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "goal",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "handle_ambiguity"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "goal",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "locate_known_item"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "goal",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "obtain_resource"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "goal",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "traverse_relationships"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "goal",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "verify_provenance"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "journey_stage",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "known-item"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "journey_stage",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "language-jurisdiction-boundary"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "journey_stage",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "lifecycle-and-freshness"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "journey_stage",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "publisher-and-provenance"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "journey_stage",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "relationship-path"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "journey_stage",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "resource-and-representation"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-accessibility-specialist"
+      ],
+      "value": "answer"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-data-api-discovery-agent"
+      ],
+      "value": "calendar"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-policy-official"
+      ],
+      "value": "call_for_evidence"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-business-supplier-grant-applicant"
+      ],
+      "value": "case_study"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-transaction-handoff-agent"
+      ],
+      "value": "completed_transaction"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-policy-official"
+      ],
+      "value": "consultation"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-urgent-high-stakes-user"
+      ],
+      "value": "contact"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-crawler-indexer-agent"
+      ],
+      "value": "content_block"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-immigration-citizenship-user"
+      ],
+      "value": "coronavirus_landing_page"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-government-caseworker"
+      ],
+      "value": "corporate_information_page"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-policy-legal-research-agent"
+      ],
+      "value": "detailed_guide"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-policy-legal-research-agent"
+      ],
+      "value": "document_collection"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-crawler-indexer-agent"
+      ],
+      "value": "email_alert_signup"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "embassies_index"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-crawler-indexer-agent"
+      ],
+      "value": "external_content"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-navigation-agent"
+      ],
+      "value": "facet"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-government-caseworker"
+      ],
+      "value": "fatality_notice"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "field_of_operation"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "fields_of_operation"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-navigation-agent"
+      ],
+      "value": "finder"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-justice-rights-user"
+      ],
+      "value": "finder_email_signup"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 24,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "generic"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-crawler-indexer-agent"
+      ],
+      "value": "generic_with_external_related_links"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-policy-official"
+      ],
+      "value": "get_involved"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-change-monitor-agent"
+      ],
+      "value": "gone"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-driver-traveller"
+      ],
+      "value": "government"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-content-publisher"
+      ],
+      "value": "guide"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-analyst-statistician"
+      ],
+      "value": "help_page"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-change-monitor-agent"
+      ],
+      "value": "historic_appointment"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-change-monitor-agent"
+      ],
+      "value": "historic_appointments"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-change-monitor-agent"
+      ],
+      "value": "history"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-tax-pensions-user"
+      ],
+      "value": "hmrc_manual"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-tax-pensions-user"
+      ],
+      "value": "hmrc_manual_section"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-overseas-visitor"
+      ],
+      "value": "homepage"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-government-caseworker"
+      ],
+      "value": "how_government_works"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-policy-legal-research-agent"
+      ],
+      "value": "html_publication"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-frontline-adviser"
+      ],
+      "value": "landing_page"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-transaction-handoff-agent"
+      ],
+      "value": "licence"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-navigation-agent"
+      ],
+      "value": "link_collection"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-transaction-handoff-agent"
+      ],
+      "value": "local_transaction"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-navigation-agent"
+      ],
+      "value": "mainstream_browse_page"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-policy-legal-research-agent"
+      ],
+      "value": "manual"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-policy-legal-research-agent"
+      ],
+      "value": "manual_section"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-government-activity-follower"
+      ],
+      "value": "ministers_index"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-journalist-archivist-auditor"
+      ],
+      "value": "news_article"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-government-activity-follower"
+      ],
+      "value": "organisation"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-government-activity-follower"
+      ],
+      "value": "organisations_homepage"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-government-activity-follower"
+      ],
+      "value": "person"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-learner-education-user"
+      ],
+      "value": "place"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-business-importer-exporter"
+      ],
+      "value": "plan_for_change_landing_page"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-policy-legal-research-agent"
+      ],
+      "value": "publication"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-change-monitor-agent"
+      ],
+      "value": "redirect"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-government-activity-follower"
+      ],
+      "value": "role"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-government-activity-follower"
+      ],
+      "value": "role_appointment"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-content-publisher"
+      ],
+      "value": "service_manual_guide"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-content-publisher"
+      ],
+      "value": "service_manual_homepage"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-content-publisher"
+      ],
+      "value": "service_manual_service_standard"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-content-publisher"
+      ],
+      "value": "service_manual_service_toolkit"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-content-publisher"
+      ],
+      "value": "service_manual_topic"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-transaction-handoff-agent"
+      ],
+      "value": "simple_smart_answer"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-transaction-handoff-agent"
+      ],
+      "value": "smart_answer"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-analyst-statistician"
+      ],
+      "value": "special_route"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-policy-legal-research-agent"
+      ],
+      "value": "specialist_document"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-journalist-archivist-auditor"
+      ],
+      "value": "speech"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-analyst-statistician"
+      ],
+      "value": "statistical_data_set"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-analyst-statistician"
+      ],
+      "value": "statistics_announcement"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-navigation-agent"
+      ],
+      "value": "step_by_step_nav"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-change-monitor-agent"
+      ],
+      "value": "substitute"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-policy-official"
+      ],
+      "value": "take_part"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-navigation-agent"
+      ],
+      "value": "taxon"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-journalist-archivist-auditor"
+      ],
+      "value": "topical_event"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-journalist-archivist-auditor"
+      ],
+      "value": "topical_event_about_page"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-transaction-handoff-agent"
+      ],
+      "value": "transaction"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-driver-traveller"
+      ],
+      "value": "travel_advice"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-driver-traveller"
+      ],
+      "value": "travel_advice_index"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-agent-change-monitor-agent"
+      ],
+      "value": "vanish"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-professional-policy-official"
+      ],
+      "value": "working_group"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "world_index"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "world_location"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "world_location_news"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "worldwide_corporate_information_page"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "worldwide_office"
+    },
+    {
+      "coverage_status": "development_schema_mapping_final_snapshot_anchor_pending",
+      "dimension": "content_service_type",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "worldwide_organisation"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "relationship_need",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "attachment_data_and_machine_representation"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "relationship_need",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "canonical_identity_and_route"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "relationship_need",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "language_jurisdiction_and_authoritative_handoff"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "relationship_need",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "lifecycle_redirect_and_replacement"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "relationship_need",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "publisher_owner_and_provenance"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "relationship_need",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "source_native_hierarchy_taxonomy_and_collection"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "jurisdiction",
+      "persona_count": 5,
+      "persona_ids": [
+        "persona-professional-local-public-service-officer",
+        "persona-public-benefits-support-claimant",
+        "persona-public-housing-local-services-user",
+        "persona-public-learner-education-user",
+        "persona-public-parent-carer"
+      ],
+      "value": "England"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "jurisdiction",
+      "persona_count": 1,
+      "persona_ids": [
+        "persona-public-justice-rights-user"
+      ],
+      "value": "England and Wales"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "jurisdiction",
+      "persona_count": 4,
+      "persona_ids": [
+        "persona-public-benefits-support-claimant",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-parent-carer"
+      ],
+      "value": "Northern Ireland"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "jurisdiction",
+      "persona_count": 4,
+      "persona_ids": [
+        "persona-public-benefits-support-claimant",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-parent-carer"
+      ],
+      "value": "Scotland"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "jurisdiction",
+      "persona_count": 42,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "UK"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "jurisdiction",
+      "persona_count": 5,
+      "persona_ids": [
+        "persona-professional-local-public-service-officer",
+        "persona-public-benefits-support-claimant",
+        "persona-public-housing-local-services-user",
+        "persona-public-learner-education-user",
+        "persona-public-parent-carer"
+      ],
+      "value": "Wales"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "jurisdiction",
+      "persona_count": 5,
+      "persona_ids": [
+        "persona-business-importer-exporter",
+        "persona-public-driver-traveller",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-overseas-visitor",
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "overseas"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "language",
+      "persona_count": 3,
+      "persona_ids": [
+        "persona-public-immigration-citizenship-user",
+        "persona-public-overseas-visitor",
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "other_language_or_translation_support"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "language",
+      "persona_count": 48,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "source_declared_language"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "language",
+      "persona_count": 3,
+      "persona_ids": [
+        "persona-professional-local-public-service-officer",
+        "persona-public-learner-education-user",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "welsh_language_route"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "accessibility_need",
+      "persona_count": 3,
+      "persona_ids": [
+        "persona-professional-accessibility-specialist",
+        "persona-professional-content-publisher",
+        "persona-professional-service-user-researcher"
+      ],
+      "value": "accessibility-review"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "accessibility_need",
+      "persona_count": 5,
+      "persona_ids": [
+        "persona-business-charity-community-body",
+        "persona-professional-service-user-researcher",
+        "persona-public-housing-local-services-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-urgent-high-stakes-user"
+      ],
+      "value": "assisted-digital"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "accessibility_need",
+      "persona_count": 4,
+      "persona_ids": [
+        "persona-business-sme-employer",
+        "persona-public-bereaved-person",
+        "persona-public-learner-education-user",
+        "persona-public-tax-pensions-user"
+      ],
+      "value": "cognitive-access"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "accessibility_need",
+      "persona_count": 30,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-commercial-data-reuser",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-professional-analyst-statistician",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-driver-traveller",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "cross_cutting_access_overlay_not_profile_specific"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "accessibility_need",
+      "persona_count": 2,
+      "persona_ids": [
+        "persona-business-founder-sole-trader",
+        "persona-public-routine-resident"
+      ],
+      "value": "low-digital-confidence"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "accessibility_need",
+      "persona_count": 3,
+      "persona_ids": [
+        "persona-business-charity-community-body",
+        "persona-public-benefits-support-claimant",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "low-literacy"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "accessibility_need",
+      "persona_count": 4,
+      "persona_ids": [
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user"
+      ],
+      "value": "screen-reader-keyboard"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "device_context",
+      "persona_count": 5,
+      "persona_ids": [
+        "persona-business-charity-community-body",
+        "persona-professional-service-user-researcher",
+        "persona-public-housing-local-services-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-urgent-high-stakes-user"
+      ],
+      "value": "assisted-digital"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "device_context",
+      "persona_count": 15,
+      "persona_ids": [
+        "persona-business-charity-community-body",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-local-public-service-officer",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-parent-carer",
+        "persona-public-urgent-high-stakes-user"
+      ],
+      "value": "assisted_or_intermediary_context"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "device_context",
+      "persona_count": 19,
+      "persona_ids": [
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-content-publisher",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-learner-education-user",
+        "persona-public-overseas-visitor",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "human_self_service_context"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "device_context",
+      "persona_count": 6,
+      "persona_ids": [
+        "persona-business-importer-exporter",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-uk-national-abroad"
+      ],
+      "value": "low-bandwidth"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "device_context",
+      "persona_count": 14,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-commercial-data-reuser",
+        "persona-professional-analyst-statistician"
+      ],
+      "value": "machine_to_machine_context"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "device_context",
+      "persona_count": 2,
+      "persona_ids": [
+        "persona-public-driver-traveller",
+        "persona-public-overseas-visitor"
+      ],
+      "value": "mobile-only"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "device_context",
+      "persona_count": 8,
+      "persona_ids": [
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-public-benefits-support-claimant",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-parent-carer"
+      ],
+      "value": "privacy-sensitive-context"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "device_context",
+      "persona_count": 8,
+      "persona_ids": [
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-local-public-service-officer",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-justice-rights-user",
+        "persona-public-parent-carer"
+      ],
+      "value": "proxy-delegate"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "urgency_risk",
+      "persona_count": 9,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-professional-government-caseworker",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-public-urgent-high-stakes-user"
+      ],
+      "value": "risk_critical"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "urgency_risk",
+      "persona_count": 31,
+      "persona_ids": [
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-founder-sole-trader",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "risk_high"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "urgency_risk",
+      "persona_count": 8,
+      "persona_ids": [
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-navigation-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-professional-service-user-researcher",
+        "persona-public-government-activity-follower",
+        "persona-public-learner-education-user",
+        "persona-public-routine-resident"
+      ],
+      "value": "risk_medium"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "urgency_risk",
+      "persona_count": 22,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-tax-pensions-user",
+        "persona-public-urgent-high-stakes-user"
+      ],
+      "value": "urgent_or_high_stakes_context"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "agent_involvement",
+      "persona_count": 19,
+      "persona_ids": [
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-content-publisher",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-learner-education-user",
+        "persona-public-overseas-visitor",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-worker-jobseeker"
+      ],
+      "value": "human_direct_no_delegated_agent"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "agent_involvement",
+      "persona_count": 15,
+      "persona_ids": [
+        "persona-business-charity-community-body",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-local-public-service-officer",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-parent-carer",
+        "persona-public-urgent-high-stakes-user"
+      ],
+      "value": "human_with_assistance_or_intermediary"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "agent_involvement",
+      "persona_count": 12,
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent"
+      ],
+      "value": "read_only_agent_primary"
+    },
+    {
+      "coverage_status": "machine_contract_covered",
+      "dimension": "agent_involvement",
+      "persona_count": 2,
+      "persona_ids": [
+        "persona-business-commercial-data-reuser",
+        "persona-professional-analyst-statistician"
+      ],
+      "value": "system_mediated_professional"
+    }
+  ],
+  "counts": {
+    "content_schema_families": 83,
+    "development_stories": 48,
+    "dimension_values": {
+      "accessibility_need": 7,
+      "actor": 4,
+      "agent_involvement": 4,
+      "content_service_type": 83,
+      "device_context": 8,
+      "goal": 10,
+      "journey_stage": 6,
+      "jurisdiction": 7,
+      "language": 3,
+      "relationship_need": 6,
+      "urgency_risk": 4
+    },
+    "primary_personas": 48,
+    "release_story_contracts": 288
+  },
+  "coverage_kind": "marginal dimension coverage with persona/story cross-links; overlay combinations are separate",
+  "evidence_boundary": "Persona/source references are hypotheses and URL-identity evidence unless separately verified. Goal and journey coverage is guaranteed by generator code, but final corpus anchoring remains pending.",
+  "matrix_id": "govuk-use-coverage-matrix-v1",
+  "required_dimensions": [
+    "actor",
+    "goal",
+    "journey_stage",
+    "content_service_type",
+    "relationship_need",
+    "jurisdiction",
+    "language",
+    "accessibility_need",
+    "device_context",
+    "urgency_risk",
+    "agent_involvement"
+  ],
+  "rows": 48,
+  "schema_version": 1,
+  "status": "machine_contract_covered_human_validation_pending",
+  "unexplained_machine_dimension_gaps": []
+}

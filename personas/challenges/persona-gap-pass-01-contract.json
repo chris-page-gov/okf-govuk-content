@@ -1,0 +1,111 @@
+{
+  "checksum": "dfb8fb79f1e20711d5a054907bb6ce7ada3bad731250993750de664811554064",
+  "findings": [
+    {
+      "disposition": "resolved_by_personas_coverage_matrix",
+      "finding": "The prior ontology named six broad dimensions instead of the eleven required machine dimensions.",
+      "finding_id": "persona-gap-01-dimensions",
+      "kind": "missing_machine_coverage_artifact"
+    },
+    {
+      "disposition": "added_privacy_sensitive_context_overlay_as_unvalidated_hypothesis",
+      "finding": "Privacy sensitivity was explicit in the controlling overlay clause but absent from the 16-overlay seed.",
+      "finding_id": "persona-gap-01-privacy",
+      "kind": "missing_evidenced_overlay_hypothesis"
+    }
+  ],
+  "held_out_from": [
+    "official schema inventory",
+    "question-v2 generator",
+    "pairwise/high-harm checks"
+  ],
+  "independence": "method_and_input_partition_independent_only",
+  "independence_limit": "Generated in the same deterministic repository process; no independent human or model reviewed this pass.",
+  "input_artifacts": [
+    {
+      "line_range": "207-259",
+      "line_range_sha256": "e7dd8b7e30e8e11ce481a92a8643e943861f9984f87dcfa738bf17cbe967f208",
+      "path": "planning/AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md"
+    },
+    {
+      "embedded_baseline_snapshot_sha256": "33cefbff577009e22c6af42665ba916b0136bdd550a2005d78cdc04425a875fe",
+      "overlay_ids": [
+        "accessibility-review",
+        "assisted-digital",
+        "cognitive-access",
+        "high-stakes",
+        "historical-comparison",
+        "language-support",
+        "licensing-review",
+        "low-bandwidth",
+        "low-digital-confidence",
+        "low-literacy",
+        "mobile-only",
+        "proxy-delegate",
+        "safe-abstention",
+        "screen-reader-keyboard",
+        "structured-output",
+        "welsh-language"
+      ],
+      "persona_ids": [
+        "persona-agent-business-compliance-agent",
+        "persona-agent-change-monitor-agent",
+        "persona-agent-content-reuse-agent",
+        "persona-agent-crawler-indexer-agent",
+        "persona-agent-data-api-discovery-agent",
+        "persona-agent-eligibility-obligation-agent",
+        "persona-agent-grounded-qa-agent",
+        "persona-agent-life-event-planner-agent",
+        "persona-agent-navigation-agent",
+        "persona-agent-policy-legal-research-agent",
+        "persona-agent-provenance-audit-agent",
+        "persona-agent-transaction-handoff-agent",
+        "persona-business-charity-community-body",
+        "persona-business-commercial-data-reuser",
+        "persona-business-founder-sole-trader",
+        "persona-business-importer-exporter",
+        "persona-business-large-regulated-organisation",
+        "persona-business-professional-adviser-business",
+        "persona-business-sme-employer",
+        "persona-business-supplier-grant-applicant",
+        "persona-professional-accessibility-specialist",
+        "persona-professional-analyst-statistician",
+        "persona-professional-content-publisher",
+        "persona-professional-frontline-adviser",
+        "persona-professional-government-caseworker",
+        "persona-professional-journalist-archivist-auditor",
+        "persona-professional-legal-parliamentary-researcher",
+        "persona-professional-local-public-service-officer",
+        "persona-professional-policy-official",
+        "persona-professional-service-user-researcher",
+        "persona-public-appeal-historical-evidence-user",
+        "persona-public-benefits-support-claimant",
+        "persona-public-bereaved-person",
+        "persona-public-driver-traveller",
+        "persona-public-government-activity-follower",
+        "persona-public-health-safety-environment-user",
+        "persona-public-housing-local-services-user",
+        "persona-public-immigration-citizenship-user",
+        "persona-public-justice-rights-user",
+        "persona-public-learner-education-user",
+        "persona-public-multi-service-life-event",
+        "persona-public-overseas-visitor",
+        "persona-public-parent-carer",
+        "persona-public-routine-resident",
+        "persona-public-tax-pensions-user",
+        "persona-public-uk-national-abroad",
+        "persona-public-urgent-high-stakes-user",
+        "persona-public-worker-jobseeker"
+      ]
+    }
+  ],
+  "input_partition": "controlling plan lines 207-259 and the pre-challenge 48-persona/16-overlay ID snapshot",
+  "method": "literal_set_difference_against_controlling_use_ontology_and_overlay_clause",
+  "novel_fraction": 0.015625,
+  "novel_fraction_denominator": "48 starting archetypes plus 16 starting overlays",
+  "novel_valid_use_classes": 1,
+  "pass_id": "persona-gap-pass-01-contract",
+  "result": "gap_found_and_resolved",
+  "schema_version": 1,
+  "sequence": 1
+}

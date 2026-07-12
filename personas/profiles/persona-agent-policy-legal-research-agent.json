@@ -1,15 +1,35 @@
 {
   "archetype_class": "agent_system",
+  "capabilities_and_context": [
+    "channel:agent_or_system",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "agent_or_system",
-  "checksum": "fa2a8e8b3d078044e07ab82f4045e4a21ce3eed91c05ea924fdabf45bf4200d9",
+  "checksum": "49f95905495ff69910f7aa184f9b39b2ad3b3c7f6fbd2b990a3dde3a95cf6342",
+  "constraints": [
+    "overlay:historical-comparison",
+    "overlay:safe-abstention"
+  ],
   "context": "The agent exposes conflicts, lifecycle changes and gaps and never treats metadata as legal text.",
   "evidence_ids": [
     "ev-content-api",
     "ev-taxonomy-api"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated critical consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "trace attributable current and historical government records",
+  "jobs_to_be_done": [
+    "trace attributable current and historical government records"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,23 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-policy-legal-research-agent",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-content-api",
+    "ev-kilt"
+  ],
   "overlay_ids": [
     "historical-comparison",
     "safe-abstention"
   ],
   "persona_id": "persona-agent-policy-legal-research-agent",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "trace attributable current and historical government records",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +62,16 @@
   ],
   "risk_level": "critical",
   "schema_version": 1,
-  "title": "Policy and legal research agent"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Policy and legal research agent",
+  "trigger": "The agent exposes conflicts, lifecycle changes and gaps and never treats metadata as legal text.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

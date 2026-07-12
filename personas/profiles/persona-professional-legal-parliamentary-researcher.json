@@ -1,15 +1,35 @@
 {
   "archetype_class": "professional_intermediary",
+  "capabilities_and_context": [
+    "channel:human_self_service",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_self_service",
-  "checksum": "06f082e78b28d2f3cd4628ecb44bf57049beb1cac62c663ebb8fb94e2b38a8cc",
+  "checksum": "40e462020a3a93d15d14a1f158b4016c4b0e8435532d212a40437895bf124d88",
+  "constraints": [
+    "overlay:high-stakes",
+    "overlay:historical-comparison"
+  ],
   "context": "The researcher must distinguish guidance, policy, legislation and historical states.",
   "evidence_ids": [
     "ev-content-api",
     "ev-ogl"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated critical consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "trace attributable records and their date-specific context",
+  "jobs_to_be_done": [
+    "trace attributable records and their date-specific context"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,24 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-legal-parliamentary-researcher",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-content-api",
+    "ev-use-ontology-contract",
+    "ev-user-needs"
+  ],
   "overlay_ids": [
     "high-stakes",
     "historical-comparison"
   ],
   "persona_id": "persona-professional-legal-parliamentary-researcher",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "trace attributable records and their date-specific context",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +63,16 @@
   ],
   "risk_level": "critical",
   "schema_version": 1,
-  "title": "Legal or parliamentary researcher"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Legal or parliamentary researcher",
+  "trigger": "The researcher must distinguish guidance, policy, legislation and historical states.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

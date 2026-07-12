@@ -1,15 +1,35 @@
 {
   "archetype_class": "professional_intermediary",
+  "capabilities_and_context": [
+    "channel:human_self_service",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_self_service",
-  "checksum": "f58b6ddc3bc50dece9ad2fba01321ff06f6fe45143cb0476b53b7e5e11dcb482",
+  "checksum": "eb45c1bab6306a079c081dfdba5774ede079f0ecdefca2eff2294c36ea5fe763",
+  "constraints": [
+    "overlay:screen-reader-keyboard",
+    "overlay:accessibility-review"
+  ],
   "context": "The specialist needs evidence about language, attachments, structure and low-bandwidth access.",
   "evidence_ids": [
     "ev-accessibility-testing",
     "ev-wcag"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "inspect routes and representations for accessibility risks and alternatives",
+  "jobs_to_be_done": [
+    "inspect routes and representations for accessibility risks and alternatives"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,23 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-accessibility-specialist",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-accessibility-testing",
+    "ev-wcag"
+  ],
   "overlay_ids": [
     "screen-reader-keyboard",
     "accessibility-review"
   ],
   "persona_id": "persona-professional-accessibility-specialist",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "inspect routes and representations for accessibility risks and alternatives",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +62,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Accessibility specialist"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Accessibility specialist",
+  "trigger": "The specialist needs evidence about language, attachments, structure and low-bandwidth access.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

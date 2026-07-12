@@ -1,7 +1,15 @@
 {
   "archetype_class": "professional_intermediary",
+  "capabilities_and_context": [
+    "channel:human_self_service",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_self_service",
-  "checksum": "b936783607d1771ac5a46ec86ec88086aeb74c084424ec4ee5384ec482e6484e",
+  "checksum": "e4686a9cec703ccd94c9846db8dd7c1015c6e4495e8fb8dc2376fb07d8fa51db",
+  "constraints": [
+    "overlay:accessibility-review",
+    "overlay:assisted-digital"
+  ],
   "context": "The researcher needs explicit hypotheses, gaps and evaluation status rather than invented findings.",
   "evidence_ids": [
     "ev-user-needs",
@@ -9,8 +17,20 @@
     "ev-navigation-research"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated medium consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "test whether content structures support evidenced user needs",
+  "jobs_to_be_done": [
+    "test whether content structures support evidenced user needs"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -19,12 +39,25 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-service-user-researcher",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-accessibility-testing",
+    "ev-assisted-digital",
+    "ev-non-digital-users",
+    "ev-wcag"
+  ],
   "overlay_ids": [
     "accessibility-review",
     "assisted-digital"
   ],
   "persona_id": "persona-professional-service-user-researcher",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "test whether content structures support evidenced user needs",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -32,5 +65,16 @@
   ],
   "risk_level": "medium",
   "schema_version": 1,
-  "title": "Service designer or user researcher"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Service designer or user researcher",
+  "trigger": "The researcher needs explicit hypotheses, gaps and evaluation status rather than invented findings.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

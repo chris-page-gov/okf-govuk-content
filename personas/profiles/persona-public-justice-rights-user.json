@@ -1,15 +1,37 @@
 {
   "archetype_class": "public_life_event",
+  "capabilities_and_context": [
+    "channel:human_assisted",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_assisted",
-  "checksum": "8890860decfd64d948842e87474be60ba701429480d2d440560d32437ce553f9",
+  "checksum": "647c25a13cd6221cd4fd8bb3ebf446922557be5fd87a4d177765c4abde8360af",
+  "constraints": [
+    "overlay:high-stakes",
+    "overlay:proxy-delegate",
+    "overlay:privacy-sensitive-context"
+  ],
   "context": "Legal effect, deadlines and jurisdiction must be preserved and the bundle must not invent advice.",
   "evidence_ids": [
     "ev-user-needs",
-    "ev-content-api"
+    "ev-content-api",
+    "ev-use-ontology-contract"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "understand rights, evidence and formal procedures",
+  "jobs_to_be_done": [
+    "understand rights, evidence and formal procedures"
+  ],
   "jurisdiction": [
     "England and Wales",
     "Scotland",
@@ -20,12 +42,25 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-justice-rights-user",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-assisted-digital",
+    "ev-use-ontology-contract",
+    "ev-user-needs"
+  ],
   "overlay_ids": [
     "high-stakes",
-    "proxy-delegate"
+    "proxy-delegate",
+    "privacy-sensitive-context"
   ],
   "persona_id": "persona-public-justice-rights-user",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "understand rights, evidence and formal procedures",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -33,5 +68,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Justice and rights user"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Justice and rights user",
+  "trigger": "Legal effect, deadlines and jurisdiction must be preserved and the bundle must not invent advice.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

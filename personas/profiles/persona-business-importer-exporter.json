@@ -1,15 +1,35 @@
 {
   "archetype_class": "business_organisation",
+  "capabilities_and_context": [
+    "channel:human_self_service",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_self_service",
-  "checksum": "630f45cb0b88d45778f73d4a672d42d4116454da48a40920454acc976c56d9c3",
+  "checksum": "2994f042fe2fb2b75c7d92a70483ba1efda2b840499f7be571e96a08f093e23e",
+  "constraints": [
+    "overlay:high-stakes",
+    "overlay:low-bandwidth"
+  ],
   "context": "Commodity, destination, origin and effective date can change the applicable route.",
   "evidence_ids": [
     "ev-user-needs",
     "ev-search-api"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated critical consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "find current cross-border rules, data and transactional hand-offs",
+  "jobs_to_be_done": [
+    "find current cross-border rules, data and transactional hand-offs"
+  ],
   "jurisdiction": [
     "UK",
     "overseas"
@@ -19,12 +39,24 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-importer-exporter",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-non-digital-users",
+    "ev-use-ontology-contract",
+    "ev-user-needs"
+  ],
   "overlay_ids": [
     "high-stakes",
     "low-bandwidth"
   ],
   "persona_id": "persona-business-importer-exporter",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "find current cross-border rules, data and transactional hand-offs",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -32,5 +64,16 @@
   ],
   "risk_level": "critical",
   "schema_version": 1,
-  "title": "Importer or exporter"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Importer or exporter",
+  "trigger": "Commodity, destination, origin and effective date can change the applicable route.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

@@ -1,15 +1,35 @@
 {
   "archetype_class": "public_life_event",
+  "capabilities_and_context": [
+    "channel:human_assisted",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "human_assisted",
-  "checksum": "0f00ce526a995ef5472b6a5634ef425cb897060cf725559bca8a1af4af20806c",
+  "checksum": "b2a67ce80c2a0f29ad625c629f8266cb634f71401f8ce961d75412dd05d259b8",
+  "constraints": [
+    "overlay:high-stakes",
+    "overlay:proxy-delegate"
+  ],
   "context": "Current guidance may not answer a historical question and withdrawn records must remain visible.",
   "evidence_ids": [
     "ev-user-needs",
     "ev-content-api"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "find the source state and procedure that applied at the relevant date",
+  "jobs_to_be_done": [
+    "find the source state and procedure that applied at the relevant date"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,24 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-appeal-historical-evidence-user",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-assisted-digital",
+    "ev-use-ontology-contract",
+    "ev-user-needs"
+  ],
   "overlay_ids": [
     "high-stakes",
     "proxy-delegate"
   ],
   "persona_id": "persona-public-appeal-historical-evidence-user",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "find the source state and procedure that applied at the relevant date",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +63,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Person appealing or seeking historical evidence"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Person appealing or seeking historical evidence",
+  "trigger": "Current guidance may not answer a historical question and withdrawn records must remain visible.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }

@@ -1,0 +1,41 @@
+{
+  "checks": {
+    "pinned_schema_families": 83,
+    "question_v2_goal_operations": 10,
+    "question_v2_story_roles": 6,
+    "required_dimensions": 11
+  },
+  "checksum": "28228e0bff95eb4d06137979bd57b9893cfc02504cce692d6ae4e6c7358e8b39",
+  "findings": [],
+  "held_out_from": [
+    "pass-01 controlling-overlay findings",
+    "pairwise/high-harm intersection checks"
+  ],
+  "independence": "method_and_input_partition_independent_only",
+  "independence_limit": "Deterministic contract audit, not independent human or model adjudication and not a final-corpus distribution test.",
+  "input_artifacts": [
+    {
+      "path": "stories/coverage.json",
+      "sha256": "71b787fb945ba4a08f04a95ca7bb2ca984e26a38e995cc193c3de7c170345b5b"
+    },
+    {
+      "path": "src/govuk_okf/question_matrix_v2.py",
+      "sha256": "c90a55c4612dd7665e8d74f0ac3b0082b620104c072aed96f48b5b2db3081006"
+    },
+    {
+      "path": "scripts/build_question_matrix_v2.py",
+      "sha256": "075ae236d4855979d9344be871b4ee3d39e36e2615b63ffbb167ab89d83d390a"
+    },
+    {
+      "coverage_matrix_sha256": "da386424615b45ca344b8936e130e349e880bdb8de4fb92a8a439636a7cd1ae1"
+    }
+  ],
+  "input_partition": "pinned 83-schema inventory, six v2 story roles and ten v2 goal operations",
+  "method": "held_out_official_schema_plus_question_contract_set_difference",
+  "novel_fraction": 0.0,
+  "novel_valid_use_classes": 0,
+  "pass_id": "persona-gap-pass-02-schema-question-contract",
+  "result": "no_new_machine_evidenced_dimension_or_use_class",
+  "schema_version": 1,
+  "sequence": 2
+}

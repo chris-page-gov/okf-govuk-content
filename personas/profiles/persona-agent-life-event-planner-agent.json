@@ -1,15 +1,35 @@
 {
   "archetype_class": "agent_system",
+  "capabilities_and_context": [
+    "channel:agent_or_system",
+    "can follow a canonical GOV.UK hand-off when one is identified"
+  ],
   "channel_class": "agent_or_system",
-  "checksum": "a74115f15706540e0e11ea26b4b8faeffc20b8051cac9aad58354dcd0e37843c",
+  "checksum": "05a372aa5611724c92bfc1a85950a54de4fa9c733da4f8221f3f8df057806ff9",
+  "constraints": [
+    "overlay:structured-output",
+    "overlay:high-stakes"
+  ],
   "context": "The agent traverses related content but must not infer personal eligibility or guarantee outcomes.",
   "evidence_ids": [
     "ev-taxonomy-api",
     "ev-collections-api"
   ],
   "evidence_status": "research_hypothesis_not_human_validated",
+  "exclusion_notes": [
+    "Not a demographic profile or a proxy for protected characteristics.",
+    "Not evidence that every individual in this task class has the assigned overlays."
+  ],
+  "failure_harms": [
+    "wrong, stale or wrong-jurisdiction destination",
+    "lost provenance or unsupported inference",
+    "unmitigated high consequence of error"
+  ],
   "generation_method": "deterministic projection from personas/seed.json",
   "goal": "assemble an ordered multi-service route with explicit boundaries",
+  "jobs_to_be_done": [
+    "assemble an ordered multi-service route with explicit boundaries"
+  ],
   "jurisdiction": [
     "UK"
   ],
@@ -18,12 +38,25 @@
     "Preflight evidence is URL-identity level, not claim-level verification.",
     "The profile must not be used to infer an individual's eligibility or protected characteristics."
   ],
+  "linked_story_contract": {
+    "development_story_id": "story-life-event-planner-agent",
+    "release_v2_status": "final_snapshot_regeneration_pending",
+    "release_v2_story_count": 6
+  },
+  "overlay_evidence_ids": [
+    "ev-content-api",
+    "ev-mcp-resources",
+    "ev-use-ontology-contract",
+    "ev-user-needs"
+  ],
   "overlay_ids": [
     "structured-output",
     "high-stakes"
   ],
   "persona_id": "persona-agent-life-event-planner-agent",
   "persona_kind": "primary_archetype",
+  "primary_outcome": "assemble an ordered multi-service route with explicit boundaries",
+  "profile_version": "1.1",
   "research_questions": [
     "Does this archetype describe a distinct information need rather than a demographic segment?",
     "Which channels, terms and relationship paths fail for this archetype?",
@@ -31,5 +64,16 @@
   ],
   "risk_level": "high",
   "schema_version": 1,
-  "title": "Life-event planning agent"
+  "success_criteria": [
+    "find the authoritative GOV.UK destination",
+    "understand discovery limits and uncertainty",
+    "reach an appropriate next step without unsupported certainty"
+  ],
+  "title": "Life-event planning agent",
+  "trigger": "The agent traverses related content but must not infer personal eligibility or guarantee outcomes.",
+  "trust_and_provenance_needs": [
+    "canonical GOV.UK identity and URL",
+    "source and snapshot evidence",
+    "explicit lifecycle, jurisdiction and language boundaries"
+  ]
 }
