@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software or bundle, please cite it using this metadata."
+title: "What's on GOV.UK — OKF Bundle Wiki"
+type: software
+authors:
+  - family-names: Page
+    given-names: Chris
+    alias: chris-page-gov
+version: 0.1.0
+repository-code: "https://github.com/chris-page-gov/okf-govuk-content"
+url: "https://chris-page-gov.github.io/okf-govuk-content/"
+license: MIT
+abstract: "A derived, non-authoritative, metadata-led catalogue of the public GOV.UK publishing estate in a federated Open Knowledge Format bundle."

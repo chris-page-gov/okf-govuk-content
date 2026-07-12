@@ -1,0 +1,75 @@
+name: Deploy verified Pages artifact
+
+on:
+  workflow_call:
+    inputs:
+      artifact_name:
+        description: Immutable verified-release artifact from the calling tag workflow
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Download immutable verified bytes
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.artifact_name }}
+          path: ${{ runner.temp }}/verified
+      - name: Verify artifact after transport
+        run: python3 scripts/package_release.py --check "$RUNNER_TEMP/verified"
+      - name: Full browser smoke over exact Pages bytes
+        run: >-
+          node explorer/tests/browser-evidence.mjs
+          --mode release
+          --bundle "$RUNNER_TEMP/verified/site"
+          --output "$RUNNER_TEMP/pages-browser.json"
+          --iterations 5
+          --generated-at "$(git show -s --format=%cI "$GITHUB_SHA")"
+      - uses: actions/configure-pages@v5
+      - name: Create Pages transport artifact from verified bytes
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/verified/site
+      - name: Deploy verified artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify live Pages bytes
+        run: >-
+          python3 scripts/smoke_published_bundle.py
+          --base-url "${{ steps.deployment.outputs.page_url }}"
+          --verified "$RUNNER_TEMP/verified"
+          --output "$RUNNER_TEMP/pages-live-smoke.json"
+      - name: Retain browser and live smoke evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pages-smoke-${{ github.ref_name }}-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/pages-browser.json
+            ${{ runner.temp }}/pages-live-smoke.json
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0

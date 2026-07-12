@@ -1,2 +1,4 @@
 * @chris-page-gov
-
+/.github/ @chris-page-gov
+/scripts/check_repository_policy.py @chris-page-gov
+/src/govuk_okf/repository_policy.py @chris-page-gov
