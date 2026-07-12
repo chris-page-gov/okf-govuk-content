@@ -1,0 +1,35 @@
+{
+  "archetype_class": "agent_system",
+  "channel_class": "agent_or_system",
+  "checksum": "1044d8ddb0b3037096189ddb966a15d8fec8f5262a74c6651cc2372c6aa6d6c0",
+  "context": "The agent must return stable identifiers and typed evidence without claiming to answer from metadata alone.",
+  "evidence_ids": [
+    "ev-search-api",
+    "ev-taxonomy-api"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "rank canonical GOV.UK records for a user need",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "structured-output",
+    "safe-abstention"
+  ],
+  "persona_id": "persona-agent-navigation-agent",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "medium",
+  "schema_version": 1,
+  "title": "Navigation and known-item agent"
+}

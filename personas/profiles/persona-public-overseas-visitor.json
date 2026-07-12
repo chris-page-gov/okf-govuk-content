@@ -1,0 +1,36 @@
+{
+  "archetype_class": "public_life_event",
+  "channel_class": "human_self_service",
+  "checksum": "57f24c6a483c00e321427b766eff216b9d70356c95a4b876f2dc3b9f97df0d4e",
+  "context": "The user may not know UK administrative terms and may be using translation support.",
+  "evidence_ids": [
+    "ev-user-needs",
+    "ev-wcag"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "understand entry, travel and service requirements",
+  "jurisdiction": [
+    "UK",
+    "overseas"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "language-support",
+    "mobile-only"
+  ],
+  "persona_id": "persona-public-overseas-visitor",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "high",
+  "schema_version": 1,
+  "title": "Overseas visitor to the UK"
+}

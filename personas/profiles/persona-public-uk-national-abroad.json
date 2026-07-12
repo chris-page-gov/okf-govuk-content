@@ -1,0 +1,36 @@
+{
+  "archetype_class": "public_life_event",
+  "channel_class": "human_self_service",
+  "checksum": "39f6bdcadb3d42a86ecddace2a2c1dfa70dac16db59dc0e14a026f8b4f0a7034",
+  "context": "The person must distinguish host-country responsibility from UK government support.",
+  "evidence_ids": [
+    "ev-user-needs",
+    "ev-content-api"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "find UK guidance and overseas service routes",
+  "jurisdiction": [
+    "UK",
+    "overseas"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "low-bandwidth",
+    "language-support"
+  ],
+  "persona_id": "persona-public-uk-national-abroad",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "high",
+  "schema_version": 1,
+  "title": "UK national living abroad"
+}

@@ -1,0 +1,38 @@
+{
+  "archetype_class": "public_life_event",
+  "channel_class": "human_self_service",
+  "checksum": "8d5d7a0f8abab66894df474abe5a6bc4f370b1ff5a73b64bf440418e25ba6e66",
+  "context": "The correct route depends on age, place, provider and stage of learning.",
+  "evidence_ids": [
+    "ev-user-needs",
+    "ev-wcag"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "locate education guidance, funding and application routes",
+  "jurisdiction": [
+    "England",
+    "Scotland",
+    "Wales",
+    "Northern Ireland"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "welsh-language",
+    "cognitive-access"
+  ],
+  "persona_id": "persona-public-learner-education-user",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "medium",
+  "schema_version": 1,
+  "title": "Learner or education user"
+}

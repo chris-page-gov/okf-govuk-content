@@ -1,0 +1,36 @@
+{
+  "archetype_class": "professional_intermediary",
+  "channel_class": "agent_or_system",
+  "checksum": "4fd9cb5a08487ec1a59dd7e6c630ccce27df6177b4778995b071afae0669136e",
+  "context": "The analyst needs machine-readable resources, provenance, release dates and revision status.",
+  "evidence_ids": [
+    "ev-content-api",
+    "ev-search-api",
+    "ev-ogl"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "find official datasets, statistics and publication context",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "structured-output",
+    "historical-comparison"
+  ],
+  "persona_id": "persona-professional-analyst-statistician",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "high",
+  "schema_version": 1,
+  "title": "Analyst or statistician"
+}

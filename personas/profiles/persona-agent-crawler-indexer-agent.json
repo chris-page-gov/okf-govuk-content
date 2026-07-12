@@ -1,0 +1,35 @@
+{
+  "archetype_class": "agent_system",
+  "channel_class": "agent_or_system",
+  "checksum": "971d02e5813da7a28d581beb9c65b3c4a26fb0437a2438823021ca4f58f4fecc",
+  "context": "The agent obeys rate, robots, licensing and completeness limits and reports denied access.",
+  "evidence_ids": [
+    "ev-search-api",
+    "ev-ogl"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "enumerate metadata records within documented source constraints",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "structured-output",
+    "licensing-review"
+  ],
+  "persona_id": "persona-agent-crawler-indexer-agent",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "medium",
+  "schema_version": 1,
+  "title": "Crawler and indexer agent"
+}

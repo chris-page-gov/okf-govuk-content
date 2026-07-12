@@ -1,0 +1,35 @@
+{
+  "archetype_class": "agent_system",
+  "channel_class": "agent_or_system",
+  "checksum": "4ce939ef9b0970863a8bb95101a5ba3c5b21358f2b22a907f036ad2504c95bca",
+  "context": "The agent compares frozen snapshots and preserves missing, withdrawn and superseded states.",
+  "evidence_ids": [
+    "ev-content-api",
+    "ev-search-api"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "detect lifecycle, redirect and replacement changes reproducibly",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "historical-comparison",
+    "structured-output"
+  ],
+  "persona_id": "persona-agent-change-monitor-agent",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "high",
+  "schema_version": 1,
+  "title": "Content change and withdrawal monitor"
+}

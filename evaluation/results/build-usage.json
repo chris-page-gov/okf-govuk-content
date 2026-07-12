@@ -1,0 +1,29 @@
+{
+  "fallbacks_used": [
+    "Deterministic templates replaced external model generation.",
+    "Pending verification states replaced unsupported gold-answer claims.",
+    "Evidence references remain URL-identity-only where locator verification was not run."
+  ],
+  "generation_method": "deterministic-question-factory-v1",
+  "human_research": {
+    "participants": 0,
+    "sessions": 0,
+    "status": "not_authorised_not_run"
+  },
+  "licensing_and_fair_use_triggers": [
+    "Review third-party material and attachments before redistribution.",
+    "Retain OGL attribution and canonical source links for covered public-sector information.",
+    "Do not reproduce body content merely because discovery metadata is available."
+  ],
+  "model_usage": {
+    "cost_gbp": 0.0,
+    "input_tokens": 0,
+    "model_calls": 0,
+    "output_tokens": 0
+  },
+  "schema_version": 1,
+  "source_access_constraints": [
+    "Planning preflight established URL identity but not locator-level or claim-level evidence.",
+    "No live corpus was used to assign gold content IDs or URLs."
+  ]
+}

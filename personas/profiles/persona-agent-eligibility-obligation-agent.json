@@ -1,0 +1,35 @@
+{
+  "archetype_class": "agent_system",
+  "channel_class": "agent_or_system",
+  "checksum": "e0f1eb36830af0d64453fefb0c087cbe3983d586745c6fdd3d319848ea9c6e83",
+  "context": "The agent may explain source boundaries but must abstain from unsupported personal determinations.",
+  "evidence_ids": [
+    "ev-content-api",
+    "ev-kilt"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "locate rules and request the facts needed for applicability",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "safe-abstention",
+    "high-stakes"
+  ],
+  "persona_id": "persona-agent-eligibility-obligation-agent",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "critical",
+  "schema_version": 1,
+  "title": "Eligibility and obligation explainer agent"
+}

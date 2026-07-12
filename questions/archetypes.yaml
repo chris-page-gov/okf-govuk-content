@@ -1,0 +1,177 @@
+{
+  "artifact_tier": "development_only",
+  "challenge_modes": [
+    {
+      "ambiguous": false,
+      "clause": "Use a direct, well-formed request and return the current canonical result.",
+      "difficulty": "easy",
+      "id": "direct",
+      "label": "direct, well formed"
+    },
+    {
+      "ambiguous": false,
+      "clause": "Use everyday wording and explain unfamiliar government labels without changing their meaning.",
+      "difficulty": "medium",
+      "id": "novice_wording",
+      "label": "novice or colloquial wording"
+    },
+    {
+      "ambiguous": true,
+      "clause": "Treat one imprecise synonym or spelling error as a search clue, and make the correction explicit.",
+      "difficulty": "medium",
+      "id": "noisy_wording",
+      "label": "synonym, spelling or noisy wording"
+    },
+    {
+      "ambiguous": false,
+      "clause": "Separate current material from historical, withdrawn or superseded material and state the date basis.",
+      "difficulty": "hard",
+      "id": "temporal",
+      "label": "current versus historical"
+    },
+    {
+      "ambiguous": false,
+      "clause": "Make the applicable nation, locality or overseas boundary explicit and do not generalise across it.",
+      "difficulty": "hard",
+      "id": "jurisdiction",
+      "label": "geography or jurisdiction"
+    },
+    {
+      "ambiguous": false,
+      "clause": "Request a Welsh-language or accessible route where available and retain a low-bandwidth fallback.",
+      "difficulty": "hard",
+      "id": "language_access",
+      "label": "language, access or connectivity"
+    },
+    {
+      "ambiguous": false,
+      "clause": "Require at least two typed relationships and show every intermediate record.",
+      "difficulty": "hard",
+      "id": "multi_hop",
+      "label": "multi-hop"
+    },
+    {
+      "ambiguous": true,
+      "clause": "Preserve conflicting or missing evidence, rank source authority and do not smooth the conflict away.",
+      "difficulty": "hard",
+      "id": "conflicting_evidence",
+      "label": "conflicting or missing evidence"
+    },
+    {
+      "ambiguous": false,
+      "clause": "Return stable identifiers, typed relationships, provenance fields and an explicit answerability status.",
+      "difficulty": "hard",
+      "id": "structured_agent",
+      "label": "structured agent request"
+    },
+    {
+      "ambiguous": true,
+      "clause": "The request asserts that GOV.UK guarantees a personal outcome without the facts required; treat that premise as deliberately unanswerable, abstain and state what evidence is missing.",
+      "difficulty": "adversarial",
+      "expected_unanswerable": true,
+      "id": "unsupported_premise",
+      "label": "safety, high-stakes or unanswerable"
+    }
+  ],
+  "held_out_rule": "challenge columns 9 and 10; exactly 20 of 100 questions per story",
+  "matrix_version": "govuk-question-matrix-v1",
+  "operations": [
+    {
+      "answer_shape": "ranked canonical records",
+      "id": "locate_known_item",
+      "intent": "lookup",
+      "label": "locate a known item",
+      "prompt": "which authoritative GOV.UK record should support the need to {need}",
+      "stage": "metadata_only_discovery"
+    },
+    {
+      "answer_shape": "record plus authoritative-source hand-off",
+      "id": "explain_define",
+      "intent": "explanation",
+      "label": "explain or define",
+      "prompt": "how should the relevant GOV.UK material be found and explained so someone can {need}",
+      "stage": "discovery_plus_authoritative_retrieval"
+    },
+    {
+      "answer_shape": "applicability boundary with cited source",
+      "id": "determine_applicability",
+      "intent": "applicability",
+      "label": "determine applicability",
+      "prompt": "which official records establish whether the information needed to {need} applies in this context",
+      "stage": "discovery_plus_authoritative_retrieval"
+    },
+    {
+      "answer_shape": "ordered source-backed next steps",
+      "id": "follow_process",
+      "intent": "procedure",
+      "label": "follow a process",
+      "prompt": "what authoritative sequence of GOV.UK records should be followed to {need}",
+      "stage": "discovery_plus_authoritative_retrieval"
+    },
+    {
+      "answer_shape": "comparison with decision boundaries",
+      "id": "compare_decide",
+      "intent": "comparison",
+      "label": "compare or decide",
+      "prompt": "which GOV.UK records should be compared before deciding how to {need}",
+      "stage": "discovery_plus_authoritative_retrieval"
+    },
+    {
+      "answer_shape": "typed path of records and relationships",
+      "id": "traverse_relationships",
+      "intent": "relationship_traversal",
+      "label": "traverse hierarchy or relationships",
+      "prompt": "what typed path through topics, organisations, collections or parts leads to material needed to {need}",
+      "stage": "metadata_only_discovery"
+    },
+    {
+      "answer_shape": "citation and provenance object",
+      "id": "verify_provenance",
+      "intent": "provenance",
+      "label": "verify provenance or authority",
+      "prompt": "how can the publisher, owning body and source evidence be verified before using material to {need}",
+      "stage": "metadata_only_discovery"
+    },
+    {
+      "answer_shape": "current and historical lifecycle disposition",
+      "id": "check_lifecycle",
+      "intent": "lifecycle",
+      "label": "check lifecycle, redirect or freshness",
+      "prompt": "which lifecycle, update, withdrawal, redirect or replacement evidence matters when trying to {need}",
+      "stage": "metadata_only_discovery"
+    },
+    {
+      "answer_shape": "resource metadata and authoritative URL",
+      "id": "obtain_resource",
+      "intent": "resource_discovery",
+      "label": "obtain attachment, data or API representation",
+      "prompt": "which attachment, dataset or machine representation is authoritative for the need to {need}",
+      "stage": "metadata_only_discovery"
+    },
+    {
+      "answer_shape": "clarification, bounded result or explicit abstention",
+      "id": "handle_ambiguity",
+      "intent": "abstention_and_clarification",
+      "label": "handle ambiguity, delegation or no answer",
+      "prompt": "how should the system clarify, narrow or abstain when asked to {need}",
+      "stage": "metadata_only_discovery"
+    }
+  ],
+  "persona_suite_quotas": {
+    "ambiguous_adversarial_noisy": 5,
+    "applicability_eligibility_obligation": 10,
+    "attachment_data_api": 8,
+    "compare_choose": 8,
+    "explain_understand": 12,
+    "jurisdiction_language_audience": 8,
+    "locate_navigate": 12,
+    "negative_no_answer": 5,
+    "procedure_next_step": 10,
+    "provenance_citation_verification": 6,
+    "relationship_multi_hop": 8,
+    "temporal_current_historical_change": 8
+  },
+  "release_eligible": false,
+  "schema_version": 1,
+  "superseded_for_release_by": "govuk-question-matrix-v2"
+}

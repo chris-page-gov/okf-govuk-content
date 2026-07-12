@@ -1,0 +1,35 @@
+{
+  "archetype_class": "professional_intermediary",
+  "channel_class": "human_self_service",
+  "checksum": "039686a9350135e5f5f85bb7e180ae75dd7fee69d55388219238c61b3687418b",
+  "context": "The publisher needs schema-aware evidence and must preserve canonical and replacement relationships.",
+  "evidence_ids": [
+    "ev-content-schemas",
+    "ev-content-api"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "understand record types, relationships and publishing consequences",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "structured-output",
+    "accessibility-review"
+  ],
+  "persona_id": "persona-professional-content-publisher",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "high",
+  "schema_version": 1,
+  "title": "Government content publisher"
+}

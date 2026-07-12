@@ -1,0 +1,42 @@
+{
+  "@context": {
+    "@vocab": "https://chris-page-gov.github.io/okf-govuk-content/ns/",
+    "evidence": {
+      "@id": "evidence",
+      "@type": "@id"
+    },
+    "overlay": {
+      "@id": "overlay",
+      "@type": "@id"
+    }
+  },
+  "@id": "govuk-use-ontology-v1",
+  "@type": "UseOntology",
+  "dimensions": [
+    "goal and information need",
+    "task and journey stage",
+    "jurisdiction and language",
+    "channel and access constraints",
+    "risk and consequence of error",
+    "provenance and structured-output requirements"
+  ],
+  "evidenceRule": "Every profile and story cites evidence IDs and keeps unvalidated assumptions explicit.",
+  "primaryArchetypeClasses": [
+    {
+      "@id": "public_life_event",
+      "label": "Public and life-event users"
+    },
+    {
+      "@id": "business_organisation",
+      "label": "Business and organisation users"
+    },
+    {
+      "@id": "professional_intermediary",
+      "label": "Professional and intermediary users"
+    },
+    {
+      "@id": "agent_system",
+      "label": "Agent and system users"
+    }
+  ]
+}

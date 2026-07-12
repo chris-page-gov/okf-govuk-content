@@ -1,0 +1,39 @@
+{
+  "catalogue_id": "govuk-primary-personas-v1",
+  "counts": {
+    "classes": {
+      "agent_system": 12,
+      "business_organisation": 8,
+      "professional_intermediary": 10,
+      "public_life_event": 18
+    },
+    "primary_personas": 48
+  },
+  "coverage_status": "seeded_hypotheses_complete; human validation not authorised",
+  "evidence_references": 17,
+  "expected_class_counts": {
+    "agent_system": 12,
+    "business_organisation": 8,
+    "professional_intermediary": 10,
+    "public_life_event": 18
+  },
+  "overlay_coverage": {
+    "accessibility-review": 3,
+    "assisted-digital": 5,
+    "cognitive-access": 4,
+    "high-stakes": 22,
+    "historical-comparison": 6,
+    "language-support": 3,
+    "licensing-review": 5,
+    "low-bandwidth": 6,
+    "low-digital-confidence": 2,
+    "low-literacy": 3,
+    "mobile-only": 2,
+    "proxy-delegate": 8,
+    "safe-abstention": 7,
+    "screen-reader-keyboard": 4,
+    "structured-output": 13,
+    "welsh-language": 3
+  },
+  "schema_version": 1
+}

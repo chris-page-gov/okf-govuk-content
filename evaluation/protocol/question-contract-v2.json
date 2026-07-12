@@ -1,0 +1,68 @@
+{
+  "claim_boundary": "The contract verifies metadata discovery gold. It does not claim that metadata alone answers body-content questions or that unauthorised human research has been completed.",
+  "contract_id": "govuk-question-release-contract-v2",
+  "expected_questions_per_persona_suite": 100,
+  "expected_questions_per_story": 100,
+  "expected_stories_per_primary_persona": {
+    "maximum": 12,
+    "minimum": 6
+  },
+  "gold_gate": {
+    "answerable": "at least one verified content ID or URL plus source record and evidence hashes",
+    "generator_may_not_self_verify": true,
+    "independent_verification_ledger_required": true,
+    "near_misses_required": true,
+    "typed_paths_required_where_relevant": true,
+    "unanswerable": "explicit deliberately-unanswerable classification and evidence-backed rationale"
+  },
+  "input_gate": {
+    "complete_corpus_reconciliation_required": true,
+    "frozen_source_record_corpus": true,
+    "sampled_corpus_forbidden": true,
+    "snapshot_manifest_sha256_required": true,
+    "unexplained_omissions": 0
+  },
+  "leakage_gate": {
+    "entity_grouped_split": true,
+    "held_out_entity_groups_minimum_fraction": 0.2,
+    "implementation_prompt_leakage_forbidden": true,
+    "normalised_wording_duplicates_forbidden": true,
+    "semantic_signature_duplicates_forbidden": true
+  },
+  "matrix_version": "govuk-question-matrix-v2",
+  "persona_suite_must_cover_every_story": true,
+  "persona_suite_quotas": {
+    "ambiguous_adversarial_noisy": 5,
+    "applicability_eligibility_obligation": 10,
+    "attachment_data_api": 8,
+    "compare_choose": 8,
+    "explain_understand": 12,
+    "jurisdiction_language_audience": 8,
+    "locate_navigate": 12,
+    "negative_no_answer": 5,
+    "procedure_next_step": 10,
+    "provenance_citation_verification": 6,
+    "relationship_multi_hop": 8,
+    "temporal_current_historical_change": 8
+  },
+  "release_evidence": [
+    "questions/release-v2/manifest.json",
+    "questions/release-v2/contract.json",
+    "questions/release-v2/verification-report.json",
+    "questions/release-v2/verification-ledger.jsonl"
+  ],
+  "requirements": [
+    "REQ-059",
+    "REQ-060",
+    "REQ-061",
+    "REQ-062",
+    "REQ-063",
+    "REQ-064",
+    "REQ-065",
+    "REQ-066",
+    "REQ-067",
+    "REQ-068"
+  ],
+  "schema_version": 2,
+  "status": "approved_not_yet_executed_against_release_snapshot"
+}
