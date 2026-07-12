@@ -1,0 +1,36 @@
+{
+  "archetype_class": "business_organisation",
+  "channel_class": "agent_or_system",
+  "checksum": "8fb9384cacf4681de410eeedf8e1510926a2140437228c7d7d689acfbc26b710",
+  "context": "The user needs stable identifiers, update semantics, attachments, APIs and attribution requirements.",
+  "evidence_ids": [
+    "ev-content-api",
+    "ev-search-api",
+    "ev-ogl"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "discover machine-readable records and lawful reuse conditions",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "structured-output",
+    "licensing-review"
+  ],
+  "persona_id": "persona-business-commercial-data-reuser",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "medium",
+  "schema_version": 1,
+  "title": "Developer or commercial content reuser"
+}

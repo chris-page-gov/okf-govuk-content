@@ -1,0 +1,38 @@
+{
+  "archetype_class": "public_life_event",
+  "channel_class": "human_assisted",
+  "checksum": "43462b2cf894fef6b4d3e02d6ecd035dd6aafadcd2edc502b9c34ec4c01cb9db",
+  "context": "The user acts for another person and may need local, national and delegated routes.",
+  "evidence_ids": [
+    "ev-user-needs",
+    "ev-assisted-digital"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "find and sequence services for a child or dependent person",
+  "jurisdiction": [
+    "England",
+    "Scotland",
+    "Wales",
+    "Northern Ireland"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "proxy-delegate",
+    "low-bandwidth"
+  ],
+  "persona_id": "persona-public-parent-carer",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "high",
+  "schema_version": 1,
+  "title": "Parent or carer"
+}

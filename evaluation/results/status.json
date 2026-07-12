@@ -1,0 +1,20 @@
+{
+  "artifact_tier": "development_only",
+  "blocked": [
+    "v1 question assets are development-only and cannot satisfy the release question gate",
+    "independent gold assignment awaits frozen T0 corpus",
+    "empirical baseline comparison awaits independently verified gold",
+    "human evaluation is not authorised"
+  ],
+  "completed": [
+    "48 primary persona hypotheses",
+    "48 primary stories",
+    "4,800 deterministic matrix questions",
+    "48 exact-quota persona suites",
+    "evaluation protocol and baseline catalogue"
+  ],
+  "question_contract_passed": false,
+  "result_claims": [],
+  "schema_version": 1,
+  "status": "not_run"
+}

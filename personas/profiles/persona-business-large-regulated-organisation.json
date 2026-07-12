@@ -1,0 +1,35 @@
+{
+  "archetype_class": "business_organisation",
+  "channel_class": "human_assisted",
+  "checksum": "995a910e6065d9c9f291e3a68a27124c6539abd9c0bf414341b8d4e30cf0f3dd",
+  "context": "The organisation needs auditable provenance and must distinguish guidance from binding requirements.",
+  "evidence_ids": [
+    "ev-content-api",
+    "ev-ogl"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "trace authoritative regulation, guidance and reporting obligations",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "high-stakes",
+    "proxy-delegate"
+  ],
+  "persona_id": "persona-business-large-regulated-organisation",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "critical",
+  "schema_version": 1,
+  "title": "Large or regulated organisation"
+}

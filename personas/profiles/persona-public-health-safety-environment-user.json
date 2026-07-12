@@ -1,0 +1,35 @@
+{
+  "archetype_class": "public_life_event",
+  "channel_class": "human_self_service",
+  "checksum": "2fcf5d4c4e8244c0a5c996b8c1dd722aea636576d08497a1e4769ab670d54476",
+  "context": "The topic can be urgent or safety critical and may require a specialist service hand-off.",
+  "evidence_ids": [
+    "ev-user-needs",
+    "ev-accessibility-testing"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "find authoritative protective guidance without mistaking it for personal advice",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "high-stakes",
+    "screen-reader-keyboard"
+  ],
+  "persona_id": "persona-public-health-safety-environment-user",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "high",
+  "schema_version": 1,
+  "title": "Health, safety or environment user"
+}

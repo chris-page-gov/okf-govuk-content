@@ -1,0 +1,35 @@
+{
+  "archetype_class": "public_life_event",
+  "channel_class": "human_self_service",
+  "checksum": "3137ea893cb043ff787b965ad07664750604f3e6b7909e07a2d096441abef482",
+  "context": "The user needs to separate official publication, current policy and historical announcement context.",
+  "evidence_ids": [
+    "ev-navigation-research",
+    "ev-content-api"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "find attributable announcements, speeches and organisational context",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "screen-reader-keyboard",
+    "low-bandwidth"
+  ],
+  "persona_id": "persona-public-government-activity-follower",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "medium",
+  "schema_version": 1,
+  "title": "Follower of government activity and news"
+}

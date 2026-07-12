@@ -1,0 +1,36 @@
+{
+  "archetype_class": "public_life_event",
+  "channel_class": "human_assisted",
+  "checksum": "68498fe3d10691b5e22248d67d063a44c1ff868d1dad0213963467275cb0d98a",
+  "context": "A life event crosses organisational boundaries and the correct order is not obvious.",
+  "evidence_ids": [
+    "ev-user-needs",
+    "ev-assisted-digital",
+    "ev-user-stories"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "coordinate related steps across several public bodies",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "assisted-digital",
+    "high-stakes"
+  ],
+  "persona_id": "persona-public-multi-service-life-event",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "high",
+  "schema_version": 1,
+  "title": "Person navigating a multi-service life event"
+}

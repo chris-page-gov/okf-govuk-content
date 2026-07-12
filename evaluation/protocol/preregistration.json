@@ -1,0 +1,49 @@
+{
+  "answer_metrics": [
+    "citation precision",
+    "citation completeness",
+    "supported-claim rate",
+    "unanswerable detection precision and recall",
+    "jurisdiction and temporal boundary accuracy"
+  ],
+  "comparison_rule": "Run all systems against identical corpus snapshots, questions, gold judgements and metric code.",
+  "corpus_snapshot_id": "pending-corpus-t0",
+  "human_evaluation": {
+    "requirements_before_claim": [
+      "approved research and safeguarding protocol",
+      "documented recruitment and consent",
+      "declared participant counts and sampling limitations",
+      "recorded task outcomes and qualitative evidence"
+    ],
+    "status": "not_authorised_not_run"
+  },
+  "independent_gold_gate": {
+    "rule": "Gold content IDs and URLs must be assigned and verified against a frozen corpus by a process independent of generation.",
+    "status": "blocked_pending_frozen_t0_and_independent_assignment"
+  },
+  "matrix_version": "govuk-question-matrix-v1",
+  "protocol_id": "govuk-okf-evaluation-v1",
+  "registered_design_date": "2026-07-12",
+  "retrieval_metrics": [
+    "Recall@10",
+    "MRR@10",
+    "nDCG@10",
+    "exact content_id match"
+  ],
+  "schema_version": 1,
+  "slice_reporting": [
+    "primary archetype class",
+    "accessibility and language overlays",
+    "risk level",
+    "jurisdiction",
+    "operation",
+    "challenge mode",
+    "answerability"
+  ],
+  "splits": {
+    "development": 80,
+    "held_out": 20,
+    "unit": "questions per story"
+  },
+  "status": "designed_not_executed"
+}

@@ -1,0 +1,35 @@
+{
+  "archetype_class": "agent_system",
+  "channel_class": "agent_or_system",
+  "checksum": "fa2a8e8b3d078044e07ab82f4045e4a21ce3eed91c05ea924fdabf45bf4200d9",
+  "context": "The agent exposes conflicts, lifecycle changes and gaps and never treats metadata as legal text.",
+  "evidence_ids": [
+    "ev-content-api",
+    "ev-taxonomy-api"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "trace attributable current and historical government records",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "historical-comparison",
+    "safe-abstention"
+  ],
+  "persona_id": "persona-agent-policy-legal-research-agent",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "critical",
+  "schema_version": 1,
+  "title": "Policy and legal research agent"
+}

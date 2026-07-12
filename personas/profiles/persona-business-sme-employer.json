@@ -1,0 +1,35 @@
+{
+  "archetype_class": "business_organisation",
+  "channel_class": "human_self_service",
+  "checksum": "1280170d35f78878086081a8fa0229515f24758c6f2eed9f052cb68ab50fe952",
+  "context": "Requirements change with workforce, location and dates, and several departments may publish evidence.",
+  "evidence_ids": [
+    "ev-user-needs",
+    "ev-content-api"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "understand employer obligations and complete recurring processes",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "high-stakes",
+    "cognitive-access"
+  ],
+  "persona_id": "persona-business-sme-employer",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "high",
+  "schema_version": 1,
+  "title": "Small or medium employer"
+}

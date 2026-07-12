@@ -1,0 +1,36 @@
+{
+  "archetype_class": "public_life_event",
+  "channel_class": "human_assisted",
+  "checksum": "bd393f3535a7dd0b87b9e6df2b1d7b573423c5fdc4d68ca58bb50d4e5bc60ba3",
+  "context": "Delay or false reassurance could cause harm, so abstention and escalation boundaries matter.",
+  "evidence_ids": [
+    "ev-user-needs",
+    "ev-assisted-digital",
+    "ev-accessibility-testing"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "reach the authoritative emergency or specialist route quickly",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "high-stakes",
+    "assisted-digital"
+  ],
+  "persona_id": "persona-public-urgent-high-stakes-user",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "critical",
+  "schema_version": 1,
+  "title": "Person with an urgent high-stakes need"
+}

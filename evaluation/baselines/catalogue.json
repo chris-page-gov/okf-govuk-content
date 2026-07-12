@@ -1,0 +1,27 @@
+{
+  "baselines": [
+    {
+      "baseline_id": "canonical-url-exact",
+      "family": "known-item rule",
+      "run_status": "not_run"
+    },
+    {
+      "baseline_id": "metadata-keyword",
+      "family": "lexical retrieval",
+      "run_status": "not_run"
+    },
+    {
+      "baseline_id": "typed-relationship-walk",
+      "family": "graph traversal",
+      "run_status": "not_run"
+    },
+    {
+      "baseline_id": "static-browser-search",
+      "family": "OKF Explorer static search",
+      "run_status": "not_run"
+    }
+  ],
+  "claim_constraint": "No quality, latency or cost comparison may be published until all baselines run under the preregistered protocol.",
+  "schema_version": 1,
+  "status": "implementations_and_empirical_runs_pending_verified_t0"
+}

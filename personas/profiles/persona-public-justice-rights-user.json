@@ -1,0 +1,37 @@
+{
+  "archetype_class": "public_life_event",
+  "channel_class": "human_assisted",
+  "checksum": "8890860decfd64d948842e87474be60ba701429480d2d440560d32437ce553f9",
+  "context": "Legal effect, deadlines and jurisdiction must be preserved and the bundle must not invent advice.",
+  "evidence_ids": [
+    "ev-user-needs",
+    "ev-content-api"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "understand rights, evidence and formal procedures",
+  "jurisdiction": [
+    "England and Wales",
+    "Scotland",
+    "Northern Ireland"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "high-stakes",
+    "proxy-delegate"
+  ],
+  "persona_id": "persona-public-justice-rights-user",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "high",
+  "schema_version": 1,
+  "title": "Justice and rights user"
+}

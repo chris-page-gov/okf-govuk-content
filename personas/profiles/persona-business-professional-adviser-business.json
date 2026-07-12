@@ -1,0 +1,35 @@
+{
+  "archetype_class": "business_organisation",
+  "channel_class": "human_assisted",
+  "checksum": "3909d235b88a2f706defbdc5646c394ecf7882ef713a63e6e0224413780249cd",
+  "context": "The adviser acts for another party and requires current, citable sources and clear limitations.",
+  "evidence_ids": [
+    "ev-content-api",
+    "ev-ogl"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "assemble source-backed guidance for a client without replacing professional judgement",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "proxy-delegate",
+    "high-stakes"
+  ],
+  "persona_id": "persona-business-professional-adviser-business",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "critical",
+  "schema_version": 1,
+  "title": "Professional adviser supporting a business"
+}

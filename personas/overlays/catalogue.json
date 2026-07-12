@@ -1,0 +1,151 @@
+{
+  "catalogue_id": "govuk-persona-overlays-v1",
+  "overlays": [
+    {
+      "dimensions": [
+        "perceivable structure",
+        "keyboard operation",
+        "meaningful link labels"
+      ],
+      "label": "Screen reader or keyboard-only access",
+      "overlay_id": "screen-reader-keyboard"
+    },
+    {
+      "dimensions": [
+        "plain language",
+        "sequenced tasks",
+        "visible uncertainty"
+      ],
+      "label": "Cognitive load, memory or neurodivergent access",
+      "overlay_id": "cognitive-access"
+    },
+    {
+      "dimensions": [
+        "everyday wording",
+        "term explanation",
+        "assisted route"
+      ],
+      "label": "Low literacy or unfamiliar government language",
+      "overlay_id": "low-literacy"
+    },
+    {
+      "dimensions": [
+        "orientation",
+        "recoverable steps",
+        "support hand-off"
+      ],
+      "label": "Low digital confidence",
+      "overlay_id": "low-digital-confidence"
+    },
+    {
+      "dimensions": [
+        "small static representation",
+        "stable URLs",
+        "offline-readable export"
+      ],
+      "label": "Low bandwidth or intermittent connectivity",
+      "overlay_id": "low-bandwidth"
+    },
+    {
+      "dimensions": [
+        "compact results",
+        "touch target clarity",
+        "handoff preservation"
+      ],
+      "label": "Mobile-only access",
+      "overlay_id": "mobile-only"
+    },
+    {
+      "dimensions": [
+        "language-specific records",
+        "equivalent-source linking",
+        "locale declaration"
+      ],
+      "label": "Welsh-language route",
+      "overlay_id": "welsh-language"
+    },
+    {
+      "dimensions": [
+        "term disambiguation",
+        "source-language disclosure",
+        "no silent translation drift"
+      ],
+      "label": "English as an additional language or translation support",
+      "overlay_id": "language-support"
+    },
+    {
+      "dimensions": [
+        "support channel",
+        "shared task state",
+        "no digital-only assumption"
+      ],
+      "label": "Assisted digital support",
+      "overlay_id": "assisted-digital"
+    },
+    {
+      "dimensions": [
+        "actor distinction",
+        "authority boundary",
+        "privacy-minimised context"
+      ],
+      "label": "Proxy, delegate or intermediary",
+      "overlay_id": "proxy-delegate"
+    },
+    {
+      "dimensions": [
+        "safe abstention",
+        "date and jurisdiction",
+        "authoritative escalation"
+      ],
+      "label": "High-stakes or urgent use",
+      "overlay_id": "high-stakes"
+    },
+    {
+      "dimensions": [
+        "stable identifiers",
+        "typed relationships",
+        "provenance fields"
+      ],
+      "label": "Machine-readable agent output",
+      "overlay_id": "structured-output"
+    },
+    {
+      "dimensions": [
+        "answerability status",
+        "missing evidence",
+        "authoritative hand-off"
+      ],
+      "label": "Agent safe-abstention boundary",
+      "overlay_id": "safe-abstention"
+    },
+    {
+      "dimensions": [
+        "effective date",
+        "withdrawal state",
+        "replacement relationship"
+      ],
+      "label": "Current and historical comparison",
+      "overlay_id": "historical-comparison"
+    },
+    {
+      "dimensions": [
+        "attribution",
+        "third-party material",
+        "reuse trigger"
+      ],
+      "label": "Licensing and fair-use review",
+      "overlay_id": "licensing-review"
+    },
+    {
+      "dimensions": [
+        "representation coverage",
+        "attachment alternatives",
+        "test evidence"
+      ],
+      "label": "Accessibility review workflow",
+      "overlay_id": "accessibility-review"
+    }
+  ],
+  "schema_version": 1,
+  "status": "cross-cutting test dimensions; not primary personas or prevalence claims"
+}

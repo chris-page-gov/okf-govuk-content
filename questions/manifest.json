@@ -1,0 +1,550 @@
+{
+  "artifact_tier": "development_only",
+  "counts": {
+    "challenge_modes": {
+      "conflicting_evidence": 480,
+      "direct": 480,
+      "jurisdiction": 480,
+      "language_access": 480,
+      "multi_hop": 480,
+      "noisy_wording": 480,
+      "novice_wording": 480,
+      "structured_agent": 480,
+      "temporal": 480,
+      "unsupported_premise": 480
+    },
+    "deliberately_unanswerable": 480,
+    "gold_records": 4800,
+    "operations": {
+      "check_lifecycle": 480,
+      "compare_decide": 480,
+      "determine_applicability": 480,
+      "explain_define": 480,
+      "follow_process": 480,
+      "handle_ambiguity": 480,
+      "locate_known_item": 480,
+      "obtain_resource": 480,
+      "traverse_relationships": 480,
+      "verify_provenance": 480
+    },
+    "primary_personas": 48,
+    "questions": 4800,
+    "questions_per_story": 100,
+    "splits": {
+      "development": 3840,
+      "held_out": 960
+    },
+    "stories": 48,
+    "suite_entries": 4800,
+    "suite_entries_per_persona": 100
+  },
+  "files": [
+    {
+      "bytes": 6881,
+      "path": "questions/archetypes.yaml",
+      "sha256": "a7f2953f5af54eb9d9697c6a817dad4c05a6c761efd84e0e76edb422e5e8de8f"
+    },
+    {
+      "bytes": 209280,
+      "path": "questions/bindings/story-accessibility-specialist.jsonl",
+      "sha256": "febf2f51181015d256dfd1629c3bee491103a27e797b84d333ec01ed7a1671ba"
+    },
+    {
+      "bytes": 212680,
+      "path": "questions/bindings/story-analyst-statistician.jsonl",
+      "sha256": "18df5fe7bae79139586e3fe21187207d05a7d845d713d18eba7df9607bca76be"
+    },
+    {
+      "bytes": 209780,
+      "path": "questions/bindings/story-appeal-historical-evidence-user.jsonl",
+      "sha256": "c9f956638528ef9ef3de9119ad71dd916a8a9d9209c8902d4e5316b0351bc395"
+    },
+    {
+      "bytes": 215480,
+      "path": "questions/bindings/story-benefits-support-claimant.jsonl",
+      "sha256": "e0808e72b85b0b2524ffd1c280bbae72063e6e499db3bf7e309727e5992cc399"
+    },
+    {
+      "bytes": 202080,
+      "path": "questions/bindings/story-bereaved-person.jsonl",
+      "sha256": "4751ed62995462a943e91f3447a164cb6e36a7e7b46552e2c09949ba2a888a44"
+    },
+    {
+      "bytes": 208880,
+      "path": "questions/bindings/story-business-compliance-agent.jsonl",
+      "sha256": "6e06b073724bd687d9309bdd14042783f316b1565d3e35e4e75a2cecf854adf1"
+    },
+    {
+      "bytes": 215780,
+      "path": "questions/bindings/story-change-monitor-agent.jsonl",
+      "sha256": "ffb904efcf25712bce40d2aa29682c0d5bcabf76cad8555a5561a0b08c14600f"
+    },
+    {
+      "bytes": 199680,
+      "path": "questions/bindings/story-charity-community-body.jsonl",
+      "sha256": "09895ff24772ce27f637e55830b0dc28f9750aa8b6d9f0f93167275822f5ede6"
+    },
+    {
+      "bytes": 206180,
+      "path": "questions/bindings/story-commercial-data-reuser.jsonl",
+      "sha256": "1282cbc199275c34b2b2c30365464ecb0ae2ac376c6caaf9ba545ce084877a91"
+    },
+    {
+      "bytes": 221280,
+      "path": "questions/bindings/story-content-publisher.jsonl",
+      "sha256": "5255cb83e924cf754780b876048ba6c428d3e309409ab236cd749a8d7af7b248"
+    },
+    {
+      "bytes": 205180,
+      "path": "questions/bindings/story-content-reuse-agent.jsonl",
+      "sha256": "5acf9b82772e9008e301ae383bbb80422337691c2bb9fe6c37bb85e3a0e393e1"
+    },
+    {
+      "bytes": 213080,
+      "path": "questions/bindings/story-crawler-indexer-agent.jsonl",
+      "sha256": "befebf9c293be41f6b9962266a9a82a41750e786650048cd98403dbd34b8e75c"
+    },
+    {
+      "bytes": 210280,
+      "path": "questions/bindings/story-data-api-discovery-agent.jsonl",
+      "sha256": "0bdfa754b021b28c909003f0ba6c37d445674807410804bbcc2c773f6f02d674"
+    },
+    {
+      "bytes": 205380,
+      "path": "questions/bindings/story-driver-traveller.jsonl",
+      "sha256": "c33d470e3da0f057cf93f63cd525230a33c8f761dd0bb75992d1d1d6ae38847a"
+    },
+    {
+      "bytes": 209480,
+      "path": "questions/bindings/story-eligibility-obligation-agent.jsonl",
+      "sha256": "465ba11f872f60d3e26da0353530b93fa96ed1e538701a6e350a674117a8881b"
+    },
+    {
+      "bytes": 200480,
+      "path": "questions/bindings/story-founder-sole-trader.jsonl",
+      "sha256": "744a263c26c1dec6b07c9431f965515b6cec39c3bc1aeaa2e896dca729fc436c"
+    },
+    {
+      "bytes": 206580,
+      "path": "questions/bindings/story-frontline-adviser.jsonl",
+      "sha256": "24213f9e69ac3f65035d74ccdc1381c9570dca7f616d423f8aee77be41c3e168"
+    },
+    {
+      "bytes": 218780,
+      "path": "questions/bindings/story-government-activity-follower.jsonl",
+      "sha256": "57d2126632975da964270053acb3beeb091fabe9956b4323ddde552cbc409555"
+    },
+    {
+      "bytes": 212280,
+      "path": "questions/bindings/story-government-caseworker.jsonl",
+      "sha256": "be57cbd23f306604b0707776d65400691af00be5818619c52e1c308c34dbb4db"
+    },
+    {
+      "bytes": 208580,
+      "path": "questions/bindings/story-grounded-qa-agent.jsonl",
+      "sha256": "99a580e186360b80af0b23f40c1534af677923a5f30a16e426ec7bda755385b2"
+    },
+    {
+      "bytes": 210480,
+      "path": "questions/bindings/story-health-safety-environment-user.jsonl",
+      "sha256": "47ce3b7ef08523dd79591bf9e0f46343c132bf631ab868711c5b9d742daf284d"
+    },
+    {
+      "bytes": 207080,
+      "path": "questions/bindings/story-housing-local-services-user.jsonl",
+      "sha256": "5df55c19e72580124384485466099da8ad592e271f99ca113d7fa2b9815efade"
+    },
+    {
+      "bytes": 210280,
+      "path": "questions/bindings/story-immigration-citizenship-user.jsonl",
+      "sha256": "1afd34e1fa51864e5935cb68dbe83d93a22d859f0c907e8a459444b081346613"
+    },
+    {
+      "bytes": 204080,
+      "path": "questions/bindings/story-importer-exporter.jsonl",
+      "sha256": "7c97bef2fc84e285ea9c4c58847e50ce065094620e7f86a344dfd5c4593951a7"
+    },
+    {
+      "bytes": 212980,
+      "path": "questions/bindings/story-journalist-archivist-auditor.jsonl",
+      "sha256": "07d1d83a6b79a0aa1271617f06de0ddb6193091edba842ed9e2ac8b6d6327d4b"
+    },
+    {
+      "bytes": 207580,
+      "path": "questions/bindings/story-justice-rights-user.jsonl",
+      "sha256": "4d839279151f3cb92b8e443e0ec775d055d2c251fcd1dee2d1c863b2f8a027ac"
+    },
+    {
+      "bytes": 205980,
+      "path": "questions/bindings/story-large-regulated-organisation.jsonl",
+      "sha256": "642f69956aadc877c90113b6a92798e0b83f28046295faacdf1659cd85701930"
+    },
+    {
+      "bytes": 204180,
+      "path": "questions/bindings/story-learner-education-user.jsonl",
+      "sha256": "60da6be37f48d4d8f3da9de74c86f64353c4f18dcf530afd4a2aed67a2a4b744"
+    },
+    {
+      "bytes": 207580,
+      "path": "questions/bindings/story-legal-parliamentary-researcher.jsonl",
+      "sha256": "923545a7dfa9d1be944b9d0357d37ace52767674f321008fbb14864d94a8a3ed"
+    },
+    {
+      "bytes": 209080,
+      "path": "questions/bindings/story-life-event-planner-agent.jsonl",
+      "sha256": "eafe8f393c27b32ccb1e1ab38e17d55ce253ebe89117df63ff315175801707ad"
+    },
+    {
+      "bytes": 209680,
+      "path": "questions/bindings/story-local-public-service-officer.jsonl",
+      "sha256": "8ac3f6569c0703fda6024a20d1b2768afdc5059e89c6d8bcb28101a0cfab98ad"
+    },
+    {
+      "bytes": 209180,
+      "path": "questions/bindings/story-multi-service-life-event.jsonl",
+      "sha256": "9692c5354774fdfa82f90044a71c0e910abe9bd75c0dbcdee9db85b076bf1a25"
+    },
+    {
+      "bytes": 213180,
+      "path": "questions/bindings/story-navigation-agent.jsonl",
+      "sha256": "2464295e9427b61d9a586572055e9b79ff6a5f474cc405b2579954c381314684"
+    },
+    {
+      "bytes": 199680,
+      "path": "questions/bindings/story-overseas-visitor.jsonl",
+      "sha256": "35a9cf06ce044cb108bdc800f5f285e446ea8a7c124a1d21334d8db178432480"
+    },
+    {
+      "bytes": 203780,
+      "path": "questions/bindings/story-parent-carer.jsonl",
+      "sha256": "18bd747572b84c0a1998dc42a211df9c09a3b686765b92196e72eff576c47199"
+    },
+    {
+      "bytes": 220580,
+      "path": "questions/bindings/story-policy-legal-research-agent.jsonl",
+      "sha256": "c8e8166a699cff60f382ec706dca261f87c4fd41b0919182aae135b5bb959e94"
+    },
+    {
+      "bytes": 212380,
+      "path": "questions/bindings/story-policy-official.jsonl",
+      "sha256": "bc46a9763b12618aa2aaf4735ea529d9d6e2cc200d3d4bfd77fad668285d4017"
+    },
+    {
+      "bytes": 208780,
+      "path": "questions/bindings/story-professional-adviser-business.jsonl",
+      "sha256": "3b4c543d631dab63ed2d39f23e9bc2899a04336d88d8f7f7e25af18ed2b6c3a8"
+    },
+    {
+      "bytes": 213580,
+      "path": "questions/bindings/story-provenance-audit-agent.jsonl",
+      "sha256": "8f01185bd5de7f856a04107169a1af77028e00ae7a51fe70173453a30a48391e"
+    },
+    {
+      "bytes": 202280,
+      "path": "questions/bindings/story-routine-resident.jsonl",
+      "sha256": "abe954dd1c2305057dc064c49367f48a12cfc192dd6423d753155f6d4f4ab1b3"
+    },
+    {
+      "bytes": 213780,
+      "path": "questions/bindings/story-service-user-researcher.jsonl",
+      "sha256": "00a266c0e0151e2d5645a3a593f6b83b0eae4d34d85db3966be08d6d81792839"
+    },
+    {
+      "bytes": 201380,
+      "path": "questions/bindings/story-sme-employer.jsonl",
+      "sha256": "b0e8753560c54de174e7692477648481aac6fa888eb168b2afde27bceff505fa"
+    },
+    {
+      "bytes": 205380,
+      "path": "questions/bindings/story-supplier-grant-applicant.jsonl",
+      "sha256": "44436da050277c4b236c0aaea5325eacc68640693e2ce2f1662e055b809e57dc"
+    },
+    {
+      "bytes": 203780,
+      "path": "questions/bindings/story-tax-pensions-user.jsonl",
+      "sha256": "7e4fbed6598840f01d8eea3524d60361ab915050454ce528d724cdd35d561404"
+    },
+    {
+      "bytes": 218280,
+      "path": "questions/bindings/story-transaction-handoff-agent.jsonl",
+      "sha256": "40813e56ea31a954a7bd9527adb0ff8dd3a71bc9de362bdef85de6f983944dc9"
+    },
+    {
+      "bytes": 219680,
+      "path": "questions/bindings/story-uk-national-abroad.jsonl",
+      "sha256": "386182f02805c364269dd5a4be7a38aaf4e9a527998cabd63fcd487070c5369b"
+    },
+    {
+      "bytes": 212080,
+      "path": "questions/bindings/story-urgent-high-stakes-user.jsonl",
+      "sha256": "3ce68c2050c1d52f0060dda3bb637971223bf06bf1abc8086e0a6838af2c38c9"
+    },
+    {
+      "bytes": 198080,
+      "path": "questions/bindings/story-worker-jobseeker.jsonl",
+      "sha256": "d28f2d8a88f478ff219054ee0fe8621cc8d3d049c9e483c5247e745def5329cc"
+    },
+    {
+      "bytes": 12475,
+      "path": "questions/checksums.txt",
+      "sha256": "28e90079908873922e41c004a233ccaa3c56344e29723ccc8c23f0267eb11a58"
+    },
+    {
+      "bytes": 3121000,
+      "path": "questions/gold/catalogue.jsonl",
+      "sha256": "d32382e8e0f39c85b24b34a5c58a79f2c9e15c9e0e6d5ebdca1c343b64cd54a1"
+    },
+    {
+      "bytes": 50415,
+      "path": "questions/persona-suites/persona-agent-business-compliance-agent.jsonl",
+      "sha256": "128ecec22bfaa6059aeba50957966774fea8819af9ef437a6d5ba8697f10e846"
+    },
+    {
+      "bytes": 48415,
+      "path": "questions/persona-suites/persona-agent-change-monitor-agent.jsonl",
+      "sha256": "74edb80c322a22757e5ccc1125078c5e15de781146c93368d4da003ffb3c5a43"
+    },
+    {
+      "bytes": 48015,
+      "path": "questions/persona-suites/persona-agent-content-reuse-agent.jsonl",
+      "sha256": "6eac5a0c6215cd5aab2bf173039b18868b44f2336ca09a625b58515281475438"
+    },
+    {
+      "bytes": 48815,
+      "path": "questions/persona-suites/persona-agent-crawler-indexer-agent.jsonl",
+      "sha256": "3946d2bd310877c2094f2368f71fa4caa6f4a9c831831bfdf2cb589378c857f5"
+    },
+    {
+      "bytes": 50015,
+      "path": "questions/persona-suites/persona-agent-data-api-discovery-agent.jsonl",
+      "sha256": "105d3aa6e3e6507add12ba55db116eca6411dd79758a32469fdfe6062fb9d1f7"
+    },
+    {
+      "bytes": 51615,
+      "path": "questions/persona-suites/persona-agent-eligibility-obligation-agent.jsonl",
+      "sha256": "daf138d31bf1dccbcdfcc3d84f2f405bee25acfadfdf185caa18860d0a2adba3"
+    },
+    {
+      "bytes": 47215,
+      "path": "questions/persona-suites/persona-agent-grounded-qa-agent.jsonl",
+      "sha256": "7388148b70854f7f62649253bc617d700f703495efa653468a71a73a51ee6a22"
+    },
+    {
+      "bytes": 50015,
+      "path": "questions/persona-suites/persona-agent-life-event-planner-agent.jsonl",
+      "sha256": "5ecc47c933e2392dd36d709ad3ce6d75298198d4c27163260277357e89552d94"
+    },
+    {
+      "bytes": 46815,
+      "path": "questions/persona-suites/persona-agent-navigation-agent.jsonl",
+      "sha256": "5d6ec8290f0a9be3bd9b2faee9bb307dd1806e9890c7fde8ef7d5bf5d26d5404"
+    },
+    {
+      "bytes": 51215,
+      "path": "questions/persona-suites/persona-agent-policy-legal-research-agent.jsonl",
+      "sha256": "671fafce7a8653ce0cad3465132a95163d66f887936380a90d56c759b041da6f"
+    },
+    {
+      "bytes": 49215,
+      "path": "questions/persona-suites/persona-agent-provenance-audit-agent.jsonl",
+      "sha256": "1f05e60161cd3d514f624bf0a102c7b907b12712e85e15f6a53d1af4543fa1dd"
+    },
+    {
+      "bytes": 50415,
+      "path": "questions/persona-suites/persona-agent-transaction-handoff-agent.jsonl",
+      "sha256": "08b1ae6414ea8f8f590249f92a75baaead464183b6fc06a114cf0a1a8e70052f"
+    },
+    {
+      "bytes": 49815,
+      "path": "questions/persona-suites/persona-business-charity-community-body.jsonl",
+      "sha256": "399734106691256ac9be6660e2577051f913bc98bb867e2650a25f46b3825c2f"
+    },
+    {
+      "bytes": 49815,
+      "path": "questions/persona-suites/persona-business-commercial-data-reuser.jsonl",
+      "sha256": "76d9e62ecb6f90d4cdc1824dd3f441b48bb517ba599e87cbcf1a94908cd15954"
+    },
+    {
+      "bytes": 48615,
+      "path": "questions/persona-suites/persona-business-founder-sole-trader.jsonl",
+      "sha256": "25ed50efc691356bfc141759cbae5ea7551e448557fa10b28f611769059725af"
+    },
+    {
+      "bytes": 47815,
+      "path": "questions/persona-suites/persona-business-importer-exporter.jsonl",
+      "sha256": "2716448cf63f3a66377ac14f11b7c9644ef02f6f33c629131306f801908a8785"
+    },
+    {
+      "bytes": 52215,
+      "path": "questions/persona-suites/persona-business-large-regulated-organisation.jsonl",
+      "sha256": "3f6bb2de6d74603fcc7a94bf3ec75452f6cf6ac8dfddc2df69dea9b236152c9a"
+    },
+    {
+      "bytes": 52615,
+      "path": "questions/persona-suites/persona-business-professional-adviser-business.jsonl",
+      "sha256": "ca03e7caf239d6594b8d879b978a54c1d458393e2519d017b42852fda51f4a49"
+    },
+    {
+      "bytes": 45815,
+      "path": "questions/persona-suites/persona-business-sme-employer.jsonl",
+      "sha256": "871e2cb8f7ab97f5abb755346690eedcdd0b4e660df7c71c689a769dd1158ac7"
+    },
+    {
+      "bytes": 50615,
+      "path": "questions/persona-suites/persona-business-supplier-grant-applicant.jsonl",
+      "sha256": "47a00c795f9b7948cbb38a9a6aa51b52b402a02feded7927907d6d3b8e93c1cc"
+    },
+    {
+      "bytes": 51415,
+      "path": "questions/persona-suites/persona-professional-accessibility-specialist.jsonl",
+      "sha256": "61ff4e7689f771e11f0d604137143039b816b4f500c81a5c1e1ad19a22312498"
+    },
+    {
+      "bytes": 49815,
+      "path": "questions/persona-suites/persona-professional-analyst-statistician.jsonl",
+      "sha256": "a14149956fcb9500cc189c5c54b206cfe06a22cb3f124e4acc8a2b86575a853c"
+    },
+    {
+      "bytes": 48615,
+      "path": "questions/persona-suites/persona-professional-content-publisher.jsonl",
+      "sha256": "75288234e67b37fbb71917f64b4c43d9ed8c30953879b308fa043440a7b36611"
+    },
+    {
+      "bytes": 48615,
+      "path": "questions/persona-suites/persona-professional-frontline-adviser.jsonl",
+      "sha256": "45e0c6a8058460aa8dd424ffbe97c37f724c5241c7a1d9822f664796b3f35805"
+    },
+    {
+      "bytes": 50215,
+      "path": "questions/persona-suites/persona-professional-government-caseworker.jsonl",
+      "sha256": "02e6f15b0d796f0a7b40b4a15daa0491594471b3b7637741339a5a06757c21f7"
+    },
+    {
+      "bytes": 53015,
+      "path": "questions/persona-suites/persona-professional-journalist-archivist-auditor.jsonl",
+      "sha256": "924f4233d746ca87169a24d9d1d2120327d48ac36ee8906ee852cf5a6e0d4786"
+    },
+    {
+      "bytes": 53815,
+      "path": "questions/persona-suites/persona-professional-legal-parliamentary-researcher.jsonl",
+      "sha256": "d4653de516bf77707ec56d7db355e2945740915e43fe26af96fd04bbe661be7d"
+    },
+    {
+      "bytes": 53015,
+      "path": "questions/persona-suites/persona-professional-local-public-service-officer.jsonl",
+      "sha256": "ee4dc8764c70c7780d42cb3e9f5682a6101deb19c6d8a187e50e163826ea3c99"
+    },
+    {
+      "bytes": 47815,
+      "path": "questions/persona-suites/persona-professional-policy-official.jsonl",
+      "sha256": "9871965c8b5ab8760a9bdea104bf5e414dbba73b038da4649749097d2603e71c"
+    },
+    {
+      "bytes": 51015,
+      "path": "questions/persona-suites/persona-professional-service-user-researcher.jsonl",
+      "sha256": "890f7ba22dfa306d961d1d38f9bd6a8ab31a0dc6072342f2d63f008ea5eb83cd"
+    },
+    {
+      "bytes": 53015,
+      "path": "questions/persona-suites/persona-public-appeal-historical-evidence-user.jsonl",
+      "sha256": "e68325a2b0441d0be4cc51f33f291bbe92d8b7f5b437320b974b4af7d025b6bc"
+    },
+    {
+      "bytes": 50615,
+      "path": "questions/persona-suites/persona-public-benefits-support-claimant.jsonl",
+      "sha256": "5795171efd46161221830f8888878dc4b218aedf340eb37dd13afdc45058fe98"
+    },
+    {
+      "bytes": 46615,
+      "path": "questions/persona-suites/persona-public-bereaved-person.jsonl",
+      "sha256": "8e8457761bd860b5745457cb704fe80fa941c5e2ad59771674ec5e2efee8ea11"
+    },
+    {
+      "bytes": 47015,
+      "path": "questions/persona-suites/persona-public-driver-traveller.jsonl",
+      "sha256": "0b9e4681bacd4415fb801a577e84060f996ab1ddac7e824e876170ee37218654"
+    },
+    {
+      "bytes": 51815,
+      "path": "questions/persona-suites/persona-public-government-activity-follower.jsonl",
+      "sha256": "cd0ccbf5fbc68f0bccdbd96f468d8cf34c94044cebfd8e46a2171870e1b7640a"
+    },
+    {
+      "bytes": 52615,
+      "path": "questions/persona-suites/persona-public-health-safety-environment-user.jsonl",
+      "sha256": "dfe901b38bae1b1f7f0bf75ed6b33a87107a5555242404fa2c41dc4d3da90af4"
+    },
+    {
+      "bytes": 51415,
+      "path": "questions/persona-suites/persona-public-housing-local-services-user.jsonl",
+      "sha256": "7490f46c0dd563836accfe711d4d2b3d9673243afa372a2bf7bd246b0697cb7c"
+    },
+    {
+      "bytes": 51815,
+      "path": "questions/persona-suites/persona-public-immigration-citizenship-user.jsonl",
+      "sha256": "db66751003e7d5ffe1f8452b1302acb81b63f095c952ab709807a80c08c6fde1"
+    },
+    {
+      "bytes": 48215,
+      "path": "questions/persona-suites/persona-public-justice-rights-user.jsonl",
+      "sha256": "2e5157af3c53e2c7371fbd1c7b67b8f4cd35bef1b3e16eb3e6a62c114388f96a"
+    },
+    {
+      "bytes": 49415,
+      "path": "questions/persona-suites/persona-public-learner-education-user.jsonl",
+      "sha256": "3ae6f6b125436483a41daffd75df3270108b2e9da934f4863edd70d78fe0196f"
+    },
+    {
+      "bytes": 50215,
+      "path": "questions/persona-suites/persona-public-multi-service-life-event.jsonl",
+      "sha256": "48bf3d0e4c9fe35205865089ae4357ed380eb4b500eef9a27480ada777dfcf91"
+    },
+    {
+      "bytes": 47015,
+      "path": "questions/persona-suites/persona-public-overseas-visitor.jsonl",
+      "sha256": "d306d13fdfe5e0fdc748c01f91a662044ef00be6f17c96a9cc7d5cafe6647d29"
+    },
+    {
+      "bytes": 45415,
+      "path": "questions/persona-suites/persona-public-parent-carer.jsonl",
+      "sha256": "bd1210dae75f548e348679714b893db2e431853c4a6047598160048a408f832d"
+    },
+    {
+      "bytes": 47015,
+      "path": "questions/persona-suites/persona-public-routine-resident.jsonl",
+      "sha256": "c2904f65daab123b384dc377744de6d147ed455cc04a89eec78be717eab44eb9"
+    },
+    {
+      "bytes": 47415,
+      "path": "questions/persona-suites/persona-public-tax-pensions-user.jsonl",
+      "sha256": "d71330f569bc17630b82c71695986bcafaa523f6b4ec64d590ea027f622b1aee"
+    },
+    {
+      "bytes": 47815,
+      "path": "questions/persona-suites/persona-public-uk-national-abroad.jsonl",
+      "sha256": "87cfff699ba440e25e7873b54a548a76ee62e420f34a02c7f256ee37acbd2a4c"
+    },
+    {
+      "bytes": 49815,
+      "path": "questions/persona-suites/persona-public-urgent-high-stakes-user.jsonl",
+      "sha256": "6046808def7a72323a57a02bd07a7e1058bdd8d92caf63f8328db60b9fab7de0"
+    },
+    {
+      "bytes": 47015,
+      "path": "questions/persona-suites/persona-public-worker-jobseeker.jsonl",
+      "sha256": "a35f6161a89496962f70e9be6d3b922f998564e2e088bdaf8b70f64dad9e5730"
+    }
+  ],
+  "generation_method": "deterministic-question-factory-v1",
+  "question_contract_passed": false,
+  "release_blockers": [
+    "one story per persona instead of the required six to twelve",
+    "gold targets are unassigned and independently unverified",
+    "questions are design templates rather than frozen-corpus-anchored evaluation items"
+  ],
+  "release_eligible": false,
+  "root_sha256": "2291d0af578c817d7787de2b4e985cf0e6751a0feb8cd66251f959879bc16ebe",
+  "schema_version": 1,
+  "scope": "questions",
+  "superseded_for_release_by": "govuk-question-matrix-v2"
+}

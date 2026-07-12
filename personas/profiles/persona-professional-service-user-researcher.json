@@ -1,0 +1,36 @@
+{
+  "archetype_class": "professional_intermediary",
+  "channel_class": "human_self_service",
+  "checksum": "b936783607d1771ac5a46ec86ec88086aeb74c084424ec4ee5384ec482e6484e",
+  "context": "The researcher needs explicit hypotheses, gaps and evaluation status rather than invented findings.",
+  "evidence_ids": [
+    "ev-user-needs",
+    "ev-user-stories",
+    "ev-navigation-research"
+  ],
+  "evidence_status": "research_hypothesis_not_human_validated",
+  "generation_method": "deterministic projection from personas/seed.json",
+  "goal": "test whether content structures support evidenced user needs",
+  "jurisdiction": [
+    "UK"
+  ],
+  "known_limitations": [
+    "No authorised participant research has validated this profile.",
+    "Preflight evidence is URL-identity level, not claim-level verification.",
+    "The profile must not be used to infer an individual's eligibility or protected characteristics."
+  ],
+  "overlay_ids": [
+    "accessibility-review",
+    "assisted-digital"
+  ],
+  "persona_id": "persona-professional-service-user-researcher",
+  "persona_kind": "primary_archetype",
+  "research_questions": [
+    "Does this archetype describe a distinct information need rather than a demographic segment?",
+    "Which channels, terms and relationship paths fail for this archetype?",
+    "Which accessibility, language, jurisdiction or risk overlays materially change the task?"
+  ],
+  "risk_level": "medium",
+  "schema_version": 1,
+  "title": "Service designer or user researcher"
+}
