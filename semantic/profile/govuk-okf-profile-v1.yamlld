@@ -1,0 +1,113 @@
+"@context": ../context/govuk-okf-v1.jsonld
+"@id": https://chris-page-gov.github.io/okf-govuk-content/semantic/profile/v1/
+"@type": SemanticProfile
+title: GOV.UK OKF semantic profile
+description: >-
+  Versioned, metadata-led profile for a derived public catalogue of the main
+  GOV.UK publishing estate. It preserves source-native identity and navigation
+  distinctions and reifies every relationship as an evidence-bearing assertion.
+version: 1.0.0
+status: experimental
+profileScope: complete snapshot-bounded public metadata union
+sourceBoundary: >-
+  www.gov.uk publishing-estate metadata, associated public attachments and
+  machine representations, and typed boundary links; no complete page bodies
+metadataOnly: true
+authorityClasses:
+  - source_native
+  - normalized
+  - inferred
+  - model_derived
+requirement:
+  - REQ-014
+  - REQ-015
+  - REQ-016
+  - REQ-017
+  - REQ-018
+  - REQ-019
+  - REQ-020
+  - REQ-021
+  - REQ-022
+  - REQ-035
+  - REQ-036
+  - REQ-037
+  - REQ-038
+  - REQ-039
+  - REQ-041
+  - REQ-042
+validationArtifact:
+  - ../schemas/entity.schema.json
+  - ../schemas/evidence.schema.json
+  - ../schemas/assertion.schema.json
+  - ../shapes/govuk-okf-shapes.ttl
+  - ../crosswalks/entity-crosswalk.yamlld
+  - ../crosswalks/relationship-crosswalk.yamlld
+classes:
+  - term: ContentItem
+    iri: govuk:ContentItem
+    sourceLayer: source_native
+    distinction: Stable GOV.UK content identity; not a locale document, edition, route or rendered page.
+  - term: Document
+    iri: govuk:Document
+    sourceLayer: source_native
+    distinction: Locale-specific member of one content identity.
+  - term: Edition
+    iri: govuk:Edition
+    sourceLayer: source_native
+    distinction: Observable version and lifecycle state of a document.
+  - term: Route
+    iri: govuk:Route
+    sourceLayer: source_native
+    distinction: Address or prefix behaviour; never used as the content identity.
+  - term: Part
+    iri: govuk:Part
+    sourceLayer: source_native
+    distinction: Structured rendered part or section retained with its source locator.
+  - term: ContentType
+    iri: govuk:ContentType
+    sourceLayer: source_native
+    distinction: GOV.UK document type, kept separate from Publishing API schema family.
+  - term: SchemaFamily
+    iri: govuk:SchemaFamily
+    sourceLayer: source_native
+    distinction: Version-pinned Publishing API content-schema family.
+  - term: Organisation
+    iri: govuk:Organisation
+    sourceLayer: source_native
+    distinction: Publishing, owning, lead and sponsoring roles remain typed assertions.
+  - term: Taxon
+    iri: govuk:Taxon
+    sourceLayer: source_native
+    distinction: Topic or world taxonomy concept; not a mainstream browse node.
+  - term: Browse
+    iri: govuk:Browse
+    sourceLayer: source_native
+    distinction: Mainstream browse navigation node; not collapsed into Taxon or Collection.
+  - term: Service
+    iri: govuk:Service
+    sourceLayer: source_native
+    distinction: Genuine public service only when supported by source evidence; ordinary guidance is not a service.
+  - term: Collection
+    iri: govuk:Collection
+    sourceLayer: source_native
+    distinction: Curated collection or journey grouping, distinct from taxonomy and browse.
+  - term: Attachment
+    iri: govuk:Attachment
+    sourceLayer: source_native
+    distinction: Metadata and authoritative link only; bytes and rights are not inferred.
+  - term: Redirect
+    iri: govuk:Redirect
+    sourceLayer: source_native
+    distinction: Observed route transition, not an alias that erases route history.
+  - term: Tombstone
+    iri: govuk:Tombstone
+    sourceLayer: source_native
+    distinction: Gone, withdrawn or unpublished route observation with explicit evidence.
+  - term: Evidence
+    iri: govuk:Evidence
+    sourceLayer: source_native
+    distinction: Immutable source observation, locator, retrieval time and digest.
+  - term: Assertion
+    iri: govuk:Assertion
+    sourceLayer: mixed
+    distinction: Reified subject-predicate-object statement with evidence, authority, derivation and confidence.

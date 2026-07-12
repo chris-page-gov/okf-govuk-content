@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chris-page-gov.github.io/okf-govuk-content/semantic/schemas/assertion.schema.json",
+  "title": "GOV.UK OKF evidence-bearing assertion",
+  "description": "Portable reification of one subject-predicate-object relationship; RDF-star is not required.",
+  "type": "object",
+  "required": [
+    "@id",
+    "@type",
+    "subject",
+    "predicate",
+    "object",
+    "sourceNativePredicate",
+    "evidence",
+    "retrievedAt",
+    "generatedBy",
+    "derivationMethod",
+    "assertionStatus",
+    "authority",
+    "confidence",
+    "snapshotId"
+  ],
+  "properties": {
+    "@id": {"$ref": "common.schema.json#/$defs/iri"},
+    "@type": {"const": "govuk:Assertion"},
+    "subject": {"$ref": "common.schema.json#/$defs/iriReference"},
+    "predicate": {"$ref": "common.schema.json#/$defs/iriReference"},
+    "object": {"$ref": "common.schema.json#/$defs/iriReference"},
+    "sourceNativePredicate": {"type": "string", "minLength": 1},
+    "evidence": {"$ref": "common.schema.json#/$defs/evidenceReferences"},
+    "retrievedAt": {"$ref": "common.schema.json#/$defs/dateTime"},
+    "observedAt": {"$ref": "common.schema.json#/$defs/dateTime"},
+    "effectiveAt": {"$ref": "common.schema.json#/$defs/dateTime"},
+    "invalidatedAt": {"$ref": "common.schema.json#/$defs/dateTime"},
+    "generatedBy": {"$ref": "common.schema.json#/$defs/iriReference"},
+    "derivedFrom": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "common.schema.json#/$defs/iriReference"}
+    },
+    "derivationMethod": {"type": "string", "minLength": 1},
+    "assertionStatus": {"$ref": "common.schema.json#/$defs/authority"},
+    "authority": {"$ref": "common.schema.json#/$defs/authority"},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "reviewStatus": {"enum": ["pending", "accepted", "rejected"]},
+    "reviewer": {"$ref": "common.schema.json#/$defs/iriReference"},
+    "snapshotId": {"$ref": "common.schema.json#/$defs/nonEmptyString"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"assertionStatus": {"const": "source_native"}},
+        "required": ["assertionStatus"]
+      },
+      "then": {"properties": {"authority": {"const": "source_native"}}}
+    },
+    {
+      "if": {
+        "properties": {"assertionStatus": {"const": "normalized"}},
+        "required": ["assertionStatus"]
+      },
+      "then": {
+        "required": ["derivedFrom"],
+        "properties": {"authority": {"const": "normalized"}}
+      }
+    },
+    {
+      "if": {
+        "properties": {"assertionStatus": {"const": "inferred"}},
+        "required": ["assertionStatus"]
+      },
+      "then": {
+        "required": ["derivedFrom", "reviewStatus", "reviewer"],
+        "properties": {"authority": {"const": "inferred"}}
+      }
+    },
+    {
+      "if": {
+        "properties": {"assertionStatus": {"const": "model_derived"}},
+        "required": ["assertionStatus"]
+      },
+      "then": {
+        "required": ["derivedFrom", "reviewStatus", "reviewer"],
+        "properties": {"authority": {"const": "model_derived"}}
+      }
+    }
+  ],
+  "additionalProperties": false
+}

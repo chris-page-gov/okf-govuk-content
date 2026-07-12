@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chris-page-gov.github.io/okf-govuk-content/semantic/schemas/entity.schema.json",
+  "title": "GOV.UK OKF source entity",
+  "description": "Discriminated source-native entity shapes. Evidence and Assertion use their dedicated schemas.",
+  "oneOf": [
+    {"$ref": "#/$defs/ContentItem"},
+    {"$ref": "#/$defs/Document"},
+    {"$ref": "#/$defs/Edition"},
+    {"$ref": "#/$defs/Route"},
+    {"$ref": "#/$defs/Part"},
+    {"$ref": "#/$defs/ContentType"},
+    {"$ref": "#/$defs/SchemaFamily"},
+    {"$ref": "#/$defs/Organisation"},
+    {"$ref": "#/$defs/Taxon"},
+    {"$ref": "#/$defs/Browse"},
+    {"$ref": "#/$defs/Service"},
+    {"$ref": "#/$defs/Collection"},
+    {"$ref": "#/$defs/Attachment"},
+    {"$ref": "#/$defs/Redirect"},
+    {"$ref": "#/$defs/Tombstone"}
+  ],
+  "$defs": {
+    "ContentItem": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["contentId", "basePath", "canonicalUrl", "contentType", "schemaFamily"],
+          "properties": {
+            "@type": {"const": "govuk:ContentItem"},
+            "contentId": {
+              "type": "string",
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+            },
+            "basePath": {"type": "string", "pattern": "^/"},
+            "canonicalUrl": {"$ref": "common.schema.json#/$defs/iri"},
+            "contentType": {"$ref": "common.schema.json#/$defs/iriReference"},
+            "schemaFamily": {"$ref": "common.schema.json#/$defs/iriReference"}
+          }
+        }
+      ]
+    },
+    "Document": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["contentItem", "locale"],
+          "properties": {
+            "@type": {"const": "govuk:Document"},
+            "contentItem": {"$ref": "common.schema.json#/$defs/iriReference"},
+            "locale": {
+              "type": "string",
+              "pattern": "^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$"
+            }
+          }
+        }
+      ]
+    },
+    "Edition": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["document", "editionId", "lifecycleState", "effectiveAt"],
+          "properties": {
+            "@type": {"const": "govuk:Edition"},
+            "document": {"$ref": "common.schema.json#/$defs/iriReference"},
+            "editionId": {"type": "string", "minLength": 1},
+            "lifecycleState": {
+              "enum": ["draft", "published", "withdrawn", "superseded", "unpublished", "unknown"]
+            },
+            "effectiveAt": {"$ref": "common.schema.json#/$defs/dateTime"}
+          }
+        }
+      ]
+    },
+    "Route": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["path", "canonicalUrl", "routeKind"],
+          "properties": {
+            "@type": {"const": "govuk:Route"},
+            "path": {"type": "string", "pattern": "^/"},
+            "canonicalUrl": {"$ref": "common.schema.json#/$defs/iri"},
+            "routeKind": {"enum": ["exact", "prefix", "redirect", "gone", "tombstone", "unknown"]}
+          }
+        }
+      ]
+    },
+    "Part": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["contentItem", "partKind", "position", "sourceLocator"],
+          "properties": {
+            "@type": {"const": "govuk:Part"},
+            "contentItem": {"$ref": "common.schema.json#/$defs/iriReference"},
+            "partKind": {"type": "string", "minLength": 1},
+            "position": {"type": "integer", "minimum": 0},
+            "sourceLocator": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    },
+    "ContentType": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["sourceName"],
+          "properties": {
+            "@type": {"const": "govuk:ContentType"},
+            "sourceName": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    },
+    "SchemaFamily": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["schemaName", "schemaUri", "sourceCommit"],
+          "properties": {
+            "@type": {"const": "govuk:SchemaFamily"},
+            "schemaName": {"type": "string", "minLength": 1},
+            "schemaUri": {"$ref": "common.schema.json#/$defs/iri"},
+            "sourceCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+          }
+        }
+      ]
+    },
+    "Organisation": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["slug", "canonicalUrl", "organisationStatus"],
+          "properties": {
+            "@type": {"const": "govuk:Organisation"},
+            "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+            "canonicalUrl": {"$ref": "common.schema.json#/$defs/iri"},
+            "organisationStatus": {"enum": ["live", "closed", "exempt", "unknown"]}
+          }
+        }
+      ]
+    },
+    "Taxon": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["basePath", "canonicalUrl", "taxonomyKind"],
+          "properties": {
+            "@type": {"const": "govuk:Taxon"},
+            "basePath": {"type": "string", "pattern": "^/"},
+            "canonicalUrl": {"$ref": "common.schema.json#/$defs/iri"},
+            "taxonomyKind": {"enum": ["topic", "world", "navigation", "other"]}
+          }
+        }
+      ]
+    },
+    "Browse": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["basePath", "canonicalUrl", "browseKind"],
+          "properties": {
+            "@type": {"const": "govuk:Browse"},
+            "basePath": {"type": "string", "pattern": "^/"},
+            "canonicalUrl": {"$ref": "common.schema.json#/$defs/iri"},
+            "browseKind": {"enum": ["mainstream_browse", "curated_browse", "other"]}
+          }
+        }
+      ]
+    },
+    "Service": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["canonicalUrl", "serviceStatus", "serviceBasis"],
+          "properties": {
+            "@type": {"const": "govuk:Service"},
+            "canonicalUrl": {"$ref": "common.schema.json#/$defs/iri"},
+            "serviceStatus": {"enum": ["live", "beta", "retired", "unknown"]},
+            "serviceBasis": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    },
+    "Collection": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["canonicalUrl", "collectionKind"],
+          "properties": {
+            "@type": {"const": "govuk:Collection"},
+            "canonicalUrl": {"$ref": "common.schema.json#/$defs/iri"},
+            "collectionKind": {"enum": ["collection", "step_by_step", "curated_journey", "other"]}
+          }
+        }
+      ]
+    },
+    "Attachment": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["contentItem", "canonicalUrl", "mimeType", "filename", "rightsStatus"],
+          "properties": {
+            "@type": {"const": "govuk:Attachment"},
+            "contentItem": {"$ref": "common.schema.json#/$defs/iriReference"},
+            "canonicalUrl": {"$ref": "common.schema.json#/$defs/iri"},
+            "mimeType": {"type": "string", "pattern": "^[^/ ]+/[^/ ]+$"},
+            "filename": {"type": "string", "minLength": 1},
+            "byteSize": {"type": "integer", "minimum": 0},
+            "pageCount": {"type": "integer", "minimum": 0},
+            "accessibility": {"type": "string"},
+            "rightsStatus": {
+              "enum": ["ogl_v3_except_where_otherwise_stated", "source_declared", "review_required", "restricted", "unknown"]
+            }
+          }
+        }
+      ]
+    },
+    "Redirect": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["fromRoute", "target", "httpStatus", "observedAt"],
+          "properties": {
+            "@type": {"const": "govuk:Redirect"},
+            "fromRoute": {"$ref": "common.schema.json#/$defs/iriReference"},
+            "target": {"$ref": "common.schema.json#/$defs/iriReference"},
+            "httpStatus": {"type": "integer", "minimum": 300, "maximum": 399},
+            "observedAt": {"$ref": "common.schema.json#/$defs/dateTime"}
+          }
+        }
+      ]
+    },
+    "Tombstone": {
+      "allOf": [
+        {"$ref": "common.schema.json#/$defs/commonEntity"},
+        {
+          "type": "object",
+          "required": ["route", "tombstoneKind", "observedAt"],
+          "properties": {
+            "@type": {"const": "govuk:Tombstone"},
+            "route": {"$ref": "common.schema.json#/$defs/iriReference"},
+            "tombstoneKind": {"enum": ["gone", "withdrawn", "unpublished", "not_found", "unknown"]},
+            "observedAt": {"$ref": "common.schema.json#/$defs/dateTime"}
+          }
+        }
+      ]
+    }
+  }
+}
