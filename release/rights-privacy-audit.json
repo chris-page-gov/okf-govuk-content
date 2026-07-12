@@ -1,0 +1,175 @@
+{
+  "classification": {
+    "item_review_triggered_items": 2,
+    "ogl_default_candidate_items": 34,
+    "trigger_manifest_sha256": "e7af0656cd0991bac062b66f72855a3a1c17267771a1859aa886cba0bce73006",
+    "triggers": {
+      "explicit_licence_notice": {
+        "example_record_fingerprints": [
+          "sha256:d446c5498973ff5ab611616b0a4c1e334f44038f7864cf4d9616445903658743"
+        ],
+        "examples_contain_source_values": false,
+        "item_set_sha256": "26236f119ccafe34c66ed17c8f3428de2e93246b791616131a25edf4cca2ef6a",
+        "items": 1
+      },
+      "identity_document": {
+        "example_record_fingerprints": [],
+        "examples_contain_source_values": false,
+        "item_set_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "items": 0
+      },
+      "logo_crest_royal_arms_or_insignia": {
+        "example_record_fingerprints": [],
+        "examples_contain_source_values": false,
+        "item_set_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "items": 0
+      },
+      "non_govuk_boundary": {
+        "example_record_fingerprints": [
+          "sha256:80d52980a7b25b8ce26ae01b8cb80380b381e6882166f2534a0dc2ddd85c0853"
+        ],
+        "examples_contain_source_values": false,
+        "item_set_sha256": "73e1280751569150322047fc9bdb8c1a0cb20e796b97c72515c3d40e91a17769",
+        "items": 1
+      },
+      "patent_trademark_or_design_right": {
+        "example_record_fingerprints": [],
+        "examples_contain_source_values": false,
+        "item_set_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "items": 0
+      },
+      "personal_data_indicator": {
+        "example_record_fingerprints": [],
+        "examples_contain_source_values": false,
+        "item_set_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "items": 0
+      },
+      "resource_attachment_or_image": {
+        "example_record_fingerprints": [
+          "sha256:d446c5498973ff5ab611616b0a4c1e334f44038f7864cf4d9616445903658743"
+        ],
+        "examples_contain_source_values": false,
+        "item_set_sha256": "26236f119ccafe34c66ed17c8f3428de2e93246b791616131a25edf4cca2ef6a",
+        "items": 1
+      },
+      "third_party_credit_or_rights": {
+        "example_record_fingerprints": [],
+        "examples_contain_source_values": false,
+        "item_set_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "items": 0
+      }
+    }
+  },
+  "corpus_manifest_declarations": {
+    "complete_page_bodies_retained_true": 0,
+    "count": 0,
+    "metadata_only_false": 0
+  },
+  "errors": [],
+  "generated_at": "2026-07-11T23:30:00Z",
+  "mechanical_controls_passed": true,
+  "policy": {
+    "classification_caveat": "ogl_default_candidate means no machine trigger was observed; it is not a legal determination that OGL applies to the item.",
+    "complete_page_or_attachment_bodies_permitted": false,
+    "credential_fields_permitted": false,
+    "default_classification": "ogl_v3_except_where_otherwise_stated",
+    "fair_dealing_or_item_review_required_for_triggers": true,
+    "metadata_only": true
+  },
+  "policy_evidence": {
+    "checks_passed": true,
+    "metadata_and_link_default_permits_unresolved_triggers": true,
+    "source_constraints": {
+      "path": "research/source-constraints.json",
+      "rights_constraint_id": "SRC-CONSTRAINT-006",
+      "sha256": "dd03b03714f05e71f2867e4ec1b0caf02cf7c4f29002a5422deefadf1a4782f0"
+    },
+    "source_preflight": {
+      "completed_at": "2026-07-12T07:39:52+00:00",
+      "path": "research/source-preflight.json",
+      "required_policy_sources": [
+        "ogl-exceptions",
+        "ogl-v3",
+        "reuse",
+        "robots",
+        "terms"
+      ],
+      "sha256": "ffd1ba217dab2a247032f328ebe0a7124f1764e2d38e9c309f6271fccd055ca6"
+    }
+  },
+  "release_eligible": false,
+  "remaining_item_review_work": [
+    "review or exception every snapshot-bound item trigger"
+  ],
+  "remaining_release_blockers": [
+    "rerun against the final unsampled full-corpus T1 snapshot",
+    "supply the final T1 hydration/source-record manifest"
+  ],
+  "retention_and_secret_findings": {
+    "counts": {},
+    "examples": {},
+    "finding_count": 0,
+    "passed": true,
+    "source_values_retained_in_report": false
+  },
+  "review": {
+    "all_triggered_items_resolved": false,
+    "path": "governance/rights-review-ledger.json",
+    "policy_controlled_unresolved_triggered_items": 2,
+    "provided": true,
+    "release_blocking_unresolved_triggered_items": 0,
+    "resolved_triggered_items": 0,
+    "review_count": 0,
+    "review_packet": null,
+    "sha256": "2cd755bb5e68cdb790a60eb85f94257f1f09361fa1e2878a31e203e43b34cc8b",
+    "unresolved_triggered_items": 2,
+    "unresolved_triggers_are_release_blocking": false
+  },
+  "rights_privacy_audit_passed": false,
+  "sampled": true,
+  "scan": {
+    "classification_items": 36,
+    "compressed_bytes_scanned": 595463,
+    "files_scanned": 745,
+    "limits": {
+      "max_compressed_bytes_per_file": 52428800,
+      "max_depth": 64,
+      "max_files": 100000,
+      "max_manifest_bytes": 16777216,
+      "max_nodes_per_record": 250000,
+      "max_record_bytes": 16777216,
+      "max_records": 2000000,
+      "max_string_chars": 1048576,
+      "max_uncompressed_bytes_per_file": 67108864
+    },
+    "mode": "bounded_streaming_disk_backed",
+    "publication_assets_scanned": 745,
+    "record_objects_scanned": 975,
+    "record_observations_by_source": {
+      "publication:datasets": 14,
+      "publication:publishers": 6,
+      "publication:relationships": 16,
+      "publication:resources": 1
+    }
+  },
+  "schema": "afhf-govuk-okf-rights-privacy-audit.v1",
+  "snapshot": "fixture-2026-07-11",
+  "snapshot_binding": {
+    "corpus_asset_set_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "corpus_manifest_count": 0,
+    "corpus_snapshot_bound": false,
+    "full_unsampled_snapshot": false,
+    "publication_asset_set_sha256": "b44fdba306c0f290e36bbbd4212bd6a2f2ce3fa93fdfdfefbdd4e701bb7ebe8d",
+    "publication_manifest": {
+      "path": "bundle/data/manifest.json",
+      "sha256": "643fccb55fd2a123dceb4239ac697cfaf4337f82b8d75c3a6b7d46a3e43e14a4"
+    },
+    "release_manifest": {
+      "path": "release/manifest.yaml",
+      "sha256": "d1254a8c6d20fe30ec966131f97a6a652ccf564f4fc6a61b361e3a898189fc3b"
+    },
+    "resolved_corpus_record_manifest_count": 0
+  },
+  "snapshot_kind": "fixture",
+  "status": "checkpoint"
+}
