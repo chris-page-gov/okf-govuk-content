@@ -1,16 +1,26 @@
 {
   "counts": {
-    "baselines": 4,
+    "baselines": 3,
     "empirical_runs": 0,
     "human_sessions": 0,
     "model_calls": 0,
-    "protocols": 3
+    "protocols": 4
   },
   "files": [
     {
-      "bytes": 760,
+      "bytes": 2760,
+      "path": "evaluation/README.md",
+      "sha256": "bbf729e1a4e7f72c282a6fd76b59f75239b0efb5ff173542ccdc6ea06d2a07f8"
+    },
+    {
+      "bytes": 2214,
       "path": "evaluation/baselines/catalogue.json",
-      "sha256": "a414b1fbcb9e2f8fce19276e79bc14a64786f8aa05db8df63d2a0da831284102"
+      "sha256": "18e89152f5b1b5ec68e56897aa05ae0530ca2e305f80b9dcebc7a17621e05501"
+    },
+    {
+      "bytes": 5732,
+      "path": "evaluation/protocol/automated-evaluation-v1.json",
+      "sha256": "9a41a2b715cbda3548769fe3ea8b3afc13818da27c127eb81b48654f68cb686c"
     },
     {
       "bytes": 1536,
@@ -33,13 +43,13 @@
       "sha256": "69cd8622ad1fe5004e5eef42948769f22750a67943af6e894508a9c2281955df"
     },
     {
-      "bytes": 647,
+      "bytes": 713,
       "path": "evaluation/results/status.json",
-      "sha256": "87317176bf4ab575d22073a4253487b22f187fedd7ef98459443ed72ace40809"
+      "sha256": "0d4ac6a8567ad9d7455bcf9d31bf631972a8fdae75f8125238ca4beaace6dc55"
     }
   ],
   "generation_method": "deterministic-question-factory-v1",
-  "root_sha256": "45802c039aee607e7f4e933c4c62d758c2a7629b4aba3cc7fe7e4105e5b721a8",
+  "root_sha256": "566f6cdd11d377dc273ea9f93bc3f4285388709e01c3b4a7d4b623f175a545ac",
   "schema_version": 1,
   "scope": "evaluation"
 }
