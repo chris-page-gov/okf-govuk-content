@@ -3763,9 +3763,9 @@
       "sha256": "316acd2badcc3b428e025d8a497bfa7d8a4793573226be00124d0737e5c14a73"
     },
     {
-      "bytes": 14796,
+      "bytes": 15679,
       "path": "data.js",
-      "sha256": "2ae3a04c47c65d91b2a3a406174c3b266633733f78f64a8d0bc33e4d8aae9e57"
+      "sha256": "51ff978466c10478dc0732d377b6eee864a23d433a614e95ec9763f4414ae76a"
     },
     {
       "bytes": 5911,
@@ -3828,9 +3828,9 @@
       "sha256": "2a5c6cfaef9e7645ed28b1c28e5bcc4ce8b0ddef1c3cd42ef8904c9b6486da8d"
     },
     {
-      "bytes": 13347,
+      "bytes": 14274,
       "path": "search.worker.js",
-      "sha256": "d70aa349bb41a25cd00f8792dbf207e306aba4f01d76c473cffdedd9837e8eba"
+      "sha256": "aa68a479af6e0882a98778fb577c46fc03ca1520b23e4ffc57fd6014efaa9a37"
     },
     {
       "bytes": 805,

@@ -56,7 +56,10 @@ function resolvePath(reference) {
 }
 
 async function sha256(text) {
-  const bytes = new TextEncoder().encode(text);
+  return sha256Bytes(new TextEncoder().encode(text));
+}
+
+async function sha256Bytes(bytes) {
   const digest = await crypto.subtle.digest("SHA-256", bytes);
   return [...new Uint8Array(digest)].map((value) => value.toString(16).padStart(2, "0")).join("");
 }
@@ -101,24 +104,50 @@ async function loadShardIntegrity(signal, expectedSnapshot) {
   return entries;
 }
 
-async function readResponseText(response, url, budget) {
-  let readable = response;
-  if (url.toLowerCase().endsWith(".gz") && !response.headers.get("content-encoding")?.toLowerCase().includes("gzip")) {
-    if (!response.body || typeof DecompressionStream === "undefined") {
-      throw new Error("This browser cannot decompress the advertised gzip search shard");
-    }
-    readable = new Response(response.body.pipeThrough(new DecompressionStream("gzip")));
-  }
-  const contentLength = Number(readable.headers.get("content-length") || 0);
+async function readResponseBytes(response) {
+  const contentLength = Number(response.headers.get("content-length") || 0);
   if (contentLength > MAX_JSON_BYTES) throw new Error("Search shard exceeds the 8 MiB response limit");
-  if (!readable.body) {
-    const text = await readable.text();
-    const byteLength = new TextEncoder().encode(text).byteLength;
-    if (byteLength > MAX_JSON_BYTES) throw new Error("Search shard exceeds the 8 MiB response limit");
-    if (budget) budget.consumeDecodedBytes(byteLength);
-    return text;
+  if (!response.body) {
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    if (bytes.byteLength > MAX_JSON_BYTES) throw new Error("Search shard exceeds the 8 MiB response limit");
+    return bytes;
   }
-  const reader = readable.body.getReader();
+  const reader = response.body.getReader();
+  const chunks = [];
+  let received = 0;
+  while (true) {
+    const part = await reader.read();
+    if (part.done) break;
+    received += part.value.byteLength;
+    if (received > MAX_JSON_BYTES) {
+      await reader.cancel();
+      throw new Error("Search shard exceeds the 8 MiB response limit");
+    }
+    chunks.push(part.value);
+  }
+  const bytes = new Uint8Array(received);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return bytes;
+}
+
+async function decodeResponseBytes(bytes, response, url, budget) {
+  if (!url.toLowerCase().endsWith(".gz")) {
+    if (budget) budget.consumeDecodedBytes(bytes.byteLength);
+    return new TextDecoder().decode(bytes);
+  }
+  if (response.headers.get("content-encoding")?.toLowerCase().includes("gzip")) {
+    throw new Error("Pre-compressed search shards must be served without Content-Encoding so their published bytes can be verified");
+  }
+  if (typeof DecompressionStream === "undefined") {
+    throw new Error("This browser cannot decompress the advertised gzip search shard");
+  }
+  const body = new Response(bytes).body;
+  if (!body) throw new Error("This browser cannot stream the advertised gzip search shard");
+  const reader = body.pipeThrough(new DecompressionStream("gzip")).getReader();
   const decoder = new TextDecoder();
   let received = 0;
   let text = "";
@@ -128,7 +157,7 @@ async function readResponseText(response, url, budget) {
     received += part.value.byteLength;
     if (received > MAX_JSON_BYTES) {
       await reader.cancel();
-      throw new Error("Search shard exceeds the 8 MiB response limit");
+      throw new Error("Search shard exceeds the 8 MiB decoded response limit");
     }
     if (budget) budget.consumeDecodedBytes(part.value.byteLength);
     text += decoder.decode(part.value, { stream: true });
@@ -153,8 +182,9 @@ async function requestJson(reference, signal, budget) {
         }
         throw error;
       }
-      const text = await readResponseText(response, url, budget);
-      if (expectedHash && await sha256(text) !== expectedHash) throw new Error("Search shard integrity check failed");
+      const bytes = await readResponseBytes(response);
+      if (expectedHash && await sha256Bytes(bytes) !== expectedHash) throw new Error("Search shard integrity check failed");
+      const text = await decodeResponseBytes(bytes, response, url, budget);
       return JSON.parse(text);
     } catch (error) {
       if (error && error.name === "AbortError") throw error;

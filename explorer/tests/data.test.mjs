@@ -1,7 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { gzipSync } from "node:zlib";
 
-import { descriptorCandidates, integrityReference, LargeCorpusStore, referenceHash, referencePath, resolveReference, SearchClient } from "../src/data.js";
+import { descriptorCandidates, fetchJson, integrityReference, LargeCorpusStore, referenceHash, referencePath, resolveReference, SearchClient } from "../src/data.js";
 
 function jsonResponse(value, status = 200) {
   return new Response(JSON.stringify(value), { status, headers: { "content-type": "application/json" } });
@@ -20,6 +22,31 @@ test("descriptor and resource references remain portable across Pages paths", ()
   );
   assert.throws(() => integrityReference("data/missing.json", [], "Record shard"), /no integrity metadata/);
   assert.equal(resolveReference("data/overview.json", "https://example.test/project/okf-explorer.json"), "https://example.test/project/data/overview.json");
+});
+
+test("gzip resource integrity covers published compressed bytes before bounded decoding", async (context) => {
+  const originalFetch = globalThis.fetch;
+  const encoded = gzipSync(Buffer.from(JSON.stringify({ snapshot: "snap-1" }) + "\n"));
+  const sha256 = createHash("sha256").update(encoded).digest("hex");
+  globalThis.fetch = async () => new Response(encoded, {
+    status: 200,
+    headers: { "content-length": String(encoded.byteLength), "content-type": "application/gzip" }
+  });
+  context.after(() => { globalThis.fetch = originalFetch; });
+  const result = await fetchJson(
+    { path: "data/shard.json.gz", sha256 },
+    "https://example.test/",
+    { currentOrigin: "https://example.test" }
+  );
+  assert.deepEqual(result.value, { snapshot: "snap-1" });
+  await assert.rejects(
+    fetchJson(
+      { path: "data/shard.json.gz", sha256: "0".repeat(64) },
+      "https://example.test/",
+      { currentOrigin: "https://example.test" }
+    ),
+    /integrity check failed/
+  );
 });
 
 test("large-corpus bootstrap rejects mixed snapshot declarations", async (context) => {
