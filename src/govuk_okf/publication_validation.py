@@ -250,13 +250,25 @@ class PublicationValidator:
         self.connection.close()
 
     def path(self, relative: object) -> Path:
-        candidate = Path(str(relative))
+        value = relative.get("path") if isinstance(relative, dict) else relative
+        candidate = Path(str(value or ""))
+        if not str(value or ""):
+            raise ValueError(f"publication reference has no path: {relative}")
         if candidate.is_absolute() or ".." in candidate.parts:
             raise ValueError(f"unsafe publication path: {relative}")
         resolved = (self.bundle / candidate).resolve()
         if not resolved.is_relative_to(self.bundle):
             raise ValueError(f"publication path escapes bundle: {relative}")
         return resolved
+
+    def verify_reference_hash(self, reference: object, path: Path) -> None:
+        if not isinstance(reference, dict):
+            return
+        expected = str(reference.get("sha256") or "").lower()
+        if not re.fullmatch(r"[0-9a-f]{64}", expected):
+            raise ValueError(f"publication reference has no valid SHA-256: {reference}")
+        if _file_sha256(path) != expected:
+            raise ValueError(f"publication reference SHA-256 differs: {reference}")
 
     def load_json(
         self,
@@ -272,6 +284,7 @@ class PublicationValidator:
                 raise ValueError(f"missing file: {relative}")
             if max_bytes is not None and path.stat().st_size > max_bytes:
                 raise ValueError(f"file exceeds {max_bytes} bytes: {relative}")
+            self.verify_reference_hash(relative, path)
             return json.loads(path.read_text(encoding="utf-8"))
         except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
             self.errors.add(f"cannot read {label}: {exc}")
@@ -300,6 +313,7 @@ class PublicationValidator:
                 raise ValueError(f"missing file: {relative}")
             if max_bytes is not None and path.stat().st_size > max_bytes:
                 raise ValueError(f"file exceeds {max_bytes} bytes: {relative}")
+            self.verify_reference_hash(relative, path)
         except (OSError, ValueError) as exc:
             self.errors.add(f"invalid {label}: {exc}")
             return False

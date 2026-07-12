@@ -1,12 +1,27 @@
 from __future__ import annotations
 
 import hashlib
+import gzip
+import io
 import json
 import re
+import socket
 import unittest
+from email.message import Message
 from pathlib import Path
+from urllib.request import Request
 
 ROOT = Path(__file__).resolve().parents[1]
+
+import sys
+
+sys.path.insert(0, str(ROOT / "src"))
+
+from govuk_okf.webprobe import (  # noqa: E402
+    PolicyRedirectHandler,
+    _bounded_gzip_decompress,
+    validate_public_https_url,
+)
 
 
 class SourcePreflightTests(unittest.TestCase):
@@ -83,6 +98,62 @@ class SourcePreflightTests(unittest.TestCase):
         self.assertEqual(1, len(researchgate))
         self.assertEqual("HTTP 403 Forbidden", researchgate[0]["publication_record_result"])
         self.assertEqual("HTTP 403 Forbidden", researchgate[0]["exact_author_pdf_result"])
+
+    def test_probe_policy_rejects_non_https_private_and_unapproved_destinations(self) -> None:
+        public_answer = [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("93.184.216.34", 443))]
+        private_answer = [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("169.254.169.254", 443))]
+        self.assertEqual(
+            "example.test",
+            validate_public_https_url(
+                "https://example.test/path",
+                allowed_hosts=("example.test",),
+                resolver=lambda *_args, **_kwargs: public_answer,
+            ),
+        )
+        with self.assertRaisesRegex(ValueError, "credential-free HTTPS"):
+            validate_public_https_url(
+                "http://example.test/path",
+                allowed_hosts=("example.test",),
+                resolver=lambda *_args, **_kwargs: public_answer,
+            )
+        with self.assertRaisesRegex(ValueError, "not public"):
+            validate_public_https_url(
+                "https://example.test/path",
+                allowed_hosts=("example.test",),
+                resolver=lambda *_args, **_kwargs: private_answer,
+            )
+        with self.assertRaisesRegex(ValueError, "not approved"):
+            validate_public_https_url(
+                "https://other.test/path",
+                allowed_hosts=("example.test",),
+                resolver=lambda *_args, **_kwargs: public_answer,
+            )
+
+    def test_redirect_policy_revalidates_each_hop_before_request_creation(self) -> None:
+        public_answer = [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("93.184.216.34", 443))]
+        private_answer = [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("127.0.0.1", 443))]
+        request = Request("https://example.test/start")
+        headers = Message()
+        handler = PolicyRedirectHandler(
+            allowed_hosts=("example.test",),
+            resolver=lambda *_args, **_kwargs: public_answer,
+        )
+        redirected = handler.redirect_request(request, None, 302, "Found", headers, "/next")
+        self.assertEqual("https://example.test/next", redirected.full_url)
+        blocked = PolicyRedirectHandler(
+            allowed_hosts=("example.test",),
+            resolver=lambda *_args, **_kwargs: private_answer,
+        )
+        with self.assertRaisesRegex(ValueError, "not public"):
+            blocked.redirect_request(request, None, 302, "Found", headers, "https://example.test/internal")
+
+    def test_gzip_probe_decompression_stops_at_decoded_byte_limit(self) -> None:
+        compressed = io.BytesIO()
+        with gzip.GzipFile(fileobj=compressed, mode="wb", mtime=0) as stream:
+            stream.write(b"a" * 4096)
+        decoded, truncated = _bounded_gzip_decompress(compressed.getvalue(), 128)
+        self.assertEqual(128, len(decoded))
+        self.assertTrue(truncated)
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import gzip
 import copy
+import hashlib
 import json
 import sys
 import tempfile
@@ -46,6 +47,24 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(yaml_dump(expected_semantic) + "\n", (output / "okf-bundle.yamlld").read_text(encoding="utf-8"))
             self.assertEqual(semantic, yaml_load_subset((output / "okf-bundle.yamlld").read_text(encoding="utf-8")))
             self.assertEqual(result["semantic_projection_sha256"], descriptor["semantic_projection_sha256"])
+            search_reference = descriptor["entrypoints"]["search_manifest"]
+            self.assertEqual("data/search/manifest.json", search_reference["path"])
+            self.assertEqual(
+                hashlib.sha256((output / search_reference["path"]).read_bytes()).hexdigest(),
+                search_reference["sha256"],
+            )
+            for name in (
+                "data_manifest",
+                "overview_index",
+                "analysis_overview",
+                "relationship_adjacency",
+                "route_index",
+            ):
+                reference = descriptor["entrypoints"][name]
+                self.assertEqual(
+                    hashlib.sha256((output / reference["path"]).read_bytes()).hexdigest(),
+                    reference["sha256"],
+                )
 
     def test_publication_excludes_semantic_dependency_and_test_runtime(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

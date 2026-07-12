@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from collections import OrderedDict
 from pathlib import Path
@@ -57,8 +58,11 @@ class DiscoveryIndex:
         self._gzip_cache: OrderedDict[str, Any] = OrderedDict()
         self._result_docs: list[dict[str, Any]] | None = None
 
-    def _resolve(self, relative: str) -> Path:
-        path = Path(str(relative))
+    def _resolve(self, relative: object) -> Path:
+        value = relative.get("path") if isinstance(relative, dict) else relative
+        path = Path(str(value or ""))
+        if not str(value or ""):
+            raise DiscoveryError(f"bundle reference has no path: {relative}")
         if path.is_absolute() or ".." in path.parts:
             raise DiscoveryError(f"unsafe bundle path: {relative}")
         resolved = (self.bundle / path).resolve()
@@ -66,11 +70,17 @@ class DiscoveryIndex:
             raise DiscoveryError(f"bundle path escapes root: {relative}")
         return resolved
 
-    def _load_json(self, relative: str) -> Any:
+    def _load_json(self, relative: object) -> Any:
         path = self._resolve(relative)
         try:
             if path.stat().st_size > 64 * 1024 * 1024:
                 raise DiscoveryError(f"JSON entrypoint exceeds 64 MiB: {relative}")
+            if isinstance(relative, dict):
+                expected = str(relative.get("sha256") or "").lower()
+                if len(expected) != 64 or any(character not in "0123456789abcdef" for character in expected):
+                    raise DiscoveryError(f"bundle entrypoint has no valid SHA-256: {relative}")
+                if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+                    raise DiscoveryError(f"bundle entrypoint SHA-256 differs: {relative}")
             return json.loads(path.read_text(encoding="utf-8"))
         except DiscoveryError:
             raise

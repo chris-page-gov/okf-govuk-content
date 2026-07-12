@@ -1,15 +1,18 @@
 from __future__ import annotations
 
+import gzip
 import json
 import sys
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from govuk_okf.acquisition import write_jsonl_gzip_shards
+from govuk_okf import sharded_jsonl
 from govuk_okf.sharded_jsonl import ShardedJsonlError, input_sha256, iter_jsonl_records
 
 
@@ -31,6 +34,24 @@ class ShardedJsonlTests(unittest.TestCase):
             (root / "index.json").write_text(json.dumps(index), encoding="utf-8")
             with self.assertRaisesRegex(ShardedJsonlError, "file hash mismatch"):
                 list(iter_jsonl_records(root))
+
+    def test_shared_generator_and_verifier_reader_bounds_gzip_expansion(self) -> None:
+        with TemporaryDirectory() as temporary:
+            path = Path(temporary) / "records.jsonl.gz"
+            with gzip.open(path, "wb") as stream:
+                stream.write(json.dumps({"value": "a" * 512}).encode("utf-8") + b"\n")
+            with patch.object(sharded_jsonl, "MAX_UNCOMPRESSED_SHARD_BYTES", 128):
+                with self.assertRaisesRegex(ShardedJsonlError, "uncompressed shard exceeds"):
+                    list(iter_jsonl_records(path))
+
+    def test_shared_generator_and_verifier_reader_bounds_single_lines(self) -> None:
+        with TemporaryDirectory() as temporary:
+            path = Path(temporary) / "records.jsonl.gz"
+            with gzip.open(path, "wb") as stream:
+                stream.write(json.dumps({"value": "a" * 512}).encode("utf-8") + b"\n")
+            with patch.object(sharded_jsonl, "MAX_RECORD_BYTES", 128):
+                with self.assertRaisesRegex(ShardedJsonlError, "record exceeds"):
+                    list(iter_jsonl_records(path))
 
 
 if __name__ == "__main__":

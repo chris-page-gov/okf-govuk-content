@@ -35,6 +35,7 @@ from govuk_okf.question_matrix_v2 import (  # noqa: E402
     STORIES_PER_PERSONA as QUESTION_V2_STORIES_PER_PERSONA,
     STORY_ROLES as QUESTION_V2_STORY_ROLES,
 )
+from govuk_okf.util import safe_child_path, safe_identifier  # noqa: E402
 
 SEED_PATH = ROOT / "personas" / "seed.json"
 EVIDENCE_PATH = ROOT / "personas" / "evidence.json"
@@ -680,7 +681,8 @@ def _persona_id(seed: dict[str, Any]) -> str:
         "professional_intermediary": "professional",
         "agent_system": "agent",
     }
-    return f"persona-{prefixes[seed['class']]}-{seed['slug']}"
+    slug = safe_identifier(seed.get("slug"), label="persona slug")
+    return safe_identifier(f"persona-{prefixes[seed['class']]}-{slug}", label="persona ID")
 
 
 def _schema_owner(schema: str, persona_slugs: list[str]) -> str:
@@ -1165,13 +1167,23 @@ def render() -> dict[Path, str]:
     for story in stories:
         persona = profiles_by_id[story["persona_ids"][0]]
         questions = build_story_questions(story, persona)
-        question_path = ROOT / "questions" / "bindings" / f"{story['story_id']}.jsonl"
+        story_id = safe_identifier(story["story_id"], label="story ID")
+        question_path = safe_child_path(
+            ROOT / "questions" / "bindings",
+            f"{story_id}.jsonl",
+            label="research question binding path",
+        )
         output[question_path] = _jsonl(questions)
         question_paths.append(question_path)
         all_questions.extend(questions)
 
         suite = curate_persona_suite(persona, questions)
-        suite_path = ROOT / "questions" / "persona-suites" / f"{persona['persona_id']}.jsonl"
+        persona_id = safe_identifier(persona["persona_id"], label="persona ID")
+        suite_path = safe_child_path(
+            ROOT / "questions" / "persona-suites",
+            f"{persona_id}.jsonl",
+            label="research persona suite path",
+        )
         output[suite_path] = _jsonl(suite)
         question_paths.append(suite_path)
         all_suites.extend(suite)
@@ -1508,7 +1520,12 @@ def render() -> dict[Path, str]:
 
 def synchronize(check: bool = False) -> list[str]:
     errors: list[str] = []
-    for path, expected in render().items():
+    rendered = render()
+    repository_root = ROOT.resolve()
+    for path in rendered:
+        if not path.resolve().is_relative_to(repository_root):
+            raise ValueError(f"generated research path escapes repository root: {path}")
+    for path, expected in rendered.items():
         if check:
             if not path.is_file():
                 errors.append(f"{path.relative_to(ROOT)} is missing")

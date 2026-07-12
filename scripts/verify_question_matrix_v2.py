@@ -22,6 +22,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--matrix", type=Path, required=True)
     parser.add_argument("--corpus", type=Path, required=True)
     parser.add_argument("--report", type=Path)
+    parser.add_argument("--snapshot-manifest", type=Path)
+    parser.add_argument("--reconciliation", type=Path)
     parser.add_argument("--require-release", action="store_true")
     return parser.parse_args()
 
@@ -59,7 +61,12 @@ def main() -> int:
     matrix = args.matrix.resolve()
     corpus = args.corpus.resolve()
     report_path = (args.report or (matrix / "verification-report.json")).resolve()
-    report = verify(matrix, corpus)
+    report = verify(
+        matrix,
+        corpus,
+        snapshot_manifest_path=args.snapshot_manifest.resolve() if args.snapshot_manifest else None,
+        reconciliation_path=args.reconciliation.resolve() if args.reconciliation else None,
+    )
     ledger = report.pop("_verification_ledger")
     ledger_path = report_path.with_name("verification-ledger.jsonl")
     ledger_content = "".join(

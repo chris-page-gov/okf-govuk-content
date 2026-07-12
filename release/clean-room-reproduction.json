@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "55bc02faaf3e7bde48bb156af4b1599c051e48f3f1fe54af121158aec220f222",
-    "before_sha256": "55bc02faaf3e7bde48bb156af4b1599c051e48f3f1fe54af121158aec220f222",
+    "after_sha256": "cf48af6cd06e89b671446e341b37c4895c50b9d8c0779b43662473d8beb400bf",
+    "before_sha256": "cf48af6cd06e89b671446e341b37c4895c50b9d8c0779b43662473d8beb400bf",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -51,8 +51,8 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "8304387a7208224c0f02378dbd1e3ed67c87d961c130e92584abdbf90debb56c",
-      "stdout_tail": "wrote checksums for 777 files\n"
+      "stdout_sha256": "6fbe998a2fe1a6f366d176c86622cb3bbb06e8255b488f8e7ac4581b06cccc32",
+      "stdout_tail": "wrote checksums for 778 files\n"
     },
     {
       "command": [
@@ -65,8 +65,8 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "fb4333e1419b90787fa70de5d7575d6e9d42086e71382ee1bb57ae23c8065e3a",
-      "stdout_tail": "checksums verified for 777 files\n"
+      "stdout_sha256": "e09d5ece6144080587b1d162850574c17d4e9d47cd540f5c7f82f2e8d1fbd398",
+      "stdout_tail": "checksums verified for 778 files\n"
     },
     {
       "command": [
@@ -306,10 +306,10 @@
         "tree_sha256": "5eff26615be089f5d22a8cc72d82f4b1ff7136ac776652b443a079598b566702"
       },
       {
-        "bytes": 852905,
+        "bytes": 871977,
         "file_count": 26,
         "path": "src",
-        "tree_sha256": "b1ebef335691cc25156b705606d79ecbacb22104218ef1af7277b9c8588a00da"
+        "tree_sha256": "df03ba152c530c960e0aa9e77d011fea1b6c7c4317a64c05c2e7df7e84ae1a8d"
       },
       {
         "bytes": 1652,
@@ -342,10 +342,10 @@
         "tree_sha256": "bd78690a78b9e9aaaa269256129a261fe3af487746b53cafddc6fd98dc58f734"
       },
       {
-        "bytes": 48655,
+        "bytes": 48868,
         "file_count": 1,
         "path": "scripts/check_release.py",
-        "tree_sha256": "0a01068d00cf6e92f8f2dd6b09c2c189f8fe5a2bed593907317c44d4adbbeb93"
+        "tree_sha256": "76b76910c763dd06b8049736ffc629ed50bc96a6f7d41b8f040b16bc86e1a3f1"
       },
       {
         "bytes": 32170,
@@ -396,10 +396,10 @@
         "tree_sha256": "a856a2fc2266de8205901fae641c34d2166584b9460cd6670e5a028e0161e692"
       },
       {
-        "bytes": 130815,
-        "file_count": 13,
+        "bytes": 141735,
+        "file_count": 14,
         "path": "explorer/src",
-        "tree_sha256": "f489a7e49c519e719a8ff73f4cb2437d2ec3f42e8fc216bb4f4241e1e155d24d"
+        "tree_sha256": "caca45dc59b6109f34cdbfb5eb2a2890ed55bfc52f3dca269253925c9dea4c75"
       },
       {
         "bytes": 47929,
@@ -416,7 +416,7 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "88f731d400c79bc65e808535b56bfe5d5de488c8a714a258f04b28da6b0cd487"
+    "tree_sha256": "b11c9b4d18a06005f47367ad0361fb99df55b56bc34f6184b68f70b0dba7e490"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
@@ -460,17 +460,17 @@
   "outputs": {
     "bundle": {
       "actual": {
-        "bytes": 959403,
-        "file_count": 778,
-        "tree_sha256": "1247cd4b58fe985ddea11c3de7b8c819f3903392f9dc53bd6d52797e26757208"
+        "bytes": 971149,
+        "file_count": 779,
+        "tree_sha256": "ab0455f1131bd147eee7de2016b4a488caf92f3ad938ce37331d9a4ea20892a6"
       },
       "difference_count": 0,
       "differences": [],
       "exact_match": true,
       "expected": {
-        "bytes": 959403,
-        "file_count": 778,
-        "tree_sha256": "1247cd4b58fe985ddea11c3de7b8c819f3903392f9dc53bd6d52797e26757208"
+        "bytes": 971149,
+        "file_count": 779,
+        "tree_sha256": "ab0455f1131bd147eee7de2016b4a488caf92f3ad938ce37331d9a4ea20892a6"
       }
     },
     "sbom": {
@@ -481,7 +481,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-12T15:21:50Z",
+  "recorded_at": "2026-07-12T16:43:40Z",
   "release_input_failures": [
     "release kind is a fixture checkpoint",
     "snapshot is not an unsampled full corpus",

@@ -35,6 +35,37 @@ def slugify(value: str, fallback: str = "item") -> str:
     return slug[:120] or fallback
 
 
+def safe_identifier(value: object, *, label: str = "identifier", max_length: int = 128) -> str:
+    """Return a filename-safe opaque identifier or fail without rewriting it."""
+
+    if not isinstance(value, str) or len(value) > max_length or not re.fullmatch(
+        rf"[A-Za-z0-9][A-Za-z0-9._-]{{0,{max_length - 1}}}", value
+    ):
+        raise ValueError(f"unsafe {label}: {value!r}")
+    return value
+
+
+def safe_child_path(root: Path, relative: Path | str, *, label: str = "path") -> Path:
+    """Resolve a repository-controlled child path and prove root containment."""
+
+    root = root.resolve()
+    value = Path(relative)
+    candidate = (root / value).resolve()
+    if value.is_absolute() or ".." in value.parts or not candidate.is_relative_to(root):
+        raise ValueError(f"unsafe {label}: {relative}")
+    return candidate
+
+
+def reference_path(value: object) -> str:
+    """Return the path component of a string or integrity-bearing reference."""
+
+    if isinstance(value, str):
+        return value
+    if isinstance(value, dict) and isinstance(value.get("path"), str):
+        return value["path"]
+    return ""
+
+
 def chunks(values: Sequence[T], size: int) -> Iterator[Sequence[T]]:
     for start in range(0, len(values), size):
         yield values[start : start + size]

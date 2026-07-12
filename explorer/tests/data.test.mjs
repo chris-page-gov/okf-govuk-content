@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { descriptorCandidates, LargeCorpusStore, referencePath, resolveReference, SearchClient } from "../src/data.js";
+import { descriptorCandidates, integrityReference, LargeCorpusStore, referenceHash, referencePath, resolveReference, SearchClient } from "../src/data.js";
 
 function jsonResponse(value, status = 200) {
   return new Response(JSON.stringify(value), { status, headers: { "content-type": "application/json" } });
@@ -12,7 +12,28 @@ test("descriptor and resource references remain portable across Pages paths", ()
   assert.equal(candidates[0], "https://example.test/project/explorer/src/okf-explorer.json");
   assert.ok(candidates.includes("https://example.test/project/okf-explorer.json"));
   assert.equal(referencePath({ path: "data/overview.json", sha256: "abc" }), "data/overview.json");
+  assert.equal(referenceHash({ path: "data/overview.json", sha256: "a".repeat(64) }), "a".repeat(64));
+  assert.throws(() => referenceHash({ path: "data/overview.json", sha256: "abc" }), /malformed/);
+  assert.deepEqual(
+    integrityReference("data/records.json.gz", [{ path: "data/records.json.gz", sha256: "c".repeat(64) }]),
+    { path: "data/records.json.gz", sha256: "c".repeat(64) }
+  );
+  assert.throws(() => integrityReference("data/missing.json", [], "Record shard"), /no integrity metadata/);
   assert.equal(resolveReference("data/overview.json", "https://example.test/project/okf-explorer.json"), "https://example.test/project/data/overview.json");
+});
+
+test("large-corpus bootstrap rejects mixed snapshot declarations", async (context) => {
+  const originalFetch = globalThis.fetch;
+  const payloads = new Map([
+    ["https://example.test/project/data/manifest.json", { snapshot: "snap-manifest", indexes: { overview: "data/overview.json", analysis: "data/analysis.json" }, chunks: {} }],
+    ["https://example.test/project/data/overview.json", { snapshot: "snap-overview", sample_records: [] }],
+    ["https://example.test/project/data/analysis.json", { snapshot: "snap-analysis" }]
+  ]);
+  globalThis.fetch = async (url) => jsonResponse(payloads.get(String(url)));
+  context.after(() => { globalThis.fetch = originalFetch; });
+  const descriptor = { kind: "okf-large-corpus", snapshot: "snap-descriptor", entrypoints: { data_manifest: "data/manifest.json" } };
+  const store = new LargeCorpusStore("https://example.test/project/okf-explorer.json", descriptor, "https://example.test");
+  await assert.rejects(store.bootstrap(), /different snapshot identifiers/);
 });
 
 test("large-corpus bootstrap stays overview-first and route adjacency loads one bucket", async (context) => {
@@ -59,7 +80,10 @@ test("search client preserves request identity and cancellation semantics", asyn
   }
   const worker = new MockWorker();
   const client = new SearchClient(() => worker);
-  const ready = client.init("https://example.test/", "https://example.test/data/search/manifest.json");
+  const manifestReference = { path: "data/search/manifest.json", sha256: "b".repeat(64) };
+  const ready = client.init("https://example.test/", manifestReference, "snap-1");
+  assert.deepEqual(worker.messages[0].manifestReference, manifestReference);
+  assert.equal(worker.messages[0].snapshotId, "snap-1");
   worker.respond({ type: "ready", id: 1, manifest: { schema: "okf-static-search.v1" } });
   await assert.doesNotReject(ready);
   const pending = client.query("passport");

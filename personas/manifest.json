@@ -22,7 +22,7 @@
     {
       "bytes": 1551,
       "path": "personas/challenges/persona-gap-pass-02-schema-question-contract.json",
-      "sha256": "0544119e21dff22c108507c82ef80e985b14b35885dd49575cd7b074065cf982"
+      "sha256": "ff1c80a3e15e47421fd24b7c166f76ef6abdf764cec90e4363878e57f2b2e4ce"
     },
     {
       "bytes": 1305,
@@ -32,7 +32,7 @@
     {
       "bytes": 7471,
       "path": "personas/checksums.txt",
-      "sha256": "47b96273703a5118e2fd9911071905ede9b68a3eeca15c8697998fbf3344cb17"
+      "sha256": "54e106d0bfe63cc24a63d6005b05123320f8bda5091eca1ef2871af7c417534c"
     },
     {
       "bytes": 111091,
@@ -307,7 +307,7 @@
     {
       "bytes": 5496,
       "path": "personas/saturation.json",
-      "sha256": "cb4dc65e5e0cb839f0eec2def31205bf0bdcd2cc424135470383b6e75c2896e5"
+      "sha256": "d6ada4fbb931475035f01774e9d5cb0979c2ee81af9f31772859c87d34310f5c"
     },
     {
       "bytes": 23236,
@@ -321,7 +321,7 @@
     }
   ],
   "generation_method": "deterministic-question-factory-v1",
-  "root_sha256": "4d0a4daec5a243e534661e5062a5d1d6e09f421599b1292f02c8807bce466d5b",
+  "root_sha256": "9df847d71ce0be7040975f76baf4b4888913d00be412bb77176f5d764a400d21",
   "schema_version": 1,
   "scope": "personas"
 }

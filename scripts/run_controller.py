@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from govuk_okf.controller import Controller, ControllerError, materialize_contracts  # noqa: E402
+from govuk_okf.util import safe_child_path, safe_identifier  # noqa: E402
 
 
 def main() -> int:
@@ -29,7 +30,12 @@ def main() -> int:
         print("task contracts are synchronized" if args.command == "check" else "wrote task contracts")
         return 0
 
-    run_root = ROOT / "runs" / args.run_id
+    try:
+        run_id = safe_identifier(args.run_id, label="run ID")
+        run_root = safe_child_path(ROOT / "runs", run_id, label="run directory")
+    except ValueError as exc:
+        print(f"controller error: {exc}", file=sys.stderr)
+        return 1
     controller = Controller(run_root / "state.sqlite", run_root / "events.jsonl")
     try:
         controller.bootstrap()
@@ -53,4 +59,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

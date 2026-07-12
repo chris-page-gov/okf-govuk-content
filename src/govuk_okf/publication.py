@@ -2085,6 +2085,7 @@ def _emit_publication(
         "version": "0.1.0",
         "status": "preview",
         "generated_at": generated_at,
+        "snapshot": snapshot_id,
         "profile": PROFILE_URL,
         "publisher": "https://github.com/chris-page-gov",
         "license": OGL_URL,
@@ -2094,12 +2095,30 @@ def _emit_publication(
         "counts": counts,
         "entrypoints": {
             "viewer": "https://chris-page-gov.github.io/okf-explorer/",
-            "data_manifest": "data/manifest.json",
-            "overview_index": "data/overview.json",
-            "analysis_overview": "data/analysis/overview.json",
-            "search_manifest": "data/search/manifest.json",
-            "relationship_adjacency": "data/adjacency/manifest.json",
-            "route_index": "data/routes/manifest.json",
+            "data_manifest": {
+                "path": "data/manifest.json",
+                "sha256": _file_sha256(output / "data" / "manifest.json"),
+            },
+            "overview_index": {
+                "path": "data/overview.json",
+                "sha256": _file_sha256(output / "data" / "overview.json"),
+            },
+            "analysis_overview": {
+                "path": "data/analysis/overview.json",
+                "sha256": _file_sha256(output / "data" / "analysis" / "overview.json"),
+            },
+            "search_manifest": {
+                "path": "data/search/manifest.json",
+                "sha256": _file_sha256(output / "data" / "search" / "manifest.json"),
+            },
+            "relationship_adjacency": {
+                "path": "data/adjacency/manifest.json",
+                "sha256": _file_sha256(output / "data" / "adjacency" / "manifest.json"),
+            },
+            "route_index": {
+                "path": "data/routes/manifest.json",
+                "sha256": _file_sha256(output / "data" / "routes" / "manifest.json"),
+            },
             "semantic_projection": "data/semantic/manifest.json",
             "markdown_index": "index.md",
         },

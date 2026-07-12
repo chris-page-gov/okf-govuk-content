@@ -28,7 +28,7 @@ from pathlib import Path
 from statistics import NormalDist
 from typing import Any, Iterable, Iterator, Sequence
 
-from .util import yaml_load_subset
+from .util import reference_path, yaml_load_subset
 
 
 HARNESS_VERSION = "govuk-okf-deterministic-evaluation-v1"
@@ -562,7 +562,7 @@ def verify_question_inputs(root: Path, mode: str) -> tuple[dict[str, Any], dict[
 def verify_bundle_inputs(root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
     descriptor = load_json(root / "okf-explorer.json")
     manifest = load_json(root / "data" / "manifest.json")
-    if descriptor.get("entrypoints", {}).get("data_manifest") != "data/manifest.json":
+    if reference_path(descriptor.get("entrypoints", {}).get("data_manifest")) != "data/manifest.json":
         raise ValueError("bundle descriptor does not point to the canonical data manifest")
     if descriptor.get("counts") != manifest.get("counts"):
         raise ValueError("bundle descriptor and data manifest counts differ")

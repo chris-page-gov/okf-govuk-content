@@ -5,7 +5,7 @@
     "question_v2_story_roles": 6,
     "required_dimensions": 11
   },
-  "checksum": "28228e0bff95eb4d06137979bd57b9893cfc02504cce692d6ae4e6c7358e8b39",
+  "checksum": "5f94f3a27f6bd97c6b1a8f84f797c92065afb4c19930978853ecf9072d837bea",
   "findings": [],
   "held_out_from": [
     "pass-01 controlling-overlay findings",
@@ -20,11 +20,11 @@
     },
     {
       "path": "src/govuk_okf/question_matrix_v2.py",
-      "sha256": "c90a55c4612dd7665e8d74f0ac3b0082b620104c072aed96f48b5b2db3081006"
+      "sha256": "dbfc296e73a7a8523d4866f5e2dec36ba0400e8ffbf9f0401ca9384dcd7af114"
     },
     {
       "path": "scripts/build_question_matrix_v2.py",
-      "sha256": "075ae236d4855979d9344be871b4ee3d39e36e2615b63ffbb167ab89d83d390a"
+      "sha256": "0edec79094016f2d0a746d6f848cede7b829cf0c1562dde8b1a49a6dcdd2f602"
     },
     {
       "coverage_matrix_sha256": "da386424615b45ca344b8936e130e349e880bdb8de4fb92a8a439636a7cd1ae1"

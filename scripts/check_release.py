@@ -62,6 +62,14 @@ def _valid_sha256(value: object) -> bool:
     return isinstance(value, str) and len(value) == 64 and all(character in "0123456789abcdef" for character in value)
 
 
+def _entrypoint_path(value: object) -> str:
+    if isinstance(value, str):
+        return value
+    if isinstance(value, dict) and isinstance(value.get("path"), str):
+        return value["path"]
+    return ""
+
+
 def _load_json(path: Path, label: str) -> dict[str, Any]:
     try:
         value = json.loads(path.read_text(encoding="utf-8"))
@@ -718,8 +726,8 @@ def validate_release(
     try:
         descriptor_path = _resolve_relative(root, artifacts.get("descriptor"), "descriptor")
         descriptor = _load_json(descriptor_path, "Explorer descriptor") if descriptor_path else {}
-        data_manifest_relative = descriptor.get("entrypoints", {}).get("data_manifest")
-        if not descriptor_path or not isinstance(data_manifest_relative, str):
+        data_manifest_relative = _entrypoint_path(descriptor.get("entrypoints", {}).get("data_manifest"))
+        if not descriptor_path or not data_manifest_relative:
             raise ReleaseDocumentError("Explorer descriptor has no data_manifest entrypoint")
         data_manifest_path = _resolve_relative(
             descriptor_path.parent, data_manifest_relative, "descriptor data_manifest"

@@ -17,6 +17,14 @@ from typing import Any, Iterator
 from govuk_okf.sharded_jsonl import input_sha256, iter_jsonl_records
 
 VERIFIER_VERSION = "deterministic-corpus-anchor-validator-v2"
+EXPECTED_RELEASE_PERSONAS = 48
+EXPECTED_RELEASE_STORIES_PER_PERSONA = 6
+EXPECTED_RELEASE_QUESTIONS_PER_STORY = 100
+EXPECTED_RELEASE_QUESTIONS = (
+    EXPECTED_RELEASE_PERSONAS
+    * EXPECTED_RELEASE_STORIES_PER_PERSONA
+    * EXPECTED_RELEASE_QUESTIONS_PER_STORY
+)
 EXPECTED_COVERAGE_DIMENSIONS = {
     "actor",
     "goal",
@@ -238,13 +246,69 @@ def collect_gold(root: Path, validation: Validation) -> tuple[dict[str, dict[str
     return gold_records, wanted_identities
 
 
-def load_source_evidence(corpus: Path, wanted: set[str]) -> dict[str, dict[str, Any]]:
+def load_source_evidence(corpus: Path, wanted: set[str]) -> tuple[dict[str, dict[str, Any]], int]:
     result: dict[str, dict[str, Any]] = {}
+    count = 0
     for raw in iter_jsonl(corpus):
+        count += 1
         identity = source_identity(raw)
         if identity in wanted:
             result[identity] = source_projection(raw)
-    return result
+    return result, count
+
+
+def load_control_json(path: Path) -> dict[str, Any]:
+    if path.stat().st_size > 32 * 1024 * 1024:
+        raise ValueError(f"control document exceeds 32 MiB: {path}")
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise ValueError(f"control document must be an object: {path}")
+    return value
+
+
+def trusted_release_errors(
+    snapshot_manifest: dict[str, Any],
+    reconciliation: dict[str, Any],
+    *,
+    snapshot_id: str,
+    corpus_records: int,
+) -> list[str]:
+    errors: list[str] = []
+    dispositions = ("represented", "alias_of_represented", "redirect_only", "tombstone_only", "exceptioned")
+    expected = reconciliation.get("expected_candidate_keys")
+    if reconciliation.get("schema_version") != 1:
+        errors.append("schema")
+    if reconciliation.get("snapshot") != snapshot_id or snapshot_manifest.get("snapshot") != snapshot_id:
+        errors.append("snapshot")
+    if reconciliation.get("sampled") is not False or reconciliation.get("unexplained_omissions") != 0:
+        errors.append("unsampled_closure")
+    values = [reconciliation.get(name) for name in dispositions]
+    if not isinstance(expected, int) or isinstance(expected, bool) or expected < 1:
+        errors.append("expected_candidate_keys")
+    elif any(not isinstance(value, int) or isinstance(value, bool) or value < 0 for value in values):
+        errors.append("disposition_counts")
+    elif sum(values) != expected:
+        errors.append("accounting_identity")
+    entity_counts = reconciliation.get("entity_class_counts")
+    if not isinstance(entity_counts, dict) or not entity_counts or any(
+        not isinstance(value, int) or isinstance(value, bool) or value < 0 for value in entity_counts.values()
+    ) or (isinstance(expected, int) and sum(entity_counts.values()) != expected):
+        errors.append("entity_class_counts")
+    if reconciliation.get("publication_records") != corpus_records:
+        errors.append("publication_records")
+    for field in ("inventory_canonical_sha256", "candidate_ledger_canonical_sha256"):
+        if not re.fullmatch(r"[0-9a-f]{64}", str(reconciliation.get(field) or "")):
+            errors.append(field)
+    if reconciliation.get("search_partitions_closed") is not True or not reconciliation.get("search_partition_proofs"):
+        errors.append("search_closure_proof")
+    for field in ("sitemap_proof", "organisations_proof", "navigation_proof"):
+        if not isinstance(reconciliation.get(field), dict) or reconciliation[field].get("closed") is not True:
+            errors.append(field)
+    if reconciliation.get("sitemap_byte_stable") is not True:
+        errors.append("sitemap_byte_stable")
+    if snapshot_manifest.get("reconciliation") != reconciliation:
+        errors.append("snapshot_manifest_binding")
+    return sorted(set(errors))
 
 
 def validate_target(target: dict[str, Any], sources: dict[str, dict[str, Any]], validation: Validation, question_id: str) -> None:
@@ -374,7 +438,13 @@ def validate_question(
         validate_paths(gold, sources, validation, question)
 
 
-def verify(root: Path, corpus: Path) -> dict[str, Any]:
+def verify(
+    root: Path,
+    corpus: Path,
+    *,
+    snapshot_manifest_path: Path | None = None,
+    reconciliation_path: Path | None = None,
+) -> dict[str, Any]:
     validation = Validation()
     manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
     contract = json.loads((root / "contract.json").read_text(encoding="utf-8"))
@@ -443,7 +513,7 @@ def verify(root: Path, corpus: Path) -> dict[str, Any]:
             "gold_contract_snapshot_manifest_sha256",
             question_id,
         )
-    sources = load_source_evidence(corpus, wanted)
+    sources, corpus_record_count = load_source_evidence(corpus, wanted)
     validation.require(wanted <= set(sources), "all_referenced_source_records_found", str(len(wanted - set(sources))))
 
     stories = list(iter_jsonl(root / "stories" / "catalogue.jsonl"))
@@ -579,8 +649,51 @@ def verify(root: Path, corpus: Path) -> dict[str, Any]:
     validation.require(counts.get("questions") == question_count, "manifest_question_count")
     validation.require(counts.get("stories") == len(stories), "manifest_story_count")
     validation.require(counts.get("primary_personas") == len(stories_by_persona), "manifest_persona_count")
+    declared_candidate = bool(contract.get("publication_ready_candidate")) and contract.get("artifact_tier") == "release_candidate"
+    trusted_release_inputs_valid = False
+    trusted_snapshot_manifest_sha256 = None
+    trusted_reconciliation_sha256 = None
+    if declared_candidate:
+        validation.require(snapshot_manifest_path is not None, "trusted_snapshot_manifest_required")
+        validation.require(reconciliation_path is not None, "trusted_reconciliation_required")
+        if snapshot_manifest_path is not None and reconciliation_path is not None:
+            try:
+                trusted_snapshot_manifest_sha256 = digest_file(snapshot_manifest_path)
+                trusted_reconciliation_sha256 = digest_file(reconciliation_path)
+                snapshot_manifest = load_control_json(snapshot_manifest_path)
+                reconciliation = load_control_json(reconciliation_path)
+                validation.require(
+                    trusted_snapshot_manifest_sha256 == contract.get("snapshot", {}).get("snapshot_manifest_sha256"),
+                    "trusted_snapshot_manifest_sha256",
+                )
+                validation.require(
+                    trusted_reconciliation_sha256 == contract.get("corpus_reconciliation", {}).get("sha256"),
+                    "trusted_reconciliation_sha256",
+                )
+                trust_errors = trusted_release_errors(
+                    snapshot_manifest,
+                    reconciliation,
+                    snapshot_id=str(contract.get("snapshot", {}).get("snapshot_id") or ""),
+                    corpus_records=corpus_record_count,
+                )
+                for error in trust_errors:
+                    validation.require(False, "trusted_release_input", error)
+                trusted_release_inputs_valid = (
+                    not trust_errors
+                    and trusted_snapshot_manifest_sha256 == contract.get("snapshot", {}).get("snapshot_manifest_sha256")
+                    and trusted_reconciliation_sha256 == contract.get("corpus_reconciliation", {}).get("sha256")
+                )
+            except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
+                validation.require(False, "trusted_release_input_unreadable", str(exc))
+        validation.require(len(stories_by_persona) == EXPECTED_RELEASE_PERSONAS, "release_persona_count_fixed")
+        validation.require(
+            len(stories) == EXPECTED_RELEASE_PERSONAS * EXPECTED_RELEASE_STORIES_PER_PERSONA,
+            "release_story_count_fixed",
+        )
+        validation.require(question_count == EXPECTED_RELEASE_QUESTIONS, "release_question_count_fixed")
+        validation.require(len(suites) == EXPECTED_RELEASE_PERSONAS, "release_suite_count_fixed")
     machine_passed = validation.error_count == 0
-    candidate = bool(contract.get("publication_ready_candidate")) and contract.get("artifact_tier") == "release_candidate"
+    candidate = declared_candidate and trusted_release_inputs_valid
     question_contract_passed = machine_passed and candidate
     verification_root = digest_text("".join(sorted(question_pass_material)))
     return {
@@ -593,6 +706,11 @@ def verify(root: Path, corpus: Path) -> dict[str, Any]:
         "matrix_version": manifest.get("matrix_version"),
         "manifest_root_sha256": manifest.get("root_sha256"),
         "corpus_sha256": digest_file(corpus),
+        "trusted_release_inputs": {
+            "snapshot_manifest_sha256": trusted_snapshot_manifest_sha256,
+            "reconciliation_sha256": trusted_reconciliation_sha256,
+            "validated": trusted_release_inputs_valid,
+        },
         "machine_validations_passed": machine_passed,
         "publication_ready_candidate": candidate,
         "question_contract_passed": question_contract_passed,
@@ -604,6 +722,7 @@ def verify(root: Path, corpus: Path) -> dict[str, Any]:
             "gold_records": len(gold_records),
             "referenced_source_records": len(wanted),
             "resolved_source_records": len(sources),
+            "corpus_records": corpus_record_count,
             "split_groups": len(split_by_group),
             "held_out_split_groups": held_out_groups,
             "validation_checks": sum(validation.checks.values()),
@@ -613,7 +732,11 @@ def verify(root: Path, corpus: Path) -> dict[str, Any]:
         "question_verifications_sha256": verification_root,
         "errors": validation.errors,
         "errors_truncated": validation.error_count > len(validation.errors),
-        "release_blockers": [] if question_contract_passed else sorted(set(contract.get("eligibility_blockers") or []) | ({"independent_validation_failed"} if not machine_passed else set())),
+        "release_blockers": [] if question_contract_passed else sorted(
+            set(contract.get("eligibility_blockers") or [])
+            | ({"independent_validation_failed"} if not machine_passed else set())
+            | ({"trusted_release_inputs_not_validated"} if declared_candidate and not trusted_release_inputs_valid else set())
+        ),
         "claim_constraints": [
             "Gold verification covers frozen metadata identities, URLs, evidence hashes, resources and typed paths; it does not validate body-content answers.",
             "Human persona hypotheses and UI preference remain unvalidated until authorised participant research completes.",

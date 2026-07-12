@@ -79,6 +79,14 @@ class DiscoveryTests(unittest.TestCase):
         with self.assertRaisesRegex(DiscoveryError, "unsafe bundle path"):
             DiscoveryIndex(self.bundle)
 
+    def test_integrity_bearing_search_entrypoint_is_verified(self) -> None:
+        descriptor_path = self.bundle / "okf-explorer.json"
+        descriptor = json.loads(descriptor_path.read_text(encoding="utf-8"))
+        descriptor["entrypoints"]["search_manifest"]["sha256"] = "0" * 64
+        descriptor_path.write_text(json.dumps(descriptor), encoding="utf-8")
+        with self.assertRaisesRegex(DiscoveryError, "SHA-256 differs"):
+            DiscoveryIndex(self.bundle)
+
 
 if __name__ == "__main__":
     unittest.main()

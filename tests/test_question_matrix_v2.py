@@ -14,7 +14,8 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from govuk_okf.question_matrix_v2 import release_prerequisites
+from govuk_okf.question_matrix_v2 import reconciliation_release_errors, release_prerequisites
+from govuk_okf.question_matrix_v2_validator import trusted_release_errors
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -158,11 +159,35 @@ class QuestionMatrixV2Tests(unittest.TestCase):
 
     def test_release_prerequisites_require_reconciled_unsampled_corpus(self) -> None:
         personas = [{"persona_id": f"persona-{index}"} for index in range(48)]
+        reconciliation = {
+            "schema_version": 1,
+            "snapshot": "T0-20260712",
+            "sampled": False,
+            "expected_candidate_keys": 5,
+            "represented": 5,
+            "alias_of_represented": 0,
+            "redirect_only": 0,
+            "tombstone_only": 0,
+            "exceptioned": 0,
+            "unexplained_omissions": 0,
+            "entity_class_counts": {"route": 5},
+            "publication_records": 5,
+            "inventory_canonical_sha256": "a" * 64,
+            "candidate_ledger_canonical_sha256": "b" * 64,
+            "search_partitions_closed": True,
+            "search_partition_proofs": [{"partition": "fixture"}],
+            "sitemap_byte_stable": True,
+            "sitemap_proof": {"closed": True},
+            "organisations_proof": {"closed": True},
+            "navigation_proof": {"closed": True},
+        }
+        snapshot_manifest = {"snapshot": "T0-20260712", "reconciliation": reconciliation}
         passed, blockers = release_prerequisites(
             mode="release",
             snapshot_id="T0-20260712",
             personas=personas,
-            reconciliation={"unexplained_omissions": 0, "sampled": False},
+            reconciliation=reconciliation,
+            snapshot_manifest=snapshot_manifest,
             blockers=[],
         )
         self.assertTrue(passed)
@@ -171,13 +196,63 @@ class QuestionMatrixV2Tests(unittest.TestCase):
             mode="release",
             snapshot_id="sample-T0",
             personas=personas,
-            reconciliation={"unexplained_omissions": 1, "sampled": True},
+            reconciliation={**reconciliation, "unexplained_omissions": 1, "sampled": True},
+            snapshot_manifest=snapshot_manifest,
             blockers=[],
         )
         self.assertFalse(passed)
         self.assertIn("corpus_unexplained_omissions_not_zero", blockers)
         self.assertIn("corpus_is_sampled", blockers)
         self.assertIn("snapshot_id_is_not_release_eligible", blockers)
+
+    def test_release_reconciliation_rejects_recursive_field_name_decoys(self) -> None:
+        decoy = {
+            "schema_version": 1,
+            "snapshot": "T1-final",
+            "payload": {"unexplained_omissions": 0, "sampled": False},
+        }
+        errors = reconciliation_release_errors(
+            decoy,
+            snapshot_id="T1-final",
+            snapshot_manifest={"snapshot": "T1-final", "reconciliation": decoy},
+        )
+        self.assertIn("corpus_unexplained_omissions_not_zero", errors)
+        self.assertIn("corpus_expected_candidate_keys_invalid", errors)
+        self.assertIn("corpus_search_partitions_closed_invalid", errors)
+
+    def test_independent_trust_contract_binds_corpus_record_count(self) -> None:
+        reconciliation = {
+            "schema_version": 1,
+            "snapshot": "T1-final",
+            "sampled": False,
+            "expected_candidate_keys": 2,
+            "represented": 2,
+            "alias_of_represented": 0,
+            "redirect_only": 0,
+            "tombstone_only": 0,
+            "exceptioned": 0,
+            "unexplained_omissions": 0,
+            "entity_class_counts": {"route": 2},
+            "publication_records": 1,
+            "inventory_canonical_sha256": "a" * 64,
+            "candidate_ledger_canonical_sha256": "b" * 64,
+            "search_partitions_closed": True,
+            "search_partition_proofs": [{"partition": "fixture"}],
+            "sitemap_byte_stable": True,
+            "sitemap_proof": {"closed": True},
+            "organisations_proof": {"closed": True},
+            "navigation_proof": {"closed": True},
+        }
+        manifest = {"snapshot": "T1-final", "reconciliation": reconciliation}
+        self.assertIn(
+            "publication_records",
+            trusted_release_errors(
+                manifest,
+                reconciliation,
+                snapshot_id="T1-final",
+                corpus_records=2,
+            ),
+        )
 
 
 if __name__ == "__main__":

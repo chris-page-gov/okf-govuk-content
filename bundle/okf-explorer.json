@@ -14,13 +14,31 @@
   "data_plane_manifest_root_sha256": "0837bc713bdc36af6841f721d1777e60b0915058c8d1eeed6d3ab5b0fed4968c",
   "description": "Derived, non-authoritative semantic catalogue of GOV.UK content, navigation, organisations, taxonomies and relationships.",
   "entrypoints": {
-    "analysis_overview": "data/analysis/overview.json",
-    "data_manifest": "data/manifest.json",
+    "analysis_overview": {
+      "path": "data/analysis/overview.json",
+      "sha256": "339bf8383b45e5c2bab6ec70006ab6fb7212af7ece39b47b300cbf65da02d79d"
+    },
+    "data_manifest": {
+      "path": "data/manifest.json",
+      "sha256": "643fccb55fd2a123dceb4239ac697cfaf4337f82b8d75c3a6b7d46a3e43e14a4"
+    },
     "markdown_index": "index.md",
-    "overview_index": "data/overview.json",
-    "relationship_adjacency": "data/adjacency/manifest.json",
-    "route_index": "data/routes/manifest.json",
-    "search_manifest": "data/search/manifest.json",
+    "overview_index": {
+      "path": "data/overview.json",
+      "sha256": "fbb5a5a2f7a3989e26d745b040679281cd0eaa9ce195ec728810c5e9c266b21d"
+    },
+    "relationship_adjacency": {
+      "path": "data/adjacency/manifest.json",
+      "sha256": "af4b27155572d9cf1b356d35e940a298618332ca04b9390fabd0f8aa552fc0db"
+    },
+    "route_index": {
+      "path": "data/routes/manifest.json",
+      "sha256": "36e0b31cc84502fe2cabe33e1ac616ae2e4a92140d50e2f551c6c556cd16fb5c"
+    },
+    "search_manifest": {
+      "path": "data/search/manifest.json",
+      "sha256": "5324e944efc26b9c775de0b8a65f9ac10e00efc75081b1dc3c719c063ac37574"
+    },
     "semantic_projection": "data/semantic/manifest.json",
     "viewer": "https://chris-page-gov.github.io/okf-explorer/"
   },
@@ -50,6 +68,7 @@
   "schema": "okf-explorer-large-corpus.v1",
   "semantic_descriptor": "https://chris-page-gov.github.io/okf-govuk-content/okf-bundle.yamlld",
   "semantic_projection_sha256": "3b52b26c19b35ae7f1fcefb930b62ebafe0f18107be0549545c2b7108863230a",
+  "snapshot": "fixture-2026-07-11",
   "status": "preview",
   "title": "What’s on GOV.UK",
   "version": "0.1.0",

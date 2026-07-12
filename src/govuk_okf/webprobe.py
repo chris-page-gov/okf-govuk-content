@@ -5,13 +5,15 @@ from __future__ import annotations
 import gzip
 import hashlib
 import io
+import ipaddress
+import socket
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from email.message import Message
 from typing import Any
 from urllib.error import HTTPError, URLError
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 USER_AGENT = "govuk-okf/0.1 (+https://github.com/chris-page-gov/okf-govuk-content)"
@@ -25,6 +27,79 @@ class Probe:
     family: str
     partial: bool = False
     max_bytes: int = MAX_BYTES
+    allowed_hosts: tuple[str, ...] = ()
+
+
+def _normalise_host(value: str) -> str:
+    try:
+        return value.rstrip(".").encode("idna").decode("ascii").lower()
+    except UnicodeError as exc:
+        raise ValueError(f"probe hostname is invalid: {value}") from exc
+
+
+def validate_public_https_url(
+    url: str,
+    *,
+    allowed_hosts: tuple[str, ...],
+    resolver: Any = socket.getaddrinfo,
+) -> str:
+    """Require one approved HTTPS origin whose complete DNS answer is public."""
+
+    parsed = urlsplit(url)
+    if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+        raise ValueError("probe URL must be credential-free HTTPS")
+    try:
+        port = parsed.port or 443
+    except ValueError as exc:
+        raise ValueError("probe URL has an invalid port") from exc
+    if port != 443:
+        raise ValueError("probe URL must use HTTPS port 443")
+    host = _normalise_host(parsed.hostname)
+    approved = {_normalise_host(value) for value in allowed_hosts}
+    if host not in approved:
+        raise ValueError(f"probe host is not approved: {host}")
+    try:
+        answers = resolver(host, 443, type=socket.SOCK_STREAM)
+    except OSError as exc:
+        raise ValueError(f"probe host cannot be resolved: {host}") from exc
+    addresses = {str(answer[4][0]).split("%", 1)[0] for answer in answers if answer and len(answer) > 4 and answer[4]}
+    if not addresses:
+        raise ValueError(f"probe host has no resolved address: {host}")
+    for address in addresses:
+        try:
+            parsed_address = ipaddress.ip_address(address)
+        except ValueError as exc:
+            raise ValueError(f"probe host returned an invalid address: {address}") from exc
+        if not parsed_address.is_global:
+            raise ValueError(f"probe destination is not public: {address}")
+    return host
+
+
+class PolicyRedirectHandler(HTTPRedirectHandler):
+    """Revalidate every redirect before urllib can perform the next request."""
+
+    def __init__(self, *, allowed_hosts: tuple[str, ...], resolver: Any = socket.getaddrinfo, max_redirects: int = 5) -> None:
+        super().__init__()
+        self.allowed_hosts = allowed_hosts
+        self.resolver = resolver
+        self.max_redirects = max_redirects
+        self.redirects = 0
+
+    def redirect_request(
+        self,
+        req: Request,
+        fp: Any,
+        code: int,
+        msg: str,
+        headers: Message,
+        newurl: str,
+    ) -> Request | None:
+        if self.redirects >= self.max_redirects:
+            raise HTTPError(req.full_url, code, "probe redirect limit exceeded", headers, fp)
+        target = urljoin(req.full_url, newurl)
+        validate_public_https_url(target, allowed_hosts=self.allowed_hosts, resolver=self.resolver)
+        self.redirects += 1
+        return super().redirect_request(req, fp, code, msg, headers, target)
 
 
 def _headers(message: Message) -> dict[str, str]:
@@ -52,6 +127,9 @@ def _bounded_gzip_decompress(raw: bytes, limit: int) -> tuple[bytes, bool]:
 
 
 def fetch_probe(probe: Probe, attempts: int = 3) -> dict[str, Any]:
+    parsed = urlsplit(probe.url)
+    initial_host = _normalise_host(parsed.hostname or "")
+    allowed_hosts = tuple(dict.fromkeys((*probe.allowed_hosts, initial_host)))
     headers = {"User-Agent": USER_AGENT, "Accept": "*/*", "Accept-Encoding": "gzip"}
     if probe.partial:
         headers["Range"] = f"bytes=0-{probe.max_bytes - 1}"
@@ -60,7 +138,9 @@ def fetch_probe(probe: Probe, attempts: int = 3) -> dict[str, Any]:
     for attempt in range(1, attempts + 1):
         started = time.monotonic()
         try:
-            with build_opener(HTTPRedirectHandler()).open(request, timeout=30) as response:
+            validate_public_https_url(probe.url, allowed_hosts=allowed_hosts)
+            redirect_handler = PolicyRedirectHandler(allowed_hosts=allowed_hosts)
+            with build_opener(redirect_handler).open(request, timeout=30) as response:
                 raw = response.read(probe.max_bytes + 1)
                 truncated = len(raw) > probe.max_bytes
                 raw = raw[: probe.max_bytes]
@@ -106,7 +186,7 @@ def fetch_probe(probe: Probe, attempts: int = 3) -> dict[str, Any]:
                     "attempts": attempt,
                     "body": b"",
                 }
-        except (URLError, TimeoutError, OSError) as exc:
+        except (URLError, TimeoutError, OSError, ValueError) as exc:
             last_error = str(exc)
         if attempt < attempts:
             time.sleep(min(8.0, 0.5 * (2 ** (attempt - 1))))
