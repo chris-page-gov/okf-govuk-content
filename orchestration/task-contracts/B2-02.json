@@ -16,12 +16,12 @@
     "B2-01"
   ],
   "human_gate": null,
-  "idempotency_key": "412b5f935f59c2588a67d43601a55a2fe4931e313b8ef7cb6c3c9114b3018bb7",
+  "idempotency_key": "0defdc624c3165b0e7d0e835c009360600a2a5227253247f77599c1955faddc3",
   "model_profile": "coding_and_research",
   "objective": "okf profile",
   "on_block": "continue_independent",
   "output_artifacts": [
-    "semantic/profile/govuk-okf-v1.md"
+    "semantic/profile/govuk-okf-profile-v1.yamlld"
   ],
   "prohibited_actions": [
     "invent evidence",

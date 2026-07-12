@@ -31,7 +31,7 @@ No comparator result is currently reported because T0 has not been frozen, answe
 ## Primary evidence entry points
 
 - GOV.UK [Content API](https://content-api.publishing.service.gov.uk/) and [publishing architecture](https://docs.publishing.service.gov.uk/manual/architecture-deep-dive.html)
-- GOV.UK [content schemas](https://github.com/alphagov/publishing-api/tree/main/content_schemas) and [document types](https://docs.publishing.service.gov.uk/document-types.html)
+- GOV.UK [content schemas](https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas) and [document types](https://docs.publishing.service.gov.uk/document-types.html)
 - GOV.UK [site-search overview](https://docs.publishing.service.gov.uk/manual/govuk-search.html), [Search API usage](https://docs.publishing.service.gov.uk/repos/search-api/using-the-search-api.html) and [search-quality metrics](https://docs.publishing.service.gov.uk/repos/search-api/search-quality-metrics.html)
 - GOV.UK [Knowledge Graph query guide](https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-gcp/how-to-write-queries.html), [technical-debt note](https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-gcp/technical-debt.html) and [GovSearch application](https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-search.html)
 - GOV.UK Chat [engineering account](https://insidegovuk.blog.gov.uk/2026/05/15/developing-gov-uk-chat-our-data-science-and-ai-engineering-journey/) and [public testing account](https://insidegovuk.blog.gov.uk/2026/03/16/5-things-we-learned-testing-gov-uk-chat-an-ai-assistant-for-government/)

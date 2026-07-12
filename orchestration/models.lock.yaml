@@ -1,18 +1,34 @@
-schema_version: 1
-locked_at: "2026-07-11T00:00:00Z"
+schema_version: 2
+locked_date: "2026-07-11"
+lock_basis: capabilities exposed to this Codex product task; no external provider API was invoked
 profiles:
   deterministic:
     implementation: CPython standard library
     version_floor: "3.12"
-    cost: 0
+    parameters: not_applicable
+    model_tokens: 0
+    marginal_model_cost_gbp: 0
   coding_and_research:
     implementation: OpenAI Codex current session
     model_family: GPT-5
     exact_backend_version: unavailable_to_session
-    cost: unavailable_in_product_session
+    parameters: unavailable_to_session
+    input_tokens: unavailable_in_product_session
+    output_tokens: unavailable_in_product_session
+    marginal_cost_gbp: unavailable_in_product_session
+    prompt_capture: bounded objectives and repository references; exact product transcript is not exported to the repository
     use: bounded implementation and official-source synthesis only
   independent_verification:
     implementation: deterministic validators plus separate agent pass
+    model_family: GPT-5 where a Codex review pass is used
+    exact_backend_version: unavailable_to_session
+    parameters: unavailable_to_session
     independence_limit: same provider/model family; not accepted as sole judge for human or disputed semantic conclusions
 external_model_api_calls: false
-
+external_paid_model_api_calls: 0
+external_paid_model_tokens: 0
+external_paid_model_cost_gbp: 0
+release_limitations:
+  - Exact backend build, sampling/reasoning parameters, product-session tokens and marginal product cost are unavailable to this task and must remain unavailable in activity records.
+  - A separate Codex subagent is process separation, not a different-provider or different-model-family adjudicator.
+  - Deterministic generators and validators may record exact zero model calls, tokens and model cost only for their own execution.

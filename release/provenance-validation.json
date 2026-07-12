@@ -1,16 +1,16 @@
 {
   "activity_counts": {
     "deterministic": 6,
-    "model_assisted_or_mixed": 14,
-    "total": 20
+    "model_assisted_or_mixed": 15,
+    "total": 21
   },
   "candidate_blockers": [
     "non-release snapshot label: fixture-2026-07-11",
     "source request budget remains an open checkpoint",
     "source request budget snapshot does not match the requested release snapshot",
-    "unresolved pending_final activities: ACT-B1-CAPACITY-20260712-001, ACT-F2-CITATION-COLLECTOR-001",
+    "unresolved pending_final activities: ACT-B1-CAPACITY-20260712-001",
     "unresolved in-progress activities: ACT-D1-SHARD-CONTRACT-AUDIT-001, ACT-D2-SECURITY-SCAN-001",
-    "candidate terminal activities are unsatisfied: ACT-D1-T0-HYDRATION-TERMINAL-001, ACT-E1-T1-RECONCILIATION-TERMINAL-001, ACT-C1-RELEASE-V2-TERMINAL-001, ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001, ACT-F2-CITATION-REVIEWS-TERMINAL-001, ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001, ACT-D2-SECURITY-SCAN-TERMINAL-001, ACT-F2-CLEAN-ROOM-RC-TERMINAL-001, ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001"
+    "candidate terminal activities are unsatisfied: ACT-D1-T0-HYDRATION-TERMINAL-001, ACT-E1-T1-RECONCILIATION-TERMINAL-001, ACT-C1-RELEASE-V2-TERMINAL-001, ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001, ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001, ACT-D2-SECURITY-SCAN-TERMINAL-001, ACT-F2-CLEAN-ROOM-RC-TERMINAL-001, ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001"
   ],
   "candidate_mode": false,
   "candidate_requirements_satisfied": false,
@@ -18,7 +18,7 @@
     "all_satisfied": false,
     "excluded_post_publication_terminal_activity_id": "ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001",
     "required": 10,
-    "satisfied": 1
+    "satisfied": 2
   },
   "external_paid_model_usage": {
     "api_calls": 0,
@@ -37,17 +37,18 @@
     ]
   },
   "hash_chain": {
-    "hash_chained_v2_rows": 16,
-    "last_entry_sha256": "687624b5d7a958492fec9ea539f78cc6f5947a9d8fb6255c16f79732325ee428",
-    "ledger_sha256": "f3532c0d1187f292fbea85e17489408bec8e8336df48f75d676a24e800cc56ac",
+    "hash_chained_v2_rows": 17,
+    "last_entry_sha256": "7981e589660714a43e15a0899c5c884868f190b23532f4e86d997c9d64e1cef9",
+    "ledger_sha256": "cb20de37494a2ffe18ecec765a79160706b544d9f27b28c9627542cee21666d8",
     "legacy_rows": 4,
     "passed": true,
     "superseded_activity_ids": [
-      "ACT-B1-T0-20260712-CHECKPOINT-001"
+      "ACT-B1-T0-20260712-CHECKPOINT-001",
+      "ACT-F2-CITATION-COLLECTOR-001"
     ]
   },
   "inputs": {
-    "activity_ledger_sha256": "f3532c0d1187f292fbea85e17489408bec8e8336df48f75d676a24e800cc56ac",
+    "activity_ledger_sha256": "cb20de37494a2ffe18ecec765a79160706b544d9f27b28c9627542cee21666d8",
     "activity_schema_sha256": "d84cf69d20feeb4ba160a3dc08675f62e4dad210e3cd0d2714c3fcc69f63ad39",
     "declarations_sha256": "de2595ed9fe2863741dd7d41ef9390416ef9797fe4cac45d8fdbe4552188d19c",
     "launch_manifest_sha256": "8a47378c70d5eaf32e956359f25d02cd3f9d2c97f2b90217dc6777f98e6555c8",
@@ -56,14 +57,14 @@
     "validator_sha256": "45a3e76dfa6b86d294db2e782d223e271f52948f587c3b9c8daa4d274a7e65ab"
   },
   "model_usage": {
-    "activities_with_unavailable_exact_model_version": 14,
+    "activities_with_unavailable_exact_model_version": 15,
     "deterministic_activities": 6,
     "exact_model_versions": [],
-    "model_assisted_activities": 14,
+    "model_assisted_activities": 15,
     "product_session": {
-      "activities_with_unavailable_cost": 14,
-      "activities_with_unavailable_input_tokens": 14,
-      "activities_with_unavailable_output_tokens": 14,
+      "activities_with_unavailable_cost": 15,
+      "activities_with_unavailable_input_tokens": 15,
+      "activities_with_unavailable_output_tokens": 15,
       "known_input_tokens": 0,
       "known_marginal_cost_gbp": 0.0,
       "known_output_tokens": 0,
@@ -76,9 +77,9 @@
     "non-release snapshot label: fixture-2026-07-11",
     "source request budget remains an open checkpoint",
     "source request budget snapshot does not match the requested release snapshot",
-    "unresolved pending_final activities: ACT-B1-CAPACITY-20260712-001, ACT-F2-CITATION-COLLECTOR-001",
+    "unresolved pending_final activities: ACT-B1-CAPACITY-20260712-001",
     "unresolved in-progress activities: ACT-D1-SHARD-CONTRACT-AUDIT-001, ACT-D2-SECURITY-SCAN-001",
-    "required terminal activities are unsatisfied: ACT-D1-T0-HYDRATION-TERMINAL-001, ACT-E1-T1-RECONCILIATION-TERMINAL-001, ACT-C1-RELEASE-V2-TERMINAL-001, ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001, ACT-F2-CITATION-REVIEWS-TERMINAL-001, ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001, ACT-D2-SECURITY-SCAN-TERMINAL-001, ACT-F2-CLEAN-ROOM-RC-TERMINAL-001, ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001, ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001"
+    "required terminal activities are unsatisfied: ACT-D1-T0-HYDRATION-TERMINAL-001, ACT-E1-T1-RECONCILIATION-TERMINAL-001, ACT-C1-RELEASE-V2-TERMINAL-001, ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001, ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001, ACT-D2-SECURITY-SCAN-TERMINAL-001, ACT-F2-CLEAN-ROOM-RC-TERMINAL-001, ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001, ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001"
   ],
   "release_mode": false,
   "release_requirements_satisfied": false,
@@ -86,7 +87,7 @@
     "all_satisfied": false,
     "candidate_all_satisfied": false,
     "candidate_required": 10,
-    "candidate_satisfied": 1,
+    "candidate_satisfied": 2,
     "events": [
       {
         "event": "T0 census terminal disposition",
@@ -170,20 +171,18 @@
       },
       {
         "event": "citation independent semantic and joint-support reviews",
-        "found": false,
+        "found": true,
         "must_supersede": [
           "ACT-F2-CITATION-COLLECTOR-001"
         ],
-        "problems": [
-          "terminal activity is missing"
-        ],
+        "problems": [],
         "required_evidence": [
           "collector request aggregate",
           "reviewer identity/configuration",
           "support verdict counts",
           "waivers or blockers"
         ],
-        "satisfied": false,
+        "satisfied": true,
         "terminal_activity_id": "ACT-F2-CITATION-REVIEWS-TERMINAL-001"
       },
       {
@@ -275,7 +274,7 @@
     ],
     "pending_post_publication_terminal_activity_id": null,
     "required": 11,
-    "satisfied": 1
+    "satisfied": 2
   },
   "schema": "afhf-govuk-okf-provenance-validation.v1",
   "snapshot": "fixture-2026-07-11",
@@ -299,15 +298,15 @@
   },
   "unresolved_activity_status": {
     "superseded_activity_ids": [
-      "ACT-B1-T0-20260712-CHECKPOINT-001"
+      "ACT-B1-T0-20260712-CHECKPOINT-001",
+      "ACT-F2-CITATION-COLLECTOR-001"
     ],
     "unresolved_in_progress_activity_ids": [
       "ACT-D1-SHARD-CONTRACT-AUDIT-001",
       "ACT-D2-SECURITY-SCAN-001"
     ],
     "unresolved_pending_final_activity_ids": [
-      "ACT-B1-CAPACITY-20260712-001",
-      "ACT-F2-CITATION-COLLECTOR-001"
+      "ACT-B1-CAPACITY-20260712-001"
     ]
   },
   "validated_contract_counts": {

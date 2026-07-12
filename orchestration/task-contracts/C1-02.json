@@ -17,12 +17,12 @@
     "B1-02"
   ],
   "human_gate": null,
-  "idempotency_key": "77a6c153df3a5def1a45c111cf0867199a524e0c4b37bf405fa99e2e8936368f",
+  "idempotency_key": "2e80d0f19e23a56d9b9091f0ebb8153540c88cf9f3d4d380127d60a6495dae64",
   "model_profile": "independent_verification",
   "objective": "gold verification",
   "on_block": "continue_independent",
   "output_artifacts": [
-    "questions/gold/manifest.json"
+    "questions/release-v2/verification-report.json"
   ],
   "prohibited_actions": [
     "invent evidence",

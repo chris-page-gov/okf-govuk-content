@@ -16,12 +16,12 @@
     "B1-01"
   ],
   "human_gate": null,
-  "idempotency_key": "f33122b0a4bc0ad0d1a4de2e99f8479b1b77d9f4acf5dcd4637fb336dc6d7d4a",
+  "idempotency_key": "2291503c8cdd995e1e634113dba8560eff7922f85d5c096651b77f25189e8298",
   "model_profile": "deterministic",
   "objective": "freeze union",
   "on_block": "continue_independent",
   "output_artifacts": [
-    "corpus/inventory/t0-candidates.jsonl"
+    "corpus/inventory/<snapshot-label>-candidates.jsonl.gz"
   ],
   "prohibited_actions": [
     "invent evidence",

@@ -17,12 +17,12 @@
     "A1-02"
   ],
   "human_gate": null,
-  "idempotency_key": "9ac1bcbae08820499a0b290a31cb7973f353ac8191f2e7ea98c701a122259f3d",
+  "idempotency_key": "d7978e2d4077ebed6c126ec7f1788b90861dbcff8a6ba74c459e5de46732b050",
   "model_profile": "coding_and_research",
   "objective": "freshness sla",
   "on_block": "continue_independent",
   "output_artifacts": [
-    "governance/decisions/ADR-003-freshness.md"
+    "governance/decisions/ADR-003-snapshot-and-freshness.md"
   ],
   "prohibited_actions": [
     "invent evidence",

@@ -18,6 +18,11 @@
   envelopes are the sources of truth. Regenerate JSON-LD, Explorer descriptors,
   manifests, search shards, route adjacency, reports, checksums, and release
   notes in the same change; never hand-edit a generated projection.
+- `governance/requirements.yaml` records that a requirement is accepted into
+  the contract; it does not mean the implementation passed. Maintain
+  `governance/implementation-status-source.json` and regenerate the requirement,
+  traceability and task status projections with
+  `python3 scripts/build_status_projections.py` in the same change.
 - Use deterministic code for enumeration, canonicalisation, counts, schemas,
   reconciliation, hashes, sharding, duplicate checks, and metrics. Record model
   identity, parameters, usage, cost, prompts, and validation for every model
@@ -36,6 +41,10 @@
 - Do not claim complete corpus representation unless the frozen source union is
   reconciled with `unexplained_omissions = 0`. Do not claim that Explorer is a
   human UI of choice without authorised, completed participant research.
+- Treat the default `scripts/build_bundle.py` input and the checked-in v1
+  question assets as development fixtures. A release must use the hydrated
+  frozen corpus plus the independently verified `questions/release-v2`
+  contract and pass `scripts/check_release.py --publication-ready`.
 - Develop on focused `agent/*` branches, merge through reviewed pull requests,
   keep `main` protected, and publish Pages, registry projections, checksums,
   SBOM, tags, and GitHub Releases from verified commits only.

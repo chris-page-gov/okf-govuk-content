@@ -341,13 +341,14 @@
         {
           "check_id": "E-EXPLORER-NONBROWSER-TESTS",
           "description": "The recorded deterministic Explorer fixture checks have no failure.",
+          "error": "evidence locator failed: 'completed_non_browser_checks'",
           "expected": 0,
-          "matched": true,
-          "observed": 0,
+          "matched": false,
+          "observed": null,
           "operator": "json_equals",
           "path": "explorer/src/evidence/fixture-browser.json",
           "pointer": "/completed_non_browser_checks/failed",
-          "sha256": "c495d18b049c05c9885a8c59e8cec5285f664695d2bacd3c85a80e50f81fc798"
+          "sha256": "403b9d300e48f5d649439a84f7ee3351a6e1a53eab2075b677923d6bfdfc6f9f"
         },
         {
           "check_id": "E-PERSONA-FOUNDATION",
@@ -462,7 +463,6 @@
       "status": "partly_fulfilled",
       "strongest_supporting_evidence": [
         "E-EXPLORER-FOUNDATION",
-        "E-EXPLORER-NONBROWSER-TESTS",
         "E-PERSONA-FOUNDATION"
       ],
       "title": "Help people navigate and understand GOV.UK"

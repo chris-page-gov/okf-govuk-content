@@ -19,12 +19,12 @@
     "G0-02"
   ],
   "human_gate": null,
-  "idempotency_key": "f7ad88ecdd91b21a14cf635a52c5096e40e4765088c4578dfc195a41762fd4d3",
+  "idempotency_key": "a64d49e2cb2bb5bcd7e69ae1d67d7a73f4ad18cd9f52785dff958e25d5975836",
   "model_profile": "deterministic",
   "objective": "hydrate corpus",
   "on_block": "continue_independent",
   "output_artifacts": [
-    "corpus/records"
+    "corpus/records/<snapshot-label>/manifest.json"
   ],
   "prohibited_actions": [
     "invent evidence",
