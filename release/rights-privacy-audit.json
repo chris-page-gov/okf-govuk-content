@@ -166,7 +166,7 @@
     },
     "release_manifest": {
       "path": "release/manifest.yaml",
-      "sha256": "d1254a8c6d20fe30ec966131f97a6a652ccf564f4fc6a61b361e3a898189fc3b"
+      "sha256": "a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2"
     },
     "resolved_corpus_record_manifest_count": 0
   },
