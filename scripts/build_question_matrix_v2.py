@@ -43,6 +43,7 @@ from govuk_okf.question_matrix_v2 import (  # noqa: E402
     release_prerequisites,
     sha256_file,
 )
+from govuk_okf.util import safe_child_path, safe_identifier  # noqa: E402
 
 
 def json_text(value: Any) -> str:
@@ -65,12 +66,16 @@ def load_personas(limit: int | None) -> list[dict[str, Any]]:
         personas = personas[:limit]
     if not personas:
         raise ValueError("no persona profiles found")
+    for persona in personas:
+        safe_identifier(persona.get("persona_id"), label="persona ID")
     return personas
 
 
 def load_optional_json(path: Path | None) -> dict[str, Any] | None:
     if path is None:
         return None
+    if path.stat().st_size > 32 * 1024 * 1024:
+        raise ValueError(f"{path} exceeds the 32 MiB control-plane limit")
     value = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(value, dict):
         raise ValueError(f"{path} must contain a JSON object")
@@ -118,17 +123,16 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
     index = {record.identity: record for record in pool}
     snapshot_manifest_path = args.snapshot_manifest or args.corpus
     snapshot_manifest_sha256 = sha256_file(snapshot_manifest_path)
+    snapshot_manifest = load_optional_json(args.snapshot_manifest)
     reconciliation = load_optional_json(args.reconciliation)
     eligible, eligibility_blockers = release_prerequisites(
         mode=args.mode,
         snapshot_id=args.snapshot_id,
         personas=personas,
         reconciliation=reconciliation,
+        snapshot_manifest=snapshot_manifest,
         blockers=anchor_blockers,
     )
-    if args.mode == "release" and args.snapshot_manifest is None:
-        eligible = False
-        eligibility_blockers.append("missing_independent_snapshot_manifest")
     if eligible_record_count < len(personas) * STORIES_PER_PERSONA:
         eligible = False
         eligibility_blockers.append(
@@ -219,7 +223,12 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
                     pool=pool,
                     index=index,
                 )
-                binding_path = output_root / "bindings" / f"{story['story_id']}.jsonl"
+                story_id = safe_identifier(story["story_id"], label="story ID")
+                binding_path = safe_child_path(
+                    output_root / "bindings",
+                    f"{story_id}.jsonl",
+                    label="question binding path",
+                )
                 write_text(binding_path, "".join(json_line(item) for item in questions))
                 generated_files.append(binding_path)
                 persona_story_questions.append(questions)
@@ -244,7 +253,12 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
                     split_counts[question["split"]] += 1
 
             suite = curate_suite(persona, persona_story_questions)
-            suite_path = output_root / "persona-suites" / f"{persona['persona_id']}.jsonl"
+            persona_id = safe_identifier(persona["persona_id"], label="persona ID")
+            suite_path = safe_child_path(
+                output_root / "persona-suites",
+                f"{persona_id}.jsonl",
+                label="persona suite path",
+            )
             write_text(suite_path, "".join(json_line(item) for item in suite))
             generated_files.append(suite_path)
             suite_count += len(suite)

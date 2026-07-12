@@ -37,8 +37,8 @@ Boundary: A fixture demonstrates the pipeline but cannot fulfil an independent f
 
 Evidence:
 
-- `E-BUNDLE-DESCRIPTOR` — pass; `bundle/okf-explorer.json`; SHA-256 `27cba19217951c37dabe61f9f2aeb1485661d646d2a8088b6719e8b23abf918c`; observed `true`.
-- `E-INDEPENDENT-WIKI` — pass; `bundle/okf-explorer.json/description`; SHA-256 `27cba19217951c37dabe61f9f2aeb1485661d646d2a8088b6719e8b23abf918c`; observed `"Derived, non-authoritative semantic catalogue of GOV.UK content, navigation, organisations, taxonomies and relationships."`.
+- `E-BUNDLE-DESCRIPTOR` — pass; `bundle/okf-explorer.json`; SHA-256 `d9681ab679febae7ec755a294d0e7b3ee40568d8ccbd3874ac770bda71acc1bc`; observed `true`.
+- `E-INDEPENDENT-WIKI` — pass; `bundle/okf-explorer.json/description`; SHA-256 `d9681ab679febae7ec755a294d0e7b3ee40568d8ccbd3874ac770bda71acc1bc`; observed `"Derived, non-authoritative semantic catalogue of GOV.UK content, navigation, organisations, taxonomies and relationships."`.
 - `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `"fixture"`.
 - `E-SNAPSHOT-UNSAMPLED` — not met; `release/manifest.yaml/snapshot/sampled`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `true`.
 - `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
@@ -99,7 +99,7 @@ Evidence:
 
 - `E-EXPLORER-FOUNDATION` — pass; `explorer/src/index.html`; SHA-256 `32def87a1256763faa51bc71ceefd455e8c4fcabb56a79c12f8c432c783d5a83`; observed `true`.
 - `E-EXPLORER-NONBROWSER-TESTS` — not met; `explorer/src/evidence/fixture-browser.json/completed_non_browser_checks/failed`; SHA-256 `403b9d300e48f5d649439a84f7ee3351a6e1a53eab2075b677923d6bfdfc6f9f`; observed `null`.
-- `E-PERSONA-FOUNDATION` — pass; `personas/manifest.json`; SHA-256 `8c2ae8a35a708e2f1cf59423cee78befddec239e0227396d71f8d5b7220111ab`; observed `true`.
+- `E-PERSONA-FOUNDATION` — pass; `personas/manifest.json`; SHA-256 `7078f7953a8e10bd9a0788d8cdab10e80d0d4f92ca7e8ce559b91498b1c9276f`; observed `true`.
 - `E-HUMAN-COMPLETE` — not met; `release/status.json/human_evaluation_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_authorised"`.
 - `E-HUMAN-AIM-FULFILLED` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_yet_testable"`.
 - `E-HUMAN-AIM-PARTLY` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_yet_testable"`.

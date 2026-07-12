@@ -16,7 +16,6 @@ import {
   fetchJson,
   LargeCorpusStore,
   referencePath,
-  resolveReference,
   SearchClient
 } from "./data.js";
 
@@ -328,7 +327,7 @@ async function loadCatalogue() {
   if (searchReference && typeof Worker !== "undefined") {
     try {
       searchClient = new SearchClient();
-      await searchClient.init(corpusStore.baseUrl, resolveReference(searchReference, corpusStore.baseUrl));
+      await searchClient.init(corpusStore.baseUrl, searchReference, snapshot);
     } catch (error) {
       console.warn("Static search index unavailable", error);
       if (searchClient) searchClient.destroy();

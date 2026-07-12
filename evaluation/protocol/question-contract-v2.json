@@ -50,7 +50,7 @@
       "urgency_risk",
       "agent_involvement"
     ],
-    "sha256": "cb4dc65e5e0cb839f0eec2def31205bf0bdcd2cc424135470383b6e75c2896e5"
+    "sha256": "d6ada4fbb931475035f01774e9d5cb0979c2ee81af9f31772859c87d34310f5c"
   },
   "persona_suite_must_cover_every_story": true,
   "persona_suite_quotas": {

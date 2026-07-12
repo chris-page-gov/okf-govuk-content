@@ -95,8 +95,10 @@ def validate_snapshot_id(snapshot: str) -> None:
 def load_bundle_contract(root: Path, bundle_relative: str) -> tuple[dict[str, Any], dict[str, Any]]:
     bundle, _ = safe_relative(root, bundle_relative, "bundle")
     descriptor = load_json(bundle / "okf-explorer.json", "Explorer descriptor")
-    data_manifest_value = descriptor.get("entrypoints", {}).get("data_manifest")
-    if not isinstance(data_manifest_value, str):
+    data_manifest_value = check_release._entrypoint_path(
+        descriptor.get("entrypoints", {}).get("data_manifest")
+    )
+    if not data_manifest_value:
         raise PromotionError("Explorer descriptor has no data manifest")
     try:
         data_manifest_path = check_release._resolve_relative(bundle, data_manifest_value, "data manifest")

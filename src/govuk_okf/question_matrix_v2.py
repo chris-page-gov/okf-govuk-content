@@ -25,6 +25,13 @@ STORIES_PER_PERSONA = 6
 QUESTIONS_PER_STORY = 100
 QUESTIONS_PER_PERSONA_SUITE = 100
 SAMPLE_POOL_LIMIT = 4096
+RECONCILIATION_DISPOSITIONS = (
+    "represented",
+    "alias_of_represented",
+    "redirect_only",
+    "tombstone_only",
+    "exceptioned",
+)
 
 OPERATIONS: tuple[dict[str, str], ...] = (
     {"id": "locate_known_item", "intent": "lookup", "answer_shape": "ranked canonical records"},
@@ -671,8 +678,78 @@ def recursive_values(value: Any, key: str) -> list[Any]:
     return result
 
 
+def reconciliation_release_errors(
+    reconciliation: dict[str, Any] | None,
+    *,
+    snapshot_id: str,
+    snapshot_manifest: dict[str, Any] | None,
+) -> list[str]:
+    """Validate the exact independent closing-reconciliation contract."""
+
+    if not isinstance(reconciliation, dict):
+        return ["missing_corpus_reconciliation"]
+    errors: list[str] = []
+    if reconciliation.get("schema_version") != 1:
+        errors.append("corpus_reconciliation_schema_invalid")
+    if reconciliation.get("snapshot") != snapshot_id:
+        errors.append("corpus_reconciliation_snapshot_mismatch")
+    if reconciliation.get("sampled") is not False:
+        errors.append("corpus_is_sampled")
+    expected = reconciliation.get("expected_candidate_keys")
+    if not isinstance(expected, int) or isinstance(expected, bool) or expected < 1:
+        errors.append("corpus_expected_candidate_keys_invalid")
+    counts = [reconciliation.get(name) for name in RECONCILIATION_DISPOSITIONS]
+    if any(not isinstance(value, int) or isinstance(value, bool) or value < 0 for value in counts):
+        errors.append("corpus_disposition_counts_invalid")
+    elif isinstance(expected, int) and sum(counts) != expected:
+        errors.append("corpus_accounting_identity_invalid")
+    if reconciliation.get("unexplained_omissions") != 0:
+        errors.append("corpus_unexplained_omissions_not_zero")
+    entity_counts = reconciliation.get("entity_class_counts")
+    if (
+        not isinstance(entity_counts, dict)
+        or not entity_counts
+        or any(not isinstance(value, int) or isinstance(value, bool) or value < 0 for value in entity_counts.values())
+        or (isinstance(expected, int) and sum(entity_counts.values()) != expected)
+    ):
+        errors.append("corpus_entity_class_accounting_invalid")
+    publication_records = reconciliation.get("publication_records")
+    if not isinstance(publication_records, int) or isinstance(publication_records, bool) or publication_records < 1:
+        errors.append("corpus_publication_record_count_invalid")
+    for field in ("inventory_canonical_sha256", "candidate_ledger_canonical_sha256"):
+        if not re.fullmatch(r"[0-9a-f]{64}", str(reconciliation.get(field) or "")):
+            errors.append(f"corpus_{field}_invalid")
+    proof_requirements = {
+        "search_partitions_closed": reconciliation.get("search_partitions_closed") is True,
+        "search_partition_proofs": isinstance(reconciliation.get("search_partition_proofs"), list)
+        and bool(reconciliation.get("search_partition_proofs")),
+        "sitemap_byte_stable": reconciliation.get("sitemap_byte_stable") is True,
+        "sitemap_proof": isinstance(reconciliation.get("sitemap_proof"), dict)
+        and reconciliation["sitemap_proof"].get("closed") is True,
+        "organisations_proof": isinstance(reconciliation.get("organisations_proof"), dict)
+        and reconciliation["organisations_proof"].get("closed") is True,
+        "navigation_proof": isinstance(reconciliation.get("navigation_proof"), dict)
+        and reconciliation["navigation_proof"].get("closed") is True,
+    }
+    errors.extend(f"corpus_{name}_invalid" for name, passed in proof_requirements.items() if not passed)
+    if not isinstance(snapshot_manifest, dict):
+        errors.append("missing_independent_snapshot_manifest")
+    else:
+        if snapshot_manifest.get("snapshot") != snapshot_id:
+            errors.append("snapshot_manifest_snapshot_mismatch")
+        if snapshot_manifest.get("reconciliation") != reconciliation:
+            errors.append("snapshot_manifest_reconciliation_mismatch")
+    return sorted(set(errors))
+
+
 def release_prerequisites(
-    *, mode: str, snapshot_id: str, personas: list[dict[str, Any]], reconciliation: dict[str, Any] | None, blockers: list[str]
+    *,
+    mode: str,
+    snapshot_id: str,
+    personas: list[dict[str, Any]],
+    reconciliation: dict[str, Any] | None,
+    snapshot_manifest: dict[str, Any] | None = None,
+    blockers: list[str],
 ) -> tuple[bool, list[str]]:
     reasons = list(blockers)
     if mode != "release":
@@ -681,15 +758,14 @@ def release_prerequisites(
         reasons.append(f"primary_persona_count:{len(personas)}:expected:48")
     if any(marker in snapshot_id.casefold() for marker in ("pending", "fixture", "sample", "capacity")):
         reasons.append("snapshot_id_is_not_release_eligible")
-    if reconciliation is None:
-        reasons.append("missing_corpus_reconciliation")
-    else:
-        omission_values = recursive_values(reconciliation, "unexplained_omissions")
-        if not omission_values or any(int(value) != 0 for value in omission_values):
-            reasons.append("corpus_unexplained_omissions_not_zero")
-        sampled_values = recursive_values(reconciliation, "sampled")
-        if any(bool(value) for value in sampled_values):
-            reasons.append("corpus_is_sampled")
+    if mode == "release":
+        reasons.extend(
+            reconciliation_release_errors(
+                reconciliation,
+                snapshot_id=snapshot_id,
+                snapshot_manifest=snapshot_manifest,
+            )
+        )
     return not reasons, sorted(set(reasons))
 
 

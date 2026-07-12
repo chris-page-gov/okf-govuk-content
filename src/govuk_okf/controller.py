@@ -4,11 +4,15 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import sqlite3
+import tempfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
+
+from .util import safe_child_path, safe_identifier
 
 ROOT = Path(__file__).resolve().parents[2]
 DAG_PATH = ROOT / "orchestration" / "dag.yaml"
@@ -56,6 +60,10 @@ def load_dag(path: Path = DAG_PATH) -> dict[str, object]:
     ids = [task.get("id") for task in tasks if isinstance(task, dict)]
     if len(ids) != len(tasks) or len(set(ids)) != len(ids):
         raise ControllerError("DAG task IDs are missing or duplicated")
+    try:
+        ids = [safe_identifier(task_id, label="DAG task ID") for task_id in ids]
+    except ValueError as exc:
+        raise ControllerError(str(exc)) from exc
     task_ids = set(ids)
     for task in tasks:
         unknown = set(task.get("depends", [])) - task_ids
@@ -110,7 +118,11 @@ def materialize_contracts(check: bool = False) -> list[str]:
     dag = load_dag()
     errors: list[str] = []
     for task in dag["tasks"]:
-        path = CONTRACTS_DIR / f"{task['id']}.json"
+        try:
+            task_id = safe_identifier(task["id"], label="DAG task ID")
+            path = safe_child_path(CONTRACTS_DIR, f"{task_id}.json", label="task-contract path")
+        except ValueError as exc:
+            raise ControllerError(str(exc)) from exc
         expected = json.dumps(contract_for(task), ensure_ascii=False, indent=2, sort_keys=True) + "\n"
         if check:
             if not path.is_file() or path.read_text(encoding="utf-8") != expected:
@@ -153,6 +165,7 @@ class Controller:
             );
             """
         )
+        self._write_event_projection()
 
     def close(self) -> None:
         self.connection.close()
@@ -193,33 +206,73 @@ class Controller:
             and all(states.get(dep) == "accepted" for dep in json.loads(row["dependencies"]))
         ]
 
+    def _write_event_projection(self) -> None:
+        """Atomically reconcile the JSONL projection from SQLite event truth."""
+
+        content = "".join(
+            str(row["event_json"]) + "\n"
+            for row in self.connection.execute(
+                "SELECT event_json FROM events ORDER BY sequence"
+            )
+        )
+        descriptor, temporary = tempfile.mkstemp(
+            prefix=f".{self.events_path.name}.", dir=self.events_path.parent
+        )
+        try:
+            with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+                stream.write(content)
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.replace(temporary, self.events_path)
+        finally:
+            if os.path.exists(temporary):
+                os.unlink(temporary)
+
     def transition(self, task_id: str, target: str, detail: dict[str, object] | None = None) -> TaskState:
         if target not in STATES:
             raise ControllerError(f"unknown target state: {target}")
-        current = self.state(task_id)
-        if target not in ALLOWED_TRANSITIONS[current.state]:
-            raise ControllerError(f"invalid transition {current.state} -> {target} for {task_id}")
-        attempt = current.attempt + (1 if target == "leased" else 0)
-        timestamp = datetime.now(timezone.utc).isoformat()
-        event = {
-            "schema_version": 1,
-            "task_id": task_id,
-            "from": current.state,
-            "to": target,
-            "attempt": attempt,
-            "timestamp": timestamp,
-            "detail": detail or {},
-        }
-        encoded = canonical_json(event)
-        with self.connection:
-            self.connection.execute(
-                "UPDATE tasks SET state=?,attempt=?,updated_at=? WHERE task_id=?",
-                (target, attempt, timestamp, task_id),
-            )
+        try:
+            self.connection.execute("BEGIN IMMEDIATE")
+            row = self.connection.execute(
+                "SELECT task_id,state,attempt FROM tasks WHERE task_id=?", (task_id,)
+            ).fetchone()
+            if row is None:
+                raise ControllerError(f"unknown task: {task_id}")
+            current = TaskState(row["task_id"], row["state"], row["attempt"])
+            if target not in ALLOWED_TRANSITIONS[current.state]:
+                raise ControllerError(f"invalid transition {current.state} -> {target} for {task_id}")
+            attempt = current.attempt + (1 if target == "leased" else 0)
+            timestamp = datetime.now(timezone.utc).isoformat()
+            event = {
+                "schema_version": 1,
+                "task_id": task_id,
+                "from": current.state,
+                "to": target,
+                "attempt": attempt,
+                "timestamp": timestamp,
+                "detail": detail or {},
+            }
+            encoded = canonical_json(event)
+            changed = self.connection.execute(
+                "UPDATE tasks SET state=?,attempt=?,updated_at=? "
+                "WHERE task_id=? AND state=? AND attempt=?",
+                (target, attempt, timestamp, task_id, current.state, current.attempt),
+            ).rowcount
+            if changed != 1:
+                raise ControllerError(f"concurrent transition rejected for {task_id}")
             self.connection.execute("INSERT INTO events(event_json) VALUES(?)", (encoded,))
-        with self.events_path.open("a", encoding="utf-8") as stream:
-            stream.write(encoded + "\n")
-        return TaskState(task_id, target, attempt)
+            self._write_event_projection()
+            self.connection.commit()
+            return TaskState(task_id, target, attempt)
+        except BaseException as exc:
+            self.connection.rollback()
+            try:
+                self._write_event_projection()
+            except OSError:
+                pass
+            if isinstance(exc, ControllerError):
+                raise
+            raise ControllerError(f"transition was rolled back before durable evidence: {exc}") from exc
 
     def summary(self) -> dict[str, int]:
         return {
@@ -228,4 +281,3 @@ class Controller:
                 "SELECT state,COUNT(*) AS count FROM tasks GROUP BY state ORDER BY state"
             )
         }
-

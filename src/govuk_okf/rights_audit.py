@@ -20,6 +20,8 @@ import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable, Iterator
+
+from .util import reference_path
 from urllib.parse import urlparse
 
 from .util import canonical_json_bytes, pretty_json
@@ -905,11 +907,12 @@ def audit_release(
     if publication_manifest_path is None:
         descriptor = _safe_path(root, artifacts.get("descriptor"), "release descriptor")
         descriptor_document = _load_json(descriptor, limits.max_manifest_bytes)
-        data_manifest = (
+        data_manifest_reference = (
             descriptor_document.get("entrypoints", {}).get("data_manifest")
             if isinstance(descriptor_document, dict)
             else None
         )
+        data_manifest = reference_path(data_manifest_reference)
         publication_path = _safe_path(descriptor.parent, data_manifest, "descriptor data manifest")
     else:
         publication_path = publication_manifest_path.resolve()

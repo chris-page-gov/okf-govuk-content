@@ -23,7 +23,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "bundle/okf-explorer.json",
-          "sha256": "27cba19217951c37dabe61f9f2aeb1485661d646d2a8088b6719e8b23abf918c"
+          "sha256": "d9681ab679febae7ec755a294d0e7b3ee40568d8ccbd3874ac770bda71acc1bc"
         },
         {
           "check_id": "E-INDEPENDENT-WIKI",
@@ -34,7 +34,7 @@
           "operator": "json_string_contains",
           "path": "bundle/okf-explorer.json",
           "pointer": "/description",
-          "sha256": "27cba19217951c37dabe61f9f2aeb1485661d646d2a8088b6719e8b23abf918c"
+          "sha256": "d9681ab679febae7ec755a294d0e7b3ee40568d8ccbd3874ac770bda71acc1bc"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -357,7 +357,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "personas/manifest.json",
-          "sha256": "8c2ae8a35a708e2f1cf59423cee78befddec239e0227396d71f8d5b7220111ab"
+          "sha256": "7078f7953a8e10bd9a0788d8cdab10e80d0d4f92ca7e8ce559b91498b1c9276f"
         },
         {
           "check_id": "E-HUMAN-COMPLETE",

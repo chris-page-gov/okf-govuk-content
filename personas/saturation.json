@@ -14,7 +14,7 @@
       "pass_id": "persona-gap-pass-02-schema-question-contract",
       "path": "personas/challenges/persona-gap-pass-02-schema-question-contract.json",
       "result": "no_new_machine_evidenced_dimension_or_use_class",
-      "sha256": "0544119e21dff22c108507c82ef80e985b14b35885dd49575cd7b074065cf982"
+      "sha256": "ff1c80a3e15e47421fd24b7c166f76ef6abdf764cec90e4363878e57f2b2e4ce"
     },
     {
       "novel_valid_use_classes": 0,
@@ -24,7 +24,7 @@
       "sha256": "4e46d99c94fdf263bac70823cce957f72d8f0750bdd1c20d6d73303c1e83b902"
     }
   ],
-  "checksum": "a8bf6935c5a7088f4af6782fcf2bb1368081d57bef4e90d463a201ed82a8cc70",
+  "checksum": "d197504ce7a8de8151e015fc803df29161aa3a961518aa811771915625df41b7",
   "claim_boundary": "This closes machine-applicable dimensional, challenge and scenario enumeration only. It makes no UI-of-choice, preference, prevalence or observed-user claim.",
   "coverage_matrix": {
     "path": "personas/coverage-matrix.json",

@@ -28,13 +28,27 @@ export function referencePath(reference) {
 
 export function referenceHash(reference) {
   if (!reference || typeof reference !== "object") return "";
-  return String(reference.sha256 || "").toLowerCase();
+  const value = String(reference.sha256 || "").toLowerCase();
+  if (value && !/^[0-9a-f]{64}$/.test(value)) throw new Error("Resource SHA-256 is malformed");
+  return value;
 }
 
 export function resolveReference(reference, baseUrl) {
   const path = referencePath(reference);
   if (!path) throw new Error("Resource path is missing");
   return new URL(path, baseUrl).toString();
+}
+
+export function integrityReference(reference, metadataRows, label = "resource") {
+  if (reference && typeof reference === "object") {
+    referenceHash(reference);
+    return reference;
+  }
+  if (!Array.isArray(metadataRows)) return reference;
+  const path = referencePath(reference);
+  const metadata = metadataRows.find((row) => row && row.path === path);
+  if (!metadata) throw new Error(label + " has no integrity metadata");
+  return { path, sha256: referenceHash(metadata) };
 }
 
 async function digestText(text) {
@@ -143,8 +157,8 @@ export class SearchClient {
     return new Promise((resolve, reject) => this.pending.set(id, { resolve, reject }));
   }
 
-  init(baseUrl, manifestUrl) {
-    return this.request({ type: "init", baseUrl, manifestUrl });
+  init(baseUrl, manifestReference, snapshotId = "") {
+    return this.request({ type: "init", baseUrl, manifestReference, snapshotId });
   }
 
   query(query) {
@@ -182,6 +196,9 @@ export class LargeCorpusStore {
   async bootstrap(signal) {
     const manifestResult = await fetchJson(this.descriptor.entrypoints.data_manifest, this.baseUrl, { signal, currentOrigin: this.currentOrigin });
     this.manifest = manifestResult.value;
+    const advertisedRoot = String(this.descriptor.data_plane_manifest_root_sha256 || "");
+    const manifestRoot = String(this.manifest.integrity && this.manifest.integrity.manifest_root_sha256 || "");
+    if (advertisedRoot && advertisedRoot !== manifestRoot) throw new Error("Descriptor and data manifest integrity roots differ");
     const overviewReference = this.descriptor.entrypoints.overview_index || this.manifest.indexes.overview;
     this.overview = (await fetchJson(overviewReference, this.baseUrl, { signal, currentOrigin: this.currentOrigin })).value;
     const analysisReference = this.descriptor.entrypoints.analysis_overview || this.manifest.indexes.analysis;
@@ -192,6 +209,7 @@ export class LargeCorpusStore {
         this.analysis = null;
       }
     }
+    this.snapshotId();
     return this;
   }
 
@@ -200,18 +218,37 @@ export class LargeCorpusStore {
   }
 
   snapshotId() {
-    return String(
-      this.descriptor.snapshot_id ||
-      this.descriptor.snapshot ||
-      this.manifest.snapshot_id ||
-      this.manifest.snapshot ||
-      this.overview.snapshot_id ||
-      this.overview.snapshot ||
-      this.analysis && (this.analysis.snapshot_id || this.analysis.snapshot) ||
-      this.descriptor.generated_at ||
-      this.manifest.generated_at ||
-      ""
-    );
+    const declarations = [];
+    for (const [label, document] of [
+      ["descriptor", this.descriptor],
+      ["data manifest", this.manifest],
+      ["overview", this.overview],
+      ["analysis", this.analysis]
+    ]) {
+      if (!document || typeof document !== "object") continue;
+      const values = [document.snapshot_id, document.snapshot]
+        .filter((value) => value !== undefined && value !== null && value !== "")
+        .map((value) => {
+          if (typeof value !== "string" || !value.trim()) throw new Error(label + " has an invalid snapshot identifier");
+          return value.trim();
+        });
+      if (new Set(values).size > 1) throw new Error(label + " advertises conflicting snapshot identifiers");
+      if (values.length) declarations.push([label, values[0]]);
+    }
+    if (!declarations.length) return "";
+    const unique = new Set(declarations.map(([, value]) => value));
+    if (unique.size !== 1) {
+      throw new Error("Bundle resources advertise different snapshot identifiers: " + declarations.map(([label, value]) => label + "=" + value).join(", "));
+    }
+    return declarations[0][1];
+  }
+
+  assertResourceSnapshot(document, label) {
+    if (!document || typeof document !== "object" || Array.isArray(document)) return;
+    const advertised = document.snapshot_id || document.snapshot || "";
+    if (!advertised) return;
+    const expected = this.snapshotId();
+    if (!expected || advertised !== expected) throw new Error(label + " snapshot differs from the loaded bundle snapshot");
   }
 
   overviewRecords() {
@@ -224,10 +261,15 @@ export class LargeCorpusStore {
     if (!reference) return [];
     if (!this.adjacencyManifest) {
       this.adjacencyManifest = (await fetchJson(reference, this.baseUrl, { signal, currentOrigin: this.currentOrigin })).value;
+      this.assertResourceSnapshot(this.adjacencyManifest, "Relationship adjacency manifest");
       if (this.adjacencyManifest.algorithm !== "fnv1a32-prefix-2") throw new Error("Unsupported relationship adjacency algorithm");
     }
     const bucket = relationshipBucket(route);
-    const bucketReference = this.adjacencyManifest.buckets[bucket];
+    const bucketReference = integrityReference(
+      this.adjacencyManifest.buckets[bucket],
+      this.adjacencyManifest.shards,
+      "Relationship adjacency shard"
+    );
     if (!bucketReference) return [];
     const payload = await cachedPromise(
       this.adjacencyBuckets,
@@ -240,13 +282,20 @@ export class LargeCorpusStore {
   async loadRecord(route, signal) {
     const indexReference = this.descriptor.entrypoints.route_index || this.manifest.indexes.route_index || this.manifest.indexes.routes;
     if (!indexReference) return null;
-    if (!this.routeIndex) this.routeIndex = (await fetchJson(indexReference, this.baseUrl, { signal, currentOrigin: this.currentOrigin })).value;
+    if (!this.routeIndex) {
+      this.routeIndex = (await fetchJson(indexReference, this.baseUrl, { signal, currentOrigin: this.currentOrigin })).value;
+      this.assertResourceSnapshot(this.routeIndex, "Route-index manifest");
+    }
     if (this.routeIndex.schema !== "okf-route-index.v1" || this.routeIndex.entry_shape !== "identifier-to-typed-matches") {
       throw new Error("Unsupported route-index contract");
     }
     if (this.routeIndex.algorithm !== "fnv1a32-prefix-2") throw new Error("Unsupported route-index algorithm");
     const bucket = relationshipBucket(route);
-    const bucketReference = this.routeIndex.buckets && this.routeIndex.buckets[bucket];
+    const bucketReference = integrityReference(
+      this.routeIndex.buckets && this.routeIndex.buckets[bucket],
+      this.routeIndex.shards,
+      "Route-index shard"
+    );
     if (!bucketReference) return null;
     const routePayload = await cachedPromise(
       this.routeBuckets,
@@ -266,7 +315,11 @@ export class LargeCorpusStore {
     if (!Number.isInteger(ordinal) || ordinal < 0 || !Number.isInteger(chunkSize) || chunkSize < 1) {
       throw new Error("Invalid route-index locator");
     }
-    const chunkReference = this.manifest.chunks[expectedKind] && this.manifest.chunks[expectedKind][Math.floor(ordinal / chunkSize)];
+    const chunkReference = integrityReference(
+      this.manifest.chunks[expectedKind] && this.manifest.chunks[expectedKind][Math.floor(ordinal / chunkSize)],
+      this.manifest.shards && this.manifest.shards[expectedKind],
+      "Record shard"
+    );
     if (!chunkReference) return null;
     const chunkKey = resolveReference(chunkReference, this.baseUrl);
     const chunk = await cachedPromise(
