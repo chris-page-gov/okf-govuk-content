@@ -118,3 +118,39 @@ relationships:
     direction: content-or-document-to-locale-document
     mappingStatus: source_native
     caveat: Preserve separate locale Document identities rather than replacing one language with another.
+  - term: hasBasePath
+    iri: govuk:hasBasePath
+    sourceFields: [/base_path, resolved public route]
+    direction: route-to-base-path
+    mappingStatus: normalized
+    caveat: Keeps route behaviour and path values distinct.
+  - term: renders
+    iri: govuk:renders
+    sourceFields: [bounded public HTML observation]
+    direction: route-to-rendered-page-observation
+    mappingStatus: source_native_observation
+    caveat: The rendered body is hashed and discarded.
+  - term: hasDistribution
+    iri: dcat:distribution
+    sourceFields: [declared distributable data resource]
+    direction: resource-to-distribution
+    mappingStatus: conditional_normalized
+    caveat: Emit only where DCAT distribution semantics genuinely fit.
+  - term: hasMachineRepresentation
+    iri: govuk:hasMachineRepresentation
+    sourceFields: [declared JSON XML RDF API or data link]
+    direction: content-to-machine-representation
+    mappingStatus: source_native
+    caveat: Do not infer a representation from a filename alone.
+  - term: withdrawnBy
+    iri: govuk:withdrawnBy
+    sourceFields: [/withdrawn_notice]
+    direction: content-to-withdrawal-observation
+    mappingStatus: source_native
+    caveat: Absence from an enumerator is not withdrawal evidence.
+  - term: constrainedBy
+    iri: govuk:constrainedBy
+    sourceFields: [source constraint and exception ledger]
+    direction: entity-or-claim-to-constraint
+    mappingStatus: source_native
+    caveat: Constraints stay visible and cannot silently waive coverage.

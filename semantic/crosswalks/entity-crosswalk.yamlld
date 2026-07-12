@@ -223,6 +223,118 @@ mappings:
       - "prov:Entity with prov:invalidatedAtTime"
     mappingStatus: source_native_observation
     caveat: Absence from one enumerator alone is not a tombstone.
+  - term: BasePath
+    iri: govuk:BasePath
+    sourceEntities: [Content API base_path, resolved public URL path]
+    sourceFields: [/base_path, HTTP final URL path]
+    identityRule: urn:govuk:base-path:{sha256(normalized-path)}
+    externalMappings: [schema:url]
+    mappingStatus: source_native
+    caveat: A path value is not route behaviour or content identity.
+  - term: RenderedPage
+    iri: govuk:RenderedPage
+    sourceEntities: [transient public HTML observation]
+    sourceFields: [HTTP final URL and body hash, canonical link, schema.org types]
+    identityRule: urn:govuk:rendered-page:{route-hash}:{observation-time}
+    externalMappings: [schema:WebPage where applicable, prov:Entity]
+    mappingStatus: source_native_observation
+    caveat: Body bytes are discarded after bounded extraction.
+  - term: WorldTaxon
+    iri: govuk:WorldTaxon
+    sourceEntities: [Content API world taxonomy node]
+    sourceFields: [/links/child_taxons, /links/parent_taxons, /locale]
+    identityRule: urn:govuk:world-taxon:{content_id}:{locale}
+    externalMappings: [skos:Concept]
+    mappingStatus: source_native
+    caveat: Never collapse world taxonomy into topic taxonomy.
+  - term: MainstreamBrowsePage
+    iri: govuk:MainstreamBrowsePage
+    sourceEntities: [Content API mainstream_browse_page]
+    sourceFields: [/document_type, /base_path]
+    identityRule: urn:govuk:mainstream-browse:{content_id}:{locale}
+    externalMappings: [skos:Concept as qualified navigation alignment]
+    mappingStatus: source_native
+    caveat: Preserve its source-native class.
+  - term: StepByStep
+    iri: govuk:StepByStep
+    sourceEntities: [Content API step_by_step_nav]
+    sourceFields: [/details/step_by_step_nav, /links/part_of_step_navs]
+    identityRule: urn:govuk:step-by-step:{content_id}:{locale}
+    externalMappings: [schema:ItemList where ordered semantics fit]
+    mappingStatus: source_native
+    caveat: Ordered steps are not generic collection membership.
+  - term: GovernmentService
+    iri: govuk:GovernmentService
+    sourceEntities: [official source-supported public service]
+    sourceFields: [explicit service schema or relationship]
+    identityRule: urn:govuk:government-service:{source-native-service-id}
+    externalMappings: [cpsv:PublicService, schema:GovernmentService]
+    mappingStatus: conditional_source_native
+    caveat: Do not infer a service from general guidance.
+  - term: Distribution
+    iri: govuk:Distribution
+    sourceEntities: [declared distributable data resource]
+    sourceFields: [/details/attachments, declared data or API representation]
+    identityRule: urn:govuk:distribution:{resource-id-or-url-hash}
+    externalMappings: [dcat:Distribution where semantics fit]
+    mappingStatus: conditional_normalized
+    caveat: An ordinary attachment is not automatically a DCAT distribution.
+  - term: MachineRepresentation
+    iri: govuk:MachineRepresentation
+    sourceEntities: [declared JSON XML RDF API or data representation]
+    sourceFields: [structured representation URL and media type]
+    identityRule: urn:govuk:machine-representation:{url-hash}
+    externalMappings: [dcat:Distribution where applicable, schema:DataDownload]
+    mappingStatus: source_native
+    caveat: Store metadata and authoritative links only.
+  - term: Withdrawal
+    iri: govuk:Withdrawal
+    sourceEntities: [Content API withdrawn notice]
+    sourceFields: [/withdrawn_notice]
+    identityRule: urn:govuk:withdrawal:{content_id}:{observation-time}
+    externalMappings: [prov:Invalidation]
+    mappingStatus: source_native_observation
+    caveat: Withdrawal is not inferred from absence.
+  - term: Replacement
+    iri: govuk:Replacement
+    sourceEntities: [explicit source replacement or substitution]
+    sourceFields: [source-native replacement relationship]
+    identityRule: urn:govuk:replacement:{original-id}:{replacement-id}
+    externalMappings: [dcterms:isReplacedBy]
+    mappingStatus: source_native_observation
+    caveat: Similarity is not replacement evidence.
+  - term: EvidenceSource
+    iri: govuk:EvidenceSource
+    sourceEntities: [official response or version-pinned contract]
+    sourceFields: [requested URL, locator, retrieval time, SHA-256]
+    identityRule: urn:govuk:evidence-source:{evidence-hash}
+    externalMappings: [prov:Entity]
+    mappingStatus: source_native
+    caveat: Evidence remains retrievable and precisely located.
+  - term: AcquisitionActivity
+    iri: govuk:AcquisitionActivity
+    sourceEntities: [bounded public acquisition run]
+    sourceFields: [run ledger, software version, source and timing]
+    identityRule: urn:govuk:acquisition:{run-id}:{source-id}
+    externalMappings: [prov:Activity]
+    mappingStatus: source_native
+    caveat: Rate and policy controls are part of the activity evidence.
+  - term: InferenceActivity
+    iri: govuk:InferenceActivity
+    sourceEntities: [governed deterministic or model derivation]
+    sourceFields: [derivation method, inputs, reviewer and output]
+    identityRule: urn:govuk:inference:{activity-hash}
+    externalMappings: [prov:Activity]
+    mappingStatus: inferred
+    caveat: Cannot overwrite source-native statements.
+  - term: ConstraintRecord
+    iri: govuk:ConstraintRecord
+    sourceEntities: [access rights security or coverage constraint]
+    sourceFields: [reason, evidence, owner, status and review date]
+    identityRule: urn:govuk:constraint:{constraint-id}
+    externalMappings: [prov:Entity]
+    mappingStatus: source_native
+    caveat: A constraint is visible accounting, not permission to omit silently.
   - term: Evidence
     iri: govuk:Evidence
     sourceEntities:
