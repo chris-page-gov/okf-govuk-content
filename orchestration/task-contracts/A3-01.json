@@ -16,12 +16,12 @@
     "G0-01"
   ],
   "human_gate": null,
-  "idempotency_key": "7b08e66493c8b9031c32b6fb8b169d943549707aa886e34b9c81f02936c8ca9b",
+  "idempotency_key": "9d51c072d1fe74d7d414d2f1bb52dddf86b6f1d9d4971381e6f3c560c8cc44ae",
   "model_profile": "coding_and_research",
   "objective": "preregistration",
   "on_block": "continue_independent",
   "output_artifacts": [
-    "evaluation/protocol/preregistration.yaml"
+    "evaluation/protocol/preregistration.json"
   ],
   "prohibited_actions": [
     "invent evidence",

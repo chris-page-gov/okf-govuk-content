@@ -17,12 +17,12 @@
     "A3-01"
   ],
   "human_gate": null,
-  "idempotency_key": "7c0f6eb5e4727be6ba825a31c8a46f5d11ad3349983357a2d2a2631d130014ec",
+  "idempotency_key": "b63b328665febe7116df65f1dea4719237eac7b20e3ec3040596ae864bedd068",
   "model_profile": "deterministic",
   "objective": "question bindings",
   "on_block": "continue_independent",
   "output_artifacts": [
-    "questions/rendered-shards"
+    "questions/release-v2/manifest.json"
   ],
   "prohibited_actions": [
     "invent evidence",

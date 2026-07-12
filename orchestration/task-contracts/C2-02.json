@@ -17,12 +17,12 @@
     "C2-01"
   ],
   "human_gate": null,
-  "idempotency_key": "e2e5f0c4a4c4e29dfcd50c710d7aa5e48da0251a1667be9b15eb474d53932809",
+  "idempotency_key": "0ee36c1a2d24ce5f7ce8ef3ffc10403ee64c5907184ff6061396c4461b841a56",
   "model_profile": "deterministic",
   "objective": "representative fixture",
   "on_block": "continue_independent",
   "output_artifacts": [
-    "tests/fixtures/corpus"
+    "tests/fixtures/corpus/source-records.jsonl"
   ],
   "prohibited_actions": [
     "invent evidence",

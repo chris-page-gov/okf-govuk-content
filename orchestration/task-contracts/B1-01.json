@@ -16,12 +16,12 @@
     "A1-02"
   ],
   "human_gate": null,
-  "idempotency_key": "271b4dc32af95eb8534bc15a2ae2b7d6a6ee50386ba0c3f207b1e8fc1def5c82",
+  "idempotency_key": "3696fb3cab792cc68fb9d51697c2be1af0fed71aea4e9bfac015a956e9e3edd1",
   "model_profile": "deterministic",
   "objective": "enumerate t0",
   "on_block": "continue_independent",
   "output_artifacts": [
-    "corpus/source-manifests/t0"
+    "corpus/source-manifests/<snapshot-label>/manifest.json"
   ],
   "prohibited_actions": [
     "invent evidence",

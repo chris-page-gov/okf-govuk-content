@@ -1,5 +1,5 @@
 schema_version: 1
-recorded_at: "2026-07-11T00:00:00Z"
+recorded_date: "2026-07-11"
 authority_basis: explicit user instruction in the initiating Codex task
 publication_authorisation: true
 authenticated_source_permission: false
@@ -16,6 +16,15 @@ ceilings:
   official_source_requests: 1000000
   retained_metadata_storage_gib: 10
   wall_time_hours: null
+  wall_time_status: no_numeric_user_ceiling_recorded
+  product_session_usage: product_managed_not_exposed
+execution_approval:
+  unattended_repo_work: authorised
+  public_source_access: authorised_with_policy_and_rate_limits
+  paid_external_model_api: not_authorised
+  product_session_usage_ceiling: product_managed_not_exposed
+  product_usage_reset_reported_by_user_date: "2026-07-12"
+  interpretation: A product usage reset permits this task to continue while the product allows; it is not authority for paid API calls, a numeric token claim or unlimited spend.
 rate_limits:
   content-api.publishing.service.gov.uk_requests_per_second: 8
   www.gov.uk_requests_per_second: 2
@@ -23,6 +32,7 @@ rate_limits:
   overall_other_hosts_requests_per_second: 8
 notes:
   - No external paid model fan-out is authorised; deterministic generation and the current Codex session remain available.
+  - Product-session tokens, exact backend build, parameters and marginal cost are not exposed; record them as unavailable rather than zero.
+  - The official-source request ceiling is an execution-approval limit and is accounted separately from model usage and cost.
   - The explicit request authorises public repository, Pages, release and registry publication.
   - Genuine participant research remains blocked pending ethics, recruitment and consent authority.
-

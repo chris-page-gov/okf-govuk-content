@@ -13,7 +13,7 @@ This is a non-compensatory assessment. A fixture or design artefact can support 
 |---|---|---|---|
 | AIM-001 Independent OKF Bundle Wiki mapping GOV.UK | `partly_fulfilled` | `high` | `E-BUNDLE-DESCRIPTOR`, `E-INDEPENDENT-WIKI` |
 | AIM-002 Whole bounded public GOV.UK metadata coverage | `partly_fulfilled` | `high` | `E-SOURCE-PREFLIGHT` |
-| AIM-003 Help people navigate and understand GOV.UK | `partly_fulfilled` | `high` | `E-EXPLORER-FOUNDATION`, `E-EXPLORER-NONBROWSER-TESTS`, `E-PERSONA-FOUNDATION` |
+| AIM-003 Help people navigate and understand GOV.UK | `partly_fulfilled` | `high` | `E-EXPLORER-FOUNDATION`, `E-PERSONA-FOUNDATION` |
 | AIM-004 Become a Human UI of choice for defined populations and tasks | `not_yet_testable` | `high` | `E-HUMAN-NOT-AVAILABLE` |
 | AIM-005 Help systems understand GOV.UK identities, hierarchy, lifecycle and relationships | `partly_fulfilled` | `high` | `E-PROFILE`, `E-SEMANTIC-FIXTURE`, `E-STATIC-SEARCH` |
 | AIM-006 Help agents retrieve and cite authoritative GOV.UK content | `partly_fulfilled` | `high` | `E-EVALUATION-HARNESS` |
@@ -98,7 +98,7 @@ Boundary: Fixture UI and automated checks support only partial fulfilment withou
 Evidence:
 
 - `E-EXPLORER-FOUNDATION` — pass; `explorer/src/index.html`; SHA-256 `32def87a1256763faa51bc71ceefd455e8c4fcabb56a79c12f8c432c783d5a83`; observed `true`.
-- `E-EXPLORER-NONBROWSER-TESTS` — pass; `explorer/src/evidence/fixture-browser.json/completed_non_browser_checks/failed`; SHA-256 `c495d18b049c05c9885a8c59e8cec5285f664695d2bacd3c85a80e50f81fc798`; observed `0`.
+- `E-EXPLORER-NONBROWSER-TESTS` — not met; `explorer/src/evidence/fixture-browser.json/completed_non_browser_checks/failed`; SHA-256 `403b9d300e48f5d649439a84f7ee3351a6e1a53eab2075b677923d6bfdfc6f9f`; observed `null`.
 - `E-PERSONA-FOUNDATION` — pass; `personas/manifest.json`; SHA-256 `8c2ae8a35a708e2f1cf59423cee78befddec239e0227396d71f8d5b7220111ab`; observed `true`.
 - `E-HUMAN-COMPLETE` — not met; `release/status.json/human_evaluation_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_authorised"`.
 - `E-HUMAN-AIM-FULFILLED` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_yet_testable"`.

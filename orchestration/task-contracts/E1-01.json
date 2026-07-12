@@ -16,12 +16,12 @@
     "D1-01"
   ],
   "human_gate": null,
-  "idempotency_key": "d46238b9f5d55ceeaaf2ee6bc209a3596f1f0a77f566473bce976e89f36360c5",
+  "idempotency_key": "7a13e52d6ae4974238f4fe8679d7d2eb95a409ea51c8dd9b5fa05a44f5c565a3",
   "model_profile": "deterministic",
   "objective": "enumerate t1",
   "on_block": "continue_independent",
   "output_artifacts": [
-    "corpus/source-manifests/t1"
+    "corpus/source-manifests/<T1-label>/manifest.json"
   ],
   "prohibited_actions": [
     "invent evidence",
