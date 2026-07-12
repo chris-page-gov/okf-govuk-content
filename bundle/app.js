@@ -937,6 +937,7 @@ async function loadSelectedRelationships(route) {
 }
 
 async function selectRecord(record, position = 0) {
+  const started = performance.now();
   selectedRecord = record;
   selectedRelationships = [];
   recordInstrumentation("result", { position, routeKind: record.route.split("/")[0], view: state.view, mode: state.mode, snapshot: state.snapshot });
@@ -944,6 +945,7 @@ async function selectRecord(record, position = 0) {
   await loadSelectedRelationships(record.route);
   document.getElementById("detail-panel").scrollIntoView({ block: "start" });
   document.getElementById("detail-heading").focus?.();
+  recordBrowserMetric("lastRouteMs", performance.now() - started, "routeSequence");
 }
 
 async function openRoute(route, push = true) {

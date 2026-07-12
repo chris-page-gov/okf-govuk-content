@@ -27,7 +27,7 @@ rows:
     disposition: replace
     ux_epics: [UX-04, UX-10, UX-14]
     proposed_files: [explorer/src/core.js, explorer/src/app.js]
-    migration: One URL state contains query, repeated facets, route, lifecycle, jurisdiction, language, mode, page, snapshot and pins.
+    migration: Query parameters retain shared context while the canonical selected-record route uses the decoded fragment; legacy route query links canonicalise to the fragment.
     tests: [explorer/tests/core.test.mjs]
     residual_risk: Corpus-specific filter expressions require fixture/full-corpus integration tests.
   - id: task-first-search
@@ -100,5 +100,5 @@ rows:
     ux_epics: [UX-11, UX-13, UX-15]
     proposed_files: [explorer/src/index.html, explorer/src/styles.css, explorer/src/app.js]
     migration: No inline executable/style content, strict CSP, text-only source rendering, bilingual chrome, reflow/focus/reduced-motion/forced-colour CSS and session-only opt-in allowlisted events.
-    tests: [explorer/tests/static-contract.test.mjs, explorer/tests/core.test.mjs]
-    residual_risk: Axe, Playwright, expert accessibility and privacy review remain release gates.
+    tests: [explorer/tests/static-contract.test.mjs, explorer/tests/core.test.mjs, explorer/tests/browser.e2e.mjs]
+    residual_risk: The real-Chromium gate is implemented but could not bind localhost in the current restricted run; axe dependency installation, expert accessibility, screen-reader, full-corpus and privacy review remain release gates.

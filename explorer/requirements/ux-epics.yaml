@@ -25,7 +25,7 @@ epics:
     title: Global context reducer
     source_status: source_implemented
     acceptance_status: pending_fixture
-    implementation: URL state serialises query, facets, route, lifecycle, jurisdiction, language, mode, page, snapshot and pins for every view.
+    implementation: Query state serialises context and pins while the selected record uses a canonical hash route; legacy route query links remain replayable aliases.
   - id: UX-05
     title: Browse and life-event paths
     source_status: source_implemented
@@ -60,12 +60,12 @@ epics:
     title: Responsive accessibility
     source_status: source_implemented
     acceptance_status: pending_human_evidence
-    implementation: Semantic landmarks, keyboard controls, visible focus, reflow, 400 percent zoom-compatible layout, reduced motion and forced colours.
+    implementation: Semantic landmarks, keyboard controls, visible focus, reflow, 400 percent zoom-compatible layout, reduced motion, forced colours and a no-skip real-Chromium automated subset gate.
   - id: UX-12
     title: Large-corpus performance
     source_status: source_implemented
     acceptance_status: pending_full_corpus
-    implementation: Overview-first bootstrap, worker search, cancellation, lazy result/adjacency resources, 64 MiB caps and graph bounds of 250 nodes/500 edges.
+    implementation: Overview-first bootstrap, worker search, cancellation, lazy result/adjacency resources, 64 MiB caps, graph bounds and measured fixture startup/search/route/heap budgets in the real-Chromium harness.
   - id: UX-13
     title: Trust and uncertainty
     source_status: source_implemented

@@ -21,6 +21,28 @@ test("HTML is CSP-safe and contains task-first accessible landmarks", async () =
   assert.match(html, /data-language="en"/);
   assert.match(html, /data-language="cy"/);
   assert.match(html, /Derived, non-authoritative service/);
+  assert.match(html, /id="skip-link"/);
+  assert.match(html, /href="accessibility\.html"/);
+});
+
+test("Pages fallback preserves state without inline executable content", async () => {
+  const html = await readFile(join(source, "404.html"), "utf8");
+  const pages = await readFile(join(source, "pages.js"), "utf8");
+  assert.match(html, /data-pages-project="okf-govuk-content"/);
+  assert.match(html, /src="\/okf-govuk-content\/pages\.js"/);
+  assert.doesNotMatch(html, /unsafe-inline|\son[a-z]+\s*=/i);
+  assert.match(pages, /target\.search = current\.search/);
+  assert.match(pages, /target\.hash = current\.hash/);
+  assert.doesNotMatch(pages, /document\.write|innerHTML/);
+});
+
+test("accessibility statement distinguishes automated fixture evidence from conformance", async () => {
+  const html = await readFile(join(source, "accessibility.html"), "utf8");
+  assert.match(html, /not a claim of WCAG 2\.2 AA conformance/i);
+  assert.match(html, /axe testing/i);
+  assert.match(html, /screen-reader testing/i);
+  assert.match(html, /representative-user research/i);
+  assert.match(html, /evidence\/fixture-browser\.json/);
 });
 
 test("application never uses executable source HTML sinks", async () => {
@@ -32,6 +54,8 @@ test("application never uses executable source HTML sinks", async () => {
   assert.match(code, /textContent/);
   assert.match(code, /instrumentationConsent = false/);
   assert.match(code, /querySelectorAll\("button\[data-mode\]"\)/);
+  assert.match(code, /dataset\.explorerReady/);
+  assert.match(code, /getElementById\("skip-link"\)/);
 });
 
 test("CSS includes reflow, reduced-motion, focus and forced-colour support", async () => {
@@ -52,4 +76,7 @@ test("all UX epics are explicit without claiming completed empirical acceptance"
   assert.match(epics, /pending_full_corpus/);
   assert.doesNotMatch(epics, /acceptance_status:\s*(passed|complete)/);
   JSON.parse(await readFile(join(here, "..", "requirements", "explorer-state.schema.json"), "utf8"));
+  const budgets = JSON.parse(await readFile(join(here, "..", "requirements", "browser-budgets.json"), "utf8"));
+  assert.equal(budgets.qualifications.automated_fixture_pass_is_wcag_conformance, false);
+  assert.equal(budgets.performance.first_useful_render_p75_ms_max, 2500);
 });

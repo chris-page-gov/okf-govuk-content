@@ -3,7 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check src/core.js && node --check src/search-core.js && node --check src/search.worker.js && node --check src/app.js && node --test tests/*.test.mjs",
-    "test": "node --test tests/*.test.mjs"
+    "check": "node --check src/core.js && node --check src/data.js && node --check src/search-core.js && node --check src/search.worker.js && node --check src/app.js && node --check src/pages.js && node --check tests/fixture-server.mjs && node --check tests/chrome-cdp.mjs && node --check tests/browser-audit.mjs && node --check tests/browser-evidence.mjs && node --check tests/browser.e2e.mjs && node --test tests/*.test.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "node --test tests/browser.e2e.mjs",
+    "evidence:browser": "node tests/browser-evidence.mjs --mode fixture --output src/evidence/fixture-browser.json --iterations 5",
+    "evidence:release": "node tests/browser-evidence.mjs --mode release --output ../release/accessibility-browser.json --iterations 5"
   }
 }

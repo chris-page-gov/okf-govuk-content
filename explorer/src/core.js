@@ -11,6 +11,7 @@ const MODE_SET = new Set(MODE_IDS);
 const STATE_PARAMS = ["q", "facet", "view", "mode", "lang", "route", "lifecycle", "jurisdiction", "page", "snapshot", "pin"];
 const SAFE_FACET_KEY = /^[a-z][a-z0-9_.-]{0,63}$/i;
 const SAFE_LANGUAGE = /^[a-z]{2,3}(?:-[a-z0-9]{2,8})*$/i;
+const NON_ROUTE_FRAGMENTS = new Set(["", "overview", "main-content"]);
 
 export const DEFAULT_STATE = Object.freeze({
   query: "",
@@ -60,6 +61,18 @@ function safeRoute(value) {
   return route;
 }
 
+export function routeFromHash(value) {
+  const raw = String(value || "").replace(/^#/, "");
+  let decoded = raw;
+  try {
+    decoded = decodeURIComponent(raw);
+  } catch {
+    // A malformed shared fragment must fail safe instead of breaking startup.
+  }
+  const route = safeRoute(decoded);
+  return NON_ROUTE_FRAGMENTS.has(route.toLowerCase()) ? "" : route;
+}
+
 function parseFacet(value) {
   const token = cleanText(value, 330);
   const separator = token.indexOf(":");
@@ -71,11 +84,12 @@ function parseFacet(value) {
 }
 
 export function parseExplorerState(input) {
-  const params = input instanceof URLSearchParams
+  const url = input instanceof URL
     ? input
-    : input instanceof URL
-      ? input.searchParams
-      : new URL(String(input), "https://explorer.invalid/").searchParams;
+    : input instanceof URLSearchParams
+      ? null
+      : new URL(String(input), "https://explorer.invalid/");
+  const params = input instanceof URLSearchParams ? input : url.searchParams;
   const facets = {};
   for (const value of params.getAll("facet")) {
     const facet = parseFacet(value);
@@ -91,7 +105,7 @@ export function parseExplorerState(input) {
     view: VIEW_SET.has(view) ? view : DEFAULT_STATE.view,
     mode: MODE_SET.has(mode) ? mode : DEFAULT_STATE.mode,
     language: normaliseLanguage(params.get("lang") || DEFAULT_STATE.language),
-    route: safeRoute(params.get("route")),
+    route: routeFromHash(url && url.hash) || safeRoute(params.get("route")),
     lifecycle: cleanText(params.get("lifecycle") || "all", 80) || "all",
     jurisdiction: cleanText(params.get("jurisdiction") || "all", 80) || "all",
     page: Number.isFinite(parsedPage) ? Math.min(100000, Math.max(1, parsedPage)) : 1,
@@ -117,7 +131,7 @@ export function serialiseExplorerState(state, baseUrl) {
   const language = normaliseLanguage(normalized.language);
   if (language !== DEFAULT_STATE.language) url.searchParams.set("lang", language);
   const route = safeRoute(normalized.route);
-  if (route) url.searchParams.set("route", route);
+  url.hash = route || "";
   if (normalized.lifecycle && normalized.lifecycle !== "all") url.searchParams.set("lifecycle", cleanText(normalized.lifecycle, 80));
   if (normalized.jurisdiction && normalized.jurisdiction !== "all") url.searchParams.set("jurisdiction", cleanText(normalized.jurisdiction, 80));
   if (Number(normalized.page) > 1) url.searchParams.set("page", String(Math.floor(Number(normalized.page))));

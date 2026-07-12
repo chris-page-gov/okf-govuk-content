@@ -143,6 +143,17 @@ let requestSequence = 0;
 let suggestionTimer = null;
 let instrumentationConsent = false;
 const instrumentationEvents = [];
+let searchMetricSequence = 0;
+let routeMetricSequence = 0;
+
+function recordBrowserMetric(name, value, sequenceName = "") {
+  const root = document.documentElement;
+  root.dataset[name] = String(Math.max(0, Math.round(Number(value) || 0)));
+  if (sequenceName) {
+    const next = sequenceName === "searchSequence" ? ++searchMetricSequence : ++routeMetricSequence;
+    root.dataset[sequenceName] = String(next);
+  }
+}
 
 function translation() {
   return state.language.toLowerCase().startsWith("cy") ? TRANSLATIONS.cy : TRANSLATIONS.en;
@@ -267,9 +278,14 @@ function showFatal(error) {
   setText("fatal-error-message", error instanceof Error ? error.message : String(error));
   setStatus("");
   setBusy(false);
+  document.documentElement.dataset.explorerReady = "false";
+  document.documentElement.dataset.fatalError = "true";
 }
 
 async function loadCatalogue() {
+  document.documentElement.dataset.bootstrapReady = "false";
+  document.documentElement.dataset.explorerReady = "false";
+  document.documentElement.dataset.fatalError = "false";
   document.getElementById("fatal-error").hidden = true;
   setStatus(translation().loading);
   setBusy(true);
@@ -304,10 +320,8 @@ async function loadCatalogue() {
   if (state.snapshot && snapshot && state.snapshot !== snapshot) {
     throw new Error("This link requests snapshot " + state.snapshot + ", but the descriptor advertises " + snapshot + ". The record has not been opened against a different snapshot.");
   }
-  if (!state.snapshot && snapshot) {
-    state = { ...state, snapshot };
-    window.history.replaceState({}, "", serialiseExplorerState(state, window.location.href));
-  }
+  state = parseExplorerState(serialiseExplorerState({ ...state, snapshot: state.snapshot || snapshot }, window.location.href));
+  window.history.replaceState({}, "", serialiseExplorerState(state, window.location.href));
   records = corpusStore.overviewRecords();
   searchBacked = false;
   const searchReference = corpusStore.searchManifestReference();
@@ -322,9 +336,12 @@ async function loadCatalogue() {
     }
   }
   setBusy(false);
+  renderAll();
+  document.documentElement.dataset.bootstrapReady = "true";
+  recordBrowserMetric("firstUsefulRenderMs", performance.now());
   if (state.query) await runSearch(state.query, false);
-  else renderAll();
   if (state.route) await openRoute(state.route, false);
+  document.documentElement.dataset.explorerReady = "true";
 }
 
 async function runSearch(queryValue, push = true) {
@@ -352,10 +369,11 @@ async function runSearch(queryValue, push = true) {
     } else {
       searchBacked = false;
     }
+    const elapsedMs = Math.round(performance.now() - started);
     recordInstrumentation("query", {
       queryLength: query.length,
       resultCount: visibleRecords().length,
-      elapsedMs: Math.round(performance.now() - started),
+      elapsedMs,
       view: state.view,
       mode: state.mode,
       locale: state.language,
@@ -367,6 +385,7 @@ async function runSearch(queryValue, push = true) {
     if (requestId === requestSequence) {
       setBusy(false);
       renderAll();
+      recordBrowserMetric("lastSearchMs", performance.now() - started, "searchSequence");
     }
   }
 }
@@ -634,10 +653,10 @@ function relationshipTable(relationships) {
       ? createExternalLink(relationship.evidenceType || "Source", relationship.evidenceUrl)
       : createElement("span", { text: relationship.evidenceType || "Not recorded" });
     body.append(createElement("tr", {}, [
-      createElement("td", {}, [routeButton(relationship.source)]),
-      createElement("td", { text: relationship.kind || relationship.label || relationship.type || "related to" }),
-      createElement("td", {}, [routeButton(relationship.target)]),
-      createElement("td", {}, [evidence])
+      createElement("td", { attributes: { "data-label": "From" } }, [routeButton(relationship.source)]),
+      createElement("td", { text: relationship.kind || relationship.label || relationship.type || "related to", attributes: { "data-label": "Relationship" } }),
+      createElement("td", { attributes: { "data-label": "To" } }, [routeButton(relationship.target)]),
+      createElement("td", { attributes: { "data-label": "Evidence" } }, [evidence])
     ]));
   }
   table.append(head, body);
@@ -793,12 +812,12 @@ function renderCompare() {
   const body = createElement("tbody");
   for (const record of pinned) {
     body.append(createElement("tr", {}, [
-      createElement("td", {}, [routeButton(record.route)]),
-      createElement("td", { text: record.type }),
-      createElement("td", { text: record.publisher }),
-      createElement("td", { text: record.status }),
-      createElement("td", { text: record.language + (record.jurisdictions.length ? " / " + record.jurisdictions.join(", ") : "") }),
-      createElement("td", {}, [createButton(translation().unpin, () => togglePin(record.route), "link-button")])
+      createElement("td", { attributes: { "data-label": "Record" } }, [routeButton(record.route)]),
+      createElement("td", { text: record.type, attributes: { "data-label": "Type" } }),
+      createElement("td", { text: record.publisher, attributes: { "data-label": "Publisher" } }),
+      createElement("td", { text: record.status, attributes: { "data-label": "Lifecycle" } }),
+      createElement("td", { text: record.language + (record.jurisdictions.length ? " / " + record.jurisdictions.join(", ") : ""), attributes: { "data-label": "Language / jurisdiction" } }),
+      createElement("td", { attributes: { "data-label": "Actions" } }, [createButton(translation().unpin, () => togglePin(record.route), "link-button")])
     ]));
   }
   table.append(head, body);
@@ -918,6 +937,7 @@ async function loadSelectedRelationships(route) {
 }
 
 async function selectRecord(record, position = 0) {
+  const started = performance.now();
   selectedRecord = record;
   selectedRelationships = [];
   recordInstrumentation("result", { position, routeKind: record.route.split("/")[0], view: state.view, mode: state.mode, snapshot: state.snapshot });
@@ -925,9 +945,11 @@ async function selectRecord(record, position = 0) {
   await loadSelectedRelationships(record.route);
   document.getElementById("detail-panel").scrollIntoView({ block: "start" });
   document.getElementById("detail-heading").focus?.();
+  recordBrowserMetric("lastRouteMs", performance.now() - started, "routeSequence");
 }
 
 async function openRoute(route, push = true) {
+  const started = performance.now();
   const safeRoute = String(route || "").replace(/[<>]/g, "").slice(0, 768);
   if (!safeRoute) return;
   let record = records.find((item) => item.route === safeRoute) || (selectedRecord && selectedRecord.route === safeRoute ? selectedRecord : null);
@@ -958,6 +980,7 @@ async function openRoute(route, push = true) {
   }
   recordInstrumentation("route", { routeKind: safeRoute.split("/")[0], view: state.view, mode: state.mode, snapshot: state.snapshot });
   await loadSelectedRelationships(safeRoute);
+  recordBrowserMetric("lastRouteMs", performance.now() - started, "routeSequence");
 }
 
 function togglePin(route) {
@@ -1018,6 +1041,12 @@ function renderAll() {
 }
 
 function bindEvents() {
+  document.getElementById("skip-link").addEventListener("click", (event) => {
+    event.preventDefault();
+    const main = document.getElementById("main-content");
+    main.scrollIntoView({ block: "start" });
+    main.focus();
+  });
   document.getElementById("search-form").addEventListener("submit", (event) => {
     event.preventDefault();
     runSearch(document.getElementById("search-input").value, true);

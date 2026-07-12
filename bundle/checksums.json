@@ -18,9 +18,9 @@
       "sha256": "e4d409c3a512f9804e717e9323c1ba782d0ca1966a780ca969289720de643a99"
     },
     {
-      "bytes": 52940,
+      "bytes": 53061,
       "path": "app.js",
-      "sha256": "a4625860383b17fa8a15653d762eea47f3cb1b11256e0cee754adee9029a0ddc"
+      "sha256": "e8c1f594851fd6940a25f4679bc65def8785259e7b0747a5a4529e5fec4bdfdd"
     },
     {
       "bytes": 11179,
@@ -3768,9 +3768,9 @@
       "sha256": "41315c7b371fca707647231dc6c70c492c9c6be321837d68388c0a2e4ce4801c"
     },
     {
-      "bytes": 2091,
+      "bytes": 5911,
       "path": "evidence/fixture-browser.json",
-      "sha256": "c495d18b049c05c9885a8c59e8cec5285f664695d2bacd3c85a80e50f81fc798"
+      "sha256": "403b9d300e48f5d649439a84f7ee3351a6e1a53eab2075b677923d6bfdfc6f9f"
     },
     {
       "bytes": 281,
