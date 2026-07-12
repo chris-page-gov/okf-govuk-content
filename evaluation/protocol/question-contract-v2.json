@@ -30,6 +30,28 @@
     "semantic_signature_duplicates_forbidden": true
   },
   "matrix_version": "govuk-question-matrix-v2",
+  "persona_saturation_gate": {
+    "coverage_matrix_sha256": "da386424615b45ca344b8936e130e349e880bdb8de4fb92a8a439636a7cd1ae1",
+    "final_snapshot_question_regeneration_required": true,
+    "human_ui_preference_status": "not_yet_testable",
+    "human_validation_status": "not_authorised_not_run",
+    "machine_applicable_gate_status": "passed",
+    "path": "personas/saturation.json",
+    "required_dimensions": [
+      "actor",
+      "goal",
+      "journey_stage",
+      "content_service_type",
+      "relationship_need",
+      "jurisdiction",
+      "language",
+      "accessibility_need",
+      "device_context",
+      "urgency_risk",
+      "agent_involvement"
+    ],
+    "sha256": "cb4dc65e5e0cb839f0eec2def31205bf0bdcd2cc424135470383b6e75c2896e5"
+  },
   "persona_suite_must_cover_every_story": true,
   "persona_suite_quotas": {
     "ambiguous_adversarial_noisy": 5,

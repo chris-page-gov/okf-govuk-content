@@ -16,8 +16,17 @@ persona, synthetic wording and unassigned gold targets.  They are explicitly
 JSONL.GZ and produces six source-anchored stories per persona, 100 concrete
 questions per story, exactly 100 curated questions per persona, assigned gold,
 near misses, typed paths, entity-grouped splits and immutable checksums.  The
-generator records zero model use and does not claim that it verified its own
-assignments.
+generator records zero model calls for deterministic question construction and
+does not claim that it verified its own assignments. The separate saturation
+ledger records that exact usage/cost for model-assisted design judgement was
+not available to the repository process rather than treating it as zero.
+
+The generator also requires the machine persona-saturation gate to pass. It
+copies and hash-binds `personas/saturation.json` and the 11-dimension coverage
+matrix into its contract and manifest, and carries the saturation hash and
+dimension values on every story and question. This does not turn the persona
+hypotheses into human evidence: final-snapshot generation and independent gold
+verification remain separate, and UI preference remains `not_yet_testable`.
 
 Run the independent deterministic verifier as a separate process:
 

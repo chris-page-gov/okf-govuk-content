@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import shutil
 import subprocess
 import sys
@@ -78,9 +79,27 @@ class QuestionMatrixV2Tests(unittest.TestCase):
             self.assertTrue(anchor["content_id"] or anchor["url"])
             self.assertRegex(anchor["record_sha256"], r"^[0-9a-f]{64}$")
             self.assertRegex(anchor["source_evidence_sha256"], r"^[0-9a-f]{64}$")
+            self.assertEqual(len(anchor["record_sha256"]), 64)
+            self.assertEqual(len(story["persona_saturation_sha256"]), 64)
+            self.assertEqual(len(story["coverage_dimensions"]), 11)
         self.assertEqual(len(by_persona), 2)
         self.assertTrue(all(len(items) == 6 for items in by_persona.values()))
         self.assertTrue(all(len({item["story_role"] for item in items}) == 6 for items in by_persona.values()))
+
+    def test_matrix_is_hash_bound_to_machine_saturation_without_human_claims(self) -> None:
+        contract = json.loads((self.matrix / "contract.json").read_text(encoding="utf-8"))
+        manifest = json.loads((self.matrix / "manifest.json").read_text(encoding="utf-8"))
+        saturation = json.loads((self.matrix / "persona-saturation.json").read_text(encoding="utf-8"))
+        saturation_sha256 = hashlib.sha256((self.matrix / "persona-saturation.json").read_bytes()).hexdigest()
+        self.assertEqual(contract["persona_saturation"]["sha256"], saturation_sha256)
+        self.assertEqual(manifest["persona_saturation_sha256"], saturation_sha256)
+        self.assertEqual(saturation["machine_applicable_gate_status"], "passed")
+        self.assertEqual(saturation["human_validation_status"], "not_authorised_not_run")
+        self.assertEqual(saturation["human_ui_preference_status"], "not_yet_testable")
+        first_binding = sorted((self.matrix / "bindings").glob("*.jsonl"))[0]
+        question = read_jsonl(first_binding)[0]
+        self.assertEqual(question["persona_saturation_sha256"], saturation_sha256)
+        self.assertEqual(len(question["coverage_dimensions"]), 11)
 
     def test_every_story_has_a_concrete_hundred_question_matrix(self) -> None:
         titles = {json.loads(line)["title"] for line in self.corpus.read_text(encoding="utf-8").splitlines() if line}

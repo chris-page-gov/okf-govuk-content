@@ -60,9 +60,9 @@
       "sha256": "c9f956638528ef9ef3de9119ad71dd916a8a9d9209c8902d4e5316b0351bc395"
     },
     {
-      "bytes": 215480,
+      "bytes": 220880,
       "path": "questions/bindings/story-benefits-support-claimant.jsonl",
-      "sha256": "e0808e72b85b0b2524ffd1c280bbae72063e6e499db3bf7e309727e5992cc399"
+      "sha256": "d833ec0161062244b96020554578cdb4ae33a608f61c6e397e06594c69b754a5"
     },
     {
       "bytes": 202080,
@@ -115,9 +115,9 @@
       "sha256": "c33d470e3da0f057cf93f63cd525230a33c8f761dd0bb75992d1d1d6ae38847a"
     },
     {
-      "bytes": 209480,
+      "bytes": 214880,
       "path": "questions/bindings/story-eligibility-obligation-agent.jsonl",
-      "sha256": "465ba11f872f60d3e26da0353530b93fa96ed1e538701a6e350a674117a8881b"
+      "sha256": "be31afe7f3808650f9f32ecb3cec6c926003f6e192d96ccfa53a898dd9f22ef5"
     },
     {
       "bytes": 200480,
@@ -125,9 +125,9 @@
       "sha256": "744a263c26c1dec6b07c9431f965515b6cec39c3bc1aeaa2e896dca729fc436c"
     },
     {
-      "bytes": 206580,
+      "bytes": 211980,
       "path": "questions/bindings/story-frontline-adviser.jsonl",
-      "sha256": "24213f9e69ac3f65035d74ccdc1381c9570dca7f616d423f8aee77be41c3e168"
+      "sha256": "c1e9c6fd0438d3e6ba112ae873c4b9ddba754c340201005b9d1024e5b6cdce06"
     },
     {
       "bytes": 218780,
@@ -135,9 +135,9 @@
       "sha256": "57d2126632975da964270053acb3beeb091fabe9956b4323ddde552cbc409555"
     },
     {
-      "bytes": 212280,
+      "bytes": 217680,
       "path": "questions/bindings/story-government-caseworker.jsonl",
-      "sha256": "be57cbd23f306604b0707776d65400691af00be5818619c52e1c308c34dbb4db"
+      "sha256": "7ba538cda3d0f9da7282750904b9aac1df299d64f81c81b7a779b62821d964e2"
     },
     {
       "bytes": 208580,
@@ -155,9 +155,9 @@
       "sha256": "5df55c19e72580124384485466099da8ad592e271f99ca113d7fa2b9815efade"
     },
     {
-      "bytes": 210280,
+      "bytes": 215680,
       "path": "questions/bindings/story-immigration-citizenship-user.jsonl",
-      "sha256": "1afd34e1fa51864e5935cb68dbe83d93a22d859f0c907e8a459444b081346613"
+      "sha256": "83aa6a526ea11eb6276fa2e95591134103b3b827370d63784e933d23ece68fca"
     },
     {
       "bytes": 204080,
@@ -170,9 +170,9 @@
       "sha256": "07d1d83a6b79a0aa1271617f06de0ddb6193091edba842ed9e2ac8b6d6327d4b"
     },
     {
-      "bytes": 207580,
+      "bytes": 212980,
       "path": "questions/bindings/story-justice-rights-user.jsonl",
-      "sha256": "4d839279151f3cb92b8e443e0ec775d055d2c251fcd1dee2d1c863b2f8a027ac"
+      "sha256": "df0fb359631844978372b7e7d7ec1cdec9aca9b50ce3b40b4c1967e6671a9eff"
     },
     {
       "bytes": 205980,
@@ -215,9 +215,9 @@
       "sha256": "35a9cf06ce044cb108bdc800f5f285e446ea8a7c124a1d21334d8db178432480"
     },
     {
-      "bytes": 203780,
+      "bytes": 209180,
       "path": "questions/bindings/story-parent-carer.jsonl",
-      "sha256": "18bd747572b84c0a1998dc42a211df9c09a3b686765b92196e72eff576c47199"
+      "sha256": "182c4c9aa1611daa1b47a32b680c9b065bfb48b6cb26314d4a98538fbf915f68"
     },
     {
       "bytes": 220580,
@@ -265,9 +265,9 @@
       "sha256": "7e4fbed6598840f01d8eea3524d60361ab915050454ce528d724cdd35d561404"
     },
     {
-      "bytes": 218280,
+      "bytes": 223680,
       "path": "questions/bindings/story-transaction-handoff-agent.jsonl",
-      "sha256": "40813e56ea31a954a7bd9527adb0ff8dd3a71bc9de362bdef85de6f983944dc9"
+      "sha256": "ee1d6b145b78754600b538881d80d9ad55d8477a860b4603823ef542d7aa265c"
     },
     {
       "bytes": 219680,
@@ -287,12 +287,12 @@
     {
       "bytes": 12475,
       "path": "questions/checksums.txt",
-      "sha256": "28e90079908873922e41c004a233ccaa3c56344e29723ccc8c23f0267eb11a58"
+      "sha256": "b26e72c574346e63e767c4649594ce81d86e1e5367ebd5dc1d8529cf68876086"
     },
     {
-      "bytes": 3121000,
+      "bytes": 3142600,
       "path": "questions/gold/catalogue.jsonl",
-      "sha256": "d32382e8e0f39c85b24b34a5c58a79f2c9e15c9e0e6d5ebdca1c343b64cd54a1"
+      "sha256": "66707fe9ad21215d24914295f567a45c9843c240416d7140adb27a84941e5da6"
     },
     {
       "bytes": 50415,
@@ -322,7 +322,7 @@
     {
       "bytes": 51615,
       "path": "questions/persona-suites/persona-agent-eligibility-obligation-agent.jsonl",
-      "sha256": "daf138d31bf1dccbcdfcc3d84f2f405bee25acfadfdf185caa18860d0a2adba3"
+      "sha256": "e10018e52da2e6b96e4900649c328c59127563362e3950056e55a8c9f7175592"
     },
     {
       "bytes": 47215,
@@ -352,7 +352,7 @@
     {
       "bytes": 50415,
       "path": "questions/persona-suites/persona-agent-transaction-handoff-agent.jsonl",
-      "sha256": "08b1ae6414ea8f8f590249f92a75baaead464183b6fc06a114cf0a1a8e70052f"
+      "sha256": "5939d95eda95e6393ba1394323e1a8874036804e03fb492135fca596abad8b5b"
     },
     {
       "bytes": 49815,
@@ -412,12 +412,12 @@
     {
       "bytes": 48615,
       "path": "questions/persona-suites/persona-professional-frontline-adviser.jsonl",
-      "sha256": "45e0c6a8058460aa8dd424ffbe97c37f724c5241c7a1d9822f664796b3f35805"
+      "sha256": "b749e1f2193aca798635d14c60624413a2dfb79293a4cf8832040b4d7290986b"
     },
     {
       "bytes": 50215,
       "path": "questions/persona-suites/persona-professional-government-caseworker.jsonl",
-      "sha256": "02e6f15b0d796f0a7b40b4a15daa0491594471b3b7637741339a5a06757c21f7"
+      "sha256": "24ecb5d1cd22bac945c7e5ab5d7f4320bbaf2b77ee7ddd4be42d812d453f1257"
     },
     {
       "bytes": 53015,
@@ -452,7 +452,7 @@
     {
       "bytes": 50615,
       "path": "questions/persona-suites/persona-public-benefits-support-claimant.jsonl",
-      "sha256": "5795171efd46161221830f8888878dc4b218aedf340eb37dd13afdc45058fe98"
+      "sha256": "672fe8e883bc11ffc0fdc2ee07d0ad1f2d2c84ac34b3092f06bad51a289395d5"
     },
     {
       "bytes": 46615,
@@ -482,12 +482,12 @@
     {
       "bytes": 51815,
       "path": "questions/persona-suites/persona-public-immigration-citizenship-user.jsonl",
-      "sha256": "db66751003e7d5ffe1f8452b1302acb81b63f095c952ab709807a80c08c6fde1"
+      "sha256": "59155995f3e7a564c07c8ca8f2f313ff6707a4a43cef24ee4046d12fc1ecbdfe"
     },
     {
       "bytes": 48215,
       "path": "questions/persona-suites/persona-public-justice-rights-user.jsonl",
-      "sha256": "2e5157af3c53e2c7371fbd1c7b67b8f4cd35bef1b3e16eb3e6a62c114388f96a"
+      "sha256": "c129d9dc7a15ba76a07025fd523427e7845c7dcaf90ca8fcbbcd872c54e46710"
     },
     {
       "bytes": 49415,
@@ -507,7 +507,7 @@
     {
       "bytes": 45415,
       "path": "questions/persona-suites/persona-public-parent-carer.jsonl",
-      "sha256": "bd1210dae75f548e348679714b893db2e431853c4a6047598160048a408f832d"
+      "sha256": "b209d0a1130854244825b243a0bdca154e64e4e4329ba8a70d919b60be54fc52"
     },
     {
       "bytes": 47015,
@@ -543,7 +543,7 @@
     "questions are design templates rather than frozen-corpus-anchored evaluation items"
   ],
   "release_eligible": false,
-  "root_sha256": "2291d0af578c817d7787de2b4e985cf0e6751a0feb8cd66251f959879bc16ebe",
+  "root_sha256": "03ba9e4baabeb39fec471d58149f1c8d680d56231e97451abad6464d29af0f06",
   "schema_version": 1,
   "scope": "questions",
   "superseded_for_release_by": "govuk-question-matrix-v2"
