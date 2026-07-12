@@ -1,0 +1,239 @@
+{
+  "fallbacks": [
+    {
+      "constraint_id": "PLAN-SOURCE-AUTOMATED-ACCESS",
+      "id": "FALLBACK-ACM-RRF-001",
+      "trigger": "The ACM landing page for DOI 10.1145/1571941.1572114 returned HTTP 403 to automated preflight.",
+      "attempt_chain": [
+        {
+          "url": "https://dl.acm.org/doi/10.1145/1571941.1572114",
+          "result": "HTTP 403",
+          "evidence": "planning/PLAN_SOURCE_PREFLIGHT.json#/replaced_candidate"
+        },
+        {
+          "url": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf",
+          "result": "HTTP 200 identity preflight",
+          "evidence": "planning/PLAN_SOURCE_PREFLIGHT.json#/sources"
+        }
+      ],
+      "outcome": "The authors' University of Waterloo copy is used as evidence; the DOI remains bibliographic metadata.",
+      "succeeded": true,
+      "used": true,
+      "policy": "No access-control bypass was attempted."
+    },
+    {
+      "constraint_id": "SRC-CONSTRAINT-007",
+      "id": "FALLBACK-CITATION-PIROLLI-001",
+      "trigger": "The CMU ACT-R PDF failed Python default strict TLS with DH_KEY_TOO_SMALL.",
+      "attempt_chain": [
+        {
+          "url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf",
+          "result": "transport_failed_DH_KEY_TOO_SMALL",
+          "checked_at": "2026-07-11T23:02:40.149327Z",
+          "evidence": "research/source-preflight.json#/plan_source_history/superseded_results"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/229101074_Information_Foraging",
+          "result": "HTTP 403 for publication record and exact author PDF after three bounded attempts",
+          "checked_at": "2026-07-12T07:18:36Z",
+          "evidence": "research/citation-policy.json#/source_access_history"
+        },
+        {
+          "url": "https://api.crossref.org/works/10.1037%2F0033-295X.106.4.643",
+          "result": "HTTP 200; bibliographic identity only",
+          "checked_at": "2026-07-12T07:50:06Z",
+          "source_id": "SRC-4294AE934D7F240A",
+          "evidence_id": "EVD-9A1C5A95621D3384",
+          "document_sha256": "622f5862d0700bd176a09386280aea8e044db82f1dc9d17307c2f59ec55ce0d3"
+        }
+      ],
+      "outcome": "Crossref supports title, authors, journal, date, pages, publisher and DOI identity only; no section-level full-text claim is released.",
+      "succeeded": true,
+      "used": true,
+      "policy": "TLS and access controls were not weakened."
+    },
+    {
+      "constraint_id": "SRC-CONSTRAINT-006",
+      "id": "FALLBACK-TNA-OGL-001",
+      "trigger": "The National Archives OGL and exceptions HTML sources presented a self-signed certificate in Python's default strict chain.",
+      "attempt_chain": [
+        {
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "result": "CERTIFICATE_VERIFY_FAILED self-signed chain; no HTTP redirect chain",
+          "checked_at": "2026-07-12T07:38:00Z",
+          "source_id": "SRC-4FDEEF30B3509EC8"
+        },
+        {
+          "url": "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/open-government-licence/exceptions-to-ogl/",
+          "result": "CERTIFICATE_VERIFY_FAILED self-signed chain; no HTTP redirect chain",
+          "checked_at": "2026-07-12T07:38:00Z",
+          "source_id": "SRC-C88BCC6FAD040F3C"
+        },
+        {
+          "url": "https://cdn.nationalarchives.gov.uk/documents/information-management/ogl-user-guidance.pdf",
+          "result": "CERTIFICATE_VERIFY_FAILED self-signed chain",
+          "checked_at": "2026-07-12T07:41:00Z",
+          "source_id": "SRC-95E81AD99C170883"
+        },
+        {
+          "url": "https://www.gov.uk/government/publications/knowledge-asset-commercialisation-guide/the-knowledge-asset-commercialisation-guide",
+          "result": "HTTP 200 under strict TLS; no redirects",
+          "checked_at": "2026-07-12T07:50:09Z",
+          "source_id": "SRC-613122E13409B137",
+          "evidence_id": "EVD-98E4DAE33C3876E1",
+          "document_sha256": "28bea8312a5dde0d9f4f678cf173d7eb0950533b2e6c345fb8d5bff9cfd1abc1"
+        }
+      ],
+      "outcome": "The current GOV.UK Knowledge Asset Commercialisation Guide sections 7.5 and 7.6 support the OGL default, characteristics and exclusions.",
+      "succeeded": true,
+      "used": true,
+      "policy": "Certificate verification was not weakened; failed National Archives sources remain visible."
+    },
+    {
+      "constraint_id": "CITATION-SOURCE-ACCESS",
+      "id": "FALLBACK-OPENAI-BROWSECOMP-001",
+      "trigger": "The OpenAI BrowseComp article returned HTTP 403 to the identified verifier.",
+      "attempt_chain": [
+        {
+          "url": "https://openai.com/index/browsecomp/",
+          "result": "HTTP 403; no bypass",
+          "checked_at": "2026-07-12T07:38:00Z",
+          "source_id": "SRC-785ECA3E6476B4A3"
+        },
+        {
+          "url": "https://cdn.openai.com/pdf/5e10f4ab-d6f7-442e-9508-59515c65e35d/browsecomp.pdf",
+          "result": "HTTP 200 under strict TLS; no redirects",
+          "checked_at": "2026-07-12T07:50:16Z",
+          "source_id": "SRC-AD94BC9AC99DF114",
+          "evidence_id": "EVD-D05CA22CE65F0282",
+          "document_sha256": "1bd473341db82cb66ad7cdff3ee911f9d157c083bad08d33440fa7244a4b1916"
+        }
+      ],
+      "outcome": "The official OpenAI CDN paper supplies the release evidence.",
+      "succeeded": true,
+      "used": true,
+      "policy": "No access-control bypass was attempted."
+    }
+  ],
+  "model_and_cost": {
+    "activity_ledger": "provenance/activity-ledger.jsonl",
+    "external_paid_model_api_calls_for_reproduction": 0,
+    "external_paid_model_cost_gbp_for_reproduction": 0,
+    "model_assistance_for_reproduction": false,
+    "product_session_exact_backend_version": "unavailable_to_session",
+    "product_session_marginal_cost": "unavailable_in_product_session",
+    "product_session_tokens": "unavailable_in_product_session",
+    "rule": "Unavailable product-session usage is never restated as zero; deterministic reproduction itself records exact zero model calls, tokens and marginal model cost.",
+    "external_paid_model_api_calls_for_programme_to_checkpoint": 0,
+    "external_paid_model_cost_gbp_for_programme_to_checkpoint": 0,
+    "source_request_budget": "provenance/source-request-budget.json",
+    "source_requests_are_model_cost": false
+  },
+  "final_activity_entries_required": [
+    {
+      "event": "T0 census terminal disposition",
+      "terminal_activity_id": "ACT-B1-T0-20260712-TERMINAL-001",
+      "must_supersede": "ACT-B1-T0-20260712-CHECKPOINT-001",
+      "required_evidence": ["exact start/end request counters", "source manifest hashes", "enumerator closure or explicit failure"]
+    },
+    {
+      "event": "T0 hydration terminal disposition",
+      "terminal_activity_id": "ACT-D1-T0-HYDRATION-TERMINAL-001",
+      "required_evidence": ["exact request-counter interval", "queue closure", "zero retained body bytes", "hydration manifest hashes"]
+    },
+    {
+      "event": "T1 census and closing reconciliation",
+      "terminal_activity_id": "ACT-E1-T1-RECONCILIATION-TERMINAL-001",
+      "required_evidence": ["exact request-counter intervals", "T1 watermark", "delta/disposition counts", "unexplained omission result"]
+    },
+    {
+      "event": "release-v2 question generation and independent verification",
+      "terminal_activity_id": "ACT-C1-RELEASE-V2-TERMINAL-001",
+      "required_evidence": ["28,800 question count", "4,800 persona-suite count", "manifest checksums", "separate verifier result"]
+    },
+    {
+      "event": "complete automated evaluation",
+      "terminal_activity_id": "ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001",
+      "required_evidence": ["systems and ablations", "tool/byte/latency metrics", "model tokens and cost or honest not-applicable values", "confidence intervals", "trace hashes"]
+    },
+    {
+      "event": "citation independent semantic and joint-support reviews",
+      "terminal_activity_id": "ACT-F2-CITATION-REVIEWS-TERMINAL-001",
+      "must_supersede": "ACT-F2-CITATION-COLLECTOR-001",
+      "required_evidence": ["collector request aggregate", "reviewer identity/configuration", "support verdict counts", "waivers or blockers"]
+    },
+    {
+      "event": "publication shard audit terminal disposition",
+      "terminal_activity_id": "ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001",
+      "must_supersede": "ACT-D1-SHARD-CONTRACT-AUDIT-001",
+      "required_evidence": ["manifest tests", "hash/size/key-range validation", "release-root binding"]
+    },
+    {
+      "event": "security scan terminal disposition",
+      "terminal_activity_id": "ACT-D2-SECURITY-SCAN-TERMINAL-001",
+      "must_supersede": "ACT-D2-SECURITY-SCAN-001",
+      "required_evidence": ["scan identifier", "finding disposition", "validation or residual-risk exception"]
+    },
+    {
+      "event": "clean-room machine release-candidate reproduction",
+      "terminal_activity_id": "ACT-F2-CLEAN-ROOM-RC-TERMINAL-001",
+      "required_evidence": ["full-snapshot input/output hashes", "SBOM binding", "test evidence", "zero reproduction network/model requests"]
+    },
+    {
+      "event": "GitHub publication, Pages, release and Explorer registry workflow",
+      "terminal_activity_id": "ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001",
+      "required_evidence": ["commit and PR identifiers", "CI results", "protected-main read-back", "tag/release URLs", "Pages live checks", "registry PR"]
+    },
+    {
+      "event": "final source-request budget snapshot",
+      "terminal_activity_id": "ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001",
+      "must_supersede": "ACT-B1-CAPACITY-20260712-001",
+      "required_evidence": ["terminal shared counter", "reconciled per-run intervals", "remaining authority", "separate citation-verification aggregate"]
+    }
+  ],
+  "network": {
+    "external_model_requests": 0,
+    "official_source_requests": 0,
+    "reacquires_current_govuk": false,
+    "required": false,
+    "rule": "Reproduction consumes frozen local metadata inputs and must not contact GOV.UK or a model provider."
+  },
+  "rights_and_fair_use": {
+    "default_classification": "ogl_v3_except_where_otherwise_stated",
+    "fair_use_or_item_review_triggers": [
+      "personal data",
+      "third-party credits or rights",
+      "logos, crests, Royal Arms or insignia",
+      "patents, trademarks or design rights",
+      "identity documents",
+      "complete page, attachment or image bytes",
+      "a source-specific licence notice"
+    ],
+    "metadata_only": true,
+    "policy_artifacts": [
+      "LICENSE.md",
+      "research/official-source-audit.md",
+      "research/source-constraints.json"
+    ],
+    "retains_complete_page_bodies": false
+  },
+  "schema": "afhf-govuk-okf-reproduction-declarations.v1",
+  "source_access_restrictions": [
+    {
+      "constraint_id": "SRC-CONSTRAINT-005",
+      "disposition": "Publishing API, GovGraph/GovSearch and Search API v2 remain comparator-only; no authenticated source is a release dependency."
+    },
+    {
+      "constraint_id": "SRC-CONSTRAINT-006",
+      "disposition": "Publish metadata and authoritative links by default; trigger item-level rights review for excluded classes."
+    },
+    {
+      "constraint_id": "SRC-CONSTRAINT-007",
+      "disposition": "Keep strict TLS and access controls; dependent citations remain blocked until a normally accessible copy is verified."
+    },
+    {
+      "constraint_id": "SRC-CONSTRAINT-008",
+      "disposition": "Represent observed redirect/gone history and publish the residual public-enumerability limit."
+    }
+  ]
+}

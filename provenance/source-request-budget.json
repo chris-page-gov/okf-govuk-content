@@ -1,0 +1,21 @@
+{
+  "schema": "afhf-govuk-okf-source-request-budget.v1",
+  "recorded_at": "2026-07-12T08:20:20.561388Z",
+  "snapshot_id": "T0-20260712",
+  "status": "open_checkpoint",
+  "authorised_ceiling": 1000000,
+  "consumed_attempts_at_observation": 5752,
+  "remaining_attempts_at_observation": 994248,
+  "preflight_attempts": 127,
+  "live_ledger": ".tmp/request-budget/official-sources.count",
+  "preflight_evidence": "research/source-preflight.json",
+  "scope": "The shared acquisition counter records authorised official-source attempts. T0 census is complete at this checkpoint; hydration, T1 and closing remain pending. Citation-verification requests remain evidenced in research/evidence.jsonl and citation-policy access history and are not silently added to model cost.",
+  "included_in_model_cost": false,
+  "final_entries_required": [
+    "Append the terminal T0 acquisition activity with its exact counter interval.",
+    "Append the terminal T0 hydration activity with its exact counter interval.",
+    "Append the terminal T1 and closing-delta activities with exact counter intervals.",
+    "Replace this open checkpoint with a final counter snapshot before release.",
+    "Record citation-verification request totals separately when its final report exposes them."
+  ]
+}
