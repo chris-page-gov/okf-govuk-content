@@ -1,0 +1,104 @@
+schema: govuk-okf-explorer-baseline-gap-matrix.v1
+audited_at: "2026-07-12T00:00:00Z"
+baseline:
+  repository: https://github.com/chris-page-gov/okf-explorer
+  commit: e08fd75
+  default_branch: main
+  profile: https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/
+  application_path: apps/okf-explorer
+  registry_source: registry/okf-registry.yamlld
+  notes:
+    - The audited Svelte Explorer is the generic compatibility baseline.
+    - This repository owns a CSP-safe, dependency-free GOV.UK-specific static presentation over the same large-corpus descriptor contract.
+    - Source implementation does not satisfy participant, accessibility-expert or full-corpus performance gates on its own.
+rows:
+  - id: overview-bootstrap
+    baseline_path: apps/okf-explorer/src/lib/sources/largeCorpus.ts
+    current_behaviour: Descriptor, manifest, overview and optional analysis load before record chunks.
+    disposition: extend
+    ux_epics: [UX-02, UX-12, UX-13]
+    proposed_files: [explorer/src/data.js, explorer/src/app.js]
+    migration: Retain overview-first loading; add snapshot mismatch failure, coverage notices and decoded-resource integrity references.
+    tests: [explorer/tests/data.test.mjs, explorer/tests/static-contract.test.mjs]
+    residual_risk: Full release manifests and browser performance measurements are not yet available.
+  - id: global-context
+    baseline_path: apps/okf-explorer/src/routes/+page.svelte
+    current_behaviour: Bundle, view, query and selected route are partly serialised in query/hash state.
+    disposition: replace
+    ux_epics: [UX-04, UX-10, UX-14]
+    proposed_files: [explorer/src/core.js, explorer/src/app.js]
+    migration: One URL state contains query, repeated facets, route, lifecycle, jurisdiction, language, mode, page, snapshot and pins.
+    tests: [explorer/tests/core.test.mjs]
+    residual_risk: Corpus-specific filter expressions require fixture/full-corpus integration tests.
+  - id: task-first-search
+    baseline_path: apps/okf-explorer/src/workers/largeSearch.worker.ts
+    current_behaviour: Worker-backed lexical shards, prefix suggestions and lazy result-document hydration.
+    disposition: extend
+    ux_epics: [UX-01, UX-03, UX-12]
+    proposed_files: [explorer/src/search-core.js, explorer/src/search.worker.js, explorer/src/app.js]
+    migration: Keep the static shard schema; make search the primary entry, explain matches and expose an explicit no-supported-result state.
+    tests: [explorer/tests/search-core.test.mjs]
+    residual_risk: Synonym, spelling and Welsh retrieval quality must be measured on frozen questions.
+  - id: facets
+    baseline_path: apps/okf-explorer/src/routes/+page.svelte
+    current_behaviour: Facet previews and generated facet analysis drive controls.
+    disposition: extend
+    ux_epics: [UX-04, UX-05]
+    proposed_files: [explorer/src/app.js]
+    migration: Generate controls from analysis/previews, retain high-cardinality in-facet search and apply the same state to every view.
+    tests: [explorer/tests/static-contract.test.mjs]
+    residual_risk: Full-corpus result-side facet execution depends on final static index contracts.
+  - id: result-and-evidence-card
+    baseline_path: apps/okf-explorer/src/routes/+page.svelte
+    current_behaviour: Generic dataset/resource/publisher details and provenance fields.
+    disposition: replace
+    ux_epics: [UX-03, UX-06, UX-08, UX-13]
+    proposed_files: [explorer/src/app.js]
+    migration: Present GOV.UK type, publisher/owner, lifecycle, language, jurisdiction, path, match reason and authoritative hand-off with progressive evidence/raw layers.
+    tests: [explorer/tests/static-contract.test.mjs]
+    residual_risk: Field completeness and terminology await the final GOV.UK profile fixture.
+  - id: browse-paths
+    baseline_path: apps/okf-explorer/src/lib/viewer/helpers.ts
+    current_behaviour: Analysis hierarchies and facet routes are navigable.
+    disposition: extend
+    ux_epics: [UX-05]
+    proposed_files: [explorer/src/app.js]
+    migration: Keep topic, mainstream browse, organisation, service/journey and collection labels distinct and route through the shared reducer.
+    tests: [explorer/tests/static-contract.test.mjs]
+    residual_risk: Every source-native hierarchy class must appear in the representative fixture.
+  - id: graph-and-list
+    baseline_path: apps/okf-explorer/src/lib/sources/largeCorpus.ts
+    current_behaviour: FNV-1a route adjacency is available, with a whole-corpus relationship fallback.
+    disposition: extend
+    ux_epics: [UX-07, UX-12]
+    proposed_files: [explorer/src/core.js, explorer/src/data.js, explorer/src/app.js]
+    migration: Require route adjacency, cap at 250 nodes and 500 edges, aggregate relationship kinds first and render the same bounded edge set as a table.
+    tests: [explorer/tests/core.test.mjs, explorer/tests/data.test.mjs]
+    residual_risk: Dense representative graphs need keyboard, screen-reader and low-end-device testing.
+  - id: lifecycle
+    baseline_path: apps/okf-explorer/src/routes/+page.svelte
+    current_behaviour: Generic timeline over available record dates.
+    disposition: replace
+    ux_epics: [UX-08]
+    proposed_files: [explorer/src/app.js]
+    migration: Show publication, update, withdrawal, redirect and replacement events with snapshot and historical caveats.
+    tests: [explorer/tests/core.test.mjs]
+    residual_risk: Edition and unpublishing fidelity depends on source/profile completion.
+  - id: pin-compare-export
+    baseline_path: apps/okf-explorer/src/routes/+page.svelte
+    current_behaviour: Local route pins and copied Explorer links.
+    disposition: extend
+    ux_epics: [UX-09, UX-14]
+    proposed_files: [explorer/src/core.js, explorer/src/app.js]
+    migration: Put pins in replayable URL state and export the selected canonical context as Markdown, YAML-LD or JSON-LD.
+    tests: [explorer/tests/core.test.mjs]
+    residual_risk: Export semantic equivalence must be validated with the final profile context.
+  - id: accessibility-security-instrumentation
+    baseline_path: apps/okf-explorer/src/app.html
+    current_behaviour: Static application shell with generic accessibility behaviour.
+    disposition: replace
+    ux_epics: [UX-11, UX-13, UX-15]
+    proposed_files: [explorer/src/index.html, explorer/src/styles.css, explorer/src/app.js]
+    migration: No inline executable/style content, strict CSP, text-only source rendering, bilingual chrome, reflow/focus/reduced-motion/forced-colour CSS and session-only opt-in allowlisted events.
+    tests: [explorer/tests/static-contract.test.mjs, explorer/tests/core.test.mjs]
+    residual_risk: Axe, Playwright, expert accessibility and privacy review remain release gates.

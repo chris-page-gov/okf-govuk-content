@@ -1,0 +1,83 @@
+schema: govuk-okf-explorer-ux-epics.v1
+requirements: [REQ-003, REQ-008, REQ-019, REQ-020, REQ-021, REQ-022, REQ-023, REQ-044, REQ-045, REQ-047, REQ-048, REQ-069, REQ-070, REQ-073, REQ-074, REQ-075, REQ-076, REQ-077]
+status_vocabulary:
+  source_implemented: Required source and deterministic unit contract exist.
+  pending_fixture: Representative fixture integration is required.
+  pending_full_corpus: Full-corpus performance or integrity evidence is required.
+  pending_human_evidence: Human or expert evidence is required and is not claimed.
+epics:
+  - id: UX-01
+    title: Ask and find entry
+    source_status: source_implemented
+    acceptance_status: pending_fixture
+    implementation: Prominent static lexical search with suggestions, examples, explained matches and explicit abstention/no-result state.
+  - id: UX-02
+    title: Explain the corpus
+    source_status: source_implemented
+    acceptance_status: pending_full_corpus
+    implementation: Bootstrap scope, snapshot, counts, omissions and notices before record shards.
+  - id: UX-03
+    title: Result cards
+    source_status: source_implemented
+    acceptance_status: pending_fixture
+    implementation: Cards show title, summary, source type, publisher/owner, lifecycle, date, language, jurisdiction, path, match reason and canonical hand-off.
+  - id: UX-04
+    title: Global context reducer
+    source_status: source_implemented
+    acceptance_status: pending_fixture
+    implementation: URL state serialises query, facets, route, lifecycle, jurisdiction, language, mode, page, snapshot and pins for every view.
+  - id: UX-05
+    title: Browse and life-event paths
+    source_status: source_implemented
+    acceptance_status: pending_fixture
+    implementation: Generated hierarchies remain labelled by their source-native family and reduce through the shared facet state.
+  - id: UX-06
+    title: Evidence panel
+    source_status: source_implemented
+    acceptance_status: pending_fixture
+    implementation: Progressive summary, relationships, lifecycle, provenance and raw metadata sections with source/inference badges.
+  - id: UX-07
+    title: Graph with equivalent list
+    source_status: source_implemented
+    acceptance_status: pending_fixture
+    implementation: Aggregate kinds, focused route adjacency, bounded SVG and a table made from exactly the same edge set.
+  - id: UX-08
+    title: Timeline and lifecycle
+    source_status: source_implemented
+    acceptance_status: pending_fixture
+    implementation: Publication, update, withdrawal, redirect and replacement events retain snapshot/historical caveats.
+  - id: UX-09
+    title: Compare, pin and export
+    source_status: source_implemented
+    acceptance_status: pending_fixture
+    implementation: Replayable URL pins, comparison table, stable citation and Markdown/YAML-LD/JSON-LD export.
+  - id: UX-10
+    title: Audience modes
+    source_status: source_implemented
+    acceptance_status: pending_fixture
+    implementation: Simple, Explore and Evidence/Developer change presentation only and share one state and record identity.
+  - id: UX-11
+    title: Responsive accessibility
+    source_status: source_implemented
+    acceptance_status: pending_human_evidence
+    implementation: Semantic landmarks, keyboard controls, visible focus, reflow, 400 percent zoom-compatible layout, reduced motion and forced colours.
+  - id: UX-12
+    title: Large-corpus performance
+    source_status: source_implemented
+    acceptance_status: pending_full_corpus
+    implementation: Overview-first bootstrap, worker search, cancellation, lazy result/adjacency resources, 64 MiB caps and graph bounds of 250 nodes/500 edges.
+  - id: UX-13
+    title: Trust and uncertainty
+    source_status: source_implemented
+    acceptance_status: pending_human_evidence
+    implementation: Persistent derived-site notice, authoritative GOV.UK hand-off, source/inferred states, omission warnings and no-result abstention.
+  - id: UX-14
+    title: Agent parity
+    source_status: source_implemented
+    acceptance_status: pending_fixture
+    implementation: Stable route/snapshot/filter expressions and exports use the same IDs as visible records.
+  - id: UX-15
+    title: Ethical instrumentation
+    source_status: source_implemented
+    acceptance_status: pending_human_evidence
+    implementation: Off-by-default session consent, fixed event kinds/field allowlists, in-memory retention and no search text.
