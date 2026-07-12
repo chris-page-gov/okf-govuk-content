@@ -21,17 +21,31 @@
     "Document": "govuk:Document",
     "Edition": "govuk:Edition",
     "Route": "govuk:Route",
+    "BasePath": "govuk:BasePath",
+    "RenderedPage": "govuk:RenderedPage",
     "Part": "govuk:Part",
     "ContentType": "govuk:ContentType",
     "SchemaFamily": "govuk:SchemaFamily",
     "Organisation": "govuk:Organisation",
     "Taxon": "govuk:Taxon",
+    "WorldTaxon": "govuk:WorldTaxon",
     "Browse": "govuk:Browse",
+    "MainstreamBrowsePage": "govuk:MainstreamBrowsePage",
+    "StepByStep": "govuk:StepByStep",
     "Service": "govuk:Service",
+    "GovernmentService": "govuk:GovernmentService",
     "Collection": "govuk:Collection",
     "Attachment": "govuk:Attachment",
+    "Distribution": "govuk:Distribution",
+    "MachineRepresentation": "govuk:MachineRepresentation",
     "Redirect": "govuk:Redirect",
+    "Withdrawal": "govuk:Withdrawal",
+    "Replacement": "govuk:Replacement",
     "Tombstone": "govuk:Tombstone",
+    "EvidenceSource": "govuk:EvidenceSource",
+    "AcquisitionActivity": "govuk:AcquisitionActivity",
+    "InferenceActivity": "govuk:InferenceActivity",
+    "ConstraintRecord": "govuk:ConstraintRecord",
     "Evidence": "govuk:Evidence",
     "Assertion": "govuk:Assertion",
 
@@ -213,6 +227,7 @@
     "lifecycleState": "govuk:lifecycleState",
     "path": "govuk:path",
     "routeKind": "govuk:routeKind",
+    "bodySha256": "govuk:bodySha256",
     "partKind": "govuk:partKind",
     "position": {
       "@id": "schema:position",
@@ -233,6 +248,10 @@
     "serviceStatus": "govuk:serviceStatus",
     "serviceBasis": "govuk:serviceBasis",
     "collectionKind": "govuk:collectionKind",
+    "stepCount": {
+      "@id": "govuk:stepCount",
+      "@type": "xsd:integer"
+    },
     "mimeType": "dcterms:format",
     "filename": "govuk:filename",
     "byteSize": {
@@ -245,6 +264,11 @@
     },
     "accessibility": "govuk:accessibility",
     "rightsStatus": "govuk:rightsStatus",
+    "resource": {
+      "@id": "govuk:resource",
+      "@type": "@id"
+    },
+    "representationType": "govuk:representationType",
     "fromRoute": {
       "@id": "govuk:fromRoute",
       "@type": "@id"
@@ -258,6 +282,32 @@
       "@type": "@id"
     },
     "tombstoneKind": "govuk:tombstoneKind",
+    "notice": "govuk:notice",
+    "original": {
+      "@id": "govuk:original",
+      "@type": "@id"
+    },
+    "replacement": {
+      "@id": "govuk:replacement",
+      "@type": "@id"
+    },
+    "startedAt": {
+      "@id": "prov:startedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "endedAt": {
+      "@id": "prov:endedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "softwareVersion": "schema:softwareVersion",
+    "constraintClass": "govuk:constraintClass",
+    "constraintStatus": "govuk:constraintStatus",
+    "reason": "govuk:reason",
+    "owner": "govuk:owner",
+    "reviewDate": {
+      "@id": "govuk:reviewDate",
+      "@type": "xsd:date"
+    },
 
     "evidenceUrl": {
       "@id": "prov:hadPrimarySource",
@@ -349,6 +399,30 @@
     },
     "availableInLanguage": {
       "@id": "govuk:availableInLanguage",
+      "@type": "@id"
+    },
+    "hasBasePath": {
+      "@id": "govuk:hasBasePath",
+      "@type": "@id"
+    },
+    "renders": {
+      "@id": "govuk:renders",
+      "@type": "@id"
+    },
+    "hasDistribution": {
+      "@id": "dcat:distribution",
+      "@type": "@id"
+    },
+    "hasMachineRepresentation": {
+      "@id": "govuk:hasMachineRepresentation",
+      "@type": "@id"
+    },
+    "withdrawnBy": {
+      "@id": "govuk:withdrawnBy",
+      "@type": "@id"
+    },
+    "constrainedBy": {
+      "@id": "govuk:constrainedBy",
       "@type": "@id"
     }
   }

@@ -59,6 +59,14 @@ classes:
     iri: govuk:Route
     sourceLayer: source_native
     distinction: Address or prefix behaviour; never used as the content identity.
+  - term: BasePath
+    iri: govuk:BasePath
+    sourceLayer: source_native
+    distinction: Normalized public path value modelled separately from the route behaviour that owns it.
+  - term: RenderedPage
+    iri: govuk:RenderedPage
+    sourceLayer: source_native
+    distinction: Transient rendered observation represented only by typed extracts and a body hash; body bytes are not retained.
   - term: Part
     iri: govuk:Part
     sourceLayer: source_native
@@ -79,14 +87,30 @@ classes:
     iri: govuk:Taxon
     sourceLayer: source_native
     distinction: Topic or world taxonomy concept; not a mainstream browse node.
+  - term: WorldTaxon
+    iri: govuk:WorldTaxon
+    sourceLayer: source_native
+    distinction: World taxonomy node retained as a distinct source-native class and locale, not a generic topic.
   - term: Browse
     iri: govuk:Browse
     sourceLayer: source_native
     distinction: Mainstream browse navigation node; not collapsed into Taxon or Collection.
+  - term: MainstreamBrowsePage
+    iri: govuk:MainstreamBrowsePage
+    sourceLayer: source_native
+    distinction: Source-native mainstream browse page; the Browse umbrella cannot erase this subtype.
+  - term: StepByStep
+    iri: govuk:StepByStep
+    sourceLayer: source_native
+    distinction: Ordered step-by-step journey with explicit membership and position, distinct from a collection.
   - term: Service
     iri: govuk:Service
     sourceLayer: source_native
     distinction: Genuine public service only when supported by source evidence; ordinary guidance is not a service.
+  - term: GovernmentService
+    iri: govuk:GovernmentService
+    sourceLayer: source_native
+    distinction: Government service typed only from explicit official service evidence and never inferred from ordinary guidance.
   - term: Collection
     iri: govuk:Collection
     sourceLayer: source_native
@@ -95,14 +119,46 @@ classes:
     iri: govuk:Attachment
     sourceLayer: source_native
     distinction: Metadata and authoritative link only; bytes and rights are not inferred.
+  - term: Distribution
+    iri: govuk:Distribution
+    sourceLayer: normalized
+    distinction: A distribution only where a resource is genuinely distributable; ordinary attachments are not automatically DCAT distributions.
+  - term: MachineRepresentation
+    iri: govuk:MachineRepresentation
+    sourceLayer: source_native
+    distinction: Declared public JSON, XML, RDF, API or data representation with media type and parent identity.
   - term: Redirect
     iri: govuk:Redirect
     sourceLayer: source_native
     distinction: Observed route transition, not an alias that erases route history.
+  - term: Withdrawal
+    iri: govuk:Withdrawal
+    sourceLayer: source_native
+    distinction: Dated source-declared withdrawal notice retained separately from redirects and absence.
+  - term: Replacement
+    iri: govuk:Replacement
+    sourceLayer: source_native
+    distinction: Explicit original-to-replacement lifecycle observation; no replacement is inferred from similarity.
   - term: Tombstone
     iri: govuk:Tombstone
     sourceLayer: source_native
     distinction: Gone, withdrawn or unpublished route observation with explicit evidence.
+  - term: EvidenceSource
+    iri: govuk:EvidenceSource
+    sourceLayer: source_native
+    distinction: Retrievable official source observation identified by URL, locator, retrieval time and hash.
+  - term: AcquisitionActivity
+    iri: govuk:AcquisitionActivity
+    sourceLayer: source_native
+    distinction: Versioned, rate-governed acquisition event that generated evidence without retaining unnecessary bodies.
+  - term: InferenceActivity
+    iri: govuk:InferenceActivity
+    sourceLayer: inferred
+    distinction: Explicit derivation event kept separate from source-native acquisition and subject to review controls.
+  - term: ConstraintRecord
+    iri: govuk:ConstraintRecord
+    sourceLayer: source_native
+    distinction: Evidenced access, rights, security or completeness limitation with owner and review date; never a silent omission.
   - term: Evidence
     iri: govuk:Evidence
     sourceLayer: source_native
