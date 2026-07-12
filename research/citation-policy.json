@@ -1,0 +1,565 @@
+{
+  "allowed_authority_classes": [
+    "author_manuscript_peer_reviewed",
+    "doi_metadata_registry",
+    "maintainer_primary",
+    "normative_standard",
+    "official_primary",
+    "original_peer_reviewed",
+    "original_research",
+    "vendor_primary"
+  ],
+  "authority_rules": [
+    {
+      "authority_class": "normative_standard",
+      "host_suffix": "w3.org",
+      "publisher": "World Wide Web Consortium"
+    },
+    {
+      "authority_class": "normative_standard",
+      "host_suffix": "schema.org",
+      "publisher": "Schema.org Community Group"
+    },
+    {
+      "authority_class": "normative_standard",
+      "host_suffix": "semiceu.github.io",
+      "publisher": "European Commission SEMIC"
+    },
+    {
+      "authority_class": "normative_standard",
+      "host_suffix": "spec.openapis.org",
+      "publisher": "OpenAPI Initiative"
+    },
+    {
+      "authority_class": "normative_standard",
+      "host_suffix": "modelcontextprotocol.io",
+      "publisher": "Model Context Protocol project"
+    },
+    {
+      "authority_class": "normative_standard",
+      "host_suffix": "a2a-protocol.org",
+      "publisher": "A2A Protocol project"
+    },
+    {
+      "authority_class": "normative_standard",
+      "host_suffix": "researchobject.org",
+      "publisher": "Research Object community"
+    },
+    {
+      "authority_class": "official_primary",
+      "host_suffix": "publishing.service.gov.uk",
+      "publisher": "Government Digital Service"
+    },
+    {
+      "authority_class": "official_primary",
+      "host_suffix": "gov.uk",
+      "publisher": "UK Government"
+    },
+    {
+      "authority_class": "official_primary",
+      "host_suffix": "nationalarchives.gov.uk",
+      "publisher": "The National Archives"
+    },
+    {
+      "authority_class": "official_primary",
+      "host_suffix": "design.canada.ca",
+      "publisher": "Government of Canada"
+    },
+    {
+      "authority_class": "official_primary",
+      "host_suffix": "blog.canada.ca",
+      "publisher": "Government of Canada"
+    },
+    {
+      "authority_class": "official_primary",
+      "host_suffix": "digital.nhs.uk",
+      "publisher": "NHS England"
+    },
+    {
+      "authority_class": "official_primary",
+      "host_suffix": "data.europa.eu",
+      "publisher": "Publications Office of the European Union"
+    },
+    {
+      "authority_class": "official_primary",
+      "host_suffix": "open.gsa.gov",
+      "publisher": "U.S. General Services Administration"
+    },
+    {
+      "authority_class": "official_primary",
+      "host_suffix": "usa.gov",
+      "publisher": "U.S. General Services Administration"
+    },
+    {
+      "authority_class": "official_primary",
+      "host_suffix": "nist.gov",
+      "publisher": "U.S. National Institute of Standards and Technology"
+    },
+    {
+      "authority_class": "original_peer_reviewed",
+      "host_suffix": "aclanthology.org",
+      "publisher": "Association for Computational Linguistics"
+    },
+    {
+      "authority_class": "original_research",
+      "host_suffix": "arxiv.org",
+      "publisher": "arXiv"
+    },
+    {
+      "authority_class": "original_peer_reviewed",
+      "host_suffix": "proceedings.iclr.cc",
+      "publisher": "International Conference on Learning Representations"
+    },
+    {
+      "authority_class": "original_peer_reviewed",
+      "host_suffix": "proceedings.neurips.cc",
+      "publisher": "Neural Information Processing Systems Foundation"
+    },
+    {
+      "authority_class": "author_manuscript_peer_reviewed",
+      "host_suffix": "researchgate.net",
+      "publisher": "Author-provided manuscript via ResearchGate"
+    },
+    {
+      "authority_class": "doi_metadata_registry",
+      "host_suffix": "api.crossref.org",
+      "publisher": "Crossref"
+    },
+    {
+      "authority_class": "author_manuscript_peer_reviewed",
+      "host_suffix": "cormack.uwaterloo.ca",
+      "publisher": "University of Waterloo author site"
+    },
+    {
+      "authority_class": "author_manuscript_peer_reviewed",
+      "host_suffix": "pages.gseis.ucla.edu",
+      "publisher": "UCLA author site"
+    },
+    {
+      "authority_class": "vendor_primary",
+      "host_suffix": "developers.openai.com",
+      "publisher": "OpenAI"
+    },
+    {
+      "authority_class": "vendor_primary",
+      "host_suffix": "learn.chatgpt.com",
+      "publisher": "OpenAI"
+    },
+    {
+      "authority_class": "original_research",
+      "host_suffix": "openai.com",
+      "publisher": "OpenAI"
+    },
+    {
+      "authority_class": "maintainer_primary",
+      "host_suffix": "github.com",
+      "publisher": "Version-pinned upstream repository"
+    },
+    {
+      "authority_class": "maintainer_primary",
+      "host_suffix": "raw.githubusercontent.com",
+      "publisher": "Version-pinned upstream repository"
+    }
+  ],
+  "non_citation_prefixes": [
+    "https://github.com/chris-page-gov/okf-govuk-content",
+    "https://chris-page-gov.github.io/okf-govuk-content"
+  ],
+  "schema_version": "1.0",
+  "source_access_history": [
+    {
+      "checked_at": "2026-07-11T23:21:00Z",
+      "constraint": "The CMU ACT-R host failed safe Python/OpenSSL negotiation with DH_KEY_TOO_SMALL. TLS policy was not weakened.",
+      "original_url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf",
+      "resolution": "Use the HTTPS ResearchGate publication record and author-provided full-text copy, retaining DOI 10.1037/0033-295X.106.4.643 for identity."
+    },
+    {
+      "checked_at": "2026-07-12T07:18:36Z",
+      "constraint": "The secure ResearchGate publication record returned HTTP 403 to three bounded identified verifier attempts; a separate strict-TLS request to the exact author-uploaded PDF also returned HTTP 403. No anti-bot bypass was attempted.",
+      "original_url": "https://www.researchgate.net/publication/229101074_Information_Foraging",
+      "resolution": "The author-uploaded copy and DOI identity remain documented, but the two dependent released citations stay blocked until a public reproducible copy can be fetched under normal access controls. TLS and access controls must not be weakened."
+    },
+    {
+      "checked_at": "2026-07-12T07:34:00Z",
+      "constraint": "The original full text remains inaccessible under safe reproducible transport, so it cannot support section-level release claims.",
+      "original_url": "https://www.researchgate.net/publication/229101074_Information_Foraging",
+      "resolution": "Use the strict-TLS Crossref DOI record only for title, authors, journal, publication date, pages, publisher and DOI identity; do not infer full-text content."
+    },
+    {
+      "checked_at": "2026-07-12T07:38:00Z",
+      "constraint": "The two National Archives HTML licensing URLs presented a self-signed certificate in the Python default strict chain during three bounded verifier attempts.",
+      "original_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "resolution": "Use The National Archives official CDN OGL user guidance PDF under strict TLS; preserve the HTML transport failure and do not weaken certificate verification."
+    },
+    {
+      "checked_at": "2026-07-12T07:38:00Z",
+      "constraint": "The OpenAI BrowseComp article returned HTTP 403 to the identified verifier.",
+      "original_url": "https://openai.com/index/browsecomp/",
+      "resolution": "Use the official cdn.openai.com BrowseComp paper under strict TLS; do not attempt an access-control bypass."
+    },
+    {
+      "checked_at": "2026-07-12T07:41:00Z",
+      "constraint": "The National Archives official CDN OGL guidance fallback presented the same self-signed certificate chain to Python default strict verification.",
+      "original_url": "https://cdn.nationalarchives.gov.uk/documents/information-management/ogl-user-guidance.pdf",
+      "resolution": "Use the current GOV.UK Knowledge Asset Commercialisation Guide sections 7.5 and 7.6 for the OGL default, characteristics and exclusions; retain all National Archives transport failures and do not weaken TLS."
+    }
+  ],
+  "source_overrides": {
+    "https://content-api.publishing.service.gov.uk/content": {
+      "expected_hosts": [
+        "content-api.publishing.service.gov.uk"
+      ],
+      "identity_terms": [
+        "GOV.UK Content API"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "GOV.UK Content API"
+      },
+      "verification_url": "https://content-api.publishing.service.gov.uk/"
+    },
+    "https://content-api.publishing.service.gov.uk/reference.html": {
+      "identity_terms": [
+        "GOV.UK Content API Reference"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "GET /content/{path}"
+      }
+    },
+    "https://docs.publishing.service.gov.uk/repos/collections.html": {
+      "identity_terms": [
+        "Collections"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "Collections"
+      }
+    },
+    "https://insidegovuk.blog.gov.uk/2026/03/16/5-things-we-learned-testing-gov-uk-chat-an-ai-assistant-for-government/": {
+      "citation_locator_overrides": {
+        "Five things learned testing GOV.UK Chat": {
+          "kind": "heading_text_fingerprint",
+          "value": "5 things we learned testing GOV.UK Chat"
+        },
+        "public testing account": {
+          "kind": "heading_text_fingerprint",
+          "value": "5 things we learned testing GOV.UK Chat"
+        }
+      }
+    },
+    "https://modelcontextprotocol.io/specification/2025-11-25/server/resources": {
+      "citation_locator_overrides": {
+        "MCP Resources specification": {
+          "kind": "heading_text_fingerprint",
+          "value": "Resources"
+        }
+      },
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "Resources"
+      }
+    },
+    "https://modelcontextprotocol.io/specification/2025-11-25/server/tools": {
+      "citation_locator_overrides": {
+        "MCP Tools specification": {
+          "kind": "heading_text_fingerprint",
+          "value": "Tools"
+        }
+      },
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "Tools"
+      }
+    },
+    "https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/ee67a5ca27044ebe7c38385f5b6cffc2305a9c1a/okf/SPEC.md": {
+      "expected_hosts": [
+        "raw.githubusercontent.com"
+      ],
+      "identity_terms": [
+        "Open Knowledge Format",
+        "Bundle Structure"
+      ],
+      "publisher": "Google Cloud Platform knowledge-catalog project"
+    },
+    "https://raw.githubusercontent.com/a2aproject/A2A/4f77f1bdd0bb5cd861aad8e86fe4db71a2785fe5/docs/announcing-1.0.md": {
+      "expected_hosts": [
+        "raw.githubusercontent.com"
+      ],
+      "identity_terms": [
+        "A2A Protocol Ships v1.0"
+      ],
+      "publisher": "A2A Protocol project"
+    },
+    "https://raw.githubusercontent.com/a2aproject/A2A/727168fe1fd5ba999e4e59c62385e0e76466193d/docs/topics/agent-discovery.md": {
+      "expected_hosts": [
+        "raw.githubusercontent.com"
+      ],
+      "identity_terms": [
+        "Agent Discovery in A2A",
+        "Agent Card"
+      ],
+      "publisher": "A2A Protocol project"
+    },
+    "https://raw.githubusercontent.com/alphagov/data-community-tech-docs/3f308dad463fba772ea09bb119fbd8d8eee02ea8/source/data-sources/govgraph/index.html.md.erb": {
+      "expected_hosts": [
+        "raw.githubusercontent.com"
+      ],
+      "identity_terms": [
+        "GovGraph"
+      ],
+      "publisher": "Government Digital Service"
+    },
+    "https://raw.githubusercontent.com/chris-page-gov/ai-infrastructure-wiki/23aae1b2c9208c631e54127078d71a61064aa79c/docs/explorer-overview-context.md": {
+      "expected_hosts": [
+        "raw.githubusercontent.com"
+      ],
+      "identity_terms": [
+        "Explorer",
+        "Generated Analysis Artifact"
+      ],
+      "publisher": "OKF Explorer maintainer project"
+    },
+    "https://schema.org/GovernmentService": {
+      "identity_terms": [
+        "GovernmentService",
+        "A service provided by a government organization"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "GovernmentService"
+      },
+      "version_or_commit": "schema.org 30.0 (2026-03-19)"
+    },
+    "https://schema.org/WebPage": {
+      "identity_terms": [
+        "WebPage",
+        "A web page"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "WebPage"
+      },
+      "version_or_commit": "schema.org 30.0 (2026-03-19)"
+    },
+    "https://www.gov.uk/api/content": {
+      "identity_markers": [
+        "content_id",
+        "links"
+      ],
+      "locator": {
+        "kind": "json_pointer",
+        "value": "/"
+      }
+    },
+    "https://www.gov.uk/api/content/browse": {
+      "identity_markers": [
+        "content_id",
+        "links"
+      ],
+      "locator": {
+        "kind": "json_pointer",
+        "value": "/links/top_level_browse_pages"
+      }
+    },
+    "https://www.gov.uk/api/content/world/all": {
+      "identity_markers": [
+        "content_id",
+        "links"
+      ],
+      "locator": {
+        "kind": "json_pointer",
+        "value": "/links/child_taxons"
+      }
+    },
+    "https://www.gov.uk/api/organisations": {
+      "identity_markers": [
+        "results",
+        "total"
+      ],
+      "locator": {
+        "kind": "json_pointer",
+        "value": "/results"
+      }
+    },
+    "https://www.gov.uk/api/search.json": {
+      "identity_markers": [
+        "results",
+        "total"
+      ],
+      "locator": {
+        "kind": "json_pointer",
+        "value": "/total"
+      }
+    },
+    "https://www.gov.uk/help/reuse-govuk-content": {
+      "citation_locator_overrides": {
+        "GOV.UK reuse guidance, especially “Search API”, “Scraping” and “Sitemap”": {
+          "kind": "heading_set_fingerprint",
+          "values": [
+            "Search API (unsupported)",
+            "Scraping the site",
+            "Sitemap"
+          ]
+        },
+        "rendered-link-gap-detector": {
+          "kind": "heading_text_fingerprint",
+          "value": "Reuse GOV.UK content"
+        }
+      }
+    },
+    "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/": {
+      "identity_terms": [
+        "Open Government Licence version 3.0"
+      ],
+      "licence": "Open Government Licence version 3.0",
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "Open Government Licence"
+      }
+    },
+    "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/open-government-licence/exceptions-to-ogl/": {
+      "identity_terms": [
+        "Exceptions to the Open Government Licence"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "Exceptions to the Open Government Licence"
+      }
+    },
+    "https://www.gov.uk/government/organisations/government-digital-service.atom": {
+      "identity_markers": [
+        "government digital service",
+        "feed"
+      ],
+      "locator": {
+        "kind": "xml_root",
+        "value": "/feed"
+      }
+    },
+    "https://www.gov.uk/robots.txt": {
+      "identity_markers": [
+        "user-agent",
+        "sitemap"
+      ],
+      "locator": {
+        "kind": "text_lines",
+        "value": "User-agent and Sitemap"
+      }
+    },
+    "https://www.gov.uk/sitemap.xml": {
+      "identity_markers": [
+        "sitemapindex",
+        "sitemap_"
+      ],
+      "locator": {
+        "kind": "xml_root",
+        "value": "/sitemapindex"
+      }
+    },
+    "https://www.researchgate.net/publication/229101074_Information_Foraging": {
+      "expected_hosts": [
+        "www.researchgate.net"
+      ],
+      "identity_terms": [
+        "Information Foraging",
+        "Peter Pirolli Stuart Card",
+        "10.1037/0033-295X.106.4.643"
+      ],
+      "licence": "copyright; author-provided access; retain only metadata, a short excerpt and hashes",
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "Abstract and Figures"
+      },
+      "version_or_commit": "Psychological Review 106(4), 1999; DOI 10.1037/0033-295X.106.4.643"
+    },
+    "https://api.crossref.org/works/10.1037%2F0033-295X.106.4.643": {
+      "expected_hosts": [
+        "api.crossref.org"
+      ],
+      "identity_terms": [
+        "Information foraging",
+        "Peter Pirolli Stuart Card",
+        "10.1037/0033-295x.106.4.643"
+      ],
+      "licence": "Crossref public bibliographic metadata; retain compact evidence and hashes",
+      "locator": {
+        "kind": "json_pointer",
+        "value": "/message"
+      },
+      "version_or_commit": "Crossref work record for DOI 10.1037/0033-295X.106.4.643"
+    },
+    "https://cdn.nationalarchives.gov.uk/documents/information-management/ogl-user-guidance.pdf": {
+      "expected_hosts": [
+        "cdn.nationalarchives.gov.uk"
+      ],
+      "identity_terms": [
+        "Open Government Licence Guidance for users",
+        "information cannot use under OGL"
+      ],
+      "licence": "Open Government Licence v3.0",
+      "locator": {
+        "kind": "pdf_page_text",
+        "value": "What information can I use under the OGL"
+      },
+      "version_or_commit": "The National Archives OGL user guidance"
+    },
+    "https://cdn.openai.com/pdf/5e10f4ab-d6f7-442e-9508-59515c65e35d/browsecomp.pdf": {
+      "expected_hosts": [
+        "cdn.openai.com"
+      ],
+      "identity_terms": [
+        "BrowseComp A Simple Yet Challenging Benchmark for Browsing Agents"
+      ],
+      "licence": "copyright; retain only metadata, short excerpts and hashes",
+      "locator": {
+        "kind": "heading_set_fingerprint",
+        "values": [
+          "Data collection and verification",
+          "canary string",
+          "Grading",
+          "incomplete but useful benchmark"
+        ]
+      },
+      "version_or_commit": "OpenAI BrowseComp paper, 2025"
+    },
+    "https://www.gov.uk/government/publications/knowledge-asset-commercialisation-guide/the-knowledge-asset-commercialisation-guide": {
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "identity_terms": [
+        "Knowledge Asset Commercialisation Guide",
+        "Open Government Licence"
+      ],
+      "licence": "Open Government Licence v3.0 except where otherwise stated",
+      "locator": {
+        "kind": "heading_set_fingerprint",
+        "values": [
+          "7.5 Open Government Licence and Delegations",
+          "The following information should not be licensed under the OGL"
+        ]
+      },
+      "version_or_commit": "Published 9 May 2025"
+    }
+  },
+  "url_replacements": {
+    "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf": "https://api.crossref.org/works/10.1037%2F0033-295X.106.4.643",
+    "https://openai.com/index/browsecomp/": "https://cdn.openai.com/pdf/5e10f4ab-d6f7-442e-9508-59515c65e35d/browsecomp.pdf",
+    "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/": "https://www.gov.uk/government/publications/knowledge-asset-commercialisation-guide/the-knowledge-asset-commercialisation-guide",
+    "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/open-government-licence/exceptions-to-ogl/": "https://www.gov.uk/government/publications/knowledge-asset-commercialisation-guide/the-knowledge-asset-commercialisation-guide",
+    "https://a2a-protocol.org/latest/announcing-1.0/": "https://raw.githubusercontent.com/a2aproject/A2A/4f77f1bdd0bb5cd861aad8e86fe4db71a2785fe5/docs/announcing-1.0.md",
+    "https://a2a-protocol.org/latest/topics/agent-discovery/": "https://raw.githubusercontent.com/a2aproject/A2A/727168fe1fd5ba999e4e59c62385e0e76466193d/docs/topics/agent-discovery.md",
+    "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md": "https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/ee67a5ca27044ebe7c38385f5b6cffc2305a9c1a/okf/SPEC.md",
+    "https://github.com/alphagov/data-community-tech-docs/blob/main/source/data-sources/govgraph/index.html.md.erb": "https://raw.githubusercontent.com/alphagov/data-community-tech-docs/3f308dad463fba772ea09bb119fbd8d8eee02ea8/source/data-sources/govgraph/index.html.md.erb",
+    "https://github.com/alphagov/publishing-api/tree/main/content_schemas": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
+    "https://github.com/chris-page-gov/ai-infrastructure-wiki/blob/main/docs/explorer-overview-context.md": "https://raw.githubusercontent.com/chris-page-gov/ai-infrastructure-wiki/23aae1b2c9208c631e54127078d71a61064aa79c/docs/explorer-overview-context.md",
+    "https://www.w3.org/TR/WCAG22/": "https://www.w3.org/TR/2024/REC-WCAG22-20241212/",
+    "https://www.w3.org/TR/json-ld11/": "https://www.w3.org/TR/2020/REC-json-ld11-20200716/",
+    "https://www.w3.org/TR/prov-o/": "https://www.w3.org/TR/2013/REC-prov-o-20130430/",
+    "https://www.w3.org/TR/shacl/": "https://www.w3.org/TR/2017/REC-shacl-20170720/",
+    "https://www.w3.org/TR/skos-reference/": "https://www.w3.org/TR/2009/REC-skos-reference-20090818/",
+    "https://www.w3.org/TR/vocab-dcat-3/": "https://www.w3.org/TR/2024/REC-vocab-dcat-3-20240822/",
+    "https://www.w3.org/TR/vocab-org/": "https://www.w3.org/TR/2014/REC-vocab-org-20140116/",
+    "https://www.w3.org/TR/yaml-ld-10/": "https://www.w3.org/TR/2026/WD-yaml-ld-10-20260708/"
+  }
+}
