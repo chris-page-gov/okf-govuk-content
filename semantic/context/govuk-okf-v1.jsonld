@@ -83,6 +83,10 @@
       "@id": "okf:dataManifest",
       "@type": "@id"
     },
+    "semanticProjectionManifest": {
+      "@id": "govuk:semanticProjectionManifest",
+      "@type": "@id"
+    },
     "sourceRegistry": {
       "@id": "govuk:sourceRegistry",
       "@type": "@id"
@@ -91,7 +95,10 @@
       "@id": "govuk:constraintLedger",
       "@type": "@id"
     },
-    "counts": "okf:counts",
+    "counts": {
+      "@id": "okf:counts",
+      "@type": "@json"
+    },
     "extensions": {
       "@id": "okf:extension",
       "@container": "@set"
