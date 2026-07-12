@@ -1,0 +1,17 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/ca.json",
+    "token": "car"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ca.json",
+    "token": "catalogue"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ca.json",
+    "token": "catalogues"
+  }
+]

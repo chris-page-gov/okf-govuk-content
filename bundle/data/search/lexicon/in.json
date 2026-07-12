@@ -1,0 +1,17 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/in.json",
+    "token": "includes"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/in.json",
+    "token": "independently"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/in.json",
+    "token": "information"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "tax": [
+    {
+      "df": 2,
+      "token": "taxon"
+    }
+  ],
+  "taxo": [
+    {
+      "df": 2,
+      "token": "taxon"
+    }
+  ],
+  "taxon": [
+    {
+      "df": 2,
+      "token": "taxon"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/ex.json",
+    "token": "example"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ex.json",
+    "token": "external"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ex.json",
+    "token": "external_content"
+  }
+]

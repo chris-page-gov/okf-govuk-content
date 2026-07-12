@@ -1,0 +1,22 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/ad.json",
+    "token": "add"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ad.json",
+    "token": "addysg"
+  },
+  {
+    "df": 7,
+    "postings": "data/search/postings/ad.json",
+    "token": "admitted"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ad.json",
+    "token": "advice"
+  }
+]

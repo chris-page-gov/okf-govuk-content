@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Accessibility status for the independently published What’s on GOV.UK metadata Explorer.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Accessibility – What’s on GOV.UK</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="page-width header-layout">
+      <div class="identity-block">
+        <a class="service-name" href="./">What’s on GOV.UK</a>
+      </div>
+    </div>
+  </header>
+  <main id="main-content" class="page-width statement-page" tabindex="-1">
+    <p class="eyebrow">Accessibility statement</p>
+    <h1>Accessibility of What’s on GOV.UK</h1>
+    <p class="lede">This is an independent, derived metadata catalogue. GOV.UK remains the authoritative destination.</p>
+
+    <section aria-labelledby="status-heading">
+      <h2 id="status-heading">Current test status</h2>
+      <p>The representative fixture has an automated real-browser harness for landmarks and accessible names, keyboard focus, narrow reflow, reduced motion, forced colours, contrast-relevant computed styles, hash deep links, gzip data loading and performance budgets. The current evidence checkpoint is blocked because this execution environment did not permit its localhost/browser run.</p>
+      <p>This is not a claim of WCAG 2.2 AA conformance. Automated axe testing, accessibility-expert review, screen-reader testing, full-corpus browser testing and authorised representative-user research remain open gates.</p>
+      <p><a href="evidence/fixture-browser.json">Read the snapshot-bound machine evidence</a>.</p>
+    </section>
+
+    <section aria-labelledby="design-heading">
+      <h2 id="design-heading">How the Explorer is designed to be accessible</h2>
+      <ul>
+        <li>semantic header, navigation, search, main and footer landmarks;</li>
+        <li>native links, buttons, form controls, tables and disclosure controls;</li>
+        <li>a keyboard skip link and visible focus treatment;</li>
+        <li>layouts that reflow at a 320 CSS-pixel viewport, representing 400% zoom on a 1280-pixel display;</li>
+        <li>reduced-motion and forced-colour adaptations;</li>
+        <li>a non-visual list or table for every relationship shown in the graph;</li>
+        <li>source, lifecycle and uncertainty information that does not depend on colour alone.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="limitations-heading">
+      <h2 id="limitations-heading">Known limitations</h2>
+      <ul>
+        <li>The complete frozen release corpus has not yet passed browser memory and latency testing.</li>
+        <li>No authorised participant study has been run, so the project does not claim that this is a preferred human interface.</li>
+        <li>Automated checks cannot establish screen-reader usability, cognitive accessibility or full WCAG conformance.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="feedback-heading">
+      <h2 id="feedback-heading">Report an accessibility problem</h2>
+      <p><a href="https://github.com/chris-page-gov/okf-govuk-content/issues">Open an issue in the public repository</a>. Do not include personal or sensitive information.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="page-width"><p><a href="./">Return to the Explorer</a></p></div>
+  </footer>
+</body>
+</html>

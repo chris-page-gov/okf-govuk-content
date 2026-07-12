@@ -1,0 +1,18 @@
+{
+  "tokens": {
+    "sign": [
+      [
+        4,
+        16,
+        1
+      ]
+    ],
+    "sign-in-universal-credit": [
+      [
+        4,
+        2,
+        64
+      ]
+    ]
+  }
+}

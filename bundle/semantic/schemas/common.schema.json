@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chris-page-gov.github.io/okf-govuk-content/semantic/schemas/common.schema.json",
+  "title": "GOV.UK OKF common semantic definitions",
+  "$defs": {
+    "iri": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^(?:https?://|urn:)"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "iriReference": {
+      "type": "object",
+      "required": ["@id"],
+      "properties": {
+        "@id": {
+          "$ref": "#/$defs/iri"
+        }
+      },
+      "additionalProperties": false
+    },
+    "authority": {
+      "enum": [
+        "source_native",
+        "normalized",
+        "inferred",
+        "model_derived"
+      ]
+    },
+    "evidenceReferences": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/iriReference"
+      }
+    },
+    "commonEntity": {
+      "type": "object",
+      "required": [
+        "@id",
+        "@type",
+        "title",
+        "sourceNativeId",
+        "sourceSystem",
+        "snapshotId",
+        "authority",
+        "evidence",
+        "retrievedAt"
+      ],
+      "properties": {
+        "@id": {
+          "$ref": "#/$defs/iri"
+        },
+        "@type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "description": {
+          "type": "string"
+        },
+        "sourceNativeId": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sourceSystem": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "snapshotId": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "authority": {
+          "$ref": "#/$defs/authority"
+        },
+        "evidence": {
+          "$ref": "#/$defs/evidenceReferences"
+        },
+        "retrievedAt": {
+          "$ref": "#/$defs/dateTime"
+        },
+        "observedAt": {
+          "$ref": "#/$defs/dateTime"
+        },
+        "invalidatedAt": {
+          "$ref": "#/$defs/dateTime"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

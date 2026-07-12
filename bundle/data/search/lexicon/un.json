@@ -1,0 +1,17 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/un.json",
+    "token": "united"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/un.json",
+    "token": "universal"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/un.json",
+    "token": "unknown"
+  }
+]

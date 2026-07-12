@@ -1,0 +1,27 @@
+[
+  {
+    "df": 3,
+    "postings": "data/search/postings/de.json",
+    "token": "department"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/de.json",
+    "token": "department-for-education"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/de.json",
+    "token": "department-for-work-pensions"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/de.json",
+    "token": "destination"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/de.json",
+    "token": "development"
+  }
+]

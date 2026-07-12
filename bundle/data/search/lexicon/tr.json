@@ -1,0 +1,22 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/tr.json",
+    "token": "training"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/tr.json",
+    "token": "transaction"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/tr.json",
+    "token": "travel"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/tr.json",
+    "token": "travel_advice"
+  }
+]

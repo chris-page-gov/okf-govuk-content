@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">What’s on GOV.UK catalogue</title>
+  <rect width="64" height="64" fill="#0b0c0c"/>
+  <path d="M13 15h38v8H13zm0 13h27v8H13zm0 13h38v8H13z" fill="#ffdd00"/>
+</svg>

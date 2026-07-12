@@ -1,0 +1,72 @@
+{
+  "gov": [
+    {
+      "df": 6,
+      "token": "government"
+    },
+    {
+      "df": 1,
+      "token": "gov.uk"
+    }
+  ],
+  "gov.": [
+    {
+      "df": 1,
+      "token": "gov.uk"
+    }
+  ],
+  "gov.u": [
+    {
+      "df": 1,
+      "token": "gov.uk"
+    }
+  ],
+  "gov.uk": [
+    {
+      "df": 1,
+      "token": "gov.uk"
+    }
+  ],
+  "gove": [
+    {
+      "df": 6,
+      "token": "government"
+    }
+  ],
+  "gover": [
+    {
+      "df": 6,
+      "token": "government"
+    }
+  ],
+  "govern": [
+    {
+      "df": 6,
+      "token": "government"
+    }
+  ],
+  "governm": [
+    {
+      "df": 6,
+      "token": "government"
+    }
+  ],
+  "governme": [
+    {
+      "df": 6,
+      "token": "government"
+    }
+  ],
+  "governmen": [
+    {
+      "df": 6,
+      "token": "government"
+    }
+  ],
+  "government": [
+    {
+      "df": 6,
+      "token": "government"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "df": 2,
+    "postings": "data/search/postings/th.json",
+    "token": "thailand"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/th.json",
+    "token": "through"
+  }
+]

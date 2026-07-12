@@ -1,0 +1,68 @@
+{
+  "api": [
+    {
+      "df": 1,
+      "token": "api"
+    }
+  ],
+  "app": [
+    {
+      "df": 1,
+      "token": "apply.example.service.gov.uk"
+    }
+  ],
+  "appl": [
+    {
+      "df": 1,
+      "token": "apply.example.service.gov.uk"
+    }
+  ],
+  "apply": [
+    {
+      "df": 1,
+      "token": "apply.example.service.gov.uk"
+    }
+  ],
+  "apply.": [
+    {
+      "df": 1,
+      "token": "apply.example.service.gov.uk"
+    }
+  ],
+  "apply.e": [
+    {
+      "df": 1,
+      "token": "apply.example.service.gov.uk"
+    }
+  ],
+  "apply.ex": [
+    {
+      "df": 1,
+      "token": "apply.example.service.gov.uk"
+    }
+  ],
+  "apply.exa": [
+    {
+      "df": 1,
+      "token": "apply.example.service.gov.uk"
+    }
+  ],
+  "apply.exam": [
+    {
+      "df": 1,
+      "token": "apply.example.service.gov.uk"
+    }
+  ],
+  "apply.examp": [
+    {
+      "df": 1,
+      "token": "apply.example.service.gov.uk"
+    }
+  ],
+  "apply.exampl": [
+    {
+      "df": 1,
+      "token": "apply.example.service.gov.uk"
+    }
+  ]
+}

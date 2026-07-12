@@ -1,0 +1,60 @@
+{
+  "wel": [
+    {
+      "df": 1,
+      "token": "welcome"
+    },
+    {
+      "df": 1,
+      "token": "welfare"
+    }
+  ],
+  "welc": [
+    {
+      "df": 1,
+      "token": "welcome"
+    }
+  ],
+  "welco": [
+    {
+      "df": 1,
+      "token": "welcome"
+    }
+  ],
+  "welcom": [
+    {
+      "df": 1,
+      "token": "welcome"
+    }
+  ],
+  "welcome": [
+    {
+      "df": 1,
+      "token": "welcome"
+    }
+  ],
+  "welf": [
+    {
+      "df": 1,
+      "token": "welfare"
+    }
+  ],
+  "welfa": [
+    {
+      "df": 1,
+      "token": "welfare"
+    }
+  ],
+  "welfar": [
+    {
+      "df": 1,
+      "token": "welfare"
+    }
+  ],
+  "welfare": [
+    {
+      "df": 1,
+      "token": "welfare"
+    }
+  ]
+}

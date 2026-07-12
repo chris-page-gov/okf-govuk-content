@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/le.json",
+    "token": "learn"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/le.json",
+    "token": "learn-to-drive-a-car"
+  }
+]

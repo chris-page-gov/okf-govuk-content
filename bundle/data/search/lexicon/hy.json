@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/hy.json",
+    "token": "hydrographic"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/hy.json",
+    "token": "hyfforddiant"
+  }
+]

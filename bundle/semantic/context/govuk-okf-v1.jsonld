@@ -1,0 +1,436 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "govuk": "https://chris-page-gov.github.io/okf-govuk-content/ns#",
+    "okf": "https://chris-page-gov.github.io/okf-explorer/ns#",
+    "cpsv": "http://purl.org/vocab/cpsv#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "org": "http://www.w3.org/ns/org#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "schema": "https://schema.org/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "SemanticProfile": "govuk:SemanticProfile",
+    "Bundle": "okf:Bundle",
+    "Crosswalk": "govuk:Crosswalk",
+    "ContentItem": "govuk:ContentItem",
+    "Document": "govuk:Document",
+    "Edition": "govuk:Edition",
+    "Route": "govuk:Route",
+    "BasePath": "govuk:BasePath",
+    "RenderedPage": "govuk:RenderedPage",
+    "Part": "govuk:Part",
+    "ContentType": "govuk:ContentType",
+    "SchemaFamily": "govuk:SchemaFamily",
+    "Organisation": "govuk:Organisation",
+    "Taxon": "govuk:Taxon",
+    "WorldTaxon": "govuk:WorldTaxon",
+    "Browse": "govuk:Browse",
+    "MainstreamBrowsePage": "govuk:MainstreamBrowsePage",
+    "StepByStep": "govuk:StepByStep",
+    "Service": "govuk:Service",
+    "GovernmentService": "govuk:GovernmentService",
+    "Collection": "govuk:Collection",
+    "Attachment": "govuk:Attachment",
+    "Distribution": "govuk:Distribution",
+    "MachineRepresentation": "govuk:MachineRepresentation",
+    "Redirect": "govuk:Redirect",
+    "Withdrawal": "govuk:Withdrawal",
+    "Replacement": "govuk:Replacement",
+    "Tombstone": "govuk:Tombstone",
+    "EvidenceSource": "govuk:EvidenceSource",
+    "AcquisitionActivity": "govuk:AcquisitionActivity",
+    "InferenceActivity": "govuk:InferenceActivity",
+    "ConstraintRecord": "govuk:ConstraintRecord",
+    "Evidence": "govuk:Evidence",
+    "Assertion": "govuk:Assertion",
+
+    "title": "dcterms:title",
+    "description": "dcterms:description",
+    "version": "schema:version",
+    "status": "govuk:status",
+    "generatedAt": {
+      "@id": "prov:generatedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "snapshot": "govuk:snapshotId",
+    "derivedNotice": "govuk:derivedNotice",
+    "descriptor": {
+      "@id": "okf:explorerDescriptor",
+      "@type": "@id"
+    },
+    "semanticDescriptor": {
+      "@id": "okf:semanticDescriptor",
+      "@type": "@id"
+    },
+    "home": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "profile": {
+      "@id": "dcterms:conformsTo",
+      "@type": "@id"
+    },
+    "publisher": {
+      "@id": "dcterms:publisher",
+      "@type": "@id"
+    },
+    "dataManifest": {
+      "@id": "okf:dataManifest",
+      "@type": "@id"
+    },
+    "semanticProjectionManifest": {
+      "@id": "govuk:semanticProjectionManifest",
+      "@type": "@id"
+    },
+    "sourceRegistry": {
+      "@id": "govuk:sourceRegistry",
+      "@type": "@id"
+    },
+    "constraintLedger": {
+      "@id": "govuk:constraintLedger",
+      "@type": "@id"
+    },
+    "counts": {
+      "@id": "okf:counts",
+      "@type": "@json"
+    },
+    "extensions": {
+      "@id": "okf:extension",
+      "@container": "@set"
+    },
+    "profileScope": "govuk:profileScope",
+    "sourceBoundary": "govuk:sourceBoundary",
+    "metadataOnly": {
+      "@id": "govuk:metadataOnly",
+      "@type": "xsd:boolean"
+    },
+    "authorityClasses": {
+      "@id": "govuk:authorityClass",
+      "@container": "@set"
+    },
+    "classes": {
+      "@id": "govuk:classDefinition",
+      "@container": "@set"
+    },
+    "mappings": {
+      "@id": "govuk:mapping",
+      "@container": "@set"
+    },
+    "relationships": {
+      "@id": "govuk:relationshipDefinition",
+      "@container": "@set"
+    },
+    "term": "govuk:term",
+    "iri": {
+      "@id": "govuk:iri",
+      "@type": "@id"
+    },
+    "definition": "dcterms:description",
+    "sourceLayer": "govuk:sourceLayer",
+    "distinction": "govuk:distinction",
+    "requirement": {
+      "@id": "govuk:requirement",
+      "@container": "@set"
+    },
+    "validationArtifact": {
+      "@id": "govuk:validationArtifact",
+      "@container": "@set"
+    },
+    "sourceEntities": {
+      "@id": "govuk:sourceEntity",
+      "@container": "@set"
+    },
+    "sourceFields": {
+      "@id": "govuk:sourceField",
+      "@container": "@set"
+    },
+    "identityRule": "govuk:identityRule",
+    "externalMappings": {
+      "@id": "govuk:externalMapping",
+      "@container": "@set"
+    },
+    "mappingStatus": "govuk:mappingStatus",
+    "applicableWhen": "govuk:applicableWhen",
+    "caveat": "govuk:caveat",
+    "inverse": {
+      "@id": "govuk:inverse",
+      "@type": "@id"
+    },
+    "direction": "govuk:direction",
+
+    "sourceNativeId": "govuk:sourceNativeId",
+    "snapshotId": "govuk:snapshotId",
+    "authority": "govuk:authority",
+    "sourceSystem": "govuk:sourceSystem",
+    "retrievedAt": {
+      "@id": "prov:generatedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "observedAt": {
+      "@id": "govuk:observedAt",
+      "@type": "xsd:dateTime"
+    },
+    "effectiveAt": {
+      "@id": "govuk:effectiveAt",
+      "@type": "xsd:dateTime"
+    },
+    "generatedBy": {
+      "@id": "prov:wasGeneratedBy",
+      "@type": "@id"
+    },
+    "derivedFrom": {
+      "@id": "prov:wasDerivedFrom",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "invalidatedAt": {
+      "@id": "prov:invalidatedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "evidence": {
+      "@id": "govuk:evidence",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "confidence": {
+      "@id": "govuk:confidence",
+      "@type": "xsd:decimal"
+    },
+    "reviewStatus": "govuk:reviewStatus",
+    "reviewer": {
+      "@id": "govuk:reviewer",
+      "@type": "@id"
+    },
+
+    "contentId": "govuk:contentId",
+    "basePath": "govuk:basePath",
+    "canonicalUrl": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "contentType": {
+      "@id": "govuk:contentType",
+      "@type": "@id"
+    },
+    "schemaFamily": {
+      "@id": "govuk:schemaFamily",
+      "@type": "@id"
+    },
+    "contentItem": {
+      "@id": "govuk:contentItem",
+      "@type": "@id"
+    },
+    "document": {
+      "@id": "govuk:document",
+      "@type": "@id"
+    },
+    "editionId": "govuk:editionId",
+    "locale": "dcterms:language",
+    "lifecycleState": "govuk:lifecycleState",
+    "path": "govuk:path",
+    "routeKind": "govuk:routeKind",
+    "bodySha256": "govuk:bodySha256",
+    "partKind": "govuk:partKind",
+    "position": {
+      "@id": "schema:position",
+      "@type": "xsd:integer"
+    },
+    "sourceLocator": "govuk:sourceLocator",
+    "sourceName": "govuk:sourceName",
+    "schemaName": "govuk:schemaName",
+    "schemaUri": {
+      "@id": "govuk:schemaUri",
+      "@type": "@id"
+    },
+    "sourceCommit": "govuk:sourceCommit",
+    "slug": "govuk:slug",
+    "organisationStatus": "govuk:organisationStatus",
+    "taxonomyKind": "govuk:taxonomyKind",
+    "browseKind": "govuk:browseKind",
+    "serviceStatus": "govuk:serviceStatus",
+    "serviceBasis": "govuk:serviceBasis",
+    "collectionKind": "govuk:collectionKind",
+    "stepCount": {
+      "@id": "govuk:stepCount",
+      "@type": "xsd:integer"
+    },
+    "mimeType": "dcterms:format",
+    "filename": "govuk:filename",
+    "byteSize": {
+      "@id": "schema:contentSize",
+      "@type": "xsd:integer"
+    },
+    "pageCount": {
+      "@id": "schema:numberOfPages",
+      "@type": "xsd:integer"
+    },
+    "accessibility": "govuk:accessibility",
+    "rightsStatus": "govuk:rightsStatus",
+    "resource": {
+      "@id": "govuk:resource",
+      "@type": "@id"
+    },
+    "representationType": "govuk:representationType",
+    "fromRoute": {
+      "@id": "govuk:fromRoute",
+      "@type": "@id"
+    },
+    "target": {
+      "@id": "govuk:target",
+      "@type": "@id"
+    },
+    "route": {
+      "@id": "govuk:route",
+      "@type": "@id"
+    },
+    "tombstoneKind": "govuk:tombstoneKind",
+    "notice": "govuk:notice",
+    "original": {
+      "@id": "govuk:original",
+      "@type": "@id"
+    },
+    "replacement": {
+      "@id": "govuk:replacement",
+      "@type": "@id"
+    },
+    "startedAt": {
+      "@id": "prov:startedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "endedAt": {
+      "@id": "prov:endedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "softwareVersion": "schema:softwareVersion",
+    "constraintClass": "govuk:constraintClass",
+    "constraintStatus": "govuk:constraintStatus",
+    "reason": "govuk:reason",
+    "owner": "govuk:owner",
+    "reviewDate": {
+      "@id": "govuk:reviewDate",
+      "@type": "xsd:date"
+    },
+
+    "evidenceUrl": {
+      "@id": "prov:hadPrimarySource",
+      "@type": "@id"
+    },
+    "locator": "govuk:locator",
+    "locatorKind": "govuk:locatorKind",
+    "locatorValue": "govuk:locatorValue",
+    "textFingerprint": "govuk:textFingerprint",
+    "sha256": "govuk:sha256",
+    "mediaType": "dcterms:format",
+    "httpStatus": {
+      "@id": "govuk:httpStatus",
+      "@type": "xsd:integer"
+    },
+    "license": {
+      "@id": "dcterms:license",
+      "@type": "@id"
+    },
+    "sourceAuthority": "govuk:sourceAuthority",
+
+    "subject": {
+      "@id": "govuk:subject",
+      "@type": "@id"
+    },
+    "predicate": {
+      "@id": "govuk:predicate",
+      "@type": "@id"
+    },
+    "object": {
+      "@id": "govuk:object",
+      "@type": "@id"
+    },
+    "sourceNativePredicate": "govuk:sourceNativePredicate",
+    "assertionStatus": "govuk:assertionStatus",
+    "derivationMethod": "govuk:derivationMethod",
+
+    "publishedBy": {
+      "@id": "govuk:publishedBy",
+      "@type": "@id"
+    },
+    "ownedBy": {
+      "@id": "govuk:ownedBy",
+      "@type": "@id"
+    },
+    "partOf": {
+      "@id": "dcterms:isPartOf",
+      "@type": "@id"
+    },
+    "parentOf": {
+      "@id": "govuk:parentOf",
+      "@type": "@id"
+    },
+    "childOf": {
+      "@id": "govuk:childOf",
+      "@type": "@id"
+    },
+    "classifiedUnder": {
+      "@id": "govuk:classifiedUnder",
+      "@type": "@id"
+    },
+    "relatedTo": {
+      "@id": "dcterms:relation",
+      "@type": "@id"
+    },
+    "linksTo": {
+      "@id": "govuk:linksTo",
+      "@type": "@id"
+    },
+    "replaces": {
+      "@id": "dcterms:replaces",
+      "@type": "@id"
+    },
+    "replacedBy": {
+      "@id": "dcterms:isReplacedBy",
+      "@type": "@id"
+    },
+    "redirectsTo": {
+      "@id": "govuk:redirectsTo",
+      "@type": "@id"
+    },
+    "hasAttachment": {
+      "@id": "govuk:hasAttachment",
+      "@type": "@id"
+    },
+    "hasContentType": {
+      "@id": "govuk:hasContentType",
+      "@type": "@id"
+    },
+    "availableInLanguage": {
+      "@id": "govuk:availableInLanguage",
+      "@type": "@id"
+    },
+    "hasBasePath": {
+      "@id": "govuk:hasBasePath",
+      "@type": "@id"
+    },
+    "renders": {
+      "@id": "govuk:renders",
+      "@type": "@id"
+    },
+    "hasDistribution": {
+      "@id": "dcat:distribution",
+      "@type": "@id"
+    },
+    "hasMachineRepresentation": {
+      "@id": "govuk:hasMachineRepresentation",
+      "@type": "@id"
+    },
+    "withdrawnBy": {
+      "@id": "govuk:withdrawnBy",
+      "@type": "@id"
+    },
+    "constrainedBy": {
+      "@id": "govuk:constrainedBy",
+      "@type": "@id"
+    }
+  }
+}

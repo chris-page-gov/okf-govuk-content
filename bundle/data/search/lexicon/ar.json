@@ -1,0 +1,17 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/ar.json",
+    "token": "archive"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ar.json",
+    "token": "archive-catalogues"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ar.json",
+    "token": "archives"
+  }
+]

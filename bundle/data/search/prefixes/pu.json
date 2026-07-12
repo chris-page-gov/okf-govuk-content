@@ -1,0 +1,180 @@
+{
+  "pub": [
+    {
+      "df": 13,
+      "token": "published"
+    },
+    {
+      "df": 7,
+      "token": "publisher"
+    },
+    {
+      "df": 1,
+      "token": "public"
+    },
+    {
+      "df": 1,
+      "token": "publication"
+    },
+    {
+      "df": 1,
+      "token": "publications"
+    }
+  ],
+  "publ": [
+    {
+      "df": 13,
+      "token": "published"
+    },
+    {
+      "df": 7,
+      "token": "publisher"
+    },
+    {
+      "df": 1,
+      "token": "public"
+    },
+    {
+      "df": 1,
+      "token": "publication"
+    },
+    {
+      "df": 1,
+      "token": "publications"
+    }
+  ],
+  "publi": [
+    {
+      "df": 13,
+      "token": "published"
+    },
+    {
+      "df": 7,
+      "token": "publisher"
+    },
+    {
+      "df": 1,
+      "token": "public"
+    },
+    {
+      "df": 1,
+      "token": "publication"
+    },
+    {
+      "df": 1,
+      "token": "publications"
+    }
+  ],
+  "public": [
+    {
+      "df": 1,
+      "token": "public"
+    },
+    {
+      "df": 1,
+      "token": "publication"
+    },
+    {
+      "df": 1,
+      "token": "publications"
+    }
+  ],
+  "publica": [
+    {
+      "df": 1,
+      "token": "publication"
+    },
+    {
+      "df": 1,
+      "token": "publications"
+    }
+  ],
+  "publicat": [
+    {
+      "df": 1,
+      "token": "publication"
+    },
+    {
+      "df": 1,
+      "token": "publications"
+    }
+  ],
+  "publicati": [
+    {
+      "df": 1,
+      "token": "publication"
+    },
+    {
+      "df": 1,
+      "token": "publications"
+    }
+  ],
+  "publicatio": [
+    {
+      "df": 1,
+      "token": "publication"
+    },
+    {
+      "df": 1,
+      "token": "publications"
+    }
+  ],
+  "publication": [
+    {
+      "df": 1,
+      "token": "publication"
+    },
+    {
+      "df": 1,
+      "token": "publications"
+    }
+  ],
+  "publications": [
+    {
+      "df": 1,
+      "token": "publications"
+    }
+  ],
+  "publis": [
+    {
+      "df": 13,
+      "token": "published"
+    },
+    {
+      "df": 7,
+      "token": "publisher"
+    }
+  ],
+  "publish": [
+    {
+      "df": 13,
+      "token": "published"
+    },
+    {
+      "df": 7,
+      "token": "publisher"
+    }
+  ],
+  "publishe": [
+    {
+      "df": 13,
+      "token": "published"
+    },
+    {
+      "df": 7,
+      "token": "publisher"
+    }
+  ],
+  "published": [
+    {
+      "df": 13,
+      "token": "published"
+    }
+  ],
+  "publisher": [
+    {
+      "df": 7,
+      "token": "publisher"
+    }
+  ]
+}

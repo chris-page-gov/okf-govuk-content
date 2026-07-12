@@ -1,0 +1,152 @@
+{
+  "inc": [
+    {
+      "df": 1,
+      "token": "includes"
+    }
+  ],
+  "incl": [
+    {
+      "df": 1,
+      "token": "includes"
+    }
+  ],
+  "inclu": [
+    {
+      "df": 1,
+      "token": "includes"
+    }
+  ],
+  "includ": [
+    {
+      "df": 1,
+      "token": "includes"
+    }
+  ],
+  "include": [
+    {
+      "df": 1,
+      "token": "includes"
+    }
+  ],
+  "includes": [
+    {
+      "df": 1,
+      "token": "includes"
+    }
+  ],
+  "ind": [
+    {
+      "df": 1,
+      "token": "independently"
+    }
+  ],
+  "inde": [
+    {
+      "df": 1,
+      "token": "independently"
+    }
+  ],
+  "indep": [
+    {
+      "df": 1,
+      "token": "independently"
+    }
+  ],
+  "indepe": [
+    {
+      "df": 1,
+      "token": "independently"
+    }
+  ],
+  "indepen": [
+    {
+      "df": 1,
+      "token": "independently"
+    }
+  ],
+  "independ": [
+    {
+      "df": 1,
+      "token": "independently"
+    }
+  ],
+  "independe": [
+    {
+      "df": 1,
+      "token": "independently"
+    }
+  ],
+  "independen": [
+    {
+      "df": 1,
+      "token": "independently"
+    }
+  ],
+  "independent": [
+    {
+      "df": 1,
+      "token": "independently"
+    }
+  ],
+  "independentl": [
+    {
+      "df": 1,
+      "token": "independently"
+    }
+  ],
+  "inf": [
+    {
+      "df": 3,
+      "token": "information"
+    }
+  ],
+  "info": [
+    {
+      "df": 3,
+      "token": "information"
+    }
+  ],
+  "infor": [
+    {
+      "df": 3,
+      "token": "information"
+    }
+  ],
+  "inform": [
+    {
+      "df": 3,
+      "token": "information"
+    }
+  ],
+  "informa": [
+    {
+      "df": 3,
+      "token": "information"
+    }
+  ],
+  "informat": [
+    {
+      "df": 3,
+      "token": "information"
+    }
+  ],
+  "informati": [
+    {
+      "df": 3,
+      "token": "information"
+    }
+  ],
+  "informatio": [
+    {
+      "df": 3,
+      "token": "information"
+    }
+  ],
+  "information": [
+    {
+      "df": 3,
+      "token": "information"
+    }
+  ]
+}

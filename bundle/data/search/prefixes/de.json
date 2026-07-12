@@ -1,0 +1,242 @@
+{
+  "dep": [
+    {
+      "df": 3,
+      "token": "department"
+    },
+    {
+      "df": 1,
+      "token": "department-for-education"
+    },
+    {
+      "df": 1,
+      "token": "department-for-work-pensions"
+    }
+  ],
+  "depa": [
+    {
+      "df": 3,
+      "token": "department"
+    },
+    {
+      "df": 1,
+      "token": "department-for-education"
+    },
+    {
+      "df": 1,
+      "token": "department-for-work-pensions"
+    }
+  ],
+  "depar": [
+    {
+      "df": 3,
+      "token": "department"
+    },
+    {
+      "df": 1,
+      "token": "department-for-education"
+    },
+    {
+      "df": 1,
+      "token": "department-for-work-pensions"
+    }
+  ],
+  "depart": [
+    {
+      "df": 3,
+      "token": "department"
+    },
+    {
+      "df": 1,
+      "token": "department-for-education"
+    },
+    {
+      "df": 1,
+      "token": "department-for-work-pensions"
+    }
+  ],
+  "departm": [
+    {
+      "df": 3,
+      "token": "department"
+    },
+    {
+      "df": 1,
+      "token": "department-for-education"
+    },
+    {
+      "df": 1,
+      "token": "department-for-work-pensions"
+    }
+  ],
+  "departme": [
+    {
+      "df": 3,
+      "token": "department"
+    },
+    {
+      "df": 1,
+      "token": "department-for-education"
+    },
+    {
+      "df": 1,
+      "token": "department-for-work-pensions"
+    }
+  ],
+  "departmen": [
+    {
+      "df": 3,
+      "token": "department"
+    },
+    {
+      "df": 1,
+      "token": "department-for-education"
+    },
+    {
+      "df": 1,
+      "token": "department-for-work-pensions"
+    }
+  ],
+  "department": [
+    {
+      "df": 3,
+      "token": "department"
+    },
+    {
+      "df": 1,
+      "token": "department-for-education"
+    },
+    {
+      "df": 1,
+      "token": "department-for-work-pensions"
+    }
+  ],
+  "department-": [
+    {
+      "df": 1,
+      "token": "department-for-education"
+    },
+    {
+      "df": 1,
+      "token": "department-for-work-pensions"
+    }
+  ],
+  "department-f": [
+    {
+      "df": 1,
+      "token": "department-for-education"
+    },
+    {
+      "df": 1,
+      "token": "department-for-work-pensions"
+    }
+  ],
+  "des": [
+    {
+      "df": 1,
+      "token": "destination"
+    }
+  ],
+  "dest": [
+    {
+      "df": 1,
+      "token": "destination"
+    }
+  ],
+  "desti": [
+    {
+      "df": 1,
+      "token": "destination"
+    }
+  ],
+  "destin": [
+    {
+      "df": 1,
+      "token": "destination"
+    }
+  ],
+  "destina": [
+    {
+      "df": 1,
+      "token": "destination"
+    }
+  ],
+  "destinat": [
+    {
+      "df": 1,
+      "token": "destination"
+    }
+  ],
+  "destinati": [
+    {
+      "df": 1,
+      "token": "destination"
+    }
+  ],
+  "destinatio": [
+    {
+      "df": 1,
+      "token": "destination"
+    }
+  ],
+  "destination": [
+    {
+      "df": 1,
+      "token": "destination"
+    }
+  ],
+  "dev": [
+    {
+      "df": 1,
+      "token": "development"
+    }
+  ],
+  "deve": [
+    {
+      "df": 1,
+      "token": "development"
+    }
+  ],
+  "devel": [
+    {
+      "df": 1,
+      "token": "development"
+    }
+  ],
+  "develo": [
+    {
+      "df": 1,
+      "token": "development"
+    }
+  ],
+  "develop": [
+    {
+      "df": 1,
+      "token": "development"
+    }
+  ],
+  "developm": [
+    {
+      "df": 1,
+      "token": "development"
+    }
+  ],
+  "developme": [
+    {
+      "df": 1,
+      "token": "development"
+    }
+  ],
+  "developmen": [
+    {
+      "df": 1,
+      "token": "development"
+    }
+  ],
+  "development": [
+    {
+      "df": 1,
+      "token": "development"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "df": 2,
+    "postings": "data/search/postings/re.json",
+    "token": "redirect"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "redirect_destination"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "redundancy"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "relationship"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "report"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "responsible"
+  }
+]

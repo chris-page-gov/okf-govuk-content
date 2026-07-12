@@ -1,0 +1,110 @@
+{
+  "wor": [
+    {
+      "df": 2,
+      "token": "work"
+    },
+    {
+      "df": 1,
+      "token": "working"
+    },
+    {
+      "df": 1,
+      "token": "world"
+    },
+    {
+      "df": 1,
+      "token": "world_location"
+    }
+  ],
+  "work": [
+    {
+      "df": 2,
+      "token": "work"
+    },
+    {
+      "df": 1,
+      "token": "working"
+    }
+  ],
+  "worki": [
+    {
+      "df": 1,
+      "token": "working"
+    }
+  ],
+  "workin": [
+    {
+      "df": 1,
+      "token": "working"
+    }
+  ],
+  "working": [
+    {
+      "df": 1,
+      "token": "working"
+    }
+  ],
+  "worl": [
+    {
+      "df": 1,
+      "token": "world"
+    },
+    {
+      "df": 1,
+      "token": "world_location"
+    }
+  ],
+  "world": [
+    {
+      "df": 1,
+      "token": "world"
+    },
+    {
+      "df": 1,
+      "token": "world_location"
+    }
+  ],
+  "world_": [
+    {
+      "df": 1,
+      "token": "world_location"
+    }
+  ],
+  "world_l": [
+    {
+      "df": 1,
+      "token": "world_location"
+    }
+  ],
+  "world_lo": [
+    {
+      "df": 1,
+      "token": "world_location"
+    }
+  ],
+  "world_loc": [
+    {
+      "df": 1,
+      "token": "world_location"
+    }
+  ],
+  "world_loca": [
+    {
+      "df": 1,
+      "token": "world_location"
+    }
+  ],
+  "world_locat": [
+    {
+      "df": 1,
+      "token": "world_location"
+    }
+  ],
+  "world_locati": [
+    {
+      "df": 1,
+      "token": "world_location"
+    }
+  ]
+}

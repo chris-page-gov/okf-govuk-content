@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/ho.json",
+    "token": "holidays"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ho.json",
+    "token": "homepage"
+  }
+]

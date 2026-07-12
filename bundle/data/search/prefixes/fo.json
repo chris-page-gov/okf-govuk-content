@@ -1,0 +1,82 @@
+{
+  "for": [
+    {
+      "df": 1,
+      "token": "foreign"
+    },
+    {
+      "df": 1,
+      "token": "foreign-travel-advice"
+    }
+  ],
+  "fore": [
+    {
+      "df": 1,
+      "token": "foreign"
+    },
+    {
+      "df": 1,
+      "token": "foreign-travel-advice"
+    }
+  ],
+  "forei": [
+    {
+      "df": 1,
+      "token": "foreign"
+    },
+    {
+      "df": 1,
+      "token": "foreign-travel-advice"
+    }
+  ],
+  "foreig": [
+    {
+      "df": 1,
+      "token": "foreign"
+    },
+    {
+      "df": 1,
+      "token": "foreign-travel-advice"
+    }
+  ],
+  "foreign": [
+    {
+      "df": 1,
+      "token": "foreign"
+    },
+    {
+      "df": 1,
+      "token": "foreign-travel-advice"
+    }
+  ],
+  "foreign-": [
+    {
+      "df": 1,
+      "token": "foreign-travel-advice"
+    }
+  ],
+  "foreign-t": [
+    {
+      "df": 1,
+      "token": "foreign-travel-advice"
+    }
+  ],
+  "foreign-tr": [
+    {
+      "df": 1,
+      "token": "foreign-travel-advice"
+    }
+  ],
+  "foreign-tra": [
+    {
+      "df": 1,
+      "token": "foreign-travel-advice"
+    }
+  ],
+  "foreign-trav": [
+    {
+      "df": 1,
+      "token": "foreign-travel-advice"
+    }
+  ]
+}

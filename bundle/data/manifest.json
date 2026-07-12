@@ -1,0 +1,153 @@
+{
+  "budgets": {
+    "bootstrap_compressed_bytes": 2097152,
+    "first_useful_render_p75_ms": 2500,
+    "graph_expansion_edges": 500,
+    "graph_expansion_nodes": 250,
+    "ordinary_shard_compressed_bytes": 5242880,
+    "ordinary_shard_uncompressed_safety_bytes": 67108864,
+    "search_cold_p95_ms": 1500,
+    "search_warm_p95_ms": 500,
+    "steady_browser_heap_bytes": 536870912
+  },
+  "chunks": {
+    "datasets": [
+      "data/records-0.json.gz"
+    ],
+    "publishers": [
+      "data/publishers-0.json.gz"
+    ],
+    "relationships": [
+      "data/relationships-0.json.gz"
+    ],
+    "resources": [
+      "data/resources-0.json.gz"
+    ]
+  },
+  "counts": {
+    "datasets": 14,
+    "document_types": 13,
+    "languages": 2,
+    "publishers": 6,
+    "records": 14,
+    "relationships": 16,
+    "resources": 1,
+    "schema_families": 13
+  },
+  "generated_at": "2026-07-11T23:30:00Z",
+  "indexes": {
+    "analysis": "data/analysis/overview.json",
+    "facets": "data/facets.json",
+    "graph": "data/graph.json",
+    "overview": "data/overview.json",
+    "relationship_adjacency": "data/adjacency/manifest.json",
+    "route_index": "data/routes/manifest.json",
+    "search": "data/search/manifest.json",
+    "semantic_projection": "data/semantic/manifest.json"
+  },
+  "integrity": {
+    "adjacency_shard_manifest_sha256": "671f49b6601886f4502530dc6c1279856f13f4e6ac8b3fe1cb7c2054f417e88a",
+    "algorithm": "sha256-canonical-shard-leaves-v1",
+    "leaf_count": 731,
+    "manifest_root_sha256": "0837bc713bdc36af6841f721d1777e60b0915058c8d1eeed6d3ab5b0fed4968c",
+    "record_shard_manifest_sha256": "5a8ce91a2550983193a92ae90da4324a187f6a73ab5972afec4c45b8a9b52b26",
+    "route_shard_manifest_sha256": "368b0c3cfaba258267fb75364e2900f916dec0caf360debcf826e8c6cadeb5a1",
+    "schema": "okf-data-plane-integrity.v1",
+    "schema_version": "1.0",
+    "search_shard_manifest_sha256": "d8ef23adfd965599a0938df32534f76d4cb113c2978e6dd6b862aba8c3726285"
+  },
+  "performance": {
+    "full_record_hydration": "lazy",
+    "relationship_hydration": "lazy",
+    "route_relationship_hydration": "hash-sharded adjacency",
+    "search": "static worker-compatible shards",
+    "semantic_projection": "lazy JSON-LD entity/evidence/assertion shards",
+    "startup_mode": "overview-first"
+  },
+  "schema": "okf-data-manifest.v1",
+  "schema_version": "1.0",
+  "search": {
+    "documents": 14,
+    "result_limit": 200,
+    "schema": "okf-static-search.v1",
+    "tokens": 135
+  },
+  "semantic": {
+    "assertion_nodes": 16,
+    "entity_nodes": 71,
+    "schema": "govuk-okf-semantic-projection.v1",
+    "startup": "lazy"
+  },
+  "shards": {
+    "datasets": [
+      {
+        "compressed_bytes": 3077,
+        "compression": "gzip",
+        "count": 14,
+        "first_key": "dataset/00000000-0000-4000-8000-000000000001-en",
+        "kind": "datasets",
+        "last_key": "dataset/route-fd6ef6feaa2439c773e6dba8-en",
+        "ordinal": 0,
+        "path": "data/records-0.json.gz",
+        "schema": "okf-record-shard.v1",
+        "schema_version": "1.0",
+        "sha256": "8405cddc7bf75268caead29a8a4648fa26a4c47eb452d45b8d797c4752bc78ce",
+        "snapshot": "fixture-2026-07-11",
+        "uncompressed_bytes": 18066
+      }
+    ],
+    "publishers": [
+      {
+        "compressed_bytes": 953,
+        "compression": "gzip",
+        "count": 6,
+        "first_key": "publisher/department-for-work-pensions",
+        "kind": "publishers",
+        "last_key": "publisher/uk-hydrographic-office",
+        "ordinal": 0,
+        "path": "data/publishers-0.json.gz",
+        "schema": "okf-publisher-shard.v1",
+        "schema_version": "1.0",
+        "sha256": "ce444b4bbe64314080bf8fa8f03f5afb9d74425c913ffe169eed072572a86f03",
+        "snapshot": "fixture-2026-07-11",
+        "uncompressed_bytes": 4105
+      }
+    ],
+    "relationships": [
+      {
+        "compressed_bytes": 2148,
+        "compression": "gzip",
+        "count": 16,
+        "first_key": "dataset/00000000-0000-4000-8000-000000000001-en\u0000level one taxons\u0000dataset/00000000-0000-4000-8000-000000000002-en\u0000assertion-81d56134164fc0dee7d2131065902102e45bc9339d9a012d7bce1cb0c67ab170",
+        "kind": "relationships",
+        "last_key": "dataset/route-d084b0cfcff4f595e28ad883-en\u0000redirects to\u0000dataset/route-a890bf972f04d7c0debacee6-en\u0000assertion-4d355e74a22f8a199358bdf3c3670af08d977b05672f3819f4491e2f4e3f41cb",
+        "ordinal": 0,
+        "path": "data/relationships-0.json.gz",
+        "schema": "okf-relationship-shard.v1",
+        "schema_version": "1.0",
+        "sha256": "49b4980846746ec9e3982a9c100d993e393d5e2f486a011d1d4f8d998f23baec",
+        "snapshot": "fixture-2026-07-11",
+        "uncompressed_bytes": 11915
+      }
+    ],
+    "resources": [
+      {
+        "compressed_bytes": 509,
+        "compression": "gzip",
+        "count": 1,
+        "first_key": "resource/11111111-1111-4111-8111-111111111111",
+        "kind": "resources",
+        "last_key": "resource/11111111-1111-4111-8111-111111111111",
+        "ordinal": 0,
+        "path": "data/resources-0.json.gz",
+        "schema": "okf-resource-shard.v1",
+        "schema_version": "1.0",
+        "sha256": "4b55fc8d9e0ef2d9a8d2269affc27f6fd5c0c8ba590fea933f76e0e2ac09c342",
+        "snapshot": "fixture-2026-07-11",
+        "uncompressed_bytes": 1110
+      }
+    ]
+  },
+  "snapshot": "fixture-2026-07-11",
+  "title": "What’s on GOV.UK static metadata index"
+}

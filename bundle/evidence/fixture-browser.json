@@ -1,0 +1,51 @@
+{
+  "schema": "govuk-okf-explorer-browser-evidence.v1",
+  "generated_at": "2026-07-12T08:06:06Z",
+  "snapshot": "fixture-2026-07-11",
+  "artifact_tier": "representative_fixture",
+  "publication_ready": false,
+  "overall_status": "blocked",
+  "browser": {
+    "detected": "Google Chrome 150.0.7871.115",
+    "automation": "Chrome DevTools Protocol using Node built-ins",
+    "execution_status": "not_run"
+  },
+  "implemented_checks": [
+    "accessibility-tree landmarks",
+    "accessible names and duplicate IDs",
+    "keyboard skip focus without route-fragment mutation",
+    "320 CSS-pixel reflow",
+    "reduced-motion and forced-colour media",
+    "computed contrast subset",
+    "canonical hash routes and legacy route-query aliases",
+    "GitHub Pages 404 query/hash preservation",
+    "gzip route-index, record and adjacency hydration over HTTP",
+    "bootstrap bytes, first useful render, cold/warm search, route hydration and JavaScript heap budgets"
+  ],
+  "completed_non_browser_checks": {
+    "command": "npm run check --prefix explorer",
+    "tests": 26,
+    "passed": 26,
+    "failed": 0
+  },
+  "blockers": [
+    {
+      "id": "BROWSER-LOCALHOST-PERMISSION",
+      "detail": "The sandbox rejected the ephemeral 127.0.0.1 listener with EPERM. The required escalation was then refused because the usage reviewer still reported the Codex usage limit as exhausted.",
+      "retry": "npm run test:browser --prefix explorer"
+    },
+    {
+      "id": "AXE-DEPENDENCY-INSTALL",
+      "detail": "Installation of pinned Playwright and axe packages was refused by the same usage reviewer. No indirect installation workaround was attempted.",
+      "retry": "Install and lock @playwright/test and @axe-core/playwright when authorised, then add the independent axe pass."
+    }
+  ],
+  "full_release_gates": {
+    "automated_fixture_browser_run": "blocked",
+    "axe": "not_run_dependency_install_blocked",
+    "full_corpus_browser_measurement": "not_run",
+    "accessibility_expert_review": "not_run",
+    "screen_reader_review": "not_run",
+    "participant_research": "not_authorised"
+  }
+}

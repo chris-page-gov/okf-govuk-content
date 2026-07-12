@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/go.json",
+    "token": "gov.uk"
+  },
+  {
+    "df": 6,
+    "postings": "data/search/postings/go.json",
+    "token": "government"
+  }
+]

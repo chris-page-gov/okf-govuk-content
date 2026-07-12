@@ -1,0 +1,183 @@
+{
+  "document_type": [
+    {
+      "count": 2,
+      "value": "taxon"
+    },
+    {
+      "count": 1,
+      "value": "document_collection"
+    },
+    {
+      "count": 1,
+      "value": "external_content"
+    },
+    {
+      "count": 1,
+      "value": "guidance"
+    },
+    {
+      "count": 1,
+      "value": "homepage"
+    },
+    {
+      "count": 1,
+      "value": "mainstream_browse_page"
+    },
+    {
+      "count": 1,
+      "value": "organisation"
+    },
+    {
+      "count": 1,
+      "value": "redirect"
+    },
+    {
+      "count": 1,
+      "value": "redirect_destination"
+    },
+    {
+      "count": 1,
+      "value": "step_by_step_nav"
+    },
+    {
+      "count": 1,
+      "value": "transaction"
+    },
+    {
+      "count": 1,
+      "value": "travel_advice"
+    },
+    {
+      "count": 1,
+      "value": "world_location"
+    }
+  ],
+  "language": [
+    {
+      "count": 13,
+      "value": "en"
+    },
+    {
+      "count": 1,
+      "value": "cy"
+    }
+  ],
+  "lifecycle": [
+    {
+      "count": 13,
+      "value": "published"
+    },
+    {
+      "count": 1,
+      "value": "redirect"
+    }
+  ],
+  "publisher": [
+    {
+      "count": 7,
+      "value": "Publisher not available from admitted source"
+    },
+    {
+      "count": 2,
+      "value": "Government Digital Service"
+    },
+    {
+      "count": 1,
+      "value": "Department for Work and Pensions"
+    },
+    {
+      "count": 1,
+      "value": "Driver and Vehicle Standards Agency"
+    },
+    {
+      "count": 1,
+      "value": "Foreign, Commonwealth & Development Office"
+    },
+    {
+      "count": 1,
+      "value": "The National Archives"
+    },
+    {
+      "count": 1,
+      "value": "UK Hydrographic Office"
+    }
+  ],
+  "schema": "okf-facets.v1",
+  "schema_name": [
+    {
+      "count": 2,
+      "value": "taxon"
+    },
+    {
+      "count": 1,
+      "value": "document_collection"
+    },
+    {
+      "count": 1,
+      "value": "external_content"
+    },
+    {
+      "count": 1,
+      "value": "homepage"
+    },
+    {
+      "count": 1,
+      "value": "mainstream_browse_page"
+    },
+    {
+      "count": 1,
+      "value": "organisation"
+    },
+    {
+      "count": 1,
+      "value": "publication"
+    },
+    {
+      "count": 1,
+      "value": "redirect"
+    },
+    {
+      "count": 1,
+      "value": "step_by_step_nav"
+    },
+    {
+      "count": 1,
+      "value": "transaction"
+    },
+    {
+      "count": 1,
+      "value": "travel_advice"
+    },
+    {
+      "count": 1,
+      "value": "unknown"
+    },
+    {
+      "count": 1,
+      "value": "world_location"
+    }
+  ],
+  "source_membership": [
+    {
+      "count": 10,
+      "value": "fixture-content-api"
+    },
+    {
+      "count": 1,
+      "value": "fixture-organisations-api"
+    },
+    {
+      "count": 1,
+      "value": "fixture-search-api"
+    },
+    {
+      "count": 1,
+      "value": "redirect-destination"
+    },
+    {
+      "count": 1,
+      "value": "structured-linked-content"
+    }
+  ]
+}

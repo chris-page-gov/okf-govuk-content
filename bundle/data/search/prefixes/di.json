@@ -1,0 +1,80 @@
+{
+  "dig": [
+    {
+      "df": 2,
+      "token": "digital"
+    }
+  ],
+  "digi": [
+    {
+      "df": 2,
+      "token": "digital"
+    }
+  ],
+  "digit": [
+    {
+      "df": 2,
+      "token": "digital"
+    }
+  ],
+  "digita": [
+    {
+      "df": 2,
+      "token": "digital"
+    }
+  ],
+  "digital": [
+    {
+      "df": 2,
+      "token": "digital"
+    }
+  ],
+  "dis": [
+    {
+      "df": 1,
+      "token": "discovered"
+    }
+  ],
+  "disc": [
+    {
+      "df": 1,
+      "token": "discovered"
+    }
+  ],
+  "disco": [
+    {
+      "df": 1,
+      "token": "discovered"
+    }
+  ],
+  "discov": [
+    {
+      "df": 1,
+      "token": "discovered"
+    }
+  ],
+  "discove": [
+    {
+      "df": 1,
+      "token": "discovered"
+    }
+  ],
+  "discover": [
+    {
+      "df": 1,
+      "token": "discovered"
+    }
+  ],
+  "discovere": [
+    {
+      "df": 1,
+      "token": "discovered"
+    }
+  ],
+  "discovered": [
+    {
+      "df": 1,
+      "token": "discovered"
+    }
+  ]
+}
