@@ -13,6 +13,7 @@ from govuk_okf.acquisition import (
     HostLimiter,
     build_candidate_ledger,
     candidate_key,
+    dedupe_pending_paths,
     expand_candidate_records,
     merge_records,
     normalise_url,
@@ -20,11 +21,18 @@ from govuk_okf.acquisition import (
     sanitise_content_api,
     search_partition_value,
     search_result_record,
+    search_source_identity,
     write_jsonl_gzip_shards,
 )
 
 
 class AcquisitionTests(unittest.TestCase):
+    def test_navigation_queue_is_stably_deduplicated_against_visited_paths(self) -> None:
+        queue = dedupe_pending_paths(["/a", "/b", "/a", "", "/b"], {"/b"})
+        self.assertEqual(["/a", ""], list(queue))
+        with self.assertRaises(AcquisitionError):
+            dedupe_pending_paths(["https://example.test/path"], set())
+
     def test_search_partition_value_accepts_scalar_and_documented_slug_object(self) -> None:
         self.assertEqual("guidance", search_partition_value({"value": "guidance"}))
         self.assertEqual("aaib_report", search_partition_value({"value": {"slug": "aaib_report"}}))
@@ -72,13 +80,42 @@ class AcquisitionTests(unittest.TestCase):
             "source_memberships": ["sitemap"],
         }
         search = search_result_record(
-            {"link": "/example", "title": "Better title", "description": "Summary", "content_store_document_type": "guidance"},
+            {"_id": "/example", "link": "/example", "title": "Better title", "description": "Summary", "content_store_document_type": "guidance"},
             "search-ascending",
             "2026-07-11T00:00:00+00:00",
         )
         merged = merge_records(sitemap, search)
         self.assertEqual("guidance", merged["document_type"])
         self.assertEqual(["search-ascending", "sitemap"], merged["source_memberships"])
+
+    def test_search_source_rows_remain_distinct_when_canonical_route_is_shared(self) -> None:
+        first = search_result_record(
+            {
+                "_id": "c1a9b1c4-ad96-4c2c-ad5f-709881c6c1ce",
+                "link": "https://www.southnorfolkandbroadland.gov.uk/",
+                "title": "Broadland District Council",
+                "content_store_document_type": "external_content",
+            },
+            "search-ascending",
+            "2026-07-12T00:00:00Z",
+        )
+        second = search_result_record(
+            {
+                "_id": "9611a90a-4fbe-43e4-bf5d-8badc63fda5c",
+                "link": "https://www.southnorfolkandbroadland.gov.uk/",
+                "title": "South Norfolk District Council",
+                "content_store_document_type": "external_content",
+            },
+            "search-descending",
+            "2026-07-12T00:00:01Z",
+        )
+        self.assertNotEqual(first["search_index_id"], second["search_index_id"])
+        self.assertEqual(first["canonical_url"], second["canonical_url"])
+        self.assertEqual(2, len(merge_records(first, second)["search_index_ids"]))
+
+    def test_search_source_identity_fails_closed_when_missing(self) -> None:
+        with self.assertRaises(AcquisitionError):
+            search_source_identity({"link": "/example"})
 
     def test_content_api_allowlist_drops_body_fields_and_keeps_attachment_metadata(self) -> None:
         record = sanitise_content_api(

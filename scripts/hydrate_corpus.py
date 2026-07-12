@@ -13,7 +13,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from govuk_okf.hydration import CorpusHydrator, HydrationError  # noqa: E402
-from govuk_okf.closure_hydration import CompleteCorpusHydrator  # noqa: E402
+from govuk_okf.closure_hydration import (  # noqa: E402
+    DEFAULT_RENDERED_SCAN_LIMIT,
+    CompleteCorpusHydrator,
+)
 
 
 def main() -> int:
@@ -28,7 +31,15 @@ def main() -> int:
     parser.add_argument("--request-limit", type=int, help="bounded development run; never exportable as complete")
     parser.add_argument("--skip-rendered-gap", action="store_true", help="development only: omit transient rendered-link closure")
     parser.add_argument("--queue-ceiling", type=int, default=1_500_000)
-    parser.add_argument("--rendered-scan-limit", type=int, default=150_000)
+    parser.add_argument(
+        "--rendered-scan-limit",
+        type=int,
+        default=DEFAULT_RENDERED_SCAN_LIMIT,
+        help=(
+            "deterministic rendered-link sample ceiling "
+            f"(default: {DEFAULT_RENDERED_SCAN_LIMIT})"
+        ),
+    )
     parser.add_argument("--no-export", action="store_true")
     args = parser.parse_args()
     reconciliation = args.reconciliation or ROOT / "corpus" / "reconciliation" / f"{args.label}.json"

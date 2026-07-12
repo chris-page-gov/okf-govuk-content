@@ -67,7 +67,7 @@ sources:
     acquisition: transient metadata/link extraction; body text discarded
   - id: publishing-content-schemas
     family: official_contract
-    url: https://github.com/alphagov/publishing-api/tree/main/content_schemas
+    url: https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas
     role: Version-pinned source schema and document-type contract.
     coverage_claim: schema_contract_not_public_content_enumerator
     authentication: none
@@ -134,4 +134,3 @@ sources:
     authentication: none
     observed_page_size: 20
     observed_next_link: false
-

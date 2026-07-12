@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -20,6 +21,7 @@ from govuk_okf.webprobe import Probe, fetch_probe, public_result  # noqa: E402
 
 OUTPUT = ROOT / "research" / "source-preflight.json"
 PLAN_PREFLIGHT = ROOT / "planning" / "PLAN_SOURCE_PREFLIGHT.json"
+PLAN = ROOT / "planning" / "AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md"
 
 OFFICIAL_PROBES = [
     Probe("content-api-home", "https://content-api.publishing.service.gov.uk/", "contract"),
@@ -128,6 +130,7 @@ def extract_facts(result: dict[str, object], body: bytes) -> dict[str, object]:
 
 def run_live(include_plan: bool) -> dict[str, object]:
     started = datetime.now(timezone.utc)
+    previous = json.loads(OUTPUT.read_text(encoding="utf-8")) if OUTPUT.is_file() else {}
     official = []
     last_host = ""
     for probe in OFFICIAL_PROBES:
@@ -148,8 +151,7 @@ def run_live(include_plan: bool) -> dict[str, object]:
             result = public_result(fetch_probe(probe, attempts=2))
             result["expected_identity_status"] = source["url_identity_preflight"]
             plan_results.append(result)
-    elif OUTPUT.is_file():
-        previous = json.loads(OUTPUT.read_text(encoding="utf-8"))
+    elif previous:
         plan_results = previous.get("plan_sources", [])
 
     ended = datetime.now(timezone.utc)
@@ -159,6 +161,7 @@ def run_live(include_plan: bool) -> dict[str, object]:
         "completed_at": ended.isoformat(),
         "method": "bounded GET with redirects, identified user agent, retries and retained response hashes",
         "official_sources": official,
+        "plan_source_history": previous.get("plan_source_history", {}),
         "plan_sources": plan_results,
         "summary": {
             "official_total": len(official),
@@ -177,9 +180,16 @@ def validate(document: dict[str, object]) -> list[str]:
     plan = document.get("plan_sources", [])
     if len(official) != len(OFFICIAL_PROBES):
         errors.append(f"official probe count is {len(official)}, expected {len(OFFICIAL_PROBES)}")
-    expected_plan = len(json.loads(PLAN_PREFLIGHT.read_text(encoding="utf-8"))["sources"])
+    plan_preflight = json.loads(PLAN_PREFLIGHT.read_text(encoding="utf-8"))
+    expected_sources = plan_preflight["sources"]
+    expected_plan = len(expected_sources)
     if len(plan) != expected_plan:
         errors.append(f"plan probe count is {len(plan)}, expected {expected_plan}")
+    if plan_preflight.get("plan_sha256") != hashlib.sha256(PLAN.read_bytes()).hexdigest():
+        errors.append("plan-source preflight hash does not match the implementation plan")
+    expected_urls = [source["url"] for source in expected_sources]
+    if [item.get("requested_url") for item in plan if isinstance(item, dict)] != expected_urls:
+        errors.append("active plan probe URLs do not match PLAN_SOURCE_PREFLIGHT.json")
     ids = {item.get("id") for item in official if isinstance(item, dict)}
     missing = {probe.id for probe in OFFICIAL_PROBES} - ids
     if missing:
@@ -187,6 +197,34 @@ def validate(document: dict[str, object]) -> list[str]:
     for item in [*official, *plan]:
         if not isinstance(item, dict) or not item.get("retrieved_at") or len(str(item.get("sha256", ""))) != 64:
             errors.append(f"invalid probe record: {item.get('id') if isinstance(item, dict) else '<non-object>'}")
+    history = document.get("plan_source_history", {})
+    if not isinstance(history, dict) or history.get("preserved_original_result_count") != 93:
+        errors.append("the original 93-result plan preflight history is not preserved")
+    else:
+        superseded = history.get("superseded_results", [])
+        if len(superseded) != 1 or "DH_KEY_TOO_SMALL" not in superseded[0].get("error", ""):
+            errors.append("the superseded CMU strict-TLS failure is not preserved")
+        else:
+            superseded_by_id = {item["id"]: item for item in superseded}
+            reconstructed = [superseded_by_id.get(item.get("id"), item) for item in plan]
+            original_digest = hashlib.sha256(
+                json.dumps(
+                    reconstructed,
+                    ensure_ascii=False,
+                    sort_keys=True,
+                    separators=(",", ":"),
+                ).encode("utf-8")
+            ).hexdigest()
+            if original_digest != history.get("original_results_sha256"):
+                errors.append("the reconstructed original 93 plan results do not match their frozen digest")
+        restrictions = history.get("access_restrictions", [])
+        if not any(
+            "researchgate.net" in item.get("url", "")
+            and item.get("publication_record_result") == "HTTP 403 Forbidden"
+            and item.get("exact_author_pdf_result") == "HTTP 403 Forbidden"
+            for item in restrictions
+        ):
+            errors.append("the ResearchGate publication/PDF access restriction is not preserved")
     return errors
 
 

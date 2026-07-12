@@ -16,7 +16,7 @@ from .rendered_gap import RobotsPolicy, parse_robots, rendered_observation
 from .util import canonical_json_bytes, pretty_json
 
 ROBOTS_URL = "https://www.gov.uk/robots.txt"
-DEFAULT_RENDERED_SCAN_LIMIT = 150_000
+DEFAULT_RENDERED_SCAN_LIMIT = 75_000
 
 
 class CompleteCorpusHydrator(CorpusHydrator):

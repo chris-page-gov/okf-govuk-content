@@ -1153,7 +1153,7 @@ This is a URL-preflighted starting set, not the final verified bibliography. The
 57. Wei et al., [BrowseComp](https://openai.com/index/browsecomp/): construction, contamination controls, grader and limitations for difficult browsing tasks.
 58. Yoran et al., [AssistantBench](https://aclanthology.org/2024.emnlp-main.505/), EMNLP 2024: Abstract and §§2–4 on realistic time-consuming web tasks and evaluation.
 59. Bates, [The design of browsing and berrypicking techniques for the online search interface](https://pages.gseis.ucla.edu/faculty/bates/articles/berrypicking.pdf), *Online Review* 13(5), 1989, pp. 407–424: model and interface implications.
-60. Pirolli and Card, [Information Foraging](https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf), 1999: information-patch, scent and cost/benefit sections.
+60. Pirolli and Card, [Information Foraging](https://api.crossref.org/works/10.1037%2F0033-295X.106.4.643), *Psychological Review* 106(4), 1999, pp. 643–675, DOI `10.1037/0033-295X.106.4.643`: Crossref bibliographic identity only. The inaccessible full text is not release evidence for section-level claims.
 61. GOV.UK Service Manual, [Understanding users who do not use digital services](https://www.gov.uk/service-manual/user-research/understanding-users-who-dont-use-digital-services): starting personas and service-specific validation; GOV.UK, [public-sector accessibility requirements](https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps): scope and compliance; GDS, [navigation user research](https://userresearch.blog.gov.uk/2017/06/29/how-we-researched-the-new-navigation-on-gov-uk/): task-based iterative method.
 
 ## 23. Short unattended launch instruction

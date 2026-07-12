@@ -156,13 +156,17 @@ class ClosingFixture:
                                 {
                                     "order": "public_timestamp",
                                     "returned_rows": 4,
+                                    "unique_source_rows": 4,
                                     "unique_urls": 4,
+                                    "canonical_alias_rows": 0,
                                     "closed": True,
                                 },
                                 {
                                     "order": "-public_timestamp",
                                     "returned_rows": 4,
+                                    "unique_source_rows": 4,
                                     "unique_urls": 4,
+                                    "canonical_alias_rows": 0,
                                     "closed": True,
                                 },
                             ],
@@ -434,6 +438,24 @@ class ClosingTests(unittest.TestCase):
             fixture.t1_reconciliation.write_text(json.dumps(reconciliation), encoding="utf-8")
             with self.assertRaisesRegex(ClosingError, "not bound to its reconciliation digest"):
                 fixture.closing().prepare()
+
+    def test_t1_search_proof_distinguishes_source_rows_from_canonical_aliases(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = ClosingFixture(Path(directory))
+            reconciliation = json.loads(fixture.t1_reconciliation.read_text(encoding="utf-8"))
+            for row in reconciliation["search_partition_proofs"][0]["passes"]:
+                row["unique_urls"] = 3
+                row["canonical_alias_rows"] = 1
+                row["identity_sha256"] = "a" * 64
+            fixture.t1_reconciliation.write_text(json.dumps(reconciliation), encoding="utf-8")
+            fixture.closing(label="T1-alias-proof").prepare()
+
+            reconciliation["search_partition_proofs"][0]["passes"][1][
+                "canonical_alias_rows"
+            ] = 0
+            fixture.t1_reconciliation.write_text(json.dumps(reconciliation), encoding="utf-8")
+            with self.assertRaisesRegex(ClosingError, "did not close"):
+                fixture.closing(label="T1-invalid-alias-proof").prepare()
 
     def test_exact_census_match_does_not_reuse_incomplete_t0_hydration(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

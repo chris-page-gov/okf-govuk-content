@@ -111,6 +111,21 @@ def search_partition_value(option: Any) -> str:
     return value
 
 
+def dedupe_pending_paths(paths: Iterable[Any], visited: set[str]) -> collections.deque[str]:
+    """Return a stable navigation queue without visited or duplicate paths."""
+
+    queue: collections.deque[str] = collections.deque()
+    queued: set[str] = set()
+    for raw in paths:
+        if not isinstance(raw, str) or (raw and not raw.startswith("/")):
+            raise AcquisitionError("navigation checkpoint contains an invalid path")
+        if raw in visited or raw in queued:
+            continue
+        queue.append(raw)
+        queued.add(raw)
+    return queue
+
+
 @dataclass
 class HostLimiter:
     requests_per_second: float
@@ -414,12 +429,31 @@ def candidate_key(
     return hashlib.sha256(f"{entity_class}\0{identity}\0{locale}\0{url}".encode("utf-8")).hexdigest()
 
 
+def search_source_identity(result: dict[str, Any]) -> str:
+    """Return Search API's source-row identity without confusing it with a route.
+
+    GOV.UK Search can legitimately index several source rows with the same
+    public link (for example two councils sharing one website).  ``_id`` is an
+    always-returned Search field and is therefore the identity used to prove
+    paging closure; canonical links are counted separately for the public
+    route projection.
+    """
+
+    value = result.get("_id")
+    if not isinstance(value, str) or not value or len(value) > 4096:
+        raise AcquisitionError("Search result has no bounded source-row identity")
+    if any(ord(character) < 32 for character in value):
+        raise AcquisitionError("Search result source-row identity contains control characters")
+    return value
+
+
 def search_result_record(
     result: dict[str, Any], membership: str, evidence: dict[str, Any] | str, result_index: int = 0
 ) -> dict[str, Any]:
     if isinstance(evidence, str):
         evidence = {"retrieved_at": evidence, "requested_url": SEARCH_URL, "sha256": None}
     retrieved_at = str(evidence["retrieved_at"])
+    search_index_id = search_source_identity(result)
     url = normalise_url(str(result.get("link") or result.get("url") or result.get("_id") or ""))
     host = urlparse(url).netloc
     links: dict[str, list[dict[str, Any]]] = {}
@@ -432,6 +466,8 @@ def search_result_record(
         "candidate_key": candidate_key(url, "en", "external_boundary" if host != "www.gov.uk" else "route"),
         "entity_class": "external_boundary" if host != "www.gov.uk" else "route",
         "source_native_id": url,
+        "search_index_id": search_index_id,
+        "search_index_ids": [search_index_id],
         "source_id": "search-api-v1",
         "source_memberships": [membership],
         "coverage_disposition": "represented",
@@ -506,6 +542,18 @@ def merge_records(existing: dict[str, Any], incoming: dict[str, Any]) -> dict[st
             merged[key] = value
     merged["source_memberships"] = memberships
     merged["candidate_key"] = existing["candidate_key"]
+    merged["search_index_ids"] = sorted(
+        {
+            str(value)
+            for item in (existing, incoming)
+            for value in (
+                item.get("search_index_ids")
+                if isinstance(item.get("search_index_ids"), list)
+                else [item.get("search_index_id")]
+            )
+            if value
+        }
+    )
     observations: dict[bytes, dict[str, Any]] = {}
     for item in (existing, incoming):
         supplied = item.get("evidence_observations")
@@ -809,6 +857,7 @@ class SnapshotBuilder:
         self.source_events.append({"source": "search-api-v1-count-start", **count_evidence, "reported_total": total_start})
         records: dict[str, dict[str, Any]] = {}
         orders = ["public_timestamp", "-public_timestamp"] if opposing else ["public_timestamp"]
+        global_leaf_ids: set[str] = set()
         global_leaf_urls: set[str] = set()
         if record_limit is not None:
             leaves = [{"value": "__sample__", "expected": min(total_start, record_limit), "filter": None}]
@@ -887,6 +936,7 @@ class SnapshotBuilder:
             for order in orders:
                 pass_name = "ascending" if not order.startswith("-") else "descending"
                 returned = 0
+                pass_ids: set[str] = set()
                 pass_urls: set[str] = set()
                 for start in range(0, expected, SEARCH_PAGE_SIZE):
                     page_count = min(SEARCH_PAGE_SIZE, expected - start)
@@ -916,8 +966,9 @@ class SnapshotBuilder:
                             evidence,
                             result_index,
                         )
-                        key = record["canonical_url"]
-                        pass_urls.add(key)
+                        key = str(record["search_index_id"])
+                        pass_ids.add(key)
+                        pass_urls.add(str(record["canonical_url"]))
                         records[key] = merge_records(records[key], record) if key in records else record
                     self.source_events.append(
                         {
@@ -934,35 +985,46 @@ class SnapshotBuilder:
                         )
                 if returned != expected:
                     raise AcquisitionError(f"Search partition {value} did not close: {returned} != {expected}")
-                if len(pass_urls) != expected:
+                if len(pass_ids) != expected:
                     raise AcquisitionError(
-                        f"Search partition {value} {pass_name} pass repeated identities: "
-                        f"{len(pass_urls)} unique != {expected} returned"
+                        f"Search partition {value} {pass_name} pass repeated source-row identities: "
+                        f"{len(pass_ids)} unique != {expected} returned"
                     )
-                opposing_sets.append(pass_urls)
+                opposing_sets.append(pass_ids)
                 proof["passes"].append(
                     {
                         "order": order,
                         "returned_rows": returned,
+                        "unique_source_rows": len(pass_ids),
                         "unique_urls": len(pass_urls),
-                        "identity_sha256": hashlib.sha256("\n".join(sorted(pass_urls)).encode("utf-8")).hexdigest(),
+                        "canonical_alias_rows": len(pass_ids) - len(pass_urls),
+                        "identity_sha256": hashlib.sha256("\n".join(sorted(pass_ids)).encode("utf-8")).hexdigest(),
+                        "canonical_url_sha256": hashlib.sha256(
+                            "\n".join(sorted(pass_urls)).encode("utf-8")
+                        ).hexdigest(),
                         "closed": True,
                     }
                 )
             if len(opposing_sets) == 2 and opposing_sets[0] != opposing_sets[1]:
                 raise AcquisitionError(f"Search partition {value} opposing passes returned different identities")
-            leaf_urls = opposing_sets[0] if opposing_sets else set()
-            overlap = global_leaf_urls & leaf_urls
+            leaf_ids = opposing_sets[0] if opposing_sets else set()
+            overlap = global_leaf_ids & leaf_ids
             if overlap:
                 raise AcquisitionError(
-                    f"Search partitions are not disjoint; {value} repeats {len(overlap)} identities"
+                    f"Search partitions are not disjoint; {value} repeats {len(overlap)} source-row identities"
                 )
-            global_leaf_urls.update(leaf_urls)
+            canonical_urls = {
+                str(records[source_id]["canonical_url"])
+                for source_id in leaf_ids
+            }
+            proof["canonical_overlap_with_prior_partitions"] = len(global_leaf_urls & canonical_urls)
+            global_leaf_ids.update(leaf_ids)
+            global_leaf_urls.update(canonical_urls)
             proof["sibling_disjoint"] = True
             self.search_partition_proofs.append(proof)
-        if record_limit is None and len(global_leaf_urls) != total_start:
+        if record_limit is None and len(global_leaf_ids) != total_start:
             raise AcquisitionError(
-                f"Search partition tree did not reconcile globally: {len(global_leaf_urls)} != {total_start}"
+                f"Search partition tree did not reconcile globally: {len(global_leaf_ids)} != {total_start}"
             )
         count_end_body, count_end_evidence = request_bytes(count_url, limiter=self.search_limiter)
         total_end = int(json.loads(count_end_body)["total"])
@@ -1107,16 +1169,18 @@ class SnapshotBuilder:
     def enumerate_navigation(self, limit: int | None = None) -> dict[str, dict[str, Any]]:
         checkpoint_path = self.cache / "navigation-checkpoint.json"
         records_path = self.cache / "navigation-records.jsonl.gz"
-        queue = collections.deque(CURATED_CONTENT_PATHS)
         visited: set[str] = set()
+        queue = dedupe_pending_paths(CURATED_CONTENT_PATHS, visited)
         records: dict[str, dict[str, Any]] = {}
         if checkpoint_path.is_file() and records_path.is_file():
             checkpoint = json.loads(checkpoint_path.read_text(encoding="utf-8"))
-            queue = collections.deque(checkpoint.get("queue", []))
             visited = set(checkpoint.get("visited", []))
+            queue = dedupe_pending_paths(checkpoint.get("queue", []), visited)
             records = {record["canonical_url"]: record for record in read_jsonl_gzip(records_path)}
+        queued = set(queue)
         while queue and (limit is None or len(visited) < limit):
             path = queue.popleft()
+            queued.discard(path)
             if path in visited:
                 continue
             url = CONTENT_API_ROOT + path
@@ -1171,8 +1235,9 @@ class SnapshotBuilder:
                     candidate = str(item.get("base_path") or item.get("api_path") or "")
                     if candidate.startswith("/api/content"):
                         candidate = candidate[len("/api/content") :] or ""
-                    if candidate.startswith("/") and candidate not in visited:
+                    if candidate.startswith("/") and candidate not in visited and candidate not in queued:
                         queue.append(candidate)
+                        queued.add(candidate)
             self.source_events.append({"source": "content-api-navigation", "path": path, **evidence})
             if len(visited) % 100 == 0:
                 checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1222,11 +1287,15 @@ class SnapshotBuilder:
                     )
             if linked:
                 record.setdefault("links", {})["organisations"] = linked
+        source_collections = {
+            "search": search,
+            "sitemap": sitemap,
+            "organisations": organisations,
+            "navigation": navigation,
+        }
         source_sets = {
-            "search": set(search),
-            "sitemap": set(sitemap),
-            "organisations": set(organisations),
-            "navigation": set(navigation),
+            name: {str(record["canonical_url"]) for record in collection.values()}
+            for name, collection in source_collections.items()
         }
         # Publication envelopes are merged by route and locale for downstream
         # compilation, while the accounting ledger below retains separate
@@ -1279,6 +1348,7 @@ class SnapshotBuilder:
             "publication_records": publication_count,
             "entity_class_counts": dict(sorted(collections.Counter(str(record.get("entity_class")) for record in candidate_ledger.values()).items())),
             "source_counts": {key: len(value) for key, value in source_sets.items()},
+            "source_row_counts": {key: len(value) for key, value in source_collections.items()},
             "set_differences": {
                 "sitemap_only": len(source_sets["sitemap"] - source_sets["search"]),
                 "search_only": len(source_sets["search"] - source_sets["sitemap"]),
