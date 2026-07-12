@@ -1,0 +1,68 @@
+{
+  "citation_verification_passed": true,
+  "deterministic_boundary": "Transport, redirect, identity marker, locator, excerpt, hash, coverage, and binding checks are deterministic. Semantic support is accepted only from a separately recorded manual review bound to the exact claim and fetched document hashes.",
+  "failures": [],
+  "input_digests": {
+    "citations_sha256": "27aad185541e60cc48a65a3991117a78790dd4eaf92c3e3ea51addc0304de55c",
+    "claim_reviews_sha256": "ad0b024f1a539521ce527169de078d3370ca3237216e93562b5d528c2e130193",
+    "claims_sha256": "5f5cda0adb4cbcd1f9cf20bb5833268c38a3079002e13b4cdcfdc790bf867597",
+    "evidence_sha256": "bc497eba231a6c6582180610448c1d33a535505bf04467fecc7fb306aa14221c",
+    "policy_sha256": "8920891a060bc1d6ffdc586bcce665c18f88d518e41e237199a2ba296438758a",
+    "reviews_sha256": "ab19c80d5fdd894e6dc420071e61bbac037b48a4e75590b0624cd6bd3b2abe7b",
+    "waivers_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "schema_version": "1.0",
+  "snapshot_id": "fixture-2026-07-11",
+  "source_access_history": [
+    {
+      "checked_at": "2026-07-11T23:21:00Z",
+      "constraint": "The CMU ACT-R host failed safe Python/OpenSSL negotiation with DH_KEY_TOO_SMALL. TLS policy was not weakened.",
+      "original_url": "https://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/280uir-1999-05-pirolli.pdf",
+      "resolution": "Use the HTTPS ResearchGate publication record and author-provided full-text copy, retaining DOI 10.1037/0033-295X.106.4.643 for identity."
+    },
+    {
+      "checked_at": "2026-07-12T07:18:36Z",
+      "constraint": "The secure ResearchGate publication record returned HTTP 403 to three bounded identified verifier attempts; a separate strict-TLS request to the exact author-uploaded PDF also returned HTTP 403. No anti-bot bypass was attempted.",
+      "original_url": "https://www.researchgate.net/publication/229101074_Information_Foraging",
+      "resolution": "The author-uploaded copy and DOI identity remain documented, but the two dependent released citations stay blocked until a public reproducible copy can be fetched under normal access controls. TLS and access controls must not be weakened."
+    },
+    {
+      "checked_at": "2026-07-12T07:34:00Z",
+      "constraint": "The original full text remains inaccessible under safe reproducible transport, so it cannot support section-level release claims.",
+      "original_url": "https://www.researchgate.net/publication/229101074_Information_Foraging",
+      "resolution": "Use the strict-TLS Crossref DOI record only for title, authors, journal, publication date, pages, publisher and DOI identity; do not infer full-text content."
+    },
+    {
+      "checked_at": "2026-07-12T07:38:00Z",
+      "constraint": "The two National Archives HTML licensing URLs presented a self-signed certificate in the Python default strict chain during three bounded verifier attempts.",
+      "original_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "resolution": "Use The National Archives official CDN OGL user guidance PDF under strict TLS; preserve the HTML transport failure and do not weaken certificate verification."
+    },
+    {
+      "checked_at": "2026-07-12T07:38:00Z",
+      "constraint": "The OpenAI BrowseComp article returned HTTP 403 to the identified verifier.",
+      "original_url": "https://openai.com/index/browsecomp/",
+      "resolution": "Use the official cdn.openai.com BrowseComp paper under strict TLS; do not attempt an access-control bypass."
+    },
+    {
+      "checked_at": "2026-07-12T07:41:00Z",
+      "constraint": "The National Archives official CDN OGL guidance fallback presented the same self-signed certificate chain to Python default strict verification.",
+      "original_url": "https://cdn.nationalarchives.gov.uk/documents/information-management/ogl-user-guidance.pdf",
+      "resolution": "Use the current GOV.UK Knowledge Asset Commercialisation Guide sections 7.5 and 7.6 for the OGL default, characteristics and exclusions; retain all National Archives transport failures and do not weaken TLS."
+    }
+  ],
+  "summary": {
+    "blocking_failures": 0,
+    "citations_failed": 0,
+    "citations_passed": 171,
+    "citations_waived_non_dependent": 0,
+    "joint_claim_reviews_failed": 0,
+    "joint_claim_reviews_passed": 40,
+    "joint_claim_reviews_required": 40,
+    "material_claims": 48,
+    "released_citations": 171,
+    "released_claims": 109,
+    "unique_sources": 101
+  },
+  "verified_at": "2026-07-12T07:54:31Z"
+}

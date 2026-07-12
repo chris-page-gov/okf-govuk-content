@@ -1,0 +1,2430 @@
+{
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "government design principles"
+      ],
+      "labels": [
+        "Government Design Principles"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Government Design Principles"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/guidance/government-design-principles",
+      "schema_version": "1.0",
+      "source_id": "SRC-013025DEA91A4478",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "writing user stories"
+      ],
+      "labels": [
+        "writing user stories"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "writing user stories"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories",
+      "schema_version": "1.0",
+      "source_id": "SRC-01DAECA314662F7C",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "citation_locator_overrides": {
+        "MCP Resources specification": {
+          "kind": "heading_text_fingerprint",
+          "value": "Resources"
+        }
+      },
+      "expected_hosts": [
+        "modelcontextprotocol.io"
+      ],
+      "expected_identity_terms": [
+        "mcp resources specification"
+      ],
+      "labels": [
+        "MCP Resources specification"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "Resources"
+      },
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Resources"
+      },
+      "publisher": "Model Context Protocol project",
+      "requested_url": "https://modelcontextprotocol.io/specification/2025-11-25/server/resources",
+      "schema_version": "1.0",
+      "source_id": "SRC-0327381847788538",
+      "version_or_commit": "2025-11-25"
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "gov search quality metrics",
+        "search quality metrics",
+        "search quality metrics"
+      ],
+      "labels": [
+        "GOV.UK Search Quality Metrics",
+        "Search Quality Metrics",
+        "search-quality metrics"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GOV.UK Search Quality Metrics"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/repos/search-api/search-quality-metrics.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-038F4C789B38AAA0",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "data.europa.eu"
+      ],
+      "expected_identity_terms": [
+        "sparql interface"
+      ],
+      "labels": [
+        "SPARQL interface"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "SPARQL interface"
+      },
+      "publisher": "Publications Office of the European Union",
+      "requested_url": "https://data.europa.eu/en/about/sparql",
+      "schema_version": "1.0",
+      "source_id": "SRC-03DAF57923102F2A",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "design.canada.ca"
+      ],
+      "expected_identity_terms": [
+        "research prototyping"
+      ],
+      "labels": [
+        "research and prototyping"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "research and prototyping"
+      },
+      "publisher": "Government of Canada",
+      "requested_url": "https://design.canada.ca/continuous-improvement/research.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-05E1917F813A30E0",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "generation documentation",
+        "gov sitemap"
+      ],
+      "labels": [
+        "generation documentation",
+        "GOV.UK sitemap"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "generation documentation"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/manual/govuk-sitemap.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-0A7311FBE44A723F",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "world taxonomy root"
+      ],
+      "identity_markers": [
+        "content_id",
+        "links"
+      ],
+      "labels": [
+        "world-taxonomy-root"
+      ],
+      "locator": {
+        "kind": "json_pointer",
+        "value": "/links/child_taxons"
+      },
+      "locator_hint": {
+        "kind": "json_pointer",
+        "value": "/links/child_taxons"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/api/content/world/all",
+      "schema_version": "1.0",
+      "source_id": "SRC-0AEA6663565CAF68",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "vendor_primary",
+      "expected_hosts": [
+        "developers.openai.com"
+      ],
+      "expected_identity_terms": [
+        "openai models choosing model",
+        "models"
+      ],
+      "labels": [
+        "OpenAI Models, “Choosing a model”",
+        "Models"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "OpenAI Models, “Choosing a model”"
+      },
+      "publisher": "OpenAI",
+      "requested_url": "https://developers.openai.com/api/docs/models",
+      "schema_version": "1.0",
+      "source_id": "SRC-0E5BA6524C75AB00",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "gov search overview",
+        "site search overview"
+      ],
+      "labels": [
+        "GOV.UK Search overview",
+        "site-search overview"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GOV.UK Search overview"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/manual/govuk-search.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-15A1ED999816A261",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "robots txt",
+        "robots txt",
+        "robots"
+      ],
+      "identity_markers": [
+        "user-agent",
+        "sitemap"
+      ],
+      "labels": [
+        "robots.txt",
+        "Robots.txt",
+        "robots"
+      ],
+      "locator": {
+        "kind": "text_lines",
+        "value": "User-agent and Sitemap"
+      },
+      "locator_hint": {
+        "kind": "text_lines",
+        "value": "User-agent and Sitemap"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/robots.txt",
+      "schema_version": "1.0",
+      "source_id": "SRC-1BE5A93C1802658B",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "search compatibility",
+        "compatibility"
+      ],
+      "labels": [
+        "Search API v2 compatibility",
+        "compatibility"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Search API v2 compatibility"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/repos/search-api-v2/search_api_compatibility.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-1E4A2C4C36792D18",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "measuring service success"
+      ],
+      "labels": [
+        "measuring service success"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "measuring service success"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/service-manual/measuring-success/measuring-the-success-of-your-service",
+      "schema_version": "1.0",
+      "source_id": "SRC-211C0BD266795289",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "semiceu.github.io"
+      ],
+      "expected_identity_terms": [
+        "core public service vocabulary application profile"
+      ],
+      "labels": [
+        "Core Public Service Vocabulary Application Profile 3.2"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Core Public Service Vocabulary Application Profile 3.2"
+      },
+      "publisher": "European Commission SEMIC",
+      "requested_url": "https://semiceu.github.io/CPSV-AP/releases/3.2.0/",
+      "schema_version": "1.0",
+      "source_id": "SRC-2233168ACDF44100",
+      "version_or_commit": "3.2.0"
+    },
+    {
+      "authority_class": "author_manuscript_peer_reviewed",
+      "expected_hosts": [
+        "pages.gseis.ucla.edu"
+      ],
+      "expected_identity_terms": [
+        "design browsing berrypicking techniques online search interface"
+      ],
+      "labels": [
+        "The design of browsing and berrypicking techniques for the online search interface"
+      ],
+      "locator_hint": {
+        "kind": "pdf_page_text",
+        "value": "The design of browsing and berrypicking techniques for the online search interface"
+      },
+      "publisher": "UCLA author site",
+      "requested_url": "https://pages.gseis.ucla.edu/faculty/bates/articles/berrypicking.pdf",
+      "schema_version": "1.0",
+      "source_id": "SRC-22BBB714FA72EE7F",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "semiceu.github.io"
+      ],
+      "expected_identity_terms": [
+        "dcat"
+      ],
+      "labels": [
+        "DCAT-AP 3.0.1"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "DCAT-AP 3.0.1"
+      },
+      "publisher": "European Commission SEMIC",
+      "requested_url": "https://semiceu.github.io/DCAT-AP/releases/3.0.1/",
+      "schema_version": "1.0",
+      "source_id": "SRC-2523D2630C48D759",
+      "version_or_commit": "3.0.1"
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "www.w3.org"
+      ],
+      "expected_identity_terms": [
+        "organization ontology"
+      ],
+      "labels": [
+        "The Organization Ontology"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "The Organization Ontology"
+      },
+      "publisher": "World Wide Web Consortium",
+      "requested_url": "https://www.w3.org/TR/2014/REC-vocab-org-20140116/",
+      "schema_version": "1.0",
+      "source_id": "SRC-2653F2C8D9FC9241",
+      "version_or_commit": "2014/REC-vocab-org-20140116"
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "spec.openapis.org"
+      ],
+      "expected_identity_terms": [
+        "arazzo"
+      ],
+      "labels": [
+        "Arazzo 1.1.0"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Arazzo 1.1.0"
+      },
+      "publisher": "OpenAPI Initiative",
+      "requested_url": "https://spec.openapis.org/arazzo/v1.1.0.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-272E0459D26D5356",
+      "version_or_commit": "v1.1.0"
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "accessibility testing"
+      ],
+      "labels": [
+        "accessibility testing"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "accessibility testing"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/testing-for-accessibility",
+      "schema_version": "1.0",
+      "source_id": "SRC-2B000CBA1E0E46EF",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "original_research",
+      "expected_hosts": [
+        "arxiv.org"
+      ],
+      "expected_identity_terms": [
+        "splade"
+      ],
+      "labels": [
+        "SPLADE v2"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "SPLADE v2"
+      },
+      "publisher": "arXiv",
+      "requested_url": "https://arxiv.org/abs/2109.10086",
+      "schema_version": "1.0",
+      "source_id": "SRC-2B7DEF43F04215D3",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "original_peer_reviewed",
+      "expected_hosts": [
+        "aclanthology.org"
+      ],
+      "expected_identity_terms": [
+        "assistantbench"
+      ],
+      "labels": [
+        "AssistantBench"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "AssistantBench"
+      },
+      "publisher": "Association for Computational Linguistics",
+      "requested_url": "https://aclanthology.org/2024.emnlp-main.505/",
+      "schema_version": "1.0",
+      "source_id": "SRC-2D6BA593DC4DE237",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "www.w3.org"
+      ],
+      "expected_identity_terms": [
+        "json"
+      ],
+      "labels": [
+        "JSON-LD 1.1"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "JSON-LD 1.1"
+      },
+      "publisher": "World Wide Web Consortium",
+      "requested_url": "https://www.w3.org/TR/2020/REC-json-ld11-20200716/",
+      "schema_version": "1.0",
+      "source_id": "SRC-2E98D6F72D3837A7",
+      "version_or_commit": "2020/REC-json-ld11-20200716"
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "insidegovuk.blog.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "why gov apis are changing"
+      ],
+      "labels": [
+        "Why GOV.UK APIs are changing"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Why GOV.UK APIs are changing"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://insidegovuk.blog.gov.uk/2026/04/07/why-gov-uk-apis-are-changing-and-how-you-can-get-involved/",
+      "schema_version": "1.0",
+      "source_id": "SRC-311372515A7164E1",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "raw.githubusercontent.com"
+      ],
+      "expected_identity_terms": [
+        "a2a protocol ships v1.0"
+      ],
+      "identity_terms": [
+        "A2A Protocol Ships v1.0"
+      ],
+      "labels": [
+        "v1.0 announcement"
+      ],
+      "locator_hint": {
+        "kind": "commit_lines",
+        "value": "A2A@4f77f1bdd0bb5cd861aad8e86fe4db71a2785fe5:docs/announcing-1.0.md"
+      },
+      "publisher": "A2A Protocol project",
+      "requested_url": "https://raw.githubusercontent.com/a2aproject/A2A/4f77f1bdd0bb5cd861aad8e86fe4db71a2785fe5/docs/announcing-1.0.md",
+      "schema_version": "1.0",
+      "source_id": "SRC-33FA63BC87D885AF",
+      "version_or_commit": "4f77f1bdd0bb5cd861aad8e86fe4db71a2785fe5"
+    },
+    {
+      "authority_class": "original_peer_reviewed",
+      "expected_hosts": [
+        "proceedings.neurips.cc"
+      ],
+      "expected_identity_terms": [
+        "hipporag"
+      ],
+      "labels": [
+        "HippoRAG"
+      ],
+      "locator_hint": {
+        "kind": "pdf_page_text",
+        "value": "HippoRAG"
+      },
+      "publisher": "Neural Information Processing Systems Foundation",
+      "requested_url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/6ddc001d07ca4f319af96a3024f6dbd1-Paper-Conference.pdf",
+      "schema_version": "1.0",
+      "source_id": "SRC-394CEF342A79F593",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "github.com"
+      ],
+      "expected_identity_terms": [
+        "publishing content schemas",
+        "gov content schemas",
+        "content schemas"
+      ],
+      "labels": [
+        "publishing-content-schemas",
+        "GOV.UK content schemas",
+        "content schemas"
+      ],
+      "locator_hint": {
+        "kind": "commit_path",
+        "value": "publishing-api@b1e987aa7b3e62c105ff2b2db87667f7638726f8:content_schemas"
+      },
+      "publisher": "Version-pinned upstream repository",
+      "requested_url": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
+      "schema_version": "1.0",
+      "source_id": "SRC-3BF55F0E7CFA434E",
+      "version_or_commit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8"
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "understanding users who not use digital services"
+      ],
+      "labels": [
+        "Understanding users who do not use digital services"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Understanding users who do not use digital services"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/service-manual/user-research/understanding-users-who-dont-use-digital-services",
+      "schema_version": "1.0",
+      "source_id": "SRC-3F8CCC0433059608",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "doi_metadata_registry",
+      "expected_hosts": [
+        "api.crossref.org"
+      ],
+      "expected_identity_terms": [
+        "10.1037/0033-295x.106.4.643",
+        "information foraging",
+        "peter pirolli stuart card"
+      ],
+      "identity_terms": [
+        "Information foraging",
+        "Peter Pirolli Stuart Card",
+        "10.1037/0033-295x.106.4.643"
+      ],
+      "labels": [
+        "Information Foraging",
+        "Crossref DOI record"
+      ],
+      "licence": "Crossref public bibliographic metadata; retain compact evidence and hashes",
+      "locator": {
+        "kind": "json_pointer",
+        "value": "/message"
+      },
+      "locator_hint": {
+        "kind": "json_pointer",
+        "value": "/message"
+      },
+      "publisher": "Crossref",
+      "requested_url": "https://api.crossref.org/works/10.1037%2F0033-295X.106.4.643",
+      "schema_version": "1.0",
+      "source_id": "SRC-4294AE934D7F240A",
+      "version_or_commit": "Crossref work record for DOI 10.1037/0033-295X.106.4.643"
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "content-api.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "gov.uk content api reference"
+      ],
+      "identity_terms": [
+        "GOV.UK Content API Reference"
+      ],
+      "labels": [
+        "structured-linked-content",
+        "v1.0.0 reference",
+        "reference"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "GET /content/{path}"
+      },
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GET /content/{path}"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://content-api.publishing.service.gov.uk/reference.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-432564433D4BA014",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "assisted digital support"
+      ],
+      "labels": [
+        "assisted digital support"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "assisted digital support"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/assisted-digital-support-introduction",
+      "schema_version": "1.0",
+      "source_id": "SRC-498E31848A364F9A",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "content-api.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "gov.uk content api"
+      ],
+      "identity_terms": [
+        "GOV.UK Content API"
+      ],
+      "labels": [
+        "content-api"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "GOV.UK Content API"
+      },
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GOV.UK Content API"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://content-api.publishing.service.gov.uk/content",
+      "schema_version": "1.0",
+      "source_id": "SRC-4E55B2BEF9E70710",
+      "verification_url": "https://content-api.publishing.service.gov.uk/",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "usability benchmarking"
+      ],
+      "labels": [
+        "usability benchmarking"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "usability benchmarking"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/service-manual/measuring-success/usability-benchmarking-a-website-or-whole-service",
+      "schema_version": "1.0",
+      "source_id": "SRC-5224970BD90BD2EC",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "organisations",
+        "documentation"
+      ],
+      "labels": [
+        "Organisations API",
+        "documentation"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Organisations API"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/manual/organisations-api.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-525AB68D779DD3A5",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "open.gsa.gov"
+      ],
+      "expected_identity_terms": [
+        "search gov results"
+      ],
+      "labels": [
+        "Search.gov Results API"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Search.gov Results API"
+      },
+      "publisher": "U.S. General Services Administration",
+      "requested_url": "https://open.gsa.gov/api/searchgov-results/",
+      "schema_version": "1.0",
+      "source_id": "SRC-538C605ECDD89BF3",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "vendor_primary",
+      "expected_hosts": [
+        "developers.openai.com"
+      ],
+      "expected_identity_terms": [
+        "batch"
+      ],
+      "labels": [
+        "Batch API"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Batch API"
+      },
+      "publisher": "OpenAI",
+      "requested_url": "https://developers.openai.com/api/docs/guides/batch",
+      "schema_version": "1.0",
+      "source_id": "SRC-54DA17A685AD05ED",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "www.w3.org"
+      ],
+      "expected_identity_terms": [
+        "skos reference"
+      ],
+      "labels": [
+        "SKOS Reference"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "SKOS Reference"
+      },
+      "publisher": "World Wide Web Consortium",
+      "requested_url": "https://www.w3.org/TR/2009/REC-skos-reference-20090818/",
+      "schema_version": "1.0",
+      "source_id": "SRC-55498A4AC6604944",
+      "version_or_commit": "2009/REC-skos-reference-20090818"
+    },
+    {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "raw.githubusercontent.com"
+      ],
+      "expected_identity_terms": [
+        "explorer",
+        "generated analysis artifact"
+      ],
+      "identity_terms": [
+        "Explorer",
+        "Generated Analysis Artifact"
+      ],
+      "labels": [
+        "OKF Explorer overview-context design, especially “Principle”, “Left Panel”, “Generated Analysis Artifact” and “View Contexts”",
+        "OKF Explorer overview context"
+      ],
+      "locator_hint": {
+        "kind": "commit_lines",
+        "value": "ai-infrastructure-wiki@23aae1b2c9208c631e54127078d71a61064aa79c:docs/explorer-overview-context.md"
+      },
+      "publisher": "OKF Explorer maintainer project",
+      "requested_url": "https://raw.githubusercontent.com/chris-page-gov/ai-infrastructure-wiki/23aae1b2c9208c631e54127078d71a61064aa79c/docs/explorer-overview-context.md",
+      "schema_version": "1.0",
+      "source_id": "SRC-55B3612626DD0EDA",
+      "version_or_commit": "23aae1b2c9208c631e54127078d71a61064aa79c"
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "schema.org"
+      ],
+      "expected_identity_terms": [
+        "a web page",
+        "webpage"
+      ],
+      "identity_terms": [
+        "WebPage",
+        "A web page"
+      ],
+      "labels": [
+        "WebPage"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "WebPage"
+      },
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "WebPage"
+      },
+      "publisher": "Schema.org Community Group",
+      "requested_url": "https://schema.org/WebPage",
+      "schema_version": "1.0",
+      "source_id": "SRC-55EA6FD455A4825A",
+      "version_or_commit": "schema.org 30.0 (2026-03-19)"
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "govuk sitemap",
+        "sitemap index"
+      ],
+      "identity_markers": [
+        "sitemapindex",
+        "sitemap_"
+      ],
+      "labels": [
+        "govuk-sitemap",
+        "Sitemap index"
+      ],
+      "locator": {
+        "kind": "xml_root",
+        "value": "/sitemapindex"
+      },
+      "locator_hint": {
+        "kind": "xml_root",
+        "value": "/sitemapindex"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/sitemap.xml",
+      "schema_version": "1.0",
+      "source_id": "SRC-560D063715A49D69",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "organisations",
+        "organisations"
+      ],
+      "identity_markers": [
+        "results",
+        "total"
+      ],
+      "labels": [
+        "Organisations API",
+        "organisations-api"
+      ],
+      "locator": {
+        "kind": "json_pointer",
+        "value": "/results"
+      },
+      "locator_hint": {
+        "kind": "json_pointer",
+        "value": "/results"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/api/organisations",
+      "schema_version": "1.0",
+      "source_id": "SRC-5DB00EC1AE1FD086",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "collections"
+      ],
+      "identity_terms": [
+        "Collections"
+      ],
+      "labels": [
+        "curated-route-families",
+        "Collections"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "Collections"
+      },
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Collections"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/repos/collections.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-5E524EFF9138A3BD",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "document types"
+      ],
+      "labels": [
+        "document types"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "document types"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/document-types.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-605B108D77089901",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "digital.nhs.uk"
+      ],
+      "expected_identity_terms": [
+        "nhs website content"
+      ],
+      "labels": [
+        "NHS Website Content API v2"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "NHS Website Content API v2"
+      },
+      "publisher": "NHS England",
+      "requested_url": "https://digital.nhs.uk/developer/api-catalogue/nhs-website-content/v2",
+      "schema_version": "1.0",
+      "source_id": "SRC-608BE2367E344918",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "knowledge asset commercialisation guide",
+        "open government licence"
+      ],
+      "identity_terms": [
+        "Knowledge Asset Commercialisation Guide",
+        "Open Government Licence"
+      ],
+      "labels": [
+        "OGL exceptions",
+        "OGL v3",
+        "ogl-v3"
+      ],
+      "licence": "Open Government Licence v3.0 except where otherwise stated",
+      "locator": {
+        "kind": "heading_set_fingerprint",
+        "values": [
+          "7.5 Open Government Licence and Delegations",
+          "The following information should not be licensed under the OGL"
+        ]
+      },
+      "locator_hint": {
+        "kind": "heading_set_fingerprint",
+        "values": [
+          "7.5 Open Government Licence and Delegations",
+          "The following information should not be licensed under the OGL"
+        ]
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/government/publications/knowledge-asset-commercialisation-guide/the-knowledge-asset-commercialisation-guide",
+      "schema_version": "1.0",
+      "source_id": "SRC-613122E13409B137",
+      "version_or_commit": "Published 9 May 2025"
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "design-system.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "gov design system"
+      ],
+      "labels": [
+        "GOV.UK Design System"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GOV.UK Design System"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://design-system.service.gov.uk/",
+      "schema_version": "1.0",
+      "source_id": "SRC-621EDE5F06BF2E62",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.usa.gov"
+      ],
+      "expected_identity_terms": [
+        "usa gov"
+      ],
+      "labels": [
+        "USA.gov"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "USA.gov"
+      },
+      "publisher": "U.S. General Services Administration",
+      "requested_url": "https://www.usa.gov/",
+      "schema_version": "1.0",
+      "source_id": "SRC-66CF5A759142BC21",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "www.w3.org"
+      ],
+      "expected_identity_terms": [
+        "data catalog vocabulary dcat"
+      ],
+      "labels": [
+        "Data Catalog Vocabulary (DCAT) v3"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Data Catalog Vocabulary (DCAT) v3"
+      },
+      "publisher": "World Wide Web Consortium",
+      "requested_url": "https://www.w3.org/TR/2024/REC-vocab-dcat-3-20240822/",
+      "schema_version": "1.0",
+      "source_id": "SRC-6731CFA24BFF26B1",
+      "version_or_commit": "2024/REC-vocab-dcat-3-20240822"
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "content-api.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "content overview what you can rate limiting",
+        "content overview",
+        "gov content",
+        "content"
+      ],
+      "labels": [
+        "Content API overview, especially “What you can’t do” and “Rate limiting”",
+        "Content API overview",
+        "GOV.UK Content API",
+        "Content API"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Content API overview, especially “What you can’t do” and “Rate limiting”"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://content-api.publishing.service.gov.uk/",
+      "schema_version": "1.0",
+      "source_id": "SRC-6A071AD8A4043856",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "gov publishing architecture deep dive",
+        "publishing architecture"
+      ],
+      "labels": [
+        "GOV.UK publishing architecture deep dive",
+        "publishing architecture"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GOV.UK publishing architecture deep dive"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/manual/architecture-deep-dive.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-6AA9EB54C0EE0969",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "vendor_primary",
+      "expected_hosts": [
+        "developers.openai.com"
+      ],
+      "expected_identity_terms": [
+        "agent evaluation"
+      ],
+      "labels": [
+        "agent evaluation"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "agent evaluation"
+      },
+      "publisher": "OpenAI",
+      "requested_url": "https://developers.openai.com/api/docs/guides/agent-evals",
+      "schema_version": "1.0",
+      "source_id": "SRC-6DB7A0E61936CFA8",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "topic taxonomy root"
+      ],
+      "identity_markers": [
+        "content_id",
+        "links"
+      ],
+      "labels": [
+        "topic-taxonomy-root"
+      ],
+      "locator": {
+        "kind": "json_pointer",
+        "value": "/"
+      },
+      "locator_hint": {
+        "kind": "json_pointer",
+        "value": "/"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/api/content",
+      "schema_version": "1.0",
+      "source_id": "SRC-7300E392C7BE6921",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "raw.githubusercontent.com"
+      ],
+      "expected_identity_terms": [
+        "govgraph"
+      ],
+      "identity_terms": [
+        "GovGraph"
+      ],
+      "labels": [
+        "GovGraph source documentation"
+      ],
+      "locator_hint": {
+        "kind": "commit_lines",
+        "value": "data-community-tech-docs@3f308dad463fba772ea09bb119fbd8d8eee02ea8:source/data-sources/govgraph/index.html.md.erb"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://raw.githubusercontent.com/alphagov/data-community-tech-docs/3f308dad463fba772ea09bb119fbd8d8eee02ea8/source/data-sources/govgraph/index.html.md.erb",
+      "schema_version": "1.0",
+      "source_id": "SRC-75ECFAB56E3CFE4F",
+      "version_or_commit": "3f308dad463fba772ea09bb119fbd8d8eee02ea8"
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "public sector accessibility requirements"
+      ],
+      "labels": [
+        "public-sector accessibility requirements"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "public-sector accessibility requirements"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps",
+      "schema_version": "1.0",
+      "source_id": "SRC-79FA09509E805D99",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "blog.canada.ca"
+      ],
+      "expected_identity_terms": [
+        "designing help"
+      ],
+      "labels": [
+        "designing AI help"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "designing AI help"
+      },
+      "publisher": "Government of Canada",
+      "requested_url": "https://blog.canada.ca/2026/02/12/ai-help-design.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-7AFE67636D8532B0",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "spec.openapis.org"
+      ],
+      "expected_identity_terms": [
+        "openapi specification"
+      ],
+      "labels": [
+        "OpenAPI Specification 3.2.0"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "OpenAPI Specification 3.2.0"
+      },
+      "publisher": "OpenAPI Initiative",
+      "requested_url": "https://spec.openapis.org/oas/v3.2.0.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-7D4C03F2D024F699",
+      "version_or_commit": "v3.2.0"
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "www.w3.org"
+      ],
+      "expected_identity_terms": [
+        "wcag"
+      ],
+      "labels": [
+        "WCAG 2.2"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "WCAG 2.2"
+      },
+      "publisher": "World Wide Web Consortium",
+      "requested_url": "https://www.w3.org/TR/2024/REC-WCAG22-20241212/",
+      "schema_version": "1.0",
+      "source_id": "SRC-7E7303084DD310BE",
+      "version_or_commit": "2024/REC-WCAG22-20241212"
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "www.researchobject.org"
+      ],
+      "expected_identity_terms": [
+        "crate metadata specification"
+      ],
+      "labels": [
+        "RO-Crate Metadata Specification 1.3"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "RO-Crate Metadata Specification 1.3"
+      },
+      "publisher": "Research Object community",
+      "requested_url": "https://www.researchobject.org/ro-crate/specification/1.3/index.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-7E73E2681C198764",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "original_peer_reviewed",
+      "expected_hosts": [
+        "aclanthology.org"
+      ],
+      "expected_identity_terms": [
+        "mteb"
+      ],
+      "labels": [
+        "MTEB"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "MTEB"
+      },
+      "publisher": "Association for Computational Linguistics",
+      "requested_url": "https://aclanthology.org/2023.eacl-main.148/",
+      "schema_version": "1.0",
+      "source_id": "SRC-84C0930899C68D81",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "search",
+        "search"
+      ],
+      "labels": [
+        "Search API v2",
+        "search-api-v2"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Search API v2"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/repos/search-api-v2.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-86A25325C7D3CB54",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "vendor_primary",
+      "expected_hosts": [
+        "developers.openai.com"
+      ],
+      "expected_identity_terms": [
+        "deep research"
+      ],
+      "labels": [
+        "Deep research"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Deep research"
+      },
+      "publisher": "OpenAI",
+      "requested_url": "https://developers.openai.com/api/docs/guides/deep-research",
+      "schema_version": "1.0",
+      "source_id": "SRC-8729D0DB57FF554E",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "search",
+        "search"
+      ],
+      "identity_markers": [
+        "results",
+        "total"
+      ],
+      "labels": [
+        "Search API v1",
+        "search-api-v1"
+      ],
+      "locator": {
+        "kind": "json_pointer",
+        "value": "/total"
+      },
+      "locator_hint": {
+        "kind": "json_pointer",
+        "value": "/total"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/api/search.json",
+      "schema_version": "1.0",
+      "source_id": "SRC-8BB47EDB52532F04",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "original_peer_reviewed",
+      "expected_hosts": [
+        "proceedings.iclr.cc"
+      ],
+      "expected_identity_terms": [
+        "gaia"
+      ],
+      "labels": [
+        "GAIA"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GAIA"
+      },
+      "publisher": "International Conference on Learning Representations",
+      "requested_url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/25ae35b5b1738d80f1f03a8713e405ec-Abstract-Conference.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-8BB9BFCEF4264762",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "govsearch knowledge graph guide what page publishing data",
+        "what page content items documents editions",
+        "govsearch knowledge graph query guide",
+        "govsearch knowledge graph guide"
+      ],
+      "labels": [
+        "GovSearch/Knowledge Graph guide, especially “What a page is” and “The Publishing API Data Model”",
+        "“What a page is” and “Content items, documents and editions”",
+        "GovSearch/Knowledge Graph query guide",
+        "GovSearch/Knowledge Graph guide",
+        "Knowledge Graph query guide",
+        "govsearch-govgraph"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GovSearch/Knowledge Graph guide, especially “What a page is” and “The Publishing API Data Model”"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-gcp/how-to-write-queries.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-8BE9815E44B66A8D",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "terms conditions",
+        "gov terms"
+      ],
+      "labels": [
+        "Terms and conditions",
+        "GOV.UK terms"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Terms and conditions"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/help/terms-conditions",
+      "schema_version": "1.0",
+      "source_id": "SRC-8C7239C4190F79D9",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "original_research",
+      "expected_hosts": [
+        "arxiv.org"
+      ],
+      "expected_identity_terms": [
+        "colbert"
+      ],
+      "labels": [
+        "ColBERT"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "ColBERT"
+      },
+      "publisher": "arXiv",
+      "requested_url": "https://arxiv.org/abs/2004.12832",
+      "schema_version": "1.0",
+      "source_id": "SRC-90E22E44D57E9CFB",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "mainstream browse root"
+      ],
+      "identity_markers": [
+        "content_id",
+        "links"
+      ],
+      "labels": [
+        "mainstream-browse-root"
+      ],
+      "locator": {
+        "kind": "json_pointer",
+        "value": "/links/top_level_browse_pages"
+      },
+      "locator_hint": {
+        "kind": "json_pointer",
+        "value": "/links/top_level_browse_pages"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/api/content/browse",
+      "schema_version": "1.0",
+      "source_id": "SRC-96543A527F819BA2",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "design.canada.ca"
+      ],
+      "expected_identity_terms": [
+        "organizing content canada",
+        "content organisation"
+      ],
+      "labels": [
+        "Organizing content on Canada.ca",
+        "content organisation"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Organizing content on Canada.ca"
+      },
+      "publisher": "Government of Canada",
+      "requested_url": "https://design.canada.ca/specifications/information-findability/organizing-content.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-9925A6B3F0959D8A",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "original_research",
+      "expected_hosts": [
+        "arxiv.org"
+      ],
+      "expected_identity_terms": [
+        "beir"
+      ],
+      "labels": [
+        "BEIR"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "BEIR"
+      },
+      "publisher": "arXiv",
+      "requested_url": "https://arxiv.org/abs/2104.08663",
+      "schema_version": "1.0",
+      "source_id": "SRC-A6139FE39DBB0E57",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "www.w3.org"
+      ],
+      "expected_identity_terms": [
+        "yaml document",
+        "yaml"
+      ],
+      "labels": [
+        "YAML-LD 1.0 document",
+        "YAML-LD 1.0"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "YAML-LD 1.0 document"
+      },
+      "publisher": "World Wide Web Consortium",
+      "requested_url": "https://www.w3.org/TR/2026/WD-yaml-ld-10-20260708/",
+      "schema_version": "1.0",
+      "source_id": "SRC-A94991BA48902B3A",
+      "version_or_commit": "2026/WD-yaml-ld-10-20260708"
+    },
+    {
+      "authority_class": "original_peer_reviewed",
+      "expected_hosts": [
+        "aclanthology.org"
+      ],
+      "expected_identity_terms": [
+        "ragas"
+      ],
+      "labels": [
+        "RAGAS"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "RAGAS"
+      },
+      "publisher": "Association for Computational Linguistics",
+      "requested_url": "https://aclanthology.org/2024.eacl-demo.16/",
+      "schema_version": "1.0",
+      "source_id": "SRC-AA203FD4D3DBFFDC",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "www.w3.org"
+      ],
+      "expected_identity_terms": [
+        "shacl"
+      ],
+      "labels": [
+        "SHACL"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "SHACL"
+      },
+      "publisher": "World Wide Web Consortium",
+      "requested_url": "https://www.w3.org/TR/2017/REC-shacl-20170720/",
+      "schema_version": "1.0",
+      "source_id": "SRC-AB9B3E6632B35C98",
+      "version_or_commit": "2017/REC-shacl-20170720"
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "learning about users their needs",
+        "user needs"
+      ],
+      "labels": [
+        "Learning about users and their needs",
+        "user needs"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Learning about users and their needs"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+      "schema_version": "1.0",
+      "source_id": "SRC-ABC9C1B02C32A73F",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "raw.githubusercontent.com"
+      ],
+      "expected_identity_terms": [
+        "agent card",
+        "agent discovery in a2a"
+      ],
+      "identity_terms": [
+        "Agent Discovery in A2A",
+        "Agent Card"
+      ],
+      "labels": [
+        "Agent discovery"
+      ],
+      "locator_hint": {
+        "kind": "commit_lines",
+        "value": "A2A@727168fe1fd5ba999e4e59c62385e0e76466193d:docs/topics/agent-discovery.md"
+      },
+      "publisher": "A2A Protocol project",
+      "requested_url": "https://raw.githubusercontent.com/a2aproject/A2A/727168fe1fd5ba999e4e59c62385e0e76466193d/docs/topics/agent-discovery.md",
+      "schema_version": "1.0",
+      "source_id": "SRC-AD27D52082074221",
+      "version_or_commit": "727168fe1fd5ba999e4e59c62385e0e76466193d"
+    },
+    {
+      "authority_class": "original_research",
+      "expected_hosts": [
+        "cdn.openai.com"
+      ],
+      "expected_identity_terms": [
+        "browsecomp a simple yet challenging benchmark for browsing agents"
+      ],
+      "identity_terms": [
+        "BrowseComp A Simple Yet Challenging Benchmark for Browsing Agents"
+      ],
+      "labels": [
+        "BrowseComp"
+      ],
+      "licence": "copyright; retain only metadata, short excerpts and hashes",
+      "locator": {
+        "kind": "heading_set_fingerprint",
+        "values": [
+          "Data collection and verification",
+          "canary string",
+          "Grading",
+          "incomplete but useful benchmark"
+        ]
+      },
+      "locator_hint": {
+        "kind": "heading_set_fingerprint",
+        "values": [
+          "Data collection and verification",
+          "canary string",
+          "Grading",
+          "incomplete but useful benchmark"
+        ]
+      },
+      "publisher": "OpenAI",
+      "requested_url": "https://cdn.openai.com/pdf/5e10f4ab-d6f7-442e-9508-59515c65e35d/browsecomp.pdf",
+      "schema_version": "1.0",
+      "source_id": "SRC-AD94BC9AC99DF114",
+      "version_or_commit": "OpenAI BrowseComp paper, 2025"
+    },
+    {
+      "authority_class": "vendor_primary",
+      "expected_hosts": [
+        "developers.openai.com"
+      ],
+      "expected_identity_terms": [
+        "multi agent"
+      ],
+      "labels": [
+        "Multi-agent"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Multi-agent"
+      },
+      "publisher": "OpenAI",
+      "requested_url": "https://developers.openai.com/api/docs/guides/responses-multi-agent",
+      "schema_version": "1.0",
+      "source_id": "SRC-B4592089A43F294C",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "govsearch application",
+        "govsearch"
+      ],
+      "labels": [
+        "GovSearch application",
+        "GovSearch"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GovSearch application"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-search.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-B9A1388E02362874",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "schema.org"
+      ],
+      "expected_identity_terms": [
+        "a service provided by a government organization",
+        "governmentservice"
+      ],
+      "identity_terms": [
+        "GovernmentService",
+        "A service provided by a government organization"
+      ],
+      "labels": [
+        "GovernmentService"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "GovernmentService"
+      },
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GovernmentService"
+      },
+      "publisher": "Schema.org Community Group",
+      "requested_url": "https://schema.org/GovernmentService",
+      "schema_version": "1.0",
+      "source_id": "SRC-B9D302E7045BAF6E",
+      "version_or_commit": "schema.org 30.0 (2026-03-19)"
+    },
+    {
+      "authority_class": "official_primary",
+      "citation_locator_overrides": {
+        "GOV.UK reuse guidance, especially “Search API”, “Scraping” and “Sitemap”": {
+          "kind": "heading_set_fingerprint",
+          "values": [
+            "Search API (unsupported)",
+            "Scraping the site",
+            "Sitemap"
+          ]
+        },
+        "rendered-link-gap-detector": {
+          "kind": "heading_text_fingerprint",
+          "value": "Reuse GOV.UK content"
+        }
+      },
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "gov reuse guidance search scraping sitemap",
+        "rendered link gap detector",
+        "reuse gov content",
+        "reuse terms"
+      ],
+      "labels": [
+        "GOV.UK reuse guidance, especially “Search API”, “Scraping” and “Sitemap”",
+        "rendered-link-gap-detector",
+        "Reuse GOV.UK content",
+        "reuse-and-terms",
+        "reuse guidance"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GOV.UK reuse guidance, especially “Search API”, “Scraping” and “Sitemap”"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/help/reuse-govuk-content",
+      "schema_version": "1.0",
+      "source_id": "SRC-BB77C21AC344914D",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.nist.gov"
+      ],
+      "expected_identity_terms": [
+        "nist combinatorial testing guidance",
+        "combinatorial testing"
+      ],
+      "labels": [
+        "NIST combinatorial-testing guidance",
+        "Combinatorial testing"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "NIST combinatorial-testing guidance"
+      },
+      "publisher": "U.S. National Institute of Standards and Technology",
+      "requested_url": "https://www.nist.gov/programs-projects/combinatorial-testing",
+      "schema_version": "1.0",
+      "source_id": "SRC-BD3515DB4D337685",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "citation_locator_overrides": {
+        "MCP Tools specification": {
+          "kind": "heading_text_fingerprint",
+          "value": "Tools"
+        }
+      },
+      "expected_hosts": [
+        "modelcontextprotocol.io"
+      ],
+      "expected_identity_terms": [
+        "mcp tools specification"
+      ],
+      "labels": [
+        "MCP Tools specification"
+      ],
+      "locator": {
+        "kind": "heading_text_fingerprint",
+        "value": "Tools"
+      },
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Tools"
+      },
+      "publisher": "Model Context Protocol project",
+      "requested_url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools",
+      "schema_version": "1.0",
+      "source_id": "SRC-BFBA858067CC3EB5",
+      "version_or_commit": "2025-11-25"
+    },
+    {
+      "authority_class": "vendor_primary",
+      "expected_hosts": [
+        "learn.chatgpt.com"
+      ],
+      "expected_identity_terms": [
+        "codex models recommended models other models"
+      ],
+      "labels": [
+        "Codex Models, “Recommended models” and “Other models”"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Codex Models, “Recommended models” and “Other models”"
+      },
+      "publisher": "OpenAI",
+      "requested_url": "https://learn.chatgpt.com/docs/models",
+      "schema_version": "1.0",
+      "source_id": "SRC-C272FA6FAF4691DE",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "taxon schema"
+      ],
+      "labels": [
+        "taxon schema"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "taxon schema"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/content-schemas/taxon.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-C39564B033DB1940",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "www.w3.org"
+      ],
+      "expected_identity_terms": [
+        "w3c rdfc recommendation may 2024",
+        "rdf dataset canonicalization"
+      ],
+      "labels": [
+        "W3C RDFC-1.0, Recommendation 21 May 2024, §§4–5",
+        "RDF Dataset Canonicalization"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "W3C RDFC-1.0, Recommendation 21 May 2024, §§4–5"
+      },
+      "publisher": "World Wide Web Consortium",
+      "requested_url": "https://www.w3.org/TR/2024/REC-rdf-canon-20240521/",
+      "schema_version": "1.0",
+      "source_id": "SRC-C3E648CF05FA9429",
+      "version_or_commit": "2024/REC-rdf-canon-20240521"
+    },
+    {
+      "authority_class": "author_manuscript_peer_reviewed",
+      "expected_hosts": [
+        "cormack.uwaterloo.ca"
+      ],
+      "expected_identity_terms": [
+        "reciprocal rank fusion"
+      ],
+      "labels": [
+        "Reciprocal Rank Fusion"
+      ],
+      "locator_hint": {
+        "kind": "pdf_page_text",
+        "value": "Reciprocal Rank Fusion"
+      },
+      "publisher": "University of Waterloo author site",
+      "requested_url": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf",
+      "schema_version": "1.0",
+      "source_id": "SRC-C7411C851A7B392A",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "original_peer_reviewed",
+      "expected_hosts": [
+        "aclanthology.org"
+      ],
+      "expected_identity_terms": [
+        "kilt"
+      ],
+      "labels": [
+        "KILT"
+      ],
+      "locator_hint": {
+        "kind": "pdf_page_text",
+        "value": "KILT"
+      },
+      "publisher": "Association for Computational Linguistics",
+      "requested_url": "https://aclanthology.org/2021.naacl-main.200.pdf",
+      "schema_version": "1.0",
+      "source_id": "SRC-C74B26327A110B9C",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "gov knowledge graph technical debt",
+        "technical debt note",
+        "technical debt note"
+      ],
+      "labels": [
+        "GOV.UK Knowledge Graph technical debt",
+        "technical debt note",
+        "technical-debt note"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GOV.UK Knowledge Graph technical debt"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-gcp/technical-debt.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-C904CEE641800E70",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "mainstream browse schema"
+      ],
+      "labels": [
+        "mainstream browse schema"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "mainstream browse schema"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/content-schemas/mainstream_browse_page.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-C98EA11F95703498",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "usage documentation",
+        "using search",
+        "search usage"
+      ],
+      "labels": [
+        "usage documentation",
+        "Using Search API v1",
+        "Search API usage"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "usage documentation"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/repos/search-api/using-the-search-api.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-CFB3BE4569701F9E",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "digital.nhs.uk"
+      ],
+      "expected_identity_terms": [
+        "modularised content"
+      ],
+      "labels": [
+        "Modularised content"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Modularised content"
+      },
+      "publisher": "NHS England",
+      "requested_url": "https://digital.nhs.uk/blog/transformation-blog/2019/modularised-content-the-future-of-the-nhs-website",
+      "schema_version": "1.0",
+      "source_id": "SRC-D20E3C9D322CCDAE",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "raw.githubusercontent.com"
+      ],
+      "expected_identity_terms": [
+        "bundle structure",
+        "open knowledge format"
+      ],
+      "identity_terms": [
+        "Open Knowledge Format",
+        "Bundle Structure"
+      ],
+      "labels": [
+        "Open Knowledge Format v0.1 draft",
+        "OKF v0.1 draft"
+      ],
+      "locator_hint": {
+        "kind": "commit_lines",
+        "value": "knowledge-catalog@ee67a5ca27044ebe7c38385f5b6cffc2305a9c1a:okf/SPEC.md"
+      },
+      "publisher": "Google Cloud Platform knowledge-catalog project",
+      "requested_url": "https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/ee67a5ca27044ebe7c38385f5b6cffc2305a9c1a/okf/SPEC.md",
+      "schema_version": "1.0",
+      "source_id": "SRC-D23FBEC399AC4353",
+      "version_or_commit": "ee67a5ca27044ebe7c38385f5b6cffc2305a9c1a"
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "content store"
+      ],
+      "labels": [
+        "Content Store API"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Content Store API"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/repos/content-store/content-store-api.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-D5A6C398C04F5E08",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "topic taxonomy"
+      ],
+      "labels": [
+        "Topic taxonomy"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Topic taxonomy"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/manual/taxonomy.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-DA0056B173F6692F",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "schema"
+      ],
+      "labels": [
+        "schema"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "schema"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/repos/search-api/schemas.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-DC9D889BFD690F4E",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "world taxonomy",
+        "world taxonomy"
+      ],
+      "labels": [
+        "world taxonomy",
+        "World taxonomy"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "world taxonomy"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/manual/world-taxonomy.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-E551A211BB662BEF",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "citation_locator_overrides": {
+        "Five things learned testing GOV.UK Chat": {
+          "kind": "heading_text_fingerprint",
+          "value": "5 things we learned testing GOV.UK Chat"
+        },
+        "public testing account": {
+          "kind": "heading_text_fingerprint",
+          "value": "5 things we learned testing GOV.UK Chat"
+        }
+      },
+      "expected_hosts": [
+        "insidegovuk.blog.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "five things learned testing gov chat",
+        "public testing account"
+      ],
+      "labels": [
+        "Five things learned testing GOV.UK Chat",
+        "public testing account"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Five things learned testing GOV.UK Chat"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://insidegovuk.blog.gov.uk/2026/03/16/5-things-we-learned-testing-gov-uk-chat-an-ai-assistant-for-government/",
+      "schema_version": "1.0",
+      "source_id": "SRC-EBF546473FB14A0B",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "userresearch.blog.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "navigation user research"
+      ],
+      "labels": [
+        "navigation user research"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "navigation user research"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://userresearch.blog.gov.uk/2017/06/29/how-we-researched-the-new-navigation-on-gov-uk/",
+      "schema_version": "1.0",
+      "source_id": "SRC-EE3415141C3BDB08",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "atom feeds"
+      ],
+      "identity_markers": [
+        "government digital service",
+        "feed"
+      ],
+      "labels": [
+        "atom-feeds"
+      ],
+      "locator": {
+        "kind": "xml_root",
+        "value": "/feed"
+      },
+      "locator_hint": {
+        "kind": "xml_root",
+        "value": "/feed"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/government/organisations/government-digital-service.atom",
+      "schema_version": "1.0",
+      "source_id": "SRC-EE4E2931D1F9759E",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "publishing"
+      ],
+      "labels": [
+        "Publishing API"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Publishing API"
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/repos/publishing-api/api.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-EF335AA86A462B2C",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "original_research",
+      "expected_hosts": [
+        "arxiv.org"
+      ],
+      "expected_identity_terms": [
+        "webarena"
+      ],
+      "labels": [
+        "WebArena"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "WebArena"
+      },
+      "publisher": "arXiv",
+      "requested_url": "https://arxiv.org/abs/2307.13854",
+      "schema_version": "1.0",
+      "source_id": "SRC-EFF46C739F8899C1",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "insidegovuk.blog.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "developing gov chat data science engineering journey",
+        "engineering account"
+      ],
+      "labels": [
+        "Developing GOV.UK Chat: data science and AI engineering journey",
+        "engineering account"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Developing GOV.UK Chat: data science and AI engineering journey"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://insidegovuk.blog.gov.uk/2026/05/15/developing-gov-uk-chat-our-data-science-and-ai-engineering-journey/",
+      "schema_version": "1.0",
+      "source_id": "SRC-F9E8A7335880209C",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "www.w3.org"
+      ],
+      "expected_identity_terms": [
+        "prov"
+      ],
+      "labels": [
+        "PROV-O"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "PROV-O"
+      },
+      "publisher": "World Wide Web Consortium",
+      "requested_url": "https://www.w3.org/TR/2013/REC-prov-o-20130430/",
+      "schema_version": "1.0",
+      "source_id": "SRC-FC127D142427C83C",
+      "version_or_commit": "2013/REC-prov-o-20130430"
+    }
+  ]
+}
