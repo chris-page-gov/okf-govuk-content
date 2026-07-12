@@ -282,7 +282,7 @@ Evidence:
 - `E-ACTIVITY-LEDGER` — pass; `provenance/activity-ledger.jsonl`; SHA-256 `cb20de37494a2ffe18ecec765a79160706b544d9f27b28c9627542cee21666d8`; observed `true`.
 - `E-REQUIREMENT-COVERAGE` — pass; `governance/requirements-status.json/counts/requirements`; SHA-256 `1334f700720e9d08149c9b8d8837c22e828a3c1f72c1922cd684a58fe8462927`; observed `95`.
 - `E-TRACEABILITY-COVERAGE` — pass; `governance/traceability-status.json/counts/clauses`; SHA-256 `8a1ad43f937fc0713ec64d0629dfd8bdb4ae9a84cbe91c86e3d504a7baf17d18`; observed `21`.
-- `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `96e533955098b231b093b36a3b00f7c430312dba4d4297208c6870d68d12df9c`; observed `true`.
+- `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `1128fc2d5d122b2392ec25177a1f99e59ec23b189261b8fb4513dc78e2de35eb`; observed `true`.
 - `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `"fixture"`.
 - `E-CLEAN-ROOM-RELEASE` — not met; `release/status.json/clean_room_reproduction_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
 - `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
