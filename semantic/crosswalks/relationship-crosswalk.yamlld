@@ -1,0 +1,120 @@
+"@context": ../context/govuk-okf-v1.jsonld
+"@id": https://chris-page-gov.github.io/okf-govuk-content/semantic/crosswalks/relationships-v1
+"@type": Crosswalk
+title: GOV.UK relationship and provenance crosswalk
+description: >-
+  Directional predicates compiled only through evidence-bearing Assertion nodes.
+  Source-native structured links and derived link observations remain different assertions.
+version: 1.0.0
+relationships:
+  - term: publishedBy
+    iri: govuk:publishedBy
+    sourceFields:
+      - /links/organisations
+      - /links/lead_organisations
+    direction: content-to-organisation
+    mappingStatus: source_native
+    caveat: Do not substitute owner or sponsoring organisation.
+  - term: ownedBy
+    iri: govuk:ownedBy
+    sourceFields:
+      - source-native owning organisation field
+    direction: content-to-organisation
+    mappingStatus: source_native_when_declared
+    caveat: Absence of an ownership field cannot be inferred from publishing organisation alone.
+  - term: partOf
+    iri: dcterms:isPartOf
+    sourceFields:
+      - structured part parent
+      - collection membership field
+    direction: member-to-container
+    mappingStatus: source_native
+    caveat: Retain whether the container is a content item, collection or rendered part.
+  - term: parentOf
+    iri: govuk:parentOf
+    inverse: govuk:childOf
+    sourceFields:
+      - /links/children
+      - /links/child_taxons
+    direction: parent-to-child
+    mappingStatus: source_native
+    caveat: Emit the inverse only by deterministic compilation from the same assertion evidence.
+  - term: childOf
+    iri: govuk:childOf
+    inverse: govuk:parentOf
+    sourceFields:
+      - /links/parents
+      - /links/parent_taxons
+    direction: child-to-parent
+    mappingStatus: source_native
+    caveat: Do not merge taxon and browse hierarchies.
+  - term: classifiedUnder
+    iri: govuk:classifiedUnder
+    sourceFields:
+      - /links/taxons
+      - /links/level_one_taxons
+    direction: content-to-taxon
+    mappingStatus: source_native
+    caveat: Rule/model classifications use separate inferred assertions.
+  - term: relatedTo
+    iri: dcterms:relation
+    sourceFields:
+      - /links/related
+      - /links/ordered_related_items
+    direction: source-to-related-target
+    mappingStatus: source_native
+    caveat: Preserve the exact source-native link type and ordering evidence.
+  - term: linksTo
+    iri: govuk:linksTo
+    sourceFields:
+      - structured source link field
+      - bounded rendered-link gap detector
+    direction: source-route-to-target-route-or-boundary
+    mappingStatus: mixed_explicit_authority
+    caveat: A rendered prose link is inferred gap evidence, never proof of an authoritative domain relationship.
+  - term: replaces
+    iri: dcterms:replaces
+    inverse: dcterms:isReplacedBy
+    sourceFields:
+      - source-native replacement or supersession field
+    direction: replacement-to-former-item
+    mappingStatus: source_native_when_declared
+    caveat: A redirect alone does not prove semantic replacement.
+  - term: replacedBy
+    iri: dcterms:isReplacedBy
+    inverse: dcterms:replaces
+    sourceFields:
+      - source-native replacement or supersession field
+    direction: former-item-to-replacement
+    mappingStatus: source_native_when_declared
+    caveat: Compile inverse direction from the same assertion, not new evidence.
+  - term: redirectsTo
+    iri: govuk:redirectsTo
+    sourceFields:
+      - HTTP Location and redirect chain
+      - public source-native redirect metadata
+    direction: source-route-to-target-route
+    mappingStatus: source_native_observation
+    caveat: Record status, every hop and observation time.
+  - term: hasAttachment
+    iri: govuk:hasAttachment
+    sourceFields:
+      - /details/attachments/{index}
+    direction: content-to-attachment
+    mappingStatus: source_native
+    caveat: Attachment rights and accessibility metadata remain on the attachment record.
+  - term: hasContentType
+    iri: govuk:hasContentType
+    sourceFields:
+      - /document_type
+    direction: content-to-content-type
+    mappingStatus: normalized
+    caveat: The normalized ContentType node retains the literal source name and evidence.
+  - term: availableInLanguage
+    iri: govuk:availableInLanguage
+    sourceFields:
+      - /locale
+      - /links/available_translations
+    direction: content-or-document-to-locale-document
+    mappingStatus: source_native
+    caveat: Preserve separate locale Document identities rather than replacing one language with another.
