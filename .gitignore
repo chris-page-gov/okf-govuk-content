@@ -37,7 +37,10 @@ _site/
 .cache/
 .tmp/
 tmp/
+.tmp-*/
+.test-*/
 corpus/cache/
+corpus/inventory/**/part-*.jsonl.gz
 runs/*/work/
 runs/*/leases/
 

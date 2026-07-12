@@ -1,0 +1,97 @@
+{
+  "alias_of_represented": 0,
+  "candidate_ledger_canonical_sha256": "1b9c67cd3aacd9c84d575946503c162fe50347801accbace6263632fc9e5027d",
+  "candidate_ledger_path": "corpus/inventory/CAPACITY-20260712/candidates-1b9c67cd3aacd9c8/index.json",
+  "candidate_ledger_shards": [
+    "corpus/inventory/CAPACITY-20260712/candidates-1b9c67cd3aacd9c8/part-00000.jsonl.gz",
+    "corpus/inventory/CAPACITY-20260712/candidates-1b9c67cd3aacd9c8/part-00001.jsonl.gz",
+    "corpus/inventory/CAPACITY-20260712/candidates-1b9c67cd3aacd9c8/part-00002.jsonl.gz"
+  ],
+  "entity_class_counts": {
+    "content_identity": 8,
+    "document": 8,
+    "edition": 8,
+    "route": 27707
+  },
+  "exceptioned": 0,
+  "expected_candidate_keys": 27731,
+  "inventory_canonical_sha256": "f8fa9825fb5a5b7de11d49ca43de6d88084b767870bb426d654f06566658bbc9",
+  "inventory_path": "corpus/inventory/CAPACITY-20260712/source-records-f8fa9825fb5a5b7d/index.json",
+  "inventory_shards": [
+    "corpus/inventory/CAPACITY-20260712/source-records-f8fa9825fb5a5b7d/part-00000.jsonl.gz",
+    "corpus/inventory/CAPACITY-20260712/source-records-f8fa9825fb5a5b7d/part-00001.jsonl.gz",
+    "corpus/inventory/CAPACITY-20260712/source-records-f8fa9825fb5a5b7d/part-00002.jsonl.gz"
+  ],
+  "navigation_proof": {
+    "closed": false,
+    "exceptioned": 0,
+    "records": 10,
+    "remaining_paths": 274,
+    "visited_paths": 10
+  },
+  "organisations_proof": {
+    "closed": true,
+    "reported_pages": 63,
+    "reported_total": 1256,
+    "returned_rows": 1256,
+    "unique_urls": 1256
+  },
+  "publication_records": 27707,
+  "redirect_only": 5,
+  "represented": 27726,
+  "sampled": true,
+  "schema_version": 1,
+  "search_partition_proofs": [
+    {
+      "expected": 1500,
+      "maximum_page_size": 1500,
+      "partition": "__sample__",
+      "passes": [
+        {
+          "closed": true,
+          "identity_sha256": "e99dbce665c4fb9f1d2ac771df99b04fa66c538f752f03af54bb6f460262e156",
+          "order": "public_timestamp",
+          "returned_rows": 1500,
+          "unique_urls": 1500
+        }
+      ],
+      "predicate": {},
+      "sibling_disjoint": true
+    }
+  ],
+  "search_partitions_closed": true,
+  "set_differences": {
+    "both_sitemap_search": 25,
+    "navigation_only": 9,
+    "search_only": 1475,
+    "sitemap_only": 24975
+  },
+  "sitemap_byte_stable": false,
+  "sitemap_proof": {
+    "byte_stable": false,
+    "closed": false,
+    "declared_shards": 35,
+    "index_sha256": "d577d2eeddb47055627e4194c3185a815517a5a3270260af2d22ab14de11fbd9",
+    "observed_shards": 1,
+    "raw_entries": 25000,
+    "shards": [
+      {
+        "declared_lastmod": "2026-07-12T02:50:02+00:00",
+        "entries": 25000,
+        "ordinal": 0,
+        "sha256": "b5565992f2113cfd93e84e8013917ae6a9447b596b4887559de0398fd8326e57",
+        "url": "https://www.gov.uk/sitemaps/sitemap_1.xml"
+      }
+    ],
+    "unique_urls": 25000
+  },
+  "snapshot": "CAPACITY-20260712",
+  "source_counts": {
+    "navigation": 10,
+    "organisations": 1256,
+    "search": 1500,
+    "sitemap": 25000
+  },
+  "tombstone_only": 0,
+  "unexplained_omissions": 0
+}
