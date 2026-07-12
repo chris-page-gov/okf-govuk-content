@@ -17,6 +17,19 @@ from typing import Any, Iterator
 from govuk_okf.sharded_jsonl import input_sha256, iter_jsonl_records
 
 VERIFIER_VERSION = "deterministic-corpus-anchor-validator-v2"
+EXPECTED_COVERAGE_DIMENSIONS = {
+    "actor",
+    "goal",
+    "journey_stage",
+    "content_service_type",
+    "relationship_need",
+    "jurisdiction",
+    "language",
+    "accessibility_need",
+    "device_context",
+    "urgency_risk",
+    "agent_involvement",
+}
 EXPECTED_OPERATIONS = {
     "locate_known_item",
     "explain_define",
@@ -72,6 +85,8 @@ REQUIRED_QUESTION_FIELDS = {
     "ambiguity",
     "locale",
     "jurisdiction",
+    "coverage_dimensions",
+    "persona_saturation_sha256",
     "provenance_requirements",
     "gold",
     "gold_status",
@@ -363,7 +378,59 @@ def verify(root: Path, corpus: Path) -> dict[str, Any]:
     validation = Validation()
     manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
     contract = json.loads((root / "contract.json").read_text(encoding="utf-8"))
+    matrix_contract = json.loads((root / "matrix.json").read_text(encoding="utf-8"))
     verify_manifest(root, manifest, validation)
+    saturation_contract = contract.get("persona_saturation") or {}
+    saturation_relative = Path(str(saturation_contract.get("path") or ""))
+    validation.require(
+        not saturation_relative.is_absolute() and ".." not in saturation_relative.parts,
+        "persona_saturation_path_safe",
+    )
+    saturation_path = root / saturation_relative
+    validation.require(saturation_path.is_file(), "persona_saturation_copy_exists")
+    saturation: dict[str, Any] = {}
+    if saturation_path.is_file():
+        saturation = json.loads(saturation_path.read_text(encoding="utf-8"))
+        saturation_digest = digest_file(saturation_path)
+        validation.require(checked_record(saturation), "persona_saturation_record_checksum")
+        validation.require(saturation_digest == saturation_contract.get("sha256"), "persona_saturation_contract_sha256")
+        validation.require(saturation_digest == manifest.get("persona_saturation_sha256"), "persona_saturation_manifest_sha256")
+        validation.require(
+            saturation_digest == (matrix_contract.get("persona_saturation") or {}).get("sha256"),
+            "persona_saturation_matrix_sha256",
+        )
+        validation.require(saturation.get("machine_applicable_gate_status") == "passed", "persona_machine_saturation_passed")
+        validation.require(
+            saturation.get("human_validation_status") == "not_authorised_not_run",
+            "persona_human_validation_not_fabricated",
+        )
+        validation.require(saturation.get("human_ui_preference_status") == "not_yet_testable", "persona_ui_preference_not_claimed")
+    coverage_relative = Path(str(saturation_contract.get("coverage_matrix_path") or ""))
+    validation.require(
+        not coverage_relative.is_absolute() and ".." not in coverage_relative.parts,
+        "persona_coverage_matrix_path_safe",
+    )
+    coverage_path = root / coverage_relative
+    validation.require(coverage_path.is_file(), "persona_coverage_matrix_copy_exists")
+    if coverage_path.is_file():
+        coverage_digest = digest_file(coverage_path)
+        coverage = json.loads(coverage_path.read_text(encoding="utf-8"))
+        validation.require(
+            coverage_digest == saturation_contract.get("coverage_matrix_sha256"),
+            "persona_coverage_matrix_contract_sha256",
+        )
+        validation.require(
+            coverage_digest == manifest.get("persona_coverage_matrix_sha256"),
+            "persona_coverage_matrix_manifest_sha256",
+        )
+        validation.require(
+            set(coverage.get("required_dimensions") or []) == EXPECTED_COVERAGE_DIMENSIONS,
+            "persona_coverage_dimensions",
+        )
+        validation.require(
+            coverage.get("unexplained_machine_dimension_gaps") == [],
+            "persona_coverage_no_unexplained_machine_gaps",
+        )
     validation.require(input_sha256(corpus) == contract.get("snapshot", {}).get("corpus_sha256"), "frozen_corpus_sha256")
     gold_records, wanted = collect_gold(root, validation)
     snapshot = contract.get("snapshot", {})
@@ -381,14 +448,28 @@ def verify(root: Path, corpus: Path) -> dict[str, Any]:
 
     stories = list(iter_jsonl(root / "stories" / "catalogue.jsonl"))
     stories_by_persona: defaultdict[str, list[str]] = defaultdict(list)
+    story_contracts: dict[str, dict[str, Any]] = {}
+    expected_saturation_sha256 = str(saturation_contract.get("sha256") or "")
     for story in stories:
         validation.require(checked_record(story), "story_checksum", str(story.get("story_id")))
+        story_contracts[str(story.get("story_id"))] = story
         personas = story.get("persona_ids") or []
         validation.require(len(personas) == 1, "story_one_primary_persona", str(story.get("story_id")))
         if personas:
             stories_by_persona[str(personas[0])].append(str(story.get("story_id")))
         anchor = story.get("anchor") or {}
         validate_target(anchor, sources, validation, str(story.get("story_id")))
+        validation.require(
+            story.get("persona_saturation_sha256") == expected_saturation_sha256,
+            "story_persona_saturation_sha256",
+            str(story.get("story_id")),
+        )
+        dimensions = story.get("coverage_dimensions") or {}
+        validation.require(
+            set(dimensions) == EXPECTED_COVERAGE_DIMENSIONS and all(dimensions.get(item) for item in EXPECTED_COVERAGE_DIMENSIONS),
+            "story_persona_coverage_dimensions",
+            str(story.get("story_id")),
+        )
     for persona_id, story_ids in stories_by_persona.items():
         validation.require(len(story_ids) == 6 and len(set(story_ids)) == 6, "persona_six_stories", persona_id)
 
@@ -434,6 +515,17 @@ def verify(root: Path, corpus: Path) -> dict[str, Any]:
             semantic_signatures.add(signature)
             split_by_group[str(question.get("split_group"))].add(str(question.get("split")))
             validate_question(question, gold_records.get(question_id), sources, validation)
+            story_contract = story_contracts.get(str(question.get("story_id"))) or {}
+            validation.require(
+                question.get("persona_saturation_sha256") == expected_saturation_sha256,
+                "question_persona_saturation_sha256",
+                question_id,
+            )
+            validation.require(
+                question.get("coverage_dimensions") == story_contract.get("coverage_dimensions"),
+                "question_persona_coverage_dimensions",
+                question_id,
+            )
             question_checksums[question_id] = str(question.get("checksum") or "")
             question_story[question_id] = str(question.get("story_id") or "")
             question_count += 1

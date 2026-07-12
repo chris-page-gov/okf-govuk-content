@@ -20,7 +20,7 @@ from govuk_okf.question_factory import SUITE_QUOTAS, canonical_json, record_with
 from govuk_okf.sharded_jsonl import input_sha256, iter_jsonl_records
 
 MATRIX_VERSION = "govuk-question-matrix-v2"
-GENERATOR_VERSION = "deterministic-corpus-anchor-generator-v2"
+GENERATOR_VERSION = "deterministic-corpus-anchor-generator-v2.1-saturation-bound"
 STORIES_PER_PERSONA = 6
 QUESTIONS_PER_STORY = 100
 QUESTIONS_PER_PERSONA_SUITE = 100
@@ -434,7 +434,15 @@ def render_wording(
     return re.sub(r"\s+", " ", wording).strip()
 
 
-def build_story(persona: dict[str, Any], role: dict[str, str], record: CorpusRecord, ordinal: int) -> dict[str, Any]:
+def build_story(
+    persona: dict[str, Any],
+    role: dict[str, str],
+    record: CorpusRecord,
+    ordinal: int,
+    *,
+    coverage_dimensions: dict[str, list[str]],
+    persona_saturation_sha256: str,
+) -> dict[str, Any]:
     story_id = f"story-v2-{persona['persona_id'].removeprefix('persona-')}-{ordinal:02d}-{role['id']}"
     return record_with_checksum(
         {
@@ -454,6 +462,8 @@ def build_story(persona: dict[str, Any], role: dict[str, str], record: CorpusRec
             "jurisdiction": persona["jurisdiction"],
             "overlay_ids": persona["overlay_ids"],
             "evidence_ids": persona["evidence_ids"],
+            "coverage_dimensions": coverage_dimensions,
+            "persona_saturation_sha256": persona_saturation_sha256,
             "anchor": _record_ref(record),
             "acceptance_criteria": [
                 "The canonical GOV.UK identity and URL match the frozen source record.",
@@ -538,6 +548,8 @@ def build_question(
         "ambiguity": challenge["ambiguity"],
         "locale": record.locale,
         "jurisdiction": persona["jurisdiction"],
+        "coverage_dimensions": story["coverage_dimensions"],
+        "persona_saturation_sha256": story["persona_saturation_sha256"],
         "temporal_sensitivity": challenge["id"] in {"temporal", "conflicting_evidence", "unsupported_premise"},
         "expected_unanswerable": expected_unanswerable,
         "provenance_requirements": [

@@ -6,9 +6,9 @@
   },
   "files": [
     {
-      "bytes": 97432,
+      "bytes": 97872,
       "path": "stories/catalogue.jsonl",
-      "sha256": "bb0258a26a49e5f482ba34d69c05caec4e19d668ab1c8897080fd15aa87d7e78"
+      "sha256": "7f9315ed726878e947ac34e85bc9f022d714b89ee38f21fca8767165db27fb43"
     },
     {
       "bytes": 2287,
@@ -17,7 +17,7 @@
     }
   ],
   "generation_method": "deterministic-question-factory-v1",
-  "root_sha256": "0ed9c7a296b032fa2a0520d148d1848769f86f6e206c890bd541c5fb015a42b2",
+  "root_sha256": "a34d99da0292945be8bb677f2b785778b5a1d5fc3f92fc798f0486bf70b829ed",
   "schema_version": 1,
   "scope": "stories"
 }

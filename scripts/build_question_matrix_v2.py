@@ -19,6 +19,8 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
+PERSONA_SATURATION_PATH = ROOT / "personas" / "saturation.json"
+PERSONA_COVERAGE_ROWS_PATH = ROOT / "personas" / "coverage-matrix.jsonl"
 
 from govuk_okf.question_factory import record_with_checksum  # noqa: E402
 from govuk_okf.question_matrix_v2 import (  # noqa: E402
@@ -75,6 +77,26 @@ def load_optional_json(path: Path | None) -> dict[str, Any] | None:
     return value
 
 
+def load_persona_saturation(personas: list[dict[str, Any]]) -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
+    saturation = json.loads(PERSONA_SATURATION_PATH.read_text(encoding="utf-8"))
+    if saturation.get("machine_applicable_gate_status") != "passed":
+        raise ValueError("persona machine saturation is not passed")
+    if saturation.get("human_validation_status") != "not_authorised_not_run":
+        raise ValueError("persona human-validation boundary is missing")
+    rows = {
+        row["persona_id"]: row
+        for row in (
+            json.loads(line)
+            for line in PERSONA_COVERAGE_ROWS_PATH.read_text(encoding="utf-8").splitlines()
+            if line
+        )
+    }
+    persona_ids = {persona["persona_id"] for persona in personas}
+    if not persona_ids <= set(rows):
+        raise ValueError("persona saturation rows do not cover the selected persona set")
+    return saturation, {persona_id: rows[persona_id] for persona_id in persona_ids}
+
+
 def safe_output(path: Path) -> Path:
     resolved = path.resolve()
     forbidden = {Path("/").resolve(), Path.home().resolve(), ROOT.resolve()}
@@ -85,6 +107,11 @@ def safe_output(path: Path) -> Path:
 
 def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
     personas = load_personas(args.persona_limit)
+    saturation, saturation_rows = load_persona_saturation(personas)
+    saturation_sha256 = sha256_file(PERSONA_SATURATION_PATH)
+    coverage_matrix_sha256 = sha256_file(ROOT / saturation["coverage_matrix"]["path"])
+    if coverage_matrix_sha256 != saturation["coverage_matrix"]["sha256"]:
+        raise ValueError("persona saturation coverage-matrix hash mismatch")
     pool, eligible_record_count = load_anchor_pool(args.corpus)
     assignments, anchor_blockers = choose_anchors(personas, pool)
     split_by_identity = assign_splits(assignments)
@@ -124,6 +151,16 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
                 "questions_per_persona_suite": QUESTIONS_PER_PERSONA_SUITE,
                 "split_rule": "canonical anchor identity groups; every fifth sorted group held out",
                 "leakage_denylist": LEAKAGE_DENYLIST,
+                "persona_saturation": {
+                    "path": "persona-saturation.json",
+                    "source_path": PERSONA_SATURATION_PATH.relative_to(ROOT).as_posix(),
+                    "sha256": saturation_sha256,
+                    "coverage_matrix_path": "persona-coverage-matrix.json",
+                    "coverage_matrix_sha256": coverage_matrix_sha256,
+                    "machine_applicable_gate_status": saturation["machine_applicable_gate_status"],
+                    "human_validation_status": saturation["human_validation_status"],
+                    "human_ui_preference_status": saturation["human_ui_preference_status"],
+                },
             }
         ),
     )
@@ -132,7 +169,20 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
     story_path.parent.mkdir(parents=True, exist_ok=True)
     gold_path = output_root / "gold" / "catalogue.jsonl"
     gold_path.parent.mkdir(parents=True, exist_ok=True)
-    generated_files: list[Path] = [matrix_path, story_path, gold_path]
+    saturation_copy_path = output_root / "persona-saturation.json"
+    coverage_matrix_copy_path = output_root / "persona-coverage-matrix.json"
+    write_text(saturation_copy_path, PERSONA_SATURATION_PATH.read_text(encoding="utf-8"))
+    write_text(
+        coverage_matrix_copy_path,
+        (ROOT / saturation["coverage_matrix"]["path"]).read_text(encoding="utf-8"),
+    )
+    generated_files: list[Path] = [
+        matrix_path,
+        saturation_copy_path,
+        coverage_matrix_copy_path,
+        story_path,
+        gold_path,
+    ]
     question_count = 0
     suite_count = 0
     story_count = 0
@@ -146,7 +196,14 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
         for persona in personas:
             persona_story_questions: list[list[dict[str, Any]]] = []
             for ordinal, (role, anchor) in enumerate(zip(STORY_ROLES, assignments[persona["persona_id"]]), start=1):
-                story = build_story(persona, role, anchor, ordinal)
+                story = build_story(
+                    persona,
+                    role,
+                    anchor,
+                    ordinal,
+                    coverage_dimensions=saturation_rows[persona["persona_id"]]["dimension_values"],
+                    persona_saturation_sha256=saturation_sha256,
+                )
                 story_handle.write(json_line(story))
                 story_count += 1
                 split = split_by_identity[anchor.identity]
@@ -228,6 +285,11 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
                     "Source-native content type and schema paths provide a deterministic two-hop gold path when no admitted link target is present."
                 ],
                 "judge_separation": "This run assigns targets only; verification must be a separate validator process.",
+                "persona_saturation": {
+                    "sha256": saturation_sha256,
+                    "model_usage": saturation["model_usage"],
+                    "final_snapshot_question_regeneration": "this generator run",
+                },
             }
         ),
     )
@@ -264,6 +326,16 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
                     "A separate deterministic validator must verify every target, path, near miss, checksum, split and leakage control. "
                     "Only its report may set question_contract_passed=true."
                 ),
+                "persona_saturation": {
+                    "path": "persona-saturation.json",
+                    "source_path": PERSONA_SATURATION_PATH.relative_to(ROOT).as_posix(),
+                    "sha256": saturation_sha256,
+                    "coverage_matrix_path": "persona-coverage-matrix.json",
+                    "coverage_matrix_sha256": coverage_matrix_sha256,
+                    "machine_applicable_gate_status": saturation["machine_applicable_gate_status"],
+                    "human_validation_status": saturation["human_validation_status"],
+                    "human_ui_preference_status": saturation["human_ui_preference_status"],
+                },
             }
         ),
     )
@@ -304,6 +376,10 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
             "artifact_tier": "release_candidate" if eligible else "development_only",
             "publication_ready_candidate": eligible,
             "independent_verification_status": "required_not_run",
+            "persona_saturation_sha256": saturation_sha256,
+            "persona_coverage_matrix_sha256": coverage_matrix_sha256,
+            "persona_human_validation_status": saturation["human_validation_status"],
+            "human_ui_preference_status": saturation["human_ui_preference_status"],
         },
     )
     manifest_path = output_root / "manifest.json"

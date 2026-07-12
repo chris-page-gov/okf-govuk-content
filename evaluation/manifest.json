@@ -28,9 +28,9 @@
       "sha256": "05fddd2958b77f3cb26ab73631ad43b1fb4eb9f950905448e1b93b830421c031"
     },
     {
-      "bytes": 2360,
+      "bytes": 3118,
       "path": "evaluation/protocol/question-contract-v2.json",
-      "sha256": "6be1d50f3ee472057553c593d727f9fb50c51966437426a18428c965f26f302c"
+      "sha256": "514dac671c5b23be06d72eb6ef229248072466bf58f05c90b5fa99fde2dbaca0"
     },
     {
       "bytes": 1710,
@@ -49,7 +49,7 @@
     }
   ],
   "generation_method": "deterministic-question-factory-v1",
-  "root_sha256": "566f6cdd11d377dc273ea9f93bc3f4285388709e01c3b4a7d4b623f175a545ac",
+  "root_sha256": "0ed65f7af2f24460349ddb3e067d0f6d7c31142112531891bd45dd10e3c89576",
   "schema_version": 1,
   "scope": "evaluation"
 }
