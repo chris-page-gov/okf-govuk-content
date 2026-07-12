@@ -1,0 +1,147 @@
+{
+  "analysis": {
+    "alpha": 0.05,
+    "confidence_interval": "paired normal interval over split-group cluster means",
+    "failure_analysis": "retain every failure code and up to 20 stable question-ID examples per system/code",
+    "macro_reporting": "report complete overall results plus persona, story role, operation, challenge, risk, difficulty, locale, jurisdiction, split, discovery stage and answerability slices",
+    "multiplicity": "Bonferroni simultaneous confidence intervals across every proposal/comparator/metric pair",
+    "paired_unit": "question",
+    "variance_unit": "split_group (the frozen canonical anchor shared by 100 correlated matrix cells)"
+  },
+  "claim_boundaries": [
+    "The automated run evaluates metadata discovery, ranking, typed relationship exposure, citation/provenance and answerability classification.",
+    "Substantive body-content answering remains a separate authoritative-source retrieval stage.",
+    "No human effectiveness, accessibility, comprehension, preference or UI-of-choice claim can be inferred from this run."
+  ],
+  "efficiency_metrics": [
+    "latency_ns",
+    "tool_calls",
+    "query_steps",
+    "bytes_read",
+    "shards_read",
+    "model_calls",
+    "tokens",
+    "cost_gbp",
+    "network_requests"
+  ],
+  "effectiveness_metrics": [
+    "Recall@10",
+    "MRR@10",
+    "nDCG@10",
+    "exact content ID at rank 1",
+    "relationship predicate precision/recall/F1",
+    "citation correctness",
+    "provenance completeness",
+    "source-evidence match",
+    "answerability accuracy",
+    "abstention precision/recall",
+    "end-task success"
+  ],
+  "execution": {
+    "all_release_questions": 28800,
+    "clean_identified_git_commit_required": true,
+    "fixture_subset_allowed": true,
+    "implementation": "Python standard library plus SQLite FTS5",
+    "model_calls": 0,
+    "network_requests": 0,
+    "paid_cost_gbp": 0.0,
+    "raw_trace_format": "content-addressed deterministic gzip JSONL shards",
+    "release_subset_allowed": false
+  },
+  "gold_relevance": {
+    "expected_path_intermediate": 1,
+    "primary_target": 3,
+    "recall_denominator": "primary targets only",
+    "unanswerable_retrieval_metrics": "excluded; answerability and abstention are scored separately"
+  },
+  "human_gate": {
+    "human_evaluation_status": "not_authorised",
+    "human_ui_of_choice_status": "not_yet_testable",
+    "synthetic_substitution_forbidden": true
+  },
+  "matched_conditions": "Every system receives the same wording, independently verified gold, frozen bundle snapshot, result limit and deterministic grader. No system receives expected_unanswerable or gold fields as query input.",
+  "measurement_definitions": {
+    "bytes_read": "UTF-8 bytes of the query plus record and relationship payloads materialised from SQLite for that question; this is a stable logical-I/O measure, not operating-system physical I/O.",
+    "latency": "Observed monotonic wall-clock nanoseconds for answerability classification, retrieval, graph expansion and citation construction; host variation is reported rather than hashed away.",
+    "query_steps": "Deterministic classifier, retrieval and optional graph/typed-edge stages executed.",
+    "shards_read": "Distinct publication record or relationship shard identifiers represented in materialised rows.",
+    "tool_calls": "SQLite exact/FTS, edge or graph queries issued by the discovery adapter."
+  },
+  "resource_budget": {
+    "fts_query_tokens_maximum": 32,
+    "graph_edges_per_query_maximum": 1000,
+    "graph_seed_records": 5,
+    "network_requests": 0,
+    "ranked_candidates_before_graph_maximum": 50,
+    "returned_results": 10
+  },
+  "protocol_id": "govuk-okf-automated-evaluation-v1",
+  "registered_date": "2026-07-12",
+  "requirements": [
+    "REQ-069",
+    "REQ-070",
+    "REQ-071",
+    "REQ-072",
+    "REQ-077",
+    "REQ-080",
+    "REQ-088",
+    "REQ-090",
+    "REQ-091",
+    "REQ-092",
+    "REQ-094"
+  ],
+  "schema_version": 1,
+  "systems": [
+    {
+      "id": "proposal-okf-graph",
+      "kind": "proposal",
+      "treatment": "typed FTS, inferred labels where published, graph traversal, lifecycle/provenance signals and deterministic unsupported-premise abstention"
+    },
+    {
+      "id": "baseline-exact-known-item",
+      "kind": "baseline",
+      "treatment": "exact visible title or canonical URL lookup"
+    },
+    {
+      "id": "baseline-flat-metadata-fts",
+      "kind": "baseline",
+      "treatment": "title, description and URL FTS only"
+    },
+    {
+      "id": "baseline-typed-metadata-fts",
+      "kind": "baseline",
+      "treatment": "source-native typed fields and provenance, graph disabled"
+    },
+    {
+      "id": "ablation-no-graph",
+      "kind": "one_factor_ablation",
+      "treatment": "proposal with graph traversal disabled"
+    },
+    {
+      "id": "ablation-no-provenance-lifecycle",
+      "kind": "one_factor_ablation",
+      "treatment": "proposal with trust ranking and evidence/lifecycle output hidden"
+    },
+    {
+      "id": "ablation-single-source-inventory",
+      "kind": "one_factor_ablation",
+      "treatment": "proposal restricted to the most prevalent frozen source membership"
+    },
+    {
+      "id": "ablation-source-native-only",
+      "kind": "one_factor_ablation",
+      "treatment": "proposal excluding inferred enrichment fields and inferred assertions"
+    },
+    {
+      "id": "control-expanded-jsonld",
+      "kind": "serialization_invariance_control",
+      "treatment": "canonical index after JSON-LD expansion"
+    },
+    {
+      "id": "control-expanded-yamlld",
+      "kind": "serialization_invariance_control",
+      "treatment": "canonical index after YAML-LD conversion and expansion"
+    }
+  ],
+  "status": "implemented_frozen_before_release_run"
+}

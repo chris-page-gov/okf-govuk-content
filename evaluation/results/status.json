@@ -11,7 +11,8 @@
     "48 primary stories",
     "4,800 deterministic matrix questions",
     "48 exact-quota persona suites",
-    "evaluation protocol and baseline catalogue"
+    "evaluation protocol and baseline catalogue",
+    "deterministic matched evaluation harness and fixture tests"
   ],
   "question_contract_passed": false,
   "result_claims": [],

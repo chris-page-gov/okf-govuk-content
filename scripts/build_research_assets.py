@@ -722,15 +722,63 @@ def render() -> dict[Path, str]:
     baseline_path = ROOT / "evaluation" / "baselines" / "catalogue.json"
     output[baseline_path] = _json(
         {
-            "schema_version": 1,
-            "status": "implementations_and_empirical_runs_pending_verified_t0",
+            "schema_version": 2,
+            "status": "deterministic_baselines_implemented_release_run_pending_final_inputs",
             "baselines": [
-                {"baseline_id": "canonical-url-exact", "family": "known-item rule", "run_status": "not_run"},
-                {"baseline_id": "metadata-keyword", "family": "lexical retrieval", "run_status": "not_run"},
-                {"baseline_id": "typed-relationship-walk", "family": "graph traversal", "run_status": "not_run"},
-                {"baseline_id": "static-browser-search", "family": "OKF Explorer static search", "run_status": "not_run"},
+                {
+                    "baseline_id": "baseline-exact-known-item",
+                    "family": "known-item deterministic rule",
+                    "implementation": "src/govuk_okf/evaluation.py",
+                    "run_status": "implemented_pending_release_run",
+                },
+                {
+                    "baseline_id": "baseline-flat-metadata-fts",
+                    "family": "flat lexical retrieval",
+                    "implementation": "SQLite FTS5 over title, description and URL",
+                    "run_status": "implemented_pending_release_run",
+                },
+                {
+                    "baseline_id": "baseline-typed-metadata-fts",
+                    "family": "raw official typed metadata retrieval",
+                    "implementation": "SQLite FTS5 over source-native metadata with graph traversal disabled",
+                    "run_status": "implemented_pending_release_run",
+                },
             ],
-            "claim_constraint": "No quality, latency or cost comparison may be published until all baselines run under the preregistered protocol.",
+            "external_comparators": [
+                {
+                    "comparator_id": "live-govuk-search-navigation",
+                    "reason_not_run_by_deterministic_harness": (
+                        "Requires external network and a separately frozen live-service protocol; retained for authorised human comparison."
+                    ),
+                },
+                {
+                    "comparator_id": "public-search-api-v1",
+                    "reason_not_run_by_deterministic_harness": (
+                        "Unsupported mutable external service; no network is permitted in the frozen local evaluation."
+                    ),
+                },
+                {
+                    "comparator_id": "dense-semantic-retrieval",
+                    "reason_not_run_by_deterministic_harness": (
+                        "No embedding model, model budget or provider execution is authorised; omission is explicit rather than simulated."
+                    ),
+                },
+                {
+                    "comparator_id": "govuk-chat",
+                    "reason_not_run_by_deterministic_harness": (
+                        "Direct matched system access is unavailable; architectural and published-evidence comparison remains separate."
+                    ),
+                },
+                {
+                    "comparator_id": "govsearch-govgraph",
+                    "reason_not_run_by_deterministic_harness": "Internal/authenticated access is not authorised.",
+                },
+            ],
+            "claim_constraint": (
+                "Machine claims require the complete release-v2 matrix and all implemented systems to run against one matching frozen "
+                "snapshot. External comparators must never be represented by fabricated results."
+            ),
+            "protocol": "evaluation/protocol/automated-evaluation-v1.json",
         }
     )
     status_path = ROOT / "evaluation" / "results" / "status.json"
@@ -746,6 +794,7 @@ def render() -> dict[Path, str]:
                 "4,800 deterministic matrix questions",
                 "48 exact-quota persona suites",
                 "evaluation protocol and baseline catalogue",
+                "deterministic matched evaluation harness and fixture tests",
             ],
             "blocked": [
                 "v1 question assets are development-only and cannot satisfy the release question gate",
@@ -779,14 +828,25 @@ def render() -> dict[Path, str]:
             ],
         }
     )
-    evaluation_paths = [preregistration_path, contract_path, release_contract_path, baseline_path, status_path, usage_path]
+    automated_protocol_path = ROOT / "evaluation" / "protocol" / "automated-evaluation-v1.json"
+    evaluation_readme_path = ROOT / "evaluation" / "README.md"
+    evaluation_paths = [
+        preregistration_path,
+        contract_path,
+        release_contract_path,
+        automated_protocol_path,
+        baseline_path,
+        status_path,
+        usage_path,
+        evaluation_readme_path,
+    ]
     evaluation_manifest_path = ROOT / "evaluation" / "manifest.json"
     output[evaluation_manifest_path] = _json(
         _manifest(
             "evaluation",
             output,
             evaluation_paths,
-            {"protocols": 3, "baselines": 4, "empirical_runs": 0, "model_calls": 0, "human_sessions": 0},
+            {"protocols": 4, "baselines": 3, "empirical_runs": 0, "model_calls": 0, "human_sessions": 0},
         )
     )
     return output
