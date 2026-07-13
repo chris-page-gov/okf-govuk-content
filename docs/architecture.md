@@ -81,12 +81,14 @@ second is below the documented 10 requests per second ceiling and shares a
 cross-process host timestamp.
 
 Before a successful network result is admitted to the checkpoint, it is fsync'd
-to a private, hash-bound spool under `.tmp/hydration-spool/`. A storage stop can
-therefore resume without repeating that request. SQLite batches, candidate and
-alias materialisation, immutable shards and control documents are all admitted
-before writing against the signed 10 GiB retained-metadata ceiling. Fresh
-source inventories require unique `(url, locale)` identities, and checkpoint,
-spool and export paths reject symbolic-link escape or ambiguous crash debris.
+to a private, hash-bound spool under `.tmp/hydration-spool/`, with a 256 MiB
+maximum document bound. A storage stop can therefore resume without repeating
+that request. SQLite batches, candidate and alias materialisation, immutable
+shards and control documents are all admitted before writing against the signed
+10 GiB retained-metadata ceiling; the operational stop is 95% so rollback and
+control-document headroom remain available. Fresh source inventories require
+unique `(url, locale)` identities, and checkpoint, spool and export paths reject
+symbolic-link escape or ambiguous crash debris.
 
 ```sh
 python3 scripts/hydrate_corpus.py T0-YYYYMMDD

@@ -10,7 +10,7 @@
     "tasks": 36
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "7c02e4df6cd1aaafe0bb8c810b38409d99bdf3802fa81519afaf7fa385c1b637",
+  "generated_from_sha256": "d71470858152c87d57427287dcd18b5fede32b7b4532b27cc0b374a296bac775",
   "interpretation": "A produced task has an artefact foundation only; the controller promotion gate has not accepted it unless separate run evidence says so.",
   "milestone": "t0_census_closed",
   "schema": "afhf-govuk-okf-task-status.v1",
