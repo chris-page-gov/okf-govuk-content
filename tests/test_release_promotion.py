@@ -552,6 +552,26 @@ class ReleasePromotionTests(unittest.TestCase):
                     generated_at="2026-07-12T23:59:59Z",
                 )
 
+    def test_stage_rejects_detached_standard_shard_index(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            make_release(root)
+            source_root = root / "corpus/records/T1/source-records-deadbeef"
+            source_root.mkdir(parents=True)
+            (source_root / "index.json").write_text(
+                json.dumps({"schema": "govuk-okf-jsonl-shards.v1", "shards": []}),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(MODULE.PromotionError, "containing directory"):
+                MODULE.stage_release(
+                    root,
+                    snapshot="T1-20260712-closing",
+                    reconciliation_relative="corpus/reconciliation/closing.json",
+                    source_relative="corpus/records/T1/source-records-deadbeef/index.json",
+                    generated_at="2026-07-12T23:59:59Z",
+                )
+
 
 if __name__ == "__main__":
     unittest.main()

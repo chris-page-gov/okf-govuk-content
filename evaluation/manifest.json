@@ -8,14 +8,24 @@
   },
   "files": [
     {
-      "bytes": 2760,
+      "bytes": 3523,
       "path": "evaluation/README.md",
-      "sha256": "bbf729e1a4e7f72c282a6fd76b59f75239b0efb5ff173542ccdc6ea06d2a07f8"
+      "sha256": "8e6e5917cdab6a4f669d2431bed3c5d53848f6bca6f3dcf7091768dfbf1b777e"
     },
     {
       "bytes": 2214,
       "path": "evaluation/baselines/catalogue.json",
       "sha256": "18e89152f5b1b5ec68e56897aa05ae0530ca2e305f80b9dcebc7a17621e05501"
+    },
+    {
+      "bytes": 1068,
+      "path": "evaluation/development/build-usage.json",
+      "sha256": "69cd8622ad1fe5004e5eef42948769f22750a67943af6e894508a9c2281955df"
+    },
+    {
+      "bytes": 713,
+      "path": "evaluation/development/status.json",
+      "sha256": "0d4ac6a8567ad9d7455bcf9d31bf631972a8fdae75f8125238ca4beaace6dc55"
     },
     {
       "bytes": 5732,
@@ -30,26 +40,16 @@
     {
       "bytes": 3118,
       "path": "evaluation/protocol/question-contract-v2.json",
-      "sha256": "aedf63caca76cfb9dfa64881beca092bd243e583dcd58b086db6f18747074805"
+      "sha256": "67528e212c6b8d562146d05169cb108092dd55db765d23cf773f9b2325825fed"
     },
     {
       "bytes": 1710,
       "path": "evaluation/protocol/question-contract.json",
       "sha256": "9e181221657f0196773a96404c25967f235a4b76c4b58678ebdb383077217cbe"
-    },
-    {
-      "bytes": 1068,
-      "path": "evaluation/results/build-usage.json",
-      "sha256": "69cd8622ad1fe5004e5eef42948769f22750a67943af6e894508a9c2281955df"
-    },
-    {
-      "bytes": 713,
-      "path": "evaluation/results/status.json",
-      "sha256": "0d4ac6a8567ad9d7455bcf9d31bf631972a8fdae75f8125238ca4beaace6dc55"
     }
   ],
   "generation_method": "deterministic-question-factory-v1",
-  "root_sha256": "a2b1b362f1b60744c7823c19017db5ea3dc8b3a92365a96b3074ad4cfa22c86b",
+  "root_sha256": "091330d61621cbc108b1e84b08bf57858c45c937dbc9ac3ce39f1a19a22bcc89",
   "schema_version": 1,
   "scope": "evaluation"
 }

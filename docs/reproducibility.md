@@ -79,7 +79,7 @@ event to remain `pending_post_publication`:
 
 ```sh
 .venv/bin/python scripts/check_provenance.py \
-  --snapshot T1-YYYYMMDD-closing \
+  --snapshot T1-YYYYMMDD-closed \
   --output release/provenance-validation.json \
   --require-candidate
 ```
@@ -91,7 +91,7 @@ events:
 
 ```sh
 .venv/bin/python scripts/check_provenance.py \
-  --snapshot T1-YYYYMMDD-closing \
+  --snapshot T1-YYYYMMDD-closed \
   --output release/provenance-validation.json \
   --require-release
 ```
@@ -103,7 +103,13 @@ and any missing or incomplete exact terminal activity declared in
 `provenance/reproduction-declarations.json`. Terminal rows use
 `supersedes_activity_ids`; the validator requires prior references, one
 unambiguous superseder, a precise completion time, complete validation, no
-pending output and exact source-request counts for request-bearing events.
+pending output and exact source-request counts for request-bearing events. All
+11 declarations carry an explicit snapshot-binding disposition. The nine
+post-closing events must name the exact requested release snapshot; T0 census
+and hydration remain correctly bound to their opening T0 snapshot. The final
+citation and security terminals additionally bind declared release artefacts
+by repository-relative path and SHA-256, and validation recomputes those hashes
+from the current checkout.
 
 The complete order is: stage the closing checkpoint; transactionally generate
 full-test and clean-room evidence and promote the candidate; publish the
@@ -132,6 +138,17 @@ plus a final counter snapshot. Citation-verification requests retain per-source
 attempt evidence and must receive a separate final aggregate rather than being
 folded into model cost.
 
+The completed remediation campaign is also only a pre-release checkpoint. The
+final frozen repository scan must append the distinct
+`ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001` activity, superseding
+`ACT-D2-SECURITY-SCAN-TERMINAL-001`; reusing the earlier terminal cannot satisfy
+candidate provenance. Likewise, the completed fixture citation review remains
+`ACT-F2-CITATION-REVIEWS-TERMINAL-001`. The closing snapshot must produce
+`ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001`, supersede that fixture
+terminal, name the exact T1 release ID and hash-bind the final citation report,
+review report and request aggregate. A fixture-labelled citation terminal can
+never satisfy candidate or release provenance.
+
 `provenance/reproduction-declarations.json` records every used access fallback:
 ACM to the Waterloo RRF paper; CMU legacy TLS through blocked ResearchGate to
 Crossref bibliographic identity; the National Archives certificate-failure
@@ -141,6 +158,10 @@ remain visible and no TLS or access-control bypass is used.
 
 ## Closing full snapshot
 
+The exact resumable T1, content-addressed source resolution, release-v2,
+evaluation, evidence, promotion and publication order is in
+[`post-hydration-runbook.md`](post-hydration-runbook.md).
+
 After T1 closure, build the SBOM and stage the same unsampled snapshot with its
 exact frozen build inputs. Do not mutate the manifest into a candidate before
 clean-room verification:
@@ -148,9 +169,9 @@ clean-room verification:
 ```sh
 .venv/bin/python scripts/build_sbom.py
 .venv/bin/python scripts/promote_release.py stage \
-  --snapshot T1-YYYYMMDD \
-  --reconciliation corpus/reconciliation/T1-YYYYMMDD.json \
-  --source corpus/records/T1-YYYYMMDD/source-records.jsonl.gz \
+  --snapshot T1-YYYYMMDD-closed \
+  --reconciliation corpus/reconciliation/T1-YYYYMMDD-closed.json \
+  --source "$SOURCE_ROOT" \
   --generated-at YYYY-MM-DDTHH:MM:SSZ \
   --compiler disk
 .venv/bin/python scripts/promote_release.py promote
@@ -174,11 +195,11 @@ hydrated record manifest exist:
 
 ```sh
 .venv/bin/python scripts/audit_rights_privacy.py \
-  --corpus-manifest corpus/records/T1-YYYYMMDD/manifest.json \
+  --corpus-manifest corpus/records/T1-YYYYMMDD-closed/manifest.json \
   --generated-at YYYY-MM-DDTHH:MM:SSZ \
   --require-release
 .venv/bin/python scripts/audit_rights_privacy.py \
-  --corpus-manifest corpus/records/T1-YYYYMMDD/manifest.json \
+  --corpus-manifest corpus/records/T1-YYYYMMDD-closed/manifest.json \
   --generated-at YYYY-MM-DDTHH:MM:SSZ \
   --check --require-release
 ```

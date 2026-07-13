@@ -1,5 +1,6 @@
 import { rankOrdinals, searchShard, tokenize } from "./search-core.js";
 import { mapWithConcurrency, QueryBudget, SEARCH_LIMITS, validateSearchManifest } from "./search-contract.js";
+import { prepareReleaseDataPlane, releaseDataRequest } from "./release-data-plane.js";
 
 const MAX_JSON_BYTES = 8 * 1024 * 1024;
 const MAX_JSON_CACHE_ENTRIES = 64;
@@ -9,6 +10,7 @@ const RETRYABLE = new Set([408, 425, 429, 500, 502, 503, 504]);
 let baseUrl = "";
 let manifest = null;
 let shardIntegrity = new Map();
+let releaseDataPlane = null;
 let activeController = null;
 const jsonCache = new Map();
 const lexiconCache = new Map();
@@ -134,45 +136,59 @@ async function readResponseBytes(response) {
   return bytes;
 }
 
-async function decodeResponseBytes(bytes, response, url, budget) {
-  if (!url.toLowerCase().endsWith(".gz")) {
-    if (budget) budget.consumeDecodedBytes(bytes.byteLength);
-    return new TextDecoder().decode(bytes);
-  }
-  if (response.headers.get("content-encoding")?.toLowerCase().includes("gzip")) {
-    throw new Error("Pre-compressed search shards must be served without Content-Encoding so their published bytes can be verified");
-  }
-  if (typeof DecompressionStream === "undefined") {
-    throw new Error("This browser cannot decompress the advertised gzip search shard");
-  }
+async function gunzipBytes(bytes, label) {
+  if (typeof DecompressionStream === "undefined") throw new Error("This browser cannot decompress " + label);
   const body = new Response(bytes).body;
-  if (!body) throw new Error("This browser cannot stream the advertised gzip search shard");
+  if (!body) throw new Error("This browser cannot stream " + label);
   const reader = body.pipeThrough(new DecompressionStream("gzip")).getReader();
-  const decoder = new TextDecoder();
+  const chunks = [];
   let received = 0;
-  let text = "";
   while (true) {
     const part = await reader.read();
     if (part.done) break;
     received += part.value.byteLength;
     if (received > MAX_JSON_BYTES) {
       await reader.cancel();
-      throw new Error("Search shard exceeds the 8 MiB decoded response limit");
+      throw new Error(label + " exceeds the 8 MiB decoded response limit");
     }
-    if (budget) budget.consumeDecodedBytes(part.value.byteLength);
-    text += decoder.decode(part.value, { stream: true });
+    chunks.push(part.value);
   }
-  return text + decoder.decode();
+  const decoded = new Uint8Array(received);
+  let offset = 0;
+  for (const chunk of chunks) {
+    decoded.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return decoded;
+}
+
+async function decodeResponseBytes(bytes, response, url, budget, compression = "") {
+  const isGzip = compression ? compression === "gzip" : url.toLowerCase().endsWith(".gz");
+  if (!isGzip) {
+    if (budget) budget.consumeDecodedBytes(bytes.byteLength);
+    return new TextDecoder().decode(bytes);
+  }
+  if (response.headers.get("content-encoding")?.toLowerCase().includes("gzip")) {
+    throw new Error("Pre-compressed search shards must be served without Content-Encoding so their published bytes can be verified");
+  }
+  const decoded = await gunzipBytes(bytes, "the advertised gzip search shard");
+  if (budget) budget.consumeDecodedBytes(decoded.byteLength);
+  return new TextDecoder().decode(decoded);
 }
 
 async function requestJson(reference, signal, budget) {
-  const url = resolvePath(reference);
-  const expectedHash = referenceHash(reference);
+  const distributed = releaseDataRequest(reference, releaseDataPlane);
+  const url = distributed ? distributed.url : resolvePath(reference);
+  const expectedHash = distributed ? distributed.expectedHash : referenceHash(reference);
   let lastError = null;
   for (let attempt = 0; attempt < 3; attempt += 1) {
     try {
       if (budget) budget.consumeResource();
-      const response = await fetch(url, { cache: "default", signal });
+      const response = await fetch(url, {
+        cache: "default",
+        signal,
+        headers: distributed ? distributed.headers : undefined
+      });
       if (!response.ok) {
         const error = new Error(url + ": " + response.status + " " + response.statusText);
         if (attempt < 2 && RETRYABLE.has(response.status)) {
@@ -182,9 +198,33 @@ async function requestJson(reference, signal, budget) {
         }
         throw error;
       }
+      if (distributed && response.status !== 206) throw new Error("Pages did not honour the bounded search-pack range request");
       const bytes = await readResponseBytes(response);
-      if (expectedHash && await sha256Bytes(bytes) !== expectedHash) throw new Error("Search shard integrity check failed");
-      const text = await decodeResponseBytes(bytes, response, url, budget);
+      if (distributed && (bytes[0] !== 0x1f || bytes[1] !== 0x8b)) {
+        throw new Error("Search-pack transport member is not gzip-framed");
+      }
+      if (distributed && response.headers.get("content-encoding")) {
+        throw new Error("Pages search packs must be served as published bytes without Content-Encoding");
+      }
+      if (distributed && bytes.byteLength !== distributed.expectedPackedLength) throw new Error("Search-pack range length differs");
+      if (distributed && response.headers.get("content-range") !== distributed.expectedContentRange) {
+        throw new Error("Search-pack Content-Range differs");
+      }
+      const packedHash = distributed ? distributed.expectedPackedHash : expectedHash;
+      if (packedHash && await sha256Bytes(bytes) !== packedHash) throw new Error("Search shard transport integrity check failed");
+      const sourceBytes = distributed && distributed.transportCompression === "gzip"
+        ? await gunzipBytes(bytes, "the search-pack transport member")
+        : bytes;
+      if (distributed && sourceBytes.byteLength !== distributed.expectedLength) throw new Error("Search-pack decoded member length differs");
+      if (distributed && await sha256Bytes(sourceBytes) !== expectedHash) throw new Error("Search shard integrity check failed");
+      const decodePath = distributed ? distributed.logicalPath : url;
+      const text = await decodeResponseBytes(
+        sourceBytes,
+        response,
+        decodePath,
+        budget,
+        distributed ? distributed.compression : ""
+      );
       return JSON.parse(text);
     } catch (error) {
       if (error && error.name === "AbortError") throw error;
@@ -320,6 +360,9 @@ self.onmessage = async (event) => {
   try {
     if (message.type === "init") {
       baseUrl = new URL(message.baseUrl).toString();
+      releaseDataPlane = message.releaseDataPlane
+        ? await prepareReleaseDataPlane(message.releaseDataPlane, baseUrl, String(message.snapshotId || ""))
+        : null;
       manifest = validateSearchManifest(
         await requestJson(message.manifestReference ?? message.manifestUrl, undefined),
         String(message.snapshotId || "")

@@ -4,6 +4,10 @@
 release-control document in the shared JSON/YAML subset makes validation
 deterministic without a permissive YAML loader.
 
+The resumable execution order after T0 hydration, including resolution of the
+content-addressed closing source manifest, is documented in
+[`docs/post-hydration-runbook.md`](../docs/post-hydration-runbook.md).
+
 The checked-in state is deliberately a non-publishable fixture checkpoint.
 Run the structural checkpoint validation with:
 
@@ -25,7 +29,7 @@ and the other snapshot-bound evidence are generated:
 .venv/bin/python scripts/promote_release.py stage \
   --snapshot T1-YYYYMMDD-closed \
   --reconciliation corpus/reconciliation/T1-YYYYMMDD-closed.json \
-  --source corpus/records/T1-YYYYMMDD-closed/source-records.jsonl.gz \
+  --source "$SOURCE_ROOT" \
   --generated-at YYYY-MM-DDTHH:MM:SSZ \
   --compiler disk
 ```
@@ -47,12 +51,25 @@ inside one rollback transaction:
 .venv/bin/python scripts/promote_release.py promote
 ```
 
+The full evaluation is retained as an immutable run below
+`evaluation/agent-runs/`. Before promotion,
+`scripts/project_evaluation_results.py` independently revalidates and
+hash-binds the exact current release-v2 questions and bundle, verifies the
+run's complete manifest, checksum ledger, all 288,000 raw traces and the
+machine-only claim boundary, then atomically publishes summary evidence at
+`evaluation/results`.
+
 Provenance has two honest tiers around the external publication milestone.
 Candidate promotion uses `check_provenance.py --require-candidate`: 10 of 11
 terminal events must pass and only
 `ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001` may remain
 `pending_post_publication`. After the candidate release, Pages live checks and
 Explorer registry PR are evidenced, append that real terminal and finalize.
+The nine post-closing terminals must name the exact release snapshot. In
+particular, the final citation and security activities use distinct IDs that
+supersede their fixture/pre-release terminals and carry SHA-256 bindings for
+their required release reports; the earlier successful work cannot be reused
+as final-snapshot provenance.
 Finalization runs `check_provenance.py --require-release` semantics for strict
 11-of-11 validation under the same ledger side lock; it does not synthesize the
 external event. The old 10-of-11 candidate provenance is expected to become
@@ -103,3 +120,29 @@ The machine release-candidate may retain
 `human_evaluation_status: not_authorised` and must retain
 `human_ui_of_choice_status: not_yet_testable`. A full-programme marker is
 accepted only after genuine human evaluation is complete.
+
+## Publication transport and recovery
+
+Packaging preserves virtual shard paths in a dual-hash offset index and emits
+gzip-framed `.pack.gz` files no larger than 64 MiB. The exact Pages site fails
+closed at 950,000,000 bytes. Browser JavaScript fetches those ranges only from
+the same Pages origin; GitHub Release copies are an offline immutable mirror,
+not a CORS fallback.
+
+The packed-site browser report binds both `data_plane_index_sha256` and
+`site_checksums_sha256`. Release packaging accepts it only when those hashes,
+the snapshot and all nested accessibility, routing, performance and no-error
+gates match the exact package; a same-snapshot report from different bytes
+cannot be replayed.
+
+The tag workflow validates the packed site in a real browser, creates a draft
+Release and verifies every API-reported asset digest. It then deploys and
+live-smokes the exact Pages artifact. Only a dependent final job can reverify
+that draft, publish it and require the versioned API to report
+`draft:false, immutable:true`. If Pages fails, the Release remains an editable
+draft. See
+[`ADR-005`](../governance/decisions/ADR-005-github-pages-range-pack-data-plane.md).
+The two GitHub services are not atomically committed: if Pages succeeds and the
+final publish step fails, the honest state is `Pages live / Release draft` and
+release finalization remains pending. Rerunning the final job revalidates the
+attested exact-asset expectation; it never substitutes or clobbers assets.

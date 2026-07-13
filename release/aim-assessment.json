@@ -348,7 +348,7 @@
           "operator": "json_equals",
           "path": "explorer/src/evidence/fixture-browser.json",
           "pointer": "/completed_non_browser_checks/failed",
-          "sha256": "403b9d300e48f5d649439a84f7ee3351a6e1a53eab2075b677923d6bfdfc6f9f"
+          "sha256": "90ca66d8d35350529a11e2695b0e9a760ad6675d1953bfd5c43b0d8e73830594"
         },
         {
           "check_id": "E-PERSONA-FOUNDATION",
@@ -357,7 +357,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "personas/manifest.json",
-          "sha256": "7078f7953a8e10bd9a0788d8cdab10e80d0d4f92ca7e8ce559b91498b1c9276f"
+          "sha256": "48fef769daa62ff839fe2c5e52cde31064becdf2e625f76c7ce5213888c9b8e2"
         },
         {
           "check_id": "E-HUMAN-COMPLETE",
@@ -785,14 +785,14 @@
         {
           "check_id": "E-MACHINE-RESULTS",
           "description": "A completed immutable release evaluation result exists.",
-          "error": "evidence locator failed: 'agent_evaluation_status'",
+          "error": "missing evidence file",
           "expected": "completed",
           "matched": false,
           "observed": null,
           "operator": "json_equals",
           "path": "evaluation/results/status.json",
           "pointer": "/agent_evaluation_status",
-          "sha256": "0d4ac6a8567ad9d7455bcf9d31bf631972a8fdae75f8125238ca4beaace6dc55"
+          "sha256": null
         },
         {
           "check_id": "E-CITATIONS-RELEASE",
@@ -950,7 +950,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "reports/comparators.md",
-          "sha256": "06d09e323647631bfa4e2e639e700d8bc85aec9699ec7ee43d063a541e78bb1b"
+          "sha256": "f6b88ff72a271eeb5e55649f6845c73eb6286de1f6e3d6b73c4ca38dcebbe196"
         },
         {
           "check_id": "E-PAIRED-COMPARISONS",
@@ -1206,7 +1206,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "provenance/activity-ledger.jsonl",
-          "sha256": "1ab0e36ad2d2ce2be94f64123c3aba4e5517e65ee0edac28d72a8a44583bbc8f"
+          "sha256": "870518fbbda28948b4d7158c0263333261caf1f2c138984d30855dda0fe8182d"
         },
         {
           "check_id": "E-REQUIREMENT-COVERAGE",
@@ -1217,7 +1217,7 @@
           "operator": "json_equals",
           "path": "governance/requirements-status.json",
           "pointer": "/counts/requirements",
-          "sha256": "885c1890d9e54afe66dfd4e190b887f057455f5c0dd743da4fbe7135c12c5106"
+          "sha256": "6ae79a45c4037546d8d8f9e76267ebf3475a9e79075ab899a0b0c3e70735ef89"
         },
         {
           "check_id": "E-TRACEABILITY-COVERAGE",
@@ -1228,7 +1228,7 @@
           "operator": "json_equals",
           "path": "governance/traceability-status.json",
           "pointer": "/counts/clauses",
-          "sha256": "3f8a62417f689ae687b4e648bbec04087fdbf54ada78f4f8ada7a1eb78272f99"
+          "sha256": "90f42869f08c890a161aa7ec91da103d176d7f59d51df65b9cf0671afa5f9e6a"
         },
         {
           "check_id": "E-CLEAN-ROOM-FIXTURE",
@@ -1239,7 +1239,7 @@
           "operator": "json_equals",
           "path": "release/clean-room-reproduction.json",
           "pointer": "/fixture_reproduction_passed",
-          "sha256": "1d1d6b76a66c7412159eef6dd11368126b82cb1b5f44ae8afcc0f09808cdc8da"
+          "sha256": "49409a07c8c162dc449f3d5b3de056a27892c29a51f4019b9ac9e534b02dde8d"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",

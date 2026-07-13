@@ -52,9 +52,15 @@ export async function startFixtureServer(options = {}) {
   const staticRoot = resolve(options.staticRoot || DEFAULT_STATIC_ROOT);
   const basePath = normalizedBasePath(options.basePath || DEFAULT_BASE_PATH);
   const requests = [];
+  const sockets = new Set();
   const server = createServer(async (request, response) => {
     const requestUrl = new URL(request.url || "/", "http://127.0.0.1");
-    requests.push({ method: request.method || "GET", pathname: requestUrl.pathname, search: requestUrl.search });
+    requests.push({
+      method: request.method || "GET",
+      pathname: requestUrl.pathname,
+      search: requestUrl.search,
+      range: String(request.headers.range || "")
+    });
     if (basePath !== "/" && requestUrl.pathname === basePath.slice(0, -1)) {
       response.writeHead(308, { location: basePath + requestUrl.search });
       response.end();
@@ -71,19 +77,39 @@ export async function startFixtureServer(options = {}) {
     }
     try {
       const body = await readFile(target);
+      let payload = body;
+      let responseStatus = status;
       const headers = {
+        "accept-ranges": "bytes",
         "cache-control": "no-store",
-        "content-length": String(body.byteLength),
         "content-type": MEDIA_TYPES.get(extname(target).toLowerCase()) || "application/octet-stream",
         "x-content-type-options": "nosniff"
       };
-      response.writeHead(status, headers);
-      if (request.method !== "HEAD") response.end(body);
+      const range = /^bytes=(\d+)-(\d+)$/.exec(String(request.headers.range || ""));
+      if (status === 200 && range) {
+        const start = Number(range[1]);
+        const end = Number(range[2]);
+        if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start < 0 || end < start || end >= body.byteLength) {
+          response.writeHead(416, { ...headers, "content-range": `bytes */${body.byteLength}` });
+          response.end();
+          return;
+        }
+        payload = body.subarray(start, end + 1);
+        responseStatus = 206;
+        headers["content-range"] = `bytes ${start}-${end}/${body.byteLength}`;
+      }
+      headers["content-length"] = String(payload.byteLength);
+      response.writeHead(responseStatus, headers);
+      if (request.method !== "HEAD") response.end(payload);
       else response.end();
     } catch (error) {
       response.writeHead(500, { "content-type": "text/plain; charset=utf-8" });
       response.end(error instanceof Error ? error.message : String(error));
     }
+  });
+  server.on("connection", (socket) => {
+    sockets.add(socket);
+    socket.once("close", () => sockets.delete(socket));
   });
   await new Promise((resolveReady, reject) => {
     server.once("error", reject);
@@ -98,7 +124,29 @@ export async function startFixtureServer(options = {}) {
     origin,
     requests,
     async close() {
-      await new Promise((resolveClose, reject) => server.close((error) => error ? reject(error) : resolveClose()));
+      if (!server.listening) return;
+      await new Promise((resolveClose, reject) => {
+        let settled = false;
+        const finish = (error) => {
+          if (settled) return;
+          settled = true;
+          clearTimeout(forceTimer);
+          clearTimeout(hardTimer);
+          if (error) reject(error);
+          else resolveClose();
+        };
+        const destroyConnections = () => {
+          server.closeAllConnections?.();
+          for (const socket of sockets) socket.destroy();
+        };
+        const forceTimer = setTimeout(destroyConnections, 1000);
+        const hardTimer = setTimeout(() => {
+          destroyConnections();
+          finish(new Error("Fixture server did not close within 5 seconds"));
+        }, 5000);
+        server.close((error) => finish(error));
+        server.closeIdleConnections?.();
+      });
     }
   };
 }

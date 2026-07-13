@@ -10,18 +10,22 @@ import unittest
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from govuk_okf.acquisition import write_jsonl_gzip_shards
 from govuk_okf.question_matrix_v2 import reconciliation_release_errors, release_prerequisites
 from govuk_okf.question_matrix_v2_validator import (
     Validation,
     load_control_json,
+    resolve_gold_catalogue,
     resolve_matrix_artifact,
     trusted_release_errors,
     verify,
 )
+from govuk_okf.sharded_jsonl import input_sha256, iter_jsonl_records
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -93,6 +97,59 @@ class QuestionMatrixV2Tests(unittest.TestCase):
         self.assertTrue(all(len(items) == 6 for items in by_persona.values()))
         self.assertTrue(all(len({item["story_role"] for item in items}) == 6 for items in by_persona.values()))
 
+    def test_generator_and_verifier_accept_complete_standard_shard_directory(self) -> None:
+        records = [
+            json.loads(line)
+            for line in self.corpus.read_text(encoding="utf-8").splitlines()
+            if line
+        ]
+        output = write_jsonl_gzip_shards(
+            self.temporary / "sharded-corpus",
+            "source-records",
+            records,
+            max_records=2,
+        )
+        corpus_root = Path(output["root"])
+        matrix = self.temporary / "sharded-matrix"
+        generated = subprocess.run(
+            [
+                sys.executable,
+                "scripts/build_question_matrix_v2.py",
+                "--corpus",
+                str(corpus_root),
+                "--snapshot-id",
+                "fixture-v2-sharded",
+                "--snapshot-date",
+                "2026-07-12",
+                "--output",
+                str(matrix),
+                "--persona-limit",
+                "2",
+            ],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, generated.returncode, generated.stdout + generated.stderr)
+        verified = subprocess.run(
+            [
+                sys.executable,
+                "scripts/verify_question_matrix_v2.py",
+                "--matrix",
+                str(matrix),
+                "--corpus",
+                str(corpus_root),
+            ],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, verified.returncode, verified.stdout + verified.stderr)
+        report = json.loads((matrix / "verification-report.json").read_text(encoding="utf-8"))
+        self.assertEqual(input_sha256(corpus_root), report["corpus_sha256"])
+
     def test_matrix_is_hash_bound_to_machine_saturation_without_human_claims(self) -> None:
         contract = json.loads((self.matrix / "contract.json").read_text(encoding="utf-8"))
         manifest = json.loads((self.matrix / "manifest.json").read_text(encoding="utf-8"))
@@ -141,7 +198,7 @@ class QuestionMatrixV2Tests(unittest.TestCase):
                 loaded.append(path.resolve())
                 return load_control_json(path)
 
-            with unittest.mock.patch(
+            with patch(
                 "govuk_okf.question_matrix_v2_validator.load_control_json",
                 side_effect=recording_loader,
             ):
@@ -162,7 +219,8 @@ class QuestionMatrixV2Tests(unittest.TestCase):
             self.assertTrue(all("For the " not in item["wording"] or " scenario" not in item["wording"] for item in questions))
 
     def test_answerable_gold_is_nonempty_and_unanswerable_gold_is_explicit(self) -> None:
-        records = read_jsonl(self.matrix / "gold" / "catalogue.jsonl")
+        matrix = json.loads((self.matrix / "matrix.json").read_text(encoding="utf-8"))
+        records = list(iter_jsonl_records(self.matrix / matrix["gold_catalogue"]["path"]))
         self.assertEqual(len(records), 1_200)
         for record in records:
             gold = record["gold"]
@@ -176,6 +234,47 @@ class QuestionMatrixV2Tests(unittest.TestCase):
             else:
                 self.assertEqual(gold["classification"], "deliberately_unanswerable")
                 self.assertTrue(gold["unanswerable_rationale"])
+
+    def test_gold_catalogue_is_bounded_sharded_and_bound_to_every_control(self) -> None:
+        matrix = json.loads((self.matrix / "matrix.json").read_text(encoding="utf-8"))
+        contract = json.loads((self.matrix / "contract.json").read_text(encoding="utf-8"))
+        manifest = json.loads((self.matrix / "manifest.json").read_text(encoding="utf-8"))
+        declaration = matrix["gold_catalogue"]
+        self.assertEqual(declaration, contract["gold_catalogue"])
+        self.assertEqual(declaration, manifest["gold_catalogue"])
+        self.assertEqual(declaration["schema"], "govuk-okf-jsonl-shards.v1")
+        self.assertLessEqual(declaration["max_uncompressed_bytes_per_shard"], 32 * 1024 * 1024)
+        index_path = self.matrix / declaration["path"]
+        self.assertEqual(index_path.name, "index.json")
+        self.assertTrue(index_path.is_file())
+        self.assertFalse((self.matrix / "gold" / "catalogue.jsonl").exists())
+        index = json.loads(index_path.read_text(encoding="utf-8"))
+        self.assertEqual(index["canonical_sha256"], declaration["canonical_sha256"])
+        self.assertEqual(index["records"], 1_200)
+        self.assertEqual(len(list(iter_jsonl_records(index_path))), 1_200)
+        manifest_paths = {row["path"] for row in manifest["files"]}
+        self.assertIn(declaration["path"], manifest_paths)
+        self.assertTrue(
+            all(
+                (index_path.parent / row["path"]).relative_to(self.matrix).as_posix()
+                in manifest_paths
+                for row in index["shards"]
+            )
+        )
+
+    def test_release_candidate_cannot_use_legacy_single_file_gold(self) -> None:
+        validation = Validation()
+        legacy = resolve_gold_catalogue(
+            self.matrix,
+            {},
+            {"artifact_tier": "release_candidate"},
+            {"artifact_tier": "release_candidate"},
+            validation,
+        )
+        self.assertIsNone(legacy)
+        self.assertTrue(
+            any(error.startswith("release_gold_catalogue_must_be_sharded") for error in validation.errors)
+        )
 
     def test_independent_validator_passes_machine_checks_but_fixture_fails_release_closed(self) -> None:
         report = json.loads((self.matrix / "verification-report.json").read_text(encoding="utf-8"))

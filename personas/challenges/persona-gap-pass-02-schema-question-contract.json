@@ -5,7 +5,7 @@
     "question_v2_story_roles": 6,
     "required_dimensions": 11
   },
-  "checksum": "5f94f3a27f6bd97c6b1a8f84f797c92065afb4c19930978853ecf9072d837bea",
+  "checksum": "791cc588395fed1df51248d5c62b2146ea8ace7cf1810c7627d00dd3779970a5",
   "findings": [],
   "held_out_from": [
     "pass-01 controlling-overlay findings",
@@ -24,7 +24,7 @@
     },
     {
       "path": "scripts/build_question_matrix_v2.py",
-      "sha256": "0edec79094016f2d0a746d6f848cede7b829cf0c1562dde8b1a49a6dcdd2f602"
+      "sha256": "c0f454bcf5b4e41bbf033b0135ad39d0c8e77fb4158e1765732fbe700e4a2962"
     },
     {
       "coverage_matrix_sha256": "da386424615b45ca344b8936e130e349e880bdb8de4fb92a8a439636a7cd1ae1"

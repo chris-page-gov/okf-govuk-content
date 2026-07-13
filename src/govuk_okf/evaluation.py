@@ -28,6 +28,7 @@ from pathlib import Path
 from statistics import NormalDist
 from typing import Any, Iterable, Iterator, Sequence
 
+from .sharded_jsonl import ShardedJsonlError, iter_jsonl_records
 from .util import reference_path, yaml_load_subset
 
 
@@ -487,6 +488,7 @@ def verify_question_inputs(root: Path, mode: str) -> tuple[dict[str, Any], dict[
     contract_path = root / "contract.json"
     manifest = load_json(manifest_path)
     contract = load_json(contract_path)
+    matrix = load_json(root / "matrix.json")
     material = ""
     seen_manifest_paths: set[str] = set()
     for entry in manifest.get("files", []):
@@ -505,6 +507,53 @@ def verify_question_inputs(root: Path, mode: str) -> tuple[dict[str, Any], dict[
         material += f"{relative}\0{digest}\n"
     if sha256_text(material) != manifest.get("root_sha256"):
         raise ValueError("question manifest root hash is invalid")
+
+    gold_declaration = matrix.get("gold_catalogue")
+    if not isinstance(gold_declaration, dict):
+        if mode == "release":
+            raise ValueError("release question matrix has no bounded sharded gold catalogue")
+        gold_path = safe_relative(root, "gold/catalogue.jsonl")
+    else:
+        if contract.get("gold_catalogue") != gold_declaration:
+            raise ValueError("question contract is bound to a different gold catalogue")
+        if manifest.get("gold_catalogue") != gold_declaration:
+            raise ValueError("question manifest is bound to a different gold catalogue")
+        if gold_declaration.get("schema") != "govuk-okf-jsonl-shards.v1":
+            raise ValueError("question gold catalogue does not use the bounded shard schema")
+        gold_path = safe_relative(root, str(gold_declaration.get("path") or ""))
+        if gold_path.name != "index.json":
+            raise ValueError("question gold catalogue does not resolve to a shard index")
+        gold_index = load_json(gold_path, max_bytes=16 * 1024 * 1024)
+        for field in (
+            "schema",
+            "records",
+            "canonical_sha256",
+            "max_records_per_shard",
+            "max_uncompressed_bytes_per_shard",
+            "max_compressed_bytes_per_shard",
+        ):
+            if gold_index.get(field) != gold_declaration.get(field):
+                raise ValueError(f"question gold catalogue {field} binding differs")
+        uncompressed_limit = gold_index.get("max_uncompressed_bytes_per_shard")
+        if (
+            not isinstance(uncompressed_limit, int)
+            or isinstance(uncompressed_limit, bool)
+            or not 0 < uncompressed_limit <= 32 * 1024 * 1024
+        ):
+            raise ValueError("question gold catalogue exceeds the 32 MiB shard ceiling")
+    gold_count = 0
+    gold_ids: set[str] = set()
+    try:
+        for gold_record in iter_jsonl_records(gold_path):
+            gold_count += 1
+            question_id = str(gold_record.get("question_id") or "")
+            if not question_id or question_id in gold_ids or not checked_record(gold_record):
+                raise ValueError("question gold catalogue contains an invalid or duplicate record")
+            gold_ids.add(question_id)
+    except ShardedJsonlError as exc:
+        raise ValueError(f"question gold catalogue integrity failed: {exc}") from exc
+    if gold_count != manifest.get("counts", {}).get("questions"):
+        raise ValueError("question gold catalogue count differs from the question manifest")
 
     report_path = root / "verification-report.json"
     report: dict[str, Any] | None = load_json(report_path) if report_path.is_file() else None

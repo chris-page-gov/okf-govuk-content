@@ -1447,7 +1447,10 @@ def render() -> dict[Path, str]:
             "protocol": "evaluation/protocol/automated-evaluation-v1.json",
         }
     )
-    status_path = ROOT / "evaluation" / "results" / "status.json"
+    # Development-only generator output is deliberately isolated from the
+    # canonical release projection.  A completed immutable agent run is the
+    # only producer allowed to populate evaluation/results.
+    status_path = ROOT / "evaluation" / "development" / "status.json"
     output[status_path] = _json(
         {
             "schema_version": 1,
@@ -1471,7 +1474,7 @@ def render() -> dict[Path, str]:
             "result_claims": [],
         }
     )
-    usage_path = ROOT / "evaluation" / "results" / "build-usage.json"
+    usage_path = ROOT / "evaluation" / "development" / "build-usage.json"
     output[usage_path] = _json(
         {
             "schema_version": 1,

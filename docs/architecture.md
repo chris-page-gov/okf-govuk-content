@@ -18,10 +18,16 @@ flowchart LR
 ```
 
 The control plane is the repository, semantic profile, Explorer shell,
-descriptors, manifests, status documents and checksums. The data plane is the
-immutable gzip record, search, route and relationship-adjacency shards. External
-data-plane hosting is not authorised; a Pages capacity failure blocks
-publication rather than narrowing the corpus.
+descriptors, manifests, status documents and checksums. At release packaging,
+the immutable gzip record, search, route, relationship-adjacency and semantic
+shards become deterministic, same-origin GitHub Pages `.pack.gz` byte-range
+resources. The offset index preserves every virtual shard path and binds both
+the transport member and recovered source bytes. Identical packs are mirrored
+as immutable GitHub Release assets for offline use; browser code never fetches
+the cross-origin Release URLs. External data-plane hosting is not authorised,
+and a 950,000,000-byte Pages capacity failure blocks publication rather than
+narrowing the corpus. See
+[`ADR-005`](../governance/decisions/ADR-005-github-pages-range-pack-data-plane.md).
 
 ## Source boundary and identities
 
@@ -164,7 +170,13 @@ the selected canonical record uses the federated hash-route convention, and
 legacy `route=` links canonicalise to that fragment. A CSP-safe Pages 404
 fallback preserves both query and hash state before returning to the project
 base. Route selection progressively loads gzip route-index, record and
-adjacency buckets over HTTP.
+adjacency buckets over HTTP. A packaged release resolves those unchanged paths
+through the descriptor's `release_data_plane` entrypoint. It requires a
+same-origin 206 response, exact range coordinates, absent `Content-Encoding`,
+gzip member framing and transport/original SHA-256 checks before JSON decode.
+Full-release browser evidence records the exact SHA-256 of both the audited
+`release-data-plane.json` and the packaged site's `checksums.json`; attachment
+rejects evidence from different bytes even when the snapshot label is equal.
 
 `explorer/tests/browser.e2e.mjs` measures the representative fixture through
 installed Chrome/Chromium without a package dependency. Its thresholds are in
@@ -254,6 +266,13 @@ and capacity runs and require snapshot-bound semantic, question, citation, check
 rights/privacy and clean-room evidence. The machine release candidate may keep human evaluation
 `not_authorised` and UI-of-choice `not_yet_testable`; it may not claim programme
 completion. See [`repository-governance.md`](repository-governance.md).
+
+Release packaging also enforces GitHub's transport constraints. Packs are at
+most 64 MiB and the complete Pages site must remain below 950,000,000 bytes.
+The tag workflow creates and verifies an editable draft Release, then deploys
+and live-smokes the exact Pages site—including one browser-negotiated byte
+range per pack. Only a dependent final job can publish the already verified
+draft and require the versioned GitHub API to report it immutable.
 
 ## Rights, access and model-cost policy
 

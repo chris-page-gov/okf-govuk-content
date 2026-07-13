@@ -75,3 +75,9 @@ records and requires both traced Python heaps to remain below 64 MiB.
 - A directory containing multiple snapshot-level `*-source-records` files is
   rejected as ambiguous. Multi-file inputs must be an explicit `records-*` or
   `part-*` shard set so T0 and T1 cannot be accidentally combined.
+- Release packaging keeps the logical shard contract but maps it to
+  deterministic, gzip-framed Pages range packs no larger than 64 MiB. The
+  linked 300-record fixture measured 1,666,697 indexed source bytes and 855,210
+  packed bytes (51.31%). That small-fixture ratio and this 5,000-record compiler
+  spike do not establish full-corpus fit. Only a measured closing-snapshot site
+  below the fail-closed 950,000,000-byte budget may be deployed.

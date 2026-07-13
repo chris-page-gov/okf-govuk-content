@@ -54,6 +54,23 @@ TEST_INPUT_PATHS = (
     "explorer/src",
     "explorer/tests",
 )
+SECURITY_SCAN_INPUT_PATHS = (
+    ".github",
+    "orchestration",
+    "pyproject.toml",
+    "uv.lock",
+    "src",
+    "scripts",
+    "tests",
+    "semantic/package.json",
+    "semantic/package-lock.json",
+    "semantic/rdfc-equivalence.mjs",
+    "semantic/rdfc-stream.mjs",
+    "semantic/tests",
+    "explorer/package.json",
+    "explorer/src",
+    "explorer/tests",
+)
 CLEAN_ROOM_INPUT_PATHS = (
     "LICENSE.md",
     "governance/launch-manifest.yaml",
@@ -702,6 +719,7 @@ def _browser_errors(evidence: dict[str, Any], snapshot: dict[str, Any]) -> list[
 def _security_errors(root: Path, evidence: dict[str, Any], snapshot: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     findings = evidence.get("findings")
+    scanned_commit = evidence.get("scanned_commit")
     if (
         evidence.get("schema") != "afhf-govuk-okf-security-scan.v1"
         or evidence.get("snapshot") != snapshot.get("id")
@@ -712,6 +730,19 @@ def _security_errors(root: Path, evidence: dict[str, Any], snapshot: dict[str, A
         or not evidence.get("scan_id")
     ):
         errors.append("security scan is not a completed passing full-release scan")
+    if (
+        not isinstance(scanned_commit, str)
+        or len(scanned_commit) != 40
+        or any(character not in "0123456789abcdef" for character in scanned_commit)
+    ):
+        errors.append("security scan has no valid scanned commit")
+    code_tree = evidence.get("code_tree")
+    if (
+        not isinstance(code_tree, dict)
+        or code_tree.get("paths") != list(SECURITY_SCAN_INPUT_PATHS)
+        or code_tree.get("sha256") != _tree_sha256(root, SECURITY_SCAN_INPUT_PATHS)
+    ):
+        errors.append("security scan is not bound to current code, automation and tests")
     if not isinstance(findings, dict) or findings.get("critical_open") != 0 or findings.get("high_open") != 0:
         errors.append("security scan has open critical or high findings")
     report = evidence.get("report")

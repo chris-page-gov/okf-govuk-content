@@ -124,11 +124,16 @@ checkpoint is not a completion claim.
 Full-corpus gzip snapshots and explicit `records-*`/`part-*` shard directories
 select the bounded SQLite compiler automatically:
 
+`SOURCE_ROOT` below is the parent directory of the content-addressed
+`hydrated_records_path` from the closing reconciliation; see the post-hydration
+runbook for exact resolution. The directory, not its detached `index.json`, is
+the complete clean-room input.
+
 ```sh
 python3 scripts/build_bundle.py \
-  --source corpus/records/T1/source-records.jsonl.gz \
+  --source "$SOURCE_ROOT" \
   --output bundle \
-  --snapshot-id T1-YYYYMMDD \
+  --snapshot-id T1-YYYYMMDD-closed \
   --generated-at YYYY-MM-DDTHH:MM:SSZ
 ```
 
@@ -138,7 +143,9 @@ disk limits are recorded in `reports/publication-scale.md`.
 
 The fixture currently reproduces byte for byte, while its full release gate
 correctly remains false. The closing-snapshot command and evidence contract are
-documented in [`docs/reproducibility.md`](docs/reproducibility.md).
+documented in [`docs/reproducibility.md`](docs/reproducibility.md); the exact
+resumable continuation after T0 hydration is
+[`docs/post-hydration-runbook.md`](docs/post-hydration-runbook.md).
 
 Current operational decisions, source constraints, costs and human-only gates
 are published under `governance/`, `research/`, `provenance/` and `reports/`.

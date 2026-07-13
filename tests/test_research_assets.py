@@ -171,8 +171,8 @@ def test_manifests_and_question_checksum_ledger_verify() -> None:
 
 
 def test_usage_and_evaluation_status_are_honest() -> None:
-    usage = read_json("evaluation/results/build-usage.json")
-    status = read_json("evaluation/results/status.json")
+    usage = read_json("evaluation/development/build-usage.json")
+    status = read_json("evaluation/development/status.json")
     preregistration = read_json("evaluation/protocol/preregistration.json")
     assert usage["model_usage"] == {"model_calls": 0, "input_tokens": 0, "output_tokens": 0, "cost_gbp": 0.0}
     assert usage["human_research"]["status"] == "not_authorised_not_run"

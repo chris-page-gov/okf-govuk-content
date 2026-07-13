@@ -41,14 +41,22 @@ WORKFLOW_MARKERS = {
             "scripts/check_release.py --finalized",
             "scripts/package_release.py",
             "actions/upload-artifact@",
-            "actions/download-artifact@",
             "actions/attest@",
             "attestations: write",
             "artifact-metadata: write",
             "gh release create",
+            "gh release upload",
+            "gh release edit",
+            "gh release verify",
+            "scripts/verify_github_release_assets.py",
+            "--attach-pages-browser-evidence",
+            "release-asset-expectation.json",
+            "X-GitHub-Api-Version: 2026-03-10",
+            "immutable-releases",
+            "--draft",
             "--verify-tag",
             "--prerelease",
-            "verified-release-${{ github.ref_name }}-${{ github.sha }}",
+            "verified-pages-${{ github.ref_name }}-${{ github.sha }}",
             "uses: ./.github/workflows/pages.yml",
             "cancel-in-progress: false",
         ),
@@ -67,7 +75,7 @@ WORKFLOW_MARKERS = {
             "pages: write",
             "id-token: write",
             "actions/download-artifact@",
-            "scripts/package_release.py --check",
+            "scripts/package_release.py --check-site",
             "browser-evidence.mjs",
             "actions/upload-pages-artifact@",
             "actions/deploy-pages@",
@@ -150,6 +158,33 @@ def compare_api_capture(local: dict[str, Any], capture: dict[str, Any]) -> list[
             errors.append(f"API capture differs: {key}")
     if _normalise_restrictions(capture.get("restrictions")) != _normalise_restrictions(local.get("restrictions")):
         errors.append("API capture differs: restrictions")
+    return errors
+
+
+def compare_publication_api_capture(policy: dict[str, Any], capture: dict[str, Any]) -> list[str]:
+    """Compare immutable-release and Pages API read-backs with policy."""
+
+    errors: list[str] = []
+    release_contract = (policy.get("release") or {}).get("immutable_releases") or {}
+    immutable = capture.get("immutable_releases")
+    if not isinstance(immutable, dict):
+        errors.append("publication API capture has no immutable-releases response")
+    elif immutable.get("enabled") is not release_contract.get("enabled_required"):
+        errors.append("publication API capture differs: immutable releases enabled")
+    pages_contract = policy.get("pages") or {}
+    pages = capture.get("pages")
+    if not isinstance(pages, dict):
+        errors.append("publication API capture has no Pages response")
+        return errors
+    expected = {
+        "html_url": pages_contract.get("expected_url"),
+        "build_type": pages_contract.get("build_type"),
+        "public": pages_contract.get("public"),
+        "https_enforced": pages_contract.get("https_enforced"),
+    }
+    for key, value in expected.items():
+        if pages.get(key) != value:
+            errors.append(f"publication API capture differs: Pages {key}")
     return errors
 
 
@@ -260,7 +295,11 @@ def _validate_citation(root: Path, contract: dict[str, Any], policy: dict[str, A
         errors.append("CITATION.cff must not invent a DOI")
 
 
-def validate_repository_policy(root: Path, api_capture: Path | None = None) -> dict[str, Any]:
+def validate_repository_policy(
+    root: Path,
+    api_capture: Path | None = None,
+    publication_api_capture: Path | None = None,
+) -> dict[str, Any]:
     root = root.resolve()
     errors: list[str] = []
     policy = _load_json(root / ".github" / "repository-policy.json", "repository policy", errors)
@@ -286,11 +325,37 @@ def validate_repository_policy(root: Path, api_capture: Path | None = None) -> d
         errors.append("candidate release policy must require the publication-ready gate")
     if release.get("final_gate") != "scripts/check_release.py --finalized":
         errors.append("final release policy must require the finalized gate")
-    if release.get("immutable_artifact_name") != "verified-release-${{ github.ref_name }}-${{ github.sha }}":
+    if release.get("immutable_artifact_name") != "verified-pages-${{ github.ref_name }}-${{ github.sha }}":
         errors.append("release artifact identity must include both tag and commit")
+    immutable = release.get("immutable_releases") or {}
+    if immutable != {
+        "api_endpoint": "/repos/chris-page-gov/okf-govuk-content/immutable-releases",
+        "api_version": "2026-03-10",
+        "enabled_required": True,
+        "draft_first": True,
+        "verify_exact_assets_before_publish": True,
+        "verify_immutable_after_publish": True,
+    }:
+        errors.append("immutable-release policy must require versioned draft-first exact-asset verification")
     pages = policy.get("pages") or {}
     if pages.get("rebuild_forbidden") is not True or pages.get("post_deploy_smoke_required") is not True:
         errors.append("Pages policy must forbid rebuilds and require post-deploy smoke")
+    expected_pages = {
+        "api_endpoint": "/repos/chris-page-gov/okf-govuk-content/pages",
+        "api_version": "2026-03-10",
+        "expected_url": "https://chris-page-gov.github.io/okf-govuk-content/",
+        "build_type": "workflow",
+        "public": True,
+        "https_enforced": True,
+        "site_budget_bytes": 950_000_000,
+        "data_plane": "same-origin-github-pages-range-packs",
+        "pack_suffix": ".pack.gz",
+        "browser_release_asset_fetch": False,
+        "live_range_smoke_required": True,
+    }
+    for key, expected in expected_pages.items():
+        if pages.get(key) != expected:
+            errors.append(f"Pages policy {key} differs from the required publication contract")
     _validate_citation(root, policy.get("release_metadata") or {}, policy, errors)
 
     branch_contract = policy.get("branch_protection") or {}
@@ -315,12 +380,17 @@ def validate_repository_policy(root: Path, api_capture: Path | None = None) -> d
     if api_capture is not None:
         capture = _load_json(api_capture, "GitHub API capture", errors)
         errors.extend(compare_api_capture(branch, capture))
+    publication_api_compared = publication_api_capture is not None
+    if publication_api_capture is not None:
+        capture = _load_json(publication_api_capture, "publication API capture", errors)
+        errors.extend(compare_publication_api_capture(policy, capture))
     return {
         "schema": "govuk-okf-repository-policy-validation.v1",
         "passed": not errors,
         "repository": policy.get("repository"),
         "default_branch": policy.get("default_branch"),
         "api_capture_compared": api_compared,
+        "publication_api_capture_compared": publication_api_compared,
         "checks": {
             "branch_protection": bool(branch),
             "codeowners": (root / ".github" / "CODEOWNERS").is_file(),

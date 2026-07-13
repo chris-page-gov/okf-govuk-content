@@ -22,8 +22,8 @@ development and review; it is not evidence that Release 1 covers GOV.UK.
 | Personas and stories | Machine-applicable saturation passes for 48 primary persona hypotheses, 17 overlays, 11 dimensions, 83 schema families, 136 overlay pairs, five high-risk t-way scenarios and two successive no-new challenge passes | Authorised human validation and final-snapshot regeneration of six release-v2 stories per persona; UI preference remains not yet testable |
 | Questions | v2 corpus-anchored generator and separate verifier produced | Run against the closed snapshot and independently pass all gold/leakage/split checks |
 | Evaluation and aims | Deterministic SQLite/FTS harness, matched baselines/ablations, raw-trace and analysis contracts produced and fixture-tested | Complete 28,800-question release run against the closed snapshot and aim scorecard |
-| Citations and reproduction | 171/171 citations and 40/40 joint claims verified with zero waivers/blockers; lock-bound CycloneDX SBOM and byte-exact fixture rebuild produced | Rebind citation evidence and run the clean-room replay against the unsampled closing snapshot with full test evidence |
-| Usage and activity provenance | Four historical rows plus hash-chained v2 implementation, subagent, deterministic-run and terminal security records; zero paid API use; source fallbacks, request-budget checkpoint and deterministic `release/provenance-validation.json` retained | Append/supersede the remaining exact terminal activities, close the shared request snapshot, then pass `check_provenance.py --require-release` against the unsampled T1 release ID |
+| Citations and reproduction | 171/171 citations and 40/40 joint claims verified with zero waivers/blockers; lock-bound CycloneDX SBOM and byte-exact fixture rebuild produced | Regenerate the citation release evidence for the unsampled closing ID and append the distinct, output-hash-bound `ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001`; the existing fixture terminal is deliberately insufficient; then run the full-snapshot clean-room replay |
+| Usage and activity provenance | Four historical rows plus hash-chained v2 implementation, subagent, deterministic-run and pre-release citation/security terminal records; zero paid API use; source fallbacks, request-budget checkpoint and deterministic `release/provenance-validation.json` retained | Append the distinct final citation and security records so they supersede their pre-release terminals, append/supersede the other exact snapshot-bound terminal activities, close the shared request snapshot, then pass `check_provenance.py --require-release` against the unsampled T1 release ID |
 | Rights and privacy | Bounded disk-backed fixture audit scans 745 publication data assets with zero body/credential findings and records 2 conservative hashed item-review triggers | Rerun against the final T1 hydration manifest; retain final trigger counts/reviews and snapshot-bound evidence |
 | Human evidence | Not authorised | Governed participant research; until then UI of choice is `not_yet_testable` |
 
@@ -89,9 +89,17 @@ the task was promoted or independently verified.
   Existing browser evidence remains a blocked checkpoint rather than a pass.
 - The pre-release security campaign is complete and its 17 findings are fixed,
   but the final hydrated release repository has not yet been scanned. The
+  existing terminal is deliberately insufficient: the final scan must append
+  `ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001` and supersede it. The
   checked-in release status therefore continues to record
   `security_scan_passed: false`; no fixture or earlier-revision result is
   promoted as final-snapshot evidence.
+- The 171 citation and 40 joint-support review results are valid fixture-stage
+  evidence, but their terminal names `fixture-2026-07-11`. Candidate and final
+  provenance require a new
+  `ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001` row that supersedes
+  the fixture terminal, names the exact closing ID and hash-binds the current
+  citation verification JSON, Markdown report and request aggregate.
 
 The authoritative checkpoint is `release/status.json`: machine RC is false,
 full-corpus reconciliation is false, question/citation/clean-room gates are

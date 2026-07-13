@@ -113,6 +113,41 @@ def _reject_symlinks(path: Path) -> None:
                 )
 
 
+def _is_standard_shard_index(path: Path) -> bool:
+    """Return whether *path* is a GOV.UK OKF JSONL shard index.
+
+    A shard index is not a self-contained release input: its sibling shard
+    files are required both to rebuild the bundle and to bind the complete
+    frozen source in clean-room evidence.  Keep this check deliberately
+    bounded and schema-specific so ordinary single-file JSON inputs retain
+    their existing behaviour.
+    """
+
+    resolved = path.resolve()
+    if not resolved.is_file() or resolved.name != "index.json":
+        return False
+    try:
+        if resolved.stat().st_size > 16 * 1024 * 1024:
+            return False
+        document = json.loads(resolved.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return False
+    return (
+        isinstance(document, dict)
+        and document.get("schema") == "govuk-okf-jsonl-shards.v1"
+    )
+
+
+def require_complete_source(path: Path) -> None:
+    """Reject a detached standard shard index before staging or replay."""
+
+    if _is_standard_shard_index(path):
+        raise ReproductionError(
+            "a standard sharded corpus index is not a self-contained release "
+            f"source: {path}; pass its containing directory instead"
+        )
+
+
 def file_rows(path: Path) -> list[dict[str, Any]]:
     """Return sorted relative file hashes for a file or directory."""
 
@@ -217,6 +252,7 @@ def _relative_label(path: Path) -> str:
 def source_binding(path: Path, root: Path = ROOT) -> dict[str, Any]:
     """Return the canonical content/tree binding used by stage and replay."""
 
+    require_complete_source(path)
     resolved = path.resolve()
     resolved_root = root.resolve()
     try:
@@ -235,6 +271,7 @@ def source_binding(path: Path, root: Path = ROOT) -> dict[str, Any]:
 
 
 def _copy_inputs(workspace: Path, source: Path) -> tuple[Path, dict[str, Any]]:
+    require_complete_source(source)
     components = []
     for relative_text in COPY_INPUTS:
         relative = Path(relative_text)

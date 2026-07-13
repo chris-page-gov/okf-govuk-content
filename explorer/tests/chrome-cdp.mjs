@@ -169,10 +169,30 @@ export async function launchChrome() {
   const target = await devtoolsTarget(port);
   const client = await new CdpClient(target.webSocketDebuggerUrl).connect();
   const network = [];
-  const requestUrls = new Map();
+  const requests = new Map();
+  const responses = new Map();
   const consoleErrors = [];
-  client.on("Network.requestWillBeSent", (event) => requestUrls.set(event.requestId, event.request.url));
-  client.on("Network.loadingFinished", (event) => network.push({ url: requestUrls.get(event.requestId) || "", encoded_bytes: Number(event.encodedDataLength || 0) }));
+  client.on("Network.requestWillBeSent", (event) => requests.set(event.requestId, {
+    url: event.request.url,
+    range: String(event.request.headers?.Range || event.request.headers?.range || "")
+  }));
+  client.on("Network.responseReceived", (event) => responses.set(event.requestId, {
+    status: Number(event.response.status || 0),
+    content_range: String(event.response.headers?.["content-range"] || event.response.headers?.["Content-Range"] || "")
+  }));
+  client.on("Network.loadingFinished", (event) => {
+    const request = requests.get(event.requestId) || {};
+    const response = responses.get(event.requestId) || {};
+    network.push({
+      url: request.url || "",
+      range: request.range || "",
+      status: response.status || 0,
+      content_range: response.content_range || "",
+      encoded_bytes: Number(event.encodedDataLength || 0)
+    });
+    requests.delete(event.requestId);
+    responses.delete(event.requestId);
+  });
   client.on("Runtime.exceptionThrown", (event) => consoleErrors.push(event.exceptionDetails?.text || "Uncaught browser exception"));
   await Promise.all([
     client.command("Page.enable"),
@@ -226,11 +246,23 @@ export async function launchChrome() {
     waitFor,
     async close() {
       client.close();
+      const exited = new Promise((resolve) => {
+        if (child.exitCode !== null || child.signalCode !== null) resolve();
+        else child.once("exit", resolve);
+      });
       child.kill("SIGTERM");
-      await Promise.race([
-        new Promise((resolve) => child.once("exit", resolve)),
-        wait(3000).then(() => child.kill("SIGKILL"))
+      const terminated = await Promise.race([
+        exited.then(() => true),
+        wait(3000).then(() => false)
       ]);
+      if (!terminated && child.exitCode === null && child.signalCode === null) {
+        child.kill("SIGKILL");
+        const killed = await Promise.race([
+          exited.then(() => true),
+          wait(3000).then(() => false)
+        ]);
+        if (!killed) throw new Error("Chrome did not exit after SIGKILL");
+      }
       await rm(userDataDir, { recursive: true, force: true });
     }
   };

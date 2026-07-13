@@ -241,11 +241,15 @@ def stage_release(
         raise PromotionError("stage requires the deterministic bundle generated-at value")
     if compiler not in {"auto", "memory", "disk"}:
         raise PromotionError("stage compiler must be auto, memory or disk")
+    try:
+        source_binding = reproduce_release.source_binding(source_path, root)
+    except reproduce_release.ReproductionError as exc:
+        raise PromotionError(str(exc)) from exc
     reproduction = {
         "source": source_relative,
         "generated_at": effective_generated_at,
         "compiler": compiler,
-        "source_binding": reproduce_release.source_binding(source_path, root),
+        "source_binding": source_binding,
     }
     gates = {gate: False for gate in ALL_GATES}
     gates["full_corpus_reconciled"] = True

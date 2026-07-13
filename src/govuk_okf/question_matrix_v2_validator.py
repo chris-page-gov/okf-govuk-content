@@ -14,7 +14,12 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Iterator
 
-from govuk_okf.sharded_jsonl import input_sha256, iter_jsonl_records
+from govuk_okf.sharded_jsonl import (
+    MAX_UNCOMPRESSED_SHARD_BYTES,
+    ShardedJsonlError,
+    input_sha256,
+    iter_jsonl_records,
+)
 from govuk_okf.util import safe_child_path
 
 VERIFIER_VERSION = "deterministic-corpus-anchor-validator-v2"
@@ -225,25 +230,118 @@ def verify_manifest(root: Path, manifest: dict[str, Any], validation: Validation
                 validation.require(digest_file(path) == expected, "checksum_ledger_sha256", relative_text)
 
 
-def collect_gold(root: Path, validation: Validation) -> tuple[dict[str, dict[str, Any]], set[str]]:
+def resolve_gold_catalogue(
+    root: Path,
+    matrix: dict[str, Any],
+    contract: dict[str, Any],
+    manifest: dict[str, Any],
+    validation: Validation,
+) -> Path | None:
+    """Resolve the bounded gold catalogue declared by all three controls.
+
+    Pre-sharding development fixtures remain readable when they fit the
+    ordinary single-file ceiling.  A release candidate must use the standard
+    integrity-checked shard index and may never fall back to that legacy path.
+    """
+
+    declaration = matrix.get("gold_catalogue")
+    release_candidate = (
+        contract.get("artifact_tier") == "release_candidate"
+        or manifest.get("artifact_tier") == "release_candidate"
+    )
+    if not isinstance(declaration, dict):
+        validation.require(not release_candidate, "release_gold_catalogue_must_be_sharded")
+        legacy = resolve_matrix_artifact(
+            root,
+            "gold/catalogue.jsonl",
+            validation,
+            "legacy_gold_catalogue_path_safe",
+        )
+        validation.require(legacy is not None and legacy.is_file(), "legacy_gold_catalogue_exists")
+        return legacy if legacy is not None and legacy.is_file() else None
+
+    validation.require(
+        contract.get("gold_catalogue") == declaration,
+        "gold_catalogue_contract_binding",
+    )
+    validation.require(
+        manifest.get("gold_catalogue") == declaration,
+        "gold_catalogue_manifest_binding",
+    )
+    validation.require(
+        declaration.get("schema") == "govuk-okf-jsonl-shards.v1",
+        "gold_catalogue_schema",
+    )
+    path = resolve_matrix_artifact(
+        root,
+        declaration.get("path"),
+        validation,
+        "gold_catalogue_path_safe",
+    )
+    validation.require(path is not None and path.is_file(), "gold_catalogue_index_exists")
+    if path is None or not path.is_file():
+        return None
+    validation.require(path.name == "index.json", "gold_catalogue_index_name")
+    try:
+        index = load_control_json(path)
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
+        validation.require(False, "gold_catalogue_index_readable", str(exc))
+        return None
+    validation.require(index.get("schema") == declaration.get("schema"), "gold_catalogue_index_schema")
+    validation.require(index.get("records") == declaration.get("records"), "gold_catalogue_index_records")
+    validation.require(
+        index.get("canonical_sha256") == declaration.get("canonical_sha256"),
+        "gold_catalogue_index_canonical_sha256",
+    )
+    validation.require(
+        index.get("max_records_per_shard") == declaration.get("max_records_per_shard"),
+        "gold_catalogue_index_record_limit",
+    )
+    validation.require(
+        index.get("max_uncompressed_bytes_per_shard")
+        == declaration.get("max_uncompressed_bytes_per_shard"),
+        "gold_catalogue_index_uncompressed_limit_binding",
+    )
+    validation.require(
+        isinstance(index.get("max_uncompressed_bytes_per_shard"), int)
+        and not isinstance(index.get("max_uncompressed_bytes_per_shard"), bool)
+        and 0 < index["max_uncompressed_bytes_per_shard"] <= MAX_UNCOMPRESSED_SHARD_BYTES,
+        "gold_catalogue_index_uncompressed_limit",
+    )
+    validation.require(
+        index.get("max_compressed_bytes_per_shard")
+        == declaration.get("max_compressed_bytes_per_shard"),
+        "gold_catalogue_index_compressed_limit_binding",
+    )
+    return path
+
+
+def collect_gold(
+    path: Path | None, validation: Validation
+) -> tuple[dict[str, dict[str, Any]], set[str]]:
     gold_records: dict[str, dict[str, Any]] = {}
     wanted_identities: set[str] = set()
-    for item in iter_jsonl(root / "gold" / "catalogue.jsonl"):
-        question_id = str(item.get("question_id") or "")
-        validation.require(checked_record(item), "gold_record_checksum", question_id)
-        validation.require(question_id not in gold_records, "gold_question_unique", question_id)
-        gold_records[question_id] = item
-        gold = item.get("gold") or {}
-        for field in ("primary_targets", "near_misses", "supporting_source_anchors"):
-            for target in gold.get(field) or []:
-                identity = str(target.get("identity") or "")
-                if identity.startswith(("content:", "url:")):
-                    wanted_identities.add(identity)
-        for path in gold.get("expected_paths") or []:
-            for node in path.get("nodes") or []:
-                identity = str(node.get("identity") or "")
-                if identity.startswith(("content:", "url:")):
-                    wanted_identities.add(identity)
+    if path is None:
+        return gold_records, wanted_identities
+    try:
+        for item in iter_jsonl(path):
+            question_id = str(item.get("question_id") or "")
+            validation.require(checked_record(item), "gold_record_checksum", question_id)
+            validation.require(question_id not in gold_records, "gold_question_unique", question_id)
+            gold_records[question_id] = item
+            gold = item.get("gold") or {}
+            for field in ("primary_targets", "near_misses", "supporting_source_anchors"):
+                for target in gold.get(field) or []:
+                    identity = str(target.get("identity") or "")
+                    if identity.startswith(("content:", "url:")):
+                        wanted_identities.add(identity)
+            for expected_path in gold.get("expected_paths") or []:
+                for node in expected_path.get("nodes") or []:
+                    identity = str(node.get("identity") or "")
+                    if identity.startswith(("content:", "url:")):
+                        wanted_identities.add(identity)
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, ShardedJsonlError, ValueError) as exc:
+        validation.require(False, "gold_catalogue_readable", str(exc))
     return gold_records, wanted_identities
 
 
@@ -518,7 +616,8 @@ def verify(
             "persona_coverage_no_unexplained_machine_gaps",
         )
     validation.require(input_sha256(corpus) == contract.get("snapshot", {}).get("corpus_sha256"), "frozen_corpus_sha256")
-    gold_records, wanted = collect_gold(root, validation)
+    gold_path = resolve_gold_catalogue(root, matrix_contract, contract, manifest, validation)
+    gold_records, wanted = collect_gold(gold_path, validation)
     snapshot = contract.get("snapshot", {})
     for question_id, gold_record in gold_records.items():
         gold = gold_record.get("gold") or {}
@@ -721,7 +820,7 @@ def verify(
         },
         "matrix_version": manifest.get("matrix_version"),
         "manifest_root_sha256": manifest.get("root_sha256"),
-        "corpus_sha256": digest_file(corpus),
+        "corpus_sha256": input_sha256(corpus),
         "trusted_release_inputs": {
             "snapshot_manifest_sha256": trusted_snapshot_manifest_sha256,
             "reconciliation_sha256": trusted_reconciliation_sha256,

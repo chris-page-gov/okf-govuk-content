@@ -37,9 +37,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ inputs.artifact_name }}
-          path: ${{ runner.temp }}/verified
+          path: ${{ runner.temp }}/verified/site
       - name: Verify artifact after transport
-        run: python3 scripts/package_release.py --check "$RUNNER_TEMP/verified"
+        run: python3 scripts/package_release.py --check-site "$RUNNER_TEMP/verified/site"
       - name: Full browser smoke over exact Pages bytes
         run: >-
           node explorer/tests/browser-evidence.mjs

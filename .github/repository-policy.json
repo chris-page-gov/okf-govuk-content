@@ -29,7 +29,15 @@
     "final_gate": "scripts/check_release.py --finalized",
     "artifact_attestations_required": true,
     "checksums_required": true,
-    "immutable_artifact_name": "verified-release-${{ github.ref_name }}-${{ github.sha }}",
+    "immutable_artifact_name": "verified-pages-${{ github.ref_name }}-${{ github.sha }}",
+    "immutable_releases": {
+      "api_endpoint": "/repos/chris-page-gov/okf-govuk-content/immutable-releases",
+      "api_version": "2026-03-10",
+      "enabled_required": true,
+      "draft_first": true,
+      "verify_exact_assets_before_publish": true,
+      "verify_immutable_after_publish": true
+    },
     "workflow": ".github/workflows/release.yml"
   },
   "release_metadata": {
@@ -39,9 +47,20 @@
   },
   "pages": {
     "workflow": ".github/workflows/pages.yml",
-    "source": "verified release artifact only",
+    "api_endpoint": "/repos/chris-page-gov/okf-govuk-content/pages",
+    "api_version": "2026-03-10",
+    "expected_url": "https://chris-page-gov.github.io/okf-govuk-content/",
+    "build_type": "workflow",
+    "public": true,
+    "https_enforced": true,
+    "source": "verified same-origin Pages site artifact only",
     "rebuild_forbidden": true,
-    "post_deploy_smoke_required": true
+    "post_deploy_smoke_required": true,
+    "site_budget_bytes": 950000000,
+    "data_plane": "same-origin-github-pages-range-packs",
+    "pack_suffix": ".pack.gz",
+    "browser_release_asset_fetch": false,
+    "live_range_smoke_required": true
   },
   "workflow_policy": {
     "allowed_action_owners": [

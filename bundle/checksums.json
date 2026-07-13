@@ -1,6 +1,6 @@
 {
   "algorithm": "sha256",
-  "file_count": 778,
+  "file_count": 779,
   "files": [
     {
       "bytes": 0,
@@ -18,9 +18,9 @@
       "sha256": "e4d409c3a512f9804e717e9323c1ba782d0ca1966a780ca969289720de643a99"
     },
     {
-      "bytes": 53012,
+      "bytes": 53052,
       "path": "app.js",
-      "sha256": "224c3800f43d84156010ddcc35867910dba52374b341b21eed461e87a9d50243"
+      "sha256": "e2b2d58aaf5fb9cf733df820c7f4a9ae28bc665a8c4b5e75ca8cf547336cd19a"
     },
     {
       "bytes": 11179,
@@ -3763,14 +3763,14 @@
       "sha256": "316acd2badcc3b428e025d8a497bfa7d8a4793573226be00124d0737e5c14a73"
     },
     {
-      "bytes": 15679,
+      "bytes": 18258,
       "path": "data.js",
-      "sha256": "51ff978466c10478dc0732d377b6eee864a23d433a614e95ec9763f4414ae76a"
+      "sha256": "d931587930d27d20aaa14f7975a551a1ad98c7d8e66f9d385f320d8c52d07e22"
     },
     {
-      "bytes": 5911,
+      "bytes": 6169,
       "path": "evidence/fixture-browser.json",
-      "sha256": "403b9d300e48f5d649439a84f7ee3351a6e1a53eab2075b677923d6bfdfc6f9f"
+      "sha256": "90ca66d8d35350529a11e2695b0e9a760ad6675d1953bfd5c43b0d8e73830594"
     },
     {
       "bytes": 281,
@@ -3818,6 +3818,11 @@
       "sha256": "ced3f0493c1ac1697d776418ed83c73f78ef5ca083900df3f74f414bcca0424b"
     },
     {
+      "bytes": 8491,
+      "path": "release-data-plane.js",
+      "sha256": "c270d8fc8dc03284642f6d8bb010dcb7dac5fda6c0da350f9f158e002150b00d"
+    },
+    {
       "bytes": 4682,
       "path": "search-contract.js",
       "sha256": "267c67fc3015e1d069c95dfd8b99d4e50663c89ae226564db3d6e473e2114e65"
@@ -3828,9 +3833,9 @@
       "sha256": "2a5c6cfaef9e7645ed28b1c28e5bcc4ce8b0ddef1c3cd42ef8904c9b6486da8d"
     },
     {
-      "bytes": 14274,
+      "bytes": 16547,
       "path": "search.worker.js",
-      "sha256": "aa68a479af6e0882a98778fb577c46fc03ca1520b23e4ffc57fd6014efaa9a37"
+      "sha256": "acca5d9d96f0a7583e09502158ffc72a5edb98002f326052a34f8fce8b05f1fd"
     },
     {
       "bytes": 805,
