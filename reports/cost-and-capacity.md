@@ -2,7 +2,9 @@
 
 Initial preflight date: 2026-07-11
 
-Usage checkpoint: 2026-07-12T08:20:20Z
+Implementation usage checkpoint: 2026-07-13T07:59:00Z
+
+Official-source request checkpoint: 2026-07-12T08:20:20Z
 
 ## Observed volume
 
@@ -29,11 +31,12 @@ is therefore resumable rather than one CI job.
 
 No external paid model budget was authorised and no paid model API was called.
 Deterministic HTTP, parsing, hashing and validation perform the corpus work.
-At this checkpoint the activity ledger contains 18 activities: four preserved
-historical rows and 14 SHA-256-chained v2 rows. Four activities are classified
-as deterministic and 14 as model-assisted or mixed. Fourteen activities have
-unavailable product-session tokens and marginal cost. The external paid-model
-totals are exact: 0 API calls, 0 input tokens, 0 output tokens and GBP 0.
+At this implementation checkpoint the activity ledger contains 26 activities:
+four preserved historical rows and 22 SHA-256-chained v2 rows. Six activities
+are classified as deterministic and 20 as model-assisted or mixed. Twenty
+activities have unavailable product-session tokens and marginal cost. The
+external paid-model totals are exact: 0 API calls, 0 input tokens, 0 output
+tokens and GBP 0.
 
 The current Codex product session and same-provider subagents were used for
 bounded implementation, source research, evaluation implementation, citation
@@ -47,6 +50,12 @@ The user reported that the Codex product usage limit reset on 12 July 2026.
 That operational reset authorises continued product-session execution only
 while the product permits it. It does not expose a numeric token ceiling, set a
 price, authorise paid external APIs or imply unlimited spend.
+
+One delegated allocation reported `Selected model is at capacity`. The work was
+reassigned to already-running same-product agents and the root session; no
+external model, paid API or weaker validation fallback was used. Exact product-
+session tokens and marginal cost remain unavailable rather than being reported
+as zero.
 
 ## Official-source request authority
 

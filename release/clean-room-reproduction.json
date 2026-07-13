@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "29c35ae226506a3b112f33b2d82a49f49b3177d726e5cb49f0415ed7a59cb427",
-    "before_sha256": "29c35ae226506a3b112f33b2d82a49f49b3177d726e5cb49f0415ed7a59cb427",
+    "after_sha256": "0f86842c683672ef79080a4603d960cb454747026785b0859d304c690092f659",
+    "before_sha256": "0f86842c683672ef79080a4603d960cb454747026785b0859d304c690092f659",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -97,7 +97,7 @@
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-07-13T07:54:46Z",
+  "ended_at": "2026-07-13T08:01:48Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.5.2-arm64-arm-64bit",
@@ -259,10 +259,10 @@
         "tree_sha256": "0e7f1b4dc121977ae4a7a816c55a4bd12e3cd31758562b025b12f5b127c3fc06"
       },
       {
-        "bytes": 59838,
+        "bytes": 64451,
         "file_count": 1,
         "path": "provenance/activity-ledger.jsonl",
-        "tree_sha256": "4e94277591fed1efdacb1e8694c4a995dbeac84b409eed1c894115a0d411c7ec"
+        "tree_sha256": "1215d975e5f3e08182d0ef8a7ff5a8b03b113970ba72ed166349a6c74770dd59"
       },
       {
         "bytes": 7999,
@@ -417,13 +417,13 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "d435b5a3d8398f25ba48f8f10acd7d49d9286042ecb48f0a4155da9b4ea2f543"
+    "tree_sha256": "aec217b1c9f03950f3af94754e98a35b0c84bc9dee1dd6256149dd4d6bcdf926"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
-      "activities": 25,
-      "activities_with_unavailable_cost": 19,
-      "activities_with_unavailable_tokens": 19,
+      "activities": 26,
+      "activities_with_unavailable_cost": 20,
+      "activities_with_unavailable_tokens": 20,
       "external_paid_model_api_calls": 0,
       "external_paid_model_cost_gbp": 0.0,
       "external_paid_model_input_tokens": 0,
@@ -431,7 +431,7 @@
       "known_cost_gbp": 0.0,
       "known_tokens": 0,
       "latest_source_request_checkpoint": 4283,
-      "ledger_sha256": "1ab0e36ad2d2ce2be94f64123c3aba4e5517e65ee0edac28d72a8a44583bbc8f",
+      "ledger_sha256": "870518fbbda28948b4d7158c0263333261caf1f2c138984d30855dda0fe8182d",
       "source_request_activities_pending_final_count": 2,
       "source_request_exact_attempts": 11580,
       "source_requests_included_in_model_cost": false
@@ -482,7 +482,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-13T07:54:46Z",
+  "recorded_at": "2026-07-13T08:01:48Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
@@ -538,7 +538,7 @@
     }
   ],
   "source_binding": null,
-  "started_at": "2026-07-13T07:54:45Z",
+  "started_at": "2026-07-13T08:01:47Z",
   "test_evidence": null,
   "validators": {
     "passed": true,

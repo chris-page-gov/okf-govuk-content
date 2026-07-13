@@ -1206,7 +1206,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "provenance/activity-ledger.jsonl",
-          "sha256": "1ab0e36ad2d2ce2be94f64123c3aba4e5517e65ee0edac28d72a8a44583bbc8f"
+          "sha256": "870518fbbda28948b4d7158c0263333261caf1f2c138984d30855dda0fe8182d"
         },
         {
           "check_id": "E-REQUIREMENT-COVERAGE",
@@ -1239,7 +1239,7 @@
           "operator": "json_equals",
           "path": "release/clean-room-reproduction.json",
           "pointer": "/fixture_reproduction_passed",
-          "sha256": "4f8a1eb89246e2c9395b9630a2a1b19595a93fb1c50080946d834681992995d8"
+          "sha256": "bd644d6b5878c39227a54321488dc15a390565ec796b2f0a35cbd5dda256b92a"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
