@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "241e4a8a0c454f5098039516bccaf5c673b3840a77373f9eea4e73ec18d2141d",
-    "before_sha256": "241e4a8a0c454f5098039516bccaf5c673b3840a77373f9eea4e73ec18d2141d",
+    "after_sha256": "664e679c2d6faed3ab4ab2ca2673732bd09932fce55fe4c4ce9c6afb81fd4dec",
+    "before_sha256": "664e679c2d6faed3ab4ab2ca2673732bd09932fce55fe4c4ce9c6afb81fd4dec",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -97,6 +97,7 @@
     }
   ],
   "compiler": "auto",
+  "ended_at": "2026-07-13T06:02:54Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.5.2-arm64-arm-64bit",
@@ -258,10 +259,10 @@
         "tree_sha256": "0e7f1b4dc121977ae4a7a816c55a4bd12e3cd31758562b025b12f5b127c3fc06"
       },
       {
-        "bytes": 44759,
+        "bytes": 48910,
         "file_count": 1,
         "path": "provenance/activity-ledger.jsonl",
-        "tree_sha256": "8471ec1e0321cdf3665a984b3cda95ce9ec2431605d4f909b2c126f19f7f7431"
+        "tree_sha256": "f3bff09f2b7c285ae195e64ca16eb74c471392699c53f81ec89fad3316fe6689"
       },
       {
         "bytes": 7999,
@@ -282,10 +283,10 @@
         "tree_sha256": "f4b4cbbae1a2bb985bb5ec351663777f6a38de8cad59d3619e4537fca3026e2f"
       },
       {
-        "bytes": 11158,
+        "bytes": 11018,
         "file_count": 1,
         "path": "release/provenance-validation.json",
-        "tree_sha256": "925799e9d1d0966bbb006b990671afc27da8eb6501269f3864a1c4eced0abbaf"
+        "tree_sha256": "c98e5a9433b33fa290dce9c9db65f31a94bf10efead88ee4a9d28137e124b94b"
       },
       {
         "bytes": 1574,
@@ -306,10 +307,10 @@
         "tree_sha256": "5eff26615be089f5d22a8cc72d82f4b1ff7136ac776652b443a079598b566702"
       },
       {
-        "bytes": 871977,
+        "bytes": 921185,
         "file_count": 26,
         "path": "src",
-        "tree_sha256": "df03ba152c530c960e0aa9e77d011fea1b6c7c4317a64c05c2e7df7e84ae1a8d"
+        "tree_sha256": "f281c60c6d7bffc1be1486946c847e8f23bd2be0c410463fa963d5f62455b434"
       },
       {
         "bytes": 1652,
@@ -342,16 +343,16 @@
         "tree_sha256": "bd78690a78b9e9aaaa269256129a261fe3af487746b53cafddc6fd98dc58f734"
       },
       {
-        "bytes": 48868,
+        "bytes": 63926,
         "file_count": 1,
         "path": "scripts/check_release.py",
-        "tree_sha256": "76b76910c763dd06b8049736ffc629ed50bc96a6f7d41b8f040b16bc86e1a3f1"
+        "tree_sha256": "64072ab2080aa95be1a82e9574c5b4af4d77bf60bad2f82fcd4efb7e2db5b01d"
       },
       {
-        "bytes": 32170,
+        "bytes": 39019,
         "file_count": 1,
         "path": "scripts/reproduce_release.py",
-        "tree_sha256": "aa978295998c4b26844d92222d34b55375520f1abf55be56e8ba143e7613b9ae"
+        "tree_sha256": "c3577549f8b8c58ee480c8516d1cfd67fad4947794599e0f6e837e338783f000"
       },
       {
         "bytes": 805,
@@ -416,13 +417,13 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "f97d3e185940c48fe29108d9b88fc7b3a21fa4ba64193754b04c60b3e8754ac2"
+    "tree_sha256": "d87bc1a9699578722fedd936f5b914ad5ab50b845af490067e8b10bc3ece6e2e"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
-      "activities": 21,
-      "activities_with_unavailable_cost": 15,
-      "activities_with_unavailable_tokens": 15,
+      "activities": 22,
+      "activities_with_unavailable_cost": 16,
+      "activities_with_unavailable_tokens": 16,
       "external_paid_model_api_calls": 0,
       "external_paid_model_cost_gbp": 0.0,
       "external_paid_model_input_tokens": 0,
@@ -430,7 +431,7 @@
       "known_cost_gbp": 0.0,
       "known_tokens": 0,
       "latest_source_request_checkpoint": 4283,
-      "ledger_sha256": "cb20de37494a2ffe18ecec765a79160706b544d9f27b28c9627542cee21666d8",
+      "ledger_sha256": "8d9d096c28a03b8cefa8628063948b456260fae134b73c94627c11da294a04e2",
       "source_request_activities_pending_final_count": 2,
       "source_request_exact_attempts": 11579,
       "source_requests_included_in_model_cost": false
@@ -481,12 +482,14 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-12T18:57:52Z",
+  "recorded_at": "2026-07-13T06:02:54Z",
+  "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
     "snapshot is not an unsampled full corpus",
     "snapshot identifier contains a non-release marker",
     "fixture source cannot pass clean-room release",
+    "release manifest identity differs from the reproduction contract",
     "release manifest does not identify an unsampled full corpus",
     "independent full-repository test evidence is missing"
   ],
@@ -534,6 +537,8 @@
       "disposition": "Represent observed redirect/gone history and publish the residual public-enumerability limit."
     }
   ],
+  "source_binding": null,
+  "started_at": "2026-07-13T06:02:53Z",
   "test_evidence": null,
   "validators": {
     "passed": true,
