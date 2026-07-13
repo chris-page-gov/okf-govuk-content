@@ -273,6 +273,9 @@ class CompleteCorpusHydrator(CorpusHydrator):
         return result, hydration_status, linked
 
     def run(self, *, request_limit: int | None = None) -> dict[str, Any]:
+        # Do not spend even the robots request when the retained checkpoint is
+        # already outside its signed storage authority.
+        self._assert_retained_storage(phase="pre-robots hydration checkpoint")
         self.robots_policy = self._prepare_robots()
         result = super().run(request_limit=request_limit)
         result["rendered_gap_enabled"] = True
