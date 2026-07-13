@@ -77,7 +77,7 @@
         "release/clean-room-reproduction.json",
         "scripts/reproduce_release.py"
       ],
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work."
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work."
     },
     {
       "name": "full_corpus_and_capacity",
@@ -94,7 +94,7 @@
         "reports/cost-and-capacity.md",
         "release/status.json"
       ],
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, clears redundant completed inputs, reserves SQLite writes and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress."
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress."
     },
     {
       "name": "release_question_matrix",

@@ -94,9 +94,16 @@ semantic versioning.
 
 - Enforced the launch-manifest 10 GiB retained-metadata ceiling throughout
   full-corpus hydration. The resumable checkpoint now clears redundant input
-  payloads atomically as records complete, reserves space before SQLite batch
-  commits, truncates recoverable WAL state, migrates legacy checkpoints, and
+  payloads atomically as records complete, durably spools successful responses
+  before database admission, reserves space before every SQLite and export
+  write, rejects duplicate source identities and symbolic-link escapes,
+  truncates recoverable WAL state, migrates legacy checkpoints, and
   hash-verifies durable exports before removing transient candidate rows.
+- Made candidate promotion and post-publication finalization transactional and
+  replay-safe. Staging binds the exact frozen source, compiler and generation
+  timestamp; clean-room evidence recomputes the staged controls, bundle tree,
+  test evidence, SBOM and immutable inputs; ledger-locked promotion/finalization
+  either installs a coherent evidence set or restores the previous checkpoint.
 - Remediated all 14 findings from the completed repository-wide Codex Security
   scan and all three residual low findings from its independent remediation
   diff scan. The final fixes at `27890dc` bind approved DNS answers to TLS
