@@ -52,6 +52,7 @@ export async function startFixtureServer(options = {}) {
   const staticRoot = resolve(options.staticRoot || DEFAULT_STATIC_ROOT);
   const basePath = normalizedBasePath(options.basePath || DEFAULT_BASE_PATH);
   const requests = [];
+  const sockets = new Set();
   const server = createServer(async (request, response) => {
     const requestUrl = new URL(request.url || "/", "http://127.0.0.1");
     requests.push({
@@ -106,6 +107,10 @@ export async function startFixtureServer(options = {}) {
       response.end(error instanceof Error ? error.message : String(error));
     }
   });
+  server.on("connection", (socket) => {
+    sockets.add(socket);
+    socket.once("close", () => sockets.delete(socket));
+  });
   await new Promise((resolveReady, reject) => {
     server.once("error", reject);
     server.listen(Number(options.port || 0), "127.0.0.1", resolveReady);
@@ -119,7 +124,29 @@ export async function startFixtureServer(options = {}) {
     origin,
     requests,
     async close() {
-      await new Promise((resolveClose, reject) => server.close((error) => error ? reject(error) : resolveClose()));
+      if (!server.listening) return;
+      await new Promise((resolveClose, reject) => {
+        let settled = false;
+        const finish = (error) => {
+          if (settled) return;
+          settled = true;
+          clearTimeout(forceTimer);
+          clearTimeout(hardTimer);
+          if (error) reject(error);
+          else resolveClose();
+        };
+        const destroyConnections = () => {
+          server.closeAllConnections?.();
+          for (const socket of sockets) socket.destroy();
+        };
+        const forceTimer = setTimeout(destroyConnections, 1000);
+        const hardTimer = setTimeout(() => {
+          destroyConnections();
+          finish(new Error("Fixture server did not close within 5 seconds"));
+        }, 5000);
+        server.close((error) => finish(error));
+        server.closeIdleConnections?.();
+      });
     }
   };
 }

@@ -246,11 +246,23 @@ export async function launchChrome() {
     waitFor,
     async close() {
       client.close();
+      const exited = new Promise((resolve) => {
+        if (child.exitCode !== null || child.signalCode !== null) resolve();
+        else child.once("exit", resolve);
+      });
       child.kill("SIGTERM");
-      await Promise.race([
-        new Promise((resolve) => child.once("exit", resolve)),
-        wait(3000).then(() => child.kill("SIGKILL"))
+      const terminated = await Promise.race([
+        exited.then(() => true),
+        wait(3000).then(() => false)
       ]);
+      if (!terminated && child.exitCode === null && child.signalCode === null) {
+        child.kill("SIGKILL");
+        const killed = await Promise.race([
+          exited.then(() => true),
+          wait(3000).then(() => false)
+        ]);
+        if (!killed) throw new Error("Chrome did not exit after SIGKILL");
+      }
       await rm(userDataDir, { recursive: true, force: true });
     }
   };

@@ -26,13 +26,22 @@ function packageFixture(fixtureRoot, output) {
   const candidates = [process.env.PYTHON, join(repositoryRoot, ".venv", "bin", "python"), "python3"].filter(Boolean);
   let last = null;
   for (const executable of candidates) {
-    const result = spawnSync(executable, ["-c", source, repositoryRoot, fixtureRoot, output], { cwd: repositoryRoot, encoding: "utf8" });
+    const result = spawnSync(executable, ["-c", source, repositoryRoot, fixtureRoot, output], {
+      cwd: repositoryRoot,
+      encoding: "utf8",
+      killSignal: "SIGKILL",
+      maxBuffer: 8 * 1024 * 1024,
+      timeout: 30000
+    });
     if (result.error?.code === "ENOENT") continue;
     if (result.status === 0) return;
     last = result;
     break;
   }
-  throw new Error(`could not package the exact browser fixture: ${last?.stderr || last?.error || "Python is unavailable"}`);
+  const reason = last?.error?.code === "ETIMEDOUT"
+    ? "packaging subprocess exceeded 30 seconds"
+    : last?.stderr || last?.error || "Python is unavailable";
+  throw new Error(`could not package the exact browser fixture: ${reason}`);
 }
 
 test("real browser verifies fixture accessibility, routing, gzip and performance budgets", { timeout: 120000 }, async (context) => {
