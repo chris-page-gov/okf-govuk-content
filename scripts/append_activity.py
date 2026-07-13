@@ -8,6 +8,7 @@ import fcntl
 import hashlib
 import json
 import os
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -19,6 +20,47 @@ DEFAULT_LEDGER = ROOT / "provenance" / "activity-ledger.jsonl"
 DEFAULT_SCHEMA = ROOT / "provenance" / "activity-ledger.schema.json"
 
 
+def _lock_path(ledger_path: Path) -> Path:
+    if ledger_path.is_symlink() or ledger_path.parent.is_symlink():
+        raise ValueError("activity ledger and its parent cannot be symlinks")
+    repository_root = (
+        ledger_path.parent.parent.resolve()
+        if ledger_path.parent.name == "provenance"
+        else ledger_path.parent.resolve()
+    )
+    resolved_parent = ledger_path.parent.resolve()
+    if ledger_path.parent.name == "provenance" and resolved_parent != repository_root / "provenance":
+        raise ValueError("activity ledger path escapes the repository provenance directory")
+    local_tmp = repository_root / ".tmp"
+    if local_tmp.is_symlink():
+        raise ValueError("activity-ledger lock directory cannot be a symlink")
+    local_tmp.mkdir(parents=True, exist_ok=True, mode=0o700)
+    lock_directory = local_tmp / "locks"
+    if lock_directory.is_symlink():
+        raise ValueError("activity-ledger lock directory cannot be a symlink")
+    lock_directory.mkdir(parents=True, exist_ok=True, mode=0o700)
+    resolved_directory = lock_directory.resolve()
+    if resolved_directory != repository_root and repository_root not in resolved_directory.parents:
+        raise ValueError("activity-ledger lock directory escapes the repository")
+    identity = hashlib.sha256(str(ledger_path.resolve()).encode("utf-8")).hexdigest()[:24]
+    return lock_directory / f"activity-ledger-{identity}.lock"
+
+
+@contextmanager
+def ledger_lock(ledger_path: Path):
+    """Serialize append and promotion transactions through a stable side lock."""
+
+    lock_path = _lock_path(ledger_path)
+    flags = os.O_CREAT | os.O_RDWR | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(lock_path, flags, 0o600)
+    with os.fdopen(descriptor, "a+", encoding="utf-8") as lock:
+        fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
+
+
 def canonical_line(value: dict[str, object]) -> str:
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
 
@@ -27,11 +69,27 @@ def append_entries(
     entries: list[dict[str, object]],
     ledger_path: Path = DEFAULT_LEDGER,
     schema_path: Path = DEFAULT_SCHEMA,
+    *,
+    acquire_lock: bool = True,
 ) -> list[dict[str, str]]:
+    if ledger_path.is_symlink() or ledger_path.parent.is_symlink():
+        raise ValueError("activity ledger and its parent cannot be symlinks")
+    if acquire_lock:
+        with ledger_lock(ledger_path):
+            return append_entries(
+                entries,
+                ledger_path,
+                schema_path,
+                acquire_lock=False,
+            )
+    if schema_path.is_symlink():
+        raise ValueError("activity-ledger schema cannot be a symlink")
     schema = json.loads(schema_path.read_text(encoding="utf-8"))
     ledger_path.parent.mkdir(parents=True, exist_ok=True)
     results: list[dict[str, str]] = []
-    with ledger_path.open("a+", encoding="utf-8") as stream:
+    flags = os.O_CREAT | os.O_RDWR | os.O_APPEND | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(ledger_path, flags, 0o600)
+    with os.fdopen(descriptor, "a+", encoding="utf-8") as stream:
         fcntl.flock(stream.fileno(), fcntl.LOCK_EX)
         stream.seek(0)
         existing = stream.read().splitlines()

@@ -24,14 +24,24 @@ and the other snapshot-bound evidence are generated:
 ```sh
 .venv/bin/python scripts/promote_release.py stage \
   --snapshot T1-YYYYMMDD-closed \
-  --reconciliation corpus/reconciliation/T1-YYYYMMDD-closed.json
+  --reconciliation corpus/reconciliation/T1-YYYYMMDD-closed.json \
+  --source corpus/records/T1-YYYYMMDD-closed/source-records.jsonl.gz \
+  --generated-at YYYY-MM-DDTHH:MM:SSZ \
+  --compiler disk
 ```
 
-After the question-v2, 28,800-by-10 evaluation, citation, semantic, rights,
-browser, completed security-scan and clean-room artefacts exist, promotion
-revalidates checksums and the SBOM, reruns provenance and the full Python,
-Explorer and semantic test suites, regenerates the aim assessment, and invokes
-the publication-ready validator inside one rollback transaction:
+Staging records the exact frozen source, generation timestamp and compiler that
+must reproduce the checked bundle. After the question-v2, 28,800-by-10
+evaluation, citation, semantic, rights, browser and completed security-scan
+artefacts exist, promotion revalidates checksums and the SBOM, reruns provenance
+and the full Python, Explorer and semantic test suites, then runs the clean-room
+rebuild prospectively while the manifest and status are still the staged
+checkpoint. It binds both staged hashes and the newly generated full-test
+evidence, the frozen source contract, the current bundle tree, SBOM and every
+immutable clean-workspace input. It appends the hash-chained clean-room terminal
+and only then builds candidate provenance. Candidate controls,
+clean-room/provenance evidence and the regenerated aim assessment are installed
+inside one rollback transaction:
 
 ```sh
 .venv/bin/python scripts/promote_release.py promote
@@ -44,7 +54,11 @@ terminal events must pass and only
 `pending_post_publication`. After the candidate release, Pages live checks and
 Explorer registry PR are evidenced, append that real terminal and finalize.
 Finalization runs `check_provenance.py --require-release` semantics for strict
-11-of-11 validation; it does not synthesize the external event:
+11-of-11 validation under the same ledger side lock; it does not synthesize the
+external event. The old 10-of-11 candidate provenance is expected to become
+stale when that terminal is appended, so strict provenance is generated before
+the final controls are validated together. Prepared candidate and partial-final
+crash states are replay-safe and completed finalization is idempotent:
 
 ```sh
 .venv/bin/python scripts/promote_release.py finalize
@@ -52,8 +66,9 @@ Finalization runs `check_provenance.py --require-release` semantics for strict
 ```
 
 The final manifest records the exact staged manifest/status hashes. Clean-room
-evidence must bind the staged manifest hash. Any failed final validation restores
-the prior manifest, status, provenance/test evidence and aim projections.
+evidence must bind both hashes and the generated full-test evidence. Any failed
+generation or final validation restores the prior manifest, status, provenance,
+full-test, clean-room, activity-ledger and aim artefacts.
 
 That gate rejects fixtures, samples and capacity runs. It requires a complete
 T0/T1 closing reconciliation, opposing closed Search API partition proofs,

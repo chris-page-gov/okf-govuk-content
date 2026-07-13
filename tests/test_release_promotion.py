@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import json
 import tempfile
 import unittest
@@ -19,27 +20,52 @@ SPEC.loader.exec_module(MODULE)
 def prepare_staged(root: Path) -> str:
     make_release(root)
     snapshot = "T1-20260712-closing"
+    source = root / "corpus/records/T1-20260712-closing/source-records.jsonl.gz"
+    source.parent.mkdir(parents=True, exist_ok=True)
+    source.write_bytes(b"frozen full-corpus source\n")
     MODULE.stage_release(
         root,
         snapshot=snapshot,
         reconciliation_relative="corpus/reconciliation/closing.json",
+        source_relative="corpus/records/T1-20260712-closing/source-records.jsonl.gz",
+        generated_at="2026-07-12T23:59:59Z",
     )
-    clean_path = root / "release/clean-room-reproduction.json"
-    clean = json.loads(clean_path.read_text(encoding="utf-8"))
-    clean["inputs"]["components"][0]["tree_sha256"] = MODULE.sha256(root / "release/manifest.yaml")
-    write_json(clean_path, clean)
     return snapshot
 
 
 def existing_provenance(root: Path, snapshot: str) -> dict[str, object]:
     value = json.loads((root / "release/provenance-validation.json").read_text(encoding="utf-8"))
     value["snapshot"] = snapshot
+    ledger_path = root / "provenance/activity-ledger.jsonl"
+    lines = [line for line in ledger_path.read_text(encoding="utf-8").splitlines() if line]
+    value["hash_chain"].update(
+        {
+            "ledger_sha256": hashlib.sha256(ledger_path.read_bytes()).hexdigest(),
+            "last_entry_sha256": hashlib.sha256(lines[-1].encode("utf-8")).hexdigest(),
+            "hash_chained_v2_rows": len(lines),
+        }
+    )
+    value["inputs"]["activity_ledger_sha256"] = hashlib.sha256(
+        ledger_path.read_bytes()
+    ).hexdigest()
     return value
+
+
+def post_clean_provenance(root: Path, snapshot: str) -> dict[str, object]:
+    rows = [
+        json.loads(line)
+        for line in (root / "provenance/activity-ledger.jsonl").read_text(encoding="utf-8").splitlines()
+        if line
+    ]
+    if [row["activity_id"] for row in rows] != [MODULE.CLEAN_ROOM_TERMINAL_ID]:
+        raise AssertionError("candidate provenance was built before the clean-room terminal")
+    return existing_provenance(root, snapshot)
 
 
 def existing_tests(root: Path, snapshot: str) -> dict[str, object]:
     value = json.loads((root / "release/full-repository-tests.json").read_text(encoding="utf-8"))
     value["snapshot"] = snapshot
+    value["tests_passed"] = True
     value["code_tree"]["sha256"] = MODULE.check_release._tree_sha256(root)
     return value
 
@@ -73,7 +99,256 @@ def fake_aim_renderer(root: Path) -> dict[Path, str]:
     }
 
 
+def prospective_clean_room(
+    root: Path,
+    snapshot: str,
+    staged_manifest: dict[str, object],
+    tests: dict[str, object],
+) -> dict[str, object]:
+    manifest_path = root / "release/manifest.yaml"
+    status_path = root / "release/status.json"
+    tests_path = root / "release/full-repository-tests.json"
+    on_disk_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    on_disk_tests = json.loads(tests_path.read_text(encoding="utf-8"))
+    if on_disk_manifest["release_kind"] != "full_corpus_checkpoint":
+        raise AssertionError("clean room did not run against the staged checkpoint")
+    if on_disk_manifest != staged_manifest or on_disk_tests != tests:
+        raise AssertionError("prospective clean-room inputs differ from staged controls")
+    reproduction = staged_manifest["promotion_contract"]["reproduction"]
+    evidence = json.loads((root / "release/clean-room-reproduction.json").read_text(encoding="utf-8"))
+    input_components = evidence["inputs"]["components"]
+    source_binding = reproduction["source_binding"]
+    input_components[-1] = {
+        "path": "frozen_source",
+        "source": reproduction["source"],
+        **{
+            key: source_binding[key]
+            for key in ("file_count", "bytes", "tree_sha256")
+        },
+    }
+    manifest_index = MODULE.check_release.CLEAN_ROOM_INPUT_PATHS.index(
+        "release/manifest.yaml"
+    )
+    input_components[manifest_index] = {
+        "path": "release/manifest.yaml",
+        **MODULE.check_release._content_summary(
+            manifest_path,
+            "staged release manifest",
+        ),
+    }
+    evidence["inputs"]["tree_sha256"] = hashlib.sha256(
+        json.dumps(
+            input_components,
+            ensure_ascii=False,
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("utf-8")
+    ).hexdigest()
+    evidence.update(
+        {
+            "snapshot": snapshot,
+            "snapshot_kind": "full_corpus",
+            "sampled": False,
+            "release_kind": "machine_release_candidate",
+            "source": reproduction["source"],
+            "source_binding": reproduction["source_binding"],
+            "generated_at": reproduction["generated_at"],
+            "compiler": reproduction["compiler"],
+            "release_inputs_passed": True,
+            "clean_room_reproduction_passed": True,
+            "release_control": {
+                "manifest_kind": "full_corpus_checkpoint",
+                "requested_release_kind": "machine_release_candidate",
+                "prospective": True,
+                "manifest_sha256": MODULE.sha256(manifest_path),
+                "status_sha256": MODULE.sha256(status_path),
+                "source_binding": reproduction["source_binding"],
+            },
+            "test_evidence": {
+                "path": "release/full-repository-tests.json",
+                "sha256": hashlib.sha256(tests_path.read_bytes()).hexdigest(),
+                "scope": "full_repository",
+                "tests_passed": True,
+            },
+        }
+    )
+    return evidence
+
+
+def prepare_clean_room_crash_checkpoint(root: Path) -> tuple[str, dict[str, object]]:
+    snapshot = prepare_staged(root)
+    staged_manifest = json.loads((root / "release/manifest.yaml").read_text(encoding="utf-8"))
+    tests = existing_tests(root, snapshot)
+    write_json(root / "release/full-repository-tests.json", tests)
+    clean = prospective_clean_room(root, snapshot, staged_manifest, tests)
+    write_json(root / "release/clean-room-reproduction.json", clean)
+    terminal = MODULE.build_clean_room_terminal(
+        root,
+        snapshot,
+        clean,
+        tests,
+        MODULE.sha256(root / "release/manifest.yaml"),
+        MODULE.sha256(root / "release/status.json"),
+        root / "release/clean-room-reproduction.json",
+        root / "release/full-repository-tests.json",
+        root / "release/sbom.cdx.json",
+    )
+    MODULE.append_clean_room_terminal(root, terminal)
+    return snapshot, staged_manifest
+
+
+def write_partial_candidate(
+    root: Path, staged_manifest: dict[str, object], *, include_status: bool
+) -> None:
+    promotion = {
+        "schema": "afhf-govuk-okf-two-stage-promotion.v1",
+        "from": "full_corpus_checkpoint",
+        "staged_manifest_sha256": MODULE.sha256(root / "release/manifest.yaml"),
+        "staged_status_sha256": MODULE.sha256(root / "release/status.json"),
+        "reproduction": staged_manifest["promotion_contract"]["reproduction"],
+        "finalized": False,
+    }
+    candidate = dict(staged_manifest)
+    candidate.update(
+        {
+            "release_kind": "machine_release_candidate",
+            "publication_ready": True,
+            "gates": {gate: True for gate in MODULE.ALL_GATES},
+            "promotion": promotion,
+        }
+    )
+    candidate.pop("promotion_contract", None)
+    write_json(root / "release/manifest.yaml", candidate)
+    if include_status:
+        write_json(root / "release/status.json", MODULE.machine_candidate_status(candidate["release_id"]))
+
+
+def append_publication_terminal(root: Path, snapshot: str) -> None:
+    manifest = json.loads((root / "release/manifest.yaml").read_text(encoding="utf-8"))
+    clean = json.loads(
+        (root / "release/clean-room-reproduction.json").read_text(encoding="utf-8")
+    )
+    tests = json.loads(
+        (root / "release/full-repository-tests.json").read_text(encoding="utf-8")
+    )
+    terminal = MODULE.build_clean_room_terminal(
+        root,
+        snapshot,
+        clean,
+        tests,
+        manifest["promotion"]["staged_manifest_sha256"],
+        manifest["promotion"]["staged_status_sha256"],
+        root / "release/clean-room-reproduction.json",
+        root / "release/full-repository-tests.json",
+        root / "release/sbom.cdx.json",
+    )
+    terminal["activity_id"] = "ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001"
+    terminal["agent"]["role"] = "publication and registry terminal recorder"
+    MODULE.append_activity.append_entries(
+        [terminal],
+        root / "provenance/activity-ledger.jsonl",
+        root / "provenance/activity-ledger.schema.json",
+    )
+
+
+def write_partial_final(root: Path, *, include_status: bool) -> None:
+    manifest_path = root / "release/manifest.yaml"
+    status_path = root / "release/status.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    promotion = dict(manifest["promotion"])
+    promotion.update(
+        {
+            "finalized": True,
+            "candidate_manifest_sha256": MODULE.sha256(manifest_path),
+            "candidate_status_sha256": MODULE.sha256(status_path),
+        }
+    )
+    manifest["promotion"] = promotion
+    write_json(manifest_path, manifest)
+    if include_status:
+        status = MODULE.machine_candidate_status(manifest["release_id"])
+        status["promotion_finalized"] = True
+        status["reason"] = MODULE.check_release.MACHINE_FINAL_REASON
+        write_json(status_path, status)
+
+
 class ReleasePromotionTests(unittest.TestCase):
+    def test_partial_finalization_crash_states_resume_and_completed_final_is_idempotent(self) -> None:
+        for include_status in (False, True):
+            with self.subTest(include_status=include_status), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                snapshot = prepare_staged(root)
+                MODULE.promote_release(
+                    root,
+                    provenance_builder=post_clean_provenance,
+                    test_builder=existing_tests,
+                    clean_room_builder=prospective_clean_room,
+                    aim_renderer=fake_aim_renderer,
+                )
+                write_partial_final(root, include_status=include_status)
+                result = MODULE.finalize_release(
+                    root,
+                    provenance_builder=finalized_provenance,
+                    aim_renderer=fake_aim_renderer,
+                )
+                self.assertTrue(result["manifest"]["promotion"]["finalized"])
+                self.assertTrue(result["status"]["promotion_finalized"])
+                replay = MODULE.finalize_release(
+                    root,
+                    provenance_builder=lambda *_: (_ for _ in ()).throw(
+                        AssertionError("completed finalization should be idempotent")
+                    ),
+                    aim_renderer=fake_aim_renderer,
+                )
+                self.assertEqual(snapshot, replay["manifest"]["release_id"])
+
+    def test_partial_candidate_crash_states_resume_without_duplicate_terminal(self) -> None:
+        for include_status in (False, True):
+            with self.subTest(include_status=include_status), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                snapshot, staged_manifest = prepare_clean_room_crash_checkpoint(root)
+                write_partial_candidate(root, staged_manifest, include_status=include_status)
+                result = MODULE.promote_release(
+                    root,
+                    provenance_builder=post_clean_provenance,
+                    test_builder=lambda *_: (_ for _ in ()).throw(
+                        AssertionError("prepared tests should be reused")
+                    ),
+                    clean_room_builder=lambda *_: (_ for _ in ()).throw(
+                        AssertionError("prepared clean room should be reused")
+                    ),
+                    aim_renderer=fake_aim_renderer,
+                )
+                rows = [
+                    json.loads(line)
+                    for line in (root / "provenance/activity-ledger.jsonl")
+                    .read_text(encoding="utf-8")
+                    .splitlines()
+                    if line
+                ]
+                self.assertEqual([MODULE.CLEAN_ROOM_TERMINAL_ID], [row["activity_id"] for row in rows])
+                self.assertEqual(snapshot, result["status"]["release_id"])
+                self.assertEqual(
+                    [], MODULE.check_release.validate_release(root, require_publication_ready=True)
+                )
+
+    def test_conflicting_prepared_terminal_fails_closed_with_recovery_message(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            prepare_clean_room_crash_checkpoint(root)
+            clean_path = root / "release/clean-room-reproduction.json"
+            clean = json.loads(clean_path.read_text(encoding="utf-8"))
+            clean["generated_at"] = "2026-07-13T00:00:00Z"
+            write_json(clean_path, clean)
+            with self.assertRaisesRegex(MODULE.PromotionError, "prepared clean-room recovery"):
+                MODULE.promote_release(
+                    root,
+                    provenance_builder=post_clean_provenance,
+                    test_builder=existing_tests,
+                    clean_room_builder=prospective_clean_room,
+                    aim_renderer=fake_aim_renderer,
+                )
+
     def test_stage_is_full_corpus_but_explicitly_non_publishable(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -85,6 +360,14 @@ class ReleasePromotionTests(unittest.TestCase):
             self.assertFalse(manifest["publication_ready"])
             self.assertTrue(manifest["gates"]["full_corpus_reconciled"])
             self.assertFalse(manifest["gates"]["clean_room_reproduction_passed"])
+            self.assertEqual(
+                "corpus/records/T1-20260712-closing/source-records.jsonl.gz",
+                manifest["promotion_contract"]["reproduction"]["source"],
+            )
+            self.assertEqual(
+                "machine_release_candidate",
+                manifest["promotion_contract"]["target_release_kind"],
+            )
             self.assertEqual("checkpoint", status["status"])
             self.assertEqual("not_authorised", status["human_evaluation_status"])
             self.assertEqual("not_yet_testable", status["human_ui_of_choice_status"])
@@ -93,10 +376,12 @@ class ReleasePromotionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             snapshot = prepare_staged(root)
+            self.assertEqual("", (root / "provenance/activity-ledger.jsonl").read_text(encoding="utf-8"))
             result = MODULE.promote_release(
                 root,
-                provenance_builder=existing_provenance,
+                provenance_builder=post_clean_provenance,
                 test_builder=existing_tests,
+                clean_room_builder=prospective_clean_room,
                 aim_renderer=fake_aim_renderer,
             )
             self.assertEqual("machine_release_candidate", result["manifest"]["release_kind"])
@@ -108,6 +393,52 @@ class ReleasePromotionTests(unittest.TestCase):
             self.assertFalse(result["status"]["programme_complete"])
             self.assertEqual([], MODULE.check_release.validate_release(root, require_publication_ready=True))
             self.assertEqual(snapshot, result["status"]["release_id"])
+            terminal = json.loads(
+                (root / "provenance/activity-ledger.jsonl").read_text(encoding="utf-8")
+            )
+            self.assertEqual(MODULE.CLEAN_ROOM_TERMINAL_ID, terminal["activity_id"])
+            self.assertEqual("completed", terminal["status"])
+            output_hashes = {row["path"]: row["sha256"] for row in terminal["outputs"]}
+            self.assertEqual(
+                hashlib.sha256((root / "release/clean-room-reproduction.json").read_bytes()).hexdigest(),
+                output_hashes["release/clean-room-reproduction.json"],
+            )
+            reproduction = result["manifest"]["promotion"]["reproduction"]
+            passed, failures, _, replay_control = MODULE.reproduce_release._release_inputs_pass(
+                release_kind="machine_release_candidate",
+                snapshot=snapshot,
+                snapshot_kind="full_corpus",
+                sampled=False,
+                source=root / reproduction["source"],
+                generated_at=reproduction["generated_at"],
+                compiler=reproduction["compiler"],
+                release_manifest=root / "release/manifest.yaml",
+                test_evidence=root / "release/full-repository-tests.json",
+            )
+            self.assertTrue(passed, failures)
+            self.assertTrue(replay_control["prospective"])
+            self.assertEqual(
+                result["manifest"]["promotion"]["staged_manifest_sha256"],
+                replay_control["manifest_sha256"],
+            )
+            clean_path = root / "release/clean-room-reproduction.json"
+            original_clean = json.loads(clean_path.read_text(encoding="utf-8"))
+            changed_clean = dict(original_clean)
+            changed_clean["reason"] = "post-terminal metadata tamper"
+            write_json(clean_path, changed_clean)
+            errors = MODULE.check_release.validate_release(
+                root, require_publication_ready=True
+            )
+            self.assertTrue(
+                any("terminal output hashes differ" in error for error in errors), errors
+            )
+            write_json(clean_path, original_clean)
+            (root / reproduction["source"]).write_bytes(b"tampered frozen source\n")
+            errors = MODULE.check_release.validate_release(root, require_publication_ready=True)
+            self.assertTrue(
+                any("frozen reproduction source content/tree binding differs" in error for error in errors),
+                errors,
+            )
 
     def test_final_check_failure_rolls_back_every_transaction_file(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -118,6 +449,8 @@ class ReleasePromotionTests(unittest.TestCase):
                 root / "release/status.json",
                 root / "release/provenance-validation.json",
                 root / "release/full-repository-tests.json",
+                root / "release/clean-room-reproduction.json",
+                root / "provenance/activity-ledger.jsonl",
                 root / "release/aim-assessment.json",
                 root / "reports/aim-scorecard.md",
             ]
@@ -125,8 +458,9 @@ class ReleasePromotionTests(unittest.TestCase):
             with self.assertRaisesRegex(MODULE.PromotionError, "forced final failure"):
                 MODULE.promote_release(
                     root,
-                    provenance_builder=existing_provenance,
+                    provenance_builder=post_clean_provenance,
                     test_builder=existing_tests,
+                    clean_room_builder=prospective_clean_room,
                     aim_renderer=fake_aim_renderer,
                     validator=lambda candidate_root, publication: ["forced final failure"] if publication else [],
                 )
@@ -139,18 +473,27 @@ class ReleasePromotionTests(unittest.TestCase):
             prepare_staged(root)
             MODULE.promote_release(
                 root,
-                provenance_builder=existing_provenance,
+                provenance_builder=post_clean_provenance,
                 test_builder=existing_tests,
+                clean_room_builder=prospective_clean_room,
                 aim_renderer=fake_aim_renderer,
             )
             candidate_manifest = (root / "release/manifest.yaml").read_bytes()
             with self.assertRaisesRegex(MODULE.PromotionError, "strict post-publication provenance"):
                 MODULE.finalize_release(
                     root,
-                    provenance_builder=existing_provenance,
+                    provenance_builder=post_clean_provenance,
                     aim_renderer=fake_aim_renderer,
                 )
             self.assertEqual(candidate_manifest, (root / "release/manifest.yaml").read_bytes())
+            append_publication_terminal(root, "T1-20260712-closing")
+            stale_errors = MODULE.check_release.validate_release(
+                root, require_publication_ready=True
+            )
+            self.assertTrue(
+                any("provenance input hash differs" in error for error in stale_errors),
+                stale_errors,
+            )
             result = MODULE.finalize_release(
                 root,
                 provenance_builder=finalized_provenance,
@@ -176,6 +519,7 @@ class ReleasePromotionTests(unittest.TestCase):
                     root,
                     provenance_builder=existing_provenance,
                     test_builder=existing_tests,
+                    clean_room_builder=prospective_clean_room,
                     aim_renderer=fake_aim_renderer,
                 )
             self.assertEqual(before, ((root / "release/manifest.yaml").read_bytes(), (root / "release/status.json").read_bytes()))
@@ -184,11 +528,16 @@ class ReleasePromotionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             make_release(root)
+            source = root / "corpus/records/T1/source-records.jsonl.gz"
+            source.parent.mkdir(parents=True, exist_ok=True)
+            source.write_bytes(b"frozen full-corpus source\n")
             with self.assertRaisesRegex(MODULE.PromotionError, "rejects fixture"):
                 MODULE.stage_release(
                     root,
                     snapshot="sample-T1",
                     reconciliation_relative="corpus/reconciliation/closing.json",
+                    source_relative="corpus/records/T1/source-records.jsonl.gz",
+                    generated_at="2026-07-12T23:59:59Z",
                 )
             reconciliation_path = root / "corpus/reconciliation/closing.json"
             reconciliation = json.loads(reconciliation_path.read_text(encoding="utf-8"))
@@ -199,6 +548,8 @@ class ReleasePromotionTests(unittest.TestCase):
                     root,
                     snapshot="T1-20260712-closing",
                     reconciliation_relative="corpus/reconciliation/closing.json",
+                    source_relative="corpus/records/T1/source-records.jsonl.gz",
+                    generated_at="2026-07-12T23:59:59Z",
                 )
 
 

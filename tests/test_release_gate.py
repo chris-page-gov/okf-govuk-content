@@ -40,6 +40,52 @@ def refresh_checksums(root: Path) -> None:
     )
 
 
+def clean_room_input_manifest(
+    root: Path,
+    reproduction: dict[str, object],
+    *,
+    staged_manifest_sha256: str,
+) -> dict[str, object]:
+    components = [
+        {
+            "path": relative,
+            **MODULE._content_summary(root / relative, "test clean-room input"),
+        }
+        for relative in MODULE.CLEAN_ROOM_INPUT_PATHS
+    ]
+    source_binding = reproduction["source_binding"]
+    assert isinstance(source_binding, dict)
+    manifest_index = MODULE.CLEAN_ROOM_INPUT_PATHS.index("release/manifest.yaml")
+    manifest_bytes = int(components[manifest_index]["bytes"])
+    components[manifest_index] = {
+        "path": "release/manifest.yaml",
+        **MODULE._single_file_summary(
+            "manifest.yaml",
+            manifest_bytes,
+            staged_manifest_sha256,
+        ),
+    }
+    components.append(
+        {
+            "path": "frozen_source",
+            "source": reproduction["source"],
+            **{
+                key: source_binding[key]
+                for key in ("file_count", "bytes", "tree_sha256")
+            },
+        }
+    )
+    canonical = json.dumps(
+        components, ensure_ascii=False, separators=(",", ":"), sort_keys=True
+    ).encode("utf-8")
+    return {
+        "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
+        "components": components,
+        "component_count": len(components),
+        "tree_sha256": hashlib.sha256(canonical).hexdigest(),
+    }
+
+
 def make_release(root: Path) -> None:
     release_id = "T1-20260712-closing"
     counts = {"datasets": 3, "records": 3, "relationships": 0, "resources": 0, "publishers": 1}
@@ -58,7 +104,25 @@ def make_release(root: Path) -> None:
     ):
         path = root / relative
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(f"test input {relative}\n", encoding="utf-8")
+        if relative == "provenance/activity-ledger.jsonl":
+            path.write_text("", encoding="utf-8")
+        elif relative == "provenance/activity-ledger.schema.json":
+            path.write_text(
+                (ROOT / relative).read_text(encoding="utf-8"),
+                encoding="utf-8",
+            )
+        else:
+            path.write_text(f"test input {relative}\n", encoding="utf-8")
+    for relative in MODULE.CLEAN_ROOM_INPUT_PATHS:
+        path = root / relative
+        if path.exists():
+            continue
+        template = ROOT / relative
+        if template.is_dir():
+            path.mkdir(parents=True, exist_ok=True)
+        else:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(f"test input {relative}\n", encoding="utf-8")
     write_json(
         root / "bundle/okf-explorer.json",
         {
@@ -71,6 +135,15 @@ def make_release(root: Path) -> None:
     write_json(root / "bundle/data/manifest.json", {"counts": counts, "snapshot": release_id})
     (root / "bundle/data/records.txt").write_text("three records\n", encoding="utf-8")
     refresh_checksums(root)
+    frozen_source = root / "corpus/records/T1/source-records.jsonl.gz"
+    frozen_source.parent.mkdir(parents=True, exist_ok=True)
+    frozen_source.write_bytes(b"frozen full-corpus source\n")
+    reproduction = {
+        "source": "corpus/records/T1/source-records.jsonl.gz",
+        "generated_at": "2026-07-12T23:59:59Z",
+        "compiler": "disk",
+        "source_binding": MODULE._source_binding(frozen_source, root),
+    }
 
     write_json(
         root / "corpus/reconciliation/closing.json",
@@ -185,18 +258,21 @@ def make_release(root: Path) -> None:
             "checkout": {"unchanged": True},
             "clean_room_reproduction_passed": True,
             "fixture_reproduction_passed": True,
-            "inputs": {
-                "components": [
-                    {"path": "release/manifest.yaml", "tree_sha256": "1" * 64}
-                ]
-            },
+            "inputs": clean_room_input_manifest(
+                root,
+                reproduction,
+                staged_manifest_sha256="1" * 64,
+            ),
             "network": {
                 "external_model_requests": 0,
                 "official_source_requests": 0,
                 "required": False,
             },
             "outputs": {
-                "bundle": {"exact_match": True},
+                "bundle": {
+                    "exact_match": True,
+                    "expected": MODULE._content_summary(root / "bundle", "test bundle"),
+                },
                 "sbom": {
                     "exact_match": True,
                     "expected_sha256": hashlib.sha256(
@@ -205,6 +281,18 @@ def make_release(root: Path) -> None:
                 },
             },
             "release_inputs_passed": True,
+            "source": reproduction["source"],
+            "source_binding": reproduction["source_binding"],
+            "generated_at": reproduction["generated_at"],
+            "compiler": reproduction["compiler"],
+            "release_control": {
+                "manifest_kind": "full_corpus_checkpoint",
+                "requested_release_kind": "machine_release_candidate",
+                "prospective": True,
+                "manifest_sha256": "1" * 64,
+                "status_sha256": "2" * 64,
+                "source_binding": reproduction["source_binding"],
+            },
             "sampled": False,
             "schema": "afhf-govuk-okf-clean-room-reproduction.v1",
             "snapshot": release_id,
@@ -263,6 +351,7 @@ def make_release(root: Path) -> None:
                 "from": "full_corpus_checkpoint",
                 "staged_manifest_sha256": "1" * 64,
                 "staged_status_sha256": "2" * 64,
+                "reproduction": reproduction,
                 "finalized": False,
             },
         },
@@ -281,6 +370,7 @@ def make_release(root: Path) -> None:
             "programme_complete": False,
             "promotion_finalized": False,
             "publication_ready": True,
+            "reason": MODULE.MACHINE_CANDIDATE_REASON,
             "release_id": release_id,
             "schema": "afhf-govuk-okf-release-status.v1",
             "status": "machine_release_candidate",
@@ -460,6 +550,12 @@ def make_release(root: Path) -> None:
             },
         },
     )
+    clean_path = root / "release/clean-room-reproduction.json"
+    clean = json.loads(clean_path.read_text(encoding="utf-8"))
+    clean["test_evidence"]["sha256"] = hashlib.sha256(
+        (root / "release/full-repository-tests.json").read_bytes()
+    ).hexdigest()
+    write_json(clean_path, clean)
     write_json(
         root / "release/aim-assessment.json",
         {
@@ -611,7 +707,7 @@ class ReleaseGateTests(unittest.TestCase):
             make_release(root)
             clean_path = root / "release/clean-room-reproduction.json"
             clean = json.loads(clean_path.read_text(encoding="utf-8"))
-            clean["inputs"]["components"][0]["tree_sha256"] = "f" * 64
+            clean["release_control"]["manifest_sha256"] = "f" * 64
             write_json(clean_path, clean)
             errors = MODULE.validate_release(root, require_publication_ready=True)
             self.assertTrue(any("exact staged release manifest" in error for error in errors), errors)
@@ -628,6 +724,28 @@ class ReleaseGateTests(unittest.TestCase):
             errors = MODULE.validate_release(root, require_publication_ready=True)
             self.assertTrue(any("SBOM lock digest differs" in error for error in errors), errors)
             self.assertTrue(any("reproduced bundle did not exactly match" in error for error in errors), errors)
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            make_release(root)
+            (root / "bundle/data/records.txt").write_text(
+                "three records, altered after clean-room verification\n", encoding="utf-8"
+            )
+            refresh_checksums(root)
+            (root / "semantic/context/post-scan.jsonld").write_text(
+                '{"changed":true}\n', encoding="utf-8"
+            )
+            errors = MODULE.validate_release(root, require_publication_ready=True)
+            self.assertTrue(
+                any("current released bundle tree" in error for error in errors), errors
+            )
+            self.assertTrue(
+                any(
+                    "clean-room immutable input tree differs: semantic/context" in error
+                    for error in errors
+                ),
+                errors,
+            )
 
     def test_human_ui_claim_stays_untested_without_human_evidence(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -647,11 +765,14 @@ class ReleaseGateTests(unittest.TestCase):
 
             manifest_path = root / "release/manifest.yaml"
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            candidate_manifest_sha = MODULE._file_sha256(manifest_path)
+            candidate_status_sha = MODULE._file_sha256(root / "release/status.json")
             manifest["promotion"]["finalized"] = True
-            manifest["promotion"]["candidate_manifest_sha256"] = "3" * 64
-            manifest["promotion"]["candidate_status_sha256"] = "4" * 64
+            manifest["promotion"]["candidate_manifest_sha256"] = candidate_manifest_sha
+            manifest["promotion"]["candidate_status_sha256"] = candidate_status_sha
             write_json(manifest_path, manifest)
             mutate(root / "release/status.json", "promotion_finalized", True)
+            mutate(root / "release/status.json", "reason", MODULE.MACHINE_FINAL_REASON)
             provenance_path = root / "release/provenance-validation.json"
             provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
             provenance.update(
@@ -670,6 +791,13 @@ class ReleaseGateTests(unittest.TestCase):
             )
             write_json(provenance_path, provenance)
             self.assertEqual([], MODULE.validate_release(root, require_finalized=True))
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["counts"]["publication_records"] = 4
+            write_json(manifest_path, manifest)
+            errors = MODULE.validate_release(root, require_finalized=True)
+            self.assertTrue(
+                any("candidate-manifest hash differs" in error for error in errors), errors
+            )
 
 
 if __name__ == "__main__":

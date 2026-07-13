@@ -6,6 +6,7 @@ import json
 import shutil
 import tempfile
 import unittest
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 
@@ -204,6 +205,66 @@ def release_fixture(
 
 
 class ProvenanceTests(unittest.TestCase):
+    def test_append_side_lock_serializes_writers_and_rejects_symlink_directory(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            ledger = root / "provenance/activity-ledger.jsonl"
+            ledger.parent.mkdir(parents=True)
+            ledger.write_text("", encoding="utf-8")
+            schema = ROOT / "provenance/activity-ledger.schema.json"
+            with ThreadPoolExecutor(max_workers=2) as executor:
+                results = list(
+                    executor.map(
+                        lambda activity_id: APPEND.append_entries(
+                            [deterministic_entry(activity_id)], ledger, schema
+                        ),
+                        ("ACT-CONCURRENT-001", "ACT-CONCURRENT-002"),
+                    )
+                )
+            self.assertEqual(2, len(results))
+            summary = CHECK.validate_ledger(ledger, schema)
+            self.assertEqual(2, summary["hash_chained_v2_rows"])
+
+        with tempfile.TemporaryDirectory() as directory, tempfile.TemporaryDirectory() as outside:
+            root = Path(directory)
+            ledger = root / "provenance/activity-ledger.jsonl"
+            ledger.parent.mkdir(parents=True)
+            ledger.write_text("", encoding="utf-8")
+            (root / ".tmp").symlink_to(Path(outside), target_is_directory=True)
+            with self.assertRaisesRegex(ValueError, "cannot be a symlink"):
+                APPEND.append_entries([deterministic_entry("ACT-SYMLINK-001")], ledger, schema)
+
+        with tempfile.TemporaryDirectory() as directory, tempfile.TemporaryDirectory() as outside:
+            root = Path(directory)
+            ledger = root / "provenance/activity-ledger.jsonl"
+            ledger.parent.mkdir(parents=True)
+            outside_ledger = Path(outside) / "outside-ledger.jsonl"
+            outside_ledger.write_text("", encoding="utf-8")
+            ledger.symlink_to(outside_ledger)
+            with self.assertRaisesRegex(ValueError, "cannot be symlinks"):
+                APPEND.append_entries(
+                    [deterministic_entry("ACT-LEDGER-SYMLINK-001")], ledger, schema
+                )
+            with self.assertRaisesRegex(ValueError, "cannot be symlinks"):
+                APPEND.append_entries(
+                    [deterministic_entry("ACT-LEDGER-SYMLINK-UNLOCKED-001")],
+                    ledger,
+                    schema,
+                    acquire_lock=False,
+                )
+            self.assertEqual("", outside_ledger.read_text(encoding="utf-8"))
+
+            ledger.unlink()
+            ledger.write_text("", encoding="utf-8")
+            schema_link = root / "schema-link.json"
+            schema_link.symlink_to(schema)
+            with self.assertRaisesRegex(ValueError, "schema cannot be a symlink"):
+                APPEND.append_entries(
+                    [deterministic_entry("ACT-SCHEMA-SYMLINK-001")],
+                    ledger,
+                    schema_link,
+                )
+
     def test_checked_in_provenance_is_valid(self) -> None:
         summary = CHECK.validate_all()
         self.assertEqual(0, summary["ledger"]["external_paid_model_api_calls"])

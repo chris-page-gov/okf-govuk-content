@@ -37,6 +37,8 @@ RELEASE_FLAGS = (
 DISALLOWED_SNAPSHOT_MARKERS = ("fixture", "sample", "capacity", "development", "test")
 MACHINE_MARKER = "AFHF_GOVUK_OKF_MACHINE_RELEASE_CANDIDATE_V1"
 FULL_MARKER = "AFHF_GOVUK_OKF_RESEARCH_IMPLEMENTATION_COMPLETE_V1"
+MACHINE_CANDIDATE_REASON = "Every machine release-candidate gate passed; human research remains not authorised and UI of choice remains not yet testable."
+MACHINE_FINAL_REASON = "Machine release candidate finalized after the externally recorded publication, Pages and Explorer registry terminal event; human research remains not authorised."
 HUMAN_STATUSES = {"not_authorised", "blocked", "not_yet_testable", "completed"}
 AIM_STATUSES = {"fulfilled", "partly_fulfilled", "not_fulfilled", "not_yet_testable"}
 TEST_INPUT_PATHS = (
@@ -52,6 +54,42 @@ TEST_INPUT_PATHS = (
     "explorer/src",
     "explorer/tests",
 )
+CLEAN_ROOM_INPUT_PATHS = (
+    "LICENSE.md",
+    "governance/launch-manifest.yaml",
+    "orchestration/models.lock.yaml",
+    "pyproject.toml",
+    "provenance/activity-ledger.jsonl",
+    "provenance/activity-ledger.schema.json",
+    "provenance/reproduction-declarations.json",
+    "provenance/source-request-budget.json",
+    "release/provenance-validation.json",
+    "release/manifest.yaml",
+    "research/official-source-audit.md",
+    "research/source-constraints.json",
+    "src",
+    "scripts/build_bundle.py",
+    "scripts/build_checksums.py",
+    "scripts/build_sbom.py",
+    "scripts/check_publication.py",
+    "scripts/check_provenance.py",
+    "scripts/check_release.py",
+    "scripts/reproduce_release.py",
+    "semantic/README.md",
+    "semantic/context",
+    "semantic/crosswalks",
+    "semantic/package-lock.json",
+    "semantic/profile",
+    "semantic/schemas",
+    "semantic/shapes",
+    "explorer/src",
+    "uv.lock",
+)
+CLEAN_ROOM_MUTABLE_INPUT_PATHS = {
+    "provenance/activity-ledger.jsonl",
+    "release/provenance-validation.json",
+    "release/manifest.yaml",
+}
 
 
 class ReleaseDocumentError(ValueError):
@@ -91,7 +129,13 @@ def _resolve_relative(root: Path, value: object, label: str, *, required: bool =
     if relative.is_absolute() or ".." in relative.parts:
         raise ReleaseDocumentError(f"unsafe {label}: {value}")
     resolved_root = root.resolve()
-    resolved = (resolved_root / relative).resolve()
+    candidate = resolved_root / relative
+    cursor = resolved_root
+    for part in relative.parts:
+        cursor /= part
+        if cursor.is_symlink():
+            raise ReleaseDocumentError(f"{label} cannot traverse a symlink: {value}")
+    resolved = candidate.resolve()
     if resolved != resolved_root and resolved_root not in resolved.parents:
         raise ReleaseDocumentError(f"{label} escapes the repository: {value}")
     return resolved
@@ -141,6 +185,13 @@ def _file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _document_sha256(document: dict[str, Any]) -> str:
+    payload = (
+        json.dumps(document, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
 def _tree_sha256(root: Path, relative_paths: tuple[str, ...] = TEST_INPUT_PATHS) -> str:
     """Hash the exact code/test inputs covered by full-repository test evidence."""
 
@@ -154,6 +205,155 @@ def _tree_sha256(root: Path, relative_paths: tuple[str, ...] = TEST_INPUT_PATHS)
             relative = candidate.relative_to(root).as_posix()
             rows.append(f"{relative}\0{_file_sha256(candidate)}\n".encode("utf-8"))
     return hashlib.sha256(b"".join(rows)).hexdigest()
+
+
+def _content_summary(path: Path, label: str) -> dict[str, Any]:
+    ignored = {".DS_Store", "__pycache__", "node_modules"}
+
+    def included(candidate: Path) -> bool:
+        return (
+            candidate.name not in ignored
+            and not candidate.name.startswith("._")
+            and candidate.suffix not in {".pyc", ".pyo"}
+        )
+
+    if path.is_symlink():
+        raise ReleaseDocumentError(f"{label} cannot be a symlink: {path}")
+    if path.is_file():
+        candidates = [(Path(path.name), path)]
+    elif path.is_dir():
+        entries = sorted(path.rglob("*"))
+        symlinks = [candidate for candidate in entries if candidate.is_symlink()]
+        if symlinks:
+            raise ReleaseDocumentError(
+                f"{label} cannot contain symlinks: {symlinks[0].relative_to(path)}"
+            )
+        candidates = [
+            (candidate.relative_to(path), candidate)
+            for candidate in entries
+            if candidate.is_file()
+            and all(included(part) for part in candidate.relative_to(path).parents)
+            and included(candidate)
+        ]
+    else:
+        raise ReleaseDocumentError(f"{label} is missing: {path}")
+    rows = [
+        {
+            "path": relative.as_posix(),
+            "bytes": candidate.stat().st_size,
+            "sha256": _file_sha256(candidate),
+        }
+        for relative, candidate in candidates
+    ]
+    canonical = json.dumps(
+        rows, ensure_ascii=False, separators=(",", ":"), sort_keys=True
+    ).encode("utf-8")
+    return {
+        "file_count": len(rows),
+        "bytes": sum(row["bytes"] for row in rows),
+        "tree_sha256": hashlib.sha256(canonical).hexdigest(),
+    }
+
+
+def _single_file_summary(name: str, size: int, content_sha256: str) -> dict[str, Any]:
+    row = {"path": name, "bytes": size, "sha256": content_sha256}
+    canonical = json.dumps(
+        [row], ensure_ascii=False, separators=(",", ":"), sort_keys=True
+    ).encode("utf-8")
+    return {
+        "file_count": 1,
+        "bytes": size,
+        "tree_sha256": hashlib.sha256(canonical).hexdigest(),
+    }
+
+
+def _source_binding(path: Path, root: Path) -> dict[str, Any]:
+    try:
+        relative = path.resolve().relative_to(root.resolve()).as_posix()
+    except ValueError as exc:
+        raise ReleaseDocumentError(f"frozen reproduction source escapes the repository: {path}") from exc
+    kind = "file" if path.is_file() else "directory" if path.is_dir() else None
+    if kind is None:
+        raise ReleaseDocumentError(f"frozen reproduction source is missing: {path}")
+    binding: dict[str, Any] = {
+        "path": relative,
+        "kind": kind,
+        **_content_summary(path, "frozen reproduction source"),
+    }
+    if kind == "file":
+        binding["content_sha256"] = _file_sha256(path)
+    return binding
+
+
+def _clean_room_input_errors(evidence: dict[str, Any], root: Path) -> list[str]:
+    """Recompute immutable inputs copied into the clean-room workspace."""
+
+    errors: list[str] = []
+    inputs = evidence.get("inputs")
+    components = inputs.get("components") if isinstance(inputs, dict) else None
+    expected_paths = [*CLEAN_ROOM_INPUT_PATHS, "frozen_source"]
+    if (
+        not isinstance(inputs, dict)
+        or inputs.get("schema") != "afhf-govuk-okf-reproduction-input-manifest.v1"
+        or not isinstance(components, list)
+        or inputs.get("component_count") != len(expected_paths)
+    ):
+        return ["clean-room input manifest is incomplete"]
+    component_paths = [row.get("path") if isinstance(row, dict) else None for row in components]
+    if component_paths != expected_paths:
+        errors.append("clean-room input manifest does not cover the exact reproduction inputs")
+        return errors
+    canonical = json.dumps(
+        components, ensure_ascii=False, separators=(",", ":"), sort_keys=True
+    ).encode("utf-8")
+    if inputs.get("tree_sha256") != hashlib.sha256(canonical).hexdigest():
+        errors.append("clean-room input-manifest tree hash differs")
+    for relative, row in zip(CLEAN_ROOM_INPUT_PATHS, components[:-1], strict=True):
+        if relative in CLEAN_ROOM_MUTABLE_INPUT_PATHS:
+            continue
+        try:
+            path = _resolve_relative(root, relative, "clean-room reproduction input")
+            assert path is not None
+            expected = {"path": relative, **_content_summary(path, "clean-room reproduction input")}
+            if row != expected:
+                errors.append(f"clean-room immutable input tree differs: {relative}")
+        except (OSError, ValueError, ReleaseDocumentError) as exc:
+            errors.append(str(exc))
+    source_binding = evidence.get("source_binding")
+    frozen_row = components[-1]
+    if not isinstance(source_binding, dict) or frozen_row != {
+        "path": "frozen_source",
+        "source": evidence.get("source"),
+        **{
+            key: source_binding.get(key)
+            for key in ("file_count", "bytes", "tree_sha256")
+        },
+    }:
+        errors.append("clean-room frozen-source input row differs from its content binding")
+    component_by_path = {
+        row["path"]: row for row in components if isinstance(row, dict)
+    }
+    release_control = evidence.get("release_control")
+    manifest_component = component_by_path.get("release/manifest.yaml")
+    staged_manifest_sha = (
+        release_control.get("manifest_sha256")
+        if isinstance(release_control, dict)
+        else None
+    )
+    if (
+        not isinstance(manifest_component, dict)
+        or not isinstance(manifest_component.get("bytes"), int)
+        or not _valid_sha256(staged_manifest_sha)
+        or manifest_component
+        != {
+            "path": "release/manifest.yaml",
+            **_single_file_summary(
+                "manifest.yaml", manifest_component["bytes"], staged_manifest_sha
+            ),
+        }
+    ):
+        errors.append("clean-room staged-manifest input row differs from its dedicated hash")
+    return errors
 
 
 def _sbom_errors(root: Path, sbom_path: Path) -> list[str]:
@@ -214,7 +414,14 @@ def _sbom_errors(root: Path, sbom_path: Path) -> list[str]:
 
 
 def _clean_room_errors(
-    evidence: dict[str, Any], sbom_path: Path, promotion: dict[str, Any] | None = None
+    evidence: dict[str, Any],
+    root: Path,
+    sbom_path: Path,
+    promotion: dict[str, Any] | None = None,
+    *,
+    bundle_path: Path | None = None,
+    evidence_path: Path | None = None,
+    test_evidence_path: Path | None = None,
 ) -> list[str]:
     errors: list[str] = []
     if evidence.get("schema") != "afhf-govuk-okf-clean-room-reproduction.v1":
@@ -230,8 +437,19 @@ def _clean_room_errors(
     checkout = evidence.get("checkout")
     if not isinstance(validators, dict) or validators.get("passed") is not True:
         errors.append("clean-room validators did not pass")
-    if not isinstance(outputs, dict) or outputs.get("bundle", {}).get("exact_match") is not True:
+    bundle_evidence = outputs.get("bundle") if isinstance(outputs, dict) else None
+    if not isinstance(bundle_evidence, dict) or bundle_evidence.get("exact_match") is not True:
         errors.append("clean-room reproduced bundle did not exactly match")
+    elif bundle_path is None:
+        errors.append("clean-room released bundle path is missing")
+    else:
+        try:
+            if bundle_evidence.get("expected") != _content_summary(
+                bundle_path, "released bundle"
+            ):
+                errors.append("clean-room evidence is not bound to the current released bundle tree")
+        except (OSError, ValueError, ReleaseDocumentError) as exc:
+            errors.append(str(exc))
     sbom_evidence = outputs.get("sbom") if isinstance(outputs, dict) else None
     if not isinstance(sbom_evidence, dict) or sbom_evidence.get("exact_match") is not True:
         errors.append("clean-room reproduced SBOM did not exactly match")
@@ -239,6 +457,7 @@ def _clean_room_errors(
         errors.append("clean-room evidence is not bound to the released SBOM")
     if not isinstance(checkout, dict) or checkout.get("unchanged") is not True:
         errors.append("clean-room verification mutated declared checkout inputs or outputs")
+    errors.extend(_clean_room_input_errors(evidence, root))
     network = evidence.get("network")
     if (
         not isinstance(network, dict)
@@ -254,19 +473,94 @@ def _clean_room_errors(
         or test_evidence.get("tests_passed") is not True
     ):
         errors.append("clean-room release lacks passing full-repository test evidence")
+    elif test_evidence_path is not None:
+        if not test_evidence_path.is_file():
+            errors.append("clean-room full-repository test evidence is missing")
+        elif test_evidence.get("sha256") != _file_sha256(test_evidence_path):
+            errors.append("clean-room evidence is not bound to the generated full-repository tests")
+    if evidence_path is not None and test_evidence_path is not None:
+        try:
+            ledger_path = _resolve_relative(
+                root, "provenance/activity-ledger.jsonl", "activity ledger"
+            )
+            assert ledger_path is not None
+            terminals = []
+            for number, line in enumerate(
+                ledger_path.read_text(encoding="utf-8").splitlines(), start=1
+            ):
+                if not line:
+                    continue
+                try:
+                    row = json.loads(line)
+                except json.JSONDecodeError as exc:
+                    raise ReleaseDocumentError(
+                        f"invalid activity-ledger row {number}: {exc}"
+                    ) from exc
+                if row.get("activity_id") == "ACT-F2-CLEAN-ROOM-RC-TERMINAL-001":
+                    terminals.append(row)
+            if terminals:
+                if len(terminals) != 1:
+                    errors.append("clean-room activity ledger has duplicate terminal rows")
+                else:
+                    terminal_outputs = {
+                        row.get("path"): row.get("sha256")
+                        for row in terminals[0].get("outputs", [])
+                        if isinstance(row, dict)
+                    }
+                    expected_outputs = {
+                        evidence_path.relative_to(root).as_posix(): _file_sha256(
+                            evidence_path
+                        ),
+                        test_evidence_path.relative_to(root).as_posix(): _file_sha256(
+                            test_evidence_path
+                        ),
+                        sbom_path.relative_to(root).as_posix(): _file_sha256(sbom_path),
+                    }
+                    if terminal_outputs != expected_outputs:
+                        errors.append(
+                            "clean-room terminal output hashes differ from release artefacts"
+                        )
+        except (OSError, ValueError, ReleaseDocumentError) as exc:
+            errors.append(str(exc))
     if promotion is not None:
-        components = evidence.get("inputs", {}).get("components")
-        staged_hash = promotion.get("staged_manifest_sha256")
-        bound_hash = next(
-            (
-                row.get("tree_sha256")
-                for row in components or []
-                if isinstance(row, dict) and row.get("path") == MANIFEST_RELATIVE
-            ),
-            None,
-        )
-        if not isinstance(staged_hash, str) or bound_hash != staged_hash:
+        release_control = evidence.get("release_control")
+        reproduction = promotion.get("reproduction")
+        if (
+            not isinstance(release_control, dict)
+            or release_control.get("manifest_kind") != "full_corpus_checkpoint"
+            or release_control.get("requested_release_kind")
+            not in {"machine_release_candidate", "full_programme"}
+            or release_control.get("prospective") is not True
+            or release_control.get("manifest_sha256")
+            != promotion.get("staged_manifest_sha256")
+        ):
             errors.append("clean-room evidence is not bound to the exact staged release manifest")
+        if (
+            not isinstance(release_control, dict)
+            or release_control.get("status_sha256") != promotion.get("staged_status_sha256")
+        ):
+            errors.append("clean-room evidence is not bound to the exact staged release status")
+        if (
+            not isinstance(reproduction, dict)
+            or evidence.get("source") != reproduction.get("source")
+            or evidence.get("generated_at") != reproduction.get("generated_at")
+            or evidence.get("compiler") != reproduction.get("compiler")
+            or evidence.get("source_binding") != reproduction.get("source_binding")
+            or not isinstance(release_control, dict)
+            or release_control.get("source_binding") != reproduction.get("source_binding")
+        ):
+            errors.append("clean-room evidence differs from the immutable reproduction contract")
+        elif isinstance(reproduction.get("source"), str):
+            try:
+                source_path = _resolve_relative(
+                    root, reproduction["source"], "frozen reproduction source"
+                )
+                if source_path and _source_binding(source_path, root) != reproduction.get(
+                    "source_binding"
+                ):
+                    errors.append("clean-room frozen-source content/tree binding differs")
+            except (OSError, ValueError, ReleaseDocumentError) as exc:
+                errors.append(str(exc))
     return errors
 
 
@@ -782,6 +1076,22 @@ def validate_release(
     ):
         errors.append("release lacks a valid two-stage promotion record")
         promotion = {}
+    reproduction = promotion.get("reproduction") if isinstance(promotion, dict) else None
+    if (
+        not isinstance(reproduction, dict)
+        or not isinstance(reproduction.get("source"), str)
+        or not isinstance(reproduction.get("generated_at"), str)
+        or reproduction.get("compiler") not in {"auto", "memory", "disk"}
+        or not isinstance(reproduction.get("source_binding"), dict)
+    ):
+        errors.append("release promotion lacks a complete immutable reproduction contract")
+    else:
+        try:
+            source_path = _resolve_relative(root, reproduction["source"], "frozen reproduction source")
+            if source_path and _source_binding(source_path, root) != reproduction["source_binding"]:
+                errors.append("frozen reproduction source content/tree binding differs")
+        except (OSError, ValueError, ReleaseDocumentError) as exc:
+            errors.append(str(exc))
     if status.get("promotion_finalized") is not promotion.get("finalized"):
         errors.append("release status and manifest promotion-finalized states differ")
     if require_finalized and promotion.get("finalized") is not True:
@@ -791,6 +1101,20 @@ def validate_release(
         or not _valid_sha256(promotion.get("candidate_status_sha256"))
     ):
         errors.append("finalized promotion lacks exact candidate manifest/status hashes")
+    elif promotion.get("finalized") is True and manifest.get("release_kind") == "machine_release_candidate":
+        candidate_manifest = dict(manifest)
+        candidate_promotion = dict(promotion)
+        candidate_promotion.pop("candidate_manifest_sha256", None)
+        candidate_promotion.pop("candidate_status_sha256", None)
+        candidate_promotion["finalized"] = False
+        candidate_manifest["promotion"] = candidate_promotion
+        candidate_status = dict(status)
+        candidate_status["promotion_finalized"] = False
+        candidate_status["reason"] = MACHINE_CANDIDATE_REASON
+        if _document_sha256(candidate_manifest) != promotion.get("candidate_manifest_sha256"):
+            errors.append("finalized promotion candidate-manifest hash differs")
+        if _document_sha256(candidate_status) != promotion.get("candidate_status_sha256"):
+            errors.append("finalized promotion candidate-status hash differs")
 
     if status.get("machine_rc_complete") is not True:
         errors.append("machine_rc_complete is false")
@@ -821,8 +1145,10 @@ def validate_release(
         errors.append("release status unexplained_omissions is not zero")
 
     sbom_path: Path | None = None
+    bundle_path: Path | None = None
     try:
         sbom_path = _resolve_relative(root, artifacts.get("sbom"), "sbom")
+        bundle_path = _resolve_relative(root, artifacts.get("bundle"), "bundle")
         if sbom_path:
             errors.extend(_sbom_errors(root, sbom_path))
     except ReleaseDocumentError as exc:
@@ -911,7 +1237,20 @@ def validate_release(
             if _artifact_snapshot(evidence) != snapshot.get("id"):
                 errors.append(f"{artifact_name} evidence snapshot differs from release snapshot")
             if artifact_name == "clean_room_reproduction" and sbom_path:
-                errors.extend(_clean_room_errors(evidence, sbom_path, promotion))
+                full_tests_path = _resolve_relative(
+                    root, artifacts.get("full_repository_tests"), "full_repository_tests"
+                )
+                errors.extend(
+                    _clean_room_errors(
+                        evidence,
+                        root,
+                        sbom_path,
+                        promotion,
+                        bundle_path=bundle_path,
+                        evidence_path=evidence_path,
+                        test_evidence_path=full_tests_path,
+                    )
+                )
         except ReleaseDocumentError as exc:
             errors.append(str(exc))
 

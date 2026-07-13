@@ -85,6 +85,14 @@ def _file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _valid_sha256(value: object) -> bool:
+    return (
+        isinstance(value, str)
+        and len(value) == 64
+        and all(character in "0123456789abcdef" for character in value)
+    )
+
+
 def _include(path: Path) -> bool:
     return (
         path.name not in IGNORED_NAMES
@@ -93,11 +101,24 @@ def _include(path: Path) -> bool:
     )
 
 
+def _reject_symlinks(path: Path) -> None:
+    if path.is_symlink():
+        raise ReproductionError(f"reproduction input cannot be a symlink: {path}")
+    if path.is_dir():
+        for candidate in path.rglob("*"):
+            if candidate.is_symlink():
+                raise ReproductionError(
+                    "reproduction input cannot contain symlinks: "
+                    f"{candidate.relative_to(path)}"
+                )
+
+
 def file_rows(path: Path) -> list[dict[str, Any]]:
     """Return sorted relative file hashes for a file or directory."""
 
     if not path.exists():
         raise ReproductionError(f"missing reproduction input: {path}")
+    _reject_symlinks(path)
     if path.is_file():
         candidates = [(Path(path.name), path)]
     elif path.is_dir():
@@ -164,6 +185,7 @@ def compare_trees(expected: Path, actual: Path) -> dict[str, Any]:
 
 
 def _copy(source: Path, destination: Path) -> None:
+    _reject_symlinks(source)
     if source.is_file():
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, destination)
@@ -190,6 +212,26 @@ def _relative_label(path: Path) -> str:
         return resolved.relative_to(ROOT.resolve()).as_posix()
     except ValueError:
         return str(resolved)
+
+
+def source_binding(path: Path, root: Path = ROOT) -> dict[str, Any]:
+    """Return the canonical content/tree binding used by stage and replay."""
+
+    resolved = path.resolve()
+    resolved_root = root.resolve()
+    try:
+        relative = resolved.relative_to(resolved_root).as_posix()
+    except ValueError:
+        relative = str(resolved)
+    summary = manifest_summary(resolved)
+    binding: dict[str, Any] = {
+        "path": relative,
+        "kind": "file" if resolved.is_file() else "directory",
+        **_compact_manifest(summary),
+    }
+    if resolved.is_file():
+        binding["content_sha256"] = _file_sha256(resolved)
+    return binding
 
 
 def _copy_inputs(workspace: Path, source: Path) -> tuple[Path, dict[str, Any]]:
@@ -386,9 +428,11 @@ def _release_inputs_pass(
     snapshot_kind: str,
     sampled: bool,
     source: Path,
+    generated_at: str,
+    compiler: str,
     release_manifest: Path,
     test_evidence: Path | None,
-) -> tuple[bool, list[str], dict[str, Any] | None]:
+) -> tuple[bool, list[str], dict[str, Any] | None, dict[str, Any]]:
     failures = []
     tests = None
     if release_kind not in {"machine_release_candidate", "full_programme"}:
@@ -400,8 +444,45 @@ def _release_inputs_pass(
     if "tests/fixtures" in _relative_label(source):
         failures.append("fixture source cannot pass clean-room release")
     manifest = _load_object(release_manifest, "release manifest (JSON-compatible YAML)")
-    if manifest.get("release_id") != snapshot or manifest.get("release_kind") != release_kind:
+    manifest_kind = manifest.get("release_kind")
+    contract = manifest.get("promotion_contract")
+    promotion = manifest.get("promotion")
+    prospective = manifest_kind == "full_corpus_checkpoint"
+    replay = manifest_kind == release_kind and isinstance(promotion, dict)
+    if manifest.get("release_id") != snapshot:
         failures.append("release manifest identity differs from the reproduction contract")
+    if prospective:
+        if (
+            not isinstance(contract, dict)
+            or contract.get("schema") != "afhf-govuk-okf-two-stage-promotion.v1"
+            or contract.get("stage") != "full_corpus_checkpoint"
+            or contract.get("target_release_kind") != release_kind
+            or not isinstance(contract.get("reproduction"), dict)
+        ):
+            failures.append("staged release manifest lacks the prospective release contract")
+        reproduction = contract.get("reproduction") if isinstance(contract, dict) else None
+    elif replay:
+        reproduction = promotion.get("reproduction")
+        if (
+            promotion.get("schema") != "afhf-govuk-okf-two-stage-promotion.v1"
+            or promotion.get("from") != "full_corpus_checkpoint"
+            or not isinstance(reproduction, dict)
+        ):
+            failures.append("candidate release lacks the immutable reproduction contract")
+    else:
+        reproduction = None
+        failures.append("release manifest identity differs from the reproduction contract")
+    release_root = release_manifest.resolve().parents[1]
+    actual_source_binding = source_binding(source, release_root)
+    if isinstance(reproduction, dict):
+        if reproduction.get("source") != actual_source_binding.get("path"):
+            failures.append("reproduction source differs from the staged contract")
+        if reproduction.get("generated_at") != generated_at:
+            failures.append("reproduction generated_at differs from the staged contract")
+        if reproduction.get("compiler") != compiler:
+            failures.append("reproduction compiler differs from the staged contract")
+        if reproduction.get("source_binding") != actual_source_binding:
+            failures.append("reproduction source content/tree binding differs from the staged contract")
     manifest_snapshot = manifest.get("snapshot")
     if (
         not isinstance(manifest_snapshot, dict)
@@ -409,6 +490,20 @@ def _release_inputs_pass(
         or manifest_snapshot.get("sampled") is not False
     ):
         failures.append("release manifest does not identify an unsampled full corpus")
+    status_path = release_manifest.parent / "status.json"
+    status = _load_object(status_path, "staged release status") if status_path.is_file() else {}
+    if prospective and (
+        status.get("release_id") != snapshot
+        or status.get("status") != "checkpoint"
+        or status.get("publication_ready") is not False
+    ):
+        failures.append("staged release status is not a non-publishable checkpoint")
+    if replay and (
+        status.get("release_id") != snapshot
+        or status.get("status") not in {"machine_release_candidate", "full_programme"}
+        or status.get("publication_ready") is not True
+    ):
+        failures.append("candidate release status is not publication-ready")
     if test_evidence is None:
         failures.append("independent full-repository test evidence is missing")
     else:
@@ -419,7 +514,23 @@ def _release_inputs_pass(
             or tests.get("tests_passed") is not True
         ):
             failures.append("full-repository test evidence does not pass for this snapshot")
-    return not failures, failures, tests
+    release_control = {
+        "manifest_kind": "full_corpus_checkpoint" if replay else manifest_kind,
+        "requested_release_kind": release_kind,
+        "prospective": prospective or replay,
+        "manifest_sha256": (
+            promotion.get("staged_manifest_sha256")
+            if replay
+            else _file_sha256(release_manifest)
+        ),
+        "status_sha256": (
+            promotion.get("staged_status_sha256")
+            if replay
+            else _file_sha256(status_path) if status_path.is_file() else None
+        ),
+        "source_binding": actual_source_binding,
+    }
+    return not failures, failures, tests, release_control
 
 
 def _workspace_state(paths: Iterable[Path]) -> dict[str, Any]:
@@ -432,6 +543,9 @@ def _workspace_state(paths: Iterable[Path]) -> dict[str, Any]:
 
 
 def reproduce(args: argparse.Namespace) -> dict[str, Any]:
+    started_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace(
+        "+00:00", "Z"
+    )
     source = args.source.resolve()
     expected_bundle = args.expected_bundle.resolve()
     expected_sbom = args.sbom.resolve()
@@ -442,6 +556,8 @@ def reproduce(args: argparse.Namespace) -> dict[str, Any]:
         raise ReproductionError("clean reproduction must declare that network access is not required")
     protected_paths = list(dict.fromkeys([
         *(ROOT / relative for relative in COPY_INPUTS),
+        args.release_manifest.resolve().parent / "status.json",
+        *([args.test_evidence.resolve()] if args.test_evidence else []),
         source,
         expected_bundle,
         expected_sbom,
@@ -449,16 +565,17 @@ def reproduce(args: argparse.Namespace) -> dict[str, Any]:
         args.activity_ledger.resolve(),
     ]))
     before = _workspace_state(protected_paths)
-    release_inputs_passed, release_failures, test_evidence = _release_inputs_pass(
+    release_inputs_passed, release_failures, test_evidence, release_control = _release_inputs_pass(
         release_kind=args.release_kind,
         snapshot=args.snapshot_id,
         snapshot_kind=args.snapshot_kind,
         sampled=args.sampled,
         source=source,
+        generated_at=args.generated_at,
+        compiler=args.compiler,
         release_manifest=args.release_manifest.resolve(),
         test_evidence=args.test_evidence.resolve() if args.test_evidence else None,
     )
-    recorded_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     with tempfile.TemporaryDirectory(prefix="okf-govuk-clean-room-") as directory:
         workspace = Path(directory) / "workspace"
         workspace.mkdir()
@@ -547,6 +664,9 @@ def reproduce(args: argparse.Namespace) -> dict[str, Any]:
         reproduced_sbom_sha256 = _file_sha256(sbom) if sbom.is_file() else None
 
     after = _workspace_state(protected_paths)
+    recorded_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace(
+        "+00:00", "Z"
+    )
     checkout_unchanged = before == after
     fixture_reproduction_passed = (
         validators_passed
@@ -570,6 +690,8 @@ def reproduce(args: argparse.Namespace) -> dict[str, Any]:
         "snapshot_kind": args.snapshot_kind,
         "sampled": args.sampled,
         "release_kind": args.release_kind,
+        "started_at": started_at,
+        "ended_at": recorded_at,
         "recorded_at": recorded_at,
         "source": _relative_label(source),
         "generated_at": args.generated_at,
@@ -579,6 +701,10 @@ def reproduce(args: argparse.Namespace) -> dict[str, Any]:
         "clean_room_reproduction_passed": clean_room_reproduction_passed,
         "reason": reason,
         "release_input_failures": release_failures,
+        "release_control": release_control if args.snapshot_kind == "full_corpus" else None,
+        "source_binding": (
+            release_control.get("source_binding") if args.snapshot_kind == "full_corpus" else None
+        ),
         "inputs": input_manifest,
         "commands": command_results,
         "validators": {
@@ -680,6 +806,31 @@ def validate_evidence(document: dict[str, Any], *, require_release: bool = False
             or test_evidence.get("tests_passed") is not True
         ):
             errors.append("clean-room release lacks passing full-repository test evidence")
+        release_control = document.get("release_control")
+        binding = document.get("source_binding")
+        if (
+            not isinstance(release_control, dict)
+            or release_control.get("manifest_kind") != "full_corpus_checkpoint"
+            or release_control.get("requested_release_kind") != document.get("release_kind")
+            or release_control.get("prospective") is not True
+            or not _valid_sha256(release_control.get("manifest_sha256"))
+            or not _valid_sha256(release_control.get("status_sha256"))
+        ):
+            errors.append("clean-room release is not bound to a prospective staged checkpoint")
+        if (
+            not isinstance(binding, dict)
+            or binding != release_control.get("source_binding")
+            or binding.get("kind") not in {"file", "directory"}
+            or not isinstance(binding.get("path"), str)
+            or not isinstance(binding.get("file_count"), int)
+            or not isinstance(binding.get("bytes"), int)
+            or not _valid_sha256(binding.get("tree_sha256"))
+            or (
+                binding.get("kind") == "file"
+                and not _valid_sha256(binding.get("content_sha256"))
+            )
+        ):
+            errors.append("clean-room release lacks a valid frozen-source content binding")
     return errors
 
 
@@ -692,6 +843,8 @@ def _stable_evidence_fields(document: dict[str, Any]) -> dict[str, Any]:
             "snapshot_kind",
             "sampled",
             "release_kind",
+            "release_control",
+            "source_binding",
             "source",
             "generated_at",
             "compiler",
