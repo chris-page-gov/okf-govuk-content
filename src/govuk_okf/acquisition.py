@@ -17,7 +17,7 @@ import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Iterable, Iterator
+from typing import Any, Callable, Iterable, Iterator
 from urllib.parse import parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
 from .util import canonical_json_bytes, pretty_json, sha256_bytes, slugify
@@ -297,6 +297,7 @@ def write_jsonl_gzip_shards(
     max_records: int = 10_000,
     max_uncompressed_bytes: int = 32 * 1024 * 1024,
     max_compressed_bytes: int = 50 * 1024 * 1024,
+    before_write: Callable[[Path, int], None] | None = None,
 ) -> dict[str, Any]:
     """Write immutable content-addressed JSONL.GZ shards below ``parent``."""
     if max_records < 1 or max_uncompressed_bytes < 1:
@@ -315,6 +316,8 @@ def write_jsonl_gzip_shards(
             return
         relative = f"part-{len(shard_rows):05d}.jsonl.gz"
         path = build_root / relative
+        if before_write is not None:
+            before_write(path, max_compressed_bytes)
         count, digest = write_jsonl_gzip(path, chunk)
         compressed_bytes = path.stat().st_size
         if compressed_bytes > max_compressed_bytes:
@@ -353,7 +356,11 @@ def write_jsonl_gzip_shards(
             "max_compressed_bytes_per_shard": max_compressed_bytes,
             "shards": shard_rows,
         }
-        write_text_atomic(build_root / "index.json", pretty_json(index))
+        index_path = build_root / "index.json"
+        index_text = pretty_json(index)
+        if before_write is not None:
+            before_write(index_path, len(index_text.encode("utf-8")))
+        write_text_atomic(index_path, index_text)
         final_root = parent / f"{name}-{digest[:16]}"
         if final_root.exists():
             expected = {

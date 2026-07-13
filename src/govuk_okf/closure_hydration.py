@@ -6,14 +6,13 @@ import collections
 import hashlib
 import json
 import sqlite3
-from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
-from .acquisition import HostLimiter, request_observation, write_text_atomic
+from .acquisition import HostLimiter, request_observation
 from .hydration import CorpusHydrator
 from .rendered_gap import RobotsPolicy, parse_robots, rendered_observation
-from .util import canonical_json_bytes, pretty_json
+from .util import canonical_json_bytes
 
 ROBOTS_URL = "https://www.gov.uk/robots.txt"
 DEFAULT_RENDERED_SCAN_LIMIT = 75_000
@@ -44,6 +43,20 @@ class CompleteCorpusHydrator(CorpusHydrator):
         self.robots_policy: RobotsPolicy | None = None
         self.robots_request_attempts = 0
         self.rendered_selection: set[tuple[str, str]] = set()
+        self.rendered_selection_sha256 = ""
+
+    def _spool_contract(self) -> dict[str, Any]:
+        contract = super()._spool_contract()
+        contract.update(
+            {
+                "rendered_gap_enabled": True,
+                "rendered_scan_limit": self.max_rendered_requests,
+                "queue_ceiling": self.max_queue_records,
+                "robots_sha256": self.robots_policy.sha256 if self.robots_policy is not None else None,
+                "rendered_selection_sha256": self.rendered_selection_sha256,
+            }
+        )
+        return contract
 
     def _connect(self) -> sqlite3.Connection:
         connection = super()._connect()
@@ -176,6 +189,12 @@ class CompleteCorpusHydrator(CorpusHydrator):
             (str(url), str(locale))
             for url, locale in connection.execute("SELECT url, locale FROM rendered_selection")
         }
+        selection_hash = connection.execute(
+            "SELECT value FROM meta WHERE key='rendered_selection_canonical_sha256'"
+        ).fetchone()
+        if not selection_hash or not isinstance(selection_hash[0], str):
+            raise ValueError("rendered gap selection digest is missing")
+        self.rendered_selection_sha256 = selection_hash[0]
         return source_count
 
     def _prepare_robots(self) -> RobotsPolicy:
@@ -275,7 +294,10 @@ class CompleteCorpusHydrator(CorpusHydrator):
     def run(self, *, request_limit: int | None = None) -> dict[str, Any]:
         # Do not spend even the robots request when the retained checkpoint is
         # already outside its signed storage authority.
-        self._assert_retained_storage(phase="pre-robots hydration checkpoint")
+        self._assert_retained_storage(
+            phase="pre-robots hydration checkpoint",
+            reserve_bytes=self._sqlite_write_reserve_bytes(0, 0),
+        )
         self.robots_policy = self._prepare_robots()
         result = super().run(request_limit=request_limit)
         result["rendered_gap_enabled"] = True
@@ -285,42 +307,47 @@ class CompleteCorpusHydrator(CorpusHydrator):
         result["rendered_scan_selected"] = len(self.rendered_selection)
         return result
 
-    def export(self, enumeration_reconciliation: Path | None = None) -> dict[str, Any]:
-        reconciliation = super().export(enumeration_reconciliation)
-        connection = self._connect()
+    def _augment_export_documents(
+        self,
+        connection: sqlite3.Connection,
+        reconciliation: dict[str, Any],
+        manifest: dict[str, Any],
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
+        """Bind rendered-gap proof inside the base export rollback envelope."""
+
+        reconciliation, manifest = super()._augment_export_documents(
+            connection,
+            reconciliation,
+            manifest,
+        )
         status_counts: collections.Counter[str] = collections.Counter()
         discovered: collections.Counter[str] = collections.Counter()
         rendered_link_records = 0
         content_api_attempts = 0
         rendered_attempts = 0
-        try:
-            for (record_json,) in connection.execute("SELECT record_json FROM queue ORDER BY url, locale"):
-                record = json.loads(record_json)
-                status_counts[str(record.get("rendered_gap_status") or "missing")] += 1
-                content_api_attempts += int(record.get("content_api_attempts") or 0)
-                if "rendered-links" in record.get("source_memberships", []):
-                    rendered_link_records += 1
-                observation = record.get("rendered_observation")
-                if isinstance(observation, dict):
-                    if observation.get("retained_body_bytes") != 0:
-                        raise ValueError("rendered gap detector retained body bytes")
-                    rendered_attempts += int(observation.get("request_attempts") or 0)
-                    for key, value in (observation.get("discovered") or {}).items():
-                        if isinstance(value, int):
-                            discovered[str(key)] += value
-        finally:
-            connection.close()
+        for (record_json,) in connection.execute("SELECT record_json FROM queue ORDER BY url, locale"):
+            record = json.loads(record_json)
+            status_counts[str(record.get("rendered_gap_status") or "missing")] += 1
+            content_api_attempts += int(record.get("content_api_attempts") or 0)
+            if "rendered-links" in record.get("source_memberships", []):
+                rendered_link_records += 1
+            observation = record.get("rendered_observation")
+            if isinstance(observation, dict):
+                if observation.get("retained_body_bytes") != 0:
+                    raise ValueError("rendered gap detector retained body bytes")
+                rendered_attempts += int(observation.get("request_attempts") or 0)
+                for key, value in (observation.get("discovered") or {}).items():
+                    if isinstance(value, int):
+                        discovered[str(key)] += value
         if self.robots_policy is None:
-            policy_connection = self._connect()
-            try:
-                policy_value = policy_connection.execute(
-                    "SELECT value FROM meta WHERE key='rendered_robots_policy'"
-                ).fetchone()
-                if not policy_value:
-                    raise ValueError("rendered robots policy evidence is missing")
-                robots_row = json.loads(policy_value[0])
-            finally:
-                policy_connection.close()
+            policy_value = connection.execute(
+                "SELECT value FROM meta WHERE key='rendered_robots_policy'"
+            ).fetchone()
+            if not policy_value:
+                raise ValueError("rendered robots policy evidence is missing")
+            robots_row = json.loads(policy_value[0])
+            if not isinstance(robots_row, dict):
+                raise ValueError("rendered robots policy evidence is invalid")
         else:
             robots_row = {
                 "url": self.robots_policy.source_url,
@@ -329,24 +356,20 @@ class CompleteCorpusHydrator(CorpusHydrator):
                 "rules": len(self.robots_policy.rules),
                 "request_attempts": self.robots_request_attempts or 1,
             }
-        proof_connection = self._connect()
-        try:
-            selection_values = {
-                str(key): str(value)
-                for key, value in proof_connection.execute(
-                    "SELECT key, value FROM meta WHERE key LIKE 'rendered_selection_%'"
-                )
-            }
-            selected = int(selection_values.get("rendered_selection_records", "0"))
-            population = int(selection_values.get("rendered_selection_population", "0"))
-            completed_selection = int(
-                proof_connection.execute(
-                    "SELECT COUNT(*) FROM rendered_selection AS s JOIN queue AS q USING(url, locale) "
-                    "WHERE q.state='complete'"
-                ).fetchone()[0]
+        selection_values = {
+            str(key): str(value)
+            for key, value in connection.execute(
+                "SELECT key, value FROM meta WHERE key LIKE 'rendered_selection_%'"
             )
-        finally:
-            proof_connection.close()
+        }
+        selected = int(selection_values.get("rendered_selection_records", "0"))
+        population = int(selection_values.get("rendered_selection_population", "0"))
+        completed_selection = int(
+            connection.execute(
+                "SELECT COUNT(*) FROM rendered_selection AS s JOIN queue AS q USING(url, locale) "
+                "WHERE q.state='complete'"
+            ).fetchone()[0]
+        )
         if completed_selection != selected:
             raise ValueError(f"rendered gap selection is incomplete: {completed_selection} != {selected}")
         robots_attempts = int(robots_row.get("request_attempts") or 1)
@@ -381,10 +404,5 @@ class CompleteCorpusHydrator(CorpusHydrator):
         source_counts = dict(reconciliation.get("source_counts") or {})
         source_counts["rendered_links"] = rendered_link_records
         reconciliation["source_counts"] = dict(sorted(source_counts.items()))
-        target = self.reconciliation_root / f"{self.label}-hydrated.json"
-        write_text_atomic(target, pretty_json(reconciliation))
-        manifest_path = self.records_root / "manifest.json"
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         manifest["rendered_gap_proof"] = proof
-        write_text_atomic(manifest_path, pretty_json(manifest))
-        return reconciliation
+        return reconciliation, manifest
