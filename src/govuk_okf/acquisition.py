@@ -211,7 +211,16 @@ def request_observation(
     final_result: dict[str, Any] = {}
     for attempt in range(1, attempts + 1):
         limiter.wait()
-        result = fetch_probe(Probe("acquisition", url, "enumerator", max_bytes=max_bytes), attempts=1)
+        result = fetch_probe(
+            Probe(
+                "acquisition",
+                url,
+                "enumerator",
+                max_bytes=max_bytes,
+                allowed_hosts=("www.gov.uk",),
+            ),
+            attempts=1,
+        )
         body = result.pop("body", b"")
         result["acquisition_attempt"] = attempt
         final_body, final_result = body, result

@@ -23,39 +23,86 @@ OUTPUT = ROOT / "research" / "source-preflight.json"
 PLAN_PREFLIGHT = ROOT / "planning" / "PLAN_SOURCE_PREFLIGHT.json"
 PLAN = ROOT / "planning" / "AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md"
 
+OFFICIAL_SOURCE_HOSTS = (
+    "api.github.com",
+    "content-api.publishing.service.gov.uk",
+    "docs.publishing.service.gov.uk",
+    "www.gov.uk",
+    "www.nationalarchives.gov.uk",
+)
+PLAN_SOURCE_HOSTS = (
+    "a2a-protocol.org",
+    "aclanthology.org",
+    "api.crossref.org",
+    "arxiv.org",
+    "blog.canada.ca",
+    "content-api.publishing.service.gov.uk",
+    "cormack.uwaterloo.ca",
+    "data.europa.eu",
+    "design-system.service.gov.uk",
+    "design.canada.ca",
+    "developers.openai.com",
+    "digital.nhs.uk",
+    "docs.publishing.service.gov.uk",
+    "github.com",
+    "insidegovuk.blog.gov.uk",
+    "learn.chatgpt.com",
+    "modelcontextprotocol.io",
+    "open.gsa.gov",
+    "openai.com",
+    "pages.gseis.ucla.edu",
+    "proceedings.iclr.cc",
+    "proceedings.neurips.cc",
+    "schema.org",
+    "semiceu.github.io",
+    "spec.openapis.org",
+    "userresearch.blog.gov.uk",
+    "www.gov.uk",
+    "www.nationalarchives.gov.uk",
+    "www.nist.gov",
+    "www.researchobject.org",
+    "www.usa.gov",
+    "www.w3.org",
+)
+
+
+def official_probe(identifier: str, url: str, family: str) -> Probe:
+    return Probe(identifier, url, family, allowed_hosts=OFFICIAL_SOURCE_HOSTS)
+
+
 OFFICIAL_PROBES = [
-    Probe("content-api-home", "https://content-api.publishing.service.gov.uk/", "contract"),
-    Probe("content-api-reference", "https://content-api.publishing.service.gov.uk/reference.html", "contract"),
-    Probe("content-api-root", "https://www.gov.uk/api/content", "enumerator"),
-    Probe("content-api-sample", "https://www.gov.uk/api/content/take-pet-abroad", "metadata"),
-    Probe("content-api-redirect", "https://www.gov.uk/api/content/dfe", "lifecycle"),
-    Probe("search-api-root-count", "https://www.gov.uk/api/search.json?count=0", "enumerator"),
-    Probe("search-api-sample", "https://www.gov.uk/api/search.json?count=1", "enumerator"),
-    Probe("sitemap-index", "https://www.gov.uk/sitemap.xml", "enumerator"),
-    Probe("organisations-api", "https://www.gov.uk/api/organisations?page=1", "enumerator"),
-    Probe("organisations-content-index", "https://www.gov.uk/api/content/government/organisations", "navigation"),
-    Probe("world-taxonomy-root", "https://www.gov.uk/api/content/world/all", "enumerator"),
-    Probe("mainstream-browse-root", "https://www.gov.uk/api/content/browse", "enumerator"),
-    Probe("attachment-sample", "https://www.gov.uk/api/content/government/publications/ukho-1825-archives-catalogue", "resource"),
-    Probe("gds-atom-feed", "https://www.gov.uk/government/organisations/government-digital-service.atom", "gap-detector"),
-    Probe("search-atom-feed", "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=government-digital-service", "gap-detector"),
-    Probe("robots", "https://www.gov.uk/robots.txt", "policy"),
-    Probe("reuse", "https://www.gov.uk/help/reuse-govuk-content", "rights"),
-    Probe("terms", "https://www.gov.uk/help/terms-conditions", "rights"),
-    Probe("ogl-v3", "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/", "rights"),
-    Probe("ogl-exceptions", "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/open-government-licence/exceptions-to-ogl/", "rights"),
-    Probe("publishing-api-docs", "https://docs.publishing.service.gov.uk/repos/publishing-api/api.html", "contract"),
-    Probe("document-types", "https://docs.publishing.service.gov.uk/document-types.html", "contract"),
-    Probe("search-api-v1-docs", "https://docs.publishing.service.gov.uk/repos/search-api/using-the-search-api.html", "contract"),
-    Probe("search-api-v2-docs", "https://docs.publishing.service.gov.uk/repos/search-api-v2.html", "comparator"),
-    Probe("search-architecture", "https://docs.publishing.service.gov.uk/manual/govuk-search.html", "comparator"),
-    Probe("sitemap-docs", "https://docs.publishing.service.gov.uk/manual/govuk-sitemap.html", "contract"),
-    Probe("taxonomy-docs", "https://docs.publishing.service.gov.uk/manual/taxonomy.html", "contract"),
-    Probe("world-taxonomy-docs", "https://docs.publishing.service.gov.uk/manual/world-taxonomy.html", "contract"),
-    Probe("collections-docs", "https://docs.publishing.service.gov.uk/repos/collections.html", "contract"),
-    Probe("organisations-docs", "https://docs.publishing.service.gov.uk/manual/organisations-api.html", "contract"),
-    Probe("govsearch-model", "https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-gcp/how-to-write-queries.html", "comparator"),
-    Probe("publishing-api-main-commit", "https://api.github.com/repos/alphagov/publishing-api/commits/main", "version"),
+    official_probe("content-api-home", "https://content-api.publishing.service.gov.uk/", "contract"),
+    official_probe("content-api-reference", "https://content-api.publishing.service.gov.uk/reference.html", "contract"),
+    official_probe("content-api-root", "https://www.gov.uk/api/content", "enumerator"),
+    official_probe("content-api-sample", "https://www.gov.uk/api/content/take-pet-abroad", "metadata"),
+    official_probe("content-api-redirect", "https://www.gov.uk/api/content/dfe", "lifecycle"),
+    official_probe("search-api-root-count", "https://www.gov.uk/api/search.json?count=0", "enumerator"),
+    official_probe("search-api-sample", "https://www.gov.uk/api/search.json?count=1", "enumerator"),
+    official_probe("sitemap-index", "https://www.gov.uk/sitemap.xml", "enumerator"),
+    official_probe("organisations-api", "https://www.gov.uk/api/organisations?page=1", "enumerator"),
+    official_probe("organisations-content-index", "https://www.gov.uk/api/content/government/organisations", "navigation"),
+    official_probe("world-taxonomy-root", "https://www.gov.uk/api/content/world/all", "enumerator"),
+    official_probe("mainstream-browse-root", "https://www.gov.uk/api/content/browse", "enumerator"),
+    official_probe("attachment-sample", "https://www.gov.uk/api/content/government/publications/ukho-1825-archives-catalogue", "resource"),
+    official_probe("gds-atom-feed", "https://www.gov.uk/government/organisations/government-digital-service.atom", "gap-detector"),
+    official_probe("search-atom-feed", "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=government-digital-service", "gap-detector"),
+    official_probe("robots", "https://www.gov.uk/robots.txt", "policy"),
+    official_probe("reuse", "https://www.gov.uk/help/reuse-govuk-content", "rights"),
+    official_probe("terms", "https://www.gov.uk/help/terms-conditions", "rights"),
+    official_probe("ogl-v3", "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/", "rights"),
+    official_probe("ogl-exceptions", "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/open-government-licence/exceptions-to-ogl/", "rights"),
+    official_probe("publishing-api-docs", "https://docs.publishing.service.gov.uk/repos/publishing-api/api.html", "contract"),
+    official_probe("document-types", "https://docs.publishing.service.gov.uk/document-types.html", "contract"),
+    official_probe("search-api-v1-docs", "https://docs.publishing.service.gov.uk/repos/search-api/using-the-search-api.html", "contract"),
+    official_probe("search-api-v2-docs", "https://docs.publishing.service.gov.uk/repos/search-api-v2.html", "comparator"),
+    official_probe("search-architecture", "https://docs.publishing.service.gov.uk/manual/govuk-search.html", "comparator"),
+    official_probe("sitemap-docs", "https://docs.publishing.service.gov.uk/manual/govuk-sitemap.html", "contract"),
+    official_probe("taxonomy-docs", "https://docs.publishing.service.gov.uk/manual/taxonomy.html", "contract"),
+    official_probe("world-taxonomy-docs", "https://docs.publishing.service.gov.uk/manual/world-taxonomy.html", "contract"),
+    official_probe("collections-docs", "https://docs.publishing.service.gov.uk/repos/collections.html", "contract"),
+    official_probe("organisations-docs", "https://docs.publishing.service.gov.uk/manual/organisations-api.html", "contract"),
+    official_probe("govsearch-model", "https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-gcp/how-to-write-queries.html", "comparator"),
+    official_probe("publishing-api-main-commit", "https://api.github.com/repos/alphagov/publishing-api/commits/main", "version"),
 ]
 
 
@@ -147,7 +194,14 @@ def run_live(include_plan: bool) -> dict[str, object]:
     if include_plan:
         preflight = json.loads(PLAN_PREFLIGHT.read_text(encoding="utf-8"))
         for index, source in enumerate(preflight["sources"], start=1):
-            probe = Probe(f"plan-{index:03d}", source["url"], "plan-citation", partial=True, max_bytes=131072)
+            probe = Probe(
+                f"plan-{index:03d}",
+                source["url"],
+                "plan-citation",
+                partial=True,
+                max_bytes=131072,
+                allowed_hosts=PLAN_SOURCE_HOSTS,
+            )
             result = public_result(fetch_probe(probe, attempts=2))
             result["expected_identity_status"] = source["url_identity_preflight"]
             plan_results.append(result)
