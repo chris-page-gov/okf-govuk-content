@@ -1890,6 +1890,9 @@ class ClosingDelta:
                 "entity_class_counts": entity_class_counts,
                 "entity_class_accounting": entity_accounting,
                 "publication_records": record_count,
+                "inventory_canonical_sha256": str(
+                    t1_proof["inventory_canonical_sha256"]
+                ),
                 "hydrated_records_path": record_manifest["manifest_path"],
                 "hydrated_records_manifest": record_manifest["manifest_path"],
                 "hydrated_records_manifest_file_sha256": record_manifest[
@@ -1932,7 +1935,8 @@ class ClosingDelta:
                 ],
                 "candidate_record_shards": candidate_manifest["shards"],
                 "request_accounting": request_accounting,
-                "reconciliation": target.relative_to(self.root).as_posix(),
+                "reconciliation": reconciliation,
+                "reconciliation_path": target.relative_to(self.root).as_posix(),
                 "reconciliation_sha256": hashlib.sha256(
                     canonical_json_bytes(reconciliation)
                 ).hexdigest(),

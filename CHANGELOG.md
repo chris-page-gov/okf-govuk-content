@@ -64,6 +64,12 @@ semantic versioning.
   nested checksums, CycloneDX/evidence assets, signed GitHub artifact
   attestations, immutable tag-and-commit artifact identity and no mandatory
   local signing key.
+- Repository-native, same-origin GitHub Pages `.pack.gz` range delivery with
+  virtual-shard and dual-hash integrity, a 950 MB fail-closed site budget,
+  immutable Release mirroring, live range verification and a recoverable staged
+  draft -> Pages smoke -> immutable publication sequence. Packed-site browser
+  evidence is bound to the exact range-index and site-checksum bytes, not only
+  the snapshot label.
 - Reusable least-privilege Pages deployment from the exact verified artifact,
   including full browser validation and post-deploy live byte/snapshot checks,
   with no publication-time rebuild.
@@ -91,6 +97,27 @@ semantic versioning.
   localhost browser execution; axe, expert and participant gates stay open.
 
 ### Fixed
+
+- Bound the closing snapshot manifest to the exact embedded reconciliation,
+  retained its separate repository path, and restored the independently
+  verified T1 inventory digest required by the release-v2 question contract.
+- Separated generated development evaluation checkpoints from canonical
+  release results and added an offline, all-file checksum-verifying projection
+  from immutable agent runs to the evidence paths consumed by release promotion
+  and aim assessment.
+- Required a distinct final-snapshot security-scan terminal to supersede the
+  completed pre-release scan, preventing the earlier explicitly insufficient
+  campaign from satisfying release provenance.
+- Required a distinct final-snapshot citation-review terminal to supersede the
+  fixture review, audited the complete 11-event terminal declaration set, and
+  made every post-closing event name the exact release snapshot. Final citation
+  and security terminals now hash-bind their declared release outputs, so a
+  stale fixture, pre-release record or subsequently changed report fails closed;
+  symbolic-link components and non-regular hash-bound outputs are rejected.
+- Replaced the 128 MiB release-v2 gold JSONL with bounded,
+  content-addressed gzip shards. Matrix generation, independent verification
+  and evaluation now bind and stream the same checksummed shard contract;
+  legacy single-file gold remains development-only.
 
 - Enforced the launch-manifest 10 GiB retained-metadata ceiling throughout
   full-corpus hydration. The resumable checkpoint now clears redundant input

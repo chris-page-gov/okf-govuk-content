@@ -1,8 +1,10 @@
 {
   "schema": "govuk-okf-explorer-browser-evidence.v1",
-  "generated_at": "2026-07-12T15:11:29Z",
+  "generated_at": "2026-07-13T07:38:39.702Z",
   "snapshot": "fixture-2026-07-11",
   "artifact_tier": "representative_fixture",
+  "data_plane_index_sha256": "",
+  "site_checksums_sha256": "19231f02987c8fc01469e99358e6a4777ee2824b8698a4d321ae0465d1c48510",
   "publication_ready": false,
   "browser": {
     "name_version": "Google Chrome 150.0.7871.115",
@@ -165,11 +167,15 @@
       "view": "relationships",
       "heading": "Government Digital Service"
     },
-    "gzip_resources_loaded_without_content_encoding": [
+    "direct_gzip_resources_loaded": [
       "/okf-govuk-content/data/adjacency/ef.json.gz",
       "/okf-govuk-content/data/publishers-0.json.gz",
       "/okf-govuk-content/data/routes/ef.json.gz"
-    ]
+    ],
+    "release_data_plane_index_present": false,
+    "physical_pack_resources": [],
+    "range_requests": [],
+    "virtual_resources_loaded": []
   },
   "performance": {
     "status": "fixture_budget_pass",
@@ -185,18 +191,18 @@
     },
     "samples": {
       "bootstrap_encoded_bytes": [
-        142317,
-        136684,
-        142317,
-        142317,
-        136684
+        158111,
+        152456,
+        158111,
+        158111,
+        158111
       ],
       "first_useful_render_ms": [
         55,
-        37,
         36,
+        35,
         36,
-        37
+        35
       ],
       "cold_search_ms": [
         1,
@@ -215,25 +221,25 @@
       "route_hydration_ms": [
         7,
         6,
-        5,
         6,
-        7
+        7,
+        6
       ],
       "steady_js_heap_bytes": [
-        2384592,
-        3738752,
-        4531984,
-        6316156,
-        8232264
+        2470224,
+        3841732,
+        4669480,
+        6391696,
+        8423192
       ]
     },
     "observed": {
-      "bootstrap_encoded_bytes_max": 142317,
-      "first_useful_render_p75_ms": 37,
+      "bootstrap_encoded_bytes_max": 158111,
+      "first_useful_render_p75_ms": 36,
       "cold_search_p95_ms": 1,
       "warm_search_p95_ms": 1,
       "route_hydration_p95_ms": 7,
-      "steady_js_heap_bytes_max": 8232264
+      "steady_js_heap_bytes_max": 8423192
     }
   },
   "console_exceptions": [],

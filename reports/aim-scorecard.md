@@ -98,8 +98,8 @@ Boundary: Fixture UI and automated checks support only partial fulfilment withou
 Evidence:
 
 - `E-EXPLORER-FOUNDATION` — pass; `explorer/src/index.html`; SHA-256 `32def87a1256763faa51bc71ceefd455e8c4fcabb56a79c12f8c432c783d5a83`; observed `true`.
-- `E-EXPLORER-NONBROWSER-TESTS` — not met; `explorer/src/evidence/fixture-browser.json/completed_non_browser_checks/failed`; SHA-256 `403b9d300e48f5d649439a84f7ee3351a6e1a53eab2075b677923d6bfdfc6f9f`; observed `null`.
-- `E-PERSONA-FOUNDATION` — pass; `personas/manifest.json`; SHA-256 `7078f7953a8e10bd9a0788d8cdab10e80d0d4f92ca7e8ce559b91498b1c9276f`; observed `true`.
+- `E-EXPLORER-NONBROWSER-TESTS` — not met; `explorer/src/evidence/fixture-browser.json/completed_non_browser_checks/failed`; SHA-256 `90ca66d8d35350529a11e2695b0e9a760ad6675d1953bfd5c43b0d8e73830594`; observed `null`.
+- `E-PERSONA-FOUNDATION` — pass; `personas/manifest.json`; SHA-256 `48fef769daa62ff839fe2c5e52cde31064becdf2e625f76c7ce5213888c9b8e2`; observed `true`.
 - `E-HUMAN-COMPLETE` — not met; `release/status.json/human_evaluation_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_authorised"`.
 - `E-HUMAN-AIM-FULFILLED` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_yet_testable"`.
 - `E-HUMAN-AIM-PARTLY` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_yet_testable"`.
@@ -191,7 +191,7 @@ Evidence:
 - `E-EVALUATION-HARNESS` — pass; `scripts/run_evaluation.py`; SHA-256 `7d263dd599fd9ca36df60e7268edf77ed335ecb7ca50c97c0fb5338c04cf67c6`; observed `true`.
 - `E-QUESTIONS-RELEASE` — not met; `release/status.json/question_contract_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
 - `E-AGENT-EVALUATION` — not met; `release/status.json/agent_evaluation_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_started"`.
-- `E-MACHINE-RESULTS` — not met; `evaluation/results/status.json/agent_evaluation_status`; SHA-256 `0d4ac6a8567ad9d7455bcf9d31bf631972a8fdae75f8125238ca4beaace6dc55`; observed `null`.
+- `E-MACHINE-RESULTS` — not met; `evaluation/results/status.json/agent_evaluation_status`; SHA-256 `missing`; observed `null`.
 - `E-CITATIONS-RELEASE` — not met; `release/status.json/citation_verification_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
 - `E-PAIRED-COMPARISONS` — not met; `evaluation/results/paired-comparisons.json`; SHA-256 `missing`; observed `false`.
 - `E-AGENT-AIM-FULFILLED` — not met; `evaluation/results/aim-findings.json/aim_statuses/AIM-006/status`; SHA-256 `missing`; observed `null`.
@@ -225,7 +225,7 @@ Boundary: Architecture and source comparison without complete matched runs is pa
 Evidence:
 
 - `E-SOURCE-PREFLIGHT` — pass; `research/source-preflight.json/summary/official_failed`; SHA-256 `ffd1ba217dab2a247032f328ebe0a7124f1764e2d38e9c309f6271fccd055ca6`; observed `0`.
-- `E-COMPARATOR-REPORT` — pass; `reports/comparators.md`; SHA-256 `06d09e323647631bfa4e2e639e700d8bc85aec9699ec7ee43d063a541e78bb1b`; observed `true`.
+- `E-COMPARATOR-REPORT` — pass; `reports/comparators.md`; SHA-256 `f6b88ff72a271eeb5e55649f6845c73eb6286de1f6e3d6b73c4ca38dcebbe196`; observed `true`.
 - `E-PAIRED-COMPARISONS` — not met; `evaluation/results/paired-comparisons.json`; SHA-256 `missing`; observed `false`.
 - `E-CITATIONS-RELEASE` — not met; `release/status.json/citation_verification_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
 - `E-AGENT-EVALUATION` — not met; `release/status.json/agent_evaluation_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_started"`.
@@ -280,9 +280,9 @@ Boundary: A reproducible fixture and implemented controller are partial until th
 Evidence:
 
 - `E-ACTIVITY-LEDGER` — pass; `provenance/activity-ledger.jsonl`; SHA-256 `1ab0e36ad2d2ce2be94f64123c3aba4e5517e65ee0edac28d72a8a44583bbc8f`; observed `true`.
-- `E-REQUIREMENT-COVERAGE` — pass; `governance/requirements-status.json/counts/requirements`; SHA-256 `885c1890d9e54afe66dfd4e190b887f057455f5c0dd743da4fbe7135c12c5106`; observed `95`.
-- `E-TRACEABILITY-COVERAGE` — pass; `governance/traceability-status.json/counts/clauses`; SHA-256 `3f8a62417f689ae687b4e648bbec04087fdbf54ada78f4f8ada7a1eb78272f99`; observed `21`.
-- `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `1d1d6b76a66c7412159eef6dd11368126b82cb1b5f44ae8afcc0f09808cdc8da`; observed `true`.
+- `E-REQUIREMENT-COVERAGE` — pass; `governance/requirements-status.json/counts/requirements`; SHA-256 `6ae79a45c4037546d8d8f9e76267ebf3475a9e79075ab899a0b0c3e70735ef89`; observed `95`.
+- `E-TRACEABILITY-COVERAGE` — pass; `governance/traceability-status.json/counts/clauses`; SHA-256 `90f42869f08c890a161aa7ec91da103d176d7f59d51df65b9cf0671afa5f9e6a`; observed `21`.
+- `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `4f8a1eb89246e2c9395b9630a2a1b19595a93fb1c50080946d834681992995d8`; observed `true`.
 - `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `"fixture"`.
 - `E-CLEAN-ROOM-RELEASE` — not met; `release/status.json/clean_room_reproduction_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
 - `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.

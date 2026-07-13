@@ -79,8 +79,29 @@ override, anti-bot workaround or access-control bypass was attempted.
 
 ## Storage/browser decision
 
-The initial control plane remains in the public repository and Pages. Record,
-search and adjacency output uses immutable deterministic gzip shards and no
-body mirror. External storage is not authorised; if a measured release exceeds
-repository/Pages capacity, the affected publication is checkpointed rather
-than silently reducing corpus scope.
+The publication remains entirely on GitHub under the explicit repository,
+Pages and Release authority. GitHub documents a 1 GB Pages site limit and
+Release limits of 1,000 assets with each asset smaller than 2 GiB. Direct
+browser use of a live Release asset was rejected after its final redirect
+returned no CORS permission.
+
+The implemented browser transport instead concatenates gzip-framed logical
+members into same-origin Pages `.pack.gz` files of at most 64 MiB. The index
+binds transport and original hashes, lengths, compression and ranges. A live
+2026-07-13 Pages probe returned HTTP 206, exact 32-byte `Content-Range` and
+`Content-Length`, `Accept-Ranges: bytes` and CORS permission. A browser-style
+probe also showed why the gzip representation is mandatory: ordinary JSON was
+served with `Content-Encoding: gzip` and different range coordinates, whereas
+an existing `.json.gz` shard retained identical bytes and no content encoding.
+
+On the linked 300-record fixture, 653 indexed shard files occupied 1,666,697
+source bytes and 855,210 packed transport bytes (51.31%). This is not a
+full-corpus forecast. The 5,000-record compiler spike is also explicitly not a
+forecast because record shape, relationship density and vocabulary cardinality
+vary. Final capacity remains unresolved until the hydrated closing snapshot is
+packaged. Packaging fails closed at 950,000,000 total Pages bytes; it does not
+fall back to Release CORS, external storage or a narrower corpus.
+
+Primary constraints are [GitHub Pages limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits),
+[GitHub Release limits](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
+and [immutable Release draft-first behaviour](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases).

@@ -7,7 +7,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from govuk_okf.repository_policy import compare_api_capture, validate_repository_policy
+from govuk_okf.repository_policy import (
+    compare_api_capture,
+    compare_publication_api_capture,
+    validate_repository_policy,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -42,6 +46,7 @@ class RepositoryPolicyTests(unittest.TestCase):
         report = validate_repository_policy(ROOT)
         self.assertTrue(report["passed"], report["errors"])
         self.assertFalse(report["api_capture_compared"])
+        self.assertFalse(report["publication_api_capture_compared"])
         self.assertTrue(report["checks"]["citation"])
 
     def test_solo_owner_policy_requires_pr_controls_without_self_approval(self) -> None:
@@ -62,6 +67,31 @@ class RepositoryPolicyTests(unittest.TestCase):
         self.assertIn("-rc", release["candidate_tag_pattern"])
         self.assertNotIn("-rc", release["final_tag_pattern"])
         self.assertEqual(release["final_gate"], "scripts/check_release.py --finalized")
+        self.assertTrue(release["immutable_releases"]["draft_first"])
+        self.assertTrue(release["immutable_releases"]["verify_exact_assets_before_publish"])
+
+    def test_publication_api_readback_requires_immutable_workflow_pages(self) -> None:
+        policy = json.loads((ROOT / ".github/repository-policy.json").read_text(encoding="utf-8"))
+        capture = {
+            "immutable_releases": {"enabled": True},
+            "pages": {
+                "html_url": "https://chris-page-gov.github.io/okf-govuk-content/",
+                "build_type": "workflow",
+                "public": True,
+                "https_enforced": True,
+            },
+        }
+        self.assertEqual(compare_publication_api_capture(policy, capture), [])
+        path = self.temporary / "publication-capture.json"
+        path.write_text(json.dumps(capture), encoding="utf-8")
+        report = validate_repository_policy(self.temporary, publication_api_capture=path)
+        self.assertTrue(report["passed"], report["errors"])
+        self.assertTrue(report["publication_api_capture_compared"])
+        capture["immutable_releases"]["enabled"] = False
+        capture["pages"]["build_type"] = "legacy"
+        errors = compare_publication_api_capture(policy, capture)
+        self.assertIn("publication API capture differs: immutable releases enabled", errors)
+        self.assertIn("publication API capture differs: Pages build_type", errors)
 
     def test_raw_api_capture_matches_nested_enabled_shape(self) -> None:
         branch = json.loads((self.temporary / ".github" / "branch-protection.json").read_text(encoding="utf-8"))

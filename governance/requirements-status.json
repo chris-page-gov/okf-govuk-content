@@ -10,7 +10,7 @@
     "requirements": 95
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "d71470858152c87d57427287dcd18b5fede32b7b4532b27cc0b374a296bac775",
+  "generated_from_sha256": "dc6f0a631a36334729089170a77ae5a3898d0a89cf05ce39b409d3103b70b11f",
   "interpretation": "accepted is the contract status; produced is not passed or release-verified",
   "milestone": "t0_census_closed",
   "publication_ready": false,
@@ -28,7 +28,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -179,11 +179,17 @@
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
+        "governance/decisions/ADR-005-github-pages-range-pack-data-plane.md",
+        "src/govuk_okf/release_data_plane.py",
+        "src/govuk_okf/release_packaging.py",
+        "scripts/smoke_published_bundle.py",
+        ".github/workflows/release.yml",
+        ".github/workflows/pages.yml",
         "reports/cost-and-capacity.md",
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. Repository-native publication now packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. The 300-record measurement is not a full-corpus forecast, so capacity remains unresolved until the hydrated closing artifact is measured. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-009"
     },
     {
@@ -201,11 +207,17 @@
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
+        "governance/decisions/ADR-005-github-pages-range-pack-data-plane.md",
+        "src/govuk_okf/release_data_plane.py",
+        "src/govuk_okf/release_packaging.py",
+        "scripts/smoke_published_bundle.py",
+        ".github/workflows/release.yml",
+        ".github/workflows/pages.yml",
         "reports/cost-and-capacity.md",
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. Repository-native publication now packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. The 300-record measurement is not a full-corpus forecast, so capacity remains unresolved until the hydrated closing artifact is measured. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-010"
     },
     {
@@ -625,11 +637,17 @@
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
+        "governance/decisions/ADR-005-github-pages-range-pack-data-plane.md",
+        "src/govuk_okf/release_data_plane.py",
+        "src/govuk_okf/release_packaging.py",
+        "scripts/smoke_published_bundle.py",
+        ".github/workflows/release.yml",
+        ".github/workflows/pages.yml",
         "reports/cost-and-capacity.md",
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. Repository-native publication now packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. The 300-record measurement is not a full-corpus forecast, so capacity remains unresolved until the hydrated closing artifact is measured. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-033"
     },
     {
@@ -646,11 +664,17 @@
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
+        "governance/decisions/ADR-005-github-pages-range-pack-data-plane.md",
+        "src/govuk_okf/release_data_plane.py",
+        "src/govuk_okf/release_packaging.py",
+        "scripts/smoke_published_bundle.py",
+        ".github/workflows/release.yml",
+        ".github/workflows/pages.yml",
         "reports/cost-and-capacity.md",
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. Repository-native publication now packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. The 300-record measurement is not a full-corpus forecast, so capacity remains unresolved until the hydrated closing artifact is measured. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-034"
     },
     {
@@ -913,11 +937,17 @@
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
+        "governance/decisions/ADR-005-github-pages-range-pack-data-plane.md",
+        "src/govuk_okf/release_data_plane.py",
+        "src/govuk_okf/release_packaging.py",
+        "scripts/smoke_published_bundle.py",
+        ".github/workflows/release.yml",
+        ".github/workflows/pages.yml",
         "reports/cost-and-capacity.md",
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. Repository-native publication now packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. The 300-record measurement is not a full-corpus forecast, so capacity remains unresolved until the hydrated closing artifact is measured. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-048"
     },
     {
@@ -1296,7 +1326,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1323,7 +1353,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1350,7 +1380,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1377,7 +1407,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1404,7 +1434,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1430,7 +1460,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1457,7 +1487,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1483,7 +1513,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1526,7 +1556,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1552,7 +1582,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1579,7 +1609,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1717,7 +1747,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. Release provenance now requires distinct ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001 and ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001 entries that supersede the fixture/pre-release terminals, name the exact release snapshot and hash-bind their required release outputs. All nine post-closing terminal declarations require the exact release snapshot; the two opening T0 declarations remain T0-bound. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot citation/security work, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-086"
     },
     {
@@ -1746,7 +1776,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. Release provenance now requires distinct ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001 and ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001 entries that supersede the fixture/pre-release terminals, name the exact release snapshot and hash-bind their required release outputs. All nine post-closing terminal declarations require the exact release snapshot; the two opening T0 declarations remain T0-bound. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot citation/security work, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-087"
     },
     {
@@ -1775,7 +1805,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. Release provenance now requires distinct ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001 and ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001 entries that supersede the fixture/pre-release terminals, name the exact release snapshot and hash-bind their required release outputs. All nine post-closing terminal declarations require the exact release snapshot; the two opening T0 declarations remain T0-bound. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot citation/security work, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-088"
     },
     {
@@ -1804,7 +1834,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. Release provenance now requires distinct ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001 and ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001 entries that supersede the fixture/pre-release terminals, name the exact release snapshot and hash-bind their required release outputs. All nine post-closing terminal declarations require the exact release snapshot; the two opening T0 declarations remain T0-bound. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot citation/security work, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-089"
     },
     {
@@ -1833,7 +1863,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. Release provenance now requires distinct ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001 and ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001 entries that supersede the fixture/pre-release terminals, name the exact release snapshot and hash-bind their required release outputs. All nine post-closing terminal declarations require the exact release snapshot; the two opening T0 declarations remain T0-bound. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot citation/security work, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-090"
     },
     {
@@ -1863,7 +1893,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. Release provenance now requires distinct ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001 and ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001 entries that supersede the fixture/pre-release terminals, name the exact release snapshot and hash-bind their required release outputs. All nine post-closing terminal declarations require the exact release snapshot; the two opening T0 declarations remain T0-bound. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot citation/security work, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-091"
     },
     {
@@ -1892,7 +1922,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. Release provenance now requires distinct ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001 and ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001 entries that supersede the fixture/pre-release terminals, name the exact release snapshot and hash-bind their required release outputs. All nine post-closing terminal declarations require the exact release snapshot; the two opening T0 declarations remain T0-bound. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot citation/security work, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-092"
     },
     {
@@ -1922,7 +1952,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. Release provenance now requires distinct ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001 and ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001 entries that supersede the fixture/pre-release terminals, name the exact release snapshot and hash-bind their required release outputs. All nine post-closing terminal declarations require the exact release snapshot; the two opening T0 declarations remain T0-bound. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot citation/security work, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-093"
     },
     {
@@ -1951,7 +1981,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. Release provenance now requires distinct ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001 and ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001 entries that supersede the fixture/pre-release terminals, name the exact release snapshot and hash-bind their required release outputs. All nine post-closing terminal declarations require the exact release snapshot; the two opening T0 declarations remain T0-bound. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot citation/security work, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-094"
     },
     {

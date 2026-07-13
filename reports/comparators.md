@@ -46,4 +46,4 @@ No comparator result is currently reported because T0 has not been frozen, answe
 - Inaccessible, internal-only or unmatched comparators remain visible with an access-status reason; they are not silently removed or assigned synthetic results.
 - “UI of choice” requires accessible research with people in the claimed populations. Synthetic questions, automated accessibility checks and agent traces cannot establish that preference claim.
 
-The executable evaluation contract is in `evaluation/protocol/preregistration.json`; baseline run status is in `evaluation/baselines/catalogue.json` and `evaluation/results/status.json`.
+The executable evaluation contract is in `evaluation/protocol/preregistration.json`; baseline and development-checkpoint status is in `evaluation/baselines/catalogue.json` and `evaluation/development/status.json`. A verified complete machine run is projected separately to `evaluation/results` for release assessment.

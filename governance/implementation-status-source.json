@@ -80,7 +80,7 @@
         "release/clean-room-reproduction.json",
         "scripts/reproduce_release.py"
       ],
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work."
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. Candidate promotion and post-publication finalization are now ledger-locked, rollback-safe and replay-safe, and bind frozen source, compiler, generation time, bundle tree, tests, SBOM and immutable clean-room inputs. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. Release provenance now requires distinct ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001 and ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001 entries that supersede the fixture/pre-release terminals, name the exact release snapshot and hash-bind their required release outputs. All nine post-closing terminal declarations require the exact release snapshot; the two opening T0 declarations remain T0-bound. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot citation/security work, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work."
     },
     {
       "name": "full_corpus_and_capacity",
@@ -94,10 +94,16 @@
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
+        "governance/decisions/ADR-005-github-pages-range-pack-data-plane.md",
+        "src/govuk_okf/release_data_plane.py",
+        "src/govuk_okf/release_packaging.py",
+        "scripts/smoke_published_bundle.py",
+        ".github/workflows/release.yml",
+        ".github/workflows/pages.yml",
         "reports/cost-and-capacity.md",
         "release/status.json"
       ],
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress."
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. Repository-native publication now packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. The 300-record measurement is not a full-corpus forecast, so capacity remains unresolved until the hydrated closing artifact is measured. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress."
     },
     {
       "name": "release_question_matrix",
@@ -123,7 +129,7 @@
         "evaluation/baselines/catalogue.json",
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
-        "evaluation/results/status.json",
+        "evaluation/development/status.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -189,7 +195,7 @@
       "status": "produced",
       "artifact_tier": "pre_release_security_campaign",
       "task_ids": ["D2-04"],
-      "qualification": "The repository-wide and remediation-diff Codex Security scans are documented, all 17 reported findings are remediated through commit 27890dc, and 32 focused post-fix tests pass. This does not satisfy the eventual full-corpus release-snapshot security gate."
+      "qualification": "The repository-wide and remediation-diff Codex Security scans are documented, all 17 reported findings are remediated through commit 27890dc, and 32 focused post-fix tests pass. This does not satisfy the eventual full-corpus release-snapshot security gate; a distinct final-snapshot terminal must supersede the existing pre-release security terminal."
     },
     {
       "status": "in_progress",

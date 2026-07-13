@@ -445,6 +445,11 @@ def make_release(root: Path) -> None:
             "status": "completed",
             "security_scan_passed": True,
             "scan_id": "scan-test-1",
+            "scanned_commit": "a" * 40,
+            "code_tree": {
+                "paths": list(MODULE.SECURITY_SCAN_INPUT_PATHS),
+                "sha256": MODULE._tree_sha256(root, MODULE.SECURITY_SCAN_INPUT_PATHS),
+            },
             "findings": {"critical_open": 0, "high_open": 0},
             "report": {
                 "path": "reports/security.md",
@@ -711,6 +716,78 @@ class ReleaseGateTests(unittest.TestCase):
             write_json(clean_path, clean)
             errors = MODULE.validate_release(root, require_publication_ready=True)
             self.assertTrue(any("exact staged release manifest" in error for error in errors), errors)
+
+    def test_security_scan_is_commit_and_current_code_tree_bound(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            make_release(root)
+            security_path = root / "release/security-scan.json"
+            security = json.loads(security_path.read_text(encoding="utf-8"))
+            security["scanned_commit"] = "not-a-full-git-commit"
+            write_json(security_path, security)
+
+            errors = MODULE.validate_release(root, require_publication_ready=True)
+            self.assertTrue(
+                any("security scan has no valid scanned commit" in error for error in errors),
+                errors,
+            )
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            make_release(root)
+            stale_security = json.loads(
+                (root / "release/security-scan.json").read_text(encoding="utf-8")
+            )
+            post_scan_change = root / "tests/post-scan-change.py"
+            post_scan_change.parent.mkdir(parents=True, exist_ok=True)
+            post_scan_change.write_text(
+                "# changed after the retained security scan\n", encoding="utf-8"
+            )
+
+            # Model legitimate tests being rerun after the code change while the
+            # older security-scan evidence is incorrectly retained.
+            tests_path = root / "release/full-repository-tests.json"
+            tests = json.loads(tests_path.read_text(encoding="utf-8"))
+            tests["code_tree"]["sha256"] = MODULE._tree_sha256(root)
+            write_json(tests_path, tests)
+            clean_path = root / "release/clean-room-reproduction.json"
+            clean = json.loads(clean_path.read_text(encoding="utf-8"))
+            clean["test_evidence"]["sha256"] = hashlib.sha256(
+                tests_path.read_bytes()
+            ).hexdigest()
+            write_json(clean_path, clean)
+
+            self.assertNotEqual(
+                stale_security["code_tree"]["sha256"],
+                MODULE._tree_sha256(root, MODULE.SECURITY_SCAN_INPUT_PATHS),
+            )
+            errors = MODULE.validate_release(root, require_publication_ready=True)
+            self.assertTrue(
+                any(
+                    "security scan is not bound to current code, automation and tests" in error
+                    for error in errors
+                ),
+                errors,
+            )
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            make_release(root)
+            changed_workflow = root / ".github/workflows/release.yml"
+            changed_workflow.parent.mkdir(parents=True, exist_ok=True)
+            changed_workflow.write_text(
+                "# changed publication authority after the retained scan\n",
+                encoding="utf-8",
+            )
+
+            errors = MODULE.validate_release(root, require_publication_ready=True)
+            self.assertTrue(
+                any(
+                    "security scan is not bound to current code, automation and tests" in error
+                    for error in errors
+                ),
+                errors,
+            )
 
     def test_sbom_and_clean_room_evidence_are_bound_to_release_inputs(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

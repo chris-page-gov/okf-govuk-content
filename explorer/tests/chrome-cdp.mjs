@@ -169,10 +169,30 @@ export async function launchChrome() {
   const target = await devtoolsTarget(port);
   const client = await new CdpClient(target.webSocketDebuggerUrl).connect();
   const network = [];
-  const requestUrls = new Map();
+  const requests = new Map();
+  const responses = new Map();
   const consoleErrors = [];
-  client.on("Network.requestWillBeSent", (event) => requestUrls.set(event.requestId, event.request.url));
-  client.on("Network.loadingFinished", (event) => network.push({ url: requestUrls.get(event.requestId) || "", encoded_bytes: Number(event.encodedDataLength || 0) }));
+  client.on("Network.requestWillBeSent", (event) => requests.set(event.requestId, {
+    url: event.request.url,
+    range: String(event.request.headers?.Range || event.request.headers?.range || "")
+  }));
+  client.on("Network.responseReceived", (event) => responses.set(event.requestId, {
+    status: Number(event.response.status || 0),
+    content_range: String(event.response.headers?.["content-range"] || event.response.headers?.["Content-Range"] || "")
+  }));
+  client.on("Network.loadingFinished", (event) => {
+    const request = requests.get(event.requestId) || {};
+    const response = responses.get(event.requestId) || {};
+    network.push({
+      url: request.url || "",
+      range: request.range || "",
+      status: response.status || 0,
+      content_range: response.content_range || "",
+      encoded_bytes: Number(event.encodedDataLength || 0)
+    });
+    requests.delete(event.requestId);
+    responses.delete(event.requestId);
+  });
   client.on("Runtime.exceptionThrown", (event) => consoleErrors.push(event.exceptionDetails?.text || "Uncaught browser exception"));
   await Promise.all([
     client.command("Page.enable"),

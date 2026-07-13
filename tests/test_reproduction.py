@@ -17,6 +17,43 @@ SPEC.loader.exec_module(MODULE)
 
 
 class ReproductionTests(unittest.TestCase):
+    def test_detached_standard_shard_index_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "source-records-deadbeef"
+            root.mkdir()
+            index = root / "index.json"
+            index.write_text(
+                json.dumps({"schema": "govuk-okf-jsonl-shards.v1", "shards": []}),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(MODULE.ReproductionError, "containing directory"):
+                MODULE.source_binding(index, root.parent)
+
+    def test_copy_inputs_preserves_complete_sharded_source_directory(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            temporary = Path(directory)
+            source = temporary / "source-records-deadbeef"
+            source.mkdir()
+            shard = source / "part-00000.jsonl.gz"
+            shard.write_bytes(b"frozen shard bytes")
+            (source / "index.json").write_text(
+                json.dumps(
+                    {
+                        "schema": "govuk-okf-jsonl-shards.v1",
+                        "shards": [{"path": shard.name}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            copied, manifest = MODULE._copy_inputs(temporary / "workspace", source)
+
+            self.assertTrue(copied.is_dir())
+            self.assertEqual((source / "index.json").read_bytes(), (copied / "index.json").read_bytes())
+            self.assertEqual(shard.read_bytes(), (copied / shard.name).read_bytes())
+            self.assertEqual("frozen_source", manifest["components"][-1]["path"])
+
     def test_staged_checkpoint_is_a_valid_prospective_candidate_input(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -6,6 +7,11 @@ const here = dirname(fileURLToPath(import.meta.url));
 const budgets = JSON.parse(await readFile(join(here, "..", "requirements", "browser-budgets.json"), "utf8"));
 const ROUTE = "publisher/government-digital-service";
 const FIXTURE_SNAPSHOT = "fixture-2026-07-11";
+
+export function isGzipResourcePath(url) {
+  const pathname = new URL(url).pathname;
+  return pathname.endsWith(".json.gz") || pathname.endsWith(".pack.gz");
+}
 
 function quantile(values, probability) {
   if (!values.length) return null;
@@ -16,6 +22,71 @@ function quantile(values, probability) {
 function metricValue(metrics, name) {
   const match = metrics.find((metric) => metric.name === name);
   return match ? Number(match.value) : 0;
+}
+
+function sha256Bytes(bytes) {
+  return createHash("sha256").update(bytes).digest("hex");
+}
+
+async function resourceSha256(baseUrl, path) {
+  try {
+    const response = await fetch(new URL(path, baseUrl), { cache: "no-store" });
+    if (!response.ok) return "";
+    return sha256Bytes(new Uint8Array(await response.arrayBuffer()));
+  } catch {
+    return "";
+  }
+}
+
+function recordDataRequests(items, directGzipPaths, packRequests) {
+  for (const item of items) {
+    if (!item.url) continue;
+    const pathname = new URL(item.url).pathname;
+    if (pathname.endsWith(".json.gz")) directGzipPaths.add(pathname);
+    if (!pathname.endsWith(".pack.gz") || !/^bytes=\d+-\d+$/.test(String(item.range || ""))) continue;
+    const key = `${pathname}\0${item.range}`;
+    packRequests.set(key, {
+      physical_path: pathname,
+      range: item.range,
+      status: Number(item.status || 0),
+      content_range: String(item.content_range || "")
+    });
+  }
+}
+
+async function resolvePackRequests(baseUrl, packRequests) {
+  let response;
+  try {
+    response = await fetch(new URL("release-data-plane.json", baseUrl), { cache: "no-store" });
+  } catch {
+    return { indexPresent: false, indexSha256: "", requests: [...packRequests.values()], virtualPaths: [] };
+  }
+  if (!response.ok) return { indexPresent: false, indexSha256: "", requests: [...packRequests.values()], virtualPaths: [] };
+  const indexBytes = new Uint8Array(await response.arrayBuffer());
+  const indexSha256 = sha256Bytes(indexBytes);
+  const document = JSON.parse(new TextDecoder().decode(indexBytes));
+  if (!document || !Array.isArray(document.packs) || !Array.isArray(document.entries)) {
+    return { indexPresent: true, indexSha256, requests: [...packRequests.values()], virtualPaths: [] };
+  }
+  const packPaths = new Map(document.packs.map((pack) => [String(pack.id || ""), new URL(String(pack.path || ""), baseUrl).pathname]));
+  const members = new Map();
+  for (const entry of document.entries) {
+    const physicalPath = packPaths.get(String(entry.pack || ""));
+    const offset = Number(entry.offset);
+    const bytes = Number(entry.packed_bytes);
+    if (!physicalPath || !Number.isSafeInteger(offset) || !Number.isSafeInteger(bytes) || bytes < 1) continue;
+    members.set(`${physicalPath}\0bytes=${offset}-${offset + bytes - 1}`, String(entry.path || ""));
+  }
+  const requests = [...packRequests].map(([key, request]) => ({
+    ...request,
+    virtual_path: members.get(key) || ""
+  }));
+  return {
+    indexPresent: true,
+    indexSha256,
+    requests,
+    virtualPaths: [...new Set(requests.map((request) => request.virtual_path).filter(Boolean))].sort()
+  };
 }
 
 const DOM_AUDIT = String.raw`(() => {
@@ -113,7 +184,8 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
   const routeSamples = [];
   const bootstrapBytesSamples = [];
   const heapSamples = [];
-  const gzipPaths = new Set();
+  const directGzipPaths = new Set();
+  const packRequests = new Map();
   let dom = null;
   let contrastFailures = [];
   let axRoles = [];
@@ -164,6 +236,7 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
 
     coldSearchSamples.push(await submitSearch(browser, "welcome"));
     warmSearchSamples.push(await submitSearch(browser, "welcome"));
+    recordDataRequests(browser.network, directGzipPaths, packRequests);
 
     if (iteration === 0) {
       const sequence = Number(await browser.evaluate("document.documentElement.dataset.routeSequence || 0"));
@@ -174,9 +247,7 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
 
     await browser.navigate(routeUrl(server.baseUrl, snapshot).toString(), "document.documentElement.dataset.explorerReady === 'true' && document.getElementById('detail-heading').textContent.includes('Government Digital Service')");
     routeSamples.push(Number(await browser.evaluate("document.documentElement.dataset.lastRouteMs")));
-    for (const item of browser.network) {
-      if (new URL(item.url).pathname.endsWith(".json.gz")) gzipPaths.add(new URL(item.url).pathname);
-    }
+    recordDataRequests(browser.network, directGzipPaths, packRequests);
     const performance = await browser.client.command("Performance.getMetrics");
     heapSamples.push(metricValue(performance.metrics || [], "JSHeapUsedSize"));
   }
@@ -190,6 +261,18 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
   fallback.hash = ROUTE;
   await browser.navigate(fallback.toString(), "location.pathname.endsWith('/okf-govuk-content/') && document.documentElement.dataset.explorerReady === 'true'");
   const pagesFallback = await browser.evaluate(`({ pathname: location.pathname, hash: decodeURIComponent(location.hash.slice(1)), view: new URL(location.href).searchParams.get("view"), heading: document.getElementById("detail-heading").textContent })`);
+  recordDataRequests(browser.network, directGzipPaths, packRequests);
+
+  const packCoverage = await resolvePackRequests(server.baseUrl, packRequests);
+  const siteChecksumsSha256 = await resourceSha256(server.baseUrl, "checksums.json");
+  const successfulPackRequests = packCoverage.requests.filter((request) =>
+    request.status === 206 && request.content_range.startsWith(request.range.replace("=", " ") + "/") && request.virtual_path
+  );
+  const physicalPackPaths = [...new Set(successfulPackRequests.map((request) => request.physical_path))].sort();
+  const packedVirtualPaths = [...new Set(successfulPackRequests.map((request) => request.virtual_path))].sort();
+  const dataCoveragePass = packCoverage.indexPresent
+    ? successfulPackRequests.length >= 2 && packedVirtualPaths.length >= 2 && physicalPackPaths.length >= 1
+    : directGzipPaths.size >= 2;
 
   const performanceThresholds = budgets.performance;
   const accessibilityThresholds = budgets.accessibility;
@@ -222,7 +305,7 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
     reducedMotion.transition_ms <= accessibilityThresholds.reduced_motion_max_duration_ms &&
     forcedColors;
   const routePass =
-    gzipPaths.size >= 2 &&
+    dataCoveragePass &&
     !legacyAlias.has_query_route && legacyAlias.hash === ROUTE && legacyAlias.heading.includes("Government Digital Service") &&
     pagesFallback.pathname === server.basePath && pagesFallback.hash === ROUTE && pagesFallback.view === "relationships" && pagesFallback.heading.includes("Government Digital Service");
 
@@ -231,6 +314,8 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
     generated_at: options.generatedAt || new Date().toISOString(),
     snapshot,
     artifact_tier: artifactTier,
+    data_plane_index_sha256: packCoverage.indexSha256,
+    site_checksums_sha256: siteChecksumsSha256,
     publication_ready: fullRelease && accessibilityPass && routePass && performancePass && browser.consoleErrors.length === 0,
     browser: {
       name_version: browser.version,
@@ -272,7 +357,11 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
       canonical_route_fragment: ROUTE,
       legacy_query_alias: legacyAlias,
       pages_404_fallback: pagesFallback,
-      gzip_resources_loaded_without_content_encoding: [...gzipPaths].sort()
+      direct_gzip_resources_loaded: [...directGzipPaths].sort(),
+      release_data_plane_index_present: packCoverage.indexPresent,
+      physical_pack_resources: physicalPackPaths,
+      range_requests: packCoverage.requests,
+      virtual_resources_loaded: packedVirtualPaths
     },
     performance: {
       status: performancePass ? (fullRelease ? "full_release_budget_pass" : "fixture_budget_pass") : "failed",

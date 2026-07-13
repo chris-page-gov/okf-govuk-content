@@ -130,11 +130,36 @@ def release_fixture(
             }
         rows.append(row)
 
+    pre_release_citation = deterministic_entry(
+        CHECK.PRE_RELEASE_CITATION_TERMINAL_ACTIVITY_ID
+    )
+    pre_release_citation["source_snapshots"] = [
+        "fixture-2026-07-11",
+        "citation-evidence-2026-07-12",
+    ]
+    pre_release_citation["supersedes_activity_ids"] = ["ACT-F2-CITATION-COLLECTOR-001"]
+    pre_release_citation["source_request_usage"] = {
+        "status": "exact",
+        "attempts": 1,
+        "budget_ledger": "test-ledger",
+        "observation_at": "2026-07-12T08:00:01Z",
+        "included_in_model_cost": False,
+        "evidence": "pre-release fixture citation review",
+    }
+    rows.append(pre_release_citation)
+
+    pre_release_security = deterministic_entry(
+        CHECK.PRE_RELEASE_SECURITY_TERMINAL_ACTIVITY_ID
+    )
+    pre_release_security["source_snapshots"] = ["git:pre-release-security"]
+    pre_release_security["supersedes_activity_ids"] = ["ACT-D2-SECURITY-SCAN-001"]
+    rows.append(pre_release_security)
+
     request_events = {
         "T0 census terminal disposition",
         "T0 hydration terminal disposition",
         "T1 census and closing reconciliation",
-        "citation independent semantic and joint-support reviews",
+        "final release-snapshot citation independent semantic and joint-support reviews",
         "final source-request budget snapshot",
     }
     for item in declaration["final_activity_entries_required"]:
@@ -142,7 +167,22 @@ def release_fixture(
         if activity_id == omit_terminal:
             continue
         row = deterministic_entry(activity_id)
-        row["source_snapshots"] = [RELEASE_ID]
+        row["source_snapshots"] = (
+            [RELEASE_ID]
+            if item["must_bind_release_snapshot"]
+            else ["T0-20260712"]
+        )
+        for relative in item.get("required_output_paths", []):
+            output_path = root / relative
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(f"{activity_id}: {relative}\n", encoding="utf-8")
+            row["outputs"].append(
+                {
+                    "path": relative,
+                    "state": "produced",
+                    "sha256": hashlib.sha256(output_path.read_bytes()).hexdigest(),
+                }
+            )
         if item["event"] in request_events:
             row["source_request_usage"] = {
                 "status": "exact",
@@ -201,6 +241,7 @@ def release_fixture(
         "live_request_ledger": live,
         "launch_path": launch,
         "model_lock_path": model_lock,
+        "artifact_root": root,
     }
 
 
@@ -269,6 +310,201 @@ class ProvenanceTests(unittest.TestCase):
         summary = CHECK.validate_all()
         self.assertEqual(0, summary["ledger"]["external_paid_model_api_calls"])
         self.assertGreaterEqual(summary["declarations"]["fallbacks"], 4)
+
+    def test_release_security_terminal_is_distinct_and_supersedes_pre_release_scan(self) -> None:
+        declarations = json.loads(
+            (ROOT / "provenance/reproduction-declarations.json").read_text(encoding="utf-8")
+        )
+        security = next(
+            row
+            for row in declarations["final_activity_entries_required"]
+            if row["terminal_activity_id"] == CHECK.RELEASE_SECURITY_TERMINAL_ACTIVITY_ID
+        )
+        self.assertEqual(
+            CHECK.PRE_RELEASE_SECURITY_TERMINAL_ACTIVITY_ID,
+            security["must_supersede"],
+        )
+        self.assertNotEqual(
+            CHECK.PRE_RELEASE_SECURITY_TERMINAL_ACTIVITY_ID,
+            security["terminal_activity_id"],
+        )
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "declarations.json"
+            security["must_supersede"] = "ACT-D2-SECURITY-SCAN-001"
+            path.write_text(json.dumps(declarations), encoding="utf-8")
+            with self.assertRaisesRegex(CHECK.ProvenanceError, "distinct release-snapshot security"):
+                CHECK.validate_declarations(path)
+
+    def test_release_citation_terminal_is_distinct_and_supersedes_fixture_review(self) -> None:
+        declarations = json.loads(
+            (ROOT / "provenance/reproduction-declarations.json").read_text(encoding="utf-8")
+        )
+        citation = next(
+            row
+            for row in declarations["final_activity_entries_required"]
+            if row["terminal_activity_id"] == CHECK.RELEASE_CITATION_TERMINAL_ACTIVITY_ID
+        )
+        self.assertEqual(
+            CHECK.PRE_RELEASE_CITATION_TERMINAL_ACTIVITY_ID,
+            citation["must_supersede"],
+        )
+        self.assertNotEqual(
+            CHECK.PRE_RELEASE_CITATION_TERMINAL_ACTIVITY_ID,
+            citation["terminal_activity_id"],
+        )
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "declarations.json"
+            citation["must_supersede"] = "ACT-F2-CITATION-COLLECTOR-001"
+            path.write_text(json.dumps(declarations), encoding="utf-8")
+            with self.assertRaisesRegex(CHECK.ProvenanceError, "distinct release-snapshot citation"):
+                CHECK.validate_declarations(path)
+
+    def test_all_final_terminal_declarations_have_audited_snapshot_and_output_bindings(self) -> None:
+        declarations = json.loads(
+            (ROOT / "provenance/reproduction-declarations.json").read_text(encoding="utf-8")
+        )
+        entries = declarations["final_activity_entries_required"]
+        self.assertEqual(
+            CHECK.REQUIRED_FINAL_TERMINAL_ACTIVITY_IDS,
+            frozenset(row["terminal_activity_id"] for row in entries),
+        )
+        self.assertEqual(
+            CHECK.RELEASE_SNAPSHOT_BOUND_TERMINAL_ACTIVITY_IDS,
+            frozenset(
+                row["terminal_activity_id"]
+                for row in entries
+                if row["must_bind_release_snapshot"]
+            ),
+        )
+        self.assertEqual(
+            CHECK.REQUIRED_OUTPUT_PATHS_BY_TERMINAL,
+            {
+                row["terminal_activity_id"]: frozenset(row.get("required_output_paths", []))
+                for row in entries
+                if row.get("required_output_paths")
+            },
+        )
+
+    def test_fixture_and_pre_release_terminals_cannot_substitute_for_final_terminals(self) -> None:
+        for terminal_id, pre_release_id in (
+            (
+                CHECK.RELEASE_CITATION_TERMINAL_ACTIVITY_ID,
+                CHECK.PRE_RELEASE_CITATION_TERMINAL_ACTIVITY_ID,
+            ),
+            (
+                CHECK.RELEASE_SECURITY_TERMINAL_ACTIVITY_ID,
+                CHECK.PRE_RELEASE_SECURITY_TERMINAL_ACTIVITY_ID,
+            ),
+        ):
+            with self.subTest(terminal_id=terminal_id), tempfile.TemporaryDirectory() as directory:
+                paths = release_fixture(Path(directory), omit_terminal=terminal_id)
+                document = CHECK.build_validation_document(
+                    snapshot=RELEASE_ID,
+                    require_candidate=True,
+                    **paths,
+                )
+                self.assertFalse(document["provenance_validation_passed"])
+                event = next(
+                    row
+                    for row in document["required_terminal_events"]["events"]
+                    if row["terminal_activity_id"] == terminal_id
+                )
+                self.assertFalse(event["found"])
+                self.assertIn("terminal activity is missing", event["problems"])
+                rows, _ = CHECK.load_ledger(paths["ledger_path"])
+                self.assertIn(pre_release_id, {row["activity_id"] for row in rows})
+
+    def test_every_snapshot_bound_terminal_rejects_a_fixture_snapshot(self) -> None:
+        for terminal_id in sorted(CHECK.RELEASE_SNAPSHOT_BOUND_TERMINAL_ACTIVITY_IDS):
+            with self.subTest(terminal_id=terminal_id), tempfile.TemporaryDirectory() as directory:
+                paths = release_fixture(Path(directory))
+                rows, _ = CHECK.load_ledger(paths["ledger_path"])
+                terminal = next(row for row in rows if row["activity_id"] == terminal_id)
+                terminal["source_snapshots"] = ["fixture-2026-07-11"]
+                write_chain(paths["ledger_path"], rows)
+                document = CHECK.build_validation_document(
+                    snapshot=RELEASE_ID,
+                    require_release=True,
+                    **paths,
+                )
+                self.assertFalse(document["provenance_validation_passed"])
+                event = next(
+                    row
+                    for row in document["required_terminal_events"]["events"]
+                    if row["terminal_activity_id"] == terminal_id
+                )
+                self.assertTrue(
+                    any("exact release snapshot" in problem for problem in event["problems"]),
+                    event["problems"],
+                )
+                self.assertTrue(
+                    any("non-release fixture/sample" in problem for problem in event["problems"]),
+                    event["problems"],
+                )
+
+    def test_output_bound_terminals_reject_tampered_release_artifacts(self) -> None:
+        for terminal_id, relative in (
+            (
+                CHECK.RELEASE_CITATION_TERMINAL_ACTIVITY_ID,
+                "release/citation-verification.json",
+            ),
+            (CHECK.RELEASE_SECURITY_TERMINAL_ACTIVITY_ID, "reports/security.md"),
+        ):
+            with self.subTest(terminal_id=terminal_id), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                paths = release_fixture(root)
+                (root / relative).write_text("tampered after terminal\n", encoding="utf-8")
+                document = CHECK.build_validation_document(
+                    snapshot=RELEASE_ID,
+                    require_release=True,
+                    **paths,
+                )
+                self.assertFalse(document["provenance_validation_passed"])
+                event = next(
+                    row
+                    for row in document["required_terminal_events"]["events"]
+                    if row["terminal_activity_id"] == terminal_id
+                )
+                self.assertIn(
+                    f"required terminal output hash differs: {relative}",
+                    event["problems"],
+                )
+
+    def test_output_bindings_reject_within_root_symlink_and_directory_substitution(self) -> None:
+        relative = "release/citation-verification.json"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            paths = release_fixture(root)
+            bound = root / relative
+            target = bound.with_name("citation-verification-target.json")
+            bound.rename(target)
+            bound.symlink_to(target.name)
+            document = CHECK.build_validation_document(
+                snapshot=RELEASE_ID,
+                require_release=True,
+                **paths,
+            )
+            self.assertFalse(document["provenance_validation_passed"])
+            self.assertIn("symbolic-link component", "\n".join(document["validation_errors"]))
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            paths = release_fixture(root)
+            bound = root / relative
+            bound.unlink()
+            bound.mkdir()
+            document = CHECK.build_validation_document(
+                snapshot=RELEASE_ID,
+                require_release=True,
+                **paths,
+            )
+            self.assertFalse(document["provenance_validation_passed"])
+            self.assertIn(
+                "hash-bound output is not a regular file",
+                "\n".join(document["validation_errors"]),
+            )
 
     def test_append_hash_chains_and_rejects_duplicate(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

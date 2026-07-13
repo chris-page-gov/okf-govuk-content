@@ -134,60 +134,73 @@
       "event": "T0 census terminal disposition",
       "terminal_activity_id": "ACT-B1-T0-20260712-TERMINAL-001",
       "must_supersede": "ACT-B1-T0-20260712-CHECKPOINT-001",
+      "must_bind_release_snapshot": false,
       "required_evidence": ["exact start/end request counters", "source manifest hashes", "enumerator closure or explicit failure"]
     },
     {
       "event": "T0 hydration terminal disposition",
       "terminal_activity_id": "ACT-D1-T0-HYDRATION-TERMINAL-001",
+      "must_bind_release_snapshot": false,
       "required_evidence": ["exact request-counter interval", "queue closure", "zero retained body bytes", "hydration manifest hashes"]
     },
     {
       "event": "T1 census and closing reconciliation",
       "terminal_activity_id": "ACT-E1-T1-RECONCILIATION-TERMINAL-001",
+      "must_bind_release_snapshot": true,
       "required_evidence": ["exact request-counter intervals", "T1 watermark", "delta/disposition counts", "unexplained omission result"]
     },
     {
       "event": "release-v2 question generation and independent verification",
       "terminal_activity_id": "ACT-C1-RELEASE-V2-TERMINAL-001",
+      "must_bind_release_snapshot": true,
       "required_evidence": ["28,800 question count", "4,800 persona-suite count", "manifest checksums", "separate verifier result"]
     },
     {
       "event": "complete automated evaluation",
       "terminal_activity_id": "ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001",
+      "must_bind_release_snapshot": true,
       "required_evidence": ["systems and ablations", "tool/byte/latency metrics", "model tokens and cost or honest not-applicable values", "confidence intervals", "trace hashes"]
     },
     {
-      "event": "citation independent semantic and joint-support reviews",
-      "terminal_activity_id": "ACT-F2-CITATION-REVIEWS-TERMINAL-001",
-      "must_supersede": "ACT-F2-CITATION-COLLECTOR-001",
-      "required_evidence": ["collector request aggregate", "reviewer identity/configuration", "support verdict counts", "waivers or blockers"]
+      "event": "final release-snapshot citation independent semantic and joint-support reviews",
+      "terminal_activity_id": "ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001",
+      "must_supersede": "ACT-F2-CITATION-REVIEWS-TERMINAL-001",
+      "must_bind_release_snapshot": true,
+      "required_output_paths": ["release/citation-verification.json", "reports/citation-verification.md", "provenance/citation-request-aggregate.json"],
+      "required_evidence": ["release snapshot", "collector request aggregate", "reviewer identity/configuration", "support verdict counts", "waivers or blockers", "hash-bound final citation verification"]
     },
     {
       "event": "publication shard audit terminal disposition",
       "terminal_activity_id": "ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001",
       "must_supersede": "ACT-D1-SHARD-CONTRACT-AUDIT-001",
+      "must_bind_release_snapshot": true,
       "required_evidence": ["manifest tests", "hash/size/key-range validation", "release-root binding"]
     },
     {
-      "event": "security scan terminal disposition",
-      "terminal_activity_id": "ACT-D2-SECURITY-SCAN-TERMINAL-001",
-      "must_supersede": "ACT-D2-SECURITY-SCAN-001",
-      "required_evidence": ["scan identifier", "finding disposition", "validation or residual-risk exception"]
+      "event": "final release-snapshot security scan terminal disposition",
+      "terminal_activity_id": "ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001",
+      "must_supersede": "ACT-D2-SECURITY-SCAN-TERMINAL-001",
+      "must_bind_release_snapshot": true,
+      "required_output_paths": ["release/security-scan.json", "reports/security.md"],
+      "required_evidence": ["release snapshot and scanned commit", "scan identifier", "finding disposition", "hash-bound release report", "validation or residual-risk exception"]
     },
     {
       "event": "clean-room machine release-candidate reproduction",
       "terminal_activity_id": "ACT-F2-CLEAN-ROOM-RC-TERMINAL-001",
+      "must_bind_release_snapshot": true,
       "required_evidence": ["full-snapshot input/output hashes", "SBOM binding", "test evidence", "zero reproduction network/model requests"]
     },
     {
       "event": "GitHub publication, Pages, release and Explorer registry workflow",
       "terminal_activity_id": "ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001",
+      "must_bind_release_snapshot": true,
       "required_evidence": ["commit and PR identifiers", "CI results", "protected-main read-back", "tag/release URLs", "Pages live checks", "registry PR"]
     },
     {
       "event": "final source-request budget snapshot",
       "terminal_activity_id": "ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001",
       "must_supersede": "ACT-B1-CAPACITY-20260712-001",
+      "must_bind_release_snapshot": true,
       "required_evidence": ["terminal shared counter", "reconciled per-run intervals", "remaining authority", "separate citation-verification aggregate"]
     }
   ],

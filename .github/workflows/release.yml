@@ -16,12 +16,14 @@ jobs:
   verify-package:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      pages: read
       id-token: write
       attestations: write
       artifact-metadata: write
     outputs:
       artifact-name: ${{ steps.metadata.outputs.artifact-name }}
+      release-control-name: ${{ steps.metadata.outputs.release-control-name }}
       channel: ${{ steps.metadata.outputs.channel }}
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +41,8 @@ jobs:
           cat "$RUNNER_TEMP/release-ref.json"
           channel="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["channel"])' < "$RUNNER_TEMP/release-ref.json")"
           echo "channel=$channel" >> "$GITHUB_OUTPUT"
-          echo "artifact-name=verified-release-${GITHUB_REF_NAME}-${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+          echo "artifact-name=verified-pages-${GITHUB_REF_NAME}-${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+          echo "release-control-name=release-control-${GITHUB_REF_NAME}-${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -79,6 +82,23 @@ jobs:
             .venv/bin/python scripts/check_release.py --finalized
           fi
           git diff --check
+      - name: Read back immutable-release and Pages publication settings
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "repos/$GITHUB_REPOSITORY/immutable-releases" > "$RUNNER_TEMP/immutable-releases.json"
+          gh api \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "repos/$GITHUB_REPOSITORY/pages" > "$RUNNER_TEMP/pages-settings.json"
+          jq -n \
+            --slurpfile immutable "$RUNNER_TEMP/immutable-releases.json" \
+            --slurpfile pages "$RUNNER_TEMP/pages-settings.json" \
+            '{immutable_releases: $immutable[0], pages: $pages[0]}' \
+            > "$RUNNER_TEMP/publication-settings.json"
+          .venv/bin/python scripts/check_repository_policy.py \
+            --publication-api-capture "$RUNNER_TEMP/publication-settings.json"
       - name: Capture full browser evidence from verified checkout bytes
         run: >-
           node explorer/tests/browser-evidence.mjs
@@ -97,23 +117,112 @@ jobs:
           --output "$RUNNER_TEMP/verified"
       - name: Recheck packaged bytes
         run: .venv/bin/python scripts/package_release.py --check "$RUNNER_TEMP/verified"
+      - name: Real-browser smoke over exact packed Pages site
+        run: >-
+          node explorer/tests/browser-evidence.mjs
+          --mode release
+          --bundle "$RUNNER_TEMP/verified/site"
+          --output "$RUNNER_TEMP/pages-pack-browser.json"
+          --iterations 5
+          --generated-at "$(git show -s --format=%cI "$GITHUB_SHA")"
+      - name: Bind packed-site browser evidence and recheck all manifests
+        run: |
+          .venv/bin/python scripts/package_release.py \
+            --attach-pages-browser-evidence "$RUNNER_TEMP/verified" \
+            --evidence "$RUNNER_TEMP/pages-pack-browser.json"
+          .venv/bin/python scripts/package_release.py --check "$RUNNER_TEMP/verified"
+          .venv/bin/python scripts/verify_github_release_assets.py \
+            --tag "$GITHUB_REF_NAME" \
+            --channel "${{ steps.metadata.outputs.channel }}" \
+            --write-expectation "$RUNNER_TEMP/release-asset-expectation.json" \
+            --assets "$RUNNER_TEMP"/verified/assets/* "$RUNNER_TEMP"/verified/verified-artifact.json
       - name: Create immutable provenance attestations for release assets
         uses: actions/attest@v4
         with:
           subject-path: |
             ${{ runner.temp }}/verified/verified-artifact.json
             ${{ runner.temp }}/verified/assets/*
-      - name: Upload verified Release and Pages source
+            ${{ runner.temp }}/verified/site/checksums.json
+            ${{ runner.temp }}/release-asset-expectation.json
+      - name: Verify local provenance attestations before publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for asset in "$RUNNER_TEMP"/verified/assets/* "$RUNNER_TEMP"/verified/verified-artifact.json "$RUNNER_TEMP"/release-asset-expectation.json; do
+            gh attestation verify "$asset" \
+              --repo "$GITHUB_REPOSITORY" \
+              --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/release.yml" \
+              --source-ref "$GITHUB_REF" \
+              --source-digest "$GITHUB_SHA" \
+              --deny-self-hosted-runners
+          done
+      - name: Create or verify draft GitHub Release without publishing
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_CHANNEL: ${{ steps.metadata.outputs.channel }}
+        run: |
+          api=(gh api -H "X-GitHub-Api-Version: 2026-03-10")
+          assets=("$RUNNER_TEMP"/verified/assets/* "$RUNNER_TEMP"/verified/verified-artifact.json)
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            "${api[@]}" "repos/$GITHUB_REPOSITORY/releases/tags/$GITHUB_REF_NAME" \
+              > "$RUNNER_TEMP/existing-release.json"
+            if [[ "$(jq -r '.draft' "$RUNNER_TEMP/existing-release.json")" == "true" ]]; then
+              gh release delete "$GITHUB_REF_NAME" --yes
+            else
+              .venv/bin/python scripts/verify_github_release_assets.py \
+                --release-json "$RUNNER_TEMP/existing-release.json" \
+                --tag "$GITHUB_REF_NAME" \
+                --channel "$RELEASE_CHANNEL" \
+                --published \
+                --assets "${assets[@]}"
+              gh release verify "$GITHUB_REF_NAME"
+              exit 0
+            fi
+          fi
+          options=(--verify-tag --title "$GITHUB_REF_NAME" --generate-notes --draft)
+          if [[ "$RELEASE_CHANNEL" == "release-candidate" ]]; then
+            options+=(--prerelease)
+          fi
+          gh release create "$GITHUB_REF_NAME" "${options[@]}"
+          gh release upload "$GITHUB_REF_NAME" "${assets[@]}"
+          "${api[@]}" "repos/$GITHUB_REPOSITORY/releases/tags/$GITHUB_REF_NAME" \
+            > "$RUNNER_TEMP/draft-release.json"
+          .venv/bin/python scripts/verify_github_release_assets.py \
+            --release-json "$RUNNER_TEMP/draft-release.json" \
+            --tag "$GITHUB_REF_NAME" \
+            --channel "$RELEASE_CHANNEL" \
+            --assets "${assets[@]}"
+      - name: Upload verified Pages source only
         uses: actions/upload-artifact@v4
         with:
-          name: verified-release-${{ github.ref_name }}-${{ github.sha }}
-          path: ${{ runner.temp }}/verified
+          name: verified-pages-${{ github.ref_name }}-${{ github.sha }}
+          path: ${{ runner.temp }}/verified/site
           if-no-files-found: error
-          retention-days: 90
+          retention-days: 7
+          compression-level: 0
+      - name: Upload attested release-control expectation
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-control-${{ github.ref_name }}-${{ github.sha }}
+          path: ${{ runner.temp }}/release-asset-expectation.json
+          if-no-files-found: error
+          retention-days: 7
           compression-level: 0
 
-  publish-release:
+  deploy-pages:
     needs: verify-package
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml
+    with:
+      artifact_name: ${{ needs.verify-package.outputs.artifact-name }}
+
+  publish-release:
+    needs:
+      - verify-package
+      - deploy-pages
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -122,53 +231,47 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Download immutable verified bytes
+      - name: Download attested exact-asset expectation
         uses: actions/download-artifact@v4
         with:
-          name: ${{ needs.verify-package.outputs.artifact-name }}
-          path: ${{ runner.temp }}/verified
-      - name: Verify bytes and cryptographic provenance before publishing
+          name: ${{ needs.verify-package.outputs.release-control-name }}
+          path: ${{ runner.temp }}/release-control
+      - name: Verify expectation attestation
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          python3 scripts/package_release.py --check "$RUNNER_TEMP/verified"
-          for asset in "$RUNNER_TEMP"/verified/assets/* "$RUNNER_TEMP"/verified/verified-artifact.json; do
-            gh attestation verify "$asset" \
-              --repo "$GITHUB_REPOSITORY" \
-              --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/release.yml" \
-              --source-ref "$GITHUB_REF" \
-              --source-digest "$GITHUB_SHA" \
-              --deny-self-hosted-runners
-          done
-      - name: Refuse replacement of an existing release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
-            echo "release already exists and will not be replaced: $GITHUB_REF_NAME" >&2
-            exit 1
-          fi
-      - name: Publish immutable GitHub Release assets
+        run: >-
+          gh attestation verify "$RUNNER_TEMP/release-control/release-asset-expectation.json"
+          --repo "$GITHUB_REPOSITORY"
+          --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/release.yml"
+          --source-ref "$GITHUB_REF"
+          --source-digest "$GITHUB_SHA"
+          --deny-self-hosted-runners
+      - name: Reverify draft, publish, and require immutable exact assets
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_CHANNEL: ${{ needs.verify-package.outputs.channel }}
         run: |
-          options=(--verify-tag --title "$GITHUB_REF_NAME" --generate-notes)
-          if [[ "$RELEASE_CHANNEL" == "release-candidate" ]]; then
-            options+=(--prerelease)
+          api=(gh api -H "X-GitHub-Api-Version: 2026-03-10")
+          "${api[@]}" "repos/$GITHUB_REPOSITORY/releases/tags/$GITHUB_REF_NAME" \
+            > "$RUNNER_TEMP/prepublish-release.json"
+          if [[ "$(jq -r '.draft' "$RUNNER_TEMP/prepublish-release.json")" == "true" ]]; then
+            python3 scripts/verify_github_release_assets.py \
+              --release-json "$RUNNER_TEMP/prepublish-release.json" \
+              --expectation "$RUNNER_TEMP/release-control/release-asset-expectation.json" \
+              --tag "$GITHUB_REF_NAME" \
+              --channel "$RELEASE_CHANNEL"
+            if [[ "$RELEASE_CHANNEL" == "release-candidate" ]]; then
+              gh release edit "$GITHUB_REF_NAME" --draft=false --prerelease
+            else
+              gh release edit "$GITHUB_REF_NAME" --draft=false --latest
+            fi
           fi
-          gh release create "$GITHUB_REF_NAME" \
-            "$RUNNER_TEMP"/verified/assets/* \
-            "${options[@]}"
-
-  deploy-pages:
-    needs:
-      - verify-package
-      - publish-release
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    uses: ./.github/workflows/pages.yml
-    with:
-      artifact_name: ${{ needs.verify-package.outputs.artifact-name }}
+          "${api[@]}" "repos/$GITHUB_REPOSITORY/releases/tags/$GITHUB_REF_NAME" \
+            > "$RUNNER_TEMP/published-release.json"
+          python3 scripts/verify_github_release_assets.py \
+            --release-json "$RUNNER_TEMP/published-release.json" \
+            --expectation "$RUNNER_TEMP/release-control/release-asset-expectation.json" \
+            --tag "$GITHUB_REF_NAME" \
+            --channel "$RELEASE_CHANNEL" \
+            --published
+          gh release verify "$GITHUB_REF_NAME"

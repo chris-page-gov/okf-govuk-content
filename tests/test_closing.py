@@ -345,6 +345,10 @@ class ClosingTests(unittest.TestCase):
             self.assertEqual(0, reconciliation["pending"])
             self.assertEqual(0, reconciliation["unexplained_omissions"])
             self.assertEqual(
+                fixture.t1_enum_digest,
+                reconciliation["inventory_canonical_sha256"],
+            )
+            self.assertEqual(
                 3,
                 reconciliation["closing_probe_proof"]["actively_probed"],
             )
@@ -392,6 +396,18 @@ class ClosingTests(unittest.TestCase):
             self.assertTrue(same["closing_reuse"]["matched"])
             self.assertIn("attachments", same["details"])
             self.assertTrue(all("body" not in row.get("details", {}) for row in output))
+
+            closing_manifest_path = Path(directory) / "corpus/records/T1-closed/manifest.json"
+            closing_manifest = json.loads(closing_manifest_path.read_text(encoding="utf-8"))
+            self.assertEqual(reconciliation, closing_manifest["reconciliation"])
+            self.assertEqual(
+                "corpus/reconciliation/T1-closed.json",
+                closing_manifest["reconciliation_path"],
+            )
+            self.assertEqual(
+                hashlib.sha256(canonical_json_bytes(reconciliation)).hexdigest(),
+                closing_manifest["reconciliation_sha256"],
+            )
 
             first_reconciliation = (
                 Path(directory) / "corpus/reconciliation/T1-closed.json"

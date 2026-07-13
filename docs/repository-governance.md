@@ -24,6 +24,25 @@ gh api repos/chris-page-gov/okf-govuk-content/branches/main/protection \
   --api-capture /tmp/okf-govuk-content-main-protection.json
 ```
 
+Publication settings have a separate versioned read-back. The required state
+is immutable releases enabled plus a public, HTTPS-enforced Pages site built by
+Actions at `https://chris-page-gov.github.io/okf-govuk-content/`:
+
+```sh
+gh api -H "X-GitHub-Api-Version: 2026-03-10" \
+  repos/chris-page-gov/okf-govuk-content/immutable-releases \
+  > /tmp/immutable-releases.json
+gh api -H "X-GitHub-Api-Version: 2026-03-10" \
+  repos/chris-page-gov/okf-govuk-content/pages \
+  > /tmp/pages.json
+jq -n --slurpfile immutable /tmp/immutable-releases.json \
+  --slurpfile pages /tmp/pages.json \
+  '{immutable_releases: $immutable[0], pages: $pages[0]}' \
+  > /tmp/publication-settings.json
+.venv/bin/python scripts/check_repository_policy.py \
+  --publication-api-capture /tmp/publication-settings.json
+```
+
 `CITATION.cff` takes its version from `pyproject.toml`, identifies this
 repository and the Pages publication, uses the MIT software licence, and does
 not claim a DOI.
@@ -53,21 +72,41 @@ silently accepting a bad supplied signature.
 ## Immutable bytes and least privilege
 
 The tag workflow runs the locked tests and snapshot gates, measures the full
-browser contract over the checked-out release bundle, and packages without
-calling the bundle builder. The package contains the exact Pages tree, a
-reproducible `tar.gz`, the release evidence, CycloneDX SBOM, bundle checksums
-and nested SHA-256 manifests. Its artifact name includes both tag and commit.
+browser contract over both the checked-out release bundle and the packaged
+Pages site, and packages without calling the bundle builder. The package
+contains a sub-950,000,000-byte Pages site with same-origin `.pack.gz` byte
+ranges, a reproducible `tar.gz`, release evidence, CycloneDX SBOM, bundle
+checksums and nested SHA-256 manifests. Its transport artifact name includes
+both tag and commit.
 
 GitHub's short-lived OIDC identity creates signed SLSA provenance attestations
-for the verified manifest and every release asset. The publishing job downloads
-the artifact, rechecks every digest and archive member, verifies each
-attestation against this repository, workflow, ref and commit, and refuses to
-replace an existing release. Candidate releases receive `--prerelease`; final
-releases do not.
+for the verified manifest, every Release asset and the exact-asset expectation.
+That expectation binds the annotated tag, its independently validated
+`release-candidate` or `final` channel, the required GitHub `prerelease` state,
+and the sorted asset names, sizes and digests under one root hash. Pack
+verification retains and reads only bounded regular files whose basename and
+resolved location are inside the release asset directory; unsafe, symlinked or
+oversized candidates are rejected before hashing or range reads.
+The first job creates an editable draft, uploads all assets, and compares the
+versioned API's asset names, sizes and `sha256:` digests with local verified
+bytes. It does not publish. A partial draft may be deterministically recreated;
+an existing published immutable release must exactly match instead.
 
-The reusable Pages workflow receives only that verified artifact. It never
-rebuilds the bundle. It reruns package validation and the full browser smoke,
-deploys the exact `site/` directory, then compares live critical-file bytes and
-the snapshot identifier with the packaged checksums. Release, Pages and
-attestation permissions are scoped to only the jobs that need them, and both
-workflows use non-cancelling concurrency groups.
+The reusable Pages workflow receives only the verified site artifact. It never
+rebuilds the bundle. It checks the site-specific checksums and pack index,
+reruns the full browser smoke, deploys the exact `site/` directory, then
+compares live critical bytes, snapshot and one byte-stable range from every
+pack. Only after that job succeeds does the final job reverify the attested
+draft expectation, publish it, require `draft:false` and `immutable:true`, and
+run GitHub's immutable-release verification. A Pages failure therefore leaves
+a mutable/deletable draft. Release, Pages and attestation permissions remain
+scoped to only the jobs that need them.
+
+The Pages and Release services do not provide one atomic commit. If Pages is
+already live and the final publish job fails, the externally visible partial
+state is recorded as `Pages live / Release draft`; the publication provenance
+terminal and finalized status remain pending. The final job is replay-safe: it
+downloads the attested exact-asset expectation, re-fetches the versioned draft
+response and publishes only an exact match. If the previous attempt actually
+published before losing its response, the rerun requires the same exact assets
+and `immutable:true` rather than creating or replacing a release.

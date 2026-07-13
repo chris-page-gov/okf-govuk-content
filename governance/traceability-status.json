@@ -427,7 +427,7 @@
     "clauses": 21
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "d71470858152c87d57427287dcd18b5fede32b7b4532b27cc0b374a296bac775",
+  "generated_from_sha256": "dc6f0a631a36334729089170a77ae5a3898d0a89cf05ce39b409d3103b70b11f",
   "interpretation": "Clause status is the least advanced mapped requirement status; mapping coverage does not prove implementation acceptance.",
   "milestone": "t0_census_closed",
   "schema": "afhf-govuk-okf-traceability-status.v1",

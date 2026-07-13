@@ -193,4 +193,10 @@ For those reasons this report closes `ACT-D2-SECURITY-SCAN-001` only as the
 pre-release scan/remediation activity. Publication must still fail closed until
 the final, frozen release repository receives a completed full-release scan
 with zero open critical/high findings, a hash-bound report, and any remaining
-medium finding either fixed or covered by a dated owned exception.
+medium finding either fixed or covered by a dated owned exception. That scan
+must append `ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001`, bind the
+release snapshot and scanned commit, and supersede
+`ACT-D2-SECURITY-SCAN-TERMINAL-001`; the earlier terminal is not reusable. Its
+activity outputs must include SHA-256 bindings for both
+`release/security-scan.json` and this report, and provenance validation
+recomputes those hashes from the frozen checkout.

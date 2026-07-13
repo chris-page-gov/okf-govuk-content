@@ -1,4 +1,5 @@
 import { isAllowedBundleUrl, normaliseRecord, relationshipBucket } from "./core.js";
+import { prepareReleaseDataPlane, releaseDataPlaneDocument, releaseDataRequest } from "./release-data-plane.js";
 
 const MAX_JSON_BYTES = 64 * 1024 * 1024;
 const MAX_LARGE_SHARD_CACHE_ENTRIES = 32;
@@ -86,38 +87,53 @@ async function readBoundedBytes(response) {
   return bytes;
 }
 
-async function decodeJsonBytes(bytes, response, url) {
-  if (!url.toLowerCase().endsWith(".gz")) return new TextDecoder().decode(bytes);
-  if (response.headers.get("content-encoding")?.toLowerCase().includes("gzip")) {
-    throw new Error("Pre-compressed JSON resources must be served without Content-Encoding so their published bytes can be verified");
-  }
-  if (typeof DecompressionStream === "undefined") throw new Error("This browser cannot decompress the advertised gzip resource");
+async function gunzipBoundedBytes(bytes, label) {
+  if (typeof DecompressionStream === "undefined") throw new Error("This browser cannot decompress " + label);
   const body = new Response(bytes).body;
-  if (!body) throw new Error("This browser cannot stream the advertised gzip resource");
+  if (!body) throw new Error("This browser cannot stream " + label);
   const reader = body.pipeThrough(new DecompressionStream("gzip")).getReader();
-  const decoder = new TextDecoder();
+  const chunks = [];
   let received = 0;
-  let text = "";
   while (true) {
     const part = await reader.read();
     if (part.done) break;
     received += part.value.byteLength;
     if (received > MAX_JSON_BYTES) {
       await reader.cancel();
-      throw new Error("JSON resource exceeds the 64 MiB decoded response limit");
+      throw new Error(label + " exceeds the 64 MiB decoded response limit");
     }
-    text += decoder.decode(part.value, { stream: true });
+    chunks.push(part.value);
   }
-  return text + decoder.decode();
+  const decoded = new Uint8Array(received);
+  let offset = 0;
+  for (const chunk of chunks) {
+    decoded.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return decoded;
+}
+
+async function decodeJsonBytes(bytes, response, logicalPath, compression = "") {
+  const isGzip = compression ? compression === "gzip" : logicalPath.toLowerCase().endsWith(".gz");
+  if (!isGzip) return new TextDecoder().decode(bytes);
+  if (response.headers.get("content-encoding")?.toLowerCase().includes("gzip")) {
+    throw new Error("Pre-compressed JSON resources must be served without Content-Encoding so their published bytes can be verified");
+  }
+  return new TextDecoder().decode(await gunzipBoundedBytes(bytes, "the advertised gzip resource"));
 }
 
 export async function fetchJson(reference, baseUrl, options = {}) {
-  const url = resolveReference(reference, baseUrl);
+  const distributed = releaseDataRequest(reference, options.releaseDataPlane);
+  const url = distributed ? distributed.url : resolveReference(reference, baseUrl);
   if (!isAllowedBundleUrl(url, options.currentOrigin || baseUrl)) throw new Error("JSON resources must use HTTPS or the Explorer origin");
   let lastError = null;
   for (let attempt = 0; attempt < 3; attempt += 1) {
     try {
-      const response = await fetch(url, { cache: options.cache || "default", signal: options.signal });
+      const response = await fetch(url, {
+        cache: options.cache || "default",
+        signal: options.signal,
+        headers: distributed ? distributed.headers : undefined
+      });
       if (!response.ok) {
         const error = new Error(url + ": " + response.status + " " + response.statusText);
         if (attempt < 2 && RETRYABLE_STATUS.has(response.status)) {
@@ -127,10 +143,34 @@ export async function fetchJson(reference, baseUrl, options = {}) {
         }
         throw error;
       }
+      if (distributed && response.status !== 206) throw new Error("Release pack server did not honour the bounded byte-range request");
       const bytes = await readBoundedBytes(response);
-      const expectedHash = referenceHash(reference);
-      if (expectedHash && await digestBytes(bytes) !== expectedHash) throw new Error("Resource integrity check failed for " + url);
-      const text = await decodeJsonBytes(bytes, response, url);
+      if (distributed && (bytes[0] !== 0x1f || bytes[1] !== 0x8b)) {
+        throw new Error("Release-pack transport member is not gzip-framed");
+      }
+      if (distributed && response.headers.get("content-encoding")) {
+        throw new Error("Pages packs must be served as published bytes without Content-Encoding");
+      }
+      if (distributed && bytes.byteLength !== distributed.expectedPackedLength) {
+        throw new Error("Release pack byte-range length differs from the index");
+      }
+      const contentRange = response.headers.get("content-range");
+      if (distributed && contentRange !== distributed.expectedContentRange) {
+        throw new Error("Release pack Content-Range differs from the index");
+      }
+      const packedHash = distributed ? distributed.expectedPackedHash : referenceHash(reference);
+      if (packedHash && await digestBytes(bytes) !== packedHash) throw new Error("Resource integrity check failed for " + url);
+      const sourceBytes = distributed && distributed.transportCompression === "gzip"
+        ? await gunzipBoundedBytes(bytes, "the release-pack transport member")
+        : bytes;
+      if (distributed && sourceBytes.byteLength !== distributed.expectedLength) {
+        throw new Error("Release-pack decoded member length differs from the index");
+      }
+      if (distributed && await digestBytes(sourceBytes) !== distributed.expectedHash) {
+        throw new Error("Logical resource integrity check failed for " + distributed.logicalPath);
+      }
+      const logicalPath = distributed ? distributed.logicalPath : referencePath(reference);
+      const text = await decodeJsonBytes(sourceBytes, response, logicalPath, distributed ? distributed.compression : "");
       return { url, value: JSON.parse(text) };
     } catch (error) {
       if (error && error.name === "AbortError") throw error;
@@ -183,8 +223,8 @@ export class SearchClient {
     return new Promise((resolve, reject) => this.pending.set(id, { resolve, reject }));
   }
 
-  init(baseUrl, manifestReference, snapshotId = "") {
-    return this.request({ type: "init", baseUrl, manifestReference, snapshotId });
+  init(baseUrl, manifestReference, snapshotId = "", releaseDataPlane = null) {
+    return this.request({ type: "init", baseUrl, manifestReference, snapshotId, releaseDataPlane });
   }
 
   query(query) {
@@ -217,26 +257,48 @@ export class LargeCorpusStore {
     this.routeIndex = null;
     this.routeBuckets = new Map();
     this.recordChunks = new Map();
+    this.releaseDataPlane = null;
   }
 
   async bootstrap(signal) {
-    const manifestResult = await fetchJson(this.descriptor.entrypoints.data_manifest, this.baseUrl, { signal, currentOrigin: this.currentOrigin });
+    const releaseReference = this.descriptor.entrypoints.release_data_plane;
+    if (releaseReference) {
+      const result = await fetchJson(releaseReference, this.baseUrl, { signal, currentOrigin: this.currentOrigin });
+      this.releaseDataPlane = await prepareReleaseDataPlane(
+        result.value,
+        this.baseUrl,
+        String(this.descriptor.snapshot_id || this.descriptor.snapshot || "")
+      );
+    }
+    const manifestResult = await this.fetch(this.descriptor.entrypoints.data_manifest, signal);
     this.manifest = manifestResult.value;
     const advertisedRoot = String(this.descriptor.data_plane_manifest_root_sha256 || "");
     const manifestRoot = String(this.manifest.integrity && this.manifest.integrity.manifest_root_sha256 || "");
     if (advertisedRoot && advertisedRoot !== manifestRoot) throw new Error("Descriptor and data manifest integrity roots differ");
     const overviewReference = this.descriptor.entrypoints.overview_index || this.manifest.indexes.overview;
-    this.overview = (await fetchJson(overviewReference, this.baseUrl, { signal, currentOrigin: this.currentOrigin })).value;
+    this.overview = (await this.fetch(overviewReference, signal)).value;
     const analysisReference = this.descriptor.entrypoints.analysis_overview || this.manifest.indexes.analysis;
     if (analysisReference) {
       try {
-        this.analysis = (await fetchJson(analysisReference, this.baseUrl, { signal, currentOrigin: this.currentOrigin })).value;
+        this.analysis = (await this.fetch(analysisReference, signal)).value;
       } catch {
         this.analysis = null;
       }
     }
     this.snapshotId();
     return this;
+  }
+
+  fetch(reference, signal) {
+    return fetchJson(reference, this.baseUrl, {
+      signal,
+      currentOrigin: this.currentOrigin,
+      releaseDataPlane: this.releaseDataPlane
+    });
+  }
+
+  releaseDataPlaneDocument() {
+    return releaseDataPlaneDocument(this.releaseDataPlane);
   }
 
   searchManifestReference() {
@@ -286,7 +348,7 @@ export class LargeCorpusStore {
     const reference = this.descriptor.entrypoints.relationship_adjacency || this.manifest.indexes.relationship_adjacency;
     if (!reference) return [];
     if (!this.adjacencyManifest) {
-      this.adjacencyManifest = (await fetchJson(reference, this.baseUrl, { signal, currentOrigin: this.currentOrigin })).value;
+      this.adjacencyManifest = (await this.fetch(reference, signal)).value;
       this.assertResourceSnapshot(this.adjacencyManifest, "Relationship adjacency manifest");
       if (this.adjacencyManifest.algorithm !== "fnv1a32-prefix-2") throw new Error("Unsupported relationship adjacency algorithm");
     }
@@ -300,7 +362,7 @@ export class LargeCorpusStore {
     const payload = await cachedPromise(
       this.adjacencyBuckets,
       bucket,
-      () => fetchJson(bucketReference, this.baseUrl, { signal, currentOrigin: this.currentOrigin }).then((result) => result.value)
+      () => this.fetch(bucketReference, signal).then((result) => result.value)
     );
     return Array.isArray(payload[route]) ? payload[route] : [];
   }
@@ -309,7 +371,7 @@ export class LargeCorpusStore {
     const indexReference = this.descriptor.entrypoints.route_index || this.manifest.indexes.route_index || this.manifest.indexes.routes;
     if (!indexReference) return null;
     if (!this.routeIndex) {
-      this.routeIndex = (await fetchJson(indexReference, this.baseUrl, { signal, currentOrigin: this.currentOrigin })).value;
+      this.routeIndex = (await this.fetch(indexReference, signal)).value;
       this.assertResourceSnapshot(this.routeIndex, "Route-index manifest");
     }
     if (this.routeIndex.schema !== "okf-route-index.v1" || this.routeIndex.entry_shape !== "identifier-to-typed-matches") {
@@ -326,7 +388,7 @@ export class LargeCorpusStore {
     const routePayload = await cachedPromise(
       this.routeBuckets,
       bucket,
-      () => fetchJson(bucketReference, this.baseUrl, { signal, currentOrigin: this.currentOrigin }).then((result) => result.value)
+      () => this.fetch(bucketReference, signal).then((result) => result.value)
     );
     const expectedKind = { dataset: "datasets", publisher: "publishers", resource: "resources" }[String(route).split("/", 1)[0]];
     if (!expectedKind) return null;
@@ -351,7 +413,7 @@ export class LargeCorpusStore {
     const chunk = await cachedPromise(
       this.recordChunks,
       chunkKey,
-      () => fetchJson(chunkReference, this.baseUrl, { signal, currentOrigin: this.currentOrigin }).then((result) => result.value)
+      () => this.fetch(chunkReference, signal).then((result) => result.value)
     );
     const raw = Array.isArray(chunk) ? chunk[ordinal % chunkSize] : null;
     if (raw && raw.open !== route) throw new Error("Route-index target mismatch");

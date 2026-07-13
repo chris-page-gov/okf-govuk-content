@@ -14,6 +14,8 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from govuk_okf.release_packaging import (  # noqa: E402
     PackagingError,
+    attach_pages_browser_evidence,
+    check_pages_site,
     check_verified_release,
     package_verified_release,
 )
@@ -22,12 +24,37 @@ from govuk_okf.release_packaging import (  # noqa: E402
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", type=Path, metavar="VERIFIED_DIRECTORY")
+    parser.add_argument("--check-site", type=Path, metavar="PAGES_SITE_DIRECTORY")
+    parser.add_argument("--attach-pages-browser-evidence", type=Path, metavar="VERIFIED_DIRECTORY")
+    parser.add_argument("--evidence", type=Path)
     parser.add_argument("--bundle", type=Path, default=ROOT / "bundle")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--tag")
     parser.add_argument("--channel", choices=("release-candidate", "final"))
     parser.add_argument("--browser-evidence", type=Path)
     args = parser.parse_args()
+    selected_modes = sum(bool(value) for value in (args.check, args.check_site, args.attach_pages_browser_evidence))
+    if selected_modes > 1:
+        parser.error("--check, --check-site and --attach-pages-browser-evidence are mutually exclusive")
+    if args.attach_pages_browser_evidence:
+        if not args.evidence:
+            parser.error("--attach-pages-browser-evidence requires --evidence")
+        try:
+            attach_pages_browser_evidence(args.attach_pages_browser_evidence, args.evidence)
+        except (OSError, PackagingError) as exc:
+            print(f"attaching packed-site browser evidence failed: {exc}", file=sys.stderr)
+            return 1
+        print(f"packed-site browser evidence attached: {args.attach_pages_browser_evidence}")
+        return 0
+    if args.check_site:
+        errors = check_pages_site(args.check_site)
+        if errors:
+            print("Pages control-plane validation failed:", file=sys.stderr)
+            for error in errors:
+                print(f"- {error}", file=sys.stderr)
+            return 1
+        print(f"Pages control plane passed: {args.check_site}")
+        return 0
     if args.check:
         errors = check_verified_release(args.check)
         if errors:

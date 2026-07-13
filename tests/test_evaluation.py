@@ -14,7 +14,6 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from govuk_okf.evaluation import (  # noqa: E402
-    RELEASE_QUESTION_COUNT,
     SYSTEMS,
     canonical_json,
     run_evaluation,
@@ -217,7 +216,29 @@ class EvaluationHarnessTests(unittest.TestCase):
         binding = cls.questions / "bindings" / "fixture.jsonl"
         binding.parent.mkdir(parents=True, exist_ok=True)
         binding.write_text("".join(canonical_json(item) + "\n" for item in questions), encoding="utf-8")
-        files = [{"path": "bindings/fixture.jsonl", "bytes": binding.stat().st_size, "sha256": sha256_file(binding)}]
+        gold_path = cls.questions / "gold" / "catalogue.jsonl"
+        gold_path.parent.mkdir(parents=True, exist_ok=True)
+        gold_records = [
+            checked(
+                {
+                    "schema_version": 2,
+                    "question_id": item["question_id"],
+                    "question_checksum": item["checksum"],
+                    "gold": item["gold"],
+                }
+            )
+            for item in questions
+        ]
+        gold_path.write_text(
+            "".join(canonical_json(item) + "\n" for item in gold_records),
+            encoding="utf-8",
+        )
+        matrix_path = cls.questions / "matrix.json"
+        dump(matrix_path, {"schema_version": 2, "legacy_development_gold": "gold/catalogue.jsonl"})
+        files = [
+            {"path": path.relative_to(cls.questions).as_posix(), "bytes": path.stat().st_size, "sha256": sha256_file(path)}
+            for path in (binding, gold_path, matrix_path)
+        ]
         material = "".join(f"{item['path']}\0{item['sha256']}\n" for item in files)
         dump(
             cls.questions / "manifest.json",
@@ -240,7 +261,7 @@ class EvaluationHarnessTests(unittest.TestCase):
         )
 
     def test_release_mode_rejects_a_fixture_before_execution(self) -> None:
-        with self.assertRaisesRegex(ValueError, str(RELEASE_QUESTION_COUNT)):
+        with self.assertRaisesRegex(ValueError, "bounded sharded gold catalogue"):
             validate_input_contract(self.questions, self.bundle, "release")
 
     def test_inputs_and_completed_runs_are_immutable(self) -> None:

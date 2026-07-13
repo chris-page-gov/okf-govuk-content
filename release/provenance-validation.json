@@ -10,7 +10,7 @@
     "source request budget snapshot does not match the requested release snapshot",
     "unresolved pending_final activities: ACT-B1-CAPACITY-20260712-001",
     "unresolved in-progress activities: ACT-D1-SHARD-CONTRACT-AUDIT-001",
-    "candidate terminal activities are unsatisfied: ACT-D1-T0-HYDRATION-TERMINAL-001, ACT-E1-T1-RECONCILIATION-TERMINAL-001, ACT-C1-RELEASE-V2-TERMINAL-001, ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001, ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001, ACT-F2-CLEAN-ROOM-RC-TERMINAL-001, ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001"
+    "candidate terminal activities are unsatisfied: ACT-D1-T0-HYDRATION-TERMINAL-001, ACT-E1-T1-RECONCILIATION-TERMINAL-001, ACT-C1-RELEASE-V2-TERMINAL-001, ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001, ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001, ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001, ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001, ACT-F2-CLEAN-ROOM-RC-TERMINAL-001, ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001"
   ],
   "candidate_mode": false,
   "candidate_requirements_satisfied": false,
@@ -18,7 +18,7 @@
     "all_satisfied": false,
     "excluded_post_publication_terminal_activity_id": "ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001",
     "required": 10,
-    "satisfied": 3
+    "satisfied": 1
   },
   "external_paid_model_usage": {
     "api_calls": 0,
@@ -51,11 +51,11 @@
   "inputs": {
     "activity_ledger_sha256": "1ab0e36ad2d2ce2be94f64123c3aba4e5517e65ee0edac28d72a8a44583bbc8f",
     "activity_schema_sha256": "d84cf69d20feeb4ba160a3dc08675f62e4dad210e3cd0d2714c3fcc69f63ad39",
-    "declarations_sha256": "de2595ed9fe2863741dd7d41ef9390416ef9797fe4cac45d8fdbe4552188d19c",
-    "launch_manifest_sha256": "8a47378c70d5eaf32e956359f25d02cd3f9d2c97f2b90217dc6777f98e6555c8",
+    "declarations_sha256": "3deb1b4b34379d66b7729946a0c51163c93300622b32f39cb787b5b545ba7676",
+    "launch_manifest_sha256": "288a112954285cc47a8f51faa4729aac96aa7636af5f58633bdd0d4e0f422294",
     "model_lock_sha256": "60e47b0e9237ab4bd7fff53524dd731cff090e54532a3bd28a2dc1e5dc6c6d3c",
     "source_request_budget_sha256": "28e0db5068c90f7bc0403ad2362f30113714fadc99f489c05e7d7db689fc0b07",
-    "validator_sha256": "45a3e76dfa6b86d294db2e782d223e271f52948f587c3b9c8daa4d274a7e65ab"
+    "validator_sha256": "e4e53885ed5c0a7d37a85c78ff24428a2c60d8e71607fcd7f5cf02b5a54aaf19"
   },
   "model_usage": {
     "activities_with_unavailable_exact_model_version": 19,
@@ -80,7 +80,7 @@
     "source request budget snapshot does not match the requested release snapshot",
     "unresolved pending_final activities: ACT-B1-CAPACITY-20260712-001",
     "unresolved in-progress activities: ACT-D1-SHARD-CONTRACT-AUDIT-001",
-    "required terminal activities are unsatisfied: ACT-D1-T0-HYDRATION-TERMINAL-001, ACT-E1-T1-RECONCILIATION-TERMINAL-001, ACT-C1-RELEASE-V2-TERMINAL-001, ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001, ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001, ACT-F2-CLEAN-ROOM-RC-TERMINAL-001, ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001, ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001"
+    "required terminal activities are unsatisfied: ACT-D1-T0-HYDRATION-TERMINAL-001, ACT-E1-T1-RECONCILIATION-TERMINAL-001, ACT-C1-RELEASE-V2-TERMINAL-001, ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001, ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001, ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001, ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001, ACT-F2-CLEAN-ROOM-RC-TERMINAL-001, ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001, ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001"
   ],
   "release_mode": false,
   "release_requirements_satisfied": false,
@@ -88,11 +88,12 @@
     "all_satisfied": false,
     "candidate_all_satisfied": false,
     "candidate_required": 10,
-    "candidate_satisfied": 3,
+    "candidate_satisfied": 1,
     "events": [
       {
         "event": "T0 census terminal disposition",
         "found": true,
+        "must_bind_release_snapshot": false,
         "must_supersede": [
           "ACT-B1-T0-20260712-CHECKPOINT-001"
         ],
@@ -102,12 +103,14 @@
           "source manifest hashes",
           "enumerator closure or explicit failure"
         ],
+        "required_output_paths": [],
         "satisfied": true,
         "terminal_activity_id": "ACT-B1-T0-20260712-TERMINAL-001"
       },
       {
         "event": "T0 hydration terminal disposition",
         "found": false,
+        "must_bind_release_snapshot": false,
         "must_supersede": [],
         "problems": [
           "terminal activity is missing"
@@ -118,12 +121,14 @@
           "zero retained body bytes",
           "hydration manifest hashes"
         ],
+        "required_output_paths": [],
         "satisfied": false,
         "terminal_activity_id": "ACT-D1-T0-HYDRATION-TERMINAL-001"
       },
       {
         "event": "T1 census and closing reconciliation",
         "found": false,
+        "must_bind_release_snapshot": true,
         "must_supersede": [],
         "problems": [
           "terminal activity is missing"
@@ -134,12 +139,14 @@
           "delta/disposition counts",
           "unexplained omission result"
         ],
+        "required_output_paths": [],
         "satisfied": false,
         "terminal_activity_id": "ACT-E1-T1-RECONCILIATION-TERMINAL-001"
       },
       {
         "event": "release-v2 question generation and independent verification",
         "found": false,
+        "must_bind_release_snapshot": true,
         "must_supersede": [],
         "problems": [
           "terminal activity is missing"
@@ -150,12 +157,14 @@
           "manifest checksums",
           "separate verifier result"
         ],
+        "required_output_paths": [],
         "satisfied": false,
         "terminal_activity_id": "ACT-C1-RELEASE-V2-TERMINAL-001"
       },
       {
         "event": "complete automated evaluation",
         "found": false,
+        "must_bind_release_snapshot": true,
         "must_supersede": [],
         "problems": [
           "terminal activity is missing"
@@ -167,28 +176,40 @@
           "confidence intervals",
           "trace hashes"
         ],
+        "required_output_paths": [],
         "satisfied": false,
         "terminal_activity_id": "ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001"
       },
       {
-        "event": "citation independent semantic and joint-support reviews",
-        "found": true,
+        "event": "final release-snapshot citation independent semantic and joint-support reviews",
+        "found": false,
+        "must_bind_release_snapshot": true,
         "must_supersede": [
-          "ACT-F2-CITATION-COLLECTOR-001"
+          "ACT-F2-CITATION-REVIEWS-TERMINAL-001"
         ],
-        "problems": [],
+        "problems": [
+          "terminal activity is missing"
+        ],
         "required_evidence": [
+          "release snapshot",
           "collector request aggregate",
           "reviewer identity/configuration",
           "support verdict counts",
-          "waivers or blockers"
+          "waivers or blockers",
+          "hash-bound final citation verification"
         ],
-        "satisfied": true,
-        "terminal_activity_id": "ACT-F2-CITATION-REVIEWS-TERMINAL-001"
+        "required_output_paths": [
+          "release/citation-verification.json",
+          "reports/citation-verification.md",
+          "provenance/citation-request-aggregate.json"
+        ],
+        "satisfied": false,
+        "terminal_activity_id": "ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001"
       },
       {
         "event": "publication shard audit terminal disposition",
         "found": false,
+        "must_bind_release_snapshot": true,
         "must_supersede": [
           "ACT-D1-SHARD-CONTRACT-AUDIT-001"
         ],
@@ -200,27 +221,38 @@
           "hash/size/key-range validation",
           "release-root binding"
         ],
+        "required_output_paths": [],
         "satisfied": false,
         "terminal_activity_id": "ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001"
       },
       {
-        "event": "security scan terminal disposition",
-        "found": true,
+        "event": "final release-snapshot security scan terminal disposition",
+        "found": false,
+        "must_bind_release_snapshot": true,
         "must_supersede": [
-          "ACT-D2-SECURITY-SCAN-001"
+          "ACT-D2-SECURITY-SCAN-TERMINAL-001"
         ],
-        "problems": [],
+        "problems": [
+          "terminal activity is missing"
+        ],
         "required_evidence": [
+          "release snapshot and scanned commit",
           "scan identifier",
           "finding disposition",
+          "hash-bound release report",
           "validation or residual-risk exception"
         ],
-        "satisfied": true,
-        "terminal_activity_id": "ACT-D2-SECURITY-SCAN-TERMINAL-001"
+        "required_output_paths": [
+          "release/security-scan.json",
+          "reports/security.md"
+        ],
+        "satisfied": false,
+        "terminal_activity_id": "ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001"
       },
       {
         "event": "clean-room machine release-candidate reproduction",
         "found": false,
+        "must_bind_release_snapshot": true,
         "must_supersede": [],
         "problems": [
           "terminal activity is missing"
@@ -231,12 +263,14 @@
           "test evidence",
           "zero reproduction network/model requests"
         ],
+        "required_output_paths": [],
         "satisfied": false,
         "terminal_activity_id": "ACT-F2-CLEAN-ROOM-RC-TERMINAL-001"
       },
       {
         "event": "GitHub publication, Pages, release and Explorer registry workflow",
         "found": false,
+        "must_bind_release_snapshot": true,
         "must_supersede": [],
         "problems": [
           "terminal activity is missing"
@@ -249,12 +283,14 @@
           "Pages live checks",
           "registry PR"
         ],
+        "required_output_paths": [],
         "satisfied": false,
         "terminal_activity_id": "ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001"
       },
       {
         "event": "final source-request budget snapshot",
         "found": false,
+        "must_bind_release_snapshot": true,
         "must_supersede": [
           "ACT-B1-CAPACITY-20260712-001"
         ],
@@ -267,13 +303,14 @@
           "remaining authority",
           "separate citation-verification aggregate"
         ],
+        "required_output_paths": [],
         "satisfied": false,
         "terminal_activity_id": "ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001"
       }
     ],
     "pending_post_publication_terminal_activity_id": null,
     "required": 11,
-    "satisfied": 3
+    "satisfied": 1
   },
   "schema": "afhf-govuk-okf-provenance-validation.v1",
   "snapshot": "fixture-2026-07-11",
@@ -311,6 +348,8 @@
   "validated_contract_counts": {
     "fallbacks": 4,
     "final_activity_entries_required": 11,
+    "output_bound_terminal_entries": 2,
+    "release_snapshot_bound_terminal_entries": 9,
     "source_access_restrictions": 4
   },
   "validation_errors": [],

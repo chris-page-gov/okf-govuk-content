@@ -9,7 +9,7 @@ import json
 import os
 import re
 import tempfile
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 from jsonschema import Draft202012Validator, FormatChecker
@@ -28,6 +28,54 @@ DEFAULT_OUTPUT = ROOT / "release" / "provenance-validation.json"
 DISALLOWED_RELEASE_SNAPSHOT_MARKERS = ("fixture", "sample", "capacity", "development", "test")
 REPORT_SCHEMA = "afhf-govuk-okf-provenance-validation.v1"
 PUBLICATION_TERMINAL_ACTIVITY_ID = "ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001"
+PRE_RELEASE_CITATION_TERMINAL_ACTIVITY_ID = "ACT-F2-CITATION-REVIEWS-TERMINAL-001"
+RELEASE_CITATION_TERMINAL_ACTIVITY_ID = (
+    "ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001"
+)
+PRE_RELEASE_SECURITY_TERMINAL_ACTIVITY_ID = "ACT-D2-SECURITY-SCAN-TERMINAL-001"
+RELEASE_SECURITY_TERMINAL_ACTIVITY_ID = (
+    "ACT-D2-RELEASE-SNAPSHOT-SECURITY-SCAN-TERMINAL-001"
+)
+REQUIRED_FINAL_TERMINAL_ACTIVITY_IDS = frozenset(
+    {
+        "ACT-B1-T0-20260712-TERMINAL-001",
+        "ACT-D1-T0-HYDRATION-TERMINAL-001",
+        "ACT-E1-T1-RECONCILIATION-TERMINAL-001",
+        "ACT-C1-RELEASE-V2-TERMINAL-001",
+        "ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001",
+        RELEASE_CITATION_TERMINAL_ACTIVITY_ID,
+        "ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001",
+        RELEASE_SECURITY_TERMINAL_ACTIVITY_ID,
+        "ACT-F2-CLEAN-ROOM-RC-TERMINAL-001",
+        PUBLICATION_TERMINAL_ACTIVITY_ID,
+        "ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001",
+    }
+)
+RELEASE_SNAPSHOT_BOUND_TERMINAL_ACTIVITY_IDS = frozenset(
+    {
+        "ACT-E1-T1-RECONCILIATION-TERMINAL-001",
+        "ACT-C1-RELEASE-V2-TERMINAL-001",
+        "ACT-E2-AUTOMATED-EVALUATION-TERMINAL-001",
+        RELEASE_CITATION_TERMINAL_ACTIVITY_ID,
+        "ACT-D1-SHARD-CONTRACT-AUDIT-TERMINAL-001",
+        RELEASE_SECURITY_TERMINAL_ACTIVITY_ID,
+        "ACT-F2-CLEAN-ROOM-RC-TERMINAL-001",
+        PUBLICATION_TERMINAL_ACTIVITY_ID,
+        "ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001",
+    }
+)
+REQUIRED_OUTPUT_PATHS_BY_TERMINAL = {
+    RELEASE_CITATION_TERMINAL_ACTIVITY_ID: frozenset(
+        {
+            "release/citation-verification.json",
+            "reports/citation-verification.md",
+            "provenance/citation-request-aggregate.json",
+        }
+    ),
+    RELEASE_SECURITY_TERMINAL_ACTIVITY_ID: frozenset(
+        {"release/security-scan.json", "reports/security.md"}
+    ),
+}
 
 LEGACY_REQUIRED = {
     "activity_id",
@@ -87,7 +135,36 @@ def load_ledger(path: Path = LEDGER) -> tuple[list[dict[str, Any]], list[str]]:
     return rows, raw_lines
 
 
-def validate_ledger(path: Path = LEDGER, schema_path: Path = SCHEMA) -> dict[str, Any]:
+def _resolve_artifact_path(root: Path, value: object, label: str) -> Path:
+    if not isinstance(value, str) or not value:
+        raise ProvenanceError(f"{label} must be a non-empty repository-relative path")
+    reference = PurePosixPath(value)
+    if reference.is_absolute() or ".." in reference.parts or reference.as_posix() != value:
+        raise ProvenanceError(f"{label} is not a safe canonical repository-relative path: {value}")
+    lexical_root = root.absolute()
+    if lexical_root.is_symlink():
+        raise ProvenanceError(f"{label} artifact root cannot be a symbolic link")
+    resolved_root = lexical_root.resolve()
+    lexical_candidate = lexical_root
+    for part in reference.parts:
+        lexical_candidate /= part
+        if lexical_candidate.is_symlink():
+            raise ProvenanceError(
+                f"{label} contains a symbolic-link component: {value}"
+            )
+    candidate = lexical_candidate.resolve()
+    try:
+        candidate.relative_to(resolved_root)
+    except ValueError as exc:
+        raise ProvenanceError(f"{label} escapes the repository root: {value}") from exc
+    return candidate
+
+
+def validate_ledger(
+    path: Path = LEDGER,
+    schema_path: Path = SCHEMA,
+    artifact_root: Path = ROOT,
+) -> dict[str, Any]:
     rows, raw_lines = load_ledger(path)
     schema = _read_json(schema_path, "activity schema")
     validator = Draft202012Validator(schema, format_checker=FormatChecker())
@@ -271,8 +348,20 @@ def validate_ledger(path: Path = LEDGER, schema_path: Path = SCHEMA) -> dict[str
 
         for output in row.get("outputs", []):
             path_value = output.get("path")
-            if output.get("state") != "pending" and isinstance(path_value, str) and not (ROOT / path_value).exists():
-                errors.append(f"row {number} output does not exist: {path_value}")
+            try:
+                output_path = _resolve_artifact_path(
+                    artifact_root, path_value, f"row {number} output path"
+                )
+            except ProvenanceError as exc:
+                errors.append(str(exc))
+                continue
+            if output.get("state") != "pending":
+                if not output_path.exists():
+                    errors.append(f"row {number} output does not exist: {path_value}")
+                elif output.get("sha256") is not None and not output_path.is_file():
+                    errors.append(
+                        f"row {number} hash-bound output is not a regular file: {path_value}"
+                    )
 
         forbidden = {"chain_of_thought", "private_reasoning", "reasoning_trace"}
         if forbidden.intersection(row):
@@ -330,7 +419,7 @@ def validate_declarations(path: Path = DECLARATIONS) -> dict[str, Any]:
     if not isinstance(final_entries, list) or len(final_entries) < 4:
         raise ProvenanceError("reproduction declarations omit terminal activity-entry requirements")
     final_events = " ".join(str(row.get("event", "")) for row in final_entries if isinstance(row, dict)).lower()
-    for marker in ("t0", "t1", "evaluation", "publication"):
+    for marker in ("t0", "t1", "evaluation", "security", "publication"):
         if marker not in final_events:
             raise ProvenanceError(f"terminal activity-entry requirements omit {marker}")
     terminal_ids = [row.get("terminal_activity_id") for row in final_entries if isinstance(row, dict)]
@@ -341,10 +430,90 @@ def validate_declarations(path: Path = DECLARATIONS) -> dict[str, Any]:
         raise ProvenanceError("every terminal activity requirement needs a valid terminal_activity_id")
     if len(set(terminal_ids)) != len(terminal_ids):
         raise ProvenanceError("terminal activity requirements contain duplicate terminal_activity_id values")
+    observed_terminal_ids = frozenset(terminal_ids)
+    if observed_terminal_ids != REQUIRED_FINAL_TERMINAL_ACTIVITY_IDS:
+        missing = sorted(REQUIRED_FINAL_TERMINAL_ACTIVITY_IDS - observed_terminal_ids)
+        unexpected = sorted(observed_terminal_ids - REQUIRED_FINAL_TERMINAL_ACTIVITY_IDS)
+        details = []
+        if missing:
+            details.append("missing " + ", ".join(missing))
+        if unexpected:
+            details.append("unexpected " + ", ".join(unexpected))
+        raise ProvenanceError(
+            "final terminal activity declaration set differs from the audited 11-event contract: "
+            + "; ".join(details)
+        )
+    if any(not isinstance(row.get("must_bind_release_snapshot"), bool) for row in final_entries):
+        raise ProvenanceError(
+            "every final terminal activity requirement must explicitly declare "
+            "must_bind_release_snapshot"
+        )
+    snapshot_bound_ids = frozenset(
+        row["terminal_activity_id"]
+        for row in final_entries
+        if row["must_bind_release_snapshot"] is True
+    )
+    if snapshot_bound_ids != RELEASE_SNAPSHOT_BOUND_TERMINAL_ACTIVITY_IDS:
+        raise ProvenanceError(
+            "release-snapshot terminal binding set differs from the audited final-snapshot contract"
+        )
+    for row in final_entries:
+        terminal_id = row["terminal_activity_id"]
+        required_outputs = row.get("required_output_paths", [])
+        if not isinstance(required_outputs, list) or any(
+            not isinstance(value, str) for value in required_outputs
+        ):
+            raise ProvenanceError(f"{terminal_id} required_output_paths must be a string list")
+        if len(set(required_outputs)) != len(required_outputs):
+            raise ProvenanceError(f"{terminal_id} required_output_paths contains duplicates")
+        for value in required_outputs:
+            reference = PurePosixPath(value)
+            if (
+                not value
+                or reference.is_absolute()
+                or ".." in reference.parts
+                or reference.as_posix() != value
+            ):
+                raise ProvenanceError(
+                    f"{terminal_id} has an unsafe required output path: {value}"
+                )
+        expected_outputs = REQUIRED_OUTPUT_PATHS_BY_TERMINAL.get(terminal_id, frozenset())
+        if frozenset(required_outputs) != expected_outputs:
+            raise ProvenanceError(
+                f"{terminal_id} required output binding differs from the audited contract"
+            )
+    citation_requirements = [
+        row
+        for row in final_entries
+        if isinstance(row, dict)
+        and row.get("terminal_activity_id") == RELEASE_CITATION_TERMINAL_ACTIVITY_ID
+    ]
+    if len(citation_requirements) != 1 or PRE_RELEASE_CITATION_TERMINAL_ACTIVITY_ID not in _required_supersedes(
+        citation_requirements[0].get("must_supersede") if citation_requirements else None
+    ):
+        raise ProvenanceError(
+            "release provenance must require one distinct release-snapshot citation terminal "
+            "that supersedes the pre-release citation terminal"
+        )
+    security_requirements = [
+        row
+        for row in final_entries
+        if isinstance(row, dict)
+        and row.get("terminal_activity_id") == RELEASE_SECURITY_TERMINAL_ACTIVITY_ID
+    ]
+    if len(security_requirements) != 1 or PRE_RELEASE_SECURITY_TERMINAL_ACTIVITY_ID not in _required_supersedes(
+        security_requirements[0].get("must_supersede") if security_requirements else None
+    ):
+        raise ProvenanceError(
+            "release provenance must require one distinct release-snapshot security terminal "
+            "that supersedes the pre-release security terminal"
+        )
     return {
         "fallbacks": len(fallbacks),
         "source_access_restrictions": len(restrictions),
         "final_activity_entries_required": len(final_entries),
+        "release_snapshot_bound_terminal_entries": len(snapshot_bound_ids),
+        "output_bound_terminal_entries": len(REQUIRED_OUTPUT_PATHS_BY_TERMINAL),
     }
 
 
@@ -428,10 +597,11 @@ def validate_all(
     live_request_ledger: Path | None = LIVE_REQUEST_LEDGER,
     launch_path: Path = LAUNCH,
     model_lock_path: Path = MODEL_LOCK,
+    artifact_root: Path = ROOT,
 ) -> dict[str, Any]:
     validate_lock_and_authority(launch_path, model_lock_path)
     return {
-        "ledger": validate_ledger(ledger_path, schema_path),
+        "ledger": validate_ledger(ledger_path, schema_path, artifact_root),
         "declarations": validate_declarations(declarations_path),
         "source_request_budget": validate_request_snapshot(request_snapshot_path, live_request_ledger),
     }
@@ -472,6 +642,8 @@ def terminal_event_satisfaction(
     rows: list[dict[str, Any]],
     declarations: dict[str, Any],
     request_summary: dict[str, Any],
+    snapshot: str,
+    artifact_root: Path = ROOT,
 ) -> dict[str, Any]:
     by_id = {row.get("activity_id"): row for row in rows if isinstance(row.get("activity_id"), str)}
     required = declarations.get("final_activity_entries_required", [])
@@ -480,7 +652,7 @@ def terminal_event_satisfaction(
         "T0 census terminal disposition",
         "T0 hydration terminal disposition",
         "T1 census and closing reconciliation",
-        "citation independent semantic and joint-support reviews",
+        "final release-snapshot citation independent semantic and joint-support reviews",
         "final source-request budget snapshot",
     }
     final_request_event = "final source-request budget snapshot"
@@ -502,6 +674,57 @@ def terminal_event_satisfaction(
                 problems.append("terminal activity validation is not complete")
             if any(output.get("state") == "pending" for output in activity.get("outputs", [])):
                 problems.append("terminal activity still has pending outputs")
+            source_snapshots = activity.get("source_snapshots", [])
+            if declaration.get("must_bind_release_snapshot") is True:
+                if snapshot not in source_snapshots:
+                    problems.append(
+                        f"terminal activity is not bound to the exact release snapshot: {snapshot}"
+                    )
+                stale_snapshots = sorted(
+                    value
+                    for value in source_snapshots
+                    if isinstance(value, str) and not _release_snapshot_allowed(value)
+                )
+                if stale_snapshots:
+                    problems.append(
+                        "terminal activity includes non-release fixture/sample source snapshots: "
+                        + ", ".join(stale_snapshots)
+                    )
+            outputs_by_path: dict[str, list[dict[str, Any]]] = {}
+            for output in activity.get("outputs", []):
+                path_value = output.get("path")
+                if isinstance(path_value, str):
+                    outputs_by_path.setdefault(path_value, []).append(output)
+            for required_path in declaration.get("required_output_paths", []):
+                matches = outputs_by_path.get(required_path, [])
+                if len(matches) != 1:
+                    problems.append(
+                        f"terminal activity does not bind exactly one required output: {required_path}"
+                    )
+                    continue
+                output = matches[0]
+                if output.get("state") == "pending":
+                    problems.append(f"required terminal output remains pending: {required_path}")
+                    continue
+                expected_sha256 = output.get("sha256")
+                if not isinstance(expected_sha256, str) or not re.fullmatch(
+                    r"[a-f0-9]{64}", expected_sha256
+                ):
+                    problems.append(
+                        f"required terminal output has no exact SHA-256 binding: {required_path}"
+                    )
+                    continue
+                try:
+                    output_path = _resolve_artifact_path(
+                        artifact_root, required_path, "required terminal output path"
+                    )
+                except ProvenanceError as exc:
+                    problems.append(str(exc))
+                    continue
+                if not output_path.is_file():
+                    problems.append(f"required terminal output does not exist: {required_path}")
+                elif _file_sha256(output_path) != expected_sha256:
+                    problems.append(f"required terminal output hash differs: {required_path}")
             request_usage = activity.get("source_request_usage", {})
             if request_usage.get("status") == "pending_final":
                 problems.append("terminal activity retains pending_final source-request usage")
@@ -525,6 +748,8 @@ def terminal_event_satisfaction(
                 "problems": problems,
                 "required_evidence": declaration.get("required_evidence", []),
                 "must_supersede": _required_supersedes(declaration.get("must_supersede")),
+                "must_bind_release_snapshot": declaration.get("must_bind_release_snapshot"),
+                "required_output_paths": declaration.get("required_output_paths", []),
             }
         )
 
@@ -577,6 +802,7 @@ def build_validation_document(
     live_request_ledger: Path | None = LIVE_REQUEST_LEDGER,
     launch_path: Path = LAUNCH,
     model_lock_path: Path = MODEL_LOCK,
+    artifact_root: Path = ROOT,
 ) -> dict[str, Any]:
     if not isinstance(snapshot, str) or not snapshot.strip():
         raise ProvenanceError("snapshot must be a non-empty string")
@@ -595,7 +821,7 @@ def build_validation_document(
     except (OSError, ProvenanceError) as exc:
         structural_errors.extend(str(exc).splitlines())
     try:
-        ledger_summary = validate_ledger(ledger_path, schema_path)
+        ledger_summary = validate_ledger(ledger_path, schema_path, artifact_root)
         rows, _ = load_ledger(ledger_path)
     except (OSError, ProvenanceError) as exc:
         structural_errors.extend(str(exc).splitlines())
@@ -610,7 +836,9 @@ def build_validation_document(
         structural_errors.extend(str(exc).splitlines())
 
     if rows and declarations and request_summary:
-        terminals = terminal_event_satisfaction(rows, declarations, request_summary)
+        terminals = terminal_event_satisfaction(
+            rows, declarations, request_summary, snapshot, artifact_root
+        )
         unresolved = unresolved_activity_status(rows)
     else:
         terminals = {"required": 0, "satisfied": 0, "all_satisfied": False, "events": []}

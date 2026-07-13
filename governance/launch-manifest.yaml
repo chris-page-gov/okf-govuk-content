@@ -4,6 +4,8 @@ authority_basis: explicit user instruction in the initiating Codex task
 publication_authorisation: true
 authenticated_source_permission: false
 external_storage_permission: false
+repository_native_github_release_assets_permission: true
+github_pages_same_origin_pack_delivery_permission: true
 human_study_authorisation: false
 provider_allowlist:
   - openai-codex-current-session
@@ -35,4 +37,6 @@ notes:
   - Product-session tokens, exact backend build, parameters and marginal cost are not exposed; record them as unavailable rather than zero.
   - The official-source request ceiling is an execution-approval limit and is accounted separately from model usage and cost.
   - The explicit request authorises public repository, Pages, release and registry publication.
+  - Repository-native GitHub Release assets are authorised as the immutable offline mirror; they are not external storage and are not a browser CORS fallback.
+  - GitHub Pages range-pack delivery remains subject to the 950,000,000-byte fail-closed package gate.
   - Genuine participant research remains blocked pending ethics, recruitment and consent authority.

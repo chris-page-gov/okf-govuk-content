@@ -10,7 +10,7 @@
     "tasks": 36
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "d71470858152c87d57427287dcd18b5fede32b7b4532b27cc0b374a296bac775",
+  "generated_from_sha256": "dc6f0a631a36334729089170a77ae5a3898d0a89cf05ce39b409d3103b70b11f",
   "interpretation": "A produced task has an artefact foundation only; the controller promotion gate has not accepted it unless separate run evidence says so.",
   "milestone": "t0_census_closed",
   "schema": "afhf-govuk-okf-task-status.v1",
@@ -388,7 +388,7 @@
       ],
       "implementation_status": "produced",
       "objective": "security redteam",
-      "qualification": "The repository-wide and remediation-diff Codex Security scans are documented, all 17 reported findings are remediated through commit 27890dc, and 32 focused post-fix tests pass. This does not satisfy the eventual full-corpus release-snapshot security gate.",
+      "qualification": "The repository-wide and remediation-diff Codex Security scans are documented, all 17 reported findings are remediated through commit 27890dc, and 32 focused post-fix tests pass. This does not satisfy the eventual full-corpus release-snapshot security gate; a distinct final-snapshot terminal must supersede the existing pre-release security terminal.",
       "requirement_ids": [
         "REQ-093",
         "REQ-094"

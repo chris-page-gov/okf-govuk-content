@@ -15,13 +15,14 @@ import sys
 import tempfile
 from collections import Counter
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 PERSONA_SATURATION_PATH = ROOT / "personas" / "saturation.json"
 PERSONA_COVERAGE_ROWS_PATH = ROOT / "personas" / "coverage-matrix.jsonl"
 
+from govuk_okf.acquisition import write_jsonl_gzip_shards  # noqa: E402
 from govuk_okf.question_factory import record_with_checksum  # noqa: E402
 from govuk_okf.question_matrix_v2 import (  # noqa: E402
     CHALLENGES,
@@ -140,6 +141,124 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
         )
     eligibility_blockers = sorted(set(eligibility_blockers))
 
+    story_path = output_root / "stories" / "catalogue.jsonl"
+    story_path.parent.mkdir(parents=True, exist_ok=True)
+    saturation_copy_path = output_root / "persona-saturation.json"
+    coverage_matrix_copy_path = output_root / "persona-coverage-matrix.json"
+    write_text(saturation_copy_path, PERSONA_SATURATION_PATH.read_text(encoding="utf-8"))
+    write_text(
+        coverage_matrix_copy_path,
+        (ROOT / saturation["coverage_matrix"]["path"]).read_text(encoding="utf-8"),
+    )
+    generated_files: list[Path] = [
+        saturation_copy_path,
+        coverage_matrix_copy_path,
+        story_path,
+    ]
+    question_count = 0
+    suite_count = 0
+    story_count = 0
+    answerable_count = 0
+    operation_counts: Counter[str] = Counter()
+    challenge_counts: Counter[str] = Counter()
+    split_counts: Counter[str] = Counter()
+    story_split_counts: Counter[str] = Counter()
+
+    def gold_records() -> Iterator[dict[str, Any]]:
+        nonlocal answerable_count, question_count, story_count, suite_count
+        with story_path.open("w", encoding="utf-8") as story_handle:
+            for persona in personas:
+                persona_story_questions: list[list[dict[str, Any]]] = []
+                for ordinal, (role, anchor) in enumerate(
+                    zip(STORY_ROLES, assignments[persona["persona_id"]]), start=1
+                ):
+                    story = build_story(
+                        persona,
+                        role,
+                        anchor,
+                        ordinal,
+                        coverage_dimensions=saturation_rows[persona["persona_id"]]["dimension_values"],
+                        persona_saturation_sha256=saturation_sha256,
+                    )
+                    story_handle.write(json_line(story))
+                    story_count += 1
+                    split = split_by_identity[anchor.identity]
+                    story_split_counts[split] += 1
+                    questions = build_story_questions(
+                        persona=persona,
+                        story=story,
+                        record=anchor,
+                        split=split,
+                        snapshot_id=args.snapshot_id,
+                        snapshot_date=args.snapshot_date,
+                        snapshot_manifest_sha256=snapshot_manifest_sha256,
+                        pool=pool,
+                        index=index,
+                    )
+                    story_id = safe_identifier(story["story_id"], label="story ID")
+                    binding_path = safe_child_path(
+                        output_root / "bindings",
+                        f"{story_id}.jsonl",
+                        label="question binding path",
+                    )
+                    write_text(binding_path, "".join(json_line(item) for item in questions))
+                    generated_files.append(binding_path)
+                    persona_story_questions.append(questions)
+                    for question in questions:
+                        question_count += 1
+                        answerable_count += not question["expected_unanswerable"]
+                        operation_counts[question["operation"]] += 1
+                        challenge_counts[question["challenge"]] += 1
+                        split_counts[question["split"]] += 1
+                        yield record_with_checksum(
+                            {
+                                "schema_version": 2,
+                                "question_id": question["question_id"],
+                                "question_checksum": question["checksum"],
+                                "story_id": question["story_id"],
+                                "persona_ids": question["persona_ids"],
+                                "split": question["split"],
+                                "gold_status": question["gold_status"],
+                                "gold": question["gold"],
+                            }
+                        )
+
+                suite = curate_suite(persona, persona_story_questions)
+                persona_id = safe_identifier(persona["persona_id"], label="persona ID")
+                suite_path = safe_child_path(
+                    output_root / "persona-suites",
+                    f"{persona_id}.jsonl",
+                    label="persona suite path",
+                )
+                write_text(suite_path, "".join(json_line(item) for item in suite))
+                generated_files.append(suite_path)
+                suite_count += len(suite)
+
+    gold_output = write_jsonl_gzip_shards(
+        output_root / "gold",
+        "catalogue",
+        gold_records(),
+        max_records=5_000,
+        max_uncompressed_bytes=32 * 1024 * 1024,
+        max_compressed_bytes=50 * 1024 * 1024,
+    )
+    gold_root = Path(gold_output["root"])
+    gold_index_path = gold_root / "index.json"
+    gold_catalogue = {
+        "schema": "govuk-okf-jsonl-shards.v1",
+        "path": gold_index_path.relative_to(output_root).as_posix(),
+        "records": int(gold_output["records"]),
+        "canonical_sha256": gold_output["canonical_sha256"],
+        "max_records_per_shard": int(gold_output["max_records_per_shard"]),
+        "max_uncompressed_bytes_per_shard": int(
+            gold_output["max_uncompressed_bytes_per_shard"]
+        ),
+        "max_compressed_bytes_per_shard": int(
+            gold_output["max_compressed_bytes_per_shard"]
+        ),
+    }
+    generated_files.extend(sorted(path for path in gold_root.rglob("*") if path.is_file()))
+
     matrix_path = output_root / "matrix.json"
     write_text(
         matrix_path,
@@ -155,6 +274,7 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
                 "questions_per_persona_suite": QUESTIONS_PER_PERSONA_SUITE,
                 "split_rule": "canonical anchor identity groups; every fifth sorted group held out",
                 "leakage_denylist": LEAKAGE_DENYLIST,
+                "gold_catalogue": gold_catalogue,
                 "persona_saturation": {
                     "path": "persona-saturation.json",
                     "source_path": PERSONA_SATURATION_PATH.relative_to(ROOT).as_posix(),
@@ -168,100 +288,7 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
             }
         ),
     )
-
-    story_path = output_root / "stories" / "catalogue.jsonl"
-    story_path.parent.mkdir(parents=True, exist_ok=True)
-    gold_path = output_root / "gold" / "catalogue.jsonl"
-    gold_path.parent.mkdir(parents=True, exist_ok=True)
-    saturation_copy_path = output_root / "persona-saturation.json"
-    coverage_matrix_copy_path = output_root / "persona-coverage-matrix.json"
-    write_text(saturation_copy_path, PERSONA_SATURATION_PATH.read_text(encoding="utf-8"))
-    write_text(
-        coverage_matrix_copy_path,
-        (ROOT / saturation["coverage_matrix"]["path"]).read_text(encoding="utf-8"),
-    )
-    generated_files: list[Path] = [
-        matrix_path,
-        saturation_copy_path,
-        coverage_matrix_copy_path,
-        story_path,
-        gold_path,
-    ]
-    question_count = 0
-    suite_count = 0
-    story_count = 0
-    answerable_count = 0
-    operation_counts: Counter[str] = Counter()
-    challenge_counts: Counter[str] = Counter()
-    split_counts: Counter[str] = Counter()
-    story_split_counts: Counter[str] = Counter()
-
-    with story_path.open("w", encoding="utf-8") as story_handle, gold_path.open("w", encoding="utf-8") as gold_handle:
-        for persona in personas:
-            persona_story_questions: list[list[dict[str, Any]]] = []
-            for ordinal, (role, anchor) in enumerate(zip(STORY_ROLES, assignments[persona["persona_id"]]), start=1):
-                story = build_story(
-                    persona,
-                    role,
-                    anchor,
-                    ordinal,
-                    coverage_dimensions=saturation_rows[persona["persona_id"]]["dimension_values"],
-                    persona_saturation_sha256=saturation_sha256,
-                )
-                story_handle.write(json_line(story))
-                story_count += 1
-                split = split_by_identity[anchor.identity]
-                story_split_counts[split] += 1
-                questions = build_story_questions(
-                    persona=persona,
-                    story=story,
-                    record=anchor,
-                    split=split,
-                    snapshot_id=args.snapshot_id,
-                    snapshot_date=args.snapshot_date,
-                    snapshot_manifest_sha256=snapshot_manifest_sha256,
-                    pool=pool,
-                    index=index,
-                )
-                story_id = safe_identifier(story["story_id"], label="story ID")
-                binding_path = safe_child_path(
-                    output_root / "bindings",
-                    f"{story_id}.jsonl",
-                    label="question binding path",
-                )
-                write_text(binding_path, "".join(json_line(item) for item in questions))
-                generated_files.append(binding_path)
-                persona_story_questions.append(questions)
-                for question in questions:
-                    gold_record = record_with_checksum(
-                        {
-                            "schema_version": 2,
-                            "question_id": question["question_id"],
-                            "question_checksum": question["checksum"],
-                            "story_id": question["story_id"],
-                            "persona_ids": question["persona_ids"],
-                            "split": question["split"],
-                            "gold_status": question["gold_status"],
-                            "gold": question["gold"],
-                        }
-                    )
-                    gold_handle.write(json_line(gold_record))
-                    question_count += 1
-                    answerable_count += not question["expected_unanswerable"]
-                    operation_counts[question["operation"]] += 1
-                    challenge_counts[question["challenge"]] += 1
-                    split_counts[question["split"]] += 1
-
-            suite = curate_suite(persona, persona_story_questions)
-            persona_id = safe_identifier(persona["persona_id"], label="persona ID")
-            suite_path = safe_child_path(
-                output_root / "persona-suites",
-                f"{persona_id}.jsonl",
-                label="persona suite path",
-            )
-            write_text(suite_path, "".join(json_line(item) for item in suite))
-            generated_files.append(suite_path)
-            suite_count += len(suite)
+    generated_files.append(matrix_path)
 
     split_groups_path = output_root / "split-groups.json"
     write_text(
@@ -323,6 +350,7 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
                 "question_contract_passed": False,
                 "independent_verification_status": "required_not_run",
                 "eligibility_blockers": eligibility_blockers,
+                "gold_catalogue": gold_catalogue,
                 "snapshot": {
                     "snapshot_id": args.snapshot_id,
                     "snapshot_date": args.snapshot_date,
@@ -390,6 +418,7 @@ def build(args: argparse.Namespace, output_root: Path) -> dict[str, Any]:
             "artifact_tier": "release_candidate" if eligible else "development_only",
             "publication_ready_candidate": eligible,
             "independent_verification_status": "required_not_run",
+            "gold_catalogue": gold_catalogue,
             "persona_saturation_sha256": saturation_sha256,
             "persona_coverage_matrix_sha256": coverage_matrix_sha256,
             "persona_human_validation_status": saturation["human_validation_status"],
