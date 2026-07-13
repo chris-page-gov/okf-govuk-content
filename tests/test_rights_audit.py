@@ -7,7 +7,15 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from govuk_okf.rights_audit import AuditLimits, RightsAuditError, audit_release
+from govuk_okf.rights_audit import (
+    AuditLimits,
+    RightsAuditError,
+    audit_contract_has_missing_corpus_inputs,
+    audit_from_input_contract,
+    audit_release,
+    rebind_audit_release,
+    validate_audit_evidence,
+)
 from govuk_okf.util import canonical_json_bytes
 
 
@@ -91,14 +99,6 @@ def make_release(
         bundle / "okf-explorer.json",
         {"entrypoints": {"data_manifest": "data/manifest.json"}},
     )
-    write_json(
-        root / "release/manifest.yaml",
-        {
-            "artifacts": {"bundle": "bundle", "descriptor": "bundle/okf-explorer.json"},
-            "snapshot": {"id": snapshot, "kind": snapshot_kind, "sampled": sampled},
-        },
-    )
-
     corpus_record = records[0] if records else {"canonical_url": "https://www.gov.uk/empty"}
     corpus_line = canonical_json_bytes(corpus_record) + b"\n"
     corpus_shard = root / "corpus/records/source/part-00000.jsonl.gz"
@@ -139,21 +139,139 @@ def make_release(
             "snapshot": snapshot,
         },
     )
+    write_json(
+        root / "release/manifest.yaml",
+        {
+            "artifacts": {"bundle": "bundle", "descriptor": "bundle/okf-explorer.json"},
+            "snapshot": {"id": snapshot, "kind": snapshot_kind, "sampled": sampled},
+            "promotion_contract": {
+                "reproduction": {
+                    "source": "corpus/records",
+                    "source_binding": {
+                        "path": "corpus/records",
+                        "kind": "directory",
+                        "file_count": 3,
+                        "bytes": sum(
+                            path.stat().st_size
+                            for path in (root / "corpus/records").rglob("*")
+                            if path.is_file()
+                        ),
+                        "tree_sha256": "a" * 64,
+                    },
+                }
+            },
+        },
+    )
     return corpus_manifest, ledger
 
 
 class RightsAuditTests(unittest.TestCase):
-    def test_repository_fixture_is_safe_but_not_release_passing(self) -> None:
-        result = audit_release(Path(__file__).resolve().parents[1])
-        self.assertTrue(result["mechanical_controls_passed"], result["errors"])
-        self.assertTrue(result["retention_and_secret_findings"]["passed"])
-        self.assertFalse(result["rights_privacy_audit_passed"])
-        self.assertFalse(result["snapshot_binding"]["full_unsampled_snapshot"])
-        self.assertFalse(result["snapshot_binding"]["corpus_snapshot_bound"])
-        self.assertGreaterEqual(result["classification"]["item_review_triggered_items"], 1)
+    def test_repository_rights_state_matches_checked_snapshot_contract(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        manifest = json.loads((root / "release/manifest.yaml").read_text(encoding="utf-8"))
+        snapshot = manifest["snapshot"]
+        if snapshot["kind"] == "fixture":
+            result = audit_release(root)
+            self.assertTrue(result["mechanical_controls_passed"], result["errors"])
+            self.assertTrue(result["retention_and_secret_findings"]["passed"])
+            self.assertFalse(result["rights_privacy_audit_passed"])
+            self.assertFalse(result["snapshot_binding"]["full_unsampled_snapshot"])
+            self.assertFalse(result["snapshot_binding"]["corpus_snapshot_bound"])
+            self.assertGreaterEqual(result["classification"]["item_review_triggered_items"], 1)
+        else:
+            self.assertEqual("full_corpus", snapshot["kind"])
+            self.assertFalse(snapshot["sampled"])
+            result = json.loads(
+                (root / manifest["artifacts"]["rights_privacy_audit"]).read_text(encoding="utf-8")
+            )
+            errors = validate_audit_evidence(
+                root,
+                result,
+                require_release=result.get("rights_privacy_audit_passed") is True,
+                allow_missing_corpus_inputs=True,
+            )
+            self.assertEqual([], errors)
         for trigger in result["classification"]["triggers"].values():
             for fingerprint in trigger["example_record_fingerprints"]:
                 self.assertRegex(fingerprint, r"^sha256:[0-9a-f]{64}$")
+
+    def test_input_contract_rebuild_rejects_missing_or_changed_corpus_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            corpus, ledger = make_release(root, [{"canonical_url": "https://www.gov.uk/example"}])
+            result = audit_release(root, corpus_manifest_paths=[corpus], review_ledger_path=ledger)
+            self.assertFalse(
+                audit_contract_has_missing_corpus_inputs(root, result["audit_input_contract"])
+            )
+            rebuilt = audit_from_input_contract(root, result["audit_input_contract"])
+            self.assertEqual(result, rebuilt)
+            original = corpus.read_bytes()
+            corpus.write_bytes(original + b" ")
+            with self.assertRaisesRegex(RightsAuditError, "content differs"):
+                audit_from_input_contract(root, result["audit_input_contract"])
+            with self.assertRaisesRegex(RightsAuditError, "content differs"):
+                audit_contract_has_missing_corpus_inputs(
+                    root,
+                    result["audit_input_contract"],
+                )
+            with self.assertRaisesRegex(RightsAuditError, "content differs"):
+                rebind_audit_release(
+                    root,
+                    result,
+                    allow_missing_corpus_inputs=True,
+                )
+            corpus.write_bytes(original)
+            real_corpus = corpus.with_name("real-manifest.json")
+            corpus.rename(real_corpus)
+            corpus.symlink_to(real_corpus.name)
+            with self.assertRaisesRegex(RightsAuditError, "symbolic link"):
+                audit_from_input_contract(root, result["audit_input_contract"])
+            corpus.unlink()
+            real_corpus.rename(corpus)
+            corpus.unlink()
+            self.assertTrue(
+                audit_contract_has_missing_corpus_inputs(root, result["audit_input_contract"])
+            )
+            with self.assertRaisesRegex(RightsAuditError, "does not exist"):
+                audit_from_input_contract(root, result["audit_input_contract"])
+
+            release_path = root / "release/manifest.yaml"
+            release = json.loads(release_path.read_text(encoding="utf-8"))
+            release["release_kind"] = "machine_release_candidate"
+            write_json(release_path, release)
+            rebound = rebind_audit_release(
+                root,
+                result,
+                allow_missing_corpus_inputs=True,
+            )
+            self.assertEqual(
+                "static_archived_input_validation",
+                rebound["release_binding_refresh"]["mode"],
+            )
+            self.assertEqual(
+                [],
+                validate_audit_evidence(
+                    root,
+                    rebound,
+                    require_release=True,
+                    allow_missing_corpus_inputs=True,
+                ),
+            )
+
+    def test_input_contract_does_not_auto_adopt_a_later_review_ledger(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            corpus, _ = make_release(
+                root,
+                [{"canonical_url": "https://www.gov.uk/example"}],
+            )
+            result = audit_release(
+                root,
+                corpus_manifest_paths=[corpus],
+                auto_review_ledger=False,
+            )
+            self.assertIsNone(result["audit_input_contract"]["review_ledger"])
+            self.assertEqual(result, audit_from_input_contract(root, result["audit_input_contract"]))
 
     def test_structural_fields_trigger_but_narrative_words_do_not(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

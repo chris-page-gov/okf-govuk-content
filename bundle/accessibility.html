@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Accessibility status for the independently published What’s on GOV.UK metadata Explorer.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>Accessibility – What’s on GOV.UK</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -24,9 +24,11 @@
 
     <section aria-labelledby="status-heading">
       <h2 id="status-heading">Current test status</h2>
-      <p>The representative fixture has an automated real-browser harness for landmarks and accessible names, keyboard focus, narrow reflow, reduced motion, forced colours, contrast-relevant computed styles, hash deep links, gzip data loading and performance budgets. The current evidence checkpoint is blocked because this execution environment did not permit its localhost/browser run.</p>
-      <p>This is not a claim of WCAG 2.2 AA conformance. Automated axe testing, accessibility-expert review, screen-reader testing, full-corpus browser testing and authorised representative-user research remain open gates.</p>
-      <p><a href="evidence/fixture-browser.json">Read the snapshot-bound machine evidence</a>.</p>
+      <p>The development fixture has an automated real-browser harness for landmarks and accessible names, keyboard focus, narrow reflow, reduced motion, forced colours, contrast-relevant computed styles, hash deep links, gzip data loading and performance budgets. That historical regression evidence is not evidence about a later release corpus.</p>
+      <p>A full-corpus site is published only after separate snapshot-bound browser checks cover the same automated subset, routing, exact packed data loading and performance budgets. When this page belongs to a verified release, its exact release evidence link is resolved from the signed-off local data-plane manifest.</p>
+      <p>This is not a claim of WCAG 2.2 AA conformance. Automated testing does not replace accessibility-expert review, screen-reader testing or authorised representative-user research.</p>
+      <p><a href="evidence/fixture-browser.json">Read the historical fixture machine evidence</a>.</p>
+      <p id="current-release-evidence" hidden><a id="current-release-evidence-link" href="">Read the current snapshot-bound release browser evidence</a>.</p>
     </section>
 
     <section aria-labelledby="design-heading">
@@ -45,7 +47,7 @@
     <section aria-labelledby="limitations-heading">
       <h2 id="limitations-heading">Known limitations</h2>
       <ul>
-        <li>The complete frozen release corpus has not yet passed browser memory and latency testing.</li>
+        <li>Automated browser evidence covers a bounded technical subset; it cannot establish full assistive-technology or cognitive accessibility.</li>
         <li>No authorised participant study has been run, so the project does not claim that this is a preferred human interface.</li>
         <li>Automated checks cannot establish screen-reader usability, cognitive accessibility or full WCAG conformance.</li>
       </ul>
@@ -59,5 +61,6 @@
   <footer class="site-footer">
     <div class="page-width"><p><a href="./">Return to the Explorer</a></p></div>
   </footer>
+  <script type="module" src="accessibility-evidence.js"></script>
 </body>
 </html>

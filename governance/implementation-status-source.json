@@ -26,7 +26,7 @@
         "explorer/requirements/browser-budgets.json",
         "src/govuk_okf/discovery.py"
       ],
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending."
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending."
     },
     {
       "name": "official_source_audit_foundation",

@@ -20,11 +20,9 @@ import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable, Iterator
-
-from .util import reference_path
 from urllib.parse import urlparse
 
-from .util import canonical_json_bytes, pretty_json
+from .util import canonical_json_bytes, pretty_json, reference_path
 
 
 class RightsAuditError(RuntimeError):
@@ -219,6 +217,9 @@ VALID_REVIEW_DISPOSITIONS = {
     "excluded_from_publication",
 }
 
+RIGHTS_AUDIT_SCHEMA = "afhf-govuk-okf-rights-privacy-audit.v1"
+RIGHTS_AUDIT_INPUT_SCHEMA = "afhf-govuk-okf-rights-audit-inputs.v1"
+
 
 def _normalise_key(value: object) -> str:
     text = re.sub(r"[^a-z0-9]+", "_", str(value).casefold()).strip("_")
@@ -237,17 +238,192 @@ def _sha256_file(path: Path, ceiling: int | None = None) -> tuple[str, int]:
     return digest.hexdigest(), total
 
 
+def _contract_path(root: Path, path: Path, label: str) -> str:
+    """Return one repository-relative regular-file path for an audit contract."""
+
+    resolved_root = root.resolve()
+    try:
+        relative = path.relative_to(resolved_root) if path.is_absolute() else path
+    except ValueError as exc:
+        raise RightsAuditError(f"{label} escapes the repository: {path}") from exc
+    if not relative.parts or ".." in relative.parts:
+        raise RightsAuditError(f"{label} escapes the repository: {path}")
+    cursor = resolved_root
+    for part in relative.parts:
+        cursor /= part
+        if cursor.is_symlink():
+            raise RightsAuditError(f"{label} cannot traverse a symbolic link: {path}")
+    resolved = cursor.resolve()
+    if resolved_root not in resolved.parents:
+        raise RightsAuditError(f"{label} escapes the repository: {path}")
+    if not resolved.is_file():
+        raise RightsAuditError(f"{label} is not a regular file: {path}")
+    return relative.as_posix()
+
+
+def _bound_file(root: Path, path: Path, label: str, ceiling: int) -> dict[str, Any]:
+    relative = _contract_path(root, path, label)
+    digest, size = _sha256_file(path.resolve(), ceiling)
+    return {"path": relative, "sha256": digest, "bytes": size}
+
+
+def _release_reproduction(release: dict[str, Any]) -> dict[str, Any] | None:
+    for key in ("promotion", "promotion_contract"):
+        transition = release.get(key)
+        reproduction = transition.get("reproduction") if isinstance(transition, dict) else None
+        if isinstance(reproduction, dict):
+            return reproduction
+    return None
+
+
 def _safe_path(root: Path, relative: object, label: str) -> Path:
     if not isinstance(relative, str) or not relative:
         raise RightsAuditError(f"{label}: path must be a non-empty string")
     part = Path(relative)
     root = root.resolve()
-    target = (root / part).resolve()
-    if part.is_absolute() or ".." in part.parts or target == root or root not in target.parents:
+    if part.is_absolute() or ".." in part.parts:
+        raise RightsAuditError(f"{label}: unsafe path")
+    cursor = root
+    for component in part.parts:
+        cursor /= component
+        if cursor.is_symlink():
+            raise RightsAuditError(f"{label}: path cannot traverse a symbolic link: {relative}")
+    target = cursor.resolve()
+    if target == root or root not in target.parents:
         raise RightsAuditError(f"{label}: unsafe path")
     if not target.is_file():
         raise RightsAuditError(f"{label}: file does not exist: {relative}")
     return target
+
+
+def _load_bound_path(
+    root: Path,
+    binding: object,
+    label: str,
+    ceiling: int,
+    *,
+    allow_missing: bool,
+) -> tuple[Path | None, list[str]]:
+    errors: list[str] = []
+    if (
+        not isinstance(binding, dict)
+        or not isinstance(binding.get("path"), str)
+        or not isinstance(binding.get("bytes"), int)
+        or isinstance(binding.get("bytes"), bool)
+        or binding["bytes"] < 0
+        or not isinstance(binding.get("sha256"), str)
+        or re.fullmatch(r"[0-9a-f]{64}", binding["sha256"]) is None
+    ):
+        return None, [f"{label} binding is invalid"]
+    try:
+        path = _safe_path(root, binding["path"], label)
+    except RightsAuditError as exc:
+        # Frozen full-corpus acquisition inputs can be intentionally external
+        # after clean-room promotion, but their path/hash binding is mandatory.
+        if allow_missing and "file does not exist" in str(exc):
+            return None, []
+        return None, [str(exc)]
+    try:
+        digest, size = _sha256_file(path, ceiling)
+    except RightsAuditError as exc:
+        return None, [str(exc)]
+    if digest != binding["sha256"] or size != binding["bytes"]:
+        errors.append(f"{label} content differs from its audit input binding")
+    return path, errors
+
+
+def audit_from_input_contract(
+    root: Path,
+    contract: dict[str, Any],
+    *,
+    release_manifest_path: Path | None = None,
+    limits: AuditLimits = AuditLimits(),
+) -> dict[str, Any]:
+    """Re-run an audit from its exact, hash-bound immutable input contract."""
+
+    root = root.resolve()
+    if contract.get("schema") != RIGHTS_AUDIT_INPUT_SCHEMA:
+        raise RightsAuditError("rights audit input contract schema is invalid")
+    publication, publication_errors = _load_bound_path(
+        root,
+        contract.get("publication_manifest"),
+        "rights audit publication manifest",
+        limits.max_manifest_bytes,
+        allow_missing=False,
+    )
+    corpus_bindings = contract.get("corpus_manifests")
+    if not isinstance(corpus_bindings, list):
+        raise RightsAuditError("rights audit input contract corpus manifests are invalid")
+    corpus_paths: list[Path] = []
+    errors = list(publication_errors)
+    for ordinal, binding in enumerate(corpus_bindings):
+        path, binding_errors = _load_bound_path(
+            root,
+            binding,
+            f"rights audit corpus manifest {ordinal}",
+            limits.max_manifest_bytes,
+            allow_missing=False,
+        )
+        errors.extend(binding_errors)
+        if path is not None:
+            corpus_paths.append(path)
+    review_binding = contract.get("review_ledger")
+    review_path: Path | None = None
+    if review_binding is not None:
+        review_path, review_errors = _load_bound_path(
+            root,
+            review_binding,
+            "rights audit review ledger",
+            limits.max_manifest_bytes,
+            allow_missing=False,
+        )
+        errors.extend(review_errors)
+    generated_at = contract.get("generated_at")
+    if not isinstance(generated_at, str) or not generated_at.strip():
+        errors.append("rights audit input contract generated_at is invalid")
+    if errors or publication is None or len(corpus_paths) != len(corpus_bindings):
+        raise RightsAuditError("; ".join(errors or ["rights audit inputs are incomplete"]))
+    return audit_release(
+        root,
+        release_manifest_path=release_manifest_path,
+        publication_manifest_path=publication,
+        corpus_manifest_paths=corpus_paths,
+        review_ledger_path=review_path,
+        generated_at=generated_at,
+        auto_review_ledger=False,
+        limits=limits,
+    )
+
+
+def audit_contract_has_missing_corpus_inputs(
+    root: Path,
+    contract: dict[str, Any],
+    *,
+    limits: AuditLimits = AuditLimits(),
+) -> bool:
+    """Return whether a valid contract has intentionally absent corpus inputs."""
+
+    root = root.resolve()
+    if contract.get("schema") != RIGHTS_AUDIT_INPUT_SCHEMA:
+        raise RightsAuditError("rights audit input contract schema is invalid")
+    corpus_bindings = contract.get("corpus_manifests")
+    if not isinstance(corpus_bindings, list):
+        raise RightsAuditError("rights audit input contract corpus manifests are invalid")
+    missing = False
+    errors: list[str] = []
+    for ordinal, binding in enumerate(corpus_bindings):
+        path, binding_errors = _load_bound_path(
+            root,
+            binding,
+            f"rights audit corpus manifest {ordinal}",
+            limits.max_manifest_bytes,
+            allow_missing=True,
+        )
+        errors.extend(binding_errors)
+        missing = missing or path is None
+    if errors:
+        raise RightsAuditError("; ".join(errors))
+    return missing
 
 
 def _load_json(path: Path, ceiling: int) -> Any:
@@ -879,6 +1055,7 @@ def audit_release(
     review_ledger_path: Path | None = None,
     generated_at: str | None = None,
     review_packet_path: Path | None = None,
+    auto_review_ledger: bool = True,
     limits: AuditLimits = AuditLimits(),
 ) -> dict[str, Any]:
     """Audit one release snapshot and return deterministic machine evidence."""
@@ -926,11 +1103,41 @@ def audit_release(
     errors.extend(publication_errors)
     policy_evidence, policy_errors = _policy_evidence(root, limits)
     errors.extend(policy_errors)
-    corpus_paths = list(corpus_manifest_paths)
+    corpus_paths = [path if path.is_absolute() else root / path for path in corpus_manifest_paths]
+    corpus_input_bindings: list[dict[str, Any]] = []
+    for ordinal, path in enumerate(corpus_paths):
+        try:
+            corpus_input_bindings.append(
+                _bound_file(
+                    root,
+                    path,
+                    f"corpus manifest {ordinal}",
+                    limits.max_manifest_bytes,
+                )
+            )
+        except RightsAuditError as exc:
+            errors.append(str(exc))
     record_manifests, corpus_documents, corpus_errors = _corpus_record_manifests(
         root, corpus_paths, snapshot, limits
     )
     errors.extend(corpus_errors)
+    resolved_review_path = review_ledger_path
+    if resolved_review_path is None and auto_review_ledger:
+        candidate = root / "governance" / "rights-review-ledger.json"
+        resolved_review_path = candidate if candidate.is_file() else None
+    elif resolved_review_path is not None and not resolved_review_path.is_absolute():
+        resolved_review_path = root / resolved_review_path
+    review_input_binding: dict[str, Any] | None = None
+    if resolved_review_path is not None:
+        try:
+            review_input_binding = _bound_file(
+                root,
+                resolved_review_path,
+                "rights review ledger",
+                limits.max_manifest_bytes,
+            )
+        except RightsAuditError as exc:
+            errors.append(str(exc))
 
     files_scanned = 0
     compressed_bytes_scanned = 0
@@ -1061,11 +1268,9 @@ def audit_release(
                     errors.append(str(exc))
 
             connection.commit()
-            ledger_path = review_ledger_path
-            if ledger_path is None:
-                candidate = root / "governance" / "rights-review-ledger.json"
-                ledger_path = candidate if candidate.is_file() else None
-            review_evidence, review_errors = _load_reviews(connection, ledger_path, root, snapshot, limits)
+            review_evidence, review_errors = _load_reviews(
+                connection, resolved_review_path, root, snapshot, limits
+            )
             errors.extend(review_errors)
 
             classification_count = int(connection.execute("SELECT COUNT(*) FROM items").fetchone()[0])
@@ -1156,12 +1361,22 @@ def audit_release(
             )
             status = "passed" if audit_passed else "checkpoint"
             publication_generated_at = publication_document.get("generated_at")
+            effective_generated_at = generated_at or publication_generated_at
+            reproduction = _release_reproduction(release)
+            frozen_source_binding = (
+                reproduction.get("source_binding") if isinstance(reproduction, dict) else None
+            )
+            if full_snapshot and not isinstance(frozen_source_binding, dict):
+                errors.append("full-corpus rights audit lacks the frozen-source reproduction binding")
+                controls_passed = False
+                audit_passed = False
+                status = "checkpoint"
             result = {
-                "schema": "afhf-govuk-okf-rights-privacy-audit.v1",
+                "schema": RIGHTS_AUDIT_SCHEMA,
                 "snapshot": snapshot,
                 "snapshot_kind": snapshot_kind,
                 "sampled": sampled,
-                "generated_at": generated_at or publication_generated_at,
+                "generated_at": effective_generated_at,
                 "status": status,
                 "rights_privacy_audit_passed": audit_passed,
                 "release_eligible": audit_passed,
@@ -1190,8 +1405,21 @@ def audit_release(
                     "corpus_manifest_count": len(corpus_paths),
                     "resolved_corpus_record_manifest_count": len(record_manifests),
                     "corpus_asset_set_sha256": corpus_hash.hexdigest(),
+                    "frozen_source": frozen_source_binding,
                     "full_unsampled_snapshot": full_snapshot,
                     "corpus_snapshot_bound": corpus_bound,
+                },
+                "audit_input_contract": {
+                    "schema": RIGHTS_AUDIT_INPUT_SCHEMA,
+                    "generated_at": effective_generated_at,
+                    "publication_manifest": _bound_file(
+                        root,
+                        publication_path,
+                        "publication manifest",
+                        limits.max_manifest_bytes,
+                    ),
+                    "corpus_manifests": corpus_input_bindings,
+                    "review_ledger": review_input_binding,
                 },
                 "scan": {
                     "mode": "bounded_streaming_disk_backed",
@@ -1270,6 +1498,216 @@ def audit_release(
             return result
         finally:
             connection.close()
+
+
+def validate_audit_evidence(
+    root: Path,
+    evidence: dict[str, Any],
+    *,
+    require_release: bool = False,
+    allow_missing_corpus_inputs: bool = False,
+    limits: AuditLimits = AuditLimits(),
+) -> list[str]:
+    """Validate current control bindings without rescanning archived corpus bytes."""
+
+    root = root.resolve()
+    errors: list[str] = []
+    if evidence.get("schema") != RIGHTS_AUDIT_SCHEMA:
+        return ["rights/privacy evidence schema is invalid"]
+    contract = evidence.get("audit_input_contract")
+    binding = evidence.get("snapshot_binding")
+    if not isinstance(contract, dict) or contract.get("schema") != RIGHTS_AUDIT_INPUT_SCHEMA:
+        return ["rights/privacy evidence lacks its audit input contract"]
+    if not isinstance(binding, dict):
+        return ["rights/privacy evidence lacks snapshot bindings"]
+    try:
+        release_path = _safe_path(root, "release/manifest.yaml", "release manifest")
+        release = _load_json(release_path, limits.max_manifest_bytes)
+    except RightsAuditError as exc:
+        return [str(exc)]
+    if not isinstance(release, dict):
+        return ["release manifest must be an object"]
+    release_binding = binding.get("release_manifest")
+    expected_release = _bound_file(
+        root, release_path, "release manifest", limits.max_manifest_bytes
+    )
+    if not isinstance(release_binding, dict) or {
+        "path": release_binding.get("path"),
+        "sha256": release_binding.get("sha256"),
+    } != {
+        "path": expected_release["path"],
+        "sha256": expected_release["sha256"],
+    }:
+        errors.append("rights/privacy evidence release-manifest binding is stale")
+    publication_path, publication_errors = _load_bound_path(
+        root,
+        contract.get("publication_manifest"),
+        "rights audit publication manifest",
+        limits.max_manifest_bytes,
+        allow_missing=False,
+    )
+    errors.extend(publication_errors)
+    publication_binding = binding.get("publication_manifest")
+    contract_publication = contract.get("publication_manifest")
+    if not isinstance(publication_binding, dict) or not isinstance(contract_publication, dict) or {
+        "path": publication_binding.get("path"),
+        "sha256": publication_binding.get("sha256"),
+    } != {
+        "path": contract_publication.get("path"),
+        "sha256": contract_publication.get("sha256"),
+    }:
+        errors.append("rights/privacy publication-manifest bindings disagree")
+    if publication_path is None:
+        errors.append("rights audit publication manifest is unavailable")
+    corpus_bindings = contract.get("corpus_manifests")
+    if not isinstance(corpus_bindings, list):
+        errors.append("rights audit corpus-manifest contract is invalid")
+        corpus_bindings = []
+    for ordinal, corpus_binding in enumerate(corpus_bindings):
+        _, corpus_errors = _load_bound_path(
+            root,
+            corpus_binding,
+            f"rights audit corpus manifest {ordinal}",
+            limits.max_manifest_bytes,
+            allow_missing=allow_missing_corpus_inputs,
+        )
+        errors.extend(corpus_errors)
+    review_binding = contract.get("review_ledger")
+    if review_binding is not None:
+        _, review_errors = _load_bound_path(
+            root,
+            review_binding,
+            "rights audit review ledger",
+            limits.max_manifest_bytes,
+            allow_missing=False,
+        )
+        errors.extend(review_errors)
+        review = evidence.get("review")
+        if not isinstance(review, dict) or {
+            "path": review.get("path"),
+            "sha256": review.get("sha256"),
+        } != {
+            "path": review_binding.get("path"),
+            "sha256": review_binding.get("sha256"),
+        }:
+            errors.append("rights/privacy review-ledger bindings disagree")
+    if contract.get("generated_at") != evidence.get("generated_at"):
+        errors.append("rights/privacy generated-at differs from its audit input contract")
+    snapshot = release.get("snapshot")
+    release_snapshot = snapshot.get("id") if isinstance(snapshot, dict) else None
+    if evidence.get("snapshot") != release_snapshot:
+        errors.append("rights/privacy evidence snapshot differs from release manifest")
+    reproduction = _release_reproduction(release)
+    expected_source = (
+        reproduction.get("source_binding") if isinstance(reproduction, dict) else None
+    )
+    if binding.get("frozen_source") != expected_source:
+        errors.append("rights/privacy evidence differs from the frozen-source binding")
+    if require_release:
+        if evidence.get("rights_privacy_audit_passed") is not True:
+            errors.append("rights/privacy release audit did not pass")
+        if evidence.get("mechanical_controls_passed") is not True:
+            errors.append("rights/privacy mechanical controls did not pass")
+        if evidence.get("snapshot_kind") != "full_corpus" or evidence.get("sampled") is not False:
+            errors.append("rights/privacy evidence is not for an unsampled full corpus")
+        if binding.get("full_unsampled_snapshot") is not True:
+            errors.append("rights/privacy full-snapshot binding is false")
+        if binding.get("corpus_snapshot_bound") is not True:
+            errors.append("rights/privacy corpus binding is false")
+        if not corpus_bindings or binding.get("corpus_manifest_count") != len(corpus_bindings):
+            errors.append("rights/privacy corpus-manifest bindings are incomplete")
+    return errors
+
+
+def rebind_audit_release(
+    root: Path,
+    evidence: dict[str, Any],
+    *,
+    allow_missing_corpus_inputs: bool = False,
+    limits: AuditLimits = AuditLimits(),
+) -> dict[str, Any]:
+    """Bind completed audit findings to a release transition without rescanning them.
+
+    This path is only for a candidate/final manifest transition where the
+    publication, review ledger and every still-present corpus manifest retain
+    their immutable audit-input hashes.  Missing corpus manifests are accepted
+    only when the caller explicitly identifies them as archived external
+    inputs.  Present-but-changed inputs always fail closed.
+    """
+
+    root = root.resolve()
+    try:
+        document = json.loads(json.dumps(evidence))
+    except (TypeError, ValueError) as exc:
+        raise RightsAuditError(f"rights/privacy evidence is not JSON serializable: {exc}") from exc
+    if not isinstance(document, dict) or document.get("schema") != RIGHTS_AUDIT_SCHEMA:
+        raise RightsAuditError("rights/privacy evidence schema is invalid")
+    binding = document.get("snapshot_binding")
+    prior_release = binding.get("release_manifest") if isinstance(binding, dict) else None
+    if (
+        not isinstance(binding, dict)
+        or not isinstance(prior_release, dict)
+        or prior_release.get("path") != "release/manifest.yaml"
+        or not isinstance(prior_release.get("sha256"), str)
+        or re.fullmatch(r"[0-9a-f]{64}", prior_release["sha256"]) is None
+    ):
+        raise RightsAuditError("rights/privacy evidence has no valid prior release binding")
+    contract = document.get("audit_input_contract")
+    if not isinstance(contract, dict) or contract.get("schema") != RIGHTS_AUDIT_INPUT_SCHEMA:
+        raise RightsAuditError("rights/privacy evidence lacks its audit input contract")
+
+    corpus_bindings = contract.get("corpus_manifests")
+    if not isinstance(corpus_bindings, list):
+        raise RightsAuditError("rights audit corpus-manifest contract is invalid")
+    archived_inputs = False
+    input_errors: list[str] = []
+    for ordinal, corpus_binding in enumerate(corpus_bindings):
+        path, errors = _load_bound_path(
+            root,
+            corpus_binding,
+            f"rights audit corpus manifest {ordinal}",
+            limits.max_manifest_bytes,
+            allow_missing=allow_missing_corpus_inputs,
+        )
+        input_errors.extend(errors)
+        archived_inputs = archived_inputs or path is None
+    if input_errors:
+        raise RightsAuditError("; ".join(input_errors))
+    if archived_inputs and not allow_missing_corpus_inputs:
+        raise RightsAuditError("rights audit corpus inputs are unavailable")
+
+    release_path = _safe_path(root, "release/manifest.yaml", "release manifest")
+    release = _load_json(release_path, limits.max_manifest_bytes)
+    if not isinstance(release, dict):
+        raise RightsAuditError("release manifest must be an object")
+    release_snapshot = release.get("snapshot")
+    if (
+        not isinstance(release_snapshot, dict)
+        or release_snapshot.get("id") != document.get("snapshot")
+    ):
+        raise RightsAuditError("release transition changed the audited snapshot")
+    binding["release_manifest"] = _bound_file(
+        root, release_path, "release manifest", limits.max_manifest_bytes
+    )
+    reproduction = _release_reproduction(release)
+    binding["frozen_source"] = (
+        reproduction.get("source_binding") if isinstance(reproduction, dict) else None
+    )
+    document["release_binding_refresh"] = {
+        "mode": "static_archived_input_validation" if archived_inputs else "exact_input_validation",
+        "prior_release_manifest": prior_release,
+        "release_manifest": binding["release_manifest"],
+    }
+    errors = validate_audit_evidence(
+        root,
+        document,
+        require_release=True,
+        allow_missing_corpus_inputs=allow_missing_corpus_inputs,
+        limits=limits,
+    )
+    if errors:
+        raise RightsAuditError("rights/privacy release rebinding failed: " + "; ".join(errors))
+    return document
 
 
 def write_audit(path: Path, result: dict[str, Any]) -> None:

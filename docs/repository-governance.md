@@ -79,6 +79,13 @@ ranges, a reproducible `tar.gz`, release evidence, CycloneDX SBOM, bundle
 checksums and nested SHA-256 manifests. Its transport artifact name includes
 both tag and commit.
 
+The ordinary pull-request workflow uses the same snapshot-aware gate. It
+rebuilds only the exact development fixture; a promoted full-corpus candidate
+or final is validated from its clean-room and hash-bound archived-input
+evidence. A checkpoint or mixed state cannot select either path. Its packed
+single-pack browser regression generates a dedicated tiny fixture, while the
+tag workflow alone measures the checked full release bytes.
+
 GitHub's short-lived OIDC identity creates signed SLSA provenance attestations
 for the verified manifest, every Release asset and the exact-asset expectation.
 That expectation binds the annotated tag, its independently validated

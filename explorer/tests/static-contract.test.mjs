@@ -4,6 +4,8 @@ import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
+import { releaseEvidenceUrl } from "../src/accessibility-evidence.js";
+
 const here = dirname(fileURLToPath(import.meta.url));
 const source = join(here, "..", "src");
 
@@ -36,17 +38,31 @@ test("Pages fallback preserves state without inline executable content", async (
   assert.doesNotMatch(pages, /document\.write|innerHTML/);
 });
 
-test("accessibility statement distinguishes automated fixture evidence from conformance", async () => {
+test("accessibility statement distinguishes historical fixture and current release evidence from conformance", async () => {
   const html = await readFile(join(source, "accessibility.html"), "utf8");
   assert.match(html, /not a claim of WCAG 2\.2 AA conformance/i);
-  assert.match(html, /axe testing/i);
+  assert.match(html, /accessibility-expert review/i);
   assert.match(html, /screen-reader testing/i);
   assert.match(html, /representative-user research/i);
   assert.match(html, /evidence\/fixture-browser\.json/);
+  assert.match(html, /historical fixture machine evidence/i);
+  assert.match(html, /current snapshot-bound release browser evidence/i);
+  assert.match(html, /src="accessibility-evidence\.js"/);
+  assert.doesNotMatch(html, /current evidence checkpoint is blocked/i);
+  assert.equal(
+    releaseEvidenceUrl({
+      schema: "govuk-okf-github-release-pack-index.v1",
+      repository: "chris-page-gov/okf-govuk-content",
+      tag: "v0.1.0-rc.1"
+    }),
+    "https://github.com/chris-page-gov/okf-govuk-content/releases/download/v0.1.0-rc.1/evidence-browser-workflow.json"
+  );
+  assert.equal(releaseEvidenceUrl({ schema: "govuk-okf-github-release-pack-index.v1", repository: "other/repo", tag: "v0.1.0" }), null);
+  assert.equal(releaseEvidenceUrl({ schema: "govuk-okf-github-release-pack-index.v1", repository: "chris-page-gov/okf-govuk-content", tag: "../../latest" }), null);
 });
 
 test("application never uses executable source HTML sinks", async () => {
-  const files = await Promise.all(["app.js", "data.js", "search.worker.js"].map((name) => readFile(join(source, name), "utf8")));
+  const files = await Promise.all(["app.js", "data.js", "search.worker.js", "accessibility-evidence.js"].map((name) => readFile(join(source, name), "utf8")));
   const code = files.join("\n");
   assert.doesNotMatch(code, /\.innerHTML\s*=/);
   assert.doesNotMatch(code, /\beval\s*\(/);

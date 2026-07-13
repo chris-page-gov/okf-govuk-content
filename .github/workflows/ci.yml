@@ -31,15 +31,14 @@ jobs:
       - run: .venv/bin/python scripts/check_persona_saturation.py
       - run: .venv/bin/python scripts/build_status_projections.py --check
       - run: .venv/bin/python scripts/build_aim_scorecard.py --check
-      - run: .venv/bin/python scripts/build_bundle.py --check
+      - name: Snapshot-aware deterministic reproduction gate
+        run: .venv/bin/python scripts/check_ci_snapshot.py
       - run: .venv/bin/python scripts/check_publication.py
       - run: .venv/bin/python scripts/build_checksums.py --check
       - run: .venv/bin/python scripts/build_sbom.py --check
-      - run: .venv/bin/python scripts/reproduce_release.py --check
       - run: .venv/bin/python scripts/check_provenance.py
       - run: .venv/bin/python scripts/validate_semantics.py --require-shard-metadata --check
-      - run: .venv/bin/python scripts/audit_rights_privacy.py --check
-      - run: .venv/bin/python scripts/check_release.py
+      - run: .venv/bin/python scripts/audit_rights_privacy.py --check --allow-archived-inputs
       - run: npm test --prefix explorer
       - name: Real-browser Explorer gate
         run: npm run test:browser --prefix explorer

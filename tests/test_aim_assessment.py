@@ -20,25 +20,37 @@ SPEC.loader.exec_module(MODULE)
 
 
 class AimAssessmentTests(unittest.TestCase):
-    def test_checkpoint_scorecard_is_honest_and_gate_11_is_fail_closed(self) -> None:
+    def test_repository_scorecard_matches_checked_release_state(self) -> None:
         result = MODULE.build_assessment(ROOT)
-        self.assertIn(result["assessment_tier"], {"fixture_checkpoint", "machine_release_candidate"})
-        self.assertFalse(result["gate_11"]["passed"])
-        self.assertEqual("pending", result["gate_11"]["status"])
-        self.assertEqual(
-            {
-                "fulfilled": 0,
-                "not_fulfilled": 0,
-                "not_yet_testable": 1,
-                "partly_fulfilled": 8,
-            },
-            result["counts"]["by_status"],
-        )
+        manifest = json.loads((ROOT / "release/manifest.yaml").read_text(encoding="utf-8"))
+        status = json.loads((ROOT / "release/status.json").read_text(encoding="utf-8"))
+        publication_ready = manifest["publication_ready"] is True
+        self.assertEqual(publication_ready, result["gate_11"]["passed"])
+        self.assertEqual("passed" if publication_ready else "pending", result["gate_11"]["status"])
         statuses = {row["aim_id"]: row["status"] for row in result["aims"]}
-        self.assertEqual("not_yet_testable", statuses["AIM-004"])
-        self.assertTrue(all(statuses[item] == "partly_fulfilled" for item in statuses if item != "AIM-004"))
-        self.assertIn("E-SNAPSHOT-FULL", result["gate_11"]["unmet_check_ids"])
-        self.assertIn("E-RIGHTS-RELEASE", result["gate_11"]["unmet_check_ids"])
+        if status["human_evaluation_status"] != "completed":
+            self.assertEqual("not_yet_testable", statuses["AIM-004"])
+        if manifest["snapshot"]["kind"] == "fixture":
+            self.assertEqual("fixture_checkpoint", result["assessment_tier"])
+            self.assertEqual(
+                {
+                    "fulfilled": 0,
+                    "not_fulfilled": 0,
+                    "not_yet_testable": 1,
+                    "partly_fulfilled": 8,
+                },
+                result["counts"]["by_status"],
+            )
+            self.assertIn("E-SNAPSHOT-FULL", result["gate_11"]["unmet_check_ids"])
+            self.assertIn("E-RIGHTS-RELEASE", result["gate_11"]["unmet_check_ids"])
+        else:
+            self.assertEqual("full_corpus", manifest["snapshot"]["kind"])
+            self.assertFalse(manifest["snapshot"]["sampled"])
+            self.assertIn(result["assessment_tier"], {"machine_release_candidate", "full_programme"})
+            if publication_ready:
+                self.assertEqual([], result["gate_11"]["unmet_check_ids"])
+            else:
+                self.assertTrue(result["gate_11"]["unmet_check_ids"])
 
     def test_every_aim_has_hashed_evidence_negative_findings_and_actions(self) -> None:
         result = MODULE.build_assessment(ROOT)
@@ -74,7 +86,8 @@ class AimAssessmentTests(unittest.TestCase):
         schema = json.loads((ROOT / "governance/aim-assessment.schema.json").read_text())
         Draft202012Validator(schema).validate(document)
         markdown = first[ROOT / "reports/aim-scorecard.md"]
-        self.assertIn("Acceptance Gate 11: `pending`", markdown)
+        gate = document["gate_11"]["status"]
+        self.assertIn(f"Acceptance Gate 11: `{gate}`", markdown)
         self.assertIn("`not_yet_testable`", markdown)
 
     def test_decision_order_keeps_human_unavailable_unmerited_and_accepts_negative_results(self) -> None:

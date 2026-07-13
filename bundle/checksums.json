@@ -1,6 +1,6 @@
 {
   "algorithm": "sha256",
-  "file_count": 779,
+  "file_count": 780,
   "files": [
     {
       "bytes": 0,
@@ -13,9 +13,14 @@
       "sha256": "71d3f03ff47ef96d0304ad13b3483a4f42ba5587f470f2417c3e10bcb1082f32"
     },
     {
-      "bytes": 3705,
+      "bytes": 1317,
+      "path": "accessibility-evidence.js",
+      "sha256": "9d12200f238ad5f64bf401eca8f0c3ce9cdfe165514d92d7e14c021979700c50"
+    },
+    {
+      "bytes": 4266,
       "path": "accessibility.html",
-      "sha256": "e4d409c3a512f9804e717e9323c1ba782d0ca1966a780ca969289720de643a99"
+      "sha256": "6c2748d6fb3c41a746e9dafb0febd40b279a2c78b0c29727e7ec6ff84eb5684d"
     },
     {
       "bytes": 53052,

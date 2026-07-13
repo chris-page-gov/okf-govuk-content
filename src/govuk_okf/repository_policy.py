@@ -25,7 +25,8 @@ WORKFLOW_MARKERS = {
         "required": (
             "permissions:\n  contents: read",
             "scripts/check_repository_policy.py",
-            "scripts/check_release.py",
+            "scripts/check_ci_snapshot.py",
+            "scripts/audit_rights_privacy.py --check --allow-archived-inputs",
             "git diff --check",
         ),
         "forbidden": ("pull_request_target:", "permissions: write-all"),
@@ -37,6 +38,8 @@ WORKFLOW_MARKERS = {
             "scripts/check_repository_policy.py",
             "scripts/check_provenance.py --require-candidate",
             "scripts/check_provenance.py --require-release",
+            "scripts/check_ci_snapshot.py",
+            "scripts/audit_rights_privacy.py --check --require-release --allow-archived-inputs",
             "scripts/check_release.py --publication-ready",
             "scripts/check_release.py --finalized",
             "scripts/package_release.py",
