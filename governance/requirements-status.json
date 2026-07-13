@@ -10,10 +10,13 @@
     "requirements": 95
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "3957c0cba2852a17e05c5f9bc311fe908e5c39aba4c3b9c8b1046e6c9de24a44",
-  "interpretation": "accepted is the contract status; produced is not passed or release-verified",
+  "generated_from_sha256": "af245f24b768a5170ffbcebad303f66460d083417031404301fa4d188a614e59",
+  "interpretation": "accepted is the contract status; implementation passed is reserved for independently verified evidence at the declared milestone, while blocked human-only evidence remains visible",
   "milestone": "t0_census_closed",
   "publication_ready": false,
+  "release_id": "fixture-2026-07-11",
+  "release_kind": "fixture",
+  "release_state": "checkpoint",
   "requirements": [
     {
       "artifact_tier": "implementation_only",

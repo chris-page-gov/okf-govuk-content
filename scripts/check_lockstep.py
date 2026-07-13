@@ -9,12 +9,14 @@ import re
 import sys
 from pathlib import Path
 
-from build_status_projections import render as render_status_projections
+from build_status_projections import (
+    load_release_state,
+    render as render_status_projections,
+)
 from build_aim_scorecard import render as render_aim_scorecard
 from check_provenance import (
     ProvenanceError,
     build_validation_document as build_provenance_validation,
-    validate_all as validate_provenance,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -61,8 +63,35 @@ REQUIRED = [
 ]
 
 
+def provenance_validation_flags(release_state: str) -> dict[str, bool]:
+    if release_state == "checkpoint":
+        return {"require_candidate": False, "require_release": False}
+    if release_state == "candidate":
+        return {"require_candidate": True, "require_release": False}
+    if release_state == "release":
+        return {"require_candidate": False, "require_release": True}
+    raise ValueError(f"unsupported release state for provenance: {release_state}")
+
+
+def load_json_document(path: Path, label: str, errors: list[str]) -> dict[str, object]:
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        errors.append(f"{label}: {exc}")
+        return {}
+    if not isinstance(value, dict):
+        errors.append(f"{label} must contain an object")
+        return {}
+    return value
+
+
 def main() -> int:
     errors = [f"missing required lockstep file: {path}" for path in REQUIRED if not (ROOT / path).is_file()]
+    release_control = None
+    try:
+        release_control = load_release_state(ROOT)
+    except (OSError, TypeError, ValueError, json.JSONDecodeError) as exc:
+        errors.append(f"release state: {exc}")
     requirements_path = ROOT / "governance" / "requirements.yaml"
     trace_path = ROOT / "governance" / "traceability.json"
     if requirements_path.is_file():
@@ -140,42 +169,90 @@ def main() -> int:
     if len(contracts) != len(dag["tasks"]):
         errors.append(f"task-contract count {len(contracts)} does not match DAG task count {len(dag['tasks'])}")
 
-    for path, expected in render_status_projections().items():
+    try:
+        status_projections = render_status_projections(ROOT)
+    except (KeyError, OSError, TypeError, ValueError, json.JSONDecodeError) as exc:
+        status_projections = {}
+        errors.append(f"status projections: {exc}")
+    for path, expected in status_projections.items():
         if not path.is_file() or path.read_text(encoding="utf-8") != expected:
             errors.append(f"{path.relative_to(ROOT)} is missing or stale")
     for path, expected in render_aim_scorecard(ROOT).items():
         if not path.is_file() or path.read_text(encoding="utf-8") != expected:
             errors.append(f"{path.relative_to(ROOT)} is missing or stale")
 
-    requirement_status = json.loads((ROOT / "governance" / "requirements-status.json").read_text(encoding="utf-8"))
-    trace_status = json.loads((ROOT / "governance" / "traceability-status.json").read_text(encoding="utf-8"))
-    task_status = json.loads((ROOT / "governance" / "task-status.json").read_text(encoding="utf-8"))
+    requirement_status = load_json_document(
+        ROOT / "governance" / "requirements-status.json",
+        "requirements status",
+        errors,
+    )
+    trace_status = load_json_document(
+        ROOT / "governance" / "traceability-status.json",
+        "traceability status",
+        errors,
+    )
+    task_status = load_json_document(
+        ROOT / "governance" / "task-status.json",
+        "task status",
+        errors,
+    )
     if requirement_status.get("counts", {}).get("requirements") != 95:
         errors.append("requirements status does not cover all 95 requirements")
-    if requirement_status.get("counts", {}).get("passed") != 0 or requirement_status.get("publication_ready") is not False:
-        errors.append("pre-release requirement status makes a passing or publication-ready claim")
     if trace_status.get("counts", {}).get("clauses") != 21:
         errors.append("traceability status does not cover all 21 controlling clauses")
     if task_status.get("counts", {}).get("tasks") != len(contracts):
         errors.append("task status does not cover every task contract")
-    if task_status.get("counts", {}).get("accepted") != 0:
-        errors.append("pre-release task status makes an accepted-task claim")
+    if release_control is not None:
+        for label, document in (
+            ("requirements", requirement_status),
+            ("traceability", trace_status),
+            ("tasks", task_status),
+        ):
+            if document.get("release_state") != release_control["release_state"]:
+                errors.append(f"{label} status does not match the checked release state")
+            if document.get("release_kind") != release_control["release_kind"]:
+                errors.append(f"{label} status does not match the checked release kind")
+            if document.get("release_id") != release_control["release_id"]:
+                errors.append(f"{label} status does not match the checked release ID")
+            if document.get("publication_ready") is not release_control["publication_ready"]:
+                errors.append(f"{label} status does not match publication readiness")
+        if release_control["human_evaluation_status"] != "completed":
+            requirement_rows = {
+                row.get("requirement_id"): row for row in requirement_status.get("requirements", [])
+            }
+            task_rows = {row.get("task_id"): row for row in task_status.get("tasks", [])}
+            if requirement_rows.get("REQ-077", {}).get("implementation_status") != "blocked":
+                errors.append("REQ-077 is not blocked while human evaluation is unavailable")
+            if task_rows.get("E3-01", {}).get("implementation_status") != "blocked":
+                errors.append("E3-01 is not blocked while human evaluation is unavailable")
 
-    try:
-        provenance_summary = validate_provenance()
-    except ProvenanceError as exc:
-        errors.extend(f"provenance: {line}" for line in str(exc).splitlines())
-    else:
-        if provenance_summary["ledger"].get("external_paid_model_api_calls") != 0:
-            errors.append("provenance ledger records external paid model calls despite zero authority")
-        release_status_path = ROOT / "release" / "status.json"
-        provenance_evidence_path = ROOT / "release" / "provenance-validation.json"
-        if release_status_path.is_file() and provenance_evidence_path.is_file():
-            release_status = json.loads(release_status_path.read_text(encoding="utf-8"))
-            expected_provenance = build_provenance_validation(snapshot=release_status.get("release_id", ""))
-            actual_provenance = json.loads(provenance_evidence_path.read_text(encoding="utf-8"))
-            if actual_provenance != expected_provenance:
-                errors.append("release/provenance-validation.json is stale")
+        try:
+            provenance_flags = provenance_validation_flags(
+                str(release_control["release_state"])
+            )
+            expected_provenance = build_provenance_validation(
+                snapshot=release_control["release_id"],
+                **provenance_flags,
+            )
+        except (ProvenanceError, ValueError) as exc:
+            errors.extend(f"provenance: {line}" for line in str(exc).splitlines())
+        else:
+            if expected_provenance.get("provenance_validation_passed") is not True:
+                validation_errors = expected_provenance.get("validation_errors", [])
+                if validation_errors:
+                    errors.extend(f"provenance: {line}" for line in validation_errors)
+                else:
+                    errors.append("state-aware provenance validation did not pass")
+            if expected_provenance.get("external_paid_model_usage", {}).get("api_calls") != 0:
+                errors.append("provenance ledger records external paid model calls despite zero authority")
+            provenance_evidence_path = ROOT / "release" / "provenance-validation.json"
+            if provenance_evidence_path.is_file():
+                actual_provenance = json.loads(provenance_evidence_path.read_text(encoding="utf-8"))
+                if actual_provenance != expected_provenance:
+                    errors.append(
+                        "release/provenance-validation.json is stale for the checked "
+                        f"{release_control['release_state']} state"
+                    )
 
     changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
     if "execution contract" not in changelog or "requirements" not in changelog:
@@ -192,9 +269,12 @@ def main() -> int:
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
+    assert release_control is not None
     print(
         f"lockstep validated: 95 requirements, 21 clauses, 11 gates, "
-        f"{len(contracts)} task contracts; pre-release passes=0"
+        f"{len(contracts)} task contracts; state={release_control['release_state']}, "
+        f"passed={requirement_status['counts']['passed']}, "
+        f"accepted={task_status['counts']['accepted']}"
     )
     return 0
 

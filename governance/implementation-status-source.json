@@ -2,11 +2,16 @@
   "schema_version": 1,
   "as_of": "2026-07-13",
   "milestone": "t0_census_closed",
-  "publication_ready": false,
+  "publication_readiness_source": [
+    "release/manifest.yaml",
+    "release/status.json"
+  ],
   "status_vocabulary": {
+    "passed": "Independent evidence satisfies the requirement at the declared machine or full-programme milestone.",
     "produced": "A foundation artefact exists, but its release acceptance gate has not been passed.",
     "in_progress": "Implementation or evidence remains incomplete for the release contract.",
-    "blocked": "The remaining work requires authority that has not been granted."
+    "blocked": "The remaining work requires authority that has not been granted.",
+    "accepted": "The task contract promotion gate has passed with terminal evidence for the declared milestone."
   },
   "requirement_status_groups": [
     {

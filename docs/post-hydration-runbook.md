@@ -203,8 +203,18 @@ traceability and task projections, `docs/implementation-status.md`, the root
 and release READMEs, the post-hydration/reproducibility/governance runbooks and
 `CHANGELOG.md`. Record only evidence that exists for the exact snapshot; retain
 human research as `not_authorised` and UI-of-choice as `not_yet_testable`.
+The staged manifest is a `full_corpus_checkpoint`, so set the source
+`milestone` to that exact value; leaving `t0_census_closed` is a lockstep
+failure.
+
+Any terminal rows appended so far change the activity-ledger hash. Regenerate
+the snapshot-bound checkpoint provenance before asking lockstep to compare the
+checked evidence with the live ledger:
 
 ```sh
+.venv/bin/python scripts/check_provenance.py \
+  --snapshot "$RELEASE_ID" \
+  --output release/provenance-validation.json
 .venv/bin/python scripts/build_status_projections.py
 .venv/bin/python scripts/build_status_projections.py --check
 .venv/bin/python scripts/build_aim_scorecard.py
@@ -245,6 +255,22 @@ request checkpoint with a final snapshot equal to the live shared counter.
 Append `ACT-F2-SOURCE-REQUEST-BUDGET-TERMINAL-001` only after its count equals
 that final snapshot. Never fold citation attempts into model cost.
 
+After every pre-promotion terminal above is present, regenerate checkpoint-mode
+provenance one final time and rerun the generated status, aim and lockstep
+checks. This is the evidence state that promotion consumes; using the earlier
+pre-scan ledger hash is forbidden.
+
+```sh
+.venv/bin/python scripts/check_provenance.py \
+  --snapshot "$RELEASE_ID" \
+  --output release/provenance-validation.json
+.venv/bin/python scripts/build_status_projections.py
+.venv/bin/python scripts/build_status_projections.py --check
+.venv/bin/python scripts/build_aim_scorecard.py
+.venv/bin/python scripts/build_aim_scorecard.py --check
+.venv/bin/python scripts/check_lockstep.py
+```
+
 ## 6. Promote, publish and finalize
 
 Before promotion, the ledger must satisfy every candidate terminal except the
@@ -259,6 +285,31 @@ back rights evidence and every other control artefact.
 .venv/bin/python scripts/promote_release.py promote
 .venv/bin/python scripts/check_release.py --publication-ready
 ```
+
+Promotion changes the authoritative manifest/status state from checkpoint to
+candidate. Before committing or tagging the candidate, update
+`governance/implementation-status-source.json` to terminal requirement
+dispositions, set `milestone` to `machine_release_candidate`, and record the
+exact accepted/blocked task set. Exactly `REQ-069`, `REQ-070`, `REQ-073`,
+`REQ-074` and `REQ-077` remain blocked; the other 90 requirements pass. Every
+accepted task must cite a nonempty, deduplicated list, and the accepted tasks
+collectively cite all ten declared candidate terminal activities. The ledger
+must be schema-valid and hash-chained; each cited terminal has an exact
+completion time, complete validation, final request disposition, non-pending
+hash-bound outputs and its declared snapshot binding.
+`E3-01`, `F1-01`, `F2-02` and `F2-03` remain blocked while human research is
+not authorised. Regenerate and validate every dependent projection:
+
+```sh
+.venv/bin/python scripts/build_status_projections.py
+.venv/bin/python scripts/build_status_projections.py --check
+.venv/bin/python scripts/build_aim_scorecard.py
+.venv/bin/python scripts/build_aim_scorecard.py --check
+.venv/bin/python scripts/check_lockstep.py
+```
+
+The initial candidate tag is the annotated `v0.1.0-rc.1` tag. Do not use the
+future `v1.0.0` series for this first release.
 
 Publish the exact verified candidate commit and bytes through the release and
 Pages workflows, verify the live Pages snapshot, and open the normal OKF
@@ -275,6 +326,24 @@ main read-back, candidate tag/release, Pages and registry-PR evidence.
 .venv/bin/python scripts/check_release.py --finalized
 ```
 
+Finalization changes the authoritative state from candidate to release and
+therefore makes all three status projections stale even when their substantive
+machine dispositions are unchanged. Regenerate the status and aim projections,
+set the implementation-status source milestone to `machine_release_finalized`,
+add `ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001` to the terminal-activity mapping
+for the accepted task group so its union is the exact 11-event final contract,
+then run lockstep, commit those finalized controls, and only then create the
+annotated final `v0.1.0` tag:
+
+```sh
+.venv/bin/python scripts/build_status_projections.py
+.venv/bin/python scripts/build_status_projections.py --check
+.venv/bin/python scripts/build_aim_scorecard.py
+.venv/bin/python scripts/build_aim_scorecard.py --check
+.venv/bin/python scripts/check_lockstep.py
+.venv/bin/python scripts/check_release.py --finalized
+```
+
 Finalization repeats the manifest -> rights -> provenance -> aim order inside
 the same rollback transaction. If hydrated corpus manifests have been archived
 outside Git, fresh CI/release checkouts use
@@ -283,6 +352,12 @@ outside Git, fresh CI/release checkouts use
 missing corpus inputs only when the original path/byte/hash contract remains
 complete. They never accept a changed input or represent static validation as a
 new scan.
+
+A later full-programme release is a separate transition. It cannot reuse the
+machine terminal set as human evidence: it requires explicit study authority,
+the snapshot-bound `ACT-E3-FULL-PROGRAMME-TERMINAL-001` declared in
+`provenance/reproduction-declarations.json`, all 95 requirements passed, all 36
+tasks accepted and source milestone `full_programme_complete`.
 
 The final tag and GitHub Release must use the already verified bytes; no
 publication workflow may rebuild the bundle. Recheck the final release assets,

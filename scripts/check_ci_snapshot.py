@@ -47,19 +47,19 @@ def snapshot_mode(manifest: dict[str, object]) -> str:
     release_kind = manifest.get("release_kind")
     if kind == "fixture" and sampled is True and release_kind == "fixture":
         return "fixture"
-    if (
-        kind == "full_corpus"
-        and sampled is False
-        and release_kind == "machine_release_candidate"
-        and manifest.get("publication_ready") is True
-    ):
+    if kind == "full_corpus" and sampled is False and manifest.get("publication_ready") is True:
         promotion = manifest.get("promotion")
         if not isinstance(promotion, dict) or promotion.get("finalized") not in {False, True}:
-            raise SnapshotCheckError("full-corpus candidate has no valid promotion state")
-        return "finalized" if promotion["finalized"] else "candidate"
+            raise SnapshotCheckError("full-corpus release has no valid promotion state")
+        if release_kind == "machine_release_candidate":
+            return "finalized" if promotion["finalized"] else "candidate"
+        if release_kind == "full_programme" and promotion["finalized"] is True:
+            return "finalized"
+        if release_kind == "full_programme":
+            raise SnapshotCheckError("full-programme release is not promotion-finalized")
     raise SnapshotCheckError(
         "CI snapshot dispatch accepts only the exact development fixture or a promoted "
-        "unsampled full-corpus candidate/final"
+        "unsampled full-corpus machine candidate/final or full-programme final"
     )
 
 

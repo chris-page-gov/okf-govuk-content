@@ -39,6 +39,13 @@ projections. Their `accepted` value means “accepted as an obligation”, not
   requirement onto all 21 controlling clauses;
 - `governance/task-status.json` covers all 36 task contracts.
 
+Release identity, kind, checkpoint/candidate/release state and publication
+readiness are derived exclusively from the jointly validated
+`release/manifest.yaml` and `release/status.json` controls. They are not
+declared a second time in the implementation source. The generator fails
+closed on mixed IDs, schemas, snapshot kinds, sampled flags, readiness or
+promotion-finalization state.
+
 Regenerate and verify them with:
 
 ```sh
@@ -50,6 +57,28 @@ python3 scripts/check_lockstep.py
 At this checkpoint no requirement, clause, task or release gate is represented
 as passed. `produced` means that a foundation artefact exists; it does not mean
 the task was promoted or independently verified.
+
+At a machine candidate or finalized machine release, every requirement must
+have a terminal `passed` or `blocked` disposition. The five requirements owned
+by the directly human-gated `E3-01` contract (`REQ-069`, `REQ-070`, `REQ-073`,
+`REQ-074` and `REQ-077`) remain blocked, so the exact machine disposition is 90
+passed and five blocked. Every task outside the human-gated dependency closure
+must be `accepted`; `E3-01` and its dependent full-programme tasks `F1-01`,
+`F2-02` and `F2-03` remain `blocked` while participant research is not
+authorised. Accepted tasks must collectively cite the exact declared candidate
+or release terminal set. Those rows must pass the activity schema and hash
+chain, have exact completion times, complete validation, final request usage,
+non-pending hash-bound outputs and the declaration-required snapshot binding.
+A full-programme release additionally requires the declared
+`ACT-E3-FULL-PROGRAMME-TERMINAL-001`, all 95 requirements passed, all 36 tasks
+accepted, finalized promotion and completed human evaluation. Traceability
+clauses continue to show the least-advanced status of their mapped
+requirements.
+
+The source milestone is coupled to the manifest/status transition:
+`t0_census_closed`, `full_corpus_checkpoint`, `machine_release_candidate`,
+`machine_release_finalized` or `full_programme_complete`. A stale milestone
+fails projection generation.
 
 ## Active blockers and constraints
 
