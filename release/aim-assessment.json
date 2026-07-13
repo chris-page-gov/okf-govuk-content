@@ -1217,7 +1217,7 @@
           "operator": "json_equals",
           "path": "governance/requirements-status.json",
           "pointer": "/counts/requirements",
-          "sha256": "322fe2fa0c6b53d1940bc006c96168b7f93e5a131ef6dfd4db97520bdd1b200c"
+          "sha256": "9d51b75ad2d9d465501757158f2a72c77d6ccfc47d86b0de15b32fe807ece3aa"
         },
         {
           "check_id": "E-TRACEABILITY-COVERAGE",
@@ -1228,7 +1228,7 @@
           "operator": "json_equals",
           "path": "governance/traceability-status.json",
           "pointer": "/counts/clauses",
-          "sha256": "dbeddc192faa4da89e94cb3b369ad591025eeae86c3af1d37caca461648ea852"
+          "sha256": "7d0d42d1986d7cb64252ebaf906ad15a752d4dff0719dce74a1e2497675c750f"
         },
         {
           "check_id": "E-CLEAN-ROOM-FIXTURE",

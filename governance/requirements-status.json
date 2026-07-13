@@ -10,7 +10,7 @@
     "requirements": 95
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "44f19edd5b237469fff77524f2dcca9d5bf64635793e47f76138695db629664f",
+  "generated_from_sha256": "998efe5313e9a057224a9e41dce020f6950826b99833dcfe7804f7c47846876f",
   "interpretation": "accepted is the contract status; produced is not passed or release-verified",
   "milestone": "t0_census_closed",
   "publication_ready": false,
@@ -175,6 +175,7 @@
       "evidence": [
         "scripts/acquire_corpus.py",
         "scripts/hydrate_corpus.py",
+        "src/govuk_okf/hydration.py",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
@@ -182,7 +183,7 @@
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, clears redundant completed inputs, reserves SQLite writes and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-009"
     },
     {
@@ -196,6 +197,7 @@
       "evidence": [
         "scripts/acquire_corpus.py",
         "scripts/hydrate_corpus.py",
+        "src/govuk_okf/hydration.py",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
@@ -203,7 +205,7 @@
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, clears redundant completed inputs, reserves SQLite writes and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-010"
     },
     {
@@ -619,6 +621,7 @@
       "evidence": [
         "scripts/acquire_corpus.py",
         "scripts/hydrate_corpus.py",
+        "src/govuk_okf/hydration.py",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
@@ -626,7 +629,7 @@
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, clears redundant completed inputs, reserves SQLite writes and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-033"
     },
     {
@@ -639,6 +642,7 @@
       "evidence": [
         "scripts/acquire_corpus.py",
         "scripts/hydrate_corpus.py",
+        "src/govuk_okf/hydration.py",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
@@ -646,7 +650,7 @@
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, clears redundant completed inputs, reserves SQLite writes and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-034"
     },
     {
@@ -905,6 +909,7 @@
       "evidence": [
         "scripts/acquire_corpus.py",
         "scripts/hydrate_corpus.py",
+        "src/govuk_okf/hydration.py",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
@@ -912,7 +917,7 @@
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, clears redundant completed inputs, reserves SQLite writes and verifies durable exports before transient cleanup. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-048"
     },
     {
