@@ -176,6 +176,27 @@ class AcquisitionTests(unittest.TestCase):
             self.assertEqual([2, 2, 1], [row["records"] for row in first["shards"]])
             self.assertTrue(all(row["bytes"] < 50 * 1024 * 1024 for row in first["shards"]))
 
+    def test_shard_writer_admits_each_file_before_creating_it(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            calls: list[tuple[str, int]] = []
+
+            def before_write(path: Path, pending_bytes: int) -> None:
+                self.assertFalse(path.exists())
+                self.assertGreater(pending_bytes, 0)
+                calls.append((path.name, pending_bytes))
+
+            write_jsonl_gzip_shards(
+                Path(directory),
+                "records",
+                [{"id": "a"}, {"id": "b"}],
+                max_records=1,
+                before_write=before_write,
+            )
+            self.assertEqual(
+                ["part-00000.jsonl.gz", "part-00001.jsonl.gz", "index.json"],
+                [name for name, _pending_bytes in calls],
+            )
+
     def test_shared_request_budget_fails_closed_before_exceeding_ceiling(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             ledger = Path(directory) / "official.count"

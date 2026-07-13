@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 import gzip
 import json
+import sqlite3
 import tempfile
 import unittest
 from pathlib import Path
@@ -230,6 +231,107 @@ class RenderedGapTests(unittest.TestCase):
             self.assertEqual(1, proof["unsampled_records"])
             self.assertEqual(1, proof["status_counts"]["not_selected_by_bounded_detector"])
             self.assertEqual(1_000_000, proof["request_accounting"]["programme_ceiling"])
+
+    def test_rendered_proof_failure_rolls_back_base_export_and_controls(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "corpus/inventory/T0-source-records.jsonl.gz"
+            source.parent.mkdir(parents=True)
+            with gzip.open(source, "wt", encoding="utf-8") as stream:
+                stream.write(
+                    json.dumps(
+                        {
+                            "candidate_key": "root",
+                            "entity_class": "route",
+                            "source_native_id": "https://www.gov.uk/",
+                            "source_id": "govuk-sitemap",
+                            "source_memberships": ["sitemap"],
+                            "coverage_disposition": "represented",
+                            "canonical_url": "https://www.gov.uk/",
+                            "base_path": "/",
+                            "title": "GOV.UK",
+                            "document_type": "homepage",
+                            "schema_name": "homepage",
+                            "locale": "en",
+                            "links": {},
+                        }
+                    )
+                    + "\n"
+                )
+
+            def observation(url: str, **_: object):
+                if url.endswith("/robots.txt"):
+                    body, content_type = b"User-agent: *\n", "text/plain"
+                elif "/api/content" in url:
+                    body = json.dumps(
+                        {
+                            "content_id": "root-id",
+                            "base_path": "/",
+                            "title": "GOV.UK",
+                            "document_type": "homepage",
+                            "schema_name": "homepage",
+                            "locale": "en",
+                            "links": {},
+                        }
+                    ).encode()
+                    content_type = "application/json"
+                else:
+                    body, content_type = b"<html><body></body></html>", "text/html"
+                return body, {
+                    "ok": True,
+                    "status": 200,
+                    "partial": False,
+                    "requested_url": url,
+                    "final_url": url,
+                    "retrieved_at": "2026-07-13T00:00:00Z",
+                    "sha256": "f" * 64,
+                    "headers": {"content-type": content_type},
+                    "acquisition_attempt": 1,
+                }
+
+            hydrator = CompleteCorpusHydrator(
+                root,
+                "T0",
+                source,
+                requests_per_second=100000,
+                rendered_requests_per_second=100000,
+                retained_storage_bytes=1024**3,
+            )
+            with patch("govuk_okf.closure_hydration.request_observation", side_effect=observation), patch(
+                "govuk_okf.hydration.request_observation", side_effect=observation
+            ):
+                self.assertTrue(hydrator.run()["closed"])
+            with sqlite3.connect(hydrator.database_path) as connection:
+                row = connection.execute("SELECT url, locale, record_json FROM queue").fetchone()
+                record = json.loads(row[2])
+                record["rendered_observation"]["retained_body_bytes"] = 1
+                connection.execute(
+                    "UPDATE queue SET record_json=? WHERE url=? AND locale=?",
+                    (json.dumps(record, sort_keys=True), row[0], row[1]),
+                )
+
+            old_manifest = "previous manifest\n"
+            old_reconciliation = "previous reconciliation\n"
+            hydrator.records_root.mkdir(parents=True, exist_ok=True)
+            hydrator.reconciliation_root.mkdir(parents=True, exist_ok=True)
+            manifest_path = hydrator.records_root / "manifest.json"
+            reconciliation_path = hydrator.reconciliation_root / "T0-hydrated.json"
+            manifest_path.write_text(old_manifest, encoding="utf-8")
+            reconciliation_path.write_text(old_reconciliation, encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "retained body bytes"):
+                hydrator.export()
+            self.assertEqual(old_manifest, manifest_path.read_text(encoding="utf-8"))
+            self.assertEqual(
+                old_reconciliation,
+                reconciliation_path.read_text(encoding="utf-8"),
+            )
+            self.assertFalse(any(hydrator.records_root.glob("source-records-*")))
+            self.assertFalse(
+                any((hydrator.inventory_root / hydrator.label).glob("hydrated-candidates-*"))
+            )
+            with sqlite3.connect(hydrator.database_path) as connection:
+                self.assertEqual(0, connection.execute("SELECT COUNT(*) FROM candidates").fetchone()[0])
 
     def test_storage_ceiling_stops_before_robots_request(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
