@@ -10,6 +10,7 @@ import unittest
 from email.message import Message
 from pathlib import Path
 from urllib.request import Request
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -18,8 +19,12 @@ import sys
 sys.path.insert(0, str(ROOT / "src"))
 
 from govuk_okf.webprobe import (  # noqa: E402
+    PinnedHTTPSConnection,
+    PolicyHTTPSHandler,
     PolicyRedirectHandler,
+    Probe,
     _bounded_gzip_decompress,
+    fetch_probe,
     validate_public_https_url,
 )
 
@@ -128,6 +133,115 @@ class SourcePreflightTests(unittest.TestCase):
                 allowed_hosts=("example.test",),
                 resolver=lambda *_args, **_kwargs: public_answer,
             )
+
+    def test_probe_requires_an_explicit_host_policy(self) -> None:
+        with self.assertRaisesRegex(ValueError, "approved host"):
+            Probe("missing-policy", "https://example.test/", "test")
+
+    def test_tls_connection_reuses_the_validated_public_dns_answer(self) -> None:
+        public_answer = [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("93.184.216.34", 443))]
+        private_answer = [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("169.254.169.254", 443))]
+        events: dict[str, object] = {"resolver_calls": 0}
+
+        def resolver(*_args: object, **_kwargs: object) -> list[tuple[object, ...]]:
+            events["resolver_calls"] = int(events["resolver_calls"]) + 1
+            return public_answer if events["resolver_calls"] == 1 else private_answer
+
+        class FakeSocket:
+            def settimeout(self, timeout: object) -> None:
+                events["timeout"] = timeout
+
+            def bind(self, address: object) -> None:
+                events["bound"] = address
+
+            def connect(self, address: object) -> None:
+                events["connected"] = address
+
+            def setsockopt(self, *_args: object) -> None:
+                return None
+
+            def close(self) -> None:
+                events["closed"] = True
+
+        class FakeContext:
+            def wrap_socket(self, value: FakeSocket, *, server_hostname: str) -> FakeSocket:
+                events["server_hostname"] = server_hostname
+                return value
+
+        connection = PinnedHTTPSConnection(
+            "example.test",
+            timeout=30,
+            context=FakeContext(),
+            allowed_hosts=("example.test",),
+            resolver=resolver,
+            socket_factory=lambda *_args: FakeSocket(),
+        )
+        connection.connect()
+        self.assertEqual(events["resolver_calls"], 1)
+        self.assertEqual(events["connected"], ("93.184.216.34", 443))
+        self.assertEqual(events["server_hostname"], "example.test")
+
+    def test_tls_connection_rejects_private_connection_time_dns(self) -> None:
+        private_answer = [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("169.254.169.254", 443))]
+        connection = PinnedHTTPSConnection(
+            "example.test",
+            timeout=30,
+            allowed_hosts=("example.test",),
+            resolver=lambda *_args, **_kwargs: private_answer,
+        )
+        with self.assertRaisesRegex(ValueError, "not public"):
+            connection.connect()
+
+    def test_fetch_probe_disables_proxies_and_reuses_policy_resolver(self) -> None:
+        public_answer = [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("93.184.216.34", 443))]
+        resolver = lambda *_args, **_kwargs: public_answer
+        captured: dict[str, object] = {}
+
+        class FakeResponse:
+            status = 200
+            headers = Message()
+
+            def __enter__(self) -> "FakeResponse":
+                return self
+
+            def __exit__(self, *_args: object) -> None:
+                return None
+
+            def read(self, _limit: int) -> bytes:
+                return b"ok"
+
+            def geturl(self) -> str:
+                return "https://example.test/"
+
+        class FakeOpener:
+            def open(self, _request: Request, timeout: int) -> FakeResponse:
+                captured["timeout"] = timeout
+                return FakeResponse()
+
+        def fake_build_opener(*handlers: object) -> FakeOpener:
+            captured["handlers"] = handlers
+            return FakeOpener()
+
+        with patch("govuk_okf.webprobe.build_opener", side_effect=fake_build_opener):
+            result = fetch_probe(
+                Probe(
+                    "policy-wiring",
+                    "https://example.test/",
+                    "test",
+                    allowed_hosts=("example.test",),
+                ),
+                attempts=1,
+                resolver=resolver,
+            )
+        self.assertTrue(result["ok"])
+        handlers = captured["handlers"]
+        proxy_handler = next(handler for handler in handlers if hasattr(handler, "proxies"))
+        https_handler = next(handler for handler in handlers if isinstance(handler, PolicyHTTPSHandler))
+        redirect_handler = next(handler for handler in handlers if isinstance(handler, PolicyRedirectHandler))
+        self.assertEqual(proxy_handler.proxies, {})
+        self.assertIs(https_handler.resolver, resolver)
+        self.assertIs(redirect_handler.resolver, resolver)
+        self.assertEqual(captured["timeout"], 30)
 
     def test_redirect_policy_revalidates_each_hop_before_request_creation(self) -> None:
         public_answer = [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("93.184.216.34", 443))]

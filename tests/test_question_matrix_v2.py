@@ -15,7 +15,13 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from govuk_okf.question_matrix_v2 import reconciliation_release_errors, release_prerequisites
-from govuk_okf.question_matrix_v2_validator import trusted_release_errors
+from govuk_okf.question_matrix_v2_validator import (
+    Validation,
+    load_control_json,
+    resolve_matrix_artifact,
+    trusted_release_errors,
+    verify,
+)
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -101,6 +107,49 @@ class QuestionMatrixV2Tests(unittest.TestCase):
         question = read_jsonl(first_binding)[0]
         self.assertEqual(question["persona_saturation_sha256"], saturation_sha256)
         self.assertEqual(len(question["coverage_dimensions"]), 11)
+
+    def test_matrix_artifact_paths_fail_closed_before_out_of_root_io(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            parent = Path(temporary)
+            matrix = parent / "matrix"
+            matrix.mkdir()
+            outside = parent / "outside.json"
+            outside.write_text('{"sentinel":true}\n', encoding="utf-8")
+            (matrix / "linked.json").symlink_to(outside)
+            for value in ("../outside.json", str(outside), "linked.json"):
+                validation = Validation()
+                self.assertIsNone(
+                    resolve_matrix_artifact(matrix, value, validation, "persona_saturation_path_safe")
+                )
+                self.assertEqual(validation.error_count, 1)
+                self.assertIn("persona_saturation_path_safe", validation.errors[0])
+
+    def test_full_verifier_does_not_read_unsafe_matrix_reference(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            parent = Path(temporary)
+            matrix = parent / "matrix"
+            shutil.copytree(self.matrix, matrix)
+            outside = parent / "outside.json"
+            outside.write_text('{"sentinel":true}\n', encoding="utf-8")
+            contract_path = matrix / "contract.json"
+            contract = json.loads(contract_path.read_text(encoding="utf-8"))
+            contract["persona_saturation"]["path"] = "../outside.json"
+            contract_path.write_text(json.dumps(contract), encoding="utf-8")
+            loaded: list[Path] = []
+
+            def recording_loader(path: Path) -> dict[str, Any]:
+                loaded.append(path.resolve())
+                return load_control_json(path)
+
+            with unittest.mock.patch(
+                "govuk_okf.question_matrix_v2_validator.load_control_json",
+                side_effect=recording_loader,
+            ):
+                report = verify(matrix, self.corpus)
+            self.assertTrue(
+                any(error.startswith("persona_saturation_path_safe:") for error in report["errors"])
+            )
+            self.assertNotIn(outside.resolve(), loaded)
 
     def test_every_story_has_a_concrete_hundred_question_matrix(self) -> None:
         titles = {json.loads(line)["title"] for line in self.corpus.read_text(encoding="utf-8").splitlines() if line}

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import gzip
 import hashlib
+import http.client
 import io
 import ipaddress
 import socket
@@ -14,7 +15,13 @@ from email.message import Message
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin, urlsplit
-from urllib.request import HTTPRedirectHandler, Request, build_opener
+from urllib.request import (
+    HTTPRedirectHandler,
+    HTTPSHandler,
+    ProxyHandler,
+    Request,
+    build_opener,
+)
 
 USER_AGENT = "govuk-okf/0.1 (+https://github.com/chris-page-gov/okf-govuk-content)"
 MAX_BYTES = 8 * 1024 * 1024
@@ -29,12 +36,57 @@ class Probe:
     max_bytes: int = MAX_BYTES
     allowed_hosts: tuple[str, ...] = ()
 
+    def __post_init__(self) -> None:
+        if not self.allowed_hosts:
+            raise ValueError("probe requires at least one approved host")
+        if self.max_bytes < 1:
+            raise ValueError("probe byte limit must be positive")
+
 
 def _normalise_host(value: str) -> str:
     try:
         return value.rstrip(".").encode("idna").decode("ascii").lower()
     except UnicodeError as exc:
         raise ValueError(f"probe hostname is invalid: {value}") from exc
+
+
+def _approved_address_infos(
+    host: str,
+    port: int,
+    *,
+    allowed_hosts: tuple[str, ...],
+    resolver: Any,
+) -> tuple[str, tuple[tuple[Any, ...], ...]]:
+    """Resolve one approved host and retain only its complete public answer."""
+
+    host = _normalise_host(host)
+    approved = {_normalise_host(value) for value in allowed_hosts}
+    if host not in approved:
+        raise ValueError(f"probe host is not approved: {host}")
+    try:
+        answers = resolver(host, port, type=socket.SOCK_STREAM)
+    except OSError as exc:
+        raise ValueError(f"probe host cannot be resolved: {host}") from exc
+    if not answers:
+        raise ValueError(f"probe host has no resolved address: {host}")
+    validated: list[tuple[Any, ...]] = []
+    seen: set[tuple[Any, ...]] = set()
+    for answer in answers:
+        if not answer or len(answer) < 5 or not answer[4]:
+            raise ValueError(f"probe host returned an invalid address record: {host}")
+        family, socktype, protocol, canonical_name, socket_address = answer
+        address = str(socket_address[0]).split("%", 1)[0]
+        try:
+            parsed_address = ipaddress.ip_address(address)
+        except ValueError as exc:
+            raise ValueError(f"probe host returned an invalid address: {address}") from exc
+        if not parsed_address.is_global:
+            raise ValueError(f"probe destination is not public: {address}")
+        key = (family, socktype, protocol, socket_address)
+        if key not in seen:
+            validated.append((family, socktype, protocol, canonical_name, socket_address))
+            seen.add(key)
+    return host, tuple(validated)
 
 
 def validate_public_https_url(
@@ -54,31 +106,98 @@ def validate_public_https_url(
         raise ValueError("probe URL has an invalid port") from exc
     if port != 443:
         raise ValueError("probe URL must use HTTPS port 443")
-    host = _normalise_host(parsed.hostname)
-    approved = {_normalise_host(value) for value in allowed_hosts}
-    if host not in approved:
-        raise ValueError(f"probe host is not approved: {host}")
-    try:
-        answers = resolver(host, 443, type=socket.SOCK_STREAM)
-    except OSError as exc:
-        raise ValueError(f"probe host cannot be resolved: {host}") from exc
-    addresses = {str(answer[4][0]).split("%", 1)[0] for answer in answers if answer and len(answer) > 4 and answer[4]}
-    if not addresses:
-        raise ValueError(f"probe host has no resolved address: {host}")
-    for address in addresses:
-        try:
-            parsed_address = ipaddress.ip_address(address)
-        except ValueError as exc:
-            raise ValueError(f"probe host returned an invalid address: {address}") from exc
-        if not parsed_address.is_global:
-            raise ValueError(f"probe destination is not public: {address}")
+    host, _ = _approved_address_infos(
+        parsed.hostname,
+        port,
+        allowed_hosts=allowed_hosts,
+        resolver=resolver,
+    )
     return host
+
+
+class PinnedHTTPSConnection(http.client.HTTPSConnection):
+    """Connect TLS to the exact public DNS answer that passed policy checks."""
+
+    def __init__(
+        self,
+        host: str,
+        *,
+        allowed_hosts: tuple[str, ...],
+        resolver: Any = socket.getaddrinfo,
+        socket_factory: Any = None,
+        **kwargs: Any,
+    ) -> None:
+        super().__init__(host, **kwargs)
+        self.allowed_hosts = allowed_hosts
+        self.resolver = resolver
+        self.socket_factory = socket_factory or socket.socket
+
+    def connect(self) -> None:
+        if self._tunnel_host:
+            raise ValueError("probe connections do not support HTTP proxies")
+        host, answers = _approved_address_infos(
+            self.host,
+            self.port,
+            allowed_hosts=self.allowed_hosts,
+            resolver=self.resolver,
+        )
+        last_error: OSError | None = None
+        for family, socktype, protocol, _canonical_name, socket_address in answers:
+            raw_socket = self.socket_factory(family, socktype, protocol)
+            try:
+                raw_socket.settimeout(self.timeout)
+                if self.source_address:
+                    raw_socket.bind(self.source_address)
+                raw_socket.connect(socket_address)
+                try:
+                    raw_socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+                except OSError:
+                    pass
+                self.sock = self._context.wrap_socket(raw_socket, server_hostname=host)
+                return
+            except OSError as exc:
+                last_error = exc
+                raw_socket.close()
+        if last_error is not None:
+            raise last_error
+        raise OSError(f"probe host has no usable public address: {host}")
+
+
+class PolicyHTTPSHandler(HTTPSHandler):
+    """urllib HTTPS handler whose connection reuses the approved DNS answer."""
+
+    def __init__(
+        self,
+        *,
+        allowed_hosts: tuple[str, ...],
+        resolver: Any = socket.getaddrinfo,
+    ) -> None:
+        super().__init__()
+        self.allowed_hosts = allowed_hosts
+        self.resolver = resolver
+
+    def https_open(self, request: Request) -> Any:
+        def connection(host: str, **kwargs: Any) -> PinnedHTTPSConnection:
+            return PinnedHTTPSConnection(
+                host,
+                allowed_hosts=self.allowed_hosts,
+                resolver=self.resolver,
+                **kwargs,
+            )
+
+        return self.do_open(connection, request, context=self._context)
 
 
 class PolicyRedirectHandler(HTTPRedirectHandler):
     """Revalidate every redirect before urllib can perform the next request."""
 
-    def __init__(self, *, allowed_hosts: tuple[str, ...], resolver: Any = socket.getaddrinfo, max_redirects: int = 5) -> None:
+    def __init__(
+        self,
+        *,
+        allowed_hosts: tuple[str, ...],
+        resolver: Any = socket.getaddrinfo,
+        max_redirects: int = 5,
+    ) -> None:
         super().__init__()
         self.allowed_hosts = allowed_hosts
         self.resolver = resolver
@@ -126,10 +245,13 @@ def _bounded_gzip_decompress(raw: bytes, limit: int) -> tuple[bytes, bool]:
     return value[:limit], len(value) > limit
 
 
-def fetch_probe(probe: Probe, attempts: int = 3) -> dict[str, Any]:
-    parsed = urlsplit(probe.url)
-    initial_host = _normalise_host(parsed.hostname or "")
-    allowed_hosts = tuple(dict.fromkeys((*probe.allowed_hosts, initial_host)))
+def fetch_probe(
+    probe: Probe,
+    attempts: int = 3,
+    *,
+    resolver: Any = socket.getaddrinfo,
+) -> dict[str, Any]:
+    allowed_hosts = tuple(dict.fromkeys(probe.allowed_hosts))
     headers = {"User-Agent": USER_AGENT, "Accept": "*/*", "Accept-Encoding": "gzip"}
     if probe.partial:
         headers["Range"] = f"bytes=0-{probe.max_bytes - 1}"
@@ -138,9 +260,21 @@ def fetch_probe(probe: Probe, attempts: int = 3) -> dict[str, Any]:
     for attempt in range(1, attempts + 1):
         started = time.monotonic()
         try:
-            validate_public_https_url(probe.url, allowed_hosts=allowed_hosts)
-            redirect_handler = PolicyRedirectHandler(allowed_hosts=allowed_hosts)
-            with build_opener(redirect_handler).open(request, timeout=30) as response:
+            validate_public_https_url(
+                probe.url,
+                allowed_hosts=allowed_hosts,
+                resolver=resolver,
+            )
+            redirect_handler = PolicyRedirectHandler(
+                allowed_hosts=allowed_hosts,
+                resolver=resolver,
+            )
+            https_handler = PolicyHTTPSHandler(
+                allowed_hosts=allowed_hosts,
+                resolver=resolver,
+            )
+            opener = build_opener(ProxyHandler({}), https_handler, redirect_handler)
+            with opener.open(request, timeout=30) as response:
                 raw = response.read(probe.max_bytes + 1)
                 truncated = len(raw) > probe.max_bytes
                 raw = raw[: probe.max_bytes]

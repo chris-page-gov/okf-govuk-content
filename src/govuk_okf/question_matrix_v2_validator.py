@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any, Iterator
 
 from govuk_okf.sharded_jsonl import input_sha256, iter_jsonl_records
+from govuk_okf.util import safe_child_path
 
 VERIFIER_VERSION = "deterministic-corpus-anchor-validator-v2"
 EXPECTED_RELEASE_PERSONAS = 48
@@ -266,6 +267,21 @@ def load_control_json(path: Path) -> dict[str, Any]:
     return value
 
 
+def resolve_matrix_artifact(
+    root: Path,
+    relative: object,
+    validation: Validation,
+    check: str,
+) -> Path | None:
+    """Resolve an untrusted matrix reference or record the failure without I/O."""
+
+    try:
+        return safe_child_path(root, str(relative or ""), label="matrix artifact path")
+    except (OSError, ValueError) as exc:
+        validation.require(False, check, str(exc))
+        return None
+
+
 def trusted_release_errors(
     snapshot_manifest: dict[str, Any],
     reconciliation: dict[str, Any],
@@ -451,16 +467,16 @@ def verify(
     matrix_contract = json.loads((root / "matrix.json").read_text(encoding="utf-8"))
     verify_manifest(root, manifest, validation)
     saturation_contract = contract.get("persona_saturation") or {}
-    saturation_relative = Path(str(saturation_contract.get("path") or ""))
-    validation.require(
-        not saturation_relative.is_absolute() and ".." not in saturation_relative.parts,
+    saturation_path = resolve_matrix_artifact(
+        root,
+        saturation_contract.get("path"),
+        validation,
         "persona_saturation_path_safe",
     )
-    saturation_path = root / saturation_relative
-    validation.require(saturation_path.is_file(), "persona_saturation_copy_exists")
+    validation.require(saturation_path is not None and saturation_path.is_file(), "persona_saturation_copy_exists")
     saturation: dict[str, Any] = {}
-    if saturation_path.is_file():
-        saturation = json.loads(saturation_path.read_text(encoding="utf-8"))
+    if saturation_path is not None and saturation_path.is_file():
+        saturation = load_control_json(saturation_path)
         saturation_digest = digest_file(saturation_path)
         validation.require(checked_record(saturation), "persona_saturation_record_checksum")
         validation.require(saturation_digest == saturation_contract.get("sha256"), "persona_saturation_contract_sha256")
@@ -475,16 +491,16 @@ def verify(
             "persona_human_validation_not_fabricated",
         )
         validation.require(saturation.get("human_ui_preference_status") == "not_yet_testable", "persona_ui_preference_not_claimed")
-    coverage_relative = Path(str(saturation_contract.get("coverage_matrix_path") or ""))
-    validation.require(
-        not coverage_relative.is_absolute() and ".." not in coverage_relative.parts,
+    coverage_path = resolve_matrix_artifact(
+        root,
+        saturation_contract.get("coverage_matrix_path"),
+        validation,
         "persona_coverage_matrix_path_safe",
     )
-    coverage_path = root / coverage_relative
-    validation.require(coverage_path.is_file(), "persona_coverage_matrix_copy_exists")
-    if coverage_path.is_file():
+    validation.require(coverage_path is not None and coverage_path.is_file(), "persona_coverage_matrix_copy_exists")
+    if coverage_path is not None and coverage_path.is_file():
         coverage_digest = digest_file(coverage_path)
-        coverage = json.loads(coverage_path.read_text(encoding="utf-8"))
+        coverage = load_control_json(coverage_path)
         validation.require(
             coverage_digest == saturation_contract.get("coverage_matrix_sha256"),
             "persona_coverage_matrix_contract_sha256",
