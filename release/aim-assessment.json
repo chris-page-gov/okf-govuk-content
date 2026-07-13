@@ -1206,7 +1206,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "provenance/activity-ledger.jsonl",
-          "sha256": "cb20de37494a2ffe18ecec765a79160706b544d9f27b28c9627542cee21666d8"
+          "sha256": "8d9d096c28a03b8cefa8628063948b456260fae134b73c94627c11da294a04e2"
         },
         {
           "check_id": "E-REQUIREMENT-COVERAGE",
@@ -1217,7 +1217,7 @@
           "operator": "json_equals",
           "path": "governance/requirements-status.json",
           "pointer": "/counts/requirements",
-          "sha256": "1334f700720e9d08149c9b8d8837c22e828a3c1f72c1922cd684a58fe8462927"
+          "sha256": "322fe2fa0c6b53d1940bc006c96168b7f93e5a131ef6dfd4db97520bdd1b200c"
         },
         {
           "check_id": "E-TRACEABILITY-COVERAGE",
@@ -1228,7 +1228,7 @@
           "operator": "json_equals",
           "path": "governance/traceability-status.json",
           "pointer": "/counts/clauses",
-          "sha256": "8a1ad43f937fc0713ec64d0629dfd8bdb4ae9a84cbe91c86e3d504a7baf17d18"
+          "sha256": "dbeddc192faa4da89e94cb3b369ad591025eeae86c3af1d37caca461648ea852"
         },
         {
           "check_id": "E-CLEAN-ROOM-FIXTURE",

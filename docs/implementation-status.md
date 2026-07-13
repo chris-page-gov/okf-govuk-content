@@ -1,6 +1,6 @@
 # Implementation status
 
-- Status date: 12 July 2026
+- Status date: 13 July 2026
 - Milestone: T0 census closed
 - Publication ready: **no**
 
@@ -17,12 +17,13 @@ development and review; it is not evidence that Release 1 covers GOV.UK.
 | Official sources | Dated 32-source and 93-URL plan preflight retained; T0 closed from 137 opposing-pass Search partitions, 35 byte-stable sitemap shards and closed organisations/navigation | T0 hydration, T1 union closure and final rights/citation snapshot binding |
 | Semantic profile | YAML-LD profile, JSON schemas, crosswalks, shapes and JSON-LD fixture projection produced | Release-snapshot equivalence, integrity and provenance evidence |
 | Bundle and Explorer | 14-record fixture, static search, route index, adjacency, query/hash replay, Pages fallback, real-Chromium gate and read-only CLI produced | Authorised local/CI browser execution, axe, expert review, full hydrated corpus and measured full-snapshot accessibility/security/performance gates |
+| Security | Completed repository-wide scan recorded 14 findings; its remediation diff scan confirmed those fixes and found three residual low issues, all fixed at `27890dc`; 32 focused post-fix tests pass | Run and hash-bind a new full-repository scan after the hydrated release snapshot and publication artefacts are frozen; `security_scan_passed` remains false |
 | Census and hydration | Unsampled T0 closed at 848,977 candidates and 836,998 publication records; 848,971 represented plus six redirects, with zero exceptions/unexplained omissions; every shard digest passes | Complete the prepared hydration queue, re-enumerate T1, close drift and retain zero unexplained omissions |
 | Personas and stories | Machine-applicable saturation passes for 48 primary persona hypotheses, 17 overlays, 11 dimensions, 83 schema families, 136 overlay pairs, five high-risk t-way scenarios and two successive no-new challenge passes | Authorised human validation and final-snapshot regeneration of six release-v2 stories per persona; UI preference remains not yet testable |
 | Questions | v2 corpus-anchored generator and separate verifier produced | Run against the closed snapshot and independently pass all gold/leakage/split checks |
 | Evaluation and aims | Deterministic SQLite/FTS harness, matched baselines/ablations, raw-trace and analysis contracts produced and fixture-tested | Complete 28,800-question release run against the closed snapshot and aim scorecard |
 | Citations and reproduction | 171/171 citations and 40/40 joint claims verified with zero waivers/blockers; lock-bound CycloneDX SBOM and byte-exact fixture rebuild produced | Rebind citation evidence and run the clean-room replay against the unsampled closing snapshot with full test evidence |
-| Usage and activity provenance | Four historical rows plus hash-chained v2 implementation, subagent, deterministic-run and open-work records; zero paid API use; source fallbacks, request-budget checkpoint and deterministic `release/provenance-validation.json` retained | Append/supersede every exact terminal activity, close the shared request snapshot, then pass `check_provenance.py --require-release` against the unsampled T1 release ID |
+| Usage and activity provenance | Four historical rows plus hash-chained v2 implementation, subagent, deterministic-run and terminal security records; zero paid API use; source fallbacks, request-budget checkpoint and deterministic `release/provenance-validation.json` retained | Append/supersede the remaining exact terminal activities, close the shared request snapshot, then pass `check_provenance.py --require-release` against the unsampled T1 release ID |
 | Rights and privacy | Bounded disk-backed fixture audit scans 745 publication data assets with zero body/credential findings and records 2 conservative hashed item-review triggers | Rerun against the final T1 hydration manifest; retain final trigger counts/reviews and snapshot-bound evidence |
 | Human evidence | Not authorised | Governed participant research; until then UI of choice is `not_yet_testable` |
 
@@ -86,7 +87,13 @@ the task was promoted or independently verified.
   could not bind the ephemeral localhost server. The usage limit has since
   reset; the no-skip fixture and full-snapshot measurements still need to run.
   Existing browser evidence remains a blocked checkpoint rather than a pass.
+- The pre-release security campaign is complete and its 17 findings are fixed,
+  but the final hydrated release repository has not yet been scanned. The
+  checked-in release status therefore continues to record
+  `security_scan_passed: false`; no fixture or earlier-revision result is
+  promoted as final-snapshot evidence.
 
 The authoritative checkpoint is `release/status.json`: machine RC is false,
 full-corpus reconciliation is false, question/citation/clean-room gates are
-false, human evaluation is `not_authorised`, and programme completion is false.
+false, the final security gate is false, human evaluation is `not_authorised`,
+and programme completion is false.

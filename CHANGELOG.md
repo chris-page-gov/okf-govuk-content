@@ -89,3 +89,14 @@ semantic versioning.
   contrast-relevant, gzip, deep-link, Pages and startup/search/route/heap
   budgets. Its checked evidence remains blocked until the environment permits
   localhost browser execution; axe, expert and participant gates stay open.
+
+### Fixed
+
+- Remediated all 14 findings from the completed repository-wide Codex Security
+  scan and all three residual low findings from its independent remediation
+  diff scan. The final fixes at `27890dc` bind approved DNS answers to TLS
+  connections, require explicit probe host policy, disable inherited proxies,
+  bound aggregate shard-index work and stop unsafe question-matrix references
+  before filesystem I/O. The full finding/disposition and residual-risk record
+  is published in `reports/security.md`; the eventual hydrated release still
+  requires its own hash-bound security scan.
