@@ -242,7 +242,7 @@
           "operator": "json_equals",
           "path": "release/rights-privacy-audit.json",
           "pointer": "/rights_privacy_audit_passed",
-          "sha256": "78099f5e6b561f63c9097f6050a176495e49a6677b510f5b28815ddee481b496"
+          "sha256": "da241a558296b0c294cab7bedef9f38cb99c9edbc571c194e4a01312f091e3c7"
         }
       ],
       "exceptions": [],
@@ -1206,7 +1206,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "provenance/activity-ledger.jsonl",
-          "sha256": "870518fbbda28948b4d7158c0263333261caf1f2c138984d30855dda0fe8182d"
+          "sha256": "68e6bddebb12a458305c181f8834608e36c5522da5460220e3aeca57e3707f82"
         },
         {
           "check_id": "E-REQUIREMENT-COVERAGE",
@@ -1217,7 +1217,7 @@
           "operator": "json_equals",
           "path": "governance/requirements-status.json",
           "pointer": "/counts/requirements",
-          "sha256": "6ae79a45c4037546d8d8f9e76267ebf3475a9e79075ab899a0b0c3e70735ef89"
+          "sha256": "31794d602859f660704816263bc9bc9f8fa02384dfa171f9afff05fc3b8938c7"
         },
         {
           "check_id": "E-TRACEABILITY-COVERAGE",
@@ -1228,7 +1228,7 @@
           "operator": "json_equals",
           "path": "governance/traceability-status.json",
           "pointer": "/counts/clauses",
-          "sha256": "90f42869f08c890a161aa7ec91da103d176d7f59d51df65b9cf0671afa5f9e6a"
+          "sha256": "4b436449c9818d9f3cae5953405706b6027b2665b8dc13db6604ea73f74fc660"
         },
         {
           "check_id": "E-CLEAN-ROOM-FIXTURE",
@@ -1239,7 +1239,7 @@
           "operator": "json_equals",
           "path": "release/clean-room-reproduction.json",
           "pointer": "/fixture_reproduction_passed",
-          "sha256": "49409a07c8c162dc449f3d5b3de056a27892c29a51f4019b9ac9e534b02dde8d"
+          "sha256": "e69873f240fc34a23ad42f4e093f00dd94fcf890c4f8703bd093a4f957c9d7c3"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -1489,7 +1489,7 @@
         "operator": "json_equals",
         "path": "release/rights-privacy-audit.json",
         "pointer": "/rights_privacy_audit_passed",
-        "sha256": "78099f5e6b561f63c9097f6050a176495e49a6677b510f5b28815ddee481b496"
+        "sha256": "da241a558296b0c294cab7bedef9f38cb99c9edbc571c194e4a01312f091e3c7"
       }
     ],
     "passed": false,

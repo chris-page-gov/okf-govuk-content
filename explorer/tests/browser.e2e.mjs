@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { copyFile, cp, mkdtemp, readFile, readdir, rm } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -12,6 +12,76 @@ import { startFixtureServer } from "./fixture-server.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = resolve(here, "..", "..");
+const fixtureSource = join(here, "fixtures", "single-pack-source-records.jsonl");
+const fixtureSnapshot = "fixture-browser-single-pack-2026-07-13";
+const fixtureTag = "v0.1.0";
+
+function pythonCandidates() {
+  return [process.env.PYTHON, join(repositoryRoot, ".venv", "bin", "python"), "python3"].filter(Boolean);
+}
+
+function runPython(arguments_, label, timeout) {
+  let last = null;
+  for (const executable of pythonCandidates()) {
+    const result = spawnSync(executable, arguments_, {
+      cwd: repositoryRoot,
+      encoding: "utf8",
+      killSignal: "SIGKILL",
+      maxBuffer: 8 * 1024 * 1024,
+      timeout
+    });
+    if (result.error?.code === "ENOENT") continue;
+    if (result.status === 0) return;
+    last = result;
+    break;
+  }
+  const reason = last?.error?.code === "ETIMEDOUT"
+    ? `${label} subprocess exceeded ${timeout / 1000} seconds`
+    : last?.stderr || last?.error || "Python is unavailable";
+  throw new Error(`could not ${label}: ${reason}`);
+}
+
+async function buildSinglePackFixture(fixtureRoot) {
+  const releaseRoot = join(fixtureRoot, "release");
+  await mkdir(releaseRoot, { recursive: true });
+  await writeFile(
+    join(releaseRoot, "status.json"),
+    `${JSON.stringify({ schema: "govuk-okf-browser-fixture-status.v1", publication_ready: false }, null, 2)}\n`,
+    "utf8"
+  );
+  await writeFile(
+    join(releaseRoot, "manifest.yaml"),
+    `${JSON.stringify({
+      schema: "govuk-okf-browser-fixture-release.v1",
+      snapshot: fixtureSnapshot,
+      version: fixtureTag.slice(1),
+      tag: fixtureTag,
+      release_kind: "fixture",
+      artifacts: { status: "release/status.json" }
+    }, null, 2)}\n`,
+    "utf8"
+  );
+  runPython(
+    [
+      join(repositoryRoot, "scripts", "build_bundle.py"),
+      "--source", fixtureSource,
+      "--output", join(fixtureRoot, "bundle"),
+      "--snapshot-id", fixtureSnapshot,
+      "--generated-at", "2026-07-13T00:00:00Z",
+      "--compiler", "memory"
+    ],
+    "build the dedicated browser fixture",
+    120000
+  );
+  runPython(
+    [
+      join(repositoryRoot, "scripts", "build_checksums.py"),
+      "--bundle", join(fixtureRoot, "bundle")
+    ],
+    "checksum the dedicated browser fixture",
+    60000
+  );
+}
 
 function packageFixture(fixtureRoot, output) {
   const source = [
@@ -21,27 +91,13 @@ function packageFixture(fixtureRoot, output) {
     "fixture=Path(sys.argv[2]).resolve()",
     "sys.path.insert(0, str(root / 'src'))",
     "from govuk_okf.release_packaging import package_verified_release",
-    "package_verified_release(repository_root=fixture, bundle=fixture / 'bundle', output=Path(sys.argv[3]), tag='v0.1.0', browser_evidence=fixture / 'release' / 'status.json')"
+    "package_verified_release(repository_root=fixture, bundle=fixture / 'bundle', output=Path(sys.argv[3]), tag=sys.argv[4], browser_evidence=fixture / 'release' / 'status.json')"
   ].join(";");
-  const candidates = [process.env.PYTHON, join(repositoryRoot, ".venv", "bin", "python"), "python3"].filter(Boolean);
-  let last = null;
-  for (const executable of candidates) {
-    const result = spawnSync(executable, ["-c", source, repositoryRoot, fixtureRoot, output], {
-      cwd: repositoryRoot,
-      encoding: "utf8",
-      killSignal: "SIGKILL",
-      maxBuffer: 8 * 1024 * 1024,
-      timeout: 30000
-    });
-    if (result.error?.code === "ENOENT") continue;
-    if (result.status === 0) return;
-    last = result;
-    break;
-  }
-  const reason = last?.error?.code === "ETIMEDOUT"
-    ? "packaging subprocess exceeded 30 seconds"
-    : last?.stderr || last?.error || "Python is unavailable";
-  throw new Error(`could not package the exact browser fixture: ${reason}`);
+  runPython(
+    ["-c", source, repositoryRoot, fixtureRoot, output, fixtureTag],
+    "package the dedicated browser fixture",
+    60000
+  );
 }
 
 test("real browser verifies fixture accessibility, routing, gzip and performance budgets", { timeout: 120000 }, async (context) => {
@@ -74,19 +130,14 @@ test("full-release mode binds evidence to a non-fixture snapshot", async () => {
   );
 });
 
-test("exact single-pack Pages fixture proves distinct virtual range requests", { timeout: 120000 }, async () => {
+test("exact single-pack Pages fixture proves distinct virtual range requests", { timeout: 180000 }, async () => {
   const temporary = await mkdtemp(join(tmpdir(), "govuk-okf-packed-browser-"));
   const fixtureRoot = join(temporary, "repository");
-  const sourceBundle = join(fixtureRoot, "bundle");
   const verified = join(temporary, "verified");
   let server = null;
   let browser = null;
   try {
-    await cp(join(repositoryRoot, "bundle"), sourceBundle, { recursive: true });
-    await cp(join(repositoryRoot, "release"), join(fixtureRoot, "release"), { recursive: true });
-    for (const entry of await readdir(join(repositoryRoot, "explorer", "src"), { withFileTypes: true })) {
-      if (entry.isFile()) await copyFile(join(repositoryRoot, "explorer", "src", entry.name), join(sourceBundle, entry.name));
-    }
+    await buildSinglePackFixture(fixtureRoot);
     packageFixture(fixtureRoot, verified);
     const site = join(verified, "site");
     const index = JSON.parse(await readFile(join(site, "release-data-plane.json"), "utf8"));
@@ -95,7 +146,11 @@ test("exact single-pack Pages fixture proves distinct virtual range requests", {
 
     server = await startFixtureServer({ root: site, staticRoot: site });
     browser = await launchChrome();
-    const evidence = await runFixtureBrowserAudit(browser, server, { iterations: 1, generatedAt: "single-pack-test" });
+    const evidence = await runFixtureBrowserAudit(browser, server, {
+      iterations: 1,
+      generatedAt: "single-pack-test",
+      snapshot: fixtureSnapshot
+    });
     assert.equal(evidence.routing_and_data.pass, true, JSON.stringify(evidence.routing_and_data, null, 2));
     assert.deepEqual(evidence.routing_and_data.physical_pack_resources.length, 1);
     assert.ok(evidence.routing_and_data.range_requests.filter((request) => request.virtual_path).length >= 2);

@@ -67,19 +67,20 @@ jobs:
           .venv/bin/python scripts/check_publication.py
           .venv/bin/python scripts/build_checksums.py --check
           .venv/bin/python scripts/build_sbom.py --check
+          .venv/bin/python scripts/check_ci_snapshot.py
           .venv/bin/python scripts/validate_semantics.py --require-shard-metadata --check
-          .venv/bin/python scripts/audit_rights_privacy.py --check --require-release
+          .venv/bin/python scripts/audit_rights_privacy.py --check --require-release --allow-archived-inputs
           npm test --prefix explorer
           npm test --prefix semantic
           .venv/bin/python scripts/check_lockstep.py
           if [[ "$RELEASE_CHANNEL" == "release-candidate" ]]; then
             .venv/bin/python scripts/check_provenance.py --require-candidate \
               --output "$RUNNER_TEMP/provenance-validation.json"
-            .venv/bin/python scripts/check_release.py --publication-ready
+            .venv/bin/python scripts/check_release.py --publication-ready --allow-archived-inputs
           else
             .venv/bin/python scripts/check_provenance.py --require-release \
               --output "$RUNNER_TEMP/provenance-validation.json"
-            .venv/bin/python scripts/check_release.py --finalized
+            .venv/bin/python scripts/check_release.py --finalized --allow-archived-inputs
           fi
           git diff --check
       - name: Read back immutable-release and Pages publication settings

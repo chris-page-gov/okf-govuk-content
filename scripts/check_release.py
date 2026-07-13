@@ -16,6 +16,10 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from govuk_okf.rights_audit import validate_audit_evidence  # noqa: E402
+
 MANIFEST_RELATIVE = "release/manifest.yaml"
 STATUS_RELATIVE = "release/status.json"
 RELEASE_FLAGS = (
@@ -439,6 +443,7 @@ def _clean_room_errors(
     bundle_path: Path | None = None,
     evidence_path: Path | None = None,
     test_evidence_path: Path | None = None,
+    allow_missing_frozen_source: bool = False,
 ) -> list[str]:
     errors: list[str] = []
     if evidence.get("schema") != "afhf-govuk-okf-clean-room-reproduction.v1":
@@ -572,13 +577,49 @@ def _clean_room_errors(
                 source_path = _resolve_relative(
                     root, reproduction["source"], "frozen reproduction source"
                 )
-                if source_path and _source_binding(source_path, root) != reproduction.get(
-                    "source_binding"
-                ):
+                source_binding = reproduction.get("source_binding")
+                valid_archived_binding = (
+                    isinstance(source_binding, dict)
+                    and source_binding.get("path") == reproduction.get("source")
+                    and source_binding.get("kind") in {"file", "directory"}
+                    and isinstance(source_binding.get("file_count"), int)
+                    and not isinstance(source_binding.get("file_count"), bool)
+                    and source_binding.get("file_count", -1) >= 1
+                    and isinstance(source_binding.get("bytes"), int)
+                    and not isinstance(source_binding.get("bytes"), bool)
+                    and source_binding.get("bytes", -1) >= 0
+                    and _valid_sha256(source_binding.get("tree_sha256"))
+                    and (
+                        source_binding.get("kind") != "file"
+                        or _valid_sha256(source_binding.get("content_sha256"))
+                    )
+                )
+                if source_path and source_path.exists() and _source_binding(
+                    source_path, root
+                ) != source_binding:
                     errors.append("clean-room frozen-source content/tree binding differs")
+                elif source_path and not source_path.exists() and not (
+                    allow_missing_frozen_source and valid_archived_binding
+                ):
+                    errors.append("frozen reproduction source is missing")
             except (OSError, ValueError, ReleaseDocumentError) as exc:
                 errors.append(str(exc))
     return errors
+
+
+def _rights_errors(
+    root: Path,
+    evidence: dict[str, Any],
+    *,
+    require_release: bool,
+    allow_missing_corpus_inputs: bool,
+) -> list[str]:
+    return validate_audit_evidence(
+        root,
+        evidence,
+        require_release=require_release,
+        allow_missing_corpus_inputs=allow_missing_corpus_inputs,
+    )
 
 
 def _aim_assessment_errors(evidence: dict[str, Any], snapshot: dict[str, Any]) -> list[str]:
@@ -980,7 +1021,11 @@ def _proof_errors(reconciliation: dict[str, Any]) -> list[str]:
 
 
 def validate_release(
-    root: Path, *, require_publication_ready: bool = False, require_finalized: bool = False
+    root: Path,
+    *,
+    require_publication_ready: bool = False,
+    require_finalized: bool = False,
+    allow_missing_archived_inputs: bool = False,
 ) -> list[str]:
     """Return all release-gate failures for ``root`` without changing files."""
 
@@ -1119,8 +1164,30 @@ def validate_release(
     else:
         try:
             source_path = _resolve_relative(root, reproduction["source"], "frozen reproduction source")
-            if source_path and _source_binding(source_path, root) != reproduction["source_binding"]:
+            source_binding = reproduction["source_binding"]
+            valid_archived_binding = (
+                source_binding.get("path") == reproduction["source"]
+                and source_binding.get("kind") in {"file", "directory"}
+                and isinstance(source_binding.get("file_count"), int)
+                and not isinstance(source_binding.get("file_count"), bool)
+                and source_binding.get("file_count", -1) >= 1
+                and isinstance(source_binding.get("bytes"), int)
+                and not isinstance(source_binding.get("bytes"), bool)
+                and source_binding.get("bytes", -1) >= 0
+                and _valid_sha256(source_binding.get("tree_sha256"))
+                and (
+                    source_binding.get("kind") != "file"
+                    or _valid_sha256(source_binding.get("content_sha256"))
+                )
+            )
+            if source_path and source_path.exists() and _source_binding(
+                source_path, root
+            ) != source_binding:
                 errors.append("frozen reproduction source content/tree binding differs")
+            elif source_path and not source_path.exists() and not (
+                allow_missing_archived_inputs and valid_archived_binding
+            ):
+                errors.append("frozen reproduction source is missing")
         except (OSError, ValueError, ReleaseDocumentError) as exc:
             errors.append(str(exc))
     if status.get("promotion_finalized") is not promotion.get("finalized"):
@@ -1267,6 +1334,15 @@ def validate_release(
                 errors.append(f"{artifact_name} evidence does not assert {pass_field}")
             if _artifact_snapshot(evidence) != snapshot.get("id"):
                 errors.append(f"{artifact_name} evidence snapshot differs from release snapshot")
+            if artifact_name == "rights_privacy_audit":
+                errors.extend(
+                    _rights_errors(
+                        root,
+                        evidence,
+                        require_release=require_publication_ready,
+                        allow_missing_corpus_inputs=allow_missing_archived_inputs,
+                    )
+                )
             if artifact_name == "clean_room_reproduction" and sbom_path:
                 full_tests_path = _resolve_relative(
                     root, artifacts.get("full_repository_tests"), "full_repository_tests"
@@ -1280,6 +1356,7 @@ def validate_release(
                         bundle_path=bundle_path,
                         evidence_path=evidence_path,
                         test_evidence_path=full_tests_path,
+                        allow_missing_frozen_source=allow_missing_archived_inputs,
                     )
                 )
         except ReleaseDocumentError as exc:
@@ -1312,11 +1389,20 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="require strict post-publication 11-of-11 provenance and finalized promotion",
     )
+    parser.add_argument(
+        "--allow-archived-inputs",
+        action="store_true",
+        help=(
+            "permit absent frozen official-source inputs only when their completed "
+            "clean-room and rights evidence remains fully hash-bound"
+        ),
+    )
     args = parser.parse_args(argv)
     errors = validate_release(
         args.root,
         require_publication_ready=args.publication_ready or args.finalized,
         require_finalized=args.finalized,
+        allow_missing_archived_inputs=args.allow_archived_inputs,
     )
     if errors:
         print("release validation failed:", file=sys.stderr)

@@ -23,6 +23,10 @@ def prepare_staged(root: Path) -> str:
     source = root / "corpus/records/T1-20260712-closing/source-records.jsonl.gz"
     source.parent.mkdir(parents=True, exist_ok=True)
     source.write_bytes(b"frozen full-corpus source\n")
+    write_json(
+        root / "corpus/records/T1/rights-audit-manifest.json",
+        {"snapshot": snapshot, "metadata_only": True, "complete_page_bodies_retained": False},
+    )
     MODULE.stage_release(
         root,
         snapshot=snapshot,
@@ -93,9 +97,90 @@ def finalized_provenance(root: Path, snapshot: str) -> dict[str, object]:
 
 def fake_aim_renderer(root: Path) -> dict[Path, str]:
     assessment = json.loads((root / "release/aim-assessment.json").read_text(encoding="utf-8"))
+    assessment["test_transition_bindings"] = {
+        "manifest_sha256": hashlib.sha256(
+            (root / "release/manifest.yaml").read_bytes()
+        ).hexdigest(),
+        "rights_sha256": hashlib.sha256(
+            (root / "release/rights-privacy-audit.json").read_bytes()
+        ).hexdigest(),
+    }
     return {
         root / "release/aim-assessment.json": json.dumps(assessment, indent=2, sort_keys=True) + "\n",
         root / "reports/aim-scorecard.md": "# Test aim scorecard\n",
+    }
+
+
+def assert_transition_bindings_current(test: unittest.TestCase, root: Path) -> None:
+    manifest_path = root / "release/manifest.yaml"
+    rights_path = root / "release/rights-privacy-audit.json"
+    rights = json.loads(rights_path.read_text(encoding="utf-8"))
+    assessment = json.loads((root / "release/aim-assessment.json").read_text(encoding="utf-8"))
+    test.assertEqual(
+        hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+        rights["snapshot_binding"]["release_manifest"]["sha256"],
+    )
+    test.assertEqual(
+        {
+            "manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+            "rights_sha256": hashlib.sha256(rights_path.read_bytes()).hexdigest(),
+        },
+        assessment["test_transition_bindings"],
+    )
+
+
+def refreshed_rights(root: Path, snapshot: str) -> dict[str, object]:
+    manifest_path = root / "release/manifest.yaml"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    publication_path = root / "bundle/data/manifest.json"
+    corpus_path = root / "corpus/records/T1/rights-audit-manifest.json"
+    transition = manifest.get("promotion") or manifest.get("promotion_contract")
+    reproduction = transition["reproduction"]
+
+    def bound(path: Path) -> dict[str, object]:
+        return {
+            "path": path.relative_to(root).as_posix(),
+            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+            "bytes": path.stat().st_size,
+        }
+
+    return {
+        "schema": "afhf-govuk-okf-rights-privacy-audit.v1",
+        "snapshot": snapshot,
+        "snapshot_kind": "full_corpus",
+        "sampled": False,
+        "generated_at": "2026-07-12T23:59:59Z",
+        "status": "passed",
+        "rights_privacy_audit_passed": True,
+        "release_eligible": True,
+        "mechanical_controls_passed": True,
+        "audit_input_contract": {
+            "schema": "afhf-govuk-okf-rights-audit-inputs.v1",
+            "generated_at": "2026-07-12T23:59:59Z",
+            "publication_manifest": bound(publication_path),
+            "corpus_manifests": [bound(corpus_path)],
+            "review_ledger": None,
+        },
+        "snapshot_binding": {
+            "release_manifest": {
+                "path": "release/manifest.yaml",
+                "sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+            },
+            "publication_manifest": {
+                "path": "bundle/data/manifest.json",
+                "sha256": hashlib.sha256(publication_path.read_bytes()).hexdigest(),
+            },
+            "publication_asset_set_sha256": "a" * 64,
+            "corpus_manifest_count": 1,
+            "resolved_corpus_record_manifest_count": 1,
+            "corpus_asset_set_sha256": "b" * 64,
+            "frozen_source": reproduction["source_binding"],
+            "full_unsampled_snapshot": True,
+            "corpus_snapshot_bound": True,
+        },
+        "review": {"provided": False, "review_count": 0},
+        "errors": [],
+        "remaining_release_blockers": [],
     }
 
 
@@ -273,6 +358,105 @@ def write_partial_final(root: Path, *, include_status: bool) -> None:
 
 
 class ReleasePromotionTests(unittest.TestCase):
+    def test_finalization_accepts_only_hash_bound_archived_inputs(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            snapshot = prepare_staged(root)
+            MODULE.promote_release(
+                root,
+                provenance_builder=post_clean_provenance,
+                rights_builder=refreshed_rights,
+                test_builder=existing_tests,
+                clean_room_builder=prospective_clean_room,
+                aim_renderer=fake_aim_renderer,
+            )
+            manifest = json.loads((root / "release/manifest.yaml").read_text(encoding="utf-8"))
+            (root / manifest["promotion"]["reproduction"]["source"]).unlink()
+            rights = json.loads(
+                (root / "release/rights-privacy-audit.json").read_text(encoding="utf-8")
+            )
+            (root / rights["audit_input_contract"]["corpus_manifests"][0]["path"]).unlink()
+
+            result = MODULE.finalize_release(
+                root,
+                provenance_builder=finalized_provenance,
+                aim_renderer=fake_aim_renderer,
+            )
+            self.assertTrue(result["manifest"]["promotion"]["finalized"])
+            final_rights = json.loads(
+                (root / "release/rights-privacy-audit.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(
+                "static_archived_input_validation",
+                final_rights["release_binding_refresh"]["mode"],
+            )
+
+    def test_rights_builder_rebinds_archived_inputs_for_candidate_and_final(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            make_release(root)
+            rights_path = root / "release/rights-privacy-audit.json"
+            rights = json.loads(rights_path.read_text(encoding="utf-8"))
+            corpus_path = root / rights["audit_input_contract"]["corpus_manifests"][0]["path"]
+            corpus_path.unlink()
+
+            candidate = MODULE.build_rights_evidence(root, "T1-20260712-closing")
+            self.assertEqual(
+                "static_archived_input_validation",
+                candidate["release_binding_refresh"]["mode"],
+            )
+            write_json(rights_path, candidate)
+
+            manifest_path = root / "release/manifest.yaml"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["promotion"]["finalized"] = True
+            manifest["promotion"]["candidate_manifest_sha256"] = "a" * 64
+            manifest["promotion"]["candidate_status_sha256"] = "b" * 64
+            write_json(manifest_path, manifest)
+            final = MODULE.build_rights_evidence(root, "T1-20260712-closing")
+            self.assertEqual(
+                hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+                final["snapshot_binding"]["release_manifest"]["sha256"],
+            )
+
+            publication_path = root / "bundle/data/manifest.json"
+            publication_path.write_bytes(publication_path.read_bytes() + b" ")
+            write_json(rights_path, final)
+            with self.assertRaisesRegex(MODULE.PromotionError, "publication manifest"):
+                MODULE.build_rights_evidence(root, "T1-20260712-closing")
+
+    def test_full_test_evidence_accepts_valid_full_candidate_state(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            make_release(root)
+            observed: list[list[str]] = []
+
+            def passing_runner(command: list[str], candidate_root: Path) -> dict[str, object]:
+                observed.append(command)
+                self.assertEqual(
+                    [],
+                    MODULE.check_release.validate_release(
+                        candidate_root,
+                        require_publication_ready=True,
+                    ),
+                )
+                output = "Ran 999 tests in 1.0s\n\nOK\n" if "unittest" in command else "ok\n"
+                return {
+                    "command": command,
+                    "returncode": 0,
+                    "output_sha256": hashlib.sha256(output.encode("utf-8")).hexdigest(),
+                    "output_tail": output,
+                }
+
+            evidence = MODULE.build_test_evidence(
+                root,
+                "T1-20260712-closing",
+                command_runner=passing_runner,
+            )
+            self.assertTrue(evidence["tests_passed"])
+            self.assertEqual(999, evidence["python_tests_run"])
+            self.assertEqual(3, len(observed))
+
     def test_partial_finalization_crash_states_resume_and_completed_final_is_idempotent(self) -> None:
         for include_status in (False, True):
             with self.subTest(include_status=include_status), tempfile.TemporaryDirectory() as directory:
@@ -281,6 +465,7 @@ class ReleasePromotionTests(unittest.TestCase):
                 MODULE.promote_release(
                     root,
                     provenance_builder=post_clean_provenance,
+                    rights_builder=refreshed_rights,
                     test_builder=existing_tests,
                     clean_room_builder=prospective_clean_room,
                     aim_renderer=fake_aim_renderer,
@@ -289,10 +474,12 @@ class ReleasePromotionTests(unittest.TestCase):
                 result = MODULE.finalize_release(
                     root,
                     provenance_builder=finalized_provenance,
+                    rights_builder=refreshed_rights,
                     aim_renderer=fake_aim_renderer,
                 )
                 self.assertTrue(result["manifest"]["promotion"]["finalized"])
                 self.assertTrue(result["status"]["promotion_finalized"])
+                assert_transition_bindings_current(self, root)
                 replay = MODULE.finalize_release(
                     root,
                     provenance_builder=lambda *_: (_ for _ in ()).throw(
@@ -311,6 +498,7 @@ class ReleasePromotionTests(unittest.TestCase):
                 result = MODULE.promote_release(
                     root,
                     provenance_builder=post_clean_provenance,
+                    rights_builder=refreshed_rights,
                     test_builder=lambda *_: (_ for _ in ()).throw(
                         AssertionError("prepared tests should be reused")
                     ),
@@ -344,6 +532,7 @@ class ReleasePromotionTests(unittest.TestCase):
                 MODULE.promote_release(
                     root,
                     provenance_builder=post_clean_provenance,
+                    rights_builder=refreshed_rights,
                     test_builder=existing_tests,
                     clean_room_builder=prospective_clean_room,
                     aim_renderer=fake_aim_renderer,
@@ -380,6 +569,7 @@ class ReleasePromotionTests(unittest.TestCase):
             result = MODULE.promote_release(
                 root,
                 provenance_builder=post_clean_provenance,
+                rights_builder=refreshed_rights,
                 test_builder=existing_tests,
                 clean_room_builder=prospective_clean_room,
                 aim_renderer=fake_aim_renderer,
@@ -391,6 +581,7 @@ class ReleasePromotionTests(unittest.TestCase):
             self.assertEqual("not_authorised", result["status"]["human_evaluation_status"])
             self.assertEqual("not_yet_testable", result["status"]["human_ui_of_choice_status"])
             self.assertFalse(result["status"]["programme_complete"])
+            assert_transition_bindings_current(self, root)
             self.assertEqual([], MODULE.check_release.validate_release(root, require_publication_ready=True))
             self.assertEqual(snapshot, result["status"]["release_id"])
             terminal = json.loads(
@@ -450,6 +641,7 @@ class ReleasePromotionTests(unittest.TestCase):
                 root / "release/provenance-validation.json",
                 root / "release/full-repository-tests.json",
                 root / "release/clean-room-reproduction.json",
+                root / "release/rights-privacy-audit.json",
                 root / "provenance/activity-ledger.jsonl",
                 root / "release/aim-assessment.json",
                 root / "reports/aim-scorecard.md",
@@ -459,6 +651,7 @@ class ReleasePromotionTests(unittest.TestCase):
                 MODULE.promote_release(
                     root,
                     provenance_builder=post_clean_provenance,
+                    rights_builder=refreshed_rights,
                     test_builder=existing_tests,
                     clean_room_builder=prospective_clean_room,
                     aim_renderer=fake_aim_renderer,
@@ -474,6 +667,7 @@ class ReleasePromotionTests(unittest.TestCase):
             MODULE.promote_release(
                 root,
                 provenance_builder=post_clean_provenance,
+                rights_builder=refreshed_rights,
                 test_builder=existing_tests,
                 clean_room_builder=prospective_clean_room,
                 aim_renderer=fake_aim_renderer,
@@ -483,6 +677,7 @@ class ReleasePromotionTests(unittest.TestCase):
                 MODULE.finalize_release(
                     root,
                     provenance_builder=post_clean_provenance,
+                    rights_builder=refreshed_rights,
                     aim_renderer=fake_aim_renderer,
                 )
             self.assertEqual(candidate_manifest, (root / "release/manifest.yaml").read_bytes())
@@ -497,10 +692,12 @@ class ReleasePromotionTests(unittest.TestCase):
             result = MODULE.finalize_release(
                 root,
                 provenance_builder=finalized_provenance,
+                rights_builder=refreshed_rights,
                 aim_renderer=fake_aim_renderer,
             )
             self.assertTrue(result["manifest"]["promotion"]["finalized"])
             self.assertTrue(result["status"]["promotion_finalized"])
+            assert_transition_bindings_current(self, root)
             self.assertEqual(
                 [],
                 MODULE.check_release.validate_release(
@@ -518,6 +715,7 @@ class ReleasePromotionTests(unittest.TestCase):
                 MODULE.promote_release(
                     root,
                     provenance_builder=existing_provenance,
+                    rights_builder=refreshed_rights,
                     test_builder=existing_tests,
                     clean_room_builder=prospective_clean_room,
                     aim_renderer=fake_aim_renderer,

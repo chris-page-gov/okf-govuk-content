@@ -131,6 +131,16 @@ semantic versioning.
   timestamp; clean-room evidence recomputes the staged controls, bundle tree,
   test evidence, SBOM and immutable inputs; ledger-locked promotion/finalization
   either installs a coherent evidence set or restores the previous checkpoint.
+- Made CI and rights evidence safe across the fixture-to-full-corpus transition.
+  Fixture builds remain byte-exact, while promoted candidate/final checkouts
+  validate completed clean-room and archived-input bindings without requiring
+  uncommitted official-source bytes. Rights audits now record exact
+  publication/corpus/review/time inputs and promotion/finalization regenerate
+  release bindings transactionally before provenance and aim projections.
+- Decoupled the single-pack real-browser regression from the checked bundle and
+  release. It now builds its own two-record fixture and release envelope, so PR
+  CI cannot accidentally package the hydrated full corpus; full-release browser
+  evidence remains in the release workflow.
 - Remediated all 14 findings from the completed repository-wide Codex Security
   scan and all three residual low findings from its independent remediation
   diff scan. The final fixes at `27890dc` bind approved DNS answers to TLS

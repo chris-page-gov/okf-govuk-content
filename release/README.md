@@ -44,8 +44,8 @@ checkpoint. It binds both staged hashes and the newly generated full-test
 evidence, the frozen source contract, the current bundle tree, SBOM and every
 immutable clean-workspace input. It appends the hash-chained clean-room terminal
 and only then builds candidate provenance. Candidate controls,
-clean-room/provenance evidence and the regenerated aim assessment are installed
-inside one rollback transaction:
+clean-room evidence, manifest-bound rights evidence, provenance and the
+regenerated aim assessment are installed inside one rollback transaction:
 
 ```sh
 .venv/bin/python scripts/promote_release.py promote
@@ -85,7 +85,7 @@ crash states are replay-safe and completed finalization is idempotent:
 The final manifest records the exact staged manifest/status hashes. Clean-room
 evidence must bind both hashes and the generated full-test evidence. Any failed
 generation or final validation restores the prior manifest, status, provenance,
-full-test, clean-room, activity-ledger and aim artefacts.
+full-test, clean-room, rights, activity-ledger and aim artefacts.
 
 That gate rejects fixtures, samples and capacity runs. It requires a complete
 T0/T1 closing reconciliation, opposing closed Search API partition proofs,
@@ -108,6 +108,15 @@ non-release checkpoint. The final T1 run supplies the hydrated corpus manifest
 and uses `--require-release`; unresolved conservative item triggers remain
 visible and are non-blocking only where the frozen metadata-and-link policy
 explicitly permits their publication.
+
+The audit writes an immutable input contract for the publication manifest,
+every hydrated corpus manifest, the review ledger and deterministic audit time.
+Candidate promotion and finalization refresh the rights evidence only after the
+new manifest is installed, then regenerate provenance and the aim scorecard.
+Fresh CI and tag checkouts may use `--check --allow-archived-inputs` when the
+hydrated corpus has deliberately remained outside Git; this is static
+hash-bound validation, not a replacement scan, and present-but-changed inputs
+remain fatal.
 
 `sbom.cdx.json` is regenerated deterministically from `uv.lock` and
 `semantic/package-lock.json`. `clean-room-reproduction.json` records an isolated

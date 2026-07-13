@@ -11,7 +11,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from govuk_okf.rights_audit import RightsAuditError, audit_release, write_audit  # noqa: E402
+from govuk_okf.rights_audit import (  # noqa: E402
+    RightsAuditError,
+    audit_contract_has_missing_corpus_inputs,
+    audit_from_input_contract,
+    audit_release,
+    validate_audit_evidence,
+    write_audit,
+)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -32,28 +39,73 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", type=Path, default=Path("release/rights-privacy-audit.json"))
     parser.add_argument("--check", action="store_true", help="compare with checked-in evidence without writing")
     parser.add_argument(
+        "--allow-archived-inputs",
+        action="store_true",
+        help=(
+            "for --check only, validate hash-bound full-corpus evidence when its frozen "
+            "official-source inputs are intentionally absent from Git"
+        ),
+    )
+    parser.add_argument(
         "--require-release",
         action="store_true",
         help="exit non-zero unless an unsampled, corpus-bound, fully reviewed release audit passes",
     )
     args = parser.parse_args(argv)
     root = args.root.resolve()
+    output = args.output if args.output.is_absolute() else root / args.output
     try:
-        result = audit_release(
-            root,
-            release_manifest_path=args.release_manifest,
-            publication_manifest_path=args.publication_manifest,
-            corpus_manifest_paths=args.corpus_manifest,
-            review_ledger_path=args.review_ledger,
-            generated_at=args.generated_at,
-            review_packet_path=args.review_packet,
+        if args.allow_archived_inputs and not args.check:
+            raise RightsAuditError("--allow-archived-inputs requires --check")
+        explicit_inputs = bool(
+            args.release_manifest
+            or args.publication_manifest
+            or args.corpus_manifest
+            or args.review_ledger
+            or args.generated_at
+            or args.review_packet
         )
-        output = args.output if args.output.is_absolute() else root / args.output
+        existing: dict[str, object] | None = None
         if args.check:
             try:
                 existing = json.loads(output.read_text(encoding="utf-8"))
             except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
                 raise RightsAuditError(f"cannot read checked rights/privacy evidence: {exc}") from exc
+            if not isinstance(existing, dict):
+                raise RightsAuditError("checked rights/privacy evidence must be an object")
+        if args.check and not explicit_inputs and existing is not None:
+            try:
+                result = audit_from_input_contract(
+                    root,
+                    existing.get("audit_input_contract", {}),
+                    release_manifest_path=args.release_manifest,
+                )
+            except RightsAuditError:
+                if not args.allow_archived_inputs or not audit_contract_has_missing_corpus_inputs(
+                    root,
+                    existing.get("audit_input_contract", {}),
+                ):
+                    raise
+                result = existing
+        else:
+            result = audit_release(
+                root,
+                release_manifest_path=args.release_manifest,
+                publication_manifest_path=args.publication_manifest,
+                corpus_manifest_paths=args.corpus_manifest,
+                review_ledger_path=args.review_ledger,
+                generated_at=args.generated_at,
+                review_packet_path=args.review_packet,
+            )
+        static_errors = validate_audit_evidence(
+            root,
+            result,
+            require_release=args.require_release,
+            allow_missing_corpus_inputs=args.allow_archived_inputs,
+        )
+        if static_errors:
+            raise RightsAuditError("; ".join(static_errors))
+        if args.check:
             if existing != result:
                 raise RightsAuditError("checked rights/privacy evidence is stale")
         else:

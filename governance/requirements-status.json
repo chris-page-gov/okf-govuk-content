@@ -10,7 +10,7 @@
     "requirements": 95
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "dc6f0a631a36334729089170a77ae5a3898d0a89cf05ce39b409d3103b70b11f",
+  "generated_from_sha256": "3957c0cba2852a17e05c5f9bc311fe908e5c39aba4c3b9c8b1046e6c9de24a44",
   "interpretation": "accepted is the contract status; produced is not passed or release-verified",
   "milestone": "t0_census_closed",
   "publication_ready": false,
@@ -55,7 +55,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-002"
     },
     {
@@ -73,7 +73,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-003"
     },
     {
@@ -91,7 +91,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-004"
     },
     {
@@ -109,7 +109,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-005"
     },
     {
@@ -127,7 +127,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-006"
     },
     {
@@ -145,7 +145,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-007"
     },
     {
@@ -161,7 +161,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-008"
     },
     {
@@ -237,7 +237,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-011"
     },
     {
@@ -257,7 +257,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-012"
     },
     {
@@ -278,7 +278,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-013"
     },
     {
@@ -297,7 +297,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-014"
     },
     {
@@ -316,7 +316,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-015"
     },
     {
@@ -335,7 +335,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-016"
     },
     {
@@ -354,7 +354,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-017"
     },
     {
@@ -374,7 +374,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-018"
     },
     {
@@ -392,7 +392,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-019"
     },
     {
@@ -410,7 +410,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-020"
     },
     {
@@ -428,7 +428,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-021"
     },
     {
@@ -446,7 +446,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-022"
     },
     {
@@ -464,7 +464,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-023"
     },
     {
@@ -694,7 +694,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-035"
     },
     {
@@ -712,7 +712,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-036"
     },
     {
@@ -732,7 +732,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-037"
     },
     {
@@ -752,7 +752,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-038"
     },
     {
@@ -772,7 +772,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-039"
     },
     {
@@ -791,7 +791,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-040"
     },
     {
@@ -809,7 +809,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-041"
     },
     {
@@ -827,7 +827,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-042"
     },
     {
@@ -845,7 +845,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-043"
     },
     {
@@ -864,7 +864,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-044"
     },
     {
@@ -883,7 +883,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-045"
     },
     {
@@ -902,7 +902,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-046"
     },
     {
@@ -921,7 +921,7 @@
         "src/govuk_okf/discovery.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A no-skip real-Chromium browser gate now covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets, but localhost/browser execution was refused in the current restricted run. Axe, expert, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
       "requirement_id": "REQ-047"
     },
     {

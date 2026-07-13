@@ -196,7 +196,22 @@
           ]
         },
         "included_in_model_cost": {"const": false},
-        "evidence": {"type": ["string", "null"]}
+        "evidence": {"type": ["string", "null"]},
+        "intervals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label", "start_counter", "end_counter", "attempts"],
+            "properties": {
+              "label": {"type": "string", "minLength": 1},
+              "start_counter": {"type": "integer", "minimum": 0},
+              "end_counter": {"type": "integer", "minimum": 0},
+              "attempts": {"type": "integer", "minimum": 0},
+              "ledger": {"type": ["string", "null"]}
+            }
+          }
+        }
       }
     },
     "usage": {

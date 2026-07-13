@@ -25,12 +25,20 @@ from typing import Any, Callable
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(ROOT / "src"))
 
 import append_activity  # noqa: E402
 import build_aim_scorecard  # noqa: E402
 import check_provenance  # noqa: E402
 import check_release  # noqa: E402
 import reproduce_release  # noqa: E402
+from govuk_okf.rights_audit import (  # noqa: E402
+    RightsAuditError,
+    audit_contract_has_missing_corpus_inputs,
+    audit_from_input_contract,
+    rebind_audit_release,
+    validate_audit_evidence,
+)
 
 
 DISALLOWED = ("fixture", "sample", "capacity", "development", "test")
@@ -315,6 +323,50 @@ def build_provenance_evidence(root: Path, snapshot: str, *, finalized: bool = Fa
     return document
 
 
+def build_rights_evidence(root: Path, snapshot: str) -> dict[str, Any]:
+    """Regenerate rights evidence against the currently installed transition controls."""
+
+    manifest = load_json(root / MANIFEST_PATH, "release manifest")
+    artifacts = manifest.get("artifacts")
+    if not isinstance(artifacts, dict):
+        raise PromotionError("release manifest has no artifact contract")
+    rights_path, _ = safe_relative(
+        root, str(artifacts.get("rights_privacy_audit") or ""), "rights evidence"
+    )
+    previous = load_json(rights_path, "pre-transition rights evidence")
+    contract = previous.get("audit_input_contract")
+    if not isinstance(contract, dict):
+        raise PromotionError("pre-transition rights evidence lacks its immutable input contract")
+    try:
+        document = audit_from_input_contract(
+            root,
+            contract,
+            release_manifest_path=root / MANIFEST_PATH,
+        )
+    except RightsAuditError as replay_error:
+        try:
+            if not audit_contract_has_missing_corpus_inputs(root, contract):
+                raise replay_error
+            document = rebind_audit_release(
+                root,
+                previous,
+                allow_missing_corpus_inputs=True,
+            )
+        except RightsAuditError as exc:
+            raise PromotionError(f"rights/privacy regeneration failed: {exc}") from exc
+    errors = validate_audit_evidence(
+        root,
+        document,
+        require_release=True,
+        allow_missing_corpus_inputs=True,
+    )
+    if document.get("snapshot") != snapshot:
+        errors.append("regenerated rights evidence snapshot differs")
+    if errors:
+        raise PromotionError("rights/privacy regeneration failed: " + "; ".join(errors))
+    return document
+
+
 def _command_result(command: list[str], root: Path) -> dict[str, Any]:
     result = subprocess.run(command, cwd=root, capture_output=True, text=True, check=False)
     output = result.stdout + result.stderr
@@ -326,12 +378,20 @@ def _command_result(command: list[str], root: Path) -> dict[str, Any]:
     }
 
 
-def build_test_evidence(root: Path, snapshot: str) -> dict[str, Any]:
+def build_test_evidence(
+    root: Path,
+    snapshot: str,
+    *,
+    command_runner: Callable[[list[str], Path], dict[str, Any]] = _command_result,
+) -> dict[str, Any]:
     before = check_release._tree_sha256(root)
     commands = [
-        _command_result([sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"], root),
-        _command_result(["npm", "test", "--prefix", "explorer"], root),
-        _command_result(["npm", "test", "--prefix", "semantic"], root),
+        command_runner(
+            [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"],
+            root,
+        ),
+        command_runner(["npm", "test", "--prefix", "explorer"], root),
+        command_runner(["npm", "test", "--prefix", "semantic"], root),
     ]
     if any(row["returncode"] != 0 for row in commands):
         raise PromotionError("full-repository tests failed")
@@ -631,6 +691,15 @@ def validate_pre_promotion(
                 errors.append(f"{name} evidence did not pass")
             if check_release._artifact_snapshot(evidence) != snapshot["id"]:
                 errors.append(f"{name} snapshot differs")
+            if name == "rights_privacy_audit":
+                errors.extend(
+                    check_release._rights_errors(
+                        root,
+                        evidence,
+                        require_release=True,
+                        allow_missing_corpus_inputs=False,
+                    )
+                )
         tests_path = check_release._resolve_relative(
             root, artifacts.get("full_repository_tests"), "full_repository_tests"
         )
@@ -659,6 +728,7 @@ def validate_pre_promotion(
 def promote_release(
     root: Path, *, overrides: dict[str, str | None] | None = None,
     provenance_builder: Callable[[Path, str], dict[str, Any]] = build_provenance_evidence,
+    rights_builder: Callable[[Path, str], dict[str, Any]] = build_rights_evidence,
     test_builder: Callable[[Path, str], dict[str, Any]] = build_test_evidence,
     clean_room_builder: Callable[
         [Path, str, dict[str, Any], dict[str, Any]], dict[str, Any]
@@ -777,6 +847,9 @@ def promote_release(
     if not ledger_path.is_file() or not ledger_schema_path.is_file():
         raise PromotionError("promotion requires regular activity-ledger and schema files")
     aim_path, _ = safe_relative(root, str(artifacts["aim_assessment"]), "aim assessment")
+    rights_path, _ = safe_relative(
+        root, str(artifacts["rights_privacy_audit"]), "rights evidence"
+    )
     report_path, _ = safe_relative(root, "reports/aim-scorecard.md", "aim scorecard")
     transaction_paths = [
         manifest_path,
@@ -785,6 +858,7 @@ def promote_release(
         tests_path,
         clean_room_path,
         ledger_path,
+        rights_path,
         aim_path,
         report_path,
     ]
@@ -817,19 +891,21 @@ def promote_release(
                 sbom_path,
             )
             append_clean_room_terminal(root, terminal)
+        candidate_controls = {
+            manifest_path: canonical_bytes(final_manifest),
+            status_path: canonical_bytes(final_status),
+        }
+        for path, payload in candidate_controls.items():
+            _replace_bytes(path, payload)
+        rights = rights_builder(root, snapshot_id)
+        _replace_bytes(rights_path, canonical_bytes(rights))
         provenance = provenance_builder(root, snapshot_id)
         preflight_errors = validate_pre_promotion(
             root, final_manifest, provenance, tests, clean_room
         )
         if preflight_errors:
             raise PromotionError("promotion evidence failed: " + "; ".join(preflight_errors))
-        candidate_controls = {
-            manifest_path: canonical_bytes(final_manifest),
-            status_path: canonical_bytes(final_status),
-            provenance_path: canonical_bytes(provenance),
-        }
-        for path, payload in candidate_controls.items():
-            _replace_bytes(path, payload)
+        _replace_bytes(provenance_path, canonical_bytes(provenance))
         rendered = aim_renderer(root)
         if aim_path not in rendered:
             raise PromotionError("aim renderer did not produce the manifest-declared assessment path")
@@ -869,6 +945,7 @@ def promote_release(
 def finalize_release(
     root: Path, *,
     provenance_builder: Callable[[Path, str], dict[str, Any]] | None = None,
+    rights_builder: Callable[[Path, str], dict[str, Any]] = build_rights_evidence,
     aim_renderer: Callable[[Path], dict[Path, str]] = build_aim_scorecard.render,
     validator: Callable[[Path, bool, bool], list[str]] | None = None,
 ) -> dict[str, Any]:
@@ -887,6 +964,7 @@ def finalize_release(
         return _finalize_release_locked(
             root,
             provenance_builder=provenance_builder,
+            rights_builder=rights_builder,
             aim_renderer=aim_renderer,
             validator=validator,
         )
@@ -895,6 +973,7 @@ def finalize_release(
 def _finalize_release_locked(
     root: Path, *,
     provenance_builder: Callable[[Path, str], dict[str, Any]] | None,
+    rights_builder: Callable[[Path, str], dict[str, Any]],
     aim_renderer: Callable[[Path], dict[Path, str]],
     validator: Callable[[Path, bool, bool], list[str]] | None,
 ) -> dict[str, Any]:
@@ -936,7 +1015,10 @@ def _finalize_release_locked(
             raise PromotionError("partial finalization status is not recoverable")
         if status == expected_final_status:
             final_errors = check_release.validate_release(
-                root, require_publication_ready=True, require_finalized=True
+                root,
+                require_publication_ready=True,
+                require_finalized=True,
+                allow_missing_archived_inputs=True,
             )
             if not final_errors:
                 return {"manifest": manifest, "status": status}
@@ -951,18 +1033,6 @@ def _finalize_release_locked(
         or (recovering and status != candidate_status and status != expected_final_status)
     ):
         raise PromotionError("finalize requires an unfinalized, publication-ready machine release candidate")
-    # Appending the external publication terminal necessarily makes the old
-    # 10-of-11 candidate provenance stale. Build strict 11-of-11 provenance
-    # first, then validate every final control together inside the transaction.
-    if provenance_builder is None:
-        provenance = build_provenance_evidence(root, snapshot_id, finalized=True)
-    else:
-        provenance = provenance_builder(root, snapshot_id)
-    provenance_errors = check_release._provenance_errors(
-        root, provenance, manifest["snapshot"], require_finalized=True
-    )
-    if provenance_errors:
-        raise PromotionError("strict post-publication provenance failed: " + "; ".join(provenance_errors))
     if recovering:
         final_manifest = manifest
         final_status = expected_final_status
@@ -980,18 +1050,43 @@ def _finalize_release_locked(
         final_status = expected_final_status
     artifacts = manifest["artifacts"]
     provenance_path, _ = safe_relative(root, str(artifacts["provenance_validation"]), "provenance evidence")
+    rights_path, _ = safe_relative(
+        root, str(artifacts["rights_privacy_audit"]), "rights evidence"
+    )
     aim_path, _ = safe_relative(root, str(artifacts["aim_assessment"]), "aim assessment")
     report_path, _ = safe_relative(root, "reports/aim-scorecard.md", "aim scorecard")
-    transaction_paths = [manifest_path, status_path, provenance_path, aim_path, report_path]
+    transaction_paths = [
+        manifest_path,
+        status_path,
+        rights_path,
+        provenance_path,
+        aim_path,
+        report_path,
+    ]
     final_validator = validator or (
         lambda candidate_root, publication, finalized: check_release.validate_release(
             candidate_root,
             require_publication_ready=publication,
             require_finalized=finalized,
+            allow_missing_archived_inputs=True,
         )
     )
 
     def continuation() -> dict[Path, bytes]:
+        rights = rights_builder(root, snapshot_id)
+        _replace_bytes(rights_path, canonical_bytes(rights))
+        if provenance_builder is None:
+            provenance = build_provenance_evidence(root, snapshot_id, finalized=True)
+        else:
+            provenance = provenance_builder(root, snapshot_id)
+        provenance_errors = check_release._provenance_errors(
+            root, provenance, final_manifest["snapshot"], require_finalized=True
+        )
+        if provenance_errors:
+            raise PromotionError(
+                "strict post-publication provenance failed: " + "; ".join(provenance_errors)
+            )
+        _replace_bytes(provenance_path, canonical_bytes(provenance))
         rendered = aim_renderer(root)
         if aim_path not in rendered:
             raise PromotionError("aim renderer did not produce the manifest-declared assessment path")
@@ -1002,7 +1097,6 @@ def _finalize_release_locked(
         {
             manifest_path: canonical_bytes(final_manifest),
             status_path: canonical_bytes(final_status),
-            provenance_path: canonical_bytes(provenance),
         },
         continuation,
         lambda: final_validator(root, True, True),

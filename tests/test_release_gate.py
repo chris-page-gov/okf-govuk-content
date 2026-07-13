@@ -281,6 +281,7 @@ def make_release(root: Path) -> None:
                 },
             },
             "release_inputs_passed": True,
+            "release_kind": "machine_release_candidate",
             "source": reproduction["source"],
             "source_binding": reproduction["source_binding"],
             "generated_at": reproduction["generated_at"],
@@ -377,6 +378,21 @@ def make_release(root: Path) -> None:
             "unexplained_omissions": 0,
         },
     )
+    rights_corpus_manifest = root / "corpus/rights-audit-manifest.json"
+    write_json(
+        rights_corpus_manifest,
+        {"snapshot": release_id, "metadata_only": True, "complete_page_bodies_retained": False},
+    )
+    release_manifest_path = root / "release/manifest.yaml"
+    publication_manifest_path = root / "bundle/data/manifest.json"
+
+    def rights_binding(path: Path) -> dict[str, object]:
+        return {
+            "path": path.relative_to(root).as_posix(),
+            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+            "bytes": path.stat().st_size,
+        }
+
     write_json(
         root / "release/rights-privacy-audit.json",
         {
@@ -384,6 +400,31 @@ def make_release(root: Path) -> None:
             "rights_privacy_audit_passed": True,
             "schema": "afhf-govuk-okf-rights-privacy-audit.v1",
             "snapshot": release_id,
+            "snapshot_kind": "full_corpus",
+            "sampled": False,
+            "generated_at": reproduction["generated_at"],
+            "audit_input_contract": {
+                "schema": "afhf-govuk-okf-rights-audit-inputs.v1",
+                "generated_at": reproduction["generated_at"],
+                "publication_manifest": rights_binding(publication_manifest_path),
+                "corpus_manifests": [rights_binding(rights_corpus_manifest)],
+                "review_ledger": None,
+            },
+            "snapshot_binding": {
+                "release_manifest": {
+                    "path": "release/manifest.yaml",
+                    "sha256": hashlib.sha256(release_manifest_path.read_bytes()).hexdigest(),
+                },
+                "publication_manifest": {
+                    "path": "bundle/data/manifest.json",
+                    "sha256": hashlib.sha256(publication_manifest_path.read_bytes()).hexdigest(),
+                },
+                "corpus_manifest_count": 1,
+                "frozen_source": reproduction["source_binding"],
+                "full_unsampled_snapshot": True,
+                "corpus_snapshot_bound": True,
+            },
+            "review": {"provided": False, "review_count": 0},
         },
     )
     question_root = root / "questions/release-v2"
@@ -848,6 +889,12 @@ class ReleaseGateTests(unittest.TestCase):
             manifest["promotion"]["candidate_manifest_sha256"] = candidate_manifest_sha
             manifest["promotion"]["candidate_status_sha256"] = candidate_status_sha
             write_json(manifest_path, manifest)
+            rights_path = root / "release/rights-privacy-audit.json"
+            rights = json.loads(rights_path.read_text(encoding="utf-8"))
+            rights["snapshot_binding"]["release_manifest"]["sha256"] = MODULE._file_sha256(
+                manifest_path
+            )
+            write_json(rights_path, rights)
             mutate(root / "release/status.json", "promotion_finalized", True)
             mutate(root / "release/status.json", "reason", MODULE.MACHINE_FINAL_REASON)
             provenance_path = root / "release/provenance-validation.json"

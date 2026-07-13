@@ -185,9 +185,13 @@ hashes, full-test evidence, SBOM, current bundle tree and every immutable input
 copied into the clean workspace. Promotion then appends the hash-chained
 `ACT-F2-CLEAN-ROOM-RC-TERMINAL-001` row and builds candidate provenance from
 that updated ledger; only then are candidate controls and regenerated
-assessment artefacts installed. The side lock and prepared terminal make
+rights, provenance and assessment artefacts installed. Rights evidence is
+rebuilt from its exact input contract after the candidate manifest is in place,
+so its release-manifest hash cannot be made stale by promotion. Finalization
+performs the same ordering after installing the final manifest/status. The side
+lock and prepared terminal make
 post-clean and partial-candidate crash retries idempotent. Any failure restores
-the ledger and every release-control artefact. Boolean flags alone cannot
+the ledger, rights evidence and every other release-control artefact. Boolean flags alone cannot
 promote a fixture or sampled corpus.
 
 Generate the independent rights/privacy evidence after the final T1 bundle and
@@ -210,12 +214,26 @@ full classification set. Its examples are record fingerprints, never source
 values. Structural rights triggers remain distinct from hard failures: a
 trigger may be controlled by the declared metadata-and-link policy, but any
 retained body/credential material, integrity error or snapshot mismatch blocks
-the release.
+the release. The resulting `audit_input_contract` binds the publication
+manifest, every corpus manifest, the review ledger and deterministic
+`generated_at` value by repository-relative path, bytes and SHA-256. Promotion
+replays those exact inputs when present. A fresh candidate/final checkout may
+omit the archived hydrated corpus; in that case only the explicit
+`--allow-archived-inputs` check path is permitted, and it validates the retained
+input bindings, current publication/release controls and all release gates
+without claiming to have rescanned unavailable bytes. A present but changed
+input always fails.
 
-CI installs dependencies from both locks before running the same fixture check.
-This gives a fresh-runner dependency installation plus a second isolated build
-directory. A release run should retain the CI log and exact runner/container
-identity alongside the machine evidence.
+CI installs dependencies from both locks and dispatches on the checked release
+contract. The exact development fixture still runs byte-for-byte
+`build_bundle.py --check` and `reproduce_release.py --check`. A promoted,
+unsampled candidate/final instead validates its completed clean-room evidence,
+current bundle/release bindings and archived-input contracts; checkpoints or
+ambiguous states fail closed. The small single-pack browser regression builds a
+dedicated two-record fixture at test time and never copies the checked release
+bundle. Full-corpus packed-browser evidence remains a release-workflow gate. A
+release run should retain the CI log and exact runner/container identity
+alongside the machine evidence.
 
 ## Rights and access boundary
 

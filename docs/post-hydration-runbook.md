@@ -74,7 +74,10 @@ and separately retains `reconciliation_path`.
 Append the real `ACT-D1-T0-HYDRATION-TERMINAL-001` and
 `ACT-E1-T1-RECONCILIATION-TERMINAL-001` rows only after their outputs, request
 intervals and hashes are known. The T0 hydration row remains T0-bound; the T1
-row must include `$RELEASE_ID` in `source_snapshots`.
+row must include `$RELEASE_ID` in `source_snapshots`. Construct every manual
+terminal with the declaration-driven commands in
+[`terminal-activity-closure.md`](terminal-activity-closure.md); never append a
+pre-authored terminal JSON object.
 
 ## 2. Build and stage the frozen bundle
 
@@ -194,6 +197,26 @@ the affected checks and scan to be repeated.
 .venv/bin/python scripts/build_sbom.py --check
 ```
 
+Before freezing that scan, synchronize the actual release state across
+`governance/implementation-status-source.json`, the generated requirement,
+traceability and task projections, `docs/implementation-status.md`, the root
+and release READMEs, the post-hydration/reproducibility/governance runbooks and
+`CHANGELOG.md`. Record only evidence that exists for the exact snapshot; retain
+human research as `not_authorised` and UI-of-choice as `not_yet_testable`.
+
+```sh
+.venv/bin/python scripts/build_status_projections.py
+.venv/bin/python scripts/build_status_projections.py --check
+.venv/bin/python scripts/build_aim_scorecard.py
+.venv/bin/python scripts/build_aim_scorecard.py --check
+.venv/bin/python scripts/check_lockstep.py
+```
+
+Commit those code, workflow, test and control-surface changes before the final
+Codex Security scan. After the scan starts, do not change any path in
+`scripts/check_release.py::SECURITY_SCAN_INPUT_PATHS`; a change requires a new
+scan against the new frozen commit.
+
 The final citation activity is
 `ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001`. It must supersede
 `ACT-F2-CITATION-REVIEWS-TERMINAL-001`, include `$RELEASE_ID`, record an exact
@@ -227,7 +250,10 @@ that final snapshot. Never fold citation attempts into model cost.
 Before promotion, the ledger must satisfy every candidate terminal except the
 clean-room terminal, which promotion appends transactionally, and the external
 publication terminal. Promotion independently regenerates full-test and
-clean-room evidence and rolls back every control artefact on failure.
+clean-room evidence. After installing candidate manifest/status controls, it
+replays the rights audit's hash-bound publication, corpus and review input
+contract, then regenerates provenance and the aim assessment. Any failure rolls
+back rights evidence and every other control artefact.
 
 ```sh
 .venv/bin/python scripts/promote_release.py promote
@@ -248,6 +274,15 @@ main read-back, candidate tag/release, Pages and registry-PR evidence.
   --require-release
 .venv/bin/python scripts/check_release.py --finalized
 ```
+
+Finalization repeats the manifest -> rights -> provenance -> aim order inside
+the same rollback transaction. If hydrated corpus manifests have been archived
+outside Git, fresh CI/release checkouts use
+`audit_rights_privacy.py --check --require-release --allow-archived-inputs` and
+`check_release.py --finalized --allow-archived-inputs`; those modes accept
+missing corpus inputs only when the original path/byte/hash contract remains
+complete. They never accept a changed input or represent static validation as a
+new scan.
 
 The final tag and GitHub Release must use the already verified bytes; no
 publication workflow may rebuild the bundle. Recheck the final release assets,

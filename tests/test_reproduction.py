@@ -296,16 +296,30 @@ class ReproductionTests(unittest.TestCase):
             self.assertEqual(7, summary["source_request_exact_attempts"])
             self.assertEqual(0, summary["activities_with_unavailable_tokens"])
 
-    def test_checked_fixture_evidence_is_honest_and_structurally_valid(self) -> None:
+    def test_checked_reproduction_evidence_matches_release_state(self) -> None:
+        manifest = json.loads((ROOT / "release/manifest.yaml").read_text(encoding="utf-8"))
         document = json.loads(
             (ROOT / "release/clean-room-reproduction.json").read_text(encoding="utf-8")
         )
         self.assertEqual([], MODULE.validate_evidence(document))
         self.assertTrue(document["fixture_reproduction_passed"])
-        self.assertFalse(document["clean_room_reproduction_passed"])
         release_errors = MODULE.validate_evidence(document, require_release=True)
-        self.assertTrue(any("clean_room_reproduction_passed is false" in error for error in release_errors))
-        self.assertTrue(any("full-repository test evidence" in error for error in release_errors))
+        release_kind = manifest["release_kind"]
+        if release_kind == "fixture":
+            self.assertFalse(document["clean_room_reproduction_passed"])
+            self.assertTrue(any("clean_room_reproduction_passed is false" in error for error in release_errors))
+            self.assertTrue(any("full-repository test evidence" in error for error in release_errors))
+        elif release_kind == "full_corpus_checkpoint":
+            self.assertFalse(manifest["publication_ready"])
+            self.assertNotEqual(
+                (manifest["snapshot"]["id"], "machine_release_candidate"),
+                (document.get("snapshot"), document.get("release_kind")),
+            )
+        else:
+            self.assertEqual("machine_release_candidate", release_kind)
+            self.assertEqual(manifest["snapshot"]["id"], document["snapshot"])
+            self.assertTrue(document["clean_room_reproduction_passed"])
+            self.assertEqual([], release_errors)
 
 
 if __name__ == "__main__":

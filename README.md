@@ -20,9 +20,10 @@ release corpus.
 
 The Explorer source includes a no-skip real-Chromium fixture gate for
 accessibility-relevant behaviour, durable query/hash links, Pages recovery,
-gzip hydration and startup/search/route/heap budgets. The current checkpoint
-records that local browser execution and axe dependency installation were
-refused by the execution environment; it does not claim WCAG conformance.
+gzip hydration and startup/search/route/heap budgets. The automated browser
+subset now passes locally and in protected pull-request CI. Axe, accessibility-
+expert, screen-reader and participant testing have not been completed, so this
+does not claim WCAG conformance or human preference.
 
 Publication remains fail-closed until T0 hydration and T1 enumeration/closing close,
 `unexplained_omissions` is zero, the corpus-anchored v2 question matrix is

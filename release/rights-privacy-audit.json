@@ -1,4 +1,19 @@
 {
+  "audit_input_contract": {
+    "corpus_manifests": [],
+    "generated_at": "2026-07-11T23:30:00Z",
+    "publication_manifest": {
+      "bytes": 5403,
+      "path": "bundle/data/manifest.json",
+      "sha256": "643fccb55fd2a123dceb4239ac697cfaf4337f82b8d75c3a6b7d46a3e43e14a4"
+    },
+    "review_ledger": {
+      "bytes": 110,
+      "path": "governance/rights-review-ledger.json",
+      "sha256": "2cd755bb5e68cdb790a60eb85f94257f1f09361fa1e2878a31e203e43b34cc8b"
+    },
+    "schema": "afhf-govuk-okf-rights-audit-inputs.v1"
+  },
   "classification": {
     "item_review_triggered_items": 2,
     "ogl_default_candidate_items": 34,
@@ -158,6 +173,7 @@
     "corpus_asset_set_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "corpus_manifest_count": 0,
     "corpus_snapshot_bound": false,
+    "frozen_source": null,
     "full_unsampled_snapshot": false,
     "publication_asset_set_sha256": "b44fdba306c0f290e36bbbd4212bd6a2f2ce3fa93fdfdfefbdd4e701bb7ebe8d",
     "publication_manifest": {
