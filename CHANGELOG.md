@@ -92,6 +92,11 @@ semantic versioning.
 
 ### Fixed
 
+- Enforced the launch-manifest 10 GiB retained-metadata ceiling throughout
+  full-corpus hydration. The resumable checkpoint now clears redundant input
+  payloads atomically as records complete, reserves space before SQLite batch
+  commits, truncates recoverable WAL state, migrates legacy checkpoints, and
+  hash-verifies durable exports before removing transient candidate rows.
 - Remediated all 14 findings from the completed repository-wide Codex Security
   scan and all three residual low findings from its independent remediation
   diff scan. The final fixes at `27890dc` bind approved DNS answers to TLS
