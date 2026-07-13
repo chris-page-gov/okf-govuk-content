@@ -13,6 +13,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from govuk_okf.rendered_gap import parse_robots, rendered_observation  # noqa: E402
 from govuk_okf.closure_hydration import CompleteCorpusHydrator  # noqa: E402
+from govuk_okf.hydration import HydrationError  # noqa: E402
 
 
 class RenderedGapTests(unittest.TestCase):
@@ -136,6 +137,7 @@ class RenderedGapTests(unittest.TestCase):
                 requests_per_second=100000,
                 workers=2,
                 max_queue_records=10,
+                retained_storage_bytes=1024**3,
             )
             with patch("govuk_okf.closure_hydration.request_observation", side_effect=observation), patch(
                 "govuk_okf.hydration.request_observation", side_effect=observation
@@ -216,6 +218,7 @@ class RenderedGapTests(unittest.TestCase):
                 workers=2,
                 max_queue_records=10,
                 max_rendered_requests=1,
+                retained_storage_bytes=1024**3,
             )
             with patch("govuk_okf.closure_hydration.request_observation", side_effect=observation), patch(
                 "govuk_okf.hydration.request_observation", side_effect=observation
@@ -227,6 +230,44 @@ class RenderedGapTests(unittest.TestCase):
             self.assertEqual(1, proof["unsampled_records"])
             self.assertEqual(1, proof["status_counts"]["not_selected_by_bounded_detector"])
             self.assertEqual(1_000_000, proof["request_accounting"]["programme_ceiling"])
+
+    def test_storage_ceiling_stops_before_robots_request(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "corpus/inventory/T0-source-records.jsonl.gz"
+            source.parent.mkdir(parents=True)
+            with gzip.open(source, "wt", encoding="utf-8") as stream:
+                stream.write(
+                    json.dumps(
+                        {
+                            "candidate_key": "root",
+                            "entity_class": "route",
+                            "source_native_id": "https://www.gov.uk/",
+                            "source_id": "govuk-sitemap",
+                            "source_memberships": ["sitemap"],
+                            "coverage_disposition": "represented",
+                            "canonical_url": "https://www.gov.uk/",
+                            "base_path": "/",
+                            "title": "GOV.UK",
+                            "document_type": "homepage",
+                            "schema_name": "homepage",
+                            "locale": "en",
+                            "links": {},
+                        }
+                    )
+                    + "\n"
+                )
+            hydrator = CompleteCorpusHydrator(
+                root,
+                "T0",
+                source,
+                requests_per_second=100000,
+                retained_storage_bytes=1,
+            )
+            with patch("govuk_okf.closure_hydration.request_observation") as request:
+                with self.assertRaisesRegex(HydrationError, "retained metadata storage"):
+                    hydrator.run()
+            request.assert_not_called()
 
 
 if __name__ == "__main__":

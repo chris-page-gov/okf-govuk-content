@@ -6,6 +6,8 @@ import collections
 import concurrent.futures
 import hashlib
 import json
+import re
+import shutil
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
@@ -30,6 +32,38 @@ from .util import canonical_json_bytes, pretty_json
 
 class HydrationError(RuntimeError):
     """Raised when a hydration closure cannot be represented safely."""
+
+
+_STORAGE_CEILING_PATTERN = re.compile(
+    r"^\s*retained_metadata_storage_gib:\s*([0-9]+)\s*$",
+    re.MULTILINE,
+)
+_STORAGE_OPERATIONAL_PERCENT = 95
+_SQLITE_WRITE_SAFETY_FACTOR = 3
+_SQLITE_WRITE_FIXED_RESERVE = 8 * 1024 * 1024
+_CONTROL_DOCUMENT_RESERVE = 2 * 1024 * 1024
+
+
+def _launch_storage_ceiling_bytes(root: Path) -> int:
+    launch = root / "governance" / "launch-manifest.yaml"
+    if not launch.is_file():
+        raise HydrationError("launch manifest is required to authorise retained hydration storage")
+    match = _STORAGE_CEILING_PATTERN.search(launch.read_text(encoding="utf-8"))
+    if not match or int(match.group(1)) < 1:
+        raise HydrationError("launch manifest has no positive retained_metadata_storage_gib ceiling")
+    return int(match.group(1)) * 1024**3
+
+
+def _regular_file_bytes(root: Path) -> int:
+    if not root.exists():
+        return 0
+    total = 0
+    for path in root.rglob("*"):
+        if path.is_symlink():
+            raise HydrationError(f"retained metadata tree contains a symbolic link: {path}")
+        if path.is_file():
+            total += path.stat().st_size
+    return total
 
 
 def read_source_records(path: Path) -> Iterator[dict[str, Any]]:
@@ -178,6 +212,7 @@ class CorpusHydrator:
         requests_per_second: float = 8.0,
         workers: int = 16,
         batch_size: int = 256,
+        retained_storage_bytes: int | None = None,
     ) -> None:
         if workers < 1 or batch_size < 1:
             raise HydrationError("workers and batch_size must be positive")
@@ -191,12 +226,155 @@ class CorpusHydrator:
         self.records_root = self.root / "corpus" / "records" / label
         self.inventory_root = self.root / "corpus" / "inventory"
         self.reconciliation_root = self.root / "corpus" / "reconciliation"
+        self.storage_ceiling_bytes = (
+            retained_storage_bytes
+            if retained_storage_bytes is not None
+            else _launch_storage_ceiling_bytes(self.root)
+        )
+        if self.storage_ceiling_bytes < 1:
+            raise HydrationError("retained hydration storage ceiling must be positive")
+        self.storage_operational_bytes = (
+            self.storage_ceiling_bytes * _STORAGE_OPERATIONAL_PERCENT // 100
+        )
         self.limiter = HostLimiter(
             requests_per_second,
             state_path=self.root / ".tmp" / "rate-limits" / "content-api.timestamp",
             budget_path=self.root / ".tmp" / "request-budget" / "official-sources.count",
             max_requests=1_000_000,
         )
+
+    @staticmethod
+    def _queue_schema() -> str:
+        return """
+            CREATE TABLE queue (
+                url TEXT NOT NULL,
+                locale TEXT NOT NULL,
+                input_json TEXT,
+                state TEXT NOT NULL CHECK (state IN ('pending', 'complete')),
+                hydration_status TEXT,
+                record_json TEXT,
+                PRIMARY KEY (url, locale),
+                CHECK (
+                    (state = 'pending' AND input_json IS NOT NULL AND record_json IS NULL)
+                    OR
+                    (state = 'complete' AND input_json IS NULL AND record_json IS NOT NULL)
+                )
+            )
+        """
+
+    @staticmethod
+    def _candidate_schema() -> str:
+        return """
+            CREATE TABLE candidates (
+                candidate_key TEXT PRIMARY KEY,
+                entity_class TEXT NOT NULL,
+                source_native_id TEXT NOT NULL,
+                locale TEXT NOT NULL,
+                candidate_json TEXT NOT NULL
+            )
+        """
+
+    def _migrate_queue_schema(self, connection: sqlite3.Connection) -> None:
+        columns = {
+            str(row[1]): row
+            for row in connection.execute("PRAGMA table_info(queue)").fetchall()
+        }
+        input_column = columns.get("input_json")
+        if input_column is None:
+            raise HydrationError("hydration queue has no input_json column")
+        if not bool(input_column[3]):
+            invalid = int(
+                connection.execute(
+                    "SELECT COUNT(*) FROM queue WHERE "
+                    "(state='pending' AND (input_json IS NULL OR record_json IS NOT NULL)) OR "
+                    "(state='complete' AND (input_json IS NOT NULL OR record_json IS NULL))"
+                ).fetchone()[0]
+            )
+            if invalid:
+                raise HydrationError("hydration queue violates the nullable-input state contract")
+            return
+
+        invalid_complete = int(
+            connection.execute(
+                "SELECT COUNT(*) FROM queue WHERE state='complete' AND record_json IS NULL"
+            ).fetchone()[0]
+        )
+        if invalid_complete:
+            raise HydrationError("legacy hydration queue has completed rows without record payloads")
+        connection.execute("BEGIN IMMEDIATE")
+        try:
+            connection.execute("ALTER TABLE queue RENAME TO queue_legacy_input")
+            connection.execute(self._queue_schema())
+            connection.execute(
+                "INSERT INTO queue(url, locale, input_json, state, hydration_status, record_json) "
+                "SELECT url, locale, CASE WHEN state='complete' THEN NULL ELSE input_json END, "
+                "state, hydration_status, record_json FROM queue_legacy_input"
+            )
+            connection.execute("DROP TABLE queue_legacy_input")
+            connection.execute("CREATE INDEX queue_state_url ON queue(state, url, locale)")
+            connection.commit()
+        except Exception:
+            connection.rollback()
+            raise
+
+    def retained_storage_bytes(self) -> int:
+        """Return retained corpus bytes governed by the launch storage ceiling."""
+
+        return _regular_file_bytes(self.root / "corpus")
+
+    def _assert_retained_storage(
+        self,
+        *,
+        phase: str,
+        reserve_bytes: int = 0,
+        use_authorised_ceiling: bool = False,
+    ) -> int:
+        observed = self.retained_storage_bytes()
+        limit = self.storage_ceiling_bytes if use_authorised_ceiling else self.storage_operational_bytes
+        if observed + reserve_bytes > limit:
+            raise HydrationError(
+                f"retained metadata storage would exceed the {phase} limit: "
+                f"{observed}+{reserve_bytes}>{limit} bytes "
+                f"(authorised ceiling {self.storage_ceiling_bytes})"
+            )
+        return observed
+
+    def _checkpoint_wal_for_storage(self, connection: sqlite3.Connection, *, force: bool = False) -> None:
+        wal = self.database_path.with_name(self.database_path.name + "-wal")
+        if force or (
+            wal.is_file()
+            and self.retained_storage_bytes() > self.storage_operational_bytes * 9 // 10
+        ):
+            busy, _pages, _checkpointed = connection.execute(
+                "PRAGMA wal_checkpoint(TRUNCATE)"
+            ).fetchone()
+            if busy:
+                raise HydrationError("hydration WAL could not be checkpointed for storage safety")
+
+    def _storage_accounting(self, *, transient_export_peak_bytes: int) -> dict[str, Any]:
+        observed = self.retained_storage_bytes()
+        checkpoint = sum(
+            path.stat().st_size
+            for path in (
+                self.database_path,
+                self.database_path.with_name(self.database_path.name + "-wal"),
+                self.database_path.with_name(self.database_path.name + "-shm"),
+            )
+            if path.is_file()
+        )
+        return {
+            "scope": "retained files below corpus/; transient export/VACUUM files are deleted before completion",
+            "authorised_ceiling_bytes": self.storage_ceiling_bytes,
+            "operational_stop_bytes": self.storage_operational_bytes,
+            "observed_retained_bytes_before_control_documents": observed,
+            "control_document_reserve_bytes": _CONTROL_DOCUMENT_RESERVE,
+            "conservative_accounted_bytes": observed + _CONTROL_DOCUMENT_RESERVE,
+            "hydration_checkpoint_bytes": checkpoint,
+            "transient_export_peak_bytes": transient_export_peak_bytes,
+            "transient_export_state_deleted_after_verification": True,
+            "within_authorised_ceiling": observed + _CONTROL_DOCUMENT_RESERVE
+            <= self.storage_ceiling_bytes,
+        }
 
     def _connect(self) -> sqlite3.Connection:
         self.cache_root.mkdir(parents=True, exist_ok=True)
@@ -210,25 +388,23 @@ class CorpusHydrator:
                 key TEXT PRIMARY KEY,
                 value TEXT NOT NULL
             );
-            CREATE TABLE IF NOT EXISTS queue (
-                url TEXT NOT NULL,
-                locale TEXT NOT NULL,
-                input_json TEXT NOT NULL,
-                state TEXT NOT NULL CHECK (state IN ('pending', 'complete')),
-                hydration_status TEXT,
-                record_json TEXT,
-                PRIMARY KEY (url, locale)
-            );
-            CREATE INDEX IF NOT EXISTS queue_state_url ON queue(state, url, locale);
-            CREATE TABLE IF NOT EXISTS candidates (
-                candidate_key TEXT PRIMARY KEY,
-                entity_class TEXT NOT NULL,
-                source_native_id TEXT NOT NULL,
-                locale TEXT NOT NULL,
-                candidate_json TEXT NOT NULL
-            );
             """
         )
+        if not connection.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name='queue'"
+        ).fetchone():
+            connection.execute(self._queue_schema())
+            connection.execute("CREATE INDEX queue_state_url ON queue(state, url, locale)")
+        else:
+            self._migrate_queue_schema(connection)
+        if not connection.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name='candidates'"
+        ).fetchone():
+            connection.execute(self._candidate_schema())
+        connection.commit()
+        # Recover and truncate any rolled-back tail left by an interrupted
+        # preparation before new retained-storage accounting or requests.
+        self._checkpoint_wal_for_storage(connection, force=True)
         return connection
 
     def prepare(self, connection: sqlite3.Connection) -> int:
@@ -250,6 +426,7 @@ class CorpusHydrator:
                         insert_batch,
                     )
                     insert_batch.clear()
+                    self._assert_retained_storage(phase="hydration preparation")
                 count += 1
             if insert_batch:
                 connection.executemany(
@@ -272,8 +449,11 @@ class CorpusHydrator:
                 (str(count),),
             )
             connection.commit()
+            self._checkpoint_wal_for_storage(connection, force=True)
+            self._assert_retained_storage(phase="prepared hydration checkpoint")
         except Exception:
             connection.rollback()
+            self._checkpoint_wal_for_storage(connection, force=True)
             raise
         return count
 
@@ -334,10 +514,12 @@ class CorpusHydrator:
     def run(self, *, request_limit: int | None = None) -> dict[str, Any]:
         connection = self._connect()
         try:
+            self._assert_retained_storage(phase="hydration start")
             source_count = self.prepare(connection)
             processed_this_run = 0
             with concurrent.futures.ThreadPoolExecutor(max_workers=self.workers) as pool:
                 while request_limit is None or processed_this_run < request_limit:
+                    self._assert_retained_storage(phase="pre-request hydration checkpoint")
                     remaining = self.batch_size
                     if request_limit is not None:
                         remaining = min(remaining, request_limit - processed_this_run)
@@ -356,11 +538,24 @@ class CorpusHydrator:
                         url, locale = futures[future]
                         record, status, linked = future.result()
                         completed_rows.append((url, locale, record, status, linked))
+                    retained_payload_bytes = sum(
+                        len(canonical_json_bytes(record))
+                        + sum(len(canonical_json_bytes(linked_record)) for linked_record in linked)
+                        for _url, _locale, record, _status, linked in completed_rows
+                    )
+                    self._assert_retained_storage(
+                        phase="hydration batch reservation",
+                        reserve_bytes=(
+                            retained_payload_bytes * _SQLITE_WRITE_SAFETY_FACTOR
+                            + _SQLITE_WRITE_FIXED_RESERVE
+                        ),
+                    )
                     connection.execute("BEGIN")
                     try:
                         for url, locale, record, status, linked in sorted(completed_rows):
                             connection.execute(
-                                "UPDATE queue SET state='complete', hydration_status=?, record_json=? "
+                                "UPDATE queue SET state='complete', hydration_status=?, record_json=?, "
+                                "input_json=NULL "
                                 "WHERE url=? AND locale=?",
                                 (status, canonical_json_bytes(record).decode("utf-8"), url, locale),
                             )
@@ -379,6 +574,8 @@ class CorpusHydrator:
                     except Exception:
                         connection.rollback()
                         raise
+                    self._checkpoint_wal_for_storage(connection)
+                    self._assert_retained_storage(phase="committed hydration checkpoint")
                     processed_this_run += len(completed_rows)
 
             pending = int(connection.execute("SELECT COUNT(*) FROM queue WHERE state='pending'").fetchone()[0])
@@ -423,6 +620,7 @@ class CorpusHydrator:
             source_target = Path(source_output["root"]) / "index.json"
             record_count = int(source_output["records"])
             record_digest = str(source_output["canonical_sha256"])
+            self._verify_shard_export(source_target, record_count, record_digest)
 
             connection.execute("DELETE FROM candidates")
             connection.commit()
@@ -505,6 +703,7 @@ class CorpusHydrator:
             candidate_target = Path(candidate_output["root"]) / "index.json"
             candidate_count = int(candidate_output["records"])
             candidate_digest = str(candidate_output["canonical_sha256"])
+            self._verify_shard_export(candidate_target, candidate_count, candidate_digest)
             disposition_counts: collections.Counter[str] = collections.Counter()
             entity_counts: collections.Counter[str] = collections.Counter()
             for candidate in candidates():
@@ -565,6 +764,28 @@ class CorpusHydrator:
             }
             if reconciliation["unexplained_omissions"] != 0:
                 raise HydrationError("hydrated candidate reconciliation did not close")
+
+            # Candidate rows are an export-only working index.  The immutable,
+            # content-addressed candidate shards above are verified before the
+            # transient table is dropped and the checkpoint is compacted.
+            transient_export_peak_bytes = self.retained_storage_bytes()
+            connection.execute("DROP TABLE candidates")
+            connection.execute(self._candidate_schema())
+            connection.commit()
+            self._checkpoint_wal_for_storage(connection, force=True)
+            database_size = self.database_path.stat().st_size
+            if shutil.disk_usage(self.cache_root).free < database_size + 128 * 1024 * 1024:
+                raise HydrationError("insufficient temporary disk headroom to compact hydration checkpoint")
+            connection.execute("VACUUM")
+            self._checkpoint_wal_for_storage(connection, force=True)
+            self._assert_retained_storage(
+                phase="post-export retained corpus",
+                reserve_bytes=_CONTROL_DOCUMENT_RESERVE,
+                use_authorised_ceiling=True,
+            )
+            reconciliation["storage_accounting"] = self._storage_accounting(
+                transient_export_peak_bytes=transient_export_peak_bytes
+            )
             reconciliation_target = self.reconciliation_root / f"{self.label}-hydrated.json"
             write_text_atomic(reconciliation_target, pretty_json(reconciliation))
             manifest = {
@@ -582,8 +803,35 @@ class CorpusHydrator:
                 "candidate_record_manifest": candidate_target.relative_to(self.root).as_posix(),
                 "candidate_record_shards": reconciliation["candidate_ledger_shards"],
                 "reconciliation": reconciliation_target.relative_to(self.root).as_posix(),
+                "storage_accounting": reconciliation["storage_accounting"],
             }
             write_text_atomic(self.records_root / "manifest.json", pretty_json(manifest))
+            persisted_reconciliation = json.loads(reconciliation_target.read_text(encoding="utf-8"))
+            persisted_manifest = json.loads(
+                (self.records_root / "manifest.json").read_text(encoding="utf-8")
+            )
+            if (
+                persisted_reconciliation.get("hydrated_records_canonical_sha256") != record_digest
+                or persisted_reconciliation.get("candidate_ledger_canonical_sha256")
+                != candidate_digest
+                or persisted_manifest.get("source_records_sha256") != record_digest
+                or persisted_manifest.get("candidate_records_sha256") != candidate_digest
+            ):
+                raise HydrationError("durable hydration control documents failed verification")
+            self._assert_retained_storage(
+                phase="completed hydration export",
+                use_authorised_ceiling=True,
+            )
             return reconciliation
         finally:
             connection.close()
+
+    @staticmethod
+    def _verify_shard_export(path: Path, expected_count: int, expected_digest: str) -> None:
+        count = 0
+        digest = hashlib.sha256()
+        for record in read_source_records(path):
+            digest.update(canonical_json_bytes(record))
+            count += 1
+        if count != expected_count or digest.hexdigest() != expected_digest:
+            raise HydrationError(f"durable shard export failed verification: {path}")
