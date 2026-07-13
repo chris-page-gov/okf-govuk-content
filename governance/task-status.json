@@ -1,16 +1,16 @@
 {
-  "as_of": "2026-07-12",
+  "as_of": "2026-07-13",
   "counts": {
     "accepted": 0,
     "by_implementation_status": {
       "blocked": 1,
-      "in_progress": 17,
-      "produced": 18
+      "in_progress": 16,
+      "produced": 19
     },
     "tasks": 36
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "621e0a16c0b9e47102c6cfab28811c080e5d34011462424a4c7b9c409e6b75f7",
+  "generated_from_sha256": "44f19edd5b237469fff77524f2dcca9d5bf64635793e47f76138695db629664f",
   "interpretation": "A produced task has an artefact foundation only; the controller promotion gate has not accepted it unless separate run evidence says so.",
   "milestone": "t0_census_closed",
   "schema": "afhf-govuk-okf-task-status.v1",
@@ -382,13 +382,13 @@
       "task_id": "D2-03"
     },
     {
-      "artifact_tier": "not_accepted",
+      "artifact_tier": "pre_release_security_campaign",
       "contract_outputs": [
         "reports/security.md"
       ],
-      "implementation_status": "in_progress",
+      "implementation_status": "produced",
       "objective": "security redteam",
-      "qualification": "The task's declared promotion gate has not been satisfied.",
+      "qualification": "The repository-wide and remediation-diff Codex Security scans are documented, all 17 reported findings are remediated through commit 27890dc, and 32 focused post-fix tests pass. This does not satisfy the eventual full-corpus release-snapshot security gate.",
       "requirement_ids": [
         "REQ-093",
         "REQ-094"

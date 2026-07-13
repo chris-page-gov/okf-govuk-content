@@ -279,9 +279,9 @@ Boundary: A reproducible fixture and implemented controller are partial until th
 
 Evidence:
 
-- `E-ACTIVITY-LEDGER` — pass; `provenance/activity-ledger.jsonl`; SHA-256 `cb20de37494a2ffe18ecec765a79160706b544d9f27b28c9627542cee21666d8`; observed `true`.
-- `E-REQUIREMENT-COVERAGE` — pass; `governance/requirements-status.json/counts/requirements`; SHA-256 `1334f700720e9d08149c9b8d8837c22e828a3c1f72c1922cd684a58fe8462927`; observed `95`.
-- `E-TRACEABILITY-COVERAGE` — pass; `governance/traceability-status.json/counts/clauses`; SHA-256 `8a1ad43f937fc0713ec64d0629dfd8bdb4ae9a84cbe91c86e3d504a7baf17d18`; observed `21`.
+- `E-ACTIVITY-LEDGER` — pass; `provenance/activity-ledger.jsonl`; SHA-256 `8d9d096c28a03b8cefa8628063948b456260fae134b73c94627c11da294a04e2`; observed `true`.
+- `E-REQUIREMENT-COVERAGE` — pass; `governance/requirements-status.json/counts/requirements`; SHA-256 `322fe2fa0c6b53d1940bc006c96168b7f93e5a131ef6dfd4db97520bdd1b200c`; observed `95`.
+- `E-TRACEABILITY-COVERAGE` — pass; `governance/traceability-status.json/counts/clauses`; SHA-256 `dbeddc192faa4da89e94cb3b369ad591025eeae86c3af1d37caca461648ea852`; observed `21`.
 - `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `af944b2bb76f2f466ff0e05787a3545e3c7986b6bbf1b8e31820e53d82bbfeb6`; observed `true`.
 - `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `"fixture"`.
 - `E-CLEAN-ROOM-RELEASE` — not met; `release/status.json/clean_room_reproduction_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.

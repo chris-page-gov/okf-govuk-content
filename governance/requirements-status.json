@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-12",
+  "as_of": "2026-07-13",
   "counts": {
     "by_implementation_status": {
       "blocked": 1,
@@ -10,7 +10,7 @@
     "requirements": 95
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "621e0a16c0b9e47102c6cfab28811c080e5d34011462424a4c7b9c409e6b75f7",
+  "generated_from_sha256": "44f19edd5b237469fff77524f2dcca9d5bf64635793e47f76138695db629664f",
   "interpretation": "accepted is the contract status; produced is not passed or release-verified",
   "milestone": "t0_census_closed",
   "publication_ready": false,
@@ -1701,6 +1701,7 @@
         "provenance/activity-ledger.schema.json",
         "provenance/source-request-budget.json",
         "provenance/reproduction-declarations.json",
+        "reports/security.md",
         "scripts/check_provenance.py",
         "release/provenance-validation.json",
         "release/sbom.cdx.json",
@@ -1708,7 +1709,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-086"
     },
     {
@@ -1726,6 +1727,7 @@
         "provenance/activity-ledger.schema.json",
         "provenance/source-request-budget.json",
         "provenance/reproduction-declarations.json",
+        "reports/security.md",
         "scripts/check_provenance.py",
         "release/provenance-validation.json",
         "release/sbom.cdx.json",
@@ -1733,7 +1735,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-087"
     },
     {
@@ -1751,6 +1753,7 @@
         "provenance/activity-ledger.schema.json",
         "provenance/source-request-budget.json",
         "provenance/reproduction-declarations.json",
+        "reports/security.md",
         "scripts/check_provenance.py",
         "release/provenance-validation.json",
         "release/sbom.cdx.json",
@@ -1758,7 +1761,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-088"
     },
     {
@@ -1776,6 +1779,7 @@
         "provenance/activity-ledger.schema.json",
         "provenance/source-request-budget.json",
         "provenance/reproduction-declarations.json",
+        "reports/security.md",
         "scripts/check_provenance.py",
         "release/provenance-validation.json",
         "release/sbom.cdx.json",
@@ -1783,7 +1787,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-089"
     },
     {
@@ -1801,6 +1805,7 @@
         "provenance/activity-ledger.schema.json",
         "provenance/source-request-budget.json",
         "provenance/reproduction-declarations.json",
+        "reports/security.md",
         "scripts/check_provenance.py",
         "release/provenance-validation.json",
         "release/sbom.cdx.json",
@@ -1808,7 +1813,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-090"
     },
     {
@@ -1827,6 +1832,7 @@
         "provenance/activity-ledger.schema.json",
         "provenance/source-request-budget.json",
         "provenance/reproduction-declarations.json",
+        "reports/security.md",
         "scripts/check_provenance.py",
         "release/provenance-validation.json",
         "release/sbom.cdx.json",
@@ -1834,7 +1840,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-091"
     },
     {
@@ -1852,6 +1858,7 @@
         "provenance/activity-ledger.schema.json",
         "provenance/source-request-budget.json",
         "provenance/reproduction-declarations.json",
+        "reports/security.md",
         "scripts/check_provenance.py",
         "release/provenance-validation.json",
         "release/sbom.cdx.json",
@@ -1859,7 +1866,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-092"
     },
     {
@@ -1878,6 +1885,7 @@
         "provenance/activity-ledger.schema.json",
         "provenance/source-request-budget.json",
         "provenance/reproduction-declarations.json",
+        "reports/security.md",
         "scripts/check_provenance.py",
         "release/provenance-validation.json",
         "release/sbom.cdx.json",
@@ -1885,7 +1893,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-093"
     },
     {
@@ -1903,6 +1911,7 @@
         "provenance/activity-ledger.schema.json",
         "provenance/source-request-budget.json",
         "provenance/reproduction-declarations.json",
+        "reports/security.md",
         "scripts/check_provenance.py",
         "release/provenance-validation.json",
         "release/sbom.cdx.json",
@@ -1910,7 +1919,7 @@
         "scripts/reproduce_release.py"
       ],
       "implementation_status": "produced",
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work.",
       "requirement_id": "REQ-094"
     },
     {

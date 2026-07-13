@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-07-12",
+  "as_of": "2026-07-13",
   "milestone": "t0_census_closed",
   "publication_ready": false,
   "status_vocabulary": {
@@ -70,13 +70,14 @@
         "provenance/activity-ledger.schema.json",
         "provenance/source-request-budget.json",
         "provenance/reproduction-declarations.json",
+        "reports/security.md",
         "scripts/check_provenance.py",
         "release/provenance-validation.json",
         "release/sbom.cdx.json",
         "release/clean-room-reproduction.json",
         "scripts/reproduce_release.py"
       ],
-      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. The completed T0 census and its exact request interval are recorded; T0 hydration, T1/closing, evaluation, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work."
+      "qualification": "Deterministic orchestration, bounded contracts, a hash-chained append-only activity contract, separate product/paid-API/source-request accounting, explicit access fallbacks, zero-paid-model policy, locked-dependency SBOM and isolated fixture reproduction exist. A completed repository-wide Codex Security campaign records 14 original findings, three residual low findings and their remediation at commit 27890dc; 32 focused post-fix tests pass. This is pre-release evidence only: T0 hydration, T1/closing, evaluation, final-snapshot security scanning, publication, independent adjudication and full-snapshot clean-room terminal evidence remain release work."
     },
     {
       "name": "full_corpus_and_capacity",
@@ -181,10 +182,16 @@
       "qualification": "An implementation or design artefact exists; task promotion and release acceptance are not implied."
     },
     {
+      "status": "produced",
+      "artifact_tier": "pre_release_security_campaign",
+      "task_ids": ["D2-04"],
+      "qualification": "The repository-wide and remediation-diff Codex Security scans are documented, all 17 reported findings are remediated through commit 27890dc, and 32 focused post-fix tests pass. This does not satisfy the eventual full-corpus release-snapshot security gate."
+    },
+    {
       "status": "in_progress",
       "artifact_tier": "not_accepted",
       "task_ids": [
-        "A2-01", "B1-01", "B1-02", "B1-03", "C1-02", "D1-01", "D2-03", "D2-04",
+        "A2-01", "B1-01", "B1-02", "B1-03", "C1-02", "D1-01", "D2-03",
         "E1-01", "E1-02", "E2-01", "F1-00", "F1-01", "F2-00", "F2-01", "F2-02", "F2-03"
       ],
       "qualification": "The task's declared promotion gate has not been satisfied."
