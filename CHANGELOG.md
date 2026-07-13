@@ -93,10 +93,22 @@ semantic versioning.
 - A dependency-free real-Chromium fixture harness for accessibility-tree,
   accessible-name, focus, reflow, reduced-motion, forced-colour,
   contrast-relevant, gzip, deep-link, Pages and startup/search/route/heap
-  budgets. Its checked evidence remains blocked until the environment permits
-  localhost browser execution; axe, expert and participant gates stay open.
+  budgets. The checked gate passes locally and in protected pull-request CI;
+  axe, expert, screen-reader and participant gates stay open.
 
 ### Fixed
+
+- Made requirement, traceability and task projections derive their release
+  state from the jointly validated manifest/status controls. Checkpoints cannot
+  claim passes; publishable states require the complete two-stage promotion
+  contract, completion markers and exact gates. Machine status now blocks all
+  five requirements owned by the human task, accepts only the 32 non-human-
+  dependent tasks, and requires the full selected terminal set to pass schema,
+  hash-chain, completion, output and request checks. Full-programme status adds
+  a separately declared human terminal, and milestone values are coupled to
+  each release transition. Full-programme CI requires finalized promotion and
+  completed human evaluation. Corrected the first
+  candidate/final tag examples to `v0.1.0-rc.1` and `v0.1.0`.
 
 - Bound the closing snapshot manifest to the exact embedded reconciliation,
   retained its separate repository path, and restored the independently

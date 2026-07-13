@@ -174,8 +174,48 @@ clean-room verification:
   --source "$SOURCE_ROOT" \
   --generated-at YYYY-MM-DDTHH:MM:SSZ \
   --compiler disk
+.venv/bin/python scripts/check_provenance.py \
+  --snapshot T1-YYYYMMDD-closed \
+  --output release/provenance-validation.json
+.venv/bin/python scripts/check_lockstep.py
 .venv/bin/python scripts/promote_release.py promote
 ```
+
+After staging, set the implementation-status source milestone to
+`full_corpus_checkpoint`; the projection builder rejects the earlier
+`t0_census_closed` milestone for a staged closing snapshot.
+
+After promotion, synchronize terminal requirement dispositions and the exact
+accepted/blocked task set in
+`governance/implementation-status-source.json`. Set `milestone` to
+`machine_release_candidate`; exactly the five requirements owned by `E3-01`
+(`REQ-069`, `REQ-070`, `REQ-073`, `REQ-074` and `REQ-077`) remain blocked while
+the other 90 pass. The 32 accepted tasks collectively cite the exact ten-event
+candidate terminal set through schema-valid, hash-chained, fully completed
+rows. Regenerate the requirement,
+traceability, task and aim projections and pass lockstep before committing the
+candidate or creating the annotated `v0.1.0-rc.1` tag:
+
+```sh
+.venv/bin/python scripts/build_status_projections.py
+.venv/bin/python scripts/build_status_projections.py --check
+.venv/bin/python scripts/build_aim_scorecard.py
+.venv/bin/python scripts/build_aim_scorecard.py --check
+.venv/bin/python scripts/check_lockstep.py
+```
+
+After the publication terminal is appended and release finalization succeeds,
+set `milestone` to `machine_release_finalized` and run that same projection
+sequence again. Add `ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001` to the accepted
+task group's terminal mapping first: its union must expand from the exact ten-
+event candidate contract to the exact eleven-event final contract. The
+manifest/status state has changed
+from candidate to release, so candidate-labelled generated headers are stale.
+Commit the finalized controls before creating the annotated `v0.1.0` tag.
+
+The future `full_programme_complete` milestone additionally requires the
+declared `ACT-E3-FULL-PROGRAMME-TERMINAL-001`; machine terminal evidence cannot
+substitute for authorised participant/expert evidence.
 
 Promotion generates independent full-repository test evidence for the same
 snapshot, temporarily installs only that evidence, and performs the clean-room

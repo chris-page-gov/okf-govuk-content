@@ -64,6 +64,18 @@ class CiSnapshotTests(unittest.TestCase):
                 with self.assertRaises(MODULE.SnapshotCheckError):
                     MODULE.check_snapshot(root, runner=lambda *_: None)
 
+    def test_full_programme_dispatch_requires_finalized_promotion(self) -> None:
+        manifest = {
+            "release_kind": "full_programme",
+            "publication_ready": True,
+            "snapshot": {"id": "T1", "kind": "full_corpus", "sampled": False},
+            "promotion": {"finalized": True},
+        }
+        self.assertEqual("finalized", MODULE.snapshot_mode(manifest))
+        manifest["promotion"]["finalized"] = False
+        with self.assertRaisesRegex(MODULE.SnapshotCheckError, "not promotion-finalized"):
+            MODULE.snapshot_mode(manifest)
+
     def test_candidate_static_dispatch_accepts_archived_source_but_rejects_tampering(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

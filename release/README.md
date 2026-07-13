@@ -15,6 +15,24 @@ Run the structural checkpoint validation with:
 python3 scripts/check_release.py
 ```
 
+The requirement, traceability and task projections derive release identity,
+kind, checkpoint/candidate/release state and readiness from `manifest.yaml`
+and `status.json`; `governance/implementation-status-source.json` records only
+evidence dispositions. A checkpoint may claim no passed requirement or
+accepted task. A machine candidate/final has exactly 90 passed and five blocked
+requirements: the human-gated `REQ-069`, `REQ-070`, `REQ-073`, `REQ-074` and
+`REQ-077` stay blocked. Its 32 accepted tasks must collectively cite the exact
+declared candidate/final terminal set; every cited row is schema-valid,
+hash-chained, exactly completed, fully validated and hash-bound. Machine
+releases keep the four-task human dependency closure blocked. A future full-
+programme release also requires the separately declared, snapshot-bound
+`ACT-E3-FULL-PROGRAMME-TERMINAL-001`.
+
+`governance/implementation-status-source.json` uses release-coupled milestone
+values: `full_corpus_checkpoint` after staging, `machine_release_candidate`
+after promotion and `machine_release_finalized` after finalization. Projection
+generation fails on a stale milestone.
+
 GitHub Pages requires the stricter gate:
 
 ```sh
@@ -35,7 +53,9 @@ and the other snapshot-bound evidence are generated:
 ```
 
 Staging records the exact frozen source, generation timestamp and compiler that
-must reproduce the checked bundle. After the question-v2, 28,800-by-10
+must reproduce the checked bundle. Set the implementation-status source
+milestone to `full_corpus_checkpoint` before regenerating checkpoint
+projections. After the question-v2, 28,800-by-10
 evaluation, citation, semantic, rights, browser and completed security-scan
 artefacts exist, promotion revalidates checksums and the SBOM, reruns provenance
 and the full Python, Explorer and semantic test suites, then runs the clean-room
@@ -48,7 +68,26 @@ clean-room evidence, manifest-bound rights evidence, provenance and the
 regenerated aim assessment are installed inside one rollback transaction:
 
 ```sh
+.venv/bin/python scripts/check_provenance.py \
+  --snapshot "$RELEASE_ID" \
+  --output release/provenance-validation.json
+.venv/bin/python scripts/check_lockstep.py
 .venv/bin/python scripts/promote_release.py promote
+```
+
+Promotion changes the authoritative release state to `candidate`. Update the
+implementation-status source to terminal requirement dispositions and the
+exact accepted/blocked task set, set `milestone` to
+`machine_release_candidate`, then regenerate the three status projections
+and aim assessment before the candidate commit and annotated `v0.1.0-rc.1`
+tag:
+
+```sh
+.venv/bin/python scripts/build_status_projections.py
+.venv/bin/python scripts/build_status_projections.py --check
+.venv/bin/python scripts/build_aim_scorecard.py
+.venv/bin/python scripts/build_aim_scorecard.py --check
+.venv/bin/python scripts/check_lockstep.py
 ```
 
 The full evaluation is retained as an immutable run below
@@ -79,8 +118,20 @@ crash states are replay-safe and completed finalization is idempotent:
 
 ```sh
 .venv/bin/python scripts/promote_release.py finalize
+.venv/bin/python scripts/build_status_projections.py
+.venv/bin/python scripts/build_status_projections.py --check
+.venv/bin/python scripts/build_aim_scorecard.py
+.venv/bin/python scripts/build_aim_scorecard.py --check
+.venv/bin/python scripts/check_lockstep.py
 .venv/bin/python scripts/check_release.py --finalized
 ```
+
+Those regenerated finalized controls are committed before the annotated final
+`v0.1.0` tag. Set the source milestone to `machine_release_finalized` before
+regeneration and add `ACT-F2-PUBLICATION-REGISTRY-TERMINAL-001` to the accepted
+task group's terminal mapping. The accepted-task union must now equal the exact
+11-event final contract; finalization cannot reuse candidate-labelled status
+projection headers or their ten-event mapping.
 
 The final manifest records the exact staged manifest/status hashes. Clean-room
 evidence must bind both hashes and the generated full-test evidence. Any failed

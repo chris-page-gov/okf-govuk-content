@@ -64,6 +64,10 @@ ancestry:
   and finalized two-stage promotion record. A candidate result cannot satisfy
   this tag.
 
+For the initial repository publication these classes resolve to
+`v0.1.0-rc.1` and `v0.1.0`. The `v1.0.0` series is not used for the first
+release.
+
 Tags must be annotated. A local GPG or SSH signing key is not mandatory; when a
 tag contains a signature, the ref validator verifies it and fails if the
 signature is invalid. This keeps unattended publication possible without

@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "c9aa501af0e6d5aa3ed99bb27c6eefb6509f8e1dc9c4b6f8bba064de6ee7684c",
-    "before_sha256": "c9aa501af0e6d5aa3ed99bb27c6eefb6509f8e1dc9c4b6f8bba064de6ee7684c",
+    "after_sha256": "a9688f099d78049401f1f9bc09088dba860a382deeb85217af1090a34a64023b",
+    "before_sha256": "a9688f099d78049401f1f9bc09088dba860a382deeb85217af1090a34a64023b",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -97,7 +97,7 @@
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-07-13T09:40:22Z",
+  "ended_at": "2026-07-13T22:30:24Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.5.2-arm64-arm-64bit",
@@ -259,10 +259,10 @@
         "tree_sha256": "0e7f1b4dc121977ae4a7a816c55a4bd12e3cd31758562b025b12f5b127c3fc06"
       },
       {
-        "bytes": 69813,
+        "bytes": 74973,
         "file_count": 1,
         "path": "provenance/activity-ledger.jsonl",
-        "tree_sha256": "1e3b4343eba6c298d1856a68e1e74426cb8c3b4824c95aebee48cdba6e1f78d4"
+        "tree_sha256": "9fab02304920fbee6083eaaed202c760b929f6cc2fc49d25dec0cfde2e9de996"
       },
       {
         "bytes": 8590,
@@ -271,10 +271,10 @@
         "tree_sha256": "b8c715389e62e8c6e338587d267100e4f4d24dd1d69c08f35230dcc08fe10ba2"
       },
       {
-        "bytes": 12604,
+        "bytes": 13206,
         "file_count": 1,
         "path": "provenance/reproduction-declarations.json",
-        "tree_sha256": "54181259d23a10b0ef217a399df87ec4b8076f6124b51bc6a83e88e7fcd4439b"
+        "tree_sha256": "573f9df93809108e44b36cdabd38531355a9d11d8d0f2dc291926b08fd50bb93"
       },
       {
         "bytes": 1273,
@@ -286,7 +286,7 @@
         "bytes": 12824,
         "file_count": 1,
         "path": "release/provenance-validation.json",
-        "tree_sha256": "7d49edd3294a060286ac1d27a295964ae7b674436f70ffb36d5200711700e38e"
+        "tree_sha256": "d80e84ead9ae33310938ef9083e1f711b63b575079b3f93bdac4120587e39570"
       },
       {
         "bytes": 1574,
@@ -417,13 +417,13 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "79e9a7ad30184f5f49ed9652f67e644d358a9dd22b9fbe627a3f932712703d13"
+    "tree_sha256": "4b030e5302e64a3d71721455a6d3c902fd9c27af4771c9b9e65932845daff242"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
-      "activities": 27,
-      "activities_with_unavailable_cost": 21,
-      "activities_with_unavailable_tokens": 21,
+      "activities": 28,
+      "activities_with_unavailable_cost": 22,
+      "activities_with_unavailable_tokens": 22,
       "external_paid_model_api_calls": 0,
       "external_paid_model_cost_gbp": 0.0,
       "external_paid_model_input_tokens": 0,
@@ -431,7 +431,7 @@
       "known_cost_gbp": 0.0,
       "known_tokens": 0,
       "latest_source_request_checkpoint": 4283,
-      "ledger_sha256": "68e6bddebb12a458305c181f8834608e36c5522da5460220e3aeca57e3707f82",
+      "ledger_sha256": "12fa35cf2eaf1d58592bd38a7b7bd8d42da200a19b704ab51b172c65b58d4a57",
       "source_request_activities_pending_final_count": 2,
       "source_request_exact_attempts": 11580,
       "source_requests_included_in_model_cost": false
@@ -482,7 +482,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-13T09:40:22Z",
+  "recorded_at": "2026-07-13T22:30:24Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
@@ -538,7 +538,7 @@
     }
   ],
   "source_binding": null,
-  "started_at": "2026-07-13T09:40:21Z",
+  "started_at": "2026-07-13T22:30:23Z",
   "test_evidence": null,
   "validators": {
     "passed": true,

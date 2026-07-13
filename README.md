@@ -58,6 +58,8 @@ strict 11-of-11 provenance and finalized-promotion validation. Both channels
 package and attest the already verified bytes without rebuilding. Repository
 protection, the solo-owner review rationale and live-policy read-back are
 documented in [`docs/repository-governance.md`](docs/repository-governance.md).
+The first release therefore uses `v0.1.0-rc.1` for the candidate and `v0.1.0`
+for the finalized release; `v1.0.0` is not the initial publication tag.
 
 ## Canonical outputs
 
@@ -82,6 +84,18 @@ documented in [`docs/repository-governance.md`](docs/repository-governance.md).
 - `governance/task-status.json` — status of the 36 task contracts
 - `explorer/src/evidence/fixture-browser.json` — honest fixture browser-evidence
   checkpoint, overwritten only by the measured evidence command
+
+Publication readiness and the checkpoint/candidate/release classification in
+the three governance status projections are derived only from
+`release/manifest.yaml` and `release/status.json`. The human-maintained
+implementation source supplies evidence dispositions, not a second readiness
+flag. Checkpoints cannot claim passed requirements or accepted tasks; accepted
+release tasks must collectively cite the exact declared terminal set through
+schema-valid, hash-chained, exactly completed and hash-bound ledger rows. A
+machine release has 90 passed requirements and keeps `REQ-069`, `REQ-070`,
+`REQ-073`, `REQ-074` and `REQ-077` blocked with the four-task human dependency
+closure. Full-programme status additionally requires the declared human-study
+terminal; source milestones are coupled to every manifest/status transition.
 
 ## Reproduce and validate
 

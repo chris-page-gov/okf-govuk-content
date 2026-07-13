@@ -127,10 +127,10 @@ Then provide every external identifier explicitly:
 $PY scripts/finalize_terminal_activity.py publication \
   --snapshot "$RELEASE_ID" \
   --commit FULL_40_HEX_PUBLISHED_COMMIT \
-  --tag v1.0.0-rc.1 \
+  --tag v0.1.0-rc.1 \
   --repository-pr-url https://github.com/chris-page-gov/okf-govuk-content/pull/NUMBER \
   --ci-url https://github.com/chris-page-gov/okf-govuk-content/actions/runs/RUN_ID \
-  --release-url https://github.com/chris-page-gov/okf-govuk-content/releases/tag/v1.0.0-rc.1 \
+  --release-url https://github.com/chris-page-gov/okf-govuk-content/releases/tag/v0.1.0-rc.1 \
   --pages-url https://chris-page-gov.github.io/okf-govuk-content/ \
   --registry-pr-url https://github.com/chris-page-gov/okf-explorer/pull/NUMBER \
   --repository-pr-json release/external/repository-pr.json \

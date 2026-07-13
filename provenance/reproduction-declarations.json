@@ -204,6 +204,20 @@
       "required_evidence": ["terminal shared counter", "reconciled per-run intervals", "remaining authority", "separate citation-verification aggregate"]
     }
   ],
+  "full_programme_activity_entries_required": [
+    {
+      "event": "authorised human evaluation and full-programme terminal disposition",
+      "terminal_activity_id": "ACT-E3-FULL-PROGRAMME-TERMINAL-001",
+      "must_bind_release_snapshot": true,
+      "required_evidence": [
+        "explicit ethics, recruitment and consent authority",
+        "completed participant and expert protocols",
+        "human and agent effectiveness comparison",
+        "accessibility evidence with expert or representative users",
+        "hash-bound human-study results and programme conclusion"
+      ]
+    }
+  ],
   "network": {
     "external_model_requests": 0,
     "official_source_requests": 0,
