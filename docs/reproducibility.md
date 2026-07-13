@@ -105,10 +105,12 @@ and any missing or incomplete exact terminal activity declared in
 unambiguous superseder, a precise completion time, complete validation, no
 pending output and exact source-request counts for request-bearing events.
 
-The complete order is: candidate promotion; candidate GitHub Release, Pages
-and Explorer registry PR; append the publication terminal; strict provenance;
-rerun clean-room evidence and final promotion; then final release and live
-verification. Candidate mode never sets the final provenance conclusion: its
+The complete order is: stage the closing checkpoint; transactionally generate
+full-test and clean-room evidence and promote the candidate; publish the
+candidate GitHub Release and Pages site and open the Explorer registry PR;
+append the publication terminal; run strict provenance and finalize; then make
+the final release and live verification. Candidate mode never sets the final
+provenance conclusion: its
 document reports `validation_tier: candidate`,
 `release_requirements_satisfied: false` and
 `publication_workflow_status: pending_post_publication` until the external
@@ -139,39 +141,33 @@ remain visible and no TLS or access-control bypass is used.
 
 ## Closing full snapshot
 
-After T1 closure, update `release/manifest.yaml` to the same unsampled snapshot,
-generate independent full-repository test evidence, and run:
+After T1 closure, build the SBOM and stage the same unsampled snapshot with its
+exact frozen build inputs. Do not mutate the manifest into a candidate before
+clean-room verification:
 
 ```sh
 .venv/bin/python scripts/build_sbom.py
-.venv/bin/python scripts/reproduce_release.py \
+.venv/bin/python scripts/promote_release.py stage \
+  --snapshot T1-YYYYMMDD \
+  --reconciliation corpus/reconciliation/T1-YYYYMMDD.json \
   --source corpus/records/T1-YYYYMMDD/source-records.jsonl.gz \
-  --snapshot-id T1-YYYYMMDD \
-  --snapshot-kind full_corpus \
-  --release-kind machine_release_candidate \
-  --no-sampled \
   --generated-at YYYY-MM-DDTHH:MM:SSZ \
-  --compiler disk \
-  --test-evidence release/full-test-evidence.json \
-  --require-release
-.venv/bin/python scripts/reproduce_release.py \
-  --source corpus/records/T1-YYYYMMDD/source-records.jsonl.gz \
-  --snapshot-id T1-YYYYMMDD \
-  --snapshot-kind full_corpus \
-  --release-kind machine_release_candidate \
-  --no-sampled \
-  --generated-at YYYY-MM-DDTHH:MM:SSZ \
-  --compiler disk \
-  --test-evidence release/full-test-evidence.json \
-  --check \
-  --require-release
+  --compiler disk
+.venv/bin/python scripts/promote_release.py promote
 ```
 
-The independent test document must use the same snapshot, set
-`scope: full_repository`, and assert `tests_passed: true`. The release verifier
-also recomputes bundle checksums, validates the CycloneDX lock bindings and
-requires the clean-room evidence to bind to the same SBOM. Boolean flags alone
-cannot promote a fixture or sampled corpus.
+Promotion generates independent full-repository test evidence for the same
+snapshot, temporarily installs only that evidence, and performs the clean-room
+rebuild against the still-staged manifest/status. The resulting evidence binds
+the frozen source content/tree, generation timestamp, compiler, raw staged
+hashes, full-test evidence, SBOM, current bundle tree and every immutable input
+copied into the clean workspace. Promotion then appends the hash-chained
+`ACT-F2-CLEAN-ROOM-RC-TERMINAL-001` row and builds candidate provenance from
+that updated ledger; only then are candidate controls and regenerated
+assessment artefacts installed. The side lock and prepared terminal make
+post-clean and partial-candidate crash retries idempotent. Any failure restores
+the ledger and every release-control artefact. Boolean flags alone cannot
+promote a fixture or sampled corpus.
 
 Generate the independent rights/privacy evidence after the final T1 bundle and
 hydrated record manifest exist:
