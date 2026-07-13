@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "0f86842c683672ef79080a4603d960cb454747026785b0859d304c690092f659",
-    "before_sha256": "0f86842c683672ef79080a4603d960cb454747026785b0859d304c690092f659",
+    "after_sha256": "b93c1aebab97ae11f0d02dd1fe8d6a52ecf4971b6a7dcd8f57068db08e3feab7",
+    "before_sha256": "b93c1aebab97ae11f0d02dd1fe8d6a52ecf4971b6a7dcd8f57068db08e3feab7",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -97,7 +97,7 @@
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-07-13T08:01:48Z",
+  "ended_at": "2026-07-13T08:07:46Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.5.2-arm64-arm-64bit",
@@ -286,7 +286,7 @@
         "bytes": 12824,
         "file_count": 1,
         "path": "release/provenance-validation.json",
-        "tree_sha256": "c8bb6bdc493338b3ff6405d5252d62dcc1e1000057a41a34504503691b4ba9ab"
+        "tree_sha256": "d73a4a1c79c99ede3fd51e2ba2442d8decac593604369c35c5b6dc7e6157abbd"
       },
       {
         "bytes": 1574,
@@ -417,7 +417,7 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "aec217b1c9f03950f3af94754e98a35b0c84bc9dee1dd6256149dd4d6bcdf926"
+    "tree_sha256": "a73bccd747bd15888eff4597015361298fc0727ac59fc02245d17b62bec390b4"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
@@ -482,7 +482,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-13T08:01:48Z",
+  "recorded_at": "2026-07-13T08:07:46Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
@@ -538,7 +538,7 @@
     }
   ],
   "source_binding": null,
-  "started_at": "2026-07-13T08:01:47Z",
+  "started_at": "2026-07-13T08:07:45Z",
   "test_evidence": null,
   "validators": {
     "passed": true,
