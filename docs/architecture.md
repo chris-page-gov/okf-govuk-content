@@ -142,7 +142,7 @@ counts canonical URLs, stable identifiers, redirects and typed relationships,
 and retains complete source-native redirect fields on each record. Boundary
 hosts remain evidenced destinations rather than implied complete site mirrors.
 See [`sitemap-routing.md`](sitemap-routing.md) and
-[`ADR-006`](../governance/decisions/ADR-006-sitemap-routing-topology.md).
+[`ADR-007`](../governance/decisions/ADR-007-sitemap-routing-topology.md).
 
 Static search preserves its two-character logical lexicon. The additive
 `okf-search-postings-partitioning.v1` contract greedily writes complete tokens

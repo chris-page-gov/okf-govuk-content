@@ -76,6 +76,10 @@ EXCLUDED_DIRECTORY_NAMES = {
     "vendor",
 }
 STRUCTURED_SOURCE_FILES = {"research/source-registry.yaml"}
+STRUCTURED_COMPARATOR_FILES = {
+    "evaluation/govuk-chat/new-parent-multi-service.json",
+    "evaluation/govuk-chat/official-published-example.json",
+}
 ALLOWED_VERDICTS = {"entailed", "partly_supported", "contradicted", "unrelated"}
 PASS_VERDICTS = {"entailed", "partly_supported"}
 STOP_WORDS = {
@@ -259,6 +263,8 @@ def collect_citations(root: Path, policy: dict[str, Any]) -> dict[str, list[dict
         label: str,
         raw_url: str,
         structured: bool = False,
+        json_pointer: str | None = None,
+        source_metadata: dict[str, Any] | None = None,
     ) -> None:
         url = _apply_replacement(policy, raw_url)
         if any(url.startswith(prefix) for prefix in policy.get("non_citation_prefixes", [])):
@@ -268,12 +274,19 @@ def collect_citations(root: Path, policy: dict[str, Any]) -> dict[str, list[dict
         claim_text = strip_markdown(raw_claim)
         kind, material = _claim_kind(relative, start_line, claim_text)
         claim_id = stable_id("CLM", relative, claim_text)
+        source_location: dict[str, Any] = {
+            "path": relative,
+            "line_start": start_line,
+            "line_end": end_line,
+        }
+        if json_pointer is not None:
+            source_location["json_pointer"] = json_pointer
         claim = {
             "schema_version": SCHEMA_VERSION,
             "claim_id": claim_id,
             "claim_sha256": digest_text(claim_text),
             "text": claim_text,
-            "source_location": {"path": relative, "line_start": start_line, "line_end": end_line},
+            "source_location": source_location,
             "claim_kind": kind,
             "release_material": material,
         }
@@ -297,6 +310,11 @@ def collect_citations(root: Path, policy: dict[str, Any]) -> dict[str, list[dict
                 "version_or_commit": version_from_url(url),
             },
         )
+        for key, value in (source_metadata or {}).items():
+            previous_value = source.get(key)
+            if previous_value is not None and previous_value != value:
+                raise CitationError(f"conflicting structured citation source metadata: {url}: {key}")
+            source[key] = value
         clean_label = strip_markdown(label)
         if clean_label and clean_label not in source["labels"]:
             source["labels"].append(clean_label)
@@ -362,6 +380,204 @@ def collect_citations(root: Path, policy: dict[str, Any]) -> dict[str, list[dict
                 label=current_id,
                 raw_url=raw_url,
                 structured=True,
+            )
+
+    for relative in sorted(STRUCTURED_COMPARATOR_FILES):
+        path = root / relative
+        if not path.exists():
+            continue
+        try:
+            document = _load_json(path)
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise CitationError(f"invalid structured comparator source {relative}: {exc}") from exc
+        if not isinstance(document, dict):
+            raise CitationError(f"structured comparator source must be an object: {relative}")
+        lines = path.read_text(encoding="utf-8").splitlines()
+
+        def url_line(url: str) -> int:
+            encoded = json.dumps(url, ensure_ascii=False)
+            for ordinal, line in enumerate(lines, 1):
+                if encoded in line:
+                    return ordinal
+            raise CitationError(f"structured comparator URL has no exact source line: {relative}: {url}")
+
+        def value_line(value: object) -> int:
+            encoded = json.dumps(value, ensure_ascii=False)
+            for ordinal, line in enumerate(lines, 1):
+                if encoded in line:
+                    return ordinal
+            raise CitationError(
+                f"structured comparator value has no exact source line: {relative}: {encoded}"
+            )
+
+        if relative.endswith("new-parent-multi-service.json"):
+            if document.get("schema") != "govuk-chat-comparison-walkthrough.v1":
+                raise CitationError(f"unsupported GOV.UK Chat walkthrough schema: {relative}")
+            contexts = document.get("official_context")
+            if not isinstance(contexts, list) or not contexts:
+                raise CitationError(f"GOV.UK Chat walkthrough has no official context: {relative}")
+            for index, context in enumerate(contexts):
+                if not isinstance(context, dict):
+                    raise CitationError(f"GOV.UK Chat official context row is not an object: {relative}")
+                claim = context.get("claim")
+                url = context.get("url")
+                if not isinstance(claim, str) or not claim or not isinstance(url, str) or not url:
+                    raise CitationError(f"GOV.UK Chat official context row is incomplete: {relative}")
+                line = url_line(url)
+                register(
+                    relative=relative,
+                    start_line=line,
+                    end_line=line,
+                    raw_claim=claim,
+                    label=claim,
+                    raw_url=url,
+                    structured=True,
+                    json_pointer=f"/official_context/{index}/url",
+                )
+            continue
+
+        if document.get("schema") != "govuk-chat-published-observation.v1":
+            raise CitationError(f"unsupported GOV.UK Chat published-observation schema: {relative}")
+        page_url = document.get("source_page_url")
+        image_url = document.get("source_image_url")
+        source_cards = document.get("source_cards")
+        question = document.get("question")
+        answer = document.get("answer")
+        if not isinstance(page_url, str) or not page_url or not isinstance(image_url, str) or not image_url:
+            raise CitationError(f"GOV.UK Chat published observation lacks source URLs: {relative}")
+        if not isinstance(source_cards, list) or not source_cards:
+            raise CitationError(f"GOV.UK Chat published observation has no source cards: {relative}")
+        if not isinstance(question, str) or not question or not isinstance(answer, dict):
+            raise CitationError(f"GOV.UK Chat published observation lacks question/answer evidence: {relative}")
+        excerpt = answer.get("short_verbatim_excerpt")
+        summaries = answer.get("structured_summary")
+        if (
+            not isinstance(excerpt, str)
+            or not excerpt
+            or not isinstance(summaries, list)
+            or not summaries
+            or any(not isinstance(summary, str) or not summary for summary in summaries)
+        ):
+            raise CitationError(f"GOV.UK Chat published observation answer evidence is incomplete: {relative}")
+        positions = [
+            card.get("position") if isinstance(card, dict) else None for card in source_cards
+        ]
+        if positions != list(range(1, len(source_cards) + 1)):
+            raise CitationError(
+                f"GOV.UK Chat source-card positions must be unique, contiguous and match array order: {relative}"
+            )
+        structured_references: list[tuple[str, str, str, str]] = [
+            (
+                "The published GOV.UK Chat observation is sourced from this official GDS launch page.",
+                "GOV.UK Chat launch source page",
+                page_url,
+                "/source_page_url",
+            ),
+            (
+                "This official GDS image asset is the binary source referenced by the published comparator observation.",
+                "GOV.UK Chat official published example image",
+                image_url,
+                "/source_image_url",
+            ),
+        ]
+        asset_sha256 = (document.get("capture") or {}).get("asset_sha256")
+        if not isinstance(asset_sha256, str) or not SHA256.fullmatch(asset_sha256):
+            raise CitationError(f"GOV.UK Chat published observation has no valid asset SHA-256: {relative}")
+        image_source_metadata = {
+            "expected_document_sha256": asset_sha256,
+            "locator": {"kind": "binary_sha256", "value": asset_sha256},
+            "licence": "not_independently_verified_url_and_sha256_only",
+        }
+
+        observed_fields: list[tuple[str, str, str]] = [
+            (
+                f"The published GOV.UK Chat comparator question is: {question}",
+                question,
+                "/question",
+            ),
+            (
+                f"The published GOV.UK Chat comparator contains this bounded verbatim excerpt: {excerpt}",
+                excerpt,
+                "/answer/short_verbatim_excerpt",
+            ),
+        ]
+        observed_fields.extend(
+            (
+                f"The published GOV.UK Chat comparator answer is represented by this structured paraphrase: {summary}",
+                summary,
+                f"/answer/structured_summary/{index}",
+            )
+            for index, summary in enumerate(summaries)
+        )
+        for claim, field_value, pointer in observed_fields:
+            line = value_line(field_value)
+            register(
+                relative=relative,
+                start_line=line,
+                end_line=line,
+                raw_claim=claim,
+                label="GOV.UK Chat official published example image",
+                raw_url=image_url,
+                structured=True,
+                json_pointer=pointer,
+                source_metadata=image_source_metadata,
+            )
+
+        for index, card in enumerate(source_cards):
+            if not isinstance(card, dict):
+                raise CitationError(f"GOV.UK Chat source card is not an object: {relative}")
+            title = card.get("title")
+            url = card.get("url")
+            position = card.get("position")
+            if (
+                not isinstance(title, str)
+                or not title
+                or not isinstance(url, str)
+                or not url
+                or not isinstance(position, int)
+                or isinstance(position, bool)
+                or position < 1
+            ):
+                raise CitationError(f"GOV.UK Chat source card is incomplete: {relative}")
+            card_claim = (
+                f"In the official GOV.UK Chat screenshot, source card position {position} "
+                f"is titled {title} and links to {url}."
+            )
+            line = url_line(url)
+            pointer = f"/source_cards/{index}"
+            register(
+                relative=relative,
+                start_line=line,
+                end_line=line,
+                raw_claim=card_claim,
+                label="GOV.UK Chat official published example image",
+                raw_url=image_url,
+                structured=True,
+                json_pointer=pointer,
+                source_metadata=image_source_metadata,
+            )
+            register(
+                relative=relative,
+                start_line=line,
+                end_line=line,
+                raw_claim=card_claim,
+                label=title,
+                raw_url=url,
+                structured=True,
+                json_pointer=pointer,
+            )
+        for claim, label, url, pointer in structured_references:
+            line = url_line(url)
+            register(
+                relative=relative,
+                start_line=line,
+                end_line=line,
+                raw_claim=claim,
+                label=label,
+                raw_url=url,
+                structured=True,
+                json_pointer=pointer,
+                source_metadata=image_source_metadata if pointer == "/source_image_url" else None,
             )
 
     for source in sources.values():
@@ -802,8 +1018,18 @@ def fetch_evidence(
             },
         }
 
-    title, text, blocks = _decode_body(body, media_type, charset)
-    locator, excerpt, locator_found = _best_locator(source, blocks, text)
+    document_sha256 = digest_bytes(body)
+    binary_sha256 = source.get("expected_document_sha256")
+    if binary_sha256 is not None:
+        if not isinstance(binary_sha256, str) or not SHA256.fullmatch(binary_sha256):
+            raise CitationError(f"invalid expected binary SHA-256 for {requested_url}")
+        title, text, blocks = "", "", []
+        locator = {"kind": "binary_sha256", "value": binary_sha256, "observed_sha256": document_sha256}
+        excerpt = f"sha256:{document_sha256}"
+        locator_found = document_sha256 == binary_sha256
+    else:
+        title, text, blocks = _decode_body(body, media_type, charset)
+        locator, excerpt, locator_found = _best_locator(source, blocks, text)
     citation_evidence: list[dict[str, Any]] = []
     for context in citation_contexts or []:
         contextual_source = dict(source)
@@ -816,7 +1042,12 @@ def fetch_evidence(
             contextual_source["locator_search_hint"] = (
                 context.get("link_label") or context.get("claim_text") or ""
             )
-        contextual_locator, contextual_excerpt, contextual_found = _best_locator(contextual_source, blocks, text)
+        if binary_sha256 is not None:
+            contextual_locator = locator
+            contextual_excerpt = excerpt
+            contextual_found = locator_found
+        else:
+            contextual_locator, contextual_excerpt, contextual_found = _best_locator(contextual_source, blocks, text)
         locator_digest = digest_text(canonical_json(contextual_locator))
         citation_evidence.append(
             {
@@ -832,7 +1063,11 @@ def fetch_evidence(
                 },
             }
         )
-    identity_ok, identity_matches = _identity_matches(source, title, text)
+    if binary_sha256 is not None:
+        identity_ok = document_sha256 == binary_sha256
+        identity_matches = [f"sha256:{binary_sha256}"] if identity_ok else []
+    else:
+        identity_ok, identity_matches = _identity_matches(source, title, text)
     final_host = urllib.parse.urlsplit(final_url).hostname
     secure_transport = urllib.parse.urlsplit(final_url).scheme.casefold() == "https" and all(
         urllib.parse.urlsplit(hop.get("to", "")).scheme.casefold() == "https" for hop in redirect.chain
@@ -841,7 +1076,7 @@ def fetch_evidence(
     host_ok = not expected_hosts or final_host in expected_hosts or any(final_host and final_host.endswith("." + host) for host in expected_hosts)
     return {
         "schema_version": SCHEMA_VERSION,
-        "evidence_id": stable_id("EVD", source["source_id"], digest_bytes(body)),
+        "evidence_id": stable_id("EVD", source["source_id"], document_sha256),
         "source_id": source["source_id"],
         "requested_url": requested_url,
         "verification_url": fetch_url,
@@ -856,7 +1091,7 @@ def fetch_evidence(
         "transfer_length": len(transfer_body),
         "transfer_sha256": digest_bytes(transfer_body),
         "content_encoding": headers.get("Content-Encoding", "identity"),
-        "document_sha256": digest_bytes(body),
+        "document_sha256": document_sha256,
         "title": title[:500],
         "publisher": source["publisher"],
         "published_or_updated_at": headers.get("Last-Modified"),

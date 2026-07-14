@@ -10,7 +10,7 @@
     "requirements": 95
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "d89f55667bed6c4f43d7458aa34172d4358abd192cd5480fa6846471fc9f5c09",
+  "generated_from_sha256": "7ebb850832782c88cc7a9911bb67ad4b6bae3d3fed55470059154f1268942314",
   "interpretation": "accepted is the contract status; implementation passed is reserved for independently verified evidence at the declared milestone, while blocked human-only evidence remains visible",
   "milestone": "t0_census_closed",
   "publication_ready": false,
@@ -32,6 +32,9 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -39,7 +42,7 @@
         "reports/aim-scorecard.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
       "requirement_id": "REQ-001"
     },
     {
@@ -244,7 +247,7 @@
         "src/govuk_okf/hydration.py",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
-        "governance/decisions/ADR-006-sitemap-routing-topology.md",
+        "governance/decisions/ADR-007-sitemap-routing-topology.md",
         "docs/sitemap-routing.md",
         "src/govuk_okf/publication.py",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
@@ -280,7 +283,7 @@
         "src/govuk_okf/hydration.py",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
-        "governance/decisions/ADR-006-sitemap-routing-topology.md",
+        "governance/decisions/ADR-007-sitemap-routing-topology.md",
         "docs/sitemap-routing.md",
         "src/govuk_okf/publication.py",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
@@ -835,7 +838,7 @@
         "src/govuk_okf/hydration.py",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
-        "governance/decisions/ADR-006-sitemap-routing-topology.md",
+        "governance/decisions/ADR-007-sitemap-routing-topology.md",
         "docs/sitemap-routing.md",
         "src/govuk_okf/publication.py",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
@@ -870,7 +873,7 @@
         "src/govuk_okf/hydration.py",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
-        "governance/decisions/ADR-006-sitemap-routing-topology.md",
+        "governance/decisions/ADR-007-sitemap-routing-topology.md",
         "docs/sitemap-routing.md",
         "src/govuk_okf/publication.py",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
@@ -1268,7 +1271,7 @@
         "src/govuk_okf/hydration.py",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
-        "governance/decisions/ADR-006-sitemap-routing-topology.md",
+        "governance/decisions/ADR-007-sitemap-routing-topology.md",
         "docs/sitemap-routing.md",
         "src/govuk_okf/publication.py",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
@@ -1667,6 +1670,9 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1674,7 +1680,7 @@
         "reports/aim-scorecard.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
       "requirement_id": "REQ-069"
     },
     {
@@ -1694,6 +1700,9 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1701,7 +1710,7 @@
         "reports/aim-scorecard.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
       "requirement_id": "REQ-070"
     },
     {
@@ -1721,6 +1730,9 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1728,7 +1740,7 @@
         "reports/aim-scorecard.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
       "requirement_id": "REQ-071"
     },
     {
@@ -1748,6 +1760,9 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1755,7 +1770,7 @@
         "reports/aim-scorecard.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
       "requirement_id": "REQ-072"
     },
     {
@@ -1775,6 +1790,9 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1782,7 +1800,7 @@
         "reports/aim-scorecard.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
       "requirement_id": "REQ-073"
     },
     {
@@ -1801,6 +1819,9 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1808,7 +1829,7 @@
         "reports/aim-scorecard.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
       "requirement_id": "REQ-074"
     },
     {
@@ -1828,6 +1849,9 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1835,7 +1859,7 @@
         "reports/aim-scorecard.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
       "requirement_id": "REQ-075"
     },
     {
@@ -1854,6 +1878,9 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1861,7 +1888,7 @@
         "reports/aim-scorecard.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
       "requirement_id": "REQ-076"
     },
     {
@@ -1897,6 +1924,9 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1904,7 +1934,7 @@
         "reports/aim-scorecard.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
       "requirement_id": "REQ-078"
     },
     {
@@ -1923,6 +1953,9 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1930,7 +1963,7 @@
         "reports/aim-scorecard.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
       "requirement_id": "REQ-079"
     },
     {
@@ -1950,6 +1983,9 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
@@ -1957,7 +1993,7 @@
         "reports/aim-scorecard.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding.",
       "requirement_id": "REQ-080"
     },
     {
@@ -1974,10 +2010,15 @@
         "research/citations.jsonl",
         "research/citation-support-reviews.jsonl",
         "research/claim-support-reviews.jsonl",
-        "release/citation-verification.json"
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "src/govuk_okf/citations.py",
+        "provenance/claim-citation-ledger.jsonl",
+        "release/citation-verification.json",
+        "reports/citation-verification.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. Independent ledgers verify 171/171 citation bindings and 40/40 joint claims with zero waivers or blockers. The evidence is currently bound to the fixture release identifier and must be regenerated with the final closing snapshot before publication.",
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. The deterministic inventory now covers 128 claims, 196 citation bindings and 111 sources, including every source-page, source-image, official-context, question, bounded excerpt, structured-summary sentence and ordered source-card object in the GOV.UK Chat JSON comparator assets with exact JSON Pointers. Screenshot-derived fields bind the expected binary digest; each ordered source-card claim jointly binds the screenshot and destination, while duplicate, gapped or out-of-order positions fail closed. The previously frozen fixture evidence still passes 160 bindings and 40 joint claims; 36 new or changed bindings and four joint claims are deliberately blocking because they have not yet received fresh claim-specific evidence and independent semantic-support review. No waiver converts that missing verification into a pass. The full inventory, evidence and reviews must be regenerated against the final closing snapshot before publication.",
       "requirement_id": "REQ-081"
     },
     {
@@ -1994,10 +2035,15 @@
         "research/citations.jsonl",
         "research/citation-support-reviews.jsonl",
         "research/claim-support-reviews.jsonl",
-        "release/citation-verification.json"
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "src/govuk_okf/citations.py",
+        "provenance/claim-citation-ledger.jsonl",
+        "release/citation-verification.json",
+        "reports/citation-verification.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. Independent ledgers verify 171/171 citation bindings and 40/40 joint claims with zero waivers or blockers. The evidence is currently bound to the fixture release identifier and must be regenerated with the final closing snapshot before publication.",
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. The deterministic inventory now covers 128 claims, 196 citation bindings and 111 sources, including every source-page, source-image, official-context, question, bounded excerpt, structured-summary sentence and ordered source-card object in the GOV.UK Chat JSON comparator assets with exact JSON Pointers. Screenshot-derived fields bind the expected binary digest; each ordered source-card claim jointly binds the screenshot and destination, while duplicate, gapped or out-of-order positions fail closed. The previously frozen fixture evidence still passes 160 bindings and 40 joint claims; 36 new or changed bindings and four joint claims are deliberately blocking because they have not yet received fresh claim-specific evidence and independent semantic-support review. No waiver converts that missing verification into a pass. The full inventory, evidence and reviews must be regenerated against the final closing snapshot before publication.",
       "requirement_id": "REQ-082"
     },
     {
@@ -2014,10 +2060,15 @@
         "research/citations.jsonl",
         "research/citation-support-reviews.jsonl",
         "research/claim-support-reviews.jsonl",
-        "release/citation-verification.json"
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "src/govuk_okf/citations.py",
+        "provenance/claim-citation-ledger.jsonl",
+        "release/citation-verification.json",
+        "reports/citation-verification.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. Independent ledgers verify 171/171 citation bindings and 40/40 joint claims with zero waivers or blockers. The evidence is currently bound to the fixture release identifier and must be regenerated with the final closing snapshot before publication.",
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. The deterministic inventory now covers 128 claims, 196 citation bindings and 111 sources, including every source-page, source-image, official-context, question, bounded excerpt, structured-summary sentence and ordered source-card object in the GOV.UK Chat JSON comparator assets with exact JSON Pointers. Screenshot-derived fields bind the expected binary digest; each ordered source-card claim jointly binds the screenshot and destination, while duplicate, gapped or out-of-order positions fail closed. The previously frozen fixture evidence still passes 160 bindings and 40 joint claims; 36 new or changed bindings and four joint claims are deliberately blocking because they have not yet received fresh claim-specific evidence and independent semantic-support review. No waiver converts that missing verification into a pass. The full inventory, evidence and reviews must be regenerated against the final closing snapshot before publication.",
       "requirement_id": "REQ-083"
     },
     {
@@ -2034,10 +2085,15 @@
         "research/citations.jsonl",
         "research/citation-support-reviews.jsonl",
         "research/claim-support-reviews.jsonl",
-        "release/citation-verification.json"
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "src/govuk_okf/citations.py",
+        "provenance/claim-citation-ledger.jsonl",
+        "release/citation-verification.json",
+        "reports/citation-verification.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. Independent ledgers verify 171/171 citation bindings and 40/40 joint claims with zero waivers or blockers. The evidence is currently bound to the fixture release identifier and must be regenerated with the final closing snapshot before publication.",
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. The deterministic inventory now covers 128 claims, 196 citation bindings and 111 sources, including every source-page, source-image, official-context, question, bounded excerpt, structured-summary sentence and ordered source-card object in the GOV.UK Chat JSON comparator assets with exact JSON Pointers. Screenshot-derived fields bind the expected binary digest; each ordered source-card claim jointly binds the screenshot and destination, while duplicate, gapped or out-of-order positions fail closed. The previously frozen fixture evidence still passes 160 bindings and 40 joint claims; 36 new or changed bindings and four joint claims are deliberately blocking because they have not yet received fresh claim-specific evidence and independent semantic-support review. No waiver converts that missing verification into a pass. The full inventory, evidence and reviews must be regenerated against the final closing snapshot before publication.",
       "requirement_id": "REQ-084"
     },
     {
@@ -2055,10 +2111,15 @@
         "research/citations.jsonl",
         "research/citation-support-reviews.jsonl",
         "research/claim-support-reviews.jsonl",
-        "release/citation-verification.json"
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "src/govuk_okf/citations.py",
+        "provenance/claim-citation-ledger.jsonl",
+        "release/citation-verification.json",
+        "reports/citation-verification.md"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. Independent ledgers verify 171/171 citation bindings and 40/40 joint claims with zero waivers or blockers. The evidence is currently bound to the fixture release identifier and must be regenerated with the final closing snapshot before publication.",
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. The deterministic inventory now covers 128 claims, 196 citation bindings and 111 sources, including every source-page, source-image, official-context, question, bounded excerpt, structured-summary sentence and ordered source-card object in the GOV.UK Chat JSON comparator assets with exact JSON Pointers. Screenshot-derived fields bind the expected binary digest; each ordered source-card claim jointly binds the screenshot and destination, while duplicate, gapped or out-of-order positions fail closed. The previously frozen fixture evidence still passes 160 bindings and 40 joint claims; 36 new or changed bindings and four joint claims are deliberately blocking because they have not yet received fresh claim-specific evidence and independent semantic-support review. No waiver converts that missing verification into a pass. The full inventory, evidence and reviews must be regenerated against the final closing snapshot before publication.",
       "requirement_id": "REQ-085"
     },
     {

@@ -239,6 +239,8 @@
     "metadata_only": true,
     "policy_artifacts": [
       "LICENSE.md",
+      "evaluation/govuk-chat/new-parent-multi-service.json",
+      "evaluation/govuk-chat/official-published-example.json",
       "research/official-source-audit.md",
       "research/source-constraints.json"
     ],
@@ -261,6 +263,10 @@
     {
       "constraint_id": "SRC-CONSTRAINT-008",
       "disposition": "Represent observed redirect/gone history and publish the residual public-enumerability limit."
+    },
+    {
+      "constraint_id": "SRC-CONSTRAINT-009",
+      "disposition": "Do not automate or bypass the signed-in app or Signon-protected testing surface. Keep the comparator bounded to public official evidence, explicitly unverified item rights and no retained or published screenshot bytes."
     }
   ]
 }

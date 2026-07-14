@@ -168,8 +168,13 @@ def _install_distribution_entrypoint(site: Path, index_path: Path) -> None:
     entrypoints = descriptor.setdefault("entrypoints", {})
     if not isinstance(entrypoints, dict):
         raise PackagingError("Explorer descriptor entrypoints must be an object")
-    entrypoints["release_data_plane"] = {
-        "path": index_path.relative_to(site).as_posix(),
+    entrypoint_integrity = descriptor.setdefault("entrypoint_integrity", {})
+    if not isinstance(entrypoint_integrity, dict):
+        raise PackagingError("Explorer descriptor entrypoint integrity must be an object")
+    release_data_plane_path = index_path.relative_to(site).as_posix()
+    entrypoints["release_data_plane"] = release_data_plane_path
+    entrypoint_integrity["release_data_plane"] = {
+        "path": release_data_plane_path,
         "sha256": _sha256_file(index_path),
     }
     descriptor["distribution"] = {
@@ -417,8 +422,20 @@ def _verify_distribution_descriptor(site: Path, index: dict[str, Any]) -> list[s
         descriptor = json.loads((site / "okf-explorer.json").read_text(encoding="utf-8"))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         return [f"packaged Explorer descriptor is missing or invalid: {exc}"]
-    entry = (descriptor.get("entrypoints") or {}).get("release_data_plane")
-    if entry != {
+    entrypoints = descriptor.get("entrypoints") or {}
+    if not isinstance(entrypoints, dict) or any(
+        not isinstance(value, str) or not value for value in entrypoints.values()
+    ):
+        errors.append("Explorer descriptor entrypoints must remain non-empty string paths")
+        entrypoints = entrypoints if isinstance(entrypoints, dict) else {}
+    if entrypoints.get("release_data_plane") != "release-data-plane.json":
+        errors.append("Explorer descriptor release data-plane entrypoint is not the compatible string path")
+    integrity_map = descriptor.get("entrypoint_integrity") or {}
+    if not isinstance(integrity_map, dict):
+        errors.append("Explorer descriptor entrypoint integrity must be an object")
+        integrity_map = {}
+    integrity = integrity_map.get("release_data_plane")
+    if integrity != {
         "path": "release-data-plane.json",
         "sha256": _sha256_file(site / "release-data-plane.json"),
     }:

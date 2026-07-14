@@ -63,9 +63,22 @@ class WalkthroughInventoryTests(unittest.TestCase):
             ["new-parent-01", "new-parent-02", "new-parent-03", "new-parent-04", "new-parent-05"],
         )
         self.assertIn("personal information", comparison["capture_contract"]["do_not_store"])
+        self.assertEqual(
+            comparison["rights_and_reuse"]["disposition"],
+            "links_and_minimal_source_metadata_only",
+        )
+        self.assertTrue(comparison["rights_and_reuse"]["not_a_legal_conclusion"])
         published = json.loads(
             (ROOT / "evaluation" / "govuk-chat" / "official-published-example.json").read_text(encoding="utf-8")
         )
         self.assertEqual(published["status"], "official_published_example_not_a_live_replay")
         self.assertEqual(len(published["source_cards"]), 2)
         self.assertEqual(len(published["capture"]["asset_sha256"]), 64)
+        self.assertFalse(published["capture"]["asset_retained"])
+        self.assertFalse(published["rights_and_reuse"]["image"]["bytes_retained"])
+        self.assertFalse(published["rights_and_reuse"]["image"]["bytes_published"])
+        self.assertEqual(
+            published["rights_and_reuse"]["image"]["rights_status"],
+            "not_independently_verified",
+        )
+        self.assertTrue(published["rights_and_reuse"]["not_a_legal_conclusion"])

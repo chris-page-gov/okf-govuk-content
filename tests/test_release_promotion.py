@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tests.test_release_gate import make_release, write_json
+from tests.test_release_gate import comparator_rights_fixture, make_release, write_json
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -136,6 +136,7 @@ def refreshed_rights(root: Path, snapshot: str) -> dict[str, object]:
     corpus_path = root / "corpus/records/T1/rights-audit-manifest.json"
     transition = manifest.get("promotion") or manifest.get("promotion_contract")
     reproduction = transition["reproduction"]
+    comparator_evidence = comparator_rights_fixture(root)
 
     def bound(path: Path) -> dict[str, object]:
         return {
@@ -159,8 +160,10 @@ def refreshed_rights(root: Path, snapshot: str) -> dict[str, object]:
             "generated_at": "2026-07-12T23:59:59Z",
             "publication_manifest": bound(publication_path),
             "corpus_manifests": [bound(corpus_path)],
+            "comparator_evidence": comparator_evidence["files"],
             "review_ledger": None,
         },
+        "comparator_evidence": comparator_evidence,
         "snapshot_binding": {
             "release_manifest": {
                 "path": "release/manifest.yaml",

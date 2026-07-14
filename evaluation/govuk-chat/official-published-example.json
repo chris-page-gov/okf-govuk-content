@@ -17,6 +17,26 @@
     "source_kind": "official_gds_blog_screenshot"
   },
   "question": "My child is turning 4, what do I need to do to get them ready for school?",
+  "rights_and_reuse": {
+    "answer": {
+      "disposition": "short_attributed_excerpt_and_structured_paraphrase_only",
+      "rights_status": "not_independently_verified_for_republication_beyond_this_bounded_evidence_use"
+    },
+    "fair_use_or_fair_dealing_trigger": "item_level_review_required_before_expanding_the_excerpt_or_copying_the_image",
+    "image": {
+      "bytes_published": false,
+      "bytes_retained": false,
+      "disposition": "source_url_and_sha256_only",
+      "rights_status": "not_independently_verified"
+    },
+    "not_a_legal_conclusion": true,
+    "schema": "govuk-chat-comparator-rights-disposition.v1",
+    "source_cards": {
+      "destination_content_copied": false,
+      "disposition": "ordered_title_and_url_metadata_only",
+      "rights_status": "linked_GOV.UK_items_may_contain_item_level_exceptions"
+    }
+  },
   "schema": "govuk-chat-published-observation.v1",
   "source_cards": [
     {

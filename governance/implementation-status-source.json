@@ -107,7 +107,7 @@
         "src/govuk_okf/hydration.py",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
-        "governance/decisions/ADR-006-sitemap-routing-topology.md",
+        "governance/decisions/ADR-007-sitemap-routing-topology.md",
         "docs/sitemap-routing.md",
         "src/govuk_okf/publication.py",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
@@ -152,13 +152,16 @@
         "scripts/run_evaluation.py",
         "src/govuk_okf/evaluation.py",
         "evaluation/development/status.json",
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "evaluation/walkthroughs/persona-story-inventory.json",
         "explorer/src/evidence/fixture-browser.json",
         "explorer/tests/browser.e2e.mjs",
         "reports/comparators.md",
         "release/aim-assessment.json",
         "reports/aim-scorecard.md"
       ],
-      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. A deterministic nine-aim assessment now maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding."
+      "qualification": "The deterministic matched evaluation harness, baselines, ablations, trace shards, metrics, cluster confidence intervals, slices and failure analysis are implemented and fixture-tested. The GOV.UK Chat comparator assets retain replayable prompts, structured source-card metadata and explicit rights dispositions: linked sources remain links, the observed screenshot bytes are not retained or published, and any longer answer or copied image requires item-level review. Those dispositions are conservative evidence controls, not legal or licence-verification conclusions. A deterministic nine-aim assessment maps all 95 requirements and 21 controlling clauses to exact hashed evidence, negative findings, exceptions and next actions; it honestly reports eight partly fulfilled aims and one not yet testable aim while Gate 11 remains pending. The complete 28,800-question release run and participant results remain outstanding."
     },
     {
       "name": "citation_and_research_verification",
@@ -172,9 +175,14 @@
         "research/citations.jsonl",
         "research/citation-support-reviews.jsonl",
         "research/claim-support-reviews.jsonl",
-        "release/citation-verification.json"
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+        "src/govuk_okf/citations.py",
+        "provenance/claim-citation-ledger.jsonl",
+        "release/citation-verification.json",
+        "reports/citation-verification.md"
       ],
-      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. Independent ledgers verify 171/171 citation bindings and 40/40 joint claims with zero waivers or blockers. The evidence is currently bound to the fixture release identifier and must be regenerated with the final closing snapshot before publication."
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. The deterministic inventory now covers 128 claims, 196 citation bindings and 111 sources, including every source-page, source-image, official-context, question, bounded excerpt, structured-summary sentence and ordered source-card object in the GOV.UK Chat JSON comparator assets with exact JSON Pointers. Screenshot-derived fields bind the expected binary digest; each ordered source-card claim jointly binds the screenshot and destination, while duplicate, gapped or out-of-order positions fail closed. The previously frozen fixture evidence still passes 160 bindings and 40 joint claims; 36 new or changed bindings and four joint claims are deliberately blocking because they have not yet received fresh claim-specific evidence and independent semantic-support review. No waiver converts that missing verification into a pass. The full inventory, evidence and reviews must be regenerated against the final closing snapshot before publication."
     },
     {
       "name": "final_machine_status",

@@ -1,6 +1,6 @@
 # Release bibliography
 
-Snapshot: `fixture-2026-07-11`
+Snapshot: `T0-20260712`
 
 This file is generated from the citation catalogue. Verification status is
 reported separately because a reachable source is not automatically evidence
@@ -108,6 +108,12 @@ that a claim is semantically supported.
   `content-hash snapshot`; locator
   `heading_text_fingerprint:GOV.UK publishing architecture deep dive`; document SHA-256
   `05f0df403eb1c8688f01cf2096ab018cc7bb4d09aeea37c87d5fcb5f5c2f5d75`.
+- **Government Digital Service**. [The public GOV.UK Chat surface is in the GOV.UK app; the web interface is a departmental testing surface.](https://docs.publishing.service.gov.uk/manual/govuk-chat.html).
+  `SRC-988757DE640B36E2`; official_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:The public GOV.UK Chat surface is in the GOV.UK app; the web interface is a departmental testing surface.`; document SHA-256
+  `missing`.
 - **Government Digital Service**. [GOV.UK Search: Introduction and overview - GOV.UK Developer Documentation](https://docs.publishing.service.gov.uk/manual/govuk-search.html).
   `SRC-15A1ED999816A261`; official_primary; retrieved
   `2026-07-12T07:50:00Z`; version/commit
@@ -378,6 +384,24 @@ that a claim is semantically supported.
   `content-hash snapshot`; locator
   `heading_text_fingerprint:GOV.UK Design System`; document SHA-256
   `fd74eb4705a2c985c8030b7a5924ee337769add7124eae91eb5d540e273d90f5`.
+- **UK Government**. [GOV.UK Chat launch source page](https://gds.blog.gov.uk/2026/05/14/gov-uk-chat-launches/).
+  `SRC-3B317443DE415693`; official_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:GOV.UK Chat launch source page`; document SHA-256
+  `missing`.
+- **UK Government**. [GOV.UK Chat official published example image](https://gds.blog.gov.uk/wp-content/uploads/sites/60/2026/05/Example-Questions-Mockup-to-embed-within-post-620x413.png).
+  `SRC-DBA67E9AA3C8366A`; official_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `binary_sha256:a39a6954cbede0ea24a57ddb3d9766665be2650eed36fe0cf5e7601a161df392`; document SHA-256
+  `missing`.
+- **UK Government**. [GOV.UK describes a new-parent question as a multi-department Chat example.](https://insidegovuk.blog.gov.uk/2025/12/16/gov-uk-has-entered-the-chat-our-vision-for-gov-uk-chat/).
+  `SRC-34EEE2BD1C43765C`; official_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:GOV.UK describes a new-parent question as a multi-department Chat example.`; document SHA-256
+  `missing`.
 - **UK Government**. [5 things we learned testing GOV.UK Chat: an AI assistant for government – Inside GOV.UK](https://insidegovuk.blog.gov.uk/2026/03/16/5-things-we-learned-testing-gov-uk-chat-an-ai-assistant-for-government/).
   `SRC-EBF546473FB14A0B`; official_primary; retrieved
   `2026-07-12T07:50:24Z`; version/commit
@@ -402,6 +426,12 @@ that a claim is semantically supported.
   `content-hash snapshot`; locator
   `heading_text_fingerprint:navigation user research`; document SHA-256
   `4a426659ffc58ce896a9da503e4fb7778b6df9c17c4fbe1956039c7b8a5352c3`.
+- **UK Government**. [GOV.UK Chat answers include links to the original source material for verification.](https://www.gov.uk/algorithmic-transparency-records/dsit-gov-dot-uk-chat).
+  `SRC-06590155EED3C10E`; official_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:GOV.UK Chat answers include links to the original source material for verification.`; document SHA-256
+  `missing`.
 - **UK Government**. [topic-taxonomy-root](https://www.gov.uk/api/content).
   `SRC-7300E392C7BE6921`; official_primary; retrieved
   `2026-07-12T07:50:10Z`; version/commit
@@ -432,6 +462,12 @@ that a claim is semantically supported.
   `content-hash snapshot`; locator
   `json_pointer:/total`; document SHA-256
   `1aa9b32ac75a185feb70a5e22557cf90cd70948cca8f859329348fc04fca1e2c`.
+- **UK Government**. [Apply for a primary school place](https://www.gov.uk/apply-for-primary-school-place).
+  `SRC-8FBF3F9C2FF045BA`; official_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:Apply for a primary school place`; document SHA-256
+  `missing`.
 - **UK Government**. [atom-feeds](https://www.gov.uk/government/organisations/government-digital-service.atom).
   `SRC-EE4E2931D1F9759E`; official_primary; retrieved
   `2026-07-12T07:50:24Z`; version/commit
@@ -468,12 +504,18 @@ that a claim is semantically supported.
   `content-hash snapshot`; locator
   `heading_text_fingerprint:Terms and conditions`; document SHA-256
   `fde95a4d1a5e20ef9cdccdf49694ece0e6c10d0d42b7387b3f0190092ae419a0`.
-- **UK Government**. [robots.txt](https://www.gov.uk/robots.txt).
+- **UK Government**. [robots policy](https://www.gov.uk/robots.txt).
   `SRC-1BE5A93C1802658B`; official_primary; retrieved
   `2026-07-12T07:50:00Z`; version/commit
   `content-hash snapshot`; locator
   `text_lines:User-agent and Sitemap`; document SHA-256
   `459835d29527b9c00f00f6af00f45c73a909af1944e81fefa153f585e1857305`.
+- **UK Government**. [School admissions: Admission criteria](https://www.gov.uk/schools-admissions/admissions-criteria).
+  `SRC-634298561C4F5E70`; official_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:School admissions: Admission criteria`; document SHA-256
+  `missing`.
 - **UK Government**. [Writing user stories - Service Manual - GOV.UK](https://www.gov.uk/service-manual/agile-delivery/writing-user-stories).
   `SRC-01DAECA314662F7C`; official_primary; retrieved
   `2026-07-12T07:49:58Z`; version/commit
@@ -528,6 +570,24 @@ that a claim is semantically supported.
   `content-hash snapshot`; locator
   `pdf_page_text:Reciprocal Rank Fusion`; document SHA-256
   `5c1f9f1fe0d80f67d82041bbe151ea17437bc7a7d9a920564cf122d1b09eafb5`.
+- **Version-pinned upstream repository**. [Immutable Releases and draft-first publication](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases).
+  `SRC-F6B5739716A2D036`; maintainer_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:Immutable Releases and draft-first publication`; document SHA-256
+  `missing`.
+- **Version-pinned upstream repository**. [GitHub Pages limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits).
+  `SRC-D6A33A39068B2E80`; maintainer_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:GitHub Pages limits`; document SHA-256
+  `missing`.
+- **Version-pinned upstream repository**. [GitHub Release asset limits](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases).
+  `SRC-A5AE543794811184`; maintainer_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:GitHub Release asset limits`; document SHA-256
+  `missing`.
 - **Version-pinned upstream repository**. [publishing-api/content_schemas at b1e987aa7b3e62c105ff2b2db87667f7638726f8 · alphagov/publishing-api · GitHub](https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas).
   `SRC-3BF55F0E7CFA434E`; maintainer_primary; retrieved
   `2026-07-12T07:50:05Z`; version/commit

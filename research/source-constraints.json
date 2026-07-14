@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-07-11T23:21:00Z",
+  "checked_at": "2026-07-14T15:50:46Z",
   "constraints": [
     {
       "id": "SRC-CONSTRAINT-001",
@@ -72,6 +72,14 @@
       "class": "coverage",
       "reason": "No public complete inventory of historic redirects, gone routes and unpublishings was found.",
       "disposition": "Represent every instance found by admitted sources and publish the residual public-enumerability limit."
+    },
+    {
+      "id": "SRC-CONSTRAINT-009",
+      "source": "govuk-chat-comparator",
+      "status": "authenticated_surfaces_not_accessed",
+      "class": "authenticated_user_and_internal_testing_access",
+      "reason": "The public GOV.UK Chat service is delivered through the signed-in GOV.UK app, while its production web interface is a departmental testing surface protected by GOV.UK Signon.",
+      "disposition": "Do not automate, bypass or make either authenticated surface a release dependency. Limit the checked-in comparator to public official descriptions, minimal source metadata, one bounded attributed excerpt, a structured paraphrase and an official image URL plus digest; keep live replay and expanded reuse blocked pending authorised access and item-level rights review."
     }
   ]
 }

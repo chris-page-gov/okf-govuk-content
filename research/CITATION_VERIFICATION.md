@@ -2,9 +2,15 @@
 
 The released citation corpus is collected from Markdown links under the
 controlling plan, research, governance, semantic, documentation, README and
-reports, plus the explicit source contracts in `source-registry.yaml`.
+reports, plus the explicit source contracts in `source-registry.yaml` and every
+external URL in the two structured GOV.UK Chat comparator JSON documents.
 Links may span Markdown lines; collection is based on the complete document,
 not line-local regular-expression matches.
+The published-observation record also emits exact-pointer claims for its
+question, bounded excerpt, each structured-summary sentence and each complete
+ordered source-card object. Those observed fields cite the exact-hash image;
+source-card claims additionally cite the destination and require contiguous,
+unique positions matching JSON array order.
 Namespace IRIs, schema identifiers, generated bibliography links and raw probe
 payload URLs are not narrative citations; the latter remain covered by their
 own response hashes.
@@ -34,6 +40,9 @@ over plain HTTP; HTTPS-to-HTTP redirects fail closed. JSON evidence resolves
 the declared JSON Pointer and XML evidence records and hashes the parsed root.
 Only minimal metadata, short excerpts and hashes are retained;
 complete third-party documents are processed transiently and discarded.
+Binary comparator evidence is verified by exact SHA-256 rather than decoded as
+text. The repository stores only its URL and expected digest; the source image
+bytes are neither retained nor published.
 
 `fetch` creates `citation-review-packet.jsonl` and, for multi-source claims,
 `claim-review-packet.jsonl`. Reviewers write decisions separately to
