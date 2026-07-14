@@ -43,18 +43,19 @@
     "relationship_adjacency": "data/adjacency/manifest.json",
     "route_index": "data/routes/manifest.json",
     "search": "data/search/manifest.json",
-    "semantic_projection": "data/semantic/manifest.json"
+    "semantic_projection": "data/semantic/manifest.json",
+    "site_topology": "data/site-topology.json"
   },
   "integrity": {
     "adjacency_shard_manifest_sha256": "671f49b6601886f4502530dc6c1279856f13f4e6ac8b3fe1cb7c2054f417e88a",
     "algorithm": "sha256-canonical-shard-leaves-v1",
     "leaf_count": 731,
-    "manifest_root_sha256": "8e9364157031fde34c6756c14b352d3bc74263fb15f3430eb36af384a97491f8",
-    "record_shard_manifest_sha256": "5a8ce91a2550983193a92ae90da4324a187f6a73ab5972afec4c45b8a9b52b26",
+    "manifest_root_sha256": "013122b394d9c90a8858c9f70d8600d03eddb749fa6aee6fcefe372a87b2e488",
+    "record_shard_manifest_sha256": "f2d0bf2772b9bd528b934d815167e636791f4a2260acc0cb919e021d3c7aca32",
     "route_shard_manifest_sha256": "368b0c3cfaba258267fb75364e2900f916dec0caf360debcf826e8c6cadeb5a1",
     "schema": "okf-data-plane-integrity.v1",
     "schema_version": "1.0",
-    "search_shard_manifest_sha256": "34cfb0b2e3790c30bb33926d2de47122552318bf9d96d07eed446440cf93f198"
+    "search_shard_manifest_sha256": "e2f89407d0932276064e3551e701141153f8e43dd4cebfa748eafcd0428b90af"
   },
   "performance": {
     "full_record_hydration": "lazy",
@@ -81,7 +82,7 @@
   "shards": {
     "datasets": [
       {
-        "compressed_bytes": 3077,
+        "compressed_bytes": 3279,
         "compression": "gzip",
         "count": 14,
         "first_key": "dataset/00000000-0000-4000-8000-000000000001-en",
@@ -91,9 +92,9 @@
         "path": "data/records-0.json.gz",
         "schema": "okf-record-shard.v1",
         "schema_version": "1.0",
-        "sha256": "8405cddc7bf75268caead29a8a4648fa26a4c47eb452d45b8d797c4752bc78ce",
+        "sha256": "a210a25bc93c518d689616dd13fc263d7c73fd927b20184464e1d693a4047ae9",
         "snapshot": "fixture-2026-07-11",
-        "uncompressed_bytes": 18066
+        "uncompressed_bytes": 20719
       }
     ],
     "publishers": [

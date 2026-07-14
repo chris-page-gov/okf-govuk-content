@@ -1,0 +1,3769 @@
+{
+  "counts": {
+    "classes": {
+      "agent_system": 12,
+      "business_organisation": 8,
+      "professional_intermediary": 10,
+      "public_life_event": 18
+    },
+    "development_stories": 48,
+    "primary_personas": 48,
+    "representative_questions": 48
+  },
+  "generated_from": [
+    {
+      "path": "personas/seed.json",
+      "sha256": "47577dc27d2a089126786c3cf3cb62cba6bd9411995ec6000852a7aa942d63a7"
+    },
+    {
+      "path": "personas/evidence.json",
+      "sha256": "e273c14e9f7959c946472b994d94eef99268f7b4b6a08e2bc3eb768fa5a7b574"
+    },
+    {
+      "path": "stories/catalogue.jsonl",
+      "sha256": "7f9315ed726878e947ac34e85bc9f022d714b89ee38f21fca8767165db27fb43"
+    },
+    {
+      "path": "evaluation/govuk-chat/new-parent-multi-service.json",
+      "sha256": "f68420c5a0d25dd59b1e0e5cb72a4a8832190194afe448b81d3f8e6d07e23cba"
+    },
+    {
+      "path": "evaluation/govuk-chat/official-published-example.json",
+      "sha256": "a9a138ce5afd8a530f5fca87cbc9a3ff9ff3f053ebae396fa4e3e21367c60efe"
+    },
+    {
+      "path": "questions/bindings/story-accessibility-specialist.jsonl",
+      "sha256": "febf2f51181015d256dfd1629c3bee491103a27e797b84d333ec01ed7a1671ba"
+    },
+    {
+      "path": "questions/bindings/story-analyst-statistician.jsonl",
+      "sha256": "18df5fe7bae79139586e3fe21187207d05a7d845d713d18eba7df9607bca76be"
+    },
+    {
+      "path": "questions/bindings/story-appeal-historical-evidence-user.jsonl",
+      "sha256": "c9f956638528ef9ef3de9119ad71dd916a8a9d9209c8902d4e5316b0351bc395"
+    },
+    {
+      "path": "questions/bindings/story-benefits-support-claimant.jsonl",
+      "sha256": "d833ec0161062244b96020554578cdb4ae33a608f61c6e397e06594c69b754a5"
+    },
+    {
+      "path": "questions/bindings/story-bereaved-person.jsonl",
+      "sha256": "4751ed62995462a943e91f3447a164cb6e36a7e7b46552e2c09949ba2a888a44"
+    },
+    {
+      "path": "questions/bindings/story-business-compliance-agent.jsonl",
+      "sha256": "6e06b073724bd687d9309bdd14042783f316b1565d3e35e4e75a2cecf854adf1"
+    },
+    {
+      "path": "questions/bindings/story-change-monitor-agent.jsonl",
+      "sha256": "ffb904efcf25712bce40d2aa29682c0d5bcabf76cad8555a5561a0b08c14600f"
+    },
+    {
+      "path": "questions/bindings/story-charity-community-body.jsonl",
+      "sha256": "09895ff24772ce27f637e55830b0dc28f9750aa8b6d9f0f93167275822f5ede6"
+    },
+    {
+      "path": "questions/bindings/story-commercial-data-reuser.jsonl",
+      "sha256": "1282cbc199275c34b2b2c30365464ecb0ae2ac376c6caaf9ba545ce084877a91"
+    },
+    {
+      "path": "questions/bindings/story-content-publisher.jsonl",
+      "sha256": "5255cb83e924cf754780b876048ba6c428d3e309409ab236cd749a8d7af7b248"
+    },
+    {
+      "path": "questions/bindings/story-content-reuse-agent.jsonl",
+      "sha256": "5acf9b82772e9008e301ae383bbb80422337691c2bb9fe6c37bb85e3a0e393e1"
+    },
+    {
+      "path": "questions/bindings/story-crawler-indexer-agent.jsonl",
+      "sha256": "befebf9c293be41f6b9962266a9a82a41750e786650048cd98403dbd34b8e75c"
+    },
+    {
+      "path": "questions/bindings/story-data-api-discovery-agent.jsonl",
+      "sha256": "0bdfa754b021b28c909003f0ba6c37d445674807410804bbcc2c773f6f02d674"
+    },
+    {
+      "path": "questions/bindings/story-driver-traveller.jsonl",
+      "sha256": "c33d470e3da0f057cf93f63cd525230a33c8f761dd0bb75992d1d1d6ae38847a"
+    },
+    {
+      "path": "questions/bindings/story-eligibility-obligation-agent.jsonl",
+      "sha256": "be31afe7f3808650f9f32ecb3cec6c926003f6e192d96ccfa53a898dd9f22ef5"
+    },
+    {
+      "path": "questions/bindings/story-founder-sole-trader.jsonl",
+      "sha256": "744a263c26c1dec6b07c9431f965515b6cec39c3bc1aeaa2e896dca729fc436c"
+    },
+    {
+      "path": "questions/bindings/story-frontline-adviser.jsonl",
+      "sha256": "c1e9c6fd0438d3e6ba112ae873c4b9ddba754c340201005b9d1024e5b6cdce06"
+    },
+    {
+      "path": "questions/bindings/story-government-activity-follower.jsonl",
+      "sha256": "57d2126632975da964270053acb3beeb091fabe9956b4323ddde552cbc409555"
+    },
+    {
+      "path": "questions/bindings/story-government-caseworker.jsonl",
+      "sha256": "7ba538cda3d0f9da7282750904b9aac1df299d64f81c81b7a779b62821d964e2"
+    },
+    {
+      "path": "questions/bindings/story-grounded-qa-agent.jsonl",
+      "sha256": "99a580e186360b80af0b23f40c1534af677923a5f30a16e426ec7bda755385b2"
+    },
+    {
+      "path": "questions/bindings/story-health-safety-environment-user.jsonl",
+      "sha256": "47ce3b7ef08523dd79591bf9e0f46343c132bf631ab868711c5b9d742daf284d"
+    },
+    {
+      "path": "questions/bindings/story-housing-local-services-user.jsonl",
+      "sha256": "5df55c19e72580124384485466099da8ad592e271f99ca113d7fa2b9815efade"
+    },
+    {
+      "path": "questions/bindings/story-immigration-citizenship-user.jsonl",
+      "sha256": "83aa6a526ea11eb6276fa2e95591134103b3b827370d63784e933d23ece68fca"
+    },
+    {
+      "path": "questions/bindings/story-importer-exporter.jsonl",
+      "sha256": "7c97bef2fc84e285ea9c4c58847e50ce065094620e7f86a344dfd5c4593951a7"
+    },
+    {
+      "path": "questions/bindings/story-journalist-archivist-auditor.jsonl",
+      "sha256": "07d1d83a6b79a0aa1271617f06de0ddb6193091edba842ed9e2ac8b6d6327d4b"
+    },
+    {
+      "path": "questions/bindings/story-justice-rights-user.jsonl",
+      "sha256": "df0fb359631844978372b7e7d7ec1cdec9aca9b50ce3b40b4c1967e6671a9eff"
+    },
+    {
+      "path": "questions/bindings/story-large-regulated-organisation.jsonl",
+      "sha256": "642f69956aadc877c90113b6a92798e0b83f28046295faacdf1659cd85701930"
+    },
+    {
+      "path": "questions/bindings/story-learner-education-user.jsonl",
+      "sha256": "60da6be37f48d4d8f3da9de74c86f64353c4f18dcf530afd4a2aed67a2a4b744"
+    },
+    {
+      "path": "questions/bindings/story-legal-parliamentary-researcher.jsonl",
+      "sha256": "923545a7dfa9d1be944b9d0357d37ace52767674f321008fbb14864d94a8a3ed"
+    },
+    {
+      "path": "questions/bindings/story-life-event-planner-agent.jsonl",
+      "sha256": "eafe8f393c27b32ccb1e1ab38e17d55ce253ebe89117df63ff315175801707ad"
+    },
+    {
+      "path": "questions/bindings/story-local-public-service-officer.jsonl",
+      "sha256": "8ac3f6569c0703fda6024a20d1b2768afdc5059e89c6d8bcb28101a0cfab98ad"
+    },
+    {
+      "path": "questions/bindings/story-multi-service-life-event.jsonl",
+      "sha256": "9692c5354774fdfa82f90044a71c0e910abe9bd75c0dbcdee9db85b076bf1a25"
+    },
+    {
+      "path": "questions/bindings/story-navigation-agent.jsonl",
+      "sha256": "2464295e9427b61d9a586572055e9b79ff6a5f474cc405b2579954c381314684"
+    },
+    {
+      "path": "questions/bindings/story-overseas-visitor.jsonl",
+      "sha256": "35a9cf06ce044cb108bdc800f5f285e446ea8a7c124a1d21334d8db178432480"
+    },
+    {
+      "path": "questions/bindings/story-parent-carer.jsonl",
+      "sha256": "182c4c9aa1611daa1b47a32b680c9b065bfb48b6cb26314d4a98538fbf915f68"
+    },
+    {
+      "path": "questions/bindings/story-policy-legal-research-agent.jsonl",
+      "sha256": "c8e8166a699cff60f382ec706dca261f87c4fd41b0919182aae135b5bb959e94"
+    },
+    {
+      "path": "questions/bindings/story-policy-official.jsonl",
+      "sha256": "bc46a9763b12618aa2aaf4735ea529d9d6e2cc200d3d4bfd77fad668285d4017"
+    },
+    {
+      "path": "questions/bindings/story-professional-adviser-business.jsonl",
+      "sha256": "3b4c543d631dab63ed2d39f23e9bc2899a04336d88d8f7f7e25af18ed2b6c3a8"
+    },
+    {
+      "path": "questions/bindings/story-provenance-audit-agent.jsonl",
+      "sha256": "8f01185bd5de7f856a04107169a1af77028e00ae7a51fe70173453a30a48391e"
+    },
+    {
+      "path": "questions/bindings/story-routine-resident.jsonl",
+      "sha256": "abe954dd1c2305057dc064c49367f48a12cfc192dd6423d753155f6d4f4ab1b3"
+    },
+    {
+      "path": "questions/bindings/story-service-user-researcher.jsonl",
+      "sha256": "00a266c0e0151e2d5645a3a593f6b83b0eae4d34d85db3966be08d6d81792839"
+    },
+    {
+      "path": "questions/bindings/story-sme-employer.jsonl",
+      "sha256": "b0e8753560c54de174e7692477648481aac6fa888eb168b2afde27bceff505fa"
+    },
+    {
+      "path": "questions/bindings/story-supplier-grant-applicant.jsonl",
+      "sha256": "44436da050277c4b236c0aaea5325eacc68640693e2ce2f1662e055b809e57dc"
+    },
+    {
+      "path": "questions/bindings/story-tax-pensions-user.jsonl",
+      "sha256": "7e4fbed6598840f01d8eea3524d60361ab915050454ce528d724cdd35d561404"
+    },
+    {
+      "path": "questions/bindings/story-transaction-handoff-agent.jsonl",
+      "sha256": "ee1d6b145b78754600b538881d80d9ad55d8477a860b4603823ef542d7aa265c"
+    },
+    {
+      "path": "questions/bindings/story-uk-national-abroad.jsonl",
+      "sha256": "386182f02805c364269dd5a4be7a38aaf4e9a527998cabd63fcd487070c5369b"
+    },
+    {
+      "path": "questions/bindings/story-urgent-high-stakes-user.jsonl",
+      "sha256": "3ce68c2050c1d52f0060dda3bb637971223bf06bf1abc8086e0a6838af2c38c9"
+    },
+    {
+      "path": "questions/bindings/story-worker-jobseeker.jsonl",
+      "sha256": "d28f2d8a88f478ff219054ee0fe8621cc8d3d049c9e483c5247e745def5329cc"
+    }
+  ],
+  "recall_layers": [
+    {
+      "claim_boundary": "Explains why the task is in scope; it is not participant validation.",
+      "layer": "persona_and_story_hypothesis",
+      "source": "personas/seed.json, personas/evidence.json and stories/catalogue.jsonl"
+    },
+    {
+      "claim_boundary": "Defines the retrieval task and provenance fields; gold remains pending corpus verification.",
+      "layer": "question_contract",
+      "source": "questions/bindings/story-*.jsonl"
+    },
+    {
+      "claim_boundary": "Finds and connects source-native metadata; it does not answer from retained page bodies.",
+      "layer": "bundle_discovery",
+      "source": "search shard, record shard, route index and relationship adjacency"
+    },
+    {
+      "claim_boundary": "Current page content is recalled from GOV.UK at answer time, outside the metadata bundle.",
+      "layer": "authoritative_retrieval",
+      "source": "canonical GOV.UK URL selected from the bundle"
+    },
+    {
+      "claim_boundary": "A time-stamped comparator observation, not OKF ground truth or a stable GOV.UK Chat contract.",
+      "layer": "govuk_chat_comparator",
+      "source": "captured answer plus ordered source cards"
+    }
+  ],
+  "rows": [
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-navigation-research",
+          "limitations": "Historical research is not evidence of current user behaviour.",
+          "source_path": null,
+          "title": "How we researched the new navigation on GOV.UK",
+          "url": "https://userresearch.blog.gov.uk/2017/06/29/how-we-researched-the-new-navigation-on-gov-uk/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "A person knows the outcome they need but not the government vocabulary or owning body.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "find current guidance and complete an everyday government task",
+      "overlay_ids": [
+        "low-digital-confidence",
+        "low-bandwidth"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-routine-resident",
+      "persona_title": "Routine resident",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-routine-resident-06-01",
+        "wording": "For the Routine resident scenario, given A person knows the outcome they need but not the government vocabulary or owning body, what typed path through topics, organisations, collections or parts leads to material needed to find current guidance and complete an everyday government task? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "medium",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Routine resident, given A person knows the outcome they need but not the government vocabulary or owning body., I need to find current guidance and complete an everyday government task so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-routine-resident",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-assisted-digital",
+          "limitations": "Overlay relevance remains a hypothesis until research is authorised.",
+          "source_path": null,
+          "title": "Assisted digital support: an introduction",
+          "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/assisted-digital-support-introduction",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-user-stories",
+          "limitations": "Provides a method, not findings about GOV.UK users.",
+          "source_path": null,
+          "title": "Writing user stories",
+          "url": "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "A life event crosses organisational boundaries and the correct order is not obvious.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "coordinate related steps across several public bodies",
+      "overlay_ids": [
+        "assisted-digital",
+        "high-stakes"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-multi-service-life-event",
+      "persona_title": "Person navigating a multi-service life event",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-multi-service-life-event-06-01",
+        "wording": "For the Person navigating a multi-service life event scenario, given A life event crosses organisational boundaries and the correct order is not obvious, what typed path through topics, organisations, collections or parts leads to material needed to coordinate related steps across several public bodies? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Person navigating a multi-service life event, given A life event crosses organisational boundaries and the correct order is not obvious., I need to coordinate related steps across several public bodies so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-multi-service-life-event",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-assisted-digital",
+          "limitations": "Overlay relevance remains a hypothesis until research is authorised.",
+          "source_path": null,
+          "title": "Assisted digital support: an introduction",
+          "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/assisted-digital-support-introduction",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-non-digital-users",
+          "limitations": "Does not establish population prevalence.",
+          "source_path": null,
+          "title": "Understanding users who do not use digital services",
+          "url": "https://www.gov.uk/service-manual/user-research/understanding-users-who-dont-use-digital-services",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-use-ontology-contract",
+          "limitations": "This contract supports inclusion and machine challenge only. It does not establish prevalence, validate a persona, or support a human preference claim.",
+          "source_path": "planning/AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md",
+          "title": "AF/HF GOV.UK OKF use-ontology contract",
+          "url": null,
+          "verification_status": "local_exact_locator"
+        }
+      ],
+      "given": "Eligibility depends on personal facts and current rules, so unsupported certainty could cause harm.",
+      "jurisdiction": [
+        "England",
+        "Scotland",
+        "Wales",
+        "Northern Ireland"
+      ],
+      "need": "understand support, applicability and the next official step",
+      "overlay_ids": [
+        "high-stakes",
+        "low-literacy",
+        "privacy-sensitive-context"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-benefits-support-claimant",
+      "persona_title": "Benefits and support claimant",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-benefits-support-claimant-06-01",
+        "wording": "For the Benefits and support claimant scenario, given Eligibility depends on personal facts and current rules, so unsupported certainty could cause harm, what typed path through topics, organisations, collections or parts leads to material needed to understand support, applicability and the next official step? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Benefits and support claimant, given Eligibility depends on personal facts and current rules, so unsupported certainty could cause harm., I need to understand support, applicability and the next official step so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-benefits-support-claimant",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The person needs time-sensitive information and may be comparing current and historical rules.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "find authoritative obligations, deadlines and records",
+      "overlay_ids": [
+        "high-stakes",
+        "cognitive-access"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-tax-pensions-user",
+      "persona_title": "Tax and pensions user",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-tax-pensions-user-06-01",
+        "wording": "For the Tax and pensions user scenario, given The person needs time-sensitive information and may be comparing current and historical rules, what typed path through topics, organisations, collections or parts leads to material needed to find authoritative obligations, deadlines and records? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Tax and pensions user, given The person needs time-sensitive information and may be comparing current and historical rules., I need to find authoritative obligations, deadlines and records so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-tax-pensions-user",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "hmrc_manual",
+        "hmrc_manual_section"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-assisted-digital",
+          "limitations": "Overlay relevance remains a hypothesis until research is authorised.",
+          "source_path": null,
+          "title": "Assisted digital support: an introduction",
+          "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/assisted-digital-support-introduction",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-use-ontology-contract",
+          "limitations": "This contract supports inclusion and machine challenge only. It does not establish prevalence, validate a persona, or support a human preference claim.",
+          "source_path": "planning/AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md",
+          "title": "AF/HF GOV.UK OKF use-ontology contract",
+          "url": null,
+          "verification_status": "local_exact_locator"
+        }
+      ],
+      "given": "The user acts for another person and may need local, national and delegated routes.",
+      "jurisdiction": [
+        "England",
+        "Scotland",
+        "Wales",
+        "Northern Ireland"
+      ],
+      "need": "find and sequence services for a child or dependent person",
+      "overlay_ids": [
+        "proxy-delegate",
+        "low-bandwidth",
+        "privacy-sensitive-context"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-parent-carer",
+      "persona_title": "Parent or carer",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-parent-carer-06-01",
+        "wording": "For the Parent or carer scenario, given The user acts for another person and may need local, national and delegated routes, what typed path through topics, organisations, collections or parts leads to material needed to find and sequence services for a child or dependent person? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Parent or carer, given The user acts for another person and may need local, national and delegated routes., I need to find and sequence services for a child or dependent person so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-parent-carer",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-accessibility-testing",
+          "limitations": "No human accessibility testing has been run for this bundle.",
+          "source_path": null,
+          "title": "Testing for accessibility",
+          "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/testing-for-accessibility",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The user is under emotional and cognitive load while information spans several organisations.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "complete sensitive tasks in a safe and manageable order",
+      "overlay_ids": [
+        "high-stakes",
+        "cognitive-access"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-bereaved-person",
+      "persona_title": "Bereaved person",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-bereaved-person-06-01",
+        "wording": "For the Bereaved person scenario, given The user is under emotional and cognitive load while information spans several organisations, what typed path through topics, organisations, collections or parts leads to material needed to complete sensitive tasks in a safe and manageable order? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Bereaved person, given The user is under emotional and cognitive load while information spans several organisations., I need to complete sensitive tasks in a safe and manageable order so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-bereaved-person",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-wcag",
+          "limitations": "Conformance is not claimed by citing the standard.",
+          "source_path": null,
+          "title": "Web Content Accessibility Guidelines (WCAG) 2.2",
+          "url": "https://www.w3.org/TR/WCAG22/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The person may use informal terms and needs clear applicability boundaries.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "understand rights, support and employment-related procedures",
+      "overlay_ids": [
+        "low-literacy",
+        "welsh-language"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-worker-jobseeker",
+      "persona_title": "Worker or jobseeker",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-worker-jobseeker-06-01",
+        "wording": "For the Worker or jobseeker scenario, given The person may use informal terms and needs clear applicability boundaries, what typed path through topics, organisations, collections or parts leads to material needed to understand rights, support and employment-related procedures? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Worker or jobseeker, given The person may use informal terms and needs clear applicability boundaries., I need to understand rights, support and employment-related procedures so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-worker-jobseeker",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-search-api",
+          "limitations": "Search results are not a complete historical corpus.",
+          "source_path": null,
+          "title": "GOV.UK Search API",
+          "url": "https://www.gov.uk/api/search.json",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The user needs date-sensitive guidance before travel or driving and may be overseas.",
+      "jurisdiction": [
+        "UK",
+        "overseas"
+      ],
+      "need": "find current requirements, warnings and transactional routes",
+      "overlay_ids": [
+        "mobile-only",
+        "low-bandwidth"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-driver-traveller",
+      "persona_title": "Driver or traveller",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-driver-traveller-06-01",
+        "wording": "For the Driver or traveller scenario, given The user needs date-sensitive guidance before travel or driving and may be overseas, what typed path through topics, organisations, collections or parts leads to material needed to find current requirements, warnings and transactional routes? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Driver or traveller, given The user needs date-sensitive guidance before travel or driving and may be overseas., I need to find current requirements, warnings and transactional routes so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-driver-traveller",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "government",
+        "travel_advice",
+        "travel_advice_index"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-wcag",
+          "limitations": "Conformance is not claimed by citing the standard.",
+          "source_path": null,
+          "title": "Web Content Accessibility Guidelines (WCAG) 2.2",
+          "url": "https://www.w3.org/TR/WCAG22/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The correct route depends on age, place, provider and stage of learning.",
+      "jurisdiction": [
+        "England",
+        "Scotland",
+        "Wales",
+        "Northern Ireland"
+      ],
+      "need": "locate education guidance, funding and application routes",
+      "overlay_ids": [
+        "welsh-language",
+        "cognitive-access"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-learner-education-user",
+      "persona_title": "Learner or education user",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-learner-education-user-06-01",
+        "wording": "For the Learner or education user scenario, given The correct route depends on age, place, provider and stage of learning, what typed path through topics, organisations, collections or parts leads to material needed to locate education guidance, funding and application routes? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "medium",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Learner or education user, given The correct route depends on age, place, provider and stage of learning., I need to locate education guidance, funding and application routes so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-learner-education-user",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "place"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-assisted-digital",
+          "limitations": "Overlay relevance remains a hypothesis until research is authorised.",
+          "source_path": null,
+          "title": "Assisted digital support: an introduction",
+          "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/assisted-digital-support-introduction",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The user starts on GOV.UK but the actionable endpoint may be a local authority.",
+      "jurisdiction": [
+        "England",
+        "Wales"
+      ],
+      "need": "distinguish national guidance from the responsible local service",
+      "overlay_ids": [
+        "high-stakes",
+        "assisted-digital"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-housing-local-services-user",
+      "persona_title": "Housing and local services user",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-housing-local-services-user-06-01",
+        "wording": "For the Housing and local services user scenario, given The user starts on GOV.UK but the actionable endpoint may be a local authority, what typed path through topics, organisations, collections or parts leads to material needed to distinguish national guidance from the responsible local service? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Housing and local services user, given The user starts on GOV.UK but the actionable endpoint may be a local authority., I need to distinguish national guidance from the responsible local service so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-housing-local-services-user",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-accessibility-testing",
+          "limitations": "No human accessibility testing has been run for this bundle.",
+          "source_path": null,
+          "title": "Testing for accessibility",
+          "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/testing-for-accessibility",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The topic can be urgent or safety critical and may require a specialist service hand-off.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "find authoritative protective guidance without mistaking it for personal advice",
+      "overlay_ids": [
+        "high-stakes",
+        "screen-reader-keyboard"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-health-safety-environment-user",
+      "persona_title": "Health, safety or environment user",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-health-safety-environment-user-06-01",
+        "wording": "For the Health, safety or environment user scenario, given The topic can be urgent or safety critical and may require a specialist service hand-off, what typed path through topics, organisations, collections or parts leads to material needed to find authoritative protective guidance without mistaking it for personal advice? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Health, safety or environment user, given The topic can be urgent or safety critical and may require a specialist service hand-off., I need to find authoritative protective guidance without mistaking it for personal advice so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-health-safety-environment-user",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-use-ontology-contract",
+          "limitations": "This contract supports inclusion and machine challenge only. It does not establish prevalence, validate a persona, or support a human preference claim.",
+          "source_path": "planning/AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md",
+          "title": "AF/HF GOV.UK OKF use-ontology contract",
+          "url": null,
+          "verification_status": "local_exact_locator"
+        }
+      ],
+      "given": "Legal effect, deadlines and jurisdiction must be preserved and the bundle must not invent advice.",
+      "jurisdiction": [
+        "England and Wales",
+        "Scotland",
+        "Northern Ireland"
+      ],
+      "need": "understand rights, evidence and formal procedures",
+      "overlay_ids": [
+        "high-stakes",
+        "proxy-delegate",
+        "privacy-sensitive-context"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-justice-rights-user",
+      "persona_title": "Justice and rights user",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-justice-rights-user-06-01",
+        "wording": "For the Justice and rights user scenario, given Legal effect, deadlines and jurisdiction must be preserved and the bundle must not invent advice, what typed path through topics, organisations, collections or parts leads to material needed to understand rights, evidence and formal procedures? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Justice and rights user, given Legal effect, deadlines and jurisdiction must be preserved and the bundle must not invent advice., I need to understand rights, evidence and formal procedures so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-justice-rights-user",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "finder_email_signup"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-non-digital-users",
+          "limitations": "Does not establish population prevalence.",
+          "source_path": null,
+          "title": "Understanding users who do not use digital services",
+          "url": "https://www.gov.uk/service-manual/user-research/understanding-users-who-dont-use-digital-services",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-use-ontology-contract",
+          "limitations": "This contract supports inclusion and machine challenge only. It does not establish prevalence, validate a persona, or support a human preference claim.",
+          "source_path": "planning/AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md",
+          "title": "AF/HF GOV.UK OKF use-ontology contract",
+          "url": null,
+          "verification_status": "local_exact_locator"
+        }
+      ],
+      "given": "Status and personal facts materially change applicability; errors can have serious consequences.",
+      "jurisdiction": [
+        "UK",
+        "overseas"
+      ],
+      "need": "locate current official requirements and application routes",
+      "overlay_ids": [
+        "high-stakes",
+        "language-support",
+        "privacy-sensitive-context"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-immigration-citizenship-user",
+      "persona_title": "Immigration or citizenship user",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-immigration-citizenship-user-06-01",
+        "wording": "For the Immigration or citizenship user scenario, given Status and personal facts materially change applicability; errors can have serious consequences, what typed path through topics, organisations, collections or parts leads to material needed to locate current official requirements and application routes? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Immigration or citizenship user, given Status and personal facts materially change applicability; errors can have serious consequences., I need to locate current official requirements and application routes so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-immigration-citizenship-user",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "coronavirus_landing_page"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The person must distinguish host-country responsibility from UK government support.",
+      "jurisdiction": [
+        "UK",
+        "overseas"
+      ],
+      "need": "find UK guidance and overseas service routes",
+      "overlay_ids": [
+        "low-bandwidth",
+        "language-support"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-uk-national-abroad",
+      "persona_title": "UK national living abroad",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-uk-national-abroad-06-01",
+        "wording": "For the UK national living abroad scenario, given The person must distinguish host-country responsibility from UK government support, what typed path through topics, organisations, collections or parts leads to material needed to find UK guidance and overseas service routes? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a UK national living abroad, given The person must distinguish host-country responsibility from UK government support., I need to find UK guidance and overseas service routes so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-uk-national-abroad",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "embassies_index",
+        "field_of_operation",
+        "fields_of_operation",
+        "world_index",
+        "world_location",
+        "world_location_news",
+        "worldwide_corporate_information_page",
+        "worldwide_office",
+        "worldwide_organisation"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-wcag",
+          "limitations": "Conformance is not claimed by citing the standard.",
+          "source_path": null,
+          "title": "Web Content Accessibility Guidelines (WCAG) 2.2",
+          "url": "https://www.w3.org/TR/WCAG22/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The user may not know UK administrative terms and may be using translation support.",
+      "jurisdiction": [
+        "UK",
+        "overseas"
+      ],
+      "need": "understand entry, travel and service requirements",
+      "overlay_ids": [
+        "language-support",
+        "mobile-only"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-overseas-visitor",
+      "persona_title": "Overseas visitor to the UK",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-overseas-visitor-06-01",
+        "wording": "For the Overseas visitor to the UK scenario, given The user may not know UK administrative terms and may be using translation support, what typed path through topics, organisations, collections or parts leads to material needed to understand entry, travel and service requirements? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Overseas visitor to the UK, given The user may not know UK administrative terms and may be using translation support., I need to understand entry, travel and service requirements so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-overseas-visitor",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "homepage"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-assisted-digital",
+          "limitations": "Overlay relevance remains a hypothesis until research is authorised.",
+          "source_path": null,
+          "title": "Assisted digital support: an introduction",
+          "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/assisted-digital-support-introduction",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-accessibility-testing",
+          "limitations": "No human accessibility testing has been run for this bundle.",
+          "source_path": null,
+          "title": "Testing for accessibility",
+          "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/testing-for-accessibility",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "Delay or false reassurance could cause harm, so abstention and escalation boundaries matter.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "reach the authoritative emergency or specialist route quickly",
+      "overlay_ids": [
+        "high-stakes",
+        "assisted-digital"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-urgent-high-stakes-user",
+      "persona_title": "Person with an urgent high-stakes need",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-urgent-high-stakes-user-06-01",
+        "wording": "For the Person with an urgent high-stakes need scenario, given Delay or false reassurance could cause harm, so abstention and escalation boundaries matter, what typed path through topics, organisations, collections or parts leads to material needed to reach the authoritative emergency or specialist route quickly? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "critical",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Person with an urgent high-stakes need, given Delay or false reassurance could cause harm, so abstention and escalation boundaries matter., I need to reach the authoritative emergency or specialist route quickly so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-urgent-high-stakes-user",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "contact"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "Current guidance may not answer a historical question and withdrawn records must remain visible.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "find the source state and procedure that applied at the relevant date",
+      "overlay_ids": [
+        "high-stakes",
+        "proxy-delegate"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-appeal-historical-evidence-user",
+      "persona_title": "Person appealing or seeking historical evidence",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-appeal-historical-evidence-user-06-01",
+        "wording": "For the Person appealing or seeking historical evidence scenario, given Current guidance may not answer a historical question and withdrawn records must remain visible, what typed path through topics, organisations, collections or parts leads to material needed to find the source state and procedure that applied at the relevant date? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Person appealing or seeking historical evidence, given Current guidance may not answer a historical question and withdrawn records must remain visible., I need to find the source state and procedure that applied at the relevant date so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-appeal-historical-evidence-user",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-navigation-research",
+          "limitations": "Historical research is not evidence of current user behaviour.",
+          "source_path": null,
+          "title": "How we researched the new navigation on GOV.UK",
+          "url": "https://userresearch.blog.gov.uk/2017/06/29/how-we-researched-the-new-navigation-on-gov-uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The user needs to separate official publication, current policy and historical announcement context.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "find attributable announcements, speeches and organisational context",
+      "overlay_ids": [
+        "screen-reader-keyboard",
+        "low-bandwidth"
+      ],
+      "persona_class": "public_life_event",
+      "persona_id": "persona-public-government-activity-follower",
+      "persona_title": "Follower of government activity and news",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-government-activity-follower-06-01",
+        "wording": "For the Follower of government activity and news scenario, given The user needs to separate official publication, current policy and historical announcement context, what typed path through topics, organisations, collections or parts leads to material needed to find attributable announcements, speeches and organisational context? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "medium",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Follower of government activity and news, given The user needs to separate official publication, current policy and historical announcement context., I need to find attributable announcements, speeches and organisational context so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-government-activity-follower",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "ministers_index",
+        "organisation",
+        "organisations_homepage",
+        "person",
+        "role",
+        "role_appointment"
+      ],
+      "target_relationships": [
+        "parent",
+        "mainstream_browse_pages",
+        "organisations",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-user-stories",
+          "limitations": "Provides a method, not findings about GOV.UK users.",
+          "source_path": null,
+          "title": "Writing user stories",
+          "url": "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The user must connect registration, tax, licensing and local obligations.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "start and operate a business using the correct official routes",
+      "overlay_ids": [
+        "low-digital-confidence",
+        "high-stakes"
+      ],
+      "persona_class": "business_organisation",
+      "persona_id": "persona-business-founder-sole-trader",
+      "persona_title": "Founder or sole trader",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-founder-sole-trader-06-01",
+        "wording": "For the Founder or sole trader scenario, given The user must connect registration, tax, licensing and local obligations, what typed path through topics, organisations, collections or parts leads to material needed to start and operate a business using the correct official routes? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Founder or sole trader, given The user must connect registration, tax, licensing and local obligations., I need to start and operate a business using the correct official routes so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-founder-sole-trader",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "Requirements change with workforce, location and dates, and several departments may publish evidence.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "understand employer obligations and complete recurring processes",
+      "overlay_ids": [
+        "high-stakes",
+        "cognitive-access"
+      ],
+      "persona_class": "business_organisation",
+      "persona_id": "persona-business-sme-employer",
+      "persona_title": "Small or medium employer",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-sme-employer-06-01",
+        "wording": "For the Small or medium employer scenario, given Requirements change with workforce, location and dates, and several departments may publish evidence, what typed path through topics, organisations, collections or parts leads to material needed to understand employer obligations and complete recurring processes? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Small or medium employer, given Requirements change with workforce, location and dates, and several departments may publish evidence., I need to understand employer obligations and complete recurring processes so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-sme-employer",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-ogl",
+          "limitations": "Not all linked or embedded material is necessarily covered by the OGL.",
+          "source_path": null,
+          "title": "Open Government Licence for public sector information",
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The organisation needs auditable provenance and must distinguish guidance from binding requirements.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "trace authoritative regulation, guidance and reporting obligations",
+      "overlay_ids": [
+        "high-stakes",
+        "proxy-delegate"
+      ],
+      "persona_class": "business_organisation",
+      "persona_id": "persona-business-large-regulated-organisation",
+      "persona_title": "Large or regulated organisation",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-large-regulated-organisation-06-01",
+        "wording": "For the Large or regulated organisation scenario, given The organisation needs auditable provenance and must distinguish guidance from binding requirements, what typed path through topics, organisations, collections or parts leads to material needed to trace authoritative regulation, guidance and reporting obligations? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "critical",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Large or regulated organisation, given The organisation needs auditable provenance and must distinguish guidance from binding requirements., I need to trace authoritative regulation, guidance and reporting obligations so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-large-regulated-organisation",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-search-api",
+          "limitations": "Search results are not a complete historical corpus.",
+          "source_path": null,
+          "title": "GOV.UK Search API",
+          "url": "https://www.gov.uk/api/search.json",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "Commodity, destination, origin and effective date can change the applicable route.",
+      "jurisdiction": [
+        "UK",
+        "overseas"
+      ],
+      "need": "find current cross-border rules, data and transactional hand-offs",
+      "overlay_ids": [
+        "high-stakes",
+        "low-bandwidth"
+      ],
+      "persona_class": "business_organisation",
+      "persona_id": "persona-business-importer-exporter",
+      "persona_title": "Importer or exporter",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-importer-exporter-06-01",
+        "wording": "For the Importer or exporter scenario, given Commodity, destination, origin and effective date can change the applicable route, what typed path through topics, organisations, collections or parts leads to material needed to find current cross-border rules, data and transactional hand-offs? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "critical",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Importer or exporter, given Commodity, destination, origin and effective date can change the applicable route., I need to find current cross-border rules, data and transactional hand-offs so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-importer-exporter",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "plan_for_change_landing_page"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-ogl",
+          "limitations": "Not all linked or embedded material is necessarily covered by the OGL.",
+          "source_path": null,
+          "title": "Open Government Licence for public sector information",
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "A mixed professional and volunteer team needs accessible, reusable evidence.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "find governance, funding and public-service information",
+      "overlay_ids": [
+        "assisted-digital",
+        "low-literacy"
+      ],
+      "persona_class": "business_organisation",
+      "persona_id": "persona-business-charity-community-body",
+      "persona_title": "Charity or community body",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-charity-community-body-06-01",
+        "wording": "For the Charity or community body scenario, given A mixed professional and volunteer team needs accessible, reusable evidence, what typed path through topics, organisations, collections or parts leads to material needed to find governance, funding and public-service information? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "medium",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Charity or community body, given A mixed professional and volunteer team needs accessible, reusable evidence., I need to find governance, funding and public-service information so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-charity-community-body",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-search-api",
+          "limitations": "Search results are not a complete historical corpus.",
+          "source_path": null,
+          "title": "GOV.UK Search API",
+          "url": "https://www.gov.uk/api/search.json",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The organisation must compare current notices and preserve evidence used for a decision.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "find opportunities, criteria, deadlines and submission routes",
+      "overlay_ids": [
+        "high-stakes",
+        "screen-reader-keyboard"
+      ],
+      "persona_class": "business_organisation",
+      "persona_id": "persona-business-supplier-grant-applicant",
+      "persona_title": "Public-sector supplier or grant applicant",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-supplier-grant-applicant-06-01",
+        "wording": "For the Public-sector supplier or grant applicant scenario, given The organisation must compare current notices and preserve evidence used for a decision, what typed path through topics, organisations, collections or parts leads to material needed to find opportunities, criteria, deadlines and submission routes? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Public-sector supplier or grant applicant, given The organisation must compare current notices and preserve evidence used for a decision., I need to find opportunities, criteria, deadlines and submission routes so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-supplier-grant-applicant",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "case_study"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-ogl",
+          "limitations": "Not all linked or embedded material is necessarily covered by the OGL.",
+          "source_path": null,
+          "title": "Open Government Licence for public sector information",
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The adviser acts for another party and requires current, citable sources and clear limitations.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "assemble source-backed guidance for a client without replacing professional judgement",
+      "overlay_ids": [
+        "proxy-delegate",
+        "high-stakes"
+      ],
+      "persona_class": "business_organisation",
+      "persona_id": "persona-business-professional-adviser-business",
+      "persona_title": "Professional adviser supporting a business",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-professional-adviser-business-06-01",
+        "wording": "For the Professional adviser supporting a business scenario, given The adviser acts for another party and requires current, citable sources and clear limitations, what typed path through topics, organisations, collections or parts leads to material needed to assemble source-backed guidance for a client without replacing professional judgement? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "critical",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Professional adviser supporting a business, given The adviser acts for another party and requires current, citable sources and clear limitations., I need to assemble source-backed guidance for a client without replacing professional judgement so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-professional-adviser-business",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-search-api",
+          "limitations": "Search results are not a complete historical corpus.",
+          "source_path": null,
+          "title": "GOV.UK Search API",
+          "url": "https://www.gov.uk/api/search.json",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-ogl",
+          "limitations": "Not all linked or embedded material is necessarily covered by the OGL.",
+          "source_path": null,
+          "title": "Open Government Licence for public sector information",
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The user needs stable identifiers, update semantics, attachments, APIs and attribution requirements.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "discover machine-readable records and lawful reuse conditions",
+      "overlay_ids": [
+        "structured-output",
+        "licensing-review"
+      ],
+      "persona_class": "business_organisation",
+      "persona_id": "persona-business-commercial-data-reuser",
+      "persona_title": "Developer or commercial content reuser",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-commercial-data-reuser-06-01",
+        "wording": "For the Developer or commercial content reuser scenario, given The user needs stable identifiers, update semantics, attachments, APIs and attribution requirements, what typed path through topics, organisations, collections or parts leads to material needed to discover machine-readable records and lawful reuse conditions? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "medium",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Developer or commercial content reuser, given The user needs stable identifiers, update semantics, attachments, APIs and attribution requirements., I need to discover machine-readable records and lawful reuse conditions so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-commercial-data-reuser",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "related"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-assisted-digital",
+          "limitations": "Overlay relevance remains a hypothesis until research is authorised.",
+          "source_path": null,
+          "title": "Assisted digital support: an introduction",
+          "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/assisted-digital-support-introduction",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-use-ontology-contract",
+          "limitations": "This contract supports inclusion and machine challenge only. It does not establish prevalence, validate a persona, or support a human preference claim.",
+          "source_path": "planning/AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md",
+          "title": "AF/HF GOV.UK OKF use-ontology contract",
+          "url": null,
+          "verification_status": "local_exact_locator"
+        }
+      ],
+      "given": "The adviser must work quickly, preserve uncertainty and hand off to the authoritative service.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "find and explain official information during a supported interaction",
+      "overlay_ids": [
+        "proxy-delegate",
+        "high-stakes",
+        "privacy-sensitive-context"
+      ],
+      "persona_class": "professional_intermediary",
+      "persona_id": "persona-professional-frontline-adviser",
+      "persona_title": "Frontline adviser",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-frontline-adviser-06-01",
+        "wording": "For the Frontline adviser scenario, given The adviser must work quickly, preserve uncertainty and hand off to the authoritative service, what typed path through topics, organisations, collections or parts leads to material needed to find and explain official information during a supported interaction? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Frontline adviser, given The adviser must work quickly, preserve uncertainty and hand off to the authoritative service., I need to find and explain official information during a supported interaction so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-frontline-adviser",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "landing_page"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-taxonomy-api",
+          "limitations": "The reference does not guarantee graph completeness.",
+          "source_path": null,
+          "title": "GOV.UK Taxonomy API",
+          "url": "https://www.gov.uk/api/content",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "Responsibility and geography must be explicit where GOV.UK delegates delivery.",
+      "jurisdiction": [
+        "England",
+        "Wales"
+      ],
+      "need": "connect national guidance to the correct local or specialist service",
+      "overlay_ids": [
+        "proxy-delegate",
+        "welsh-language"
+      ],
+      "persona_class": "professional_intermediary",
+      "persona_id": "persona-professional-local-public-service-officer",
+      "persona_title": "Local government or NHS officer",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-local-public-service-officer-06-01",
+        "wording": "For the Local government or NHS officer scenario, given Responsibility and geography must be explicit where GOV.UK delegates delivery, what typed path through topics, organisations, collections or parts leads to material needed to connect national guidance to the correct local or specialist service? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Local government or NHS officer, given Responsibility and geography must be explicit where GOV.UK delegates delivery., I need to connect national guidance to the correct local or specialist service so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-local-public-service-officer",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-taxonomy-api",
+          "limitations": "The reference does not guarantee graph completeness.",
+          "source_path": null,
+          "title": "GOV.UK Taxonomy API",
+          "url": "https://www.gov.uk/api/content",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The official needs organisational, topical and lifecycle context without treating metadata as policy text.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "trace current policy publications, ownership and related evidence",
+      "overlay_ids": [
+        "structured-output",
+        "historical-comparison"
+      ],
+      "persona_class": "professional_intermediary",
+      "persona_id": "persona-professional-policy-official",
+      "persona_title": "Policy official",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-policy-official-06-01",
+        "wording": "For the Policy official scenario, given The official needs organisational, topical and lifecycle context without treating metadata as policy text, what typed path through topics, organisations, collections or parts leads to material needed to trace current policy publications, ownership and related evidence? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Policy official, given The official needs organisational, topical and lifecycle context without treating metadata as policy text., I need to trace current policy publications, ownership and related evidence so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-policy-official",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "call_for_evidence",
+        "consultation",
+        "get_involved",
+        "take_part",
+        "working_group"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "human_assisted",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-use-ontology-contract",
+          "limitations": "This contract supports inclusion and machine challenge only. It does not establish prevalence, validate a persona, or support a human preference claim.",
+          "source_path": "planning/AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md",
+          "title": "AF/HF GOV.UK OKF use-ontology contract",
+          "url": null,
+          "verification_status": "local_exact_locator"
+        }
+      ],
+      "given": "Personal decisions require facts outside the bundle, so the system must not decide the case.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "locate applicable guidance and record a source-backed hand-off",
+      "overlay_ids": [
+        "proxy-delegate",
+        "high-stakes",
+        "privacy-sensitive-context"
+      ],
+      "persona_class": "professional_intermediary",
+      "persona_id": "persona-professional-government-caseworker",
+      "persona_title": "Government caseworker",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-government-caseworker-06-01",
+        "wording": "For the Government caseworker scenario, given Personal decisions require facts outside the bundle, so the system must not decide the case, what typed path through topics, organisations, collections or parts leads to material needed to locate applicable guidance and record a source-backed hand-off? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "critical",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Government caseworker, given Personal decisions require facts outside the bundle, so the system must not decide the case., I need to locate applicable guidance and record a source-backed hand-off so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-government-caseworker",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "corporate_information_page",
+        "fatality_notice",
+        "how_government_works"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-schemas",
+          "limitations": "The main branch is mutable; generated coverage uses the separately pinned commit.",
+          "source_path": null,
+          "title": "GOV.UK content schemas",
+          "url": "https://github.com/alphagov/publishing-api/tree/main/content_schemas",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The publisher needs schema-aware evidence and must preserve canonical and replacement relationships.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "understand record types, relationships and publishing consequences",
+      "overlay_ids": [
+        "structured-output",
+        "accessibility-review"
+      ],
+      "persona_class": "professional_intermediary",
+      "persona_id": "persona-professional-content-publisher",
+      "persona_title": "Government content publisher",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-content-publisher-06-01",
+        "wording": "For the Government content publisher scenario, given The publisher needs schema-aware evidence and must preserve canonical and replacement relationships, what typed path through topics, organisations, collections or parts leads to material needed to understand record types, relationships and publishing consequences? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Government content publisher, given The publisher needs schema-aware evidence and must preserve canonical and replacement relationships., I need to understand record types, relationships and publishing consequences so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-content-publisher",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "guide",
+        "service_manual_guide",
+        "service_manual_homepage",
+        "service_manual_service_standard",
+        "service_manual_service_toolkit",
+        "service_manual_topic"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-user-needs",
+          "limitations": "Does not validate any persona in this catalogue.",
+          "source_path": null,
+          "title": "Start by learning user needs",
+          "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-user-stories",
+          "limitations": "Provides a method, not findings about GOV.UK users.",
+          "source_path": null,
+          "title": "Writing user stories",
+          "url": "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-navigation-research",
+          "limitations": "Historical research is not evidence of current user behaviour.",
+          "source_path": null,
+          "title": "How we researched the new navigation on GOV.UK",
+          "url": "https://userresearch.blog.gov.uk/2017/06/29/how-we-researched-the-new-navigation-on-gov-uk/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The researcher needs explicit hypotheses, gaps and evaluation status rather than invented findings.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "test whether content structures support evidenced user needs",
+      "overlay_ids": [
+        "accessibility-review",
+        "assisted-digital"
+      ],
+      "persona_class": "professional_intermediary",
+      "persona_id": "persona-professional-service-user-researcher",
+      "persona_title": "Service designer or user researcher",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-service-user-researcher-06-01",
+        "wording": "For the Service designer or user researcher scenario, given The researcher needs explicit hypotheses, gaps and evaluation status rather than invented findings, what typed path through topics, organisations, collections or parts leads to material needed to test whether content structures support evidenced user needs? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "medium",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Service designer or user researcher, given The researcher needs explicit hypotheses, gaps and evaluation status rather than invented findings., I need to test whether content structures support evidenced user needs so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-service-user-researcher",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-accessibility-testing",
+          "limitations": "No human accessibility testing has been run for this bundle.",
+          "source_path": null,
+          "title": "Testing for accessibility",
+          "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/testing-for-accessibility",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-wcag",
+          "limitations": "Conformance is not claimed by citing the standard.",
+          "source_path": null,
+          "title": "Web Content Accessibility Guidelines (WCAG) 2.2",
+          "url": "https://www.w3.org/TR/WCAG22/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The specialist needs evidence about language, attachments, structure and low-bandwidth access.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "inspect routes and representations for accessibility risks and alternatives",
+      "overlay_ids": [
+        "screen-reader-keyboard",
+        "accessibility-review"
+      ],
+      "persona_class": "professional_intermediary",
+      "persona_id": "persona-professional-accessibility-specialist",
+      "persona_title": "Accessibility specialist",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-accessibility-specialist-06-01",
+        "wording": "For the Accessibility specialist scenario, given The specialist needs evidence about language, attachments, structure and low-bandwidth access, what typed path through topics, organisations, collections or parts leads to material needed to inspect routes and representations for accessibility risks and alternatives? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Accessibility specialist, given The specialist needs evidence about language, attachments, structure and low-bandwidth access., I need to inspect routes and representations for accessibility risks and alternatives so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-accessibility-specialist",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "answer"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-search-api",
+          "limitations": "Search results are not a complete historical corpus.",
+          "source_path": null,
+          "title": "GOV.UK Search API",
+          "url": "https://www.gov.uk/api/search.json",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-ogl",
+          "limitations": "Not all linked or embedded material is necessarily covered by the OGL.",
+          "source_path": null,
+          "title": "Open Government Licence for public sector information",
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The analyst needs machine-readable resources, provenance, release dates and revision status.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "find official datasets, statistics and publication context",
+      "overlay_ids": [
+        "structured-output",
+        "historical-comparison"
+      ],
+      "persona_class": "professional_intermediary",
+      "persona_id": "persona-professional-analyst-statistician",
+      "persona_title": "Analyst or statistician",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-analyst-statistician-06-01",
+        "wording": "For the Analyst or statistician scenario, given The analyst needs machine-readable resources, provenance, release dates and revision status, what typed path through topics, organisations, collections or parts leads to material needed to find official datasets, statistics and publication context? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Analyst or statistician, given The analyst needs machine-readable resources, provenance, release dates and revision status., I need to find official datasets, statistics and publication context so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-analyst-statistician",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "help_page",
+        "special_route",
+        "statistical_data_set",
+        "statistics_announcement"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-ogl",
+          "limitations": "Not all linked or embedded material is necessarily covered by the OGL.",
+          "source_path": null,
+          "title": "Open Government Licence for public sector information",
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The researcher must distinguish guidance, policy, legislation and historical states.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "trace attributable records and their date-specific context",
+      "overlay_ids": [
+        "high-stakes",
+        "historical-comparison"
+      ],
+      "persona_class": "professional_intermediary",
+      "persona_id": "persona-professional-legal-parliamentary-researcher",
+      "persona_title": "Legal or parliamentary researcher",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-legal-parliamentary-researcher-06-01",
+        "wording": "For the Legal or parliamentary researcher scenario, given The researcher must distinguish guidance, policy, legislation and historical states, what typed path through topics, organisations, collections or parts leads to material needed to trace attributable records and their date-specific context? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "critical",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Legal or parliamentary researcher, given The researcher must distinguish guidance, policy, legislation and historical states., I need to trace attributable records and their date-specific context so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-legal-parliamentary-researcher",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "human_self_service",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-ogl",
+          "limitations": "Not all linked or embedded material is necessarily covered by the OGL.",
+          "source_path": null,
+          "title": "Open Government Licence for public sector information",
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The user needs reproducible discovery, lifecycle evidence and transparent gaps.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "verify provenance, chronology and organisational attribution",
+      "overlay_ids": [
+        "historical-comparison",
+        "licensing-review"
+      ],
+      "persona_class": "professional_intermediary",
+      "persona_id": "persona-professional-journalist-archivist-auditor",
+      "persona_title": "Journalist, librarian, archivist or auditor",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-journalist-archivist-auditor-06-01",
+        "wording": "For the Journalist, librarian, archivist or auditor scenario, given The user needs reproducible discovery, lifecycle evidence and transparent gaps, what typed path through topics, organisations, collections or parts leads to material needed to verify provenance, chronology and organisational attribution? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Journalist, librarian, archivist or auditor, given The user needs reproducible discovery, lifecycle evidence and transparent gaps., I need to verify provenance, chronology and organisational attribution so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-journalist-archivist-auditor",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "news_article",
+        "speech",
+        "topical_event",
+        "topical_event_about_page"
+      ],
+      "target_relationships": [
+        "organisations",
+        "taxons",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-search-api",
+          "limitations": "Search results are not a complete historical corpus.",
+          "source_path": null,
+          "title": "GOV.UK Search API",
+          "url": "https://www.gov.uk/api/search.json",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-taxonomy-api",
+          "limitations": "The reference does not guarantee graph completeness.",
+          "source_path": null,
+          "title": "GOV.UK Taxonomy API",
+          "url": "https://www.gov.uk/api/content",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The agent must return stable identifiers and typed evidence without claiming to answer from metadata alone.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "rank canonical GOV.UK records for a user need",
+      "overlay_ids": [
+        "structured-output",
+        "safe-abstention"
+      ],
+      "persona_class": "agent_system",
+      "persona_id": "persona-agent-navigation-agent",
+      "persona_title": "Navigation and known-item agent",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-navigation-agent-06-01",
+        "wording": "For the Navigation and known-item agent scenario, given The agent must return stable identifiers and typed evidence without claiming to answer from metadata alone, what typed path through topics, organisations, collections or parts leads to material needed to rank canonical GOV.UK records for a user need? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "medium",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Navigation and known-item agent, given The agent must return stable identifiers and typed evidence without claiming to answer from metadata alone., I need to rank canonical GOV.UK records for a user need so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-navigation-agent",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "facet",
+        "finder",
+        "link_collection",
+        "mainstream_browse_page",
+        "step_by_step_nav",
+        "taxon"
+      ],
+      "target_relationships": [
+        "parent",
+        "taxons",
+        "organisations",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-kilt",
+          "limitations": "KILT scores are not directly comparable without a matched corpus and protocol.",
+          "source_path": null,
+          "title": "KILT: a Benchmark for Knowledge Intensive Language Tasks",
+          "url": "https://arxiv.org/abs/2009.02252",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-beir",
+          "limitations": "No BEIR benchmark result is claimed.",
+          "source_path": null,
+          "title": "BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models",
+          "url": "https://arxiv.org/abs/2104.08663",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The agent must separate discovery from answer generation and expose unsupported questions.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "discover sources then hand off for authoritative retrieval and citation",
+      "overlay_ids": [
+        "structured-output",
+        "safe-abstention"
+      ],
+      "persona_class": "agent_system",
+      "persona_id": "persona-agent-grounded-qa-agent",
+      "persona_title": "Grounded question-answering and citation agent",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-grounded-qa-agent-06-01",
+        "wording": "For the Grounded question-answering and citation agent scenario, given The agent must separate discovery from answer generation and expose unsupported questions, what typed path through topics, organisations, collections or parts leads to material needed to discover sources then hand off for authoritative retrieval and citation? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Grounded question-answering and citation agent, given The agent must separate discovery from answer generation and expose unsupported questions., I need to discover sources then hand off for authoritative retrieval and citation so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-grounded-qa-agent",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "taxons",
+        "organisations",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-taxonomy-api",
+          "limitations": "The reference does not guarantee graph completeness.",
+          "source_path": null,
+          "title": "GOV.UK Taxonomy API",
+          "url": "https://www.gov.uk/api/content",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-collections-api",
+          "limitations": "Ordering must be verified against a frozen corpus snapshot.",
+          "source_path": null,
+          "title": "GOV.UK collections and step-by-step content",
+          "url": "https://www.gov.uk/api/content",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The agent traverses related content but must not infer personal eligibility or guarantee outcomes.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "assemble an ordered multi-service route with explicit boundaries",
+      "overlay_ids": [
+        "structured-output",
+        "high-stakes"
+      ],
+      "persona_class": "agent_system",
+      "persona_id": "persona-agent-life-event-planner-agent",
+      "persona_title": "Life-event planning agent",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-life-event-planner-agent-06-01",
+        "wording": "For the Life-event planning agent scenario, given The agent traverses related content but must not infer personal eligibility or guarantee outcomes, what typed path through topics, organisations, collections or parts leads to material needed to assemble an ordered multi-service route with explicit boundaries? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Life-event planning agent, given The agent traverses related content but must not infer personal eligibility or guarantee outcomes., I need to assemble an ordered multi-service route with explicit boundaries so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-life-event-planner-agent",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "taxons",
+        "organisations",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-kilt",
+          "limitations": "KILT scores are not directly comparable without a matched corpus and protocol.",
+          "source_path": null,
+          "title": "KILT: a Benchmark for Knowledge Intensive Language Tasks",
+          "url": "https://arxiv.org/abs/2009.02252",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-use-ontology-contract",
+          "limitations": "This contract supports inclusion and machine challenge only. It does not establish prevalence, validate a persona, or support a human preference claim.",
+          "source_path": "planning/AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md",
+          "title": "AF/HF GOV.UK OKF use-ontology contract",
+          "url": null,
+          "verification_status": "local_exact_locator"
+        }
+      ],
+      "given": "The agent may explain source boundaries but must abstain from unsupported personal determinations.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "locate rules and request the facts needed for applicability",
+      "overlay_ids": [
+        "safe-abstention",
+        "high-stakes",
+        "privacy-sensitive-context"
+      ],
+      "persona_class": "agent_system",
+      "persona_id": "persona-agent-eligibility-obligation-agent",
+      "persona_title": "Eligibility and obligation explainer agent",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-eligibility-obligation-agent-06-01",
+        "wording": "For the Eligibility and obligation explainer agent scenario, given The agent may explain source boundaries but must abstain from unsupported personal determinations, what typed path through topics, organisations, collections or parts leads to material needed to locate rules and request the facts needed for applicability? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "critical",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Eligibility and obligation explainer agent, given The agent may explain source boundaries but must abstain from unsupported personal determinations., I need to locate rules and request the facts needed for applicability so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-eligibility-obligation-agent",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "taxons",
+        "organisations",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-search-api",
+          "limitations": "Search results are not a complete historical corpus.",
+          "source_path": null,
+          "title": "GOV.UK Search API",
+          "url": "https://www.gov.uk/api/search.json",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-use-ontology-contract",
+          "limitations": "This contract supports inclusion and machine challenge only. It does not establish prevalence, validate a persona, or support a human preference claim.",
+          "source_path": "planning/AFHF_GOVUK_OKF_SOTA_RESEARCH_IMPLEMENTATION_PLAN.md",
+          "title": "AF/HF GOV.UK OKF use-ontology contract",
+          "url": null,
+          "verification_status": "local_exact_locator"
+        }
+      ],
+      "given": "The agent preserves canonical links, prerequisites and jurisdiction while avoiding simulated completion.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "route a user from discovery to the correct official transaction",
+      "overlay_ids": [
+        "structured-output",
+        "safe-abstention",
+        "privacy-sensitive-context"
+      ],
+      "persona_class": "agent_system",
+      "persona_id": "persona-agent-transaction-handoff-agent",
+      "persona_title": "Transaction hand-off agent",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-transaction-handoff-agent-06-01",
+        "wording": "For the Transaction hand-off agent scenario, given The agent preserves canonical links, prerequisites and jurisdiction while avoiding simulated completion, what typed path through topics, organisations, collections or parts leads to material needed to route a user from discovery to the correct official transaction? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Transaction hand-off agent, given The agent preserves canonical links, prerequisites and jurisdiction while avoiding simulated completion., I need to route a user from discovery to the correct official transaction so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-transaction-handoff-agent",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "completed_transaction",
+        "licence",
+        "local_transaction",
+        "simple_smart_answer",
+        "smart_answer",
+        "transaction"
+      ],
+      "target_relationships": [
+        "parent",
+        "taxons",
+        "organisations",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-ogl",
+          "limitations": "Not all linked or embedded material is necessarily covered by the OGL.",
+          "source_path": null,
+          "title": "Open Government Licence for public sector information",
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The agent must preserve effective dates and distinguish source discovery from legal or professional advice.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "assemble applicable official obligations and evidence for review",
+      "overlay_ids": [
+        "high-stakes",
+        "safe-abstention"
+      ],
+      "persona_class": "agent_system",
+      "persona_id": "persona-agent-business-compliance-agent",
+      "persona_title": "Business compliance support agent",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-business-compliance-agent-06-01",
+        "wording": "For the Business compliance support agent scenario, given The agent must preserve effective dates and distinguish source discovery from legal or professional advice, what typed path through topics, organisations, collections or parts leads to material needed to assemble applicable official obligations and evidence for review? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "critical",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Business compliance support agent, given The agent must preserve effective dates and distinguish source discovery from legal or professional advice., I need to assemble applicable official obligations and evidence for review so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-business-compliance-agent",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "taxons",
+        "organisations",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-taxonomy-api",
+          "limitations": "The reference does not guarantee graph completeness.",
+          "source_path": null,
+          "title": "GOV.UK Taxonomy API",
+          "url": "https://www.gov.uk/api/content",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The agent exposes conflicts, lifecycle changes and gaps and never treats metadata as legal text.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "trace attributable current and historical government records",
+      "overlay_ids": [
+        "historical-comparison",
+        "safe-abstention"
+      ],
+      "persona_class": "agent_system",
+      "persona_id": "persona-agent-policy-legal-research-agent",
+      "persona_title": "Policy and legal research agent",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-policy-legal-research-agent-06-01",
+        "wording": "For the Policy and legal research agent scenario, given The agent exposes conflicts, lifecycle changes and gaps and never treats metadata as legal text, what typed path through topics, organisations, collections or parts leads to material needed to trace attributable current and historical government records? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "critical",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Policy and legal research agent, given The agent exposes conflicts, lifecycle changes and gaps and never treats metadata as legal text., I need to trace attributable current and historical government records so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-policy-legal-research-agent",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "detailed_guide",
+        "document_collection",
+        "html_publication",
+        "manual",
+        "manual_section",
+        "publication",
+        "specialist_document"
+      ],
+      "target_relationships": [
+        "parent",
+        "taxons",
+        "organisations",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-ogl",
+          "limitations": "Not all linked or embedded material is necessarily covered by the OGL.",
+          "source_path": null,
+          "title": "Open Government Licence for public sector information",
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The agent applies licensing and fair-use triggers and flags third-party material for review.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "find reusable records and preserve attribution and source links",
+      "overlay_ids": [
+        "licensing-review",
+        "structured-output"
+      ],
+      "persona_class": "agent_system",
+      "persona_id": "persona-agent-content-reuse-agent",
+      "persona_title": "Content reuse and adaptation agent",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-content-reuse-agent-06-01",
+        "wording": "For the Content reuse and adaptation agent scenario, given The agent applies licensing and fair-use triggers and flags third-party material for review, what typed path through topics, organisations, collections or parts leads to material needed to find reusable records and preserve attribution and source links? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Content reuse and adaptation agent, given The agent applies licensing and fair-use triggers and flags third-party material for review., I need to find reusable records and preserve attribution and source links so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-content-reuse-agent",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "taxons",
+        "organisations",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-search-api",
+          "limitations": "Search results are not a complete historical corpus.",
+          "source_path": null,
+          "title": "GOV.UK Search API",
+          "url": "https://www.gov.uk/api/search.json",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The agent compares frozen snapshots and preserves missing, withdrawn and superseded states.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "detect lifecycle, redirect and replacement changes reproducibly",
+      "overlay_ids": [
+        "historical-comparison",
+        "structured-output"
+      ],
+      "persona_class": "agent_system",
+      "persona_id": "persona-agent-change-monitor-agent",
+      "persona_title": "Content change and withdrawal monitor",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-change-monitor-agent-06-01",
+        "wording": "For the Content change and withdrawal monitor scenario, given The agent compares frozen snapshots and preserves missing, withdrawn and superseded states, what typed path through topics, organisations, collections or parts leads to material needed to detect lifecycle, redirect and replacement changes reproducibly? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Content change and withdrawal monitor, given The agent compares frozen snapshots and preserves missing, withdrawn and superseded states., I need to detect lifecycle, redirect and replacement changes reproducibly so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-change-monitor-agent",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "gone",
+        "historic_appointment",
+        "historic_appointments",
+        "history",
+        "redirect",
+        "substitute",
+        "vanish"
+      ],
+      "target_relationships": [
+        "parent",
+        "taxons",
+        "organisations",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-search-api",
+          "limitations": "Search results are not a complete historical corpus.",
+          "source_path": null,
+          "title": "GOV.UK Search API",
+          "url": "https://www.gov.uk/api/search.json",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-ogl",
+          "limitations": "Not all linked or embedded material is necessarily covered by the OGL.",
+          "source_path": null,
+          "title": "Open Government Licence for public sector information",
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The agent obeys rate, robots, licensing and completeness limits and reports denied access.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "enumerate metadata records within documented source constraints",
+      "overlay_ids": [
+        "structured-output",
+        "licensing-review"
+      ],
+      "persona_class": "agent_system",
+      "persona_id": "persona-agent-crawler-indexer-agent",
+      "persona_title": "Crawler and indexer agent",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-crawler-indexer-agent-06-01",
+        "wording": "For the Crawler and indexer agent scenario, given The agent obeys rate, robots, licensing and completeness limits and reports denied access, what typed path through topics, organisations, collections or parts leads to material needed to enumerate metadata records within documented source constraints? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "medium",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Crawler and indexer agent, given The agent obeys rate, robots, licensing and completeness limits and reports denied access., I need to enumerate metadata records within documented source constraints so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-crawler-indexer-agent",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "content_block",
+        "email_alert_signup",
+        "external_content",
+        "generic_with_external_related_links"
+      ],
+      "target_relationships": [
+        "parent",
+        "taxons",
+        "organisations",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-content-api",
+          "limitations": "Metadata discovery is not authoritative body-content retrieval.",
+          "source_path": null,
+          "title": "GOV.UK Content API",
+          "url": "https://content-api.publishing.service.gov.uk/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-mcp-resources",
+          "limitations": "The bundle does not claim MCP interoperability until tested.",
+          "source_path": null,
+          "title": "Model Context Protocol resources specification",
+          "url": "https://modelcontextprotocol.io/specification/2025-06-18/server/resources",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The agent identifies representations and attachments without inventing their content or availability.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "locate machine-readable resources and describe their provenance",
+      "overlay_ids": [
+        "structured-output",
+        "safe-abstention"
+      ],
+      "persona_class": "agent_system",
+      "persona_id": "persona-agent-data-api-discovery-agent",
+      "persona_title": "Data, API and attachment discovery agent",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-data-api-discovery-agent-06-01",
+        "wording": "For the Data, API and attachment discovery agent scenario, given The agent identifies representations and attachments without inventing their content or availability, what typed path through topics, organisations, collections or parts leads to material needed to locate machine-readable resources and describe their provenance? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Data, API and attachment discovery agent, given The agent identifies representations and attachments without inventing their content or availability., I need to locate machine-readable resources and describe their provenance so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-data-api-discovery-agent",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "calendar"
+      ],
+      "target_relationships": [
+        "parent",
+        "taxons",
+        "organisations",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    },
+    {
+      "channel_class": "agent_or_system",
+      "evidence": [
+        {
+          "evidence_id": "ev-ogl",
+          "limitations": "Not all linked or embedded material is necessarily covered by the OGL.",
+          "source_path": null,
+          "title": "Open Government Licence for public sector information",
+          "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-mcp-resources",
+          "limitations": "The bundle does not claim MCP interoperability until tested.",
+          "source_path": null,
+          "title": "Model Context Protocol resources specification",
+          "url": "https://modelcontextprotocol.io/specification/2025-06-18/server/resources",
+          "verification_status": "url_identity_preflight_only"
+        },
+        {
+          "evidence_id": "ev-combinatorial-testing",
+          "limitations": "A 10 by 10 matrix is a project design, not a NIST certification.",
+          "source_path": null,
+          "title": "Practical Combinatorial Testing",
+          "url": "https://csrc.nist.gov/publications/detail/sp/800-142/final",
+          "verification_status": "url_identity_preflight_only"
+        }
+      ],
+      "given": "The agent records source identity, snapshot, transformations, checksums, licensing and unresolved conflicts.",
+      "jurisdiction": [
+        "UK"
+      ],
+      "need": "produce a reproducible evidence trail for discovered records",
+      "overlay_ids": [
+        "structured-output",
+        "licensing-review"
+      ],
+      "persona_class": "agent_system",
+      "persona_id": "persona-agent-provenance-audit-agent",
+      "persona_title": "Provenance, audit and adaptation agent",
+      "recall_contract": {
+        "authoritative_answer": "Retrieve current page content only from the canonical GOV.UK hand-off",
+        "comparator": "Keep GOV.UK Chat answer text and ordered GOV.UK source cards separate from bundle evidence",
+        "discovery": "Bundle search result and typed route/relationship traversal",
+        "evidence": "Evidence locator, retrieval time, derivation and confidence on the selected record",
+        "record": "Checksummed record shard with canonical URL and source-native identity"
+      },
+      "representative_question": {
+        "challenge": "direct",
+        "gold_status": "pending_independent_corpus_verification",
+        "operation": "traverse_relationships",
+        "provenance_requirements": [
+          "canonical_govuk_url",
+          "content_id_when_present",
+          "source_evidence_url",
+          "retrieved_at",
+          "snapshot_id"
+        ],
+        "question_id": "q-provenance-audit-agent-06-01",
+        "wording": "For the Provenance, audit and adaptation agent scenario, given The agent records source identity, snapshot, transformations, checksums, licensing and unresolved conflicts, what typed path through topics, organisations, collections or parts leads to material needed to produce a reproducible evidence trail for discovered records? Use a direct, well-formed request and return the current canonical result."
+      },
+      "risk_level": "high",
+      "so_that": "I can identify the authoritative source, understand its limits and take an appropriate next step",
+      "statement": "As a Provenance, audit and adaptation agent, given The agent records source identity, snapshot, transformations, checksums, licensing and unresolved conflicts., I need to produce a reproducible evidence trail for discovered records so that I can identify the authoritative source, understand its limits and take an appropriate next step.",
+      "story_id": "story-provenance-audit-agent",
+      "story_status": "research_hypothesis_pending_authorised_human_validation",
+      "target_entities": [
+        "generic"
+      ],
+      "target_relationships": [
+        "parent",
+        "taxons",
+        "organisations",
+        "document_collections",
+        "ordered_related_items"
+      ]
+    }
+  ],
+  "schema": "govuk-okf-persona-story-walkthrough-inventory.v1",
+  "scope": {
+    "checked_in_development": "one deterministic story per primary persona",
+    "release_v2": "six corpus-anchored stories per primary persona after final snapshot closure",
+    "release_v2_status": "not included in this inventory; final-snapshot regeneration pending"
+  },
+  "selected_comparison_walkthrough": {
+    "path": "evaluation/govuk-chat/new-parent-multi-service.json",
+    "persona_ids": [
+      "persona-public-multi-service-life-event",
+      "persona-public-parent-carer"
+    ],
+    "published_example": {
+      "path": "evaluation/govuk-chat/official-published-example.json",
+      "question": "My child is turning 4, what do I need to do to get them ready for school?",
+      "status": "official_published_example_not_a_live_replay"
+    },
+    "status": "official_published_example_captured_live_walkthrough_requires_signon",
+    "story_ids": [
+      "story-multi-service-life-event",
+      "story-parent-carer"
+    ],
+    "walkthrough_id": "govuk-chat-new-parent-multi-service-v1"
+  },
+  "status": "development_hypotheses_not_human_validated"
+}

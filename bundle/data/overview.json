@@ -13,6 +13,7 @@
     "authoritative_destination": "https://www.gov.uk/",
     "boundary": "frozen union of verified official public enumerators",
     "page_bodies": "not mirrored",
+    "source_records": 12,
     "unexplained_omissions": 0
   },
   "facets": {
@@ -206,8 +207,10 @@
       "base_path": "/",
       "canonical_content_id": "00000000-0000-4000-8000-000000000001",
       "confidence": "source-declared",
+      "coverage_disposition": "represented",
       "description": "The best place to find government services and information.",
       "document_type": "homepage",
+      "entity_class": "content_identity",
       "evidence_locator": "/",
       "evidence_sha256": "79021b6d9484766bb497bac32746b5c63af31f9cf9541ce1a39caafd781ab120",
       "evidence_url": "https://www.gov.uk/",
@@ -225,12 +228,15 @@
       "publisher": "government-digital-service",
       "publisher_title": "Government Digital Service",
       "record_type": "GOV.UK content item",
+      "redirects": [],
       "retrieved_at": "2026-07-11T23:30:00Z",
+      "routing_kind": "canonical",
       "schema_name": "homepage",
       "source_adapter": "govuk_public_metadata",
       "source_memberships": [
         "fixture-content-api"
       ],
+      "source_native_id": "00000000-0000-4000-8000-000000000001",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
@@ -248,8 +254,10 @@
       "base_path": "/education",
       "canonical_content_id": "00000000-0000-4000-8000-000000000002",
       "confidence": "source-declared",
+      "coverage_disposition": "represented",
       "description": "Education and training information.",
       "document_type": "taxon",
+      "entity_class": "content_identity",
       "evidence_locator": "/",
       "evidence_sha256": "386d78b1fe44b459f7f9ec24fa32414e679f2fc7b820594c5232b86c33c8d088",
       "evidence_url": "https://www.gov.uk/education",
@@ -267,12 +275,15 @@
       "publisher": "unknown",
       "publisher_title": "Publisher not available from admitted source",
       "record_type": "GOV.UK content item",
+      "redirects": [],
       "retrieved_at": "2026-07-11T23:30:00Z",
+      "routing_kind": "canonical",
       "schema_name": "taxon",
       "source_adapter": "govuk_public_metadata",
       "source_memberships": [
         "fixture-content-api"
       ],
+      "source_native_id": "00000000-0000-4000-8000-000000000002",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
@@ -290,8 +301,10 @@
       "base_path": "/browse/working",
       "canonical_content_id": "00000000-0000-4000-8000-000000000003",
       "confidence": "source-declared",
+      "coverage_disposition": "represented",
       "description": "Includes holidays, finding a job and redundancy.",
       "document_type": "mainstream_browse_page",
+      "entity_class": "content_identity",
       "evidence_locator": "/",
       "evidence_sha256": "50e9286dfd787a271bd537cad844ba2577b2bafbd03dd694ff54c47a215c365e",
       "evidence_url": "https://www.gov.uk/browse/working",
@@ -309,12 +322,15 @@
       "publisher": "government-digital-service",
       "publisher_title": "Government Digital Service",
       "record_type": "GOV.UK content item",
+      "redirects": [],
       "retrieved_at": "2026-07-11T23:30:00Z",
+      "routing_kind": "canonical",
       "schema_name": "mainstream_browse_page",
       "source_adapter": "govuk_public_metadata",
       "source_memberships": [
         "fixture-content-api"
       ],
+      "source_native_id": "00000000-0000-4000-8000-000000000003",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
@@ -332,8 +348,10 @@
       "base_path": "/government/organisations/department-for-work-pensions",
       "canonical_content_id": "00000000-0000-4000-8000-000000000004",
       "confidence": "source-declared",
+      "coverage_disposition": "represented",
       "description": "The department responsible for welfare, pensions and child maintenance policy.",
       "document_type": "organisation",
+      "entity_class": "content_identity",
       "evidence_locator": "/",
       "evidence_sha256": "8d70cef32ef573f8f70076f8fcb79959a9cfbcd6858f80a0b46de5991535dfa2",
       "evidence_url": "https://www.gov.uk/government/organisations/department-for-work-pensions",
@@ -351,12 +369,15 @@
       "publisher": "unknown",
       "publisher_title": "Publisher not available from admitted source",
       "record_type": "GOV.UK content item",
+      "redirects": [],
       "retrieved_at": "2026-07-11T23:30:00Z",
+      "routing_kind": "canonical",
       "schema_name": "organisation",
       "source_adapter": "govuk_public_metadata",
       "source_memberships": [
         "fixture-organisations-api"
       ],
+      "source_native_id": "00000000-0000-4000-8000-000000000004",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
@@ -374,8 +395,10 @@
       "base_path": "/sign-in-universal-credit",
       "canonical_content_id": "00000000-0000-4000-8000-000000000005",
       "confidence": "source-declared",
+      "coverage_disposition": "represented",
       "description": "Report a change, add a journal note and see payments.",
       "document_type": "transaction",
+      "entity_class": "content_identity",
       "evidence_locator": "/",
       "evidence_sha256": "1a4926dcf02bc39e096f9cc21a7b52856601b8119e13d87ff501ba34cc273dc6",
       "evidence_url": "https://www.gov.uk/sign-in-universal-credit",
@@ -393,12 +416,15 @@
       "publisher": "department-for-work-pensions",
       "publisher_title": "Department for Work and Pensions",
       "record_type": "GOV.UK content item",
+      "redirects": [],
       "retrieved_at": "2026-07-11T23:30:00Z",
+      "routing_kind": "canonical",
       "schema_name": "transaction",
       "source_adapter": "govuk_public_metadata",
       "source_memberships": [
         "fixture-content-api"
       ],
+      "source_native_id": "00000000-0000-4000-8000-000000000005",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
@@ -416,8 +442,10 @@
       "base_path": "/government/publications/ukho-1825-archives-catalogue",
       "canonical_content_id": "00000000-0000-4000-8000-000000000006",
       "confidence": "source-declared",
+      "coverage_disposition": "represented",
       "description": "Catalogue of United Kingdom Hydrographic Office archives.",
       "document_type": "guidance",
+      "entity_class": "content_identity",
       "evidence_locator": "/",
       "evidence_sha256": "fb3b48cd7d0894b40a53f0bc0a43e3cca7ca051387ed42f7f5cc7b1bdc7f2283",
       "evidence_url": "https://www.gov.uk/government/publications/ukho-1825-archives-catalogue",
@@ -435,12 +463,15 @@
       "publisher": "uk-hydrographic-office",
       "publisher_title": "UK Hydrographic Office",
       "record_type": "GOV.UK content item",
+      "redirects": [],
       "retrieved_at": "2026-07-11T23:30:00Z",
+      "routing_kind": "canonical",
       "schema_name": "publication",
       "source_adapter": "govuk_public_metadata",
       "source_memberships": [
         "fixture-content-api"
       ],
+      "source_native_id": "00000000-0000-4000-8000-000000000006",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
@@ -459,8 +490,10 @@
       "base_path": "/government/collections/archive-catalogues",
       "canonical_content_id": "00000000-0000-4000-8000-000000000007",
       "confidence": "source-declared",
+      "coverage_disposition": "represented",
       "description": "A collection of public archive catalogues.",
       "document_type": "document_collection",
+      "entity_class": "content_identity",
       "evidence_locator": "/",
       "evidence_sha256": "2d74fec067d50ff383a75a02e472dc6344a65d3091ead7c7cc7ae60acec516d2",
       "evidence_url": "https://www.gov.uk/government/collections/archive-catalogues",
@@ -478,12 +511,15 @@
       "publisher": "the-national-archives",
       "publisher_title": "The National Archives",
       "record_type": "GOV.UK content item",
+      "redirects": [],
       "retrieved_at": "2026-07-11T23:30:00Z",
+      "routing_kind": "canonical",
       "schema_name": "document_collection",
       "source_adapter": "govuk_public_metadata",
       "source_memberships": [
         "fixture-content-api"
       ],
+      "source_native_id": "00000000-0000-4000-8000-000000000007",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
@@ -501,8 +537,10 @@
       "base_path": "/foreign-travel-advice/thailand",
       "canonical_content_id": "00000000-0000-4000-8000-000000000009",
       "confidence": "source-declared",
+      "coverage_disposition": "represented",
       "description": "Latest information and advice for travel to Thailand.",
       "document_type": "travel_advice",
+      "entity_class": "content_identity",
       "evidence_locator": "/",
       "evidence_sha256": "05dfe3343fd9d766a2524e9c8058deb698de1b3785f17178fe133d01ba2bacf8",
       "evidence_url": "https://www.gov.uk/foreign-travel-advice/thailand",
@@ -520,12 +558,15 @@
       "publisher": "foreign-commonwealth-development-office",
       "publisher_title": "Foreign, Commonwealth & Development Office",
       "record_type": "GOV.UK content item",
+      "redirects": [],
       "retrieved_at": "2026-07-11T23:30:00Z",
+      "routing_kind": "canonical",
       "schema_name": "travel_advice",
       "source_adapter": "govuk_public_metadata",
       "source_memberships": [
         "fixture-content-api"
       ],
+      "source_native_id": "00000000-0000-4000-8000-000000000009",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
@@ -543,8 +584,10 @@
       "base_path": "/addysg",
       "canonical_content_id": "00000000-0000-4000-8000-000000000010",
       "confidence": "source-declared",
+      "coverage_disposition": "represented",
       "description": "Gwybodaeth am addysg a hyfforddiant.",
       "document_type": "taxon",
+      "entity_class": "content_identity",
       "evidence_locator": "/",
       "evidence_sha256": "e6aa871a4e1c304a4ab19f4ff4ab06342d7e29dc27e3785c51afc540571480b5",
       "evidence_url": "https://www.gov.uk/addysg",
@@ -562,12 +605,15 @@
       "publisher": "unknown",
       "publisher_title": "Publisher not available from admitted source",
       "record_type": "GOV.UK content item",
+      "redirects": [],
       "retrieved_at": "2026-07-11T23:30:00Z",
+      "routing_kind": "canonical",
       "schema_name": "taxon",
       "source_adapter": "govuk_public_metadata",
       "source_memberships": [
         "fixture-content-api"
       ],
+      "source_native_id": "00000000-0000-4000-8000-000000000010",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
@@ -585,8 +631,10 @@
       "base_path": "/learn-to-drive-a-car",
       "canonical_content_id": "00000000-0000-4000-8000-000000000011",
       "confidence": "source-declared",
+      "coverage_disposition": "represented",
       "description": "Check what you need to do to learn to drive.",
       "document_type": "step_by_step_nav",
+      "entity_class": "content_identity",
       "evidence_locator": "/",
       "evidence_sha256": "25e94b5553c5ad864d8cff7a2949394e1c6d0df224c1bd30892131a67b8837f3",
       "evidence_url": "https://www.gov.uk/learn-to-drive-a-car",
@@ -604,12 +652,15 @@
       "publisher": "driver-and-vehicle-standards-agency",
       "publisher_title": "Driver and Vehicle Standards Agency",
       "record_type": "GOV.UK content item",
+      "redirects": [],
       "retrieved_at": "2026-07-11T23:30:00Z",
+      "routing_kind": "canonical",
       "schema_name": "step_by_step_nav",
       "source_adapter": "govuk_public_metadata",
       "source_memberships": [
         "fixture-content-api"
       ],
+      "source_native_id": "00000000-0000-4000-8000-000000000011",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
@@ -623,6 +674,23 @@
     }
   ],
   "schema": "okf-large-overview.v1",
+  "site_topology": {
+    "counts": {
+      "cross_host_redirect_rules": 0,
+      "gov_uk_domain_boundary_hosts": 1,
+      "hosts": 2,
+      "main_publishing_estate_records": 13,
+      "other_external_boundary_hosts": 0,
+      "published_records": 14,
+      "redirect_records": 1,
+      "redirect_rules": 1,
+      "relationship_assertions": 16,
+      "source_records": 12,
+      "stable_content_identifiers": 10
+    },
+    "entrypoint": "data/site-topology.json",
+    "status": "snapshot_projection_not_release_completeness_claim"
+  },
   "snapshot": "fixture-2026-07-11",
   "title": "What’s on GOV.UK public metadata corpus"
 }

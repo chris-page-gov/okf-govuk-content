@@ -5,6 +5,7 @@
 *.swp
 .idea/
 .vscode/
+.obsidian/
 
 # Secrets and local configuration
 .env

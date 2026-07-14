@@ -1,0 +1,183 @@
+{
+  "counts": {
+    "cross_host_redirect_rules": 0,
+    "gov_uk_domain_boundary_hosts": 1,
+    "hosts": 2,
+    "main_publishing_estate_records": 13,
+    "other_external_boundary_hosts": 0,
+    "published_records": 14,
+    "redirect_records": 1,
+    "redirect_rules": 1,
+    "relationship_assertions": 16,
+    "source_records": 12,
+    "stable_content_identifiers": 10
+  },
+  "coverage_dispositions": [
+    {
+      "count": 14,
+      "value": "represented"
+    }
+  ],
+  "full_detail_contract": {
+    "identifier_lookup": "data/routes/manifest.json",
+    "records": "data/records-*.json.gz",
+    "relationship_adjacency": "data/adjacency/manifest.json",
+    "search": "data/search/manifest.json",
+    "semantic_projection": "data/semantic/manifest.json"
+  },
+  "generated_at": "2026-07-11T23:30:00Z",
+  "hosts": [
+    {
+      "example_routes": [
+        "dataset/00000000-0000-4000-8000-000000000001-en",
+        "dataset/00000000-0000-4000-8000-000000000002-en",
+        "dataset/00000000-0000-4000-8000-000000000003-en"
+      ],
+      "host_kind": "main_publishing_estate",
+      "hostname": "www.gov.uk",
+      "record_count": 13,
+      "routing_kinds": [
+        {
+          "count": 12,
+          "value": "canonical"
+        },
+        {
+          "count": 1,
+          "value": "redirect"
+        }
+      ],
+      "schemes": [
+        "https"
+      ]
+    },
+    {
+      "example_routes": [
+        "dataset/route-841a48e696089f20297a9733-en"
+      ],
+      "host_kind": "gov_uk_domain_boundary",
+      "hostname": "apply.example.service.gov.uk",
+      "record_count": 1,
+      "routing_kinds": [
+        {
+          "count": 1,
+          "value": "external_boundary"
+        }
+      ],
+      "schemes": [
+        "https"
+      ]
+    }
+  ],
+  "redirect_samples": [
+    {
+      "destination": "/government/organisations/department-for-education",
+      "destination_host": "www.gov.uk",
+      "destination_url": "https://www.gov.uk/government/organisations/department-for-education",
+      "evidence_locator": "/",
+      "evidence_url": "https://www.gov.uk/dfe",
+      "path": "/dfe",
+      "retrieved_at": "2026-07-11T23:30:00Z",
+      "segments_mode": "unknown",
+      "source_host": "www.gov.uk",
+      "source_route": "dataset/route-d084b0cfcff4f595e28ad883-en",
+      "source_url": "https://www.gov.uk/dfe",
+      "type": "exact"
+    }
+  ],
+  "redirect_samples_complete": true,
+  "relationship_kinds": [
+    {
+      "count": 7,
+      "value": "published by"
+    },
+    {
+      "count": 2,
+      "value": "available in language"
+    },
+    {
+      "count": 1,
+      "value": "applies to world location"
+    },
+    {
+      "count": 1,
+      "value": "child of"
+    },
+    {
+      "count": 1,
+      "value": "classified under"
+    },
+    {
+      "count": 1,
+      "value": "has attachment"
+    },
+    {
+      "count": 1,
+      "value": "level one taxons"
+    },
+    {
+      "count": 1,
+      "value": "part of collection"
+    },
+    {
+      "count": 1,
+      "value": "redirects to"
+    }
+  ],
+  "routing_kinds": [
+    {
+      "count": 12,
+      "value": "canonical"
+    },
+    {
+      "count": 1,
+      "value": "external_boundary"
+    },
+    {
+      "count": 1,
+      "value": "redirect"
+    }
+  ],
+  "routing_mechanisms": [
+    {
+      "count": 14,
+      "full_detail": "data/records-*.json.gz via the route index",
+      "id": "canonical_url",
+      "label": "Canonical and observed URLs"
+    },
+    {
+      "count": 10,
+      "full_detail": "data/routes/manifest.json",
+      "id": "stable_content_identifier",
+      "label": "Stable GOV.UK content identifiers"
+    },
+    {
+      "count": 1,
+      "full_detail": "redirects on each record plus redirects-to adjacency",
+      "id": "redirect_rule",
+      "label": "Source-declared redirect rules"
+    },
+    {
+      "count": 1,
+      "full_detail": "external-boundary records and host inventory",
+      "id": "external_boundary",
+      "label": "Routes to independently operated sites"
+    },
+    {
+      "count": 16,
+      "full_detail": "data/adjacency/manifest.json",
+      "id": "typed_relationship",
+      "label": "Structured navigation and routing relationships"
+    }
+  ],
+  "schema": "govuk-site-topology.v1",
+  "scope": {
+    "boundary_sites": "Recorded as destinations and relationships, not mirrored as complete sites.",
+    "hydration": "Routing detail grows from the same deterministic projection as Content API hydration closes.",
+    "main_publishing_estate": "www.gov.uk",
+    "official_sitemap_role": "one Search API-derived enumerator within the reconciled source union",
+    "page_bodies": "not retained or published"
+  },
+  "snapshot": "fixture-2026-07-11",
+  "status": "snapshot_projection_not_release_completeness_claim",
+  "title": "GOV.UK sitemap and routing topology"
+}

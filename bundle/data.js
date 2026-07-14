@@ -52,6 +52,17 @@ export function integrityReference(reference, metadataRows, label = "resource") 
   return { path, sha256: referenceHash(metadata) };
 }
 
+export function descriptorEntrypoint(descriptor, name) {
+  const entrypoint = descriptor && descriptor.entrypoints && descriptor.entrypoints[name];
+  const integrity = descriptor && descriptor.entrypoint_integrity && descriptor.entrypoint_integrity[name];
+  if (!integrity) return entrypoint;
+  if (referencePath(integrity) !== referencePath(entrypoint)) {
+    throw new Error("Descriptor entrypoint and integrity path differ for " + name);
+  }
+  referenceHash(integrity);
+  return integrity;
+}
+
 async function digestBytes(bytes) {
   const digest = await crypto.subtle.digest("SHA-256", bytes);
   return [...new Uint8Array(digest)].map((value) => value.toString(16).padStart(2, "0")).join("");
@@ -252,6 +263,7 @@ export class LargeCorpusStore {
     this.manifest = null;
     this.overview = null;
     this.analysis = null;
+    this.siteTopology = null;
     this.adjacencyManifest = null;
     this.adjacencyBuckets = new Map();
     this.routeIndex = null;
@@ -261,7 +273,7 @@ export class LargeCorpusStore {
   }
 
   async bootstrap(signal) {
-    const releaseReference = this.descriptor.entrypoints.release_data_plane;
+    const releaseReference = descriptorEntrypoint(this.descriptor, "release_data_plane");
     if (releaseReference) {
       const result = await fetchJson(releaseReference, this.baseUrl, { signal, currentOrigin: this.currentOrigin });
       this.releaseDataPlane = await prepareReleaseDataPlane(
@@ -270,14 +282,14 @@ export class LargeCorpusStore {
         String(this.descriptor.snapshot_id || this.descriptor.snapshot || "")
       );
     }
-    const manifestResult = await this.fetch(this.descriptor.entrypoints.data_manifest, signal);
+    const manifestResult = await this.fetch(descriptorEntrypoint(this.descriptor, "data_manifest"), signal);
     this.manifest = manifestResult.value;
     const advertisedRoot = String(this.descriptor.data_plane_manifest_root_sha256 || "");
     const manifestRoot = String(this.manifest.integrity && this.manifest.integrity.manifest_root_sha256 || "");
     if (advertisedRoot && advertisedRoot !== manifestRoot) throw new Error("Descriptor and data manifest integrity roots differ");
-    const overviewReference = this.descriptor.entrypoints.overview_index || this.manifest.indexes.overview;
+    const overviewReference = descriptorEntrypoint(this.descriptor, "overview_index") || this.manifest.indexes.overview;
     this.overview = (await this.fetch(overviewReference, signal)).value;
-    const analysisReference = this.descriptor.entrypoints.analysis_overview || this.manifest.indexes.analysis;
+    const analysisReference = descriptorEntrypoint(this.descriptor, "analysis_overview") || this.manifest.indexes.analysis;
     if (analysisReference) {
       try {
         this.analysis = (await this.fetch(analysisReference, signal)).value;
@@ -302,7 +314,7 @@ export class LargeCorpusStore {
   }
 
   searchManifestReference() {
-    return this.descriptor.entrypoints.search_manifest || this.manifest.indexes.search || "";
+    return descriptorEntrypoint(this.descriptor, "search_manifest") || this.manifest.indexes.search || "";
   }
 
   snapshotId() {
@@ -344,8 +356,21 @@ export class LargeCorpusStore {
     return values.map((record) => normaliseRecord(record));
   }
 
+  async loadSiteTopology(signal) {
+    if (this.siteTopology) return this.siteTopology;
+    const reference = descriptorEntrypoint(this.descriptor, "site_topology") || this.manifest.indexes.site_topology;
+    if (!reference) return null;
+    const topology = (await this.fetch(reference, signal)).value;
+    this.assertResourceSnapshot(topology, "Site-topology index");
+    if (!topology || topology.schema !== "govuk-site-topology.v1") {
+      throw new Error("Unsupported site-topology contract");
+    }
+    this.siteTopology = topology;
+    return topology;
+  }
+
   async loadRelationships(route, signal) {
-    const reference = this.descriptor.entrypoints.relationship_adjacency || this.manifest.indexes.relationship_adjacency;
+    const reference = descriptorEntrypoint(this.descriptor, "relationship_adjacency") || this.manifest.indexes.relationship_adjacency;
     if (!reference) return [];
     if (!this.adjacencyManifest) {
       this.adjacencyManifest = (await this.fetch(reference, signal)).value;
@@ -368,7 +393,7 @@ export class LargeCorpusStore {
   }
 
   async loadRecord(route, signal) {
-    const indexReference = this.descriptor.entrypoints.route_index || this.manifest.indexes.route_index || this.manifest.indexes.routes;
+    const indexReference = descriptorEntrypoint(this.descriptor, "route_index") || this.manifest.indexes.route_index || this.manifest.indexes.routes;
     if (!indexReference) return null;
     if (!this.routeIndex) {
       this.routeIndex = (await this.fetch(indexReference, signal)).value;

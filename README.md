@@ -18,6 +18,14 @@ census is now closed at 848,977 candidate keys and 836,998 publication records,
 with six redirects and zero unexplained omissions; it is not yet the T1-closed
 release corpus.
 
+The fixture now also publishes a first-class, lazy `Sitemap & routing` view and
+`govuk-site-topology.v1` machine projection. It inventories every observed host
+in the loaded snapshot, distinguishes the main publishing estate from boundary
+sites, and exposes canonical URLs, stable identifiers, source-native redirects
+and typed routing relationships. This is an immediately demonstrable contract,
+not a claim that the fixture or the official XML sitemap is the complete
+release corpus. See [`docs/sitemap-routing.md`](docs/sitemap-routing.md).
+
 The Explorer source includes a no-skip real-Chromium fixture gate for
 accessibility-relevant behaviour, durable query/hash links, Pages recovery,
 gzip hydration and startup/search/route/heap budgets. The automated browser
@@ -37,6 +45,9 @@ research hypotheses, 17 overlays, an 11-dimension matrix, complete overlay-pair
 scenario coverage and two successive no-new held-out challenge passes. This is
 not participant evidence: human validation is not authorised and Explorer UI
 preference remains `not_yet_testable`. See [`personas/README.md`](personas/README.md).
+The generated [persona and user-story walkthrough inventory](reports/persona-story-walkthroughs.md)
+lists all 48 checked-in persona/story pairs, their recall and provenance layers,
+and the first replayable [GOV.UK Chat comparison](evaluation/govuk-chat/README.md).
 
 ## Release boundary
 
@@ -67,6 +78,8 @@ for the finalized release; `v1.0.0` is not the initial publication tag.
 - `bundle/okf-bundle.jsonld` — equivalent JSON-LD projection
 - `bundle/okf-explorer.json` — Explorer descriptor
 - `bundle/data/manifest.json` — immutable record/search/adjacency manifest
+- `bundle/data/site-topology.json` — snapshot host, sitemap, redirect and
+  routing-mechanism control plane
 - `bundle/data/semantic/manifest.json` — lazy JSON-LD entity, evidence,
   vocabulary and reified-assertion shards with per-shard integrity metadata
 - `release/manifest.yaml` — snapshot, checksums and release status
@@ -84,6 +97,10 @@ for the finalized release; `v1.0.0` is not the initial publication tag.
 - `governance/task-status.json` — status of the 36 task contracts
 - `explorer/src/evidence/fixture-browser.json` — honest fixture browser-evidence
   checkpoint, overwritten only by the measured evidence command
+- `evaluation/walkthroughs/persona-story-inventory.json` — all checked-in
+  persona/story pairs with recall, question and evidence contracts
+- `reports/persona-story-walkthroughs.md` — reviewable projection of the same
+  48-pair inventory and selected GOV.UK Chat walkthrough
 
 Publication readiness and the checkpoint/candidate/release classification in
 the three governance status projections are derived only from
@@ -106,6 +123,7 @@ python3 scripts/import_contract.py --check
 python3 scripts/preflight_sources.py --check
 python3 scripts/build_status_projections.py --check
 python3 scripts/build_research_assets.py --check
+python3 scripts/build_walkthrough_inventory.py --check
 python3 scripts/check_persona_saturation.py
 python3 scripts/check_repository_policy.py
 python3 scripts/check_provenance.py

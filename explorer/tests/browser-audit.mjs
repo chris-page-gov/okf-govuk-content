@@ -194,6 +194,7 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
   let reducedMotion = null;
   let forcedColors = false;
   let reflow = null;
+  let sitemapRouting = null;
 
   for (let iteration = 0; iteration < iterations; iteration += 1) {
     await browser.client.command("Network.clearBrowserCache");
@@ -252,6 +253,28 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
     heapSamples.push(metricValue(performance.metrics || [], "JSHeapUsedSize"));
   }
 
+  const sitemapUrl = new URL(server.baseUrl);
+  sitemapUrl.searchParams.set("snapshot", snapshot);
+  sitemapUrl.searchParams.set("view", "sitemap");
+  await browser.navigate(
+    sitemapUrl.toString(),
+    "document.documentElement.dataset.explorerReady === 'true' && document.querySelectorAll('.topology-table tbody tr').length > 0"
+  );
+  sitemapRouting = await browser.evaluate(`(() => {
+    const tables = [...document.querySelectorAll(".topology-table")];
+    const topologyLink = [...document.querySelectorAll("#view-content a")].find((link) => link.textContent.includes("machine-readable site topology"));
+    return {
+      view: new URL(location.href).searchParams.get("view"),
+      heading: document.querySelector("#view-heading h2")?.textContent || "",
+      mechanism_cards: document.querySelectorAll(".topology-mechanisms .summary-card").length,
+      host_rows: tables[0]?.querySelectorAll("tbody tr").length || 0,
+      redirect_rows: tables[1]?.querySelectorAll("tbody tr").length || 0,
+      machine_path: topologyLink ? new URL(topologyLink.href).pathname : "",
+      unavailable: document.getElementById("view-content").textContent.includes("data is unavailable")
+    };
+  })()`);
+  recordDataRequests(browser.network, directGzipPaths, packRequests);
+
   await browser.navigate(routeUrl(server.baseUrl, snapshot, true).toString(), "document.documentElement.dataset.explorerReady === 'true'");
   const legacyAlias = await browser.evaluate(`({ has_query_route: new URL(location.href).searchParams.has("route"), hash: decodeURIComponent(location.hash.slice(1)), heading: document.getElementById("detail-heading").textContent })`);
 
@@ -306,6 +329,9 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
     forcedColors;
   const routePass =
     dataCoveragePass &&
+    sitemapRouting.view === "sitemap" && sitemapRouting.heading.includes("Sitemap") &&
+    sitemapRouting.mechanism_cards >= 5 && sitemapRouting.host_rows >= 1 &&
+    sitemapRouting.machine_path.endsWith("/data/site-topology.json") && !sitemapRouting.unavailable &&
     !legacyAlias.has_query_route && legacyAlias.hash === ROUTE && legacyAlias.heading.includes("Government Digital Service") &&
     pagesFallback.pathname === server.basePath && pagesFallback.hash === ROUTE && pagesFallback.view === "relationships" && pagesFallback.heading.includes("Government Digital Service");
 
@@ -355,6 +381,7 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
       status: routePass ? "pass" : "failed",
       pass: routePass,
       canonical_route_fragment: ROUTE,
+      sitemap_routing: sitemapRouting,
       legacy_query_alias: legacyAlias,
       pages_404_fallback: pagesFallback,
       direct_gzip_resources_loaded: [...directGzipPaths].sort(),

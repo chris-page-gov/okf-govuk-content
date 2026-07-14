@@ -46,7 +46,7 @@ class DataPlaneShardContractTests(unittest.TestCase):
         )
         descriptor_path = output / "okf-explorer.json"
         descriptor = self.load(descriptor_path)
-        descriptor["entrypoints"]["search_manifest"]["sha256"] = hashlib.sha256(  # type: ignore[index]
+        descriptor["entrypoint_integrity"]["search_manifest"]["sha256"] = hashlib.sha256(  # type: ignore[index]
             search_path.read_bytes()
         ).hexdigest()
         descriptor_path.write_text(
@@ -373,7 +373,7 @@ class DataPlaneShardContractTests(unittest.TestCase):
             )
             descriptor_path = output / "okf-explorer.json"
             descriptor = self.load(descriptor_path)
-            descriptor["entrypoints"]["search_manifest"]["sha256"] = hashlib.sha256(  # type: ignore[index]
+            descriptor["entrypoint_integrity"]["search_manifest"]["sha256"] = hashlib.sha256(  # type: ignore[index]
                 search_path.read_bytes()
             ).hexdigest()
             descriptor_path.write_text(
@@ -454,6 +454,35 @@ class DataPlaneShardContractTests(unittest.TestCase):
                     for error in result.errors
                 ),
                 result.errors,
+            )
+
+    def test_validator_recomputes_site_topology_from_record_shards(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "bundle"
+            self.build(output)
+            topology_path = output / "data/site-topology.json"
+            topology = self.load(topology_path)
+            topology["hosts"][0]["record_count"] += 1  # type: ignore[index]
+            topology_path.write_text(
+                json.dumps(topology, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            descriptor_path = output / "okf-explorer.json"
+            descriptor = self.load(descriptor_path)
+            descriptor["entrypoint_integrity"]["site_topology"]["sha256"] = hashlib.sha256(  # type: ignore[index]
+                topology_path.read_bytes()
+            ).hexdigest()
+            descriptor_path.write_text(
+                json.dumps(descriptor, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            result = validate_bundle(output)
+            self.assertFalse(result.passed)
+            self.assertTrue(
+                any(
+                    "host inventory differs from record shards" in error
+                    for error in result.errors
+                )
             )
 
     def test_build_refuses_an_oversized_ordinary_search_shard(self) -> None:

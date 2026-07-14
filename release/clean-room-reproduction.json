@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "35276b69b4b1dbed8b6e71069b495d3b7f7718bc92464c62bddfb52e1a774e88",
-    "before_sha256": "35276b69b4b1dbed8b6e71069b495d3b7f7718bc92464c62bddfb52e1a774e88",
+    "after_sha256": "7b8f55e882def72828aff30dfbbfd277c1e91d35172099ffe68118c2c368e612",
+    "before_sha256": "7b8f55e882def72828aff30dfbbfd277c1e91d35172099ffe68118c2c368e612",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -51,8 +51,8 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "d3594b3902bcc4cbc89cc8885bcbf9dd37a483e940b55ddc8c0977d036a2677a",
-      "stdout_tail": "wrote checksums for 780 files\n"
+      "stdout_sha256": "82befabb4ce15a6bc74e4824daa4834807e380ee2b829c9c1129fe5e68c13bef",
+      "stdout_tail": "wrote checksums for 781 files\n"
     },
     {
       "command": [
@@ -65,8 +65,8 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "8170d39e65bd9cc1b54ede18767750a2687b1038f8567e91be361f1dbe4a719a",
-      "stdout_tail": "checksums verified for 780 files\n"
+      "stdout_sha256": "57cf65eb0b8abebd328e9d195224c3af8b0a3e6f4e9301a8c02970df9de071ab",
+      "stdout_tail": "checksums verified for 781 files\n"
     },
     {
       "command": [
@@ -97,7 +97,7 @@
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-07-14T12:28:45Z",
+  "ended_at": "2026-07-14T13:09:12Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.5.2-arm64-arm-64bit",
@@ -307,10 +307,10 @@
         "tree_sha256": "5eff26615be089f5d22a8cc72d82f4b1ff7136ac776652b443a079598b566702"
       },
       {
-        "bytes": 1056228,
+        "bytes": 1085529,
         "file_count": 28,
         "path": "src",
-        "tree_sha256": "e7c0d20b655f2a72aac78e168a8624d56f68440d1d1ab118759b0d41ab6f4c20"
+        "tree_sha256": "9df614066ed9a0653cd85deaa971a3c20158559ff756292d48dc275ef82abd90"
       },
       {
         "bytes": 1652,
@@ -397,10 +397,10 @@
         "tree_sha256": "a856a2fc2266de8205901fae641c34d2166584b9460cd6670e5a028e0161e692"
       },
       {
-        "bytes": 162284,
+        "bytes": 173626,
         "file_count": 16,
         "path": "explorer/src",
-        "tree_sha256": "4a77167933825eeb3812356b8d559f347c2754ea8c83b8fb4e511d294b3c3956"
+        "tree_sha256": "d8de4bc4ed576a7bd8f2e7888426478bc5899f13b5f3ecb737066bbf05c622d9"
       },
       {
         "bytes": 47929,
@@ -417,7 +417,7 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "4dfc0bfafe01677f8cb800ee67bd831bdeabea479af6bf9e79e75ff5bfb4ec5f"
+    "tree_sha256": "d403cafe23b4cc8de1ac738e0c580d090adc7b132fc7d18dc21b8af40f959e19"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
@@ -461,17 +461,17 @@
   "outputs": {
     "bundle": {
       "actual": {
-        "bytes": 1001736,
-        "file_count": 781,
-        "tree_sha256": "51e0ad9e550641a314ba29821ebd8004ffd81d3a9b71a03b9aadf7cc3f3aa3dd"
+        "bytes": 1026320,
+        "file_count": 782,
+        "tree_sha256": "1568b2195b291997210c1454a650de80c65822d7bab389c1c549a82d0f4eda67"
       },
       "difference_count": 0,
       "differences": [],
       "exact_match": true,
       "expected": {
-        "bytes": 1001736,
-        "file_count": 781,
-        "tree_sha256": "51e0ad9e550641a314ba29821ebd8004ffd81d3a9b71a03b9aadf7cc3f3aa3dd"
+        "bytes": 1026320,
+        "file_count": 782,
+        "tree_sha256": "1568b2195b291997210c1454a650de80c65822d7bab389c1c549a82d0f4eda67"
       }
     },
     "sbom": {
@@ -482,7 +482,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-14T12:28:45Z",
+  "recorded_at": "2026-07-14T13:09:12Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
@@ -538,7 +538,7 @@
     }
   ],
   "source_binding": null,
-  "started_at": "2026-07-14T12:28:44Z",
+  "started_at": "2026-07-14T13:09:11Z",
   "test_evidence": null,
   "validators": {
     "passed": true,

@@ -1,0 +1,41 @@
+{
+  "answer": {
+    "short_verbatim_excerpt": "Most children start reception full-time in September after their fourth birthday.",
+    "structured_summary": [
+      "A child who turns 4 in June will usually start reception in September of that year.",
+      "A parent or carer must apply for a primary school place one year before the child starts.",
+      "Applications normally open in September and close on 15 January.",
+      "The application goes through the local council, which also provides local school and admission-criteria information.",
+      "A parent or carer who believes the child is not ready should contact the school in September to discuss options."
+    ]
+  },
+  "capture": {
+    "answer_transcription": "short excerpt only; remaining content is a structured paraphrase",
+    "asset_retained": false,
+    "asset_sha256": "a39a6954cbede0ea24a57ddb3d9766665be2650eed36fe0cf5e7601a161df392",
+    "retrieved_at": "2026-07-14T08:27:26Z",
+    "source_kind": "official_gds_blog_screenshot"
+  },
+  "question": "My child is turning 4, what do I need to do to get them ready for school?",
+  "schema": "govuk-chat-published-observation.v1",
+  "source_cards": [
+    {
+      "position": 1,
+      "title": "Apply for a primary school place",
+      "url": "https://www.gov.uk/apply-for-primary-school-place"
+    },
+    {
+      "position": 2,
+      "title": "School admissions: Admission criteria",
+      "url": "https://www.gov.uk/schools-admissions/admissions-criteria"
+    }
+  ],
+  "source_image_url": "https://gds.blog.gov.uk/wp-content/uploads/sites/60/2026/05/Example-Questions-Mockup-to-embed-within-post-620x413.png",
+  "source_page_url": "https://gds.blog.gov.uk/2026/05/14/gov-uk-chat-launches/",
+  "status": "official_published_example_not_a_live_replay",
+  "story_ids": [
+    "story-parent-carer",
+    "story-learner-education-user",
+    "story-housing-local-services-user"
+  ]
+}

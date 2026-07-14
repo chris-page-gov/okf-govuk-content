@@ -76,6 +76,7 @@ class DiscoveryTests(unittest.TestCase):
         descriptor_path = self.bundle / "okf-explorer.json"
         descriptor = json.loads(descriptor_path.read_text(encoding="utf-8"))
         descriptor["entrypoints"]["route_index"] = "../outside.json"
+        descriptor["entrypoint_integrity"]["route_index"]["path"] = "../outside.json"
         descriptor_path.write_text(json.dumps(descriptor), encoding="utf-8")
         with self.assertRaisesRegex(DiscoveryError, "unsafe bundle path"):
             DiscoveryIndex(self.bundle)
@@ -83,7 +84,7 @@ class DiscoveryTests(unittest.TestCase):
     def test_integrity_bearing_search_entrypoint_is_verified(self) -> None:
         descriptor_path = self.bundle / "okf-explorer.json"
         descriptor = json.loads(descriptor_path.read_text(encoding="utf-8"))
-        descriptor["entrypoints"]["search_manifest"]["sha256"] = "0" * 64
+        descriptor["entrypoint_integrity"]["search_manifest"]["sha256"] = "0" * 64
         descriptor_path.write_text(json.dumps(descriptor), encoding="utf-8")
         with self.assertRaisesRegex(DiscoveryError, "SHA-256 differs"):
             DiscoveryIndex(self.bundle)
@@ -96,7 +97,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         descriptor_path = self.bundle / "okf-explorer.json"
         descriptor = json.loads(descriptor_path.read_text(encoding="utf-8"))
-        descriptor["entrypoints"]["search_manifest"]["sha256"] = hashlib.sha256(
+        descriptor["entrypoint_integrity"]["search_manifest"]["sha256"] = hashlib.sha256(
             search_path.read_bytes()
         ).hexdigest()
         descriptor_path.write_text(

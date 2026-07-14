@@ -30,6 +30,7 @@ RECORD_CHUNK_SIZE = 1000
 RELATIONSHIP_CHUNK_SIZE = 1000
 RESULT_CHUNK_SIZE = 1000
 MAX_POSTINGS = 2000
+MAX_REDIRECT_SAMPLES = 100
 SEMANTIC_ENTITY_CHUNK_SIZE = 500
 SEMANTIC_ASSERTION_CHUNK_SIZE = 1000
 SEMANTIC_PUBLICATION_DIRECTORIES = (
@@ -217,6 +218,35 @@ def source_evidence_url(record: dict[str, Any]) -> str:
     return url
 
 
+def redirect_projection(record: dict[str, Any], source_url: str) -> list[dict[str, Any]]:
+    """Retain the complete bounded, source-native redirect rule surface."""
+
+    rows: list[dict[str, Any]] = []
+    for ordinal, value in enumerate(record.get("redirects") or []):
+        if not isinstance(value, dict):
+            continue
+        destination = str(value.get("destination") or "")
+        if not destination:
+            continue
+        if destination.startswith(("https://", "http://")):
+            destination_url = destination
+        elif destination.startswith("/"):
+            destination_url = "https://www.gov.uk" + destination
+        else:
+            destination_url = ""
+        rows.append(
+            {
+                "ordinal": ordinal,
+                "path": str(value.get("path") or urlparse(source_url).path or "/"),
+                "destination": destination,
+                "destination_url": destination_url,
+                "type": str(value.get("type") or "unknown"),
+                "segments_mode": str(value.get("segments_mode") or "unknown"),
+            }
+        )
+    return rows
+
+
 def normalise_source_record(record: dict[str, Any], observed_at: str) -> dict[str, Any]:
     url = canonical_url(record)
     locale = str(record.get("locale") or record.get("language") or "en")
@@ -226,8 +256,19 @@ def normalise_source_record(record: dict[str, Any], observed_at: str) -> dict[st
     schema_name = str(record.get("schema_name") or record.get("schema") or record.get("content_store_document_type") or "unknown")
     document_type = str(record.get("document_type") or record.get("format") or "unknown")
     withdrawn = record.get("withdrawn_notice")
-    redirects = record.get("redirects") or []
+    redirects = redirect_projection(record, url)
     lifecycle = "redirect" if document_type == "redirect" or redirects else "withdrawn" if withdrawn else "published"
+    entity_class = str(record.get("entity_class") or "content_identity")
+    host = (urlparse(url).hostname or "").casefold()
+    route_kind = (
+        "redirect"
+        if redirects
+        else "external_boundary"
+        if entity_class == "external_boundary" or host != "www.gov.uk"
+        else "tombstone"
+        if record.get("coverage_disposition") == "tombstone_only"
+        else "canonical"
+    )
     tags = sorted({schema_name, document_type, locale, lifecycle} - {"", "unknown"})
     source_memberships = sorted(set(record.get("source_memberships") or [str(record.get("source_id") or "fixture")]))
     return {
@@ -236,8 +277,10 @@ def normalise_source_record(record: dict[str, Any], observed_at: str) -> dict[st
         "base_path": urlparse(url).path or "/",
         "canonical_content_id": content_id,
         "confidence": "source-declared" if record.get("content_id") or record.get("title") else "source-observed-route",
+        "coverage_disposition": str(record.get("coverage_disposition") or "represented"),
         "description": str(record.get("description") or ""),
         "document_type": document_type,
+        "entity_class": entity_class,
         "first_published_at": record.get("first_published_at"),
         "jurisdiction": record.get("jurisdiction") or ["United Kingdom"],
         "language": locale,
@@ -247,9 +290,12 @@ def normalise_source_record(record: dict[str, Any], observed_at: str) -> dict[st
         "open": f"dataset/{name}",
         "public_updated_at": record.get("public_updated_at") or record.get("updated_at") or record.get("lastmod"),
         "record_type": "GOV.UK content item",
+        "redirects": redirects,
+        "routing_kind": route_kind,
         "schema_name": schema_name,
         "source_adapter": str(record.get("source_adapter") or "govuk_public_metadata"),
         "source_memberships": source_memberships,
+        "source_native_id": str(record.get("source_native_id") or content_id or url),
         "source_tier": "official-public",
         "status": lifecycle,
         "tags": tags,
@@ -1339,6 +1385,218 @@ def count_values(rows: Iterable[dict[str, Any]], key: str) -> list[dict[str, Any
     return [{"value": value, "count": count} for value, count in sorted(counts.items(), key=lambda item: (-item[1], item[0]))]
 
 
+def site_host_kind(hostname: str) -> str:
+    if hostname == "www.gov.uk":
+        return "main_publishing_estate"
+    if hostname == "gov.uk" or hostname.endswith(".gov.uk"):
+        return "gov_uk_domain_boundary"
+    return "other_external_boundary"
+
+
+def build_site_topology(
+    datasets: Sequence[dict[str, Any]],
+    relationships: Sequence[dict[str, Any]],
+    *,
+    source_count: int,
+    generated_at: str,
+    snapshot_id: str,
+) -> dict[str, Any]:
+    """Build the compact host and routing control plane for the full record plane."""
+
+    hosts: dict[str, dict[str, Any]] = {}
+    coverage_dispositions: collections.Counter[str] = collections.Counter()
+    routing_kinds: collections.Counter[str] = collections.Counter()
+    redirect_rows: list[dict[str, Any]] = []
+    stable_content_identifiers = 0
+    for dataset in datasets:
+        url = str(dataset.get("url") or dataset.get("@id") or "")
+        parsed = urlparse(url)
+        hostname = (parsed.hostname or "").casefold()
+        if hostname:
+            host = hosts.setdefault(
+                hostname,
+                {
+                    "hostname": hostname,
+                    "host_kind": site_host_kind(hostname),
+                    "record_count": 0,
+                    "schemes": set(),
+                    "routing_kinds": collections.Counter(),
+                    "example_routes": [],
+                },
+            )
+            host["record_count"] += 1
+            if parsed.scheme:
+                host["schemes"].add(parsed.scheme.casefold())
+            host["routing_kinds"][str(dataset.get("routing_kind") or "canonical")] += 1
+            if len(host["example_routes"]) < 3:
+                host["example_routes"].append(str(dataset.get("open") or ""))
+        disposition = str(dataset.get("coverage_disposition") or "represented")
+        routing_kind = str(dataset.get("routing_kind") or "canonical")
+        coverage_dispositions[disposition] += 1
+        routing_kinds[routing_kind] += 1
+        if dataset.get("canonical_content_id"):
+            stable_content_identifiers += 1
+        for redirect in dataset.get("redirects") or []:
+            if not isinstance(redirect, dict):
+                continue
+            destination_url = str(redirect.get("destination_url") or "")
+            destination_host = (urlparse(destination_url).hostname or "").casefold()
+            redirect_rows.append(
+                {
+                    "source_route": str(dataset.get("open") or ""),
+                    "source_url": url,
+                    "source_host": hostname,
+                    "path": str(redirect.get("path") or parsed.path or "/"),
+                    "destination": str(redirect.get("destination") or ""),
+                    "destination_url": destination_url,
+                    "destination_host": destination_host,
+                    "type": str(redirect.get("type") or "unknown"),
+                    "segments_mode": str(redirect.get("segments_mode") or "unknown"),
+                    "evidence_url": str(dataset.get("evidence_url") or ""),
+                    "evidence_locator": str(dataset.get("evidence_locator") or "/"),
+                    "retrieved_at": str(dataset.get("retrieved_at") or generated_at),
+                }
+            )
+
+    host_rows = []
+    host_kind_order = {
+        "main_publishing_estate": 0,
+        "gov_uk_domain_boundary": 1,
+        "other_external_boundary": 2,
+    }
+    for hostname, value in sorted(
+        hosts.items(),
+        key=lambda item: (host_kind_order[item[1]["host_kind"]], item[0]),
+    ):
+        host_rows.append(
+            {
+                "hostname": hostname,
+                "host_kind": value["host_kind"],
+                "record_count": value["record_count"],
+                "schemes": sorted(value["schemes"]),
+                "routing_kinds": [
+                    {"value": key, "count": count}
+                    for key, count in sorted(value["routing_kinds"].items())
+                ],
+                "example_routes": value["example_routes"],
+            }
+        )
+    redirect_rows.sort(
+        key=lambda item: (
+            item["source_url"],
+            item["path"],
+            item["destination_url"],
+            item["type"],
+            item["segments_mode"],
+        )
+    )
+    relationship_kinds = collections.Counter(
+        str(row.get("kind") or "unknown") for row in relationships
+    )
+    main_records = sum(
+        row["record_count"]
+        for row in host_rows
+        if row["host_kind"] == "main_publishing_estate"
+    )
+    govuk_boundary_hosts = sum(
+        1 for row in host_rows if row["host_kind"] == "gov_uk_domain_boundary"
+    )
+    other_boundary_hosts = sum(
+        1 for row in host_rows if row["host_kind"] == "other_external_boundary"
+    )
+    cross_host_redirects = sum(
+        1
+        for row in redirect_rows
+        if row["source_host"]
+        and row["destination_host"]
+        and row["source_host"] != row["destination_host"]
+    )
+    counts = {
+        "source_records": source_count,
+        "published_records": len(datasets),
+        "hosts": len(host_rows),
+        "main_publishing_estate_records": main_records,
+        "gov_uk_domain_boundary_hosts": govuk_boundary_hosts,
+        "other_external_boundary_hosts": other_boundary_hosts,
+        "redirect_records": routing_kinds.get("redirect", 0),
+        "redirect_rules": len(redirect_rows),
+        "cross_host_redirect_rules": cross_host_redirects,
+        "stable_content_identifiers": stable_content_identifiers,
+        "relationship_assertions": len(relationships),
+    }
+    return {
+        "schema": "govuk-site-topology.v1",
+        "title": "GOV.UK sitemap and routing topology",
+        "generated_at": generated_at,
+        "snapshot": snapshot_id,
+        "status": "snapshot_projection_not_release_completeness_claim",
+        "scope": {
+            "main_publishing_estate": "www.gov.uk",
+            "boundary_sites": "Recorded as destinations and relationships, not mirrored as complete sites.",
+            "page_bodies": "not retained or published",
+            "official_sitemap_role": "one Search API-derived enumerator within the reconciled source union",
+            "hydration": "Routing detail grows from the same deterministic projection as Content API hydration closes.",
+        },
+        "counts": counts,
+        "coverage_dispositions": [
+            {"value": key, "count": count}
+            for key, count in sorted(coverage_dispositions.items())
+        ],
+        "routing_mechanisms": [
+            {
+                "id": "canonical_url",
+                "label": "Canonical and observed URLs",
+                "count": len(datasets),
+                "full_detail": "data/records-*.json.gz via the route index",
+            },
+            {
+                "id": "stable_content_identifier",
+                "label": "Stable GOV.UK content identifiers",
+                "count": stable_content_identifiers,
+                "full_detail": "data/routes/manifest.json",
+            },
+            {
+                "id": "redirect_rule",
+                "label": "Source-declared redirect rules",
+                "count": len(redirect_rows),
+                "full_detail": "redirects on each record plus redirects-to adjacency",
+            },
+            {
+                "id": "external_boundary",
+                "label": "Routes to independently operated sites",
+                "count": routing_kinds.get("external_boundary", 0),
+                "full_detail": "external-boundary records and host inventory",
+            },
+            {
+                "id": "typed_relationship",
+                "label": "Structured navigation and routing relationships",
+                "count": len(relationships),
+                "full_detail": "data/adjacency/manifest.json",
+            },
+        ],
+        "routing_kinds": [
+            {"value": key, "count": count}
+            for key, count in sorted(routing_kinds.items())
+        ],
+        "relationship_kinds": [
+            {"value": key, "count": count}
+            for key, count in sorted(
+                relationship_kinds.items(), key=lambda item: (-item[1], item[0])
+            )
+        ],
+        "hosts": host_rows,
+        "redirect_samples": redirect_rows[:MAX_REDIRECT_SAMPLES],
+        "redirect_samples_complete": len(redirect_rows) <= MAX_REDIRECT_SAMPLES,
+        "full_detail_contract": {
+            "records": "data/records-*.json.gz",
+            "search": "data/search/manifest.json",
+            "identifier_lookup": "data/routes/manifest.json",
+            "relationship_adjacency": "data/adjacency/manifest.json",
+            "semantic_projection": "data/semantic/manifest.json",
+        },
+    }
+
+
 def semantic_descriptor(counts: dict[str, int], generated_at: str, snapshot_id: str) -> dict[str, Any]:
     return {
         "@context": GOVUK_CONTEXT_URL,
@@ -2211,6 +2469,15 @@ def _emit_publication(
         "relationships_by_kind": count_values(relationships, "kind"),
     }
     (output / "data" / "graph.json").write_text(pretty_json(graph), encoding="utf-8")
+    site_topology = build_site_topology(
+        datasets,
+        relationships,
+        source_count=source_count,
+        generated_at=generated_at,
+        snapshot_id=snapshot_id,
+    )
+    site_topology_path = output / "data" / "site-topology.json"
+    site_topology_path.write_text(pretty_json(site_topology), encoding="utf-8")
     semantic_projection_manifest = write_semantic_projection(
         output,
         datasets,
@@ -2251,9 +2518,15 @@ def _emit_publication(
         "counts": counts,
         "coverage": {
             "boundary": "frozen union of verified official public enumerators",
+            "source_records": source_count,
             "page_bodies": "not mirrored",
             "unexplained_omissions": 0 if dispositions_close else None,
             "authoritative_destination": "https://www.gov.uk/",
+        },
+        "site_topology": {
+            "entrypoint": "data/site-topology.json",
+            "counts": site_topology["counts"],
+            "status": site_topology["status"],
         },
         "facets": facets,
         "sample_records": datasets[:10],
@@ -2270,6 +2543,10 @@ def _emit_publication(
             "publishers": len(facets["publisher"]),
         },
         "coverage": overview["coverage"],
+        "routing_overview": {
+            "counts": site_topology["counts"],
+            "mechanisms": site_topology["routing_mechanisms"],
+        },
         "performance": {
             "bootstrap_compressed_budget_bytes": 2097152,
             "ordinary_shard_compressed_budget_bytes": 5242880,
@@ -2343,6 +2620,7 @@ def _emit_publication(
             "analysis": "data/analysis/overview.json",
             "facets": "data/facets.json",
             "graph": "data/graph.json",
+            "site_topology": "data/site-topology.json",
             "search": "data/search/manifest.json",
             "relationship_adjacency": "data/adjacency/manifest.json",
             "route_index": "data/routes/manifest.json",
@@ -2417,6 +2695,20 @@ def _emit_publication(
         "counts": counts,
         "entrypoints": {
             "viewer": "https://chris-page-gov.github.io/okf-explorer/",
+            "data_manifest": "data/manifest.json",
+            "overview_index": "data/overview.json",
+            "analysis_overview": "data/analysis/overview.json",
+            "site_topology": "data/site-topology.json",
+            "search_manifest": "data/search/manifest.json",
+            "relationship_adjacency": "data/adjacency/manifest.json",
+            "route_index": "data/routes/manifest.json",
+            "semantic_projection": "data/semantic/manifest.json",
+            "markdown_index": "index.md",
+        },
+        # The shared OKF Explorer contract requires string entrypoint paths.
+        # Keep integrity metadata separate so generic clients remain compatible
+        # while integrity-aware clients can still verify every bootstrap file.
+        "entrypoint_integrity": {
             "data_manifest": {
                 "path": "data/manifest.json",
                 "sha256": _file_sha256(output / "data" / "manifest.json"),
@@ -2428,6 +2720,10 @@ def _emit_publication(
             "analysis_overview": {
                 "path": "data/analysis/overview.json",
                 "sha256": _file_sha256(output / "data" / "analysis" / "overview.json"),
+            },
+            "site_topology": {
+                "path": "data/site-topology.json",
+                "sha256": _file_sha256(output / "data" / "site-topology.json"),
             },
             "search_manifest": {
                 "path": "data/search/manifest.json",
@@ -2441,8 +2737,10 @@ def _emit_publication(
                 "path": "data/routes/manifest.json",
                 "sha256": _file_sha256(output / "data" / "routes" / "manifest.json"),
             },
-            "semantic_projection": "data/semantic/manifest.json",
-            "markdown_index": "index.md",
+            "semantic_projection": {
+                "path": "data/semantic/manifest.json",
+                "sha256": _file_sha256(output / "data" / "semantic" / "manifest.json"),
+            },
         },
         "performance": manifest["performance"],
         "vocabulary": {
@@ -2457,6 +2755,7 @@ def _emit_publication(
         "extensions": {
             "govuk-okf-profile.v1": {"provenance_required": True, "source_native_before_inference": True},
             "okf-explorer-analysis.v1": {"entrypoint": "analysis_overview", "mode": "external"},
+            "govuk-site-topology.v1": {"entrypoint": "site_topology", "full_record_detail": True},
         },
     }
     (output / "okf-explorer.json").write_text(pretty_json(descriptor), encoding="utf-8")

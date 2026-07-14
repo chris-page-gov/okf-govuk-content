@@ -2,7 +2,7 @@
   "generated_at": "2026-07-11T23:30:00Z",
   "schema": "okf-search-shard-manifest.v1",
   "schema_version": "1.0",
-  "shard_manifest_sha256": "34cfb0b2e3790c30bb33926d2de47122552318bf9d96d07eed446440cf93f198",
+  "shard_manifest_sha256": "e2f89407d0932276064e3551e701141153f8e43dd4cebfa748eafcd0428b90af",
   "shards": {
     "doc_map": [
       {
@@ -3516,7 +3516,7 @@
     ],
     "result_docs": [
       {
-        "compressed_bytes": 19733,
+        "compressed_bytes": 22885,
         "compression": "identity",
         "count": 14,
         "first_key": "dataset/00000000-0000-4000-8000-000000000001-en",
@@ -3526,9 +3526,9 @@
         "path": "data/search/results-0.json",
         "schema": "okf-search-result-shard.v1",
         "schema_version": "1.0",
-        "sha256": "076fb8d5f7fa7851f8523beecff3276b37289b17ffe28e51aa49f1991384e8b1",
+        "sha256": "55d851f1640973bae63a89302f58472fe8d386e742866ca6aab87e1ebef9c370",
         "snapshot": "fixture-2026-07-11",
-        "uncompressed_bytes": 19733
+        "uncompressed_bytes": 22885
       }
     ]
   },

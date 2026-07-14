@@ -57,6 +57,12 @@ test("state parser constrains unsupported modes, unsafe routes and invalid facet
   assert.equal(state.page, 1);
 });
 
+test("sitemap is a replayable first-class view", () => {
+  const state = parseExplorerState("https://example.test/?view=sitemap&snapshot=snap-1");
+  assert.equal(state.view, "sitemap");
+  assert.equal(serialiseExplorerState(state, "https://example.test/").searchParams.get("view"), "sitemap");
+});
+
 test("language normalisation preserves a general BCP 47 path", () => {
   assert.equal(normaliseLanguage("cy"), "cy");
   assert.equal(normaliseLanguage("en-gb"), "en-GB");
@@ -78,6 +84,10 @@ test("records retain source-native discovery, lifecycle and provenance fields", 
     open: "dataset/passport",
     web_url: "https://www.gov.uk/browse/abroad/passports",
     source_status: "source-native",
+    routing_kind: "redirect",
+    entity_class: "content_identity",
+    coverage_disposition: "redirect_only",
+    redirects: [{ path: "/passport-old", destination: "/passport", destination_url: "https://www.gov.uk/passport", type: "exact", segments_mode: "preserve" }],
     retrieved_at: "2026-07-11T00:00:00Z"
   });
   assert.equal(record.route, "dataset/passport");
@@ -87,6 +97,17 @@ test("records retain source-native discovery, lifecycle and provenance fields", 
   assert.deepEqual(record.jurisdictions, ["UK"]);
   assert.equal(record.sourceStatus, "source-native");
   assert.equal(record.canonicalUrl, "https://www.gov.uk/browse/abroad/passports");
+  assert.equal(record.routingKind, "redirect");
+  assert.equal(record.entityClass, "content_identity");
+  assert.equal(record.coverageDisposition, "redirect_only");
+  assert.deepEqual(record.redirects[0], {
+    ordinal: 0,
+    path: "/passport-old",
+    destination: "/passport",
+    destinationUrl: "https://www.gov.uk/passport",
+    type: "exact",
+    segmentsMode: "preserve"
+  });
 });
 
 test("one reducer applies query, facets, lifecycle and jurisdiction together", () => {
