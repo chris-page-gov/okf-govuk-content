@@ -132,6 +132,17 @@ an `okf-explorer-large-corpus.v1` descriptor, chunked records/resources/
 publishers/relationships, static lexical search, deterministic route indexes
 and FNV-1a relationship-adjacency buckets.
 
+Static search preserves its two-character logical lexicon. The additive
+`okf-search-postings-partitioning.v1` contract greedily writes complete tokens
+to exact-byte-bounded, contiguous physical ranges; each lexicon row continues
+to name the one postings path required for that token. One-partition groups
+retain the legacy filename, while overflow paths use a stable five-digit
+suffix. `okf-search-doc-map-partitioning.v1` similarly replaces the singleton
+ordinal map with contiguous 1,000-record shards. Consumers accept old
+single-file manifests when these declarations are absent and reject unknown or
+drifted declarations. See
+[`ADR-006`](../governance/decisions/ADR-006-byte-bounded-static-search-partitions.md).
+
 Every data-plane shard is paired with immutable metadata: a versioned shard
 schema, source snapshot, logical record count, first/last stable key where the
 shard is non-empty, compression, compressed and uncompressed bytes and the
@@ -162,8 +173,9 @@ Plain fixture inputs use the in-memory reference compiler. Gzip snapshots,
 explicit `records-*`/`part-*` shard directories and plain JSONL files of at
 least 32 MiB automatically use the byte-equivalent SQLite compiler. It spills
 uncapped postings and entity indexes to disk and streams output shards; use
-`--compiler disk` to force this path. Measured memory/disk behaviour and known
-shard-skew limits are published in `reports/publication-scale.md`.
+`--compiler disk` to force this path. Measured memory/disk behaviour,
+the exact T0 postings failure and remaining shard-skew limits are published in
+`reports/publication-scale.md`.
 
 The browser loads `bundle/index.html`. Shared context stays in query parameters,
 the selected canonical record uses the federated hash-route convention, and

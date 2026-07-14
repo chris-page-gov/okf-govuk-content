@@ -19,6 +19,7 @@ from govuk_okf.release_data_plane import (
     GITHUB_RELEASE_ASSET_MAX_BYTES,
     DataPlanePackError,
     build_release_packs,
+    collect_data_plane_rows,
     verify_release_packs,
 )
 from govuk_okf.release_ref import release_channel, validate_release_ref, validate_tag_name
@@ -370,6 +371,53 @@ class ReleasePackagingTests(unittest.TestCase):
                 tag="v0.1.0",
                 max_pack_bytes=GITHUB_RELEASE_ASSET_MAX_BYTES,
             )
+
+    def test_every_physical_postings_partition_is_collected_for_release(self) -> None:
+        rows = []
+        for partition in range(2):
+            relative = f"data/search/postings/ca-{partition:05d}.json"
+            payload = (
+                json.dumps(
+                    {"tokens": {f"ca{partition:06d}": [[partition, 16, 1]]}},
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n"
+            ).encode("utf-8")
+            (self.bundle / relative).parent.mkdir(parents=True, exist_ok=True)
+            (self.bundle / relative).write_bytes(payload)
+            rows.append(
+                {
+                    "path": relative,
+                    "compressed_bytes": len(payload),
+                    "sha256": hashlib.sha256(payload).hexdigest(),
+                    "compression": "identity",
+                }
+            )
+        write_json(
+            self.bundle / "data/search/manifest.json",
+            {"shard_metadata": "data/search/shards.json"},
+        )
+        write_json(
+            self.bundle / "data/search/shards.json",
+            {"shards": {"postings": rows}},
+        )
+        self.assertEqual(
+            [row["path"] for row in rows],
+            [row["path"] for row in collect_data_plane_rows(self.bundle)],
+        )
+        assets = self.root / "split-search-assets"
+        index = build_release_packs(
+            bundle=self.bundle,
+            assets=assets,
+            repository="chris-page-gov/okf-govuk-content",
+            tag="v0.1.0",
+        )
+        self.assertEqual(
+            [row["path"] for row in rows],
+            [row["path"] for row in index["entries"]],
+        )
+        self.assertEqual(verify_release_packs(index, assets), [])
 
     def test_gzip_member_expansion_and_oversized_declaration_fail_bounded(self) -> None:
         payload = b"x" * 4096

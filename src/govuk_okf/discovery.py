@@ -8,7 +8,14 @@ from collections import OrderedDict
 from pathlib import Path
 from typing import Any
 
-from .publication import FIELD_MASKS, search_shard, tokenise
+from .publication import (
+    DOC_MAP_PARTITIONING_CONTRACT,
+    FIELD_MASKS,
+    POSTINGS_PARTITIONING_CONTRACT,
+    matches_exact_json_contract,
+    search_shard,
+    tokenise,
+)
 from .util import adjacency_bucket, read_gzip_json
 
 
@@ -45,6 +52,45 @@ class DiscoveryIndex:
             raise DiscoveryError("unsupported Explorer descriptor schema")
         if self.search_manifest.get("schema") != "okf-static-search.v1":
             raise DiscoveryError("unsupported static-search schema")
+        postings_partitioning = self.search_manifest.get("postings_partitioning")
+        if "postings_partitioning" in self.search_manifest and not (
+            matches_exact_json_contract(
+                postings_partitioning, POSTINGS_PARTITIONING_CONTRACT
+            )
+        ):
+            raise DiscoveryError(
+                "unsupported or drifted static-search postings partitioning contract"
+            )
+        if self.search_manifest.get("lexicon_shard_length") != 2:
+            raise DiscoveryError("unsupported static-search logical lexicon width")
+        search_entrypoints = self.search_manifest.get("entrypoints")
+        if not isinstance(search_entrypoints, dict):
+            raise DiscoveryError("static-search entrypoints must be an object")
+        postings_paths = search_entrypoints.get("postings")
+        if not isinstance(postings_paths, list) or not all(
+            isinstance(path, str) and path for path in postings_paths
+        ):
+            raise DiscoveryError("static-search postings entrypoint must be a path list")
+        has_doc_map_partitioning = "doc_map_partitioning" in self.search_manifest
+        doc_map_partitioning = self.search_manifest.get("doc_map_partitioning")
+        doc_map_entrypoint = search_entrypoints.get("doc_map")
+        if not has_doc_map_partitioning:
+            if not isinstance(doc_map_entrypoint, str) or not doc_map_entrypoint:
+                raise DiscoveryError(
+                    "legacy static-search document-map entrypoint must be one path"
+                )
+        elif not matches_exact_json_contract(
+            doc_map_partitioning, DOC_MAP_PARTITIONING_CONTRACT
+        ):
+            raise DiscoveryError(
+                "unsupported or drifted static-search document-map partitioning contract"
+            )
+        elif not isinstance(doc_map_entrypoint, list) or not all(
+            isinstance(path, str) and path for path in doc_map_entrypoint
+        ):
+            raise DiscoveryError(
+                "partitioned static-search document-map entrypoint must be a path list"
+            )
         if self.adjacency_manifest.get("schema") != "okf-relationship-adjacency.v1":
             raise DiscoveryError("unsupported relationship-adjacency schema")
         if self.route_manifest.get("schema") != "okf-route-index.v1":

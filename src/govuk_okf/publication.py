@@ -44,6 +44,29 @@ PUBLISHING_API_SCHEMA_COMMIT = "b1e987aa7b3e62c105ff2b2db87667f7638726f8"
 DATA_PLANE_SCHEMA_VERSION = "1.0"
 MAX_DATA_PLANE_SHARD_COMPRESSED_BYTES = 5 * 1024 * 1024
 MAX_DATA_PLANE_SHARD_UNCOMPRESSED_BYTES = 64 * 1024 * 1024
+POSTINGS_PARTITION_INDEX_WIDTH = 5
+POSTINGS_PARTITIONING_CONTRACT = {
+    "schema": "okf-search-postings-partitioning.v1",
+    "algorithm": "greedy-contiguous-token-range-exact-utf8-json-v1",
+    "logical_shard_length": 2,
+    "max_bytes": MAX_DATA_PLANE_SHARD_COMPRESSED_BYTES,
+    "partition_index_width": POSTINGS_PARTITION_INDEX_WIDTH,
+    "token_atomic": True,
+    "single_partition_legacy_path": True,
+}
+DOC_MAP_CHUNK_SIZE = RESULT_CHUNK_SIZE
+DOC_MAP_PARTITION_INDEX_WIDTH = 5
+DOC_MAP_PARTITIONING_CONTRACT = {
+    "schema": "okf-search-doc-map-partitioning.v1",
+    "algorithm": "contiguous-ordinal-max-count-v1",
+    "max_records": DOC_MAP_CHUNK_SIZE,
+    "max_bytes": MAX_DATA_PLANE_SHARD_COMPRESSED_BYTES,
+    "partition_index_width": DOC_MAP_PARTITION_INDEX_WIDTH,
+}
+POSTINGS_DOCUMENT_PREFIX = '{\n  "tokens": {'
+POSTINGS_DOCUMENT_SUFFIX = "\n  }\n}\n"
+POSTINGS_FIRST_ENTRY_SEPARATOR = "\n"
+POSTINGS_NEXT_ENTRY_SEPARATOR = ",\n"
 DATA_PLANE_BUDGETS = {
     "ordinary_shard_compressed_bytes": MAX_DATA_PLANE_SHARD_COMPRESSED_BYTES,
     "ordinary_shard_uncompressed_safety_bytes": MAX_DATA_PLANE_SHARD_UNCOMPRESSED_BYTES,
@@ -610,6 +633,316 @@ def shard_manifest_sha256(shards: object) -> str:
     return hashlib.sha256(canonical_json_bytes(shards)).hexdigest()
 
 
+def _pretty_mapping_entry(key: str, value: object, indent: int) -> str:
+    """Render one mapping entry exactly like ``pretty_json``.
+
+    The byte-budget partitioner uses this shared renderer in both compilers so
+    boundaries depend only on the canonical token/posting rows, never on the
+    selected compiler or an estimate of JSON size.
+    """
+    rendered_key = json.dumps(key, ensure_ascii=False)
+    rendered_value = json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True)
+    lines = rendered_value.splitlines()
+    prefix = " " * indent
+    result = prefix + rendered_key + ": " + lines[0]
+    if len(lines) > 1:
+        result += "\n" + "\n".join(prefix + line for line in lines[1:])
+    return result
+
+
+def postings_entry_serialized_size(
+    token: str, posting_rows: Sequence[Sequence[int]], *, first: bool
+) -> int:
+    """Return exact bytes added by one pretty-JSON postings entry."""
+    separator = (
+        POSTINGS_FIRST_ENTRY_SEPARATOR if first else POSTINGS_NEXT_ENTRY_SEPARATOR
+    )
+    rendered = _pretty_mapping_entry(token, posting_rows, 4)
+    return len(separator.encode("utf-8")) + len(rendered.encode("utf-8"))
+
+
+def postings_partition_serialized_size(
+    entries: Iterable[tuple[str, Sequence[Sequence[int]]]],
+) -> int:
+    """Return the exact canonical bytes for one complete physical partition."""
+    size = len(POSTINGS_DOCUMENT_PREFIX.encode("utf-8"))
+    for index, (token, posting_rows) in enumerate(entries):
+        size += postings_entry_serialized_size(
+            token, posting_rows, first=index == 0
+        )
+    return size + len(POSTINGS_DOCUMENT_SUFFIX.encode("utf-8"))
+
+
+def matches_exact_json_contract(
+    actual: object, expected: dict[str, object]
+) -> bool:
+    """Return whether a decoded JSON contract is key- and type-exact.
+
+    Python considers ``1 == True``.  Frozen JSON contracts must not inherit
+    that coercion because the browser validates the corresponding values with
+    strict JavaScript equality.
+    """
+    if not isinstance(actual, dict) or set(actual) != set(expected):
+        return False
+    return all(
+        type(actual[key]) is type(expected_value)
+        and actual[key] == expected_value
+        for key, expected_value in expected.items()
+    )
+
+
+def postings_partition_relative_path(
+    base_shard: str, partition: int, partition_count: int
+) -> str:
+    """Return the additive v1 physical path for one logical postings shard."""
+    if not re.fullmatch(r"[a-z0-9_]{1,4}", base_shard):
+        raise PublicationError(f"invalid logical postings shard: {base_shard}")
+    if partition_count < 1 or not 0 <= partition < partition_count:
+        raise PublicationError(
+            f"invalid postings partition {partition}/{partition_count}: {base_shard}"
+        )
+    if partition_count == 1:
+        return f"data/search/postings/{base_shard}.json"
+    return (
+        "data/search/postings/"
+        f"{base_shard}-{partition:0{POSTINGS_PARTITION_INDEX_WIDTH}d}.json"
+    )
+
+
+def write_postings_partitions(
+    output: Path,
+    base_shard: str,
+    entries: Iterable[tuple[str, Sequence[Sequence[int]]]],
+    *,
+    snapshot_id: str,
+    on_assignment: Callable[[str, int], None] | None = None,
+    max_bytes: int = MAX_DATA_PLANE_SHARD_COMPRESSED_BYTES,
+) -> tuple[list[str], list[dict[str, Any]]]:
+    """Write deterministic, contiguous physical postings partitions.
+
+    Every split is calculated from the exact UTF-8 bytes that are written.
+    Tokens remain in lexical order and are never divided across files.  A
+    single token that cannot fit fails closed rather than truncating postings
+    or weakening the frozen five-MiB ordinary-shard budget.
+    """
+    if not 1 <= max_bytes <= MAX_DATA_PLANE_SHARD_COMPRESSED_BYTES:
+        raise PublicationError(
+            "postings partition budget must be positive and no greater than "
+            f"{MAX_DATA_PLANE_SHARD_COMPRESSED_BYTES} bytes"
+        )
+    if not re.fullmatch(r"[a-z0-9_]{1,4}", base_shard):
+        raise PublicationError(f"invalid logical postings shard: {base_shard}")
+
+    postings_root = output / "data" / "search" / "postings"
+    postings_root.mkdir(parents=True, exist_ok=True)
+    prefix = POSTINGS_DOCUMENT_PREFIX
+    suffix = POSTINGS_DOCUMENT_SUFFIX
+    partition_rows: list[dict[str, Any]] = []
+    stream: Any = None
+    path: Path | None = None
+    partition = -1
+    current_bytes = 0
+    current_count = 0
+    current_first: str | None = None
+    current_last: str | None = None
+    current_postings = 0
+    previous_token: str | None = None
+
+    def start_partition() -> None:
+        nonlocal stream, path, partition, current_bytes, current_count
+        nonlocal current_first, current_last, current_postings
+        partition += 1
+        path = postings_root / (
+            f".{base_shard}-{partition:0{POSTINGS_PARTITION_INDEX_WIDTH}d}.json.tmp"
+        )
+        stream = path.open("x", encoding="utf-8", newline="\n")
+        stream.write(prefix)
+        current_bytes = len(prefix.encode("utf-8"))
+        current_count = 0
+        current_first = None
+        current_last = None
+        current_postings = 0
+
+    def finish_partition() -> None:
+        nonlocal stream
+        if stream is None or path is None or current_count < 1:
+            raise PublicationError(
+                f"cannot finalise an empty postings partition: {base_shard}"
+            )
+        stream.write(suffix)
+        stream.close()
+        stream = None
+        size = path.stat().st_size
+        if size != current_bytes + len(suffix.encode("utf-8")) or size > max_bytes:
+            raise PublicationError(
+                "postings partition byte accounting failed: "
+                f"{path} ({size} > {max_bytes})"
+            )
+        partition_rows.append(
+            {
+                "temporary_path": path,
+                "partition": partition,
+                "count": current_count,
+                "first_key": current_first,
+                "last_key": current_last,
+                "posting_count": current_postings,
+            }
+        )
+
+    try:
+        for token_value, posting_rows in entries:
+            token = str(token_value)
+            if previous_token is not None and token <= previous_token:
+                raise PublicationError(
+                    "postings partition input is not strictly token-sorted: "
+                    f"{previous_token!r}, {token!r}"
+                )
+            previous_token = token
+            rendered = _pretty_mapping_entry(token, posting_rows, 4)
+            rendered_bytes = len(rendered.encode("utf-8"))
+            if stream is None:
+                start_partition()
+            separator = (
+                POSTINGS_FIRST_ENTRY_SEPARATOR
+                if current_count == 0
+                else POSTINGS_NEXT_ENTRY_SEPARATOR
+            )
+            projected = (
+                current_bytes
+                + len(separator.encode("utf-8"))
+                + rendered_bytes
+                + len(suffix.encode("utf-8"))
+            )
+            if projected > max_bytes and current_count:
+                finish_partition()
+                start_partition()
+                separator = POSTINGS_FIRST_ENTRY_SEPARATOR
+                projected = (
+                    current_bytes
+                    + len(separator.encode("utf-8"))
+                    + rendered_bytes
+                    + len(suffix.encode("utf-8"))
+                )
+            if projected > max_bytes:
+                raise PublicationError(
+                    "one token cannot fit the postings partition budget without "
+                    f"narrowing its posting list: {token} ({projected} > {max_bytes})"
+                )
+            stream.write(separator)
+            stream.write(rendered)
+            current_bytes += len(separator.encode("utf-8")) + rendered_bytes
+            current_count += 1
+            current_first = current_first or token
+            current_last = token
+            current_postings += len(posting_rows)
+            if on_assignment is not None:
+                on_assignment(token, partition)
+        if stream is not None:
+            finish_partition()
+    except BaseException:
+        if stream is not None:
+            stream.close()
+        for candidate in postings_root.glob(f".{base_shard}-*.json.tmp"):
+            candidate.unlink(missing_ok=True)
+        raise
+
+    if not partition_rows:
+        raise PublicationError(f"logical postings shard is empty: {base_shard}")
+    partition_count = len(partition_rows)
+    paths: list[str] = []
+    metadata: list[dict[str, Any]] = []
+    for row in partition_rows:
+        index = int(row["partition"])
+        relative = postings_partition_relative_path(
+            base_shard, index, partition_count
+        )
+        final_path = output / relative
+        temporary_path = row["temporary_path"]
+        if not isinstance(temporary_path, Path):
+            raise PublicationError("postings partition path invariant failed")
+        temporary_path.replace(final_path)
+        paths.append(relative)
+        metadata.append(
+            data_plane_shard_metadata(
+                output,
+                final_path,
+                schema="okf-search-postings-shard.v1",
+                snapshot_id=snapshot_id,
+                count=int(row["count"]),
+                first_key=str(row["first_key"]),
+                last_key=str(row["last_key"]),
+                compression="identity",
+                extra={
+                    "kind": "postings",
+                    "shard": base_shard,
+                    "partition": index,
+                    "partition_count": partition_count,
+                    "posting_count": int(row["posting_count"]),
+                    "partitioning_schema": POSTINGS_PARTITIONING_CONTRACT[
+                        "schema"
+                    ],
+                },
+            )
+        )
+    return paths, metadata
+
+
+def write_doc_map_partitions(
+    output: Path,
+    datasets: Sequence[dict[str, Any]],
+    *,
+    snapshot_id: str,
+) -> tuple[list[str], list[dict[str, Any]]]:
+    """Write a contiguous, exact-once ordinal-to-route map in bounded chunks."""
+    (output / "data" / "search").mkdir(parents=True, exist_ok=True)
+    paths: list[str] = []
+    metadata: list[dict[str, Any]] = []
+    for start in range(0, len(datasets), DOC_MAP_CHUNK_SIZE):
+        block = datasets[start : start + DOC_MAP_CHUNK_SIZE]
+        mapping: dict[str, str] = {}
+        for offset, dataset in enumerate(block):
+            ordinal = start + offset
+            if dataset.get("ordinal") != ordinal:
+                raise PublicationError(
+                    f"document-map dataset ordinal is not contiguous: {ordinal}"
+                )
+            mapping[str(ordinal)] = str(dataset["open"])
+        partition = start // DOC_MAP_CHUNK_SIZE
+        relative = (
+            "data/search/doc-map-"
+            f"{partition:0{DOC_MAP_PARTITION_INDEX_WIDTH}d}.json"
+        )
+        path = output / relative
+        path.write_text(pretty_json(mapping), encoding="utf-8")
+        paths.append(relative)
+        metadata.append(
+            data_plane_shard_metadata(
+                output,
+                path,
+                schema="okf-search-doc-map-shard.v1",
+                snapshot_id=snapshot_id,
+                count=len(block),
+                first_key=str(start),
+                last_key=str(start + len(block) - 1),
+                compression="identity",
+                extra={
+                    "kind": "doc_map",
+                    "partition": partition,
+                    "partition_count": (
+                        (len(datasets) + DOC_MAP_CHUNK_SIZE - 1)
+                        // DOC_MAP_CHUNK_SIZE
+                    ),
+                    "first_ordinal": start,
+                    "last_ordinal": start + len(block) - 1,
+                    "partitioning_schema": DOC_MAP_PARTITIONING_CONTRACT[
+                        "schema"
+                    ],
+                },
+            )
+        )
+    return paths, metadata
+
+
 def data_plane_manifest_root(shards: Iterable[dict[str, Any]]) -> str:
     """Return the canonical release root over sorted immutable shard leaves."""
     leaves = sorted(
@@ -711,9 +1044,8 @@ def write_search(
         uncapped += len(ordered)
         ordered = ordered[:MAX_POSTINGS]
         retained += len(ordered)
-        postings_path = f"data/search/postings/{shard}.json"
         posting_groups[shard][token] = ordered
-        lexicon_groups[shard].append({"token": token, "df": len(postings[token]), "postings": postings_path})
+        lexicon_groups[shard].append({"token": token, "df": len(postings[token])})
         for length in range(3, min(len(token), 12) + 1):
             prefix = token[:length]
             prefix_shard = search_shard(prefix)
@@ -723,9 +1055,30 @@ def write_search(
     postings_paths: list[str] = []
     prefix_paths: dict[str, str] = {}
     for shard in sorted(lexicon_groups):
+        token_partitions: dict[str, int] = {}
+        partition_paths, partition_metadata = write_postings_partitions(
+            output,
+            shard,
+            sorted(posting_groups[shard].items()),
+            snapshot_id=snapshot_id,
+            on_assignment=lambda token, partition: token_partitions.__setitem__(
+                token, partition
+            ),
+        )
+        postings_paths.extend(partition_paths)
+        shard_rows["postings"].extend(partition_metadata)
+        partition_count = len(partition_paths)
         path = search_root / "lexicon" / f"{shard}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
-        lexicon_rows = lexicon_groups[shard]
+        lexicon_rows = [
+            {
+                **row,
+                "postings": postings_partition_relative_path(
+                    shard, token_partitions[str(row["token"])], partition_count
+                ),
+            }
+            for row in lexicon_groups[shard]
+        ]
         path.write_text(pretty_json(lexicon_rows), encoding="utf-8")
         lexicon_paths[shard] = path.relative_to(output).as_posix()
         lexicon_keys = [str(row["token"]) for row in lexicon_rows]
@@ -740,29 +1093,6 @@ def write_search(
                 last_key=lexicon_keys[-1] if lexicon_keys else None,
                 compression="identity",
                 extra={"kind": "lexicon", "shard": shard},
-            )
-        )
-        postings_path = search_root / "postings" / f"{shard}.json"
-        postings_path.parent.mkdir(parents=True, exist_ok=True)
-        posting_tokens = posting_groups[shard]
-        postings_path.write_text(pretty_json({"tokens": posting_tokens}), encoding="utf-8")
-        postings_paths.append(postings_path.relative_to(output).as_posix())
-        posting_keys = sorted(posting_tokens)
-        shard_rows["postings"].append(
-            data_plane_shard_metadata(
-                output,
-                postings_path,
-                schema="okf-search-postings-shard.v1",
-                snapshot_id=snapshot_id,
-                count=len(posting_keys),
-                first_key=posting_keys[0] if posting_keys else None,
-                last_key=posting_keys[-1] if posting_keys else None,
-                compression="identity",
-                extra={
-                    "kind": "postings",
-                    "shard": shard,
-                    "posting_count": sum(len(rows) for rows in posting_tokens.values()),
-                },
             )
         )
     for shard in sorted(prefix_groups):
@@ -789,22 +1119,10 @@ def write_search(
             )
         )
 
-    doc_map = {str(dataset["ordinal"]): dataset["open"] for dataset in datasets}
-    doc_map_path = search_root / "doc-map.json"
-    doc_map_path.write_text(pretty_json(doc_map), encoding="utf-8")
-    shard_rows["doc_map"].append(
-        data_plane_shard_metadata(
-            output,
-            doc_map_path,
-            schema="okf-search-doc-map-shard.v1",
-            snapshot_id=snapshot_id,
-            count=len(doc_map),
-            first_key="0" if doc_map else None,
-            last_key=str(len(doc_map) - 1) if doc_map else None,
-            compression="identity",
-            extra={"kind": "doc_map"},
-        )
+    doc_map_paths, doc_map_metadata = write_doc_map_partitions(
+        output, datasets, snapshot_id=snapshot_id
     )
+    shard_rows["doc_map"].extend(doc_map_metadata)
     shard_metadata = {
         "schema": "okf-search-shard-manifest.v1",
         "schema_version": DATA_PLANE_SCHEMA_VERSION,
@@ -829,19 +1147,23 @@ def write_search(
         "weights": FIELD_WEIGHTS,
         "counts": {
             "documents": len(datasets),
+            "doc_map_shards": len(doc_map_paths),
             "tokens": len(postings),
             "postings": retained,
+            "postings_shards": len(postings_paths),
             "uncapped_postings": uncapped,
             "max_postings_per_token": MAX_POSTINGS,
         },
         "entrypoints": {
-            "doc_map": "data/search/doc-map.json",
+            "doc_map": doc_map_paths,
             "facets": facets_path,
             "lexicon": lexicon_paths,
             "postings": postings_paths,
             "prefixes": prefix_paths,
             "result_docs": result_paths,
         },
+        "doc_map_partitioning": DOC_MAP_PARTITIONING_CONTRACT,
+        "postings_partitioning": POSTINGS_PARTITIONING_CONTRACT,
         "budgets": DATA_PLANE_BUDGETS,
         "shard_metadata": shard_metadata_path.relative_to(output).as_posix(),
     }

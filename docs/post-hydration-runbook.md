@@ -103,6 +103,18 @@ pre-authored terminal JSON object.
 .venv/bin/python scripts/check_release.py
 ```
 
+The search manifest produced here must declare
+`okf-search-postings-partitioning.v1` and
+`okf-search-doc-map-partitioning.v1`. Do not work around a shard-size failure by
+raising the 5 MiB budget, narrowing the corpus or changing logical lexicon
+width. The compiler keeps a legacy filename for one-partition groups and emits
+five-digit physical suffixes only for skewed groups; publication validation
+checks every physical path, byte bound, token range and document-map ordinal.
+The earlier T0 capacity attempt failed honestly on a 6,712,946-byte `ca`
+postings file. ADR-006 fixes that physical layout, but this full frozen build is
+the required proof that no lexicon, prefix or other singleton distribution is
+still oversized.
+
 Staging is intentionally non-publishable. It binds the exact frozen source,
 generated time, compiler, reconciliation and already-built bundle while the
 remaining snapshot evidence is generated.

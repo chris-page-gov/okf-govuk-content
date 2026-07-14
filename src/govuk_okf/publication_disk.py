@@ -15,6 +15,7 @@ import json
 import shutil
 import sqlite3
 import tempfile
+from bisect import bisect_left
 from collections.abc import Iterable, Iterator, Sequence
 from pathlib import Path
 from typing import Any, BinaryIO, overload
@@ -23,11 +24,13 @@ from urllib.parse import urlparse
 from .publication import (
     DATA_PLANE_BUDGETS,
     DATA_PLANE_SCHEMA_VERSION,
+    DOC_MAP_PARTITIONING_CONTRACT,
     FIELD_MASKS,
     FIELD_WEIGHTS,
     LINK_KINDS,
     MAX_POSTINGS,
     ORGANISATION_LINKS,
+    POSTINGS_PARTITIONING_CONTRACT,
     RECORD_CHUNK_SIZE,
     RESULT_CHUNK_SIZE,
     ROOT,
@@ -39,10 +42,13 @@ from .publication import (
     link_url,
     normalise_source_record,
     publisher_from_link,
+    postings_partition_relative_path,
     relationship,
     search_shard,
     shard_manifest_sha256,
     tokenise,
+    write_doc_map_partitions,
+    write_postings_partitions,
 )
 from .sharded_jsonl import ShardedJsonlError, iter_jsonl_records
 from .util import adjacency_bucket, canonical_json_bytes, pretty_json, slugify
@@ -1010,7 +1016,33 @@ class DiskCompiler:
             )
         ]
         for shard in shards:
-            postings_relative = f"data/search/postings/{shard}.json"
+            def postings_entries() -> Iterator[tuple[str, list[list[int]]]]:
+                tokens = self.connection.execute(
+                    "SELECT token FROM token_stats WHERE shard=? ORDER BY token",
+                    (shard,),
+                )
+                for (token_value,) in tokens:
+                    token = str(token_value)
+                    rows = [
+                        [int(ordinal), int(score), int(mask)]
+                        for ordinal, score, mask in self.connection.execute(
+                            "SELECT ordinal, score, mask FROM search_postings "
+                            "WHERE token=? ORDER BY score DESC, ordinal LIMIT ?",
+                            (token, MAX_POSTINGS),
+                        )
+                    ]
+                    yield token, rows
+
+            partition_paths, partition_metadata = write_postings_partitions(
+                output,
+                shard,
+                postings_entries(),
+                snapshot_id=snapshot_id,
+            )
+            postings_paths.extend(partition_paths)
+            shard_rows["postings"].extend(partition_metadata)
+            partition_last_keys = [str(row["last_key"]) for row in partition_metadata]
+            partition_count = len(partition_paths)
 
             def lexicon_entries() -> Iterator[dict[str, Any]]:
                 rows = self.connection.execute(
@@ -1018,10 +1050,18 @@ class DiskCompiler:
                     (shard,),
                 )
                 for token, df in rows:
+                    token_text = str(token)
+                    partition = bisect_left(partition_last_keys, token_text)
+                    if partition >= partition_count:
+                        raise PublicationError(
+                            f"postings partition does not cover token: {token_text}"
+                        )
                     yield {
-                        "token": token,
+                        "token": token_text,
                         "df": int(df),
-                        "postings": postings_relative,
+                        "postings": postings_partition_relative_path(
+                            shard, partition, partition_count
+                        ),
                     }
 
             lexicon_path = search_root / "lexicon" / f"{shard}.json"
@@ -1042,56 +1082,6 @@ class DiskCompiler:
                     last_key=str(last_token) if last_token is not None else None,
                     compression="identity",
                     extra={"kind": "lexicon", "shard": shard},
-                )
-            )
-
-            postings_path = search_root / "postings" / f"{shard}.json"
-            postings_path.parent.mkdir(parents=True, exist_ok=True)
-            tokens = self.connection.execute(
-                "SELECT token FROM token_stats WHERE shard=? ORDER BY token", (shard,)
-            )
-            with postings_path.open("w", encoding="utf-8", newline="\n") as stream:
-                stream.write('{\n  "tokens": {')
-                first = True
-                for (token,) in tokens:
-                    rows = [
-                        [int(ordinal), int(score), int(mask)]
-                        for ordinal, score, mask in self.connection.execute(
-                            "SELECT ordinal, score, mask FROM search_postings "
-                            "WHERE token=? ORDER BY score DESC, ordinal LIMIT ?",
-                            (token, MAX_POSTINGS),
-                        )
-                    ]
-                    stream.write("\n" if first else ",\n")
-                    stream.write(_pretty_entry(str(token), rows, 4))
-                    first = False
-                if first:
-                    stream.write("}\n}\n")
-                else:
-                    stream.write("\n  }\n}\n")
-            postings_paths.append(postings_path.relative_to(output).as_posix())
-            posting_count = int(
-                self.connection.execute(
-                    "SELECT COALESCE(SUM(CASE WHEN df > ? THEN ? ELSE df END), 0) "
-                    "FROM token_stats WHERE shard=?",
-                    (MAX_POSTINGS, MAX_POSTINGS, shard),
-                ).fetchone()[0]
-            )
-            shard_rows["postings"].append(
-                data_plane_shard_metadata(
-                    output,
-                    postings_path,
-                    schema="okf-search-postings-shard.v1",
-                    snapshot_id=snapshot_id,
-                    count=int(token_count),
-                    first_key=str(first_token) if first_token is not None else None,
-                    last_key=str(last_token) if last_token is not None else None,
-                    compression="identity",
-                    extra={
-                        "kind": "postings",
-                        "shard": shard,
-                        "posting_count": posting_count,
-                    },
                 )
             )
 
@@ -1144,30 +1134,10 @@ class DiskCompiler:
                 )
             )
 
-        doc_map_path = search_root / "doc-map.json"
-
-        def doc_map_entries() -> Iterator[tuple[str, object]]:
-            rows = self.connection.execute(
-                "SELECT CAST(output_index AS TEXT), row_json "
-                "FROM datasets ORDER BY CAST(output_index AS TEXT)"
-            )
-            for ordinal, row_json in rows:
-                yield str(ordinal), _json_value(str(row_json))["open"]
-
-        _write_pretty_mapping(doc_map_path, doc_map_entries())
-        shard_rows["doc_map"].append(
-            data_plane_shard_metadata(
-                output,
-                doc_map_path,
-                schema="okf-search-doc-map-shard.v1",
-                snapshot_id=snapshot_id,
-                count=len(datasets),
-                first_key="0" if datasets else None,
-                last_key=str(len(datasets) - 1) if datasets else None,
-                compression="identity",
-                extra={"kind": "doc_map"},
-            )
+        doc_map_paths, doc_map_metadata = write_doc_map_partitions(
+            output, datasets, snapshot_id=snapshot_id
         )
+        shard_rows["doc_map"].extend(doc_map_metadata)
         token_count = int(
             self.connection.execute("SELECT COUNT(*) FROM token_stats").fetchone()[0]
         )
@@ -1209,19 +1179,23 @@ class DiskCompiler:
             "weights": FIELD_WEIGHTS,
             "counts": {
                 "documents": len(datasets),
+                "doc_map_shards": len(doc_map_paths),
                 "tokens": token_count,
                 "postings": retained,
+                "postings_shards": len(postings_paths),
                 "uncapped_postings": uncapped,
                 "max_postings_per_token": MAX_POSTINGS,
             },
             "entrypoints": {
-                "doc_map": "data/search/doc-map.json",
+                "doc_map": doc_map_paths,
                 "facets": facets_path,
                 "lexicon": lexicon_paths,
                 "postings": postings_paths,
                 "prefixes": prefix_paths,
                 "result_docs": result_paths,
             },
+            "doc_map_partitioning": DOC_MAP_PARTITIONING_CONTRACT,
+            "postings_partitioning": POSTINGS_PARTITIONING_CONTRACT,
             "budgets": DATA_PLANE_BUDGETS,
             "shard_metadata": shard_metadata_path.relative_to(output).as_posix(),
         }

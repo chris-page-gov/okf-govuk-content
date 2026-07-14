@@ -1,6 +1,6 @@
 # Publication compiler scale evidence
 
-Date: 2026-07-12
+Date: 2026-07-14
 Compiler contract: `sqlite-bounded-v1`
 
 The fixture build remains the small in-memory reference implementation. Gzip
@@ -31,7 +31,32 @@ contained 40,204 JSON-LD node occurrences.
 This is a compiler capacity sample, not a full-corpus forecast. Record shape,
 relationship density and vocabulary cardinality materially affect storage and
 runtime. The CI scale test independently builds and validates 2,048 linked
-records and requires both traced Python heaps to remain below 64 MiB.
+records and requires both traced Python heaps to remain below 64 MiB. It now
+includes 64 same-prefix tokens present in every record, forcing one logical
+postings shard to span multiple physical files.
+
+## T0 capacity failure and bounded remediation
+
+The first exact 836,998-record T0 capacity build ran for 44,342.28 seconds and
+then correctly failed: `data/search/postings/ca.json` was 6,712,946 bytes,
+above the frozen 5,242,880-byte budget. The source was the content-addressed
+`T0-20260712/source-records-ef800a508c601cdb` inventory. No candidate was
+installed and no corpus row or search token was dropped.
+
+ADR-006 retains the two-character logical lexicon but partitions a skewed
+postings group into deterministic contiguous token ranges. The exact UTF-8
+pretty-JSON bytes determine each boundary, tokens remain atomic and every
+lexicon entry names its physical partition. Singleton document-map output is
+also replaced by contiguous 1,000-record ordinal shards. Legacy manifests with
+one postings file per logical shard and one scalar document-map path remain
+readable.
+
+The fast failure-shaped regression uses 64 `ca000000`–`ca000063` tokens with
+2,000 posting triples each. It reproduces a logical shard above 5 MiB, verifies
+that every physical file is within 5 MiB, proves exact-once token coverage and
+per-token routing, exercises release-pack discovery, and queries a token in a
+later partition through the Python discovery client. The full T0 build still
+must be rerun; this regression proves the algorithm, not final corpus fit.
 
 ## Bounded-memory design
 
@@ -43,10 +68,11 @@ records and requires both traced Python heaps to remain below 64 MiB.
   relationship shards materialise at most 1,000 assertions. Semantic entity
   shards use 500 source rows and semantic assertion shards use 1,000
   assertions.
-- Search lexicons, prefix maps, document maps, route buckets and adjacency
-  buckets stream in deterministic key order. A single posting list is capped
-  at 2,000 rows in published output while its uncapped document frequency
-  remains recorded.
+- Search lexicons, prefix maps, route buckets and adjacency buckets stream in
+  deterministic key order. A single posting list is capped at 2,000 rows in
+  published output while its uncapped document frequency remains recorded.
+  Exact-byte postings partitions preserve complete tokens, and document maps
+  use contiguous 1,000-record ordinal partitions.
 - Both compilers emit byte-identical per-shard schema/snapshot/count/key-bound,
   size and SHA-256 metadata. Gzip uncompressed sizes and file hashes are counted
   in bounded streams. Search shard metadata is a lazy side manifest, preserving
@@ -65,11 +91,11 @@ records and requires both traced Python heaps to remain below 64 MiB.
 - A single source envelope may be at most 64 MiB. Release 1 is metadata-led, so
   an envelope that large is treated as malformed rather than an invitation to
   retain a body.
-- The compiler preserves the two-character Explorer search-shard contract.
-  Highly skewed vocabulary can still make an individual published shard exceed
-  the 5 MiB release budget; compilation and publication validation both fail
-  that snapshot, and a versioned contract change is required rather than
-  silently changing routes.
+- The compiler preserves the two-character Explorer logical search-shard
+  contract while `okf-search-postings-partitioning.v1` bounds physical postings
+  files. Any single token, lexicon, prefix or other ordinary shard that still
+  exceeds 5 MiB fails the snapshot; the complete T0 rerun must prove that no
+  other skew remains.
 - One exceptionally high-degree route can make its adjacency bucket large.
   Emission remains bounded-memory, but the same release-size gate applies.
 - A directory containing multiple snapshot-level `*-source-records` files is
