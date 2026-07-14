@@ -11,7 +11,9 @@ flowchart LR
   A["Official-source preflight"] --> B["T0/T1 census"]
   B --> C["Resumable metadata hydration"]
   C --> D["Semantic and static bundle compilation"]
-  D --> E["Explorer and read-only discovery"]
+  D --> S["Sitemap and routing topology"]
+  S --> E["Explorer and read-only discovery"]
+  D --> E
   C --> Q["Corpus-anchored question matrix v2"]
   E --> R["Evaluation and release verification"]
   Q --> R
@@ -129,8 +131,18 @@ python3 scripts/build_checksums.py --check
 
 Compilation is atomic and produces YAML-LD, the equivalent JSON-LD projection,
 an `okf-explorer-large-corpus.v1` descriptor, chunked records/resources/
-publishers/relationships, static lexical search, deterministic route indexes
-and FNV-1a relationship-adjacency buckets.
+publishers/relationships, static lexical search, deterministic route indexes,
+FNV-1a relationship-adjacency buckets and a `govuk-site-topology.v1` control
+plane over all observed hosts and routing mechanisms.
+
+The topology is generated from the complete compiled record and relationship
+planes, never from the XML sitemap alone. It classifies the main `www.gov.uk`
+estate separately from observed GOV.UK-domain and other external boundaries,
+counts canonical URLs, stable identifiers, redirects and typed relationships,
+and retains complete source-native redirect fields on each record. Boundary
+hosts remain evidenced destinations rather than implied complete site mirrors.
+See [`sitemap-routing.md`](sitemap-routing.md) and
+[`ADR-006`](../governance/decisions/ADR-006-sitemap-routing-topology.md).
 
 Static search preserves its two-character logical lexicon. The additive
 `okf-search-postings-partitioning.v1` contract greedily writes complete tokens
@@ -181,7 +193,8 @@ The browser loads `bundle/index.html`. Shared context stays in query parameters,
 the selected canonical record uses the federated hash-route convention, and
 legacy `route=` links canonicalise to that fragment. A CSP-safe Pages 404
 fallback preserves both query and hash state before returning to the project
-base. Route selection progressively loads gzip route-index, record and
+base. The `Sitemap & routing` view lazily loads `data/site-topology.json`, so
+normal startup remains overview-first; route selection progressively loads gzip route-index, record and
 adjacency buckets over HTTP. A packaged release resolves those unchanged paths
 through the descriptor's `release_data_plane` entrypoint. It requires a
 same-origin 206 response, exact range coordinates, absent `Content-Encoding`,

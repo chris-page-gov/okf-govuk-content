@@ -20,6 +20,11 @@ semantic versioning.
   source constraint.
 - Federated YAML-LD/JSON-LD semantic profile, deterministic fixture compiler,
   static Explorer/search/route-adjacency surface and read-only discovery CLI.
+- First-class `govuk-site-topology.v1` projection and lazy Explorer `Sitemap &
+  routing` view covering observed hosts, boundary classes, canonical routes,
+  stable identifiers, complete per-record redirect rules and typed routing
+  mechanisms without expanding the release boundary or claiming fixture
+  completeness.
 - Byte-equivalent bounded-memory SQLite compiler for gzip and sharded
   full-corpus inputs, with streamed search, route and adjacency indexes and a
   measured capacity report.
@@ -49,6 +54,14 @@ semantic versioning.
   legitimate canonical-route aliases and requires opposing identity agreement.
 - Development-only persona/question design matrix plus the corpus-anchored v2
   question generator and independent release verifier.
+- Deterministic walkthrough inventory for all 48 checked-in persona/story
+  hypotheses, exposing the evidence and recall boundary for each representative
+  relationship-traversal question, plus a replayable non-personal GOV.UK Chat
+  new-parent comparison contract with ordered source-card capture.
+- Generic OKF Explorer compatibility for integrity-bearing bundles: descriptor
+  entrypoints remain string paths while the matching `entrypoint_integrity`
+  map preserves bootstrap hashes, preventing object references from resolving
+  as `[object Object]` in the canonical Svelte Explorer.
 - Machine-applicable persona/use-taxonomy saturation over 48 primary
   archetypes, 17 overlays and 11 required dimensions, including the recovered
   privacy-sensitive-context hypothesis, all 83 pinned schema families, 136

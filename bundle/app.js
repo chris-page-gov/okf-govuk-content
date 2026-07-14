@@ -40,6 +40,7 @@ const TRANSLATIONS = {
     close: "Close",
     tabs: {
       results: "Results",
+      sitemap: "Sitemap & routing",
       browse: "Browse paths",
       relationships: "Relationships",
       timeline: "Lifecycle",
@@ -94,6 +95,7 @@ const TRANSLATIONS = {
     close: "Cau",
     tabs: {
       results: "Canlyniadau",
+      sitemap: "Map safle a llwybro",
       browse: "Llwybrau pori",
       relationships: "Cysylltiadau",
       timeline: "Cylch oes",
@@ -138,6 +140,8 @@ let searchBacked = false;
 let selectedRecord = null;
 let selectedRelationships = [];
 let relationshipsLoading = false;
+let siteTopologyLoading = false;
+let siteTopologyError = "";
 let requestSequence = 0;
 let suggestionTimer = null;
 let instrumentationConsent = false;
@@ -294,6 +298,8 @@ async function loadCatalogue() {
   records = [];
   selectedRecord = null;
   selectedRelationships = [];
+  siteTopologyLoading = false;
+  siteTopologyError = "";
   const query = new URLSearchParams(window.location.search);
   const explicitBundle = query.get("bundle") || "";
   const configured = document.documentElement.dataset.defaultBundle || "";
@@ -637,6 +643,123 @@ function routeButton(route) {
   return createButton(labelForRoute(route), () => openRoute(route, true), "route-button");
 }
 
+function topologyTable(headings, rows) {
+  const table = createElement("table", { className: "topology-table" });
+  const head = createElement("thead");
+  head.append(createElement("tr", {}, headings.map((label) => createElement("th", { text: label, attributes: { scope: "col" } }))));
+  const body = createElement("tbody");
+  for (const cells of rows) {
+    body.append(createElement("tr", {}, cells.map((cell, index) => createElement(
+      "td",
+      { attributes: { "data-label": headings[index] } },
+      Array.isArray(cell) ? cell : [cell]
+    ))));
+  }
+  table.append(head, body);
+  return table;
+}
+
+function topologyCount(label, value) {
+  return createElement("article", { className: "topology-count" }, [
+    createElement("strong", { text: formatNumber(value) }),
+    createElement("span", { text: label })
+  ]);
+}
+
+async function searchHost(hostname) {
+  syncState({ view: "results", query: hostname, page: 1 }, true);
+  await runSearch(hostname, false);
+}
+
+async function ensureSiteTopology() {
+  if (!corpusStore || corpusStore.siteTopology || siteTopologyLoading) return;
+  siteTopologyLoading = true;
+  siteTopologyError = "";
+  if (state.view === "sitemap") setBusy(true);
+  try {
+    const topology = await corpusStore.loadSiteTopology();
+    if (!topology) siteTopologyError = "This snapshot does not advertise a sitemap and routing projection.";
+  } catch (error) {
+    siteTopologyError = error instanceof Error ? error.message : String(error);
+  } finally {
+    siteTopologyLoading = false;
+    if (state.view === "sitemap") renderAll();
+  }
+}
+
+function renderSitemap() {
+  const content = document.getElementById("view-content");
+  document.getElementById("pagination").replaceChildren();
+  const topology = corpusStore && corpusStore.siteTopology;
+  if (!topology) {
+    if (!siteTopologyError) ensureSiteTopology();
+    content.replaceChildren(createElement("div", { className: siteTopologyError ? "empty-state" : "loading-state" }, [
+      createElement("p", { text: siteTopologyError ? "Sitemap and routing data is unavailable: " + siteTopologyError : "Loading the sitemap and routing projection…" }),
+      siteTopologyError ? createButton("Retry", () => {
+        siteTopologyError = "";
+        ensureSiteTopology();
+      }) : null
+    ].filter(Boolean)));
+    return;
+  }
+
+  const counts = topology.counts || {};
+  const notice = createElement("section", { className: "topology-notice" }, [
+    createElement("h3", { text: "Snapshot-bounded topology, not a release completeness claim" }),
+    createElement("p", { text: "This projection combines the admitted official source union. The GOV.UK XML sitemap is one Search-derived enumerator; independently operated boundary sites are recorded as destinations and relationships rather than mirrored as complete sites." }),
+    createElement("p", { className: "hint", text: "Status: " + String(topology.status || "not recorded") + ". Page bodies are not retained or published." })
+  ]);
+  const metricGrid = createElement("div", { className: "topology-counts" }, [
+    topologyCount("published route records", counts.published_records),
+    topologyCount("observed hosts", counts.hosts),
+    topologyCount("GOV.UK-domain boundary hosts", counts.gov_uk_domain_boundary_hosts),
+    topologyCount("other external boundary hosts", counts.other_external_boundary_hosts),
+    topologyCount("source-declared redirect rules", counts.redirect_rules),
+    topologyCount("typed relationship assertions", counts.relationship_assertions)
+  ]);
+  const mechanisms = createElement("div", { className: "topology-mechanisms" });
+  for (const mechanism of topology.routing_mechanisms || []) {
+    mechanisms.append(createElement("article", { className: "summary-card" }, [
+      createElement("h4", { text: mechanism.label || mechanism.id }),
+      createElement("p", { text: formatNumber(mechanism.count) }),
+      createElement("p", { className: "hint", text: "Full detail: " + String(mechanism.full_detail || "not recorded") })
+    ]));
+  }
+
+  const hostRows = (topology.hosts || []).slice(0, 500).map((host) => [
+    [createButton(host.hostname, () => searchHost(host.hostname), "route-button")],
+    String(host.host_kind || "not recorded").replaceAll("_", " "),
+    formatNumber(host.record_count),
+    (host.routing_kinds || []).map((row) => row.value + " (" + formatNumber(row.count) + ")").join(", ") || "Not recorded"
+  ]);
+  const hostSection = createElement("section", {}, [
+    createElement("h3", { text: "Observed sites and hosts" }),
+    createElement("p", { className: "hint", text: hostRows.length < (topology.hosts || []).length ? "Showing the first 500 deterministically ordered hosts. The machine-readable projection contains all hosts." : "All hosts in this snapshot are shown." }),
+    hostRows.length ? topologyTable(["Host", "Boundary class", "Records", "Routing kinds"], hostRows) : createElement("p", { text: "No host rows were advertised." })
+  ]);
+
+  const redirectRows = (topology.redirect_samples || []).map((redirect) => [
+    [createButton(redirect.source_url || redirect.source_route, () => openRoute(redirect.source_route, true), "route-button")],
+    redirect.path || "/",
+    redirect.type + " / " + redirect.segments_mode,
+    redirect.destination_url
+      ? [createExternalLink(redirect.destination || redirect.destination_url, redirect.destination_url)]
+      : redirect.destination || "Not recorded"
+  ]);
+  const redirectSection = createElement("section", {}, [
+    createElement("h3", { text: "Source-declared redirects" }),
+    createElement("p", { className: "hint", text: topology.redirect_samples_complete ? "All redirect rules in this snapshot are shown. Each record also retains its complete source-native redirect fields." : "Showing a bounded sample. Complete redirect detail remains on every record and in the route adjacency shards." }),
+    redirectRows.length ? topologyTable(["Source", "Matched path", "Rule", "Destination"], redirectRows) : createElement("p", { text: "No source-declared redirect rules were present in this snapshot." })
+  ]);
+
+  const reference = corpusStore.descriptor.entrypoints.site_topology || corpusStore.manifest.indexes.site_topology;
+  const machineLink = reference ? createElement("a", {
+    text: "Open the machine-readable site topology",
+    attributes: { href: new URL(referencePath(reference), corpusStore.baseUrl).toString() }
+  }) : null;
+  content.replaceChildren(notice, metricGrid, createElement("h3", { text: "Routing mechanisms" }), mechanisms, hostSection, redirectSection, machineLink || createElement("span"));
+}
+
 function relationshipTable(relationships) {
   const table = createElement("table", { className: "relationship-table" });
   const head = createElement("thead");
@@ -758,7 +881,7 @@ function lifecycleEvents(recordsToUse) {
     } else {
       if (record.updatedAt) events.push({ route: record.route, title: record.title, kind: "Updated", date: record.updatedAt, note: "Snapshot metadata" });
       if (record.firstPublishedAt) events.push({ route: record.route, title: record.title, kind: "First published", date: record.firstPublishedAt, note: "Snapshot metadata" });
-      if (["withdrawn", "redirected", "gone", "replaced"].includes(record.status.toLowerCase())) events.push({ route: record.route, title: record.title, kind: record.status, date: record.updatedAt, note: "Confirm the current destination on GOV.UK" });
+      if (["withdrawn", "redirect", "redirected", "gone", "replaced"].includes(record.status.toLowerCase())) events.push({ route: record.route, title: record.title, kind: record.status, date: record.updatedAt, note: "Confirm the current destination on GOV.UK" });
     }
   }
   return events.sort((left, right) => String(right.date).localeCompare(String(left.date)) || left.title.localeCompare(right.title));
@@ -827,6 +950,7 @@ function renderCompare() {
 function viewDescription(view, count) {
   const descriptions = {
     results: count + " " + translation().results + " in the active context.",
+    sitemap: "Hosts, routes, redirects, boundary destinations and routing mechanisms in the loaded snapshot.",
     browse: "Official browse, taxonomy, organisation and journey structures remain distinct.",
     relationships: "Typed, evidence-bearing paths for the selected record or aggregate snapshot.",
     timeline: "Publication, update, withdrawal, redirect and replacement events in the active context.",
@@ -838,7 +962,8 @@ function viewDescription(view, count) {
 function renderView() {
   const heading = document.getElementById("view-heading");
   heading.replaceChildren(createElement("div", {}, [createElement("h2", { text: translation().tabs[state.view] }), createElement("p", { text: viewDescription(state.view, visibleRecords().length) })]));
-  if (state.view === "browse") renderBrowse();
+  if (state.view === "sitemap") renderSitemap();
+  else if (state.view === "browse") renderBrowse();
   else if (state.view === "relationships") renderRelationships();
   else if (state.view === "timeline") renderTimeline();
   else if (state.view === "compare") renderCompare();
@@ -881,6 +1006,24 @@ function renderDetail() {
   sections.push(actions);
   const summaryBody = createElement("div", {}, [selectedRecord.summary ? createElement("p", { text: selectedRecord.summary }) : createElement("p", { text: "No summary was supplied in source metadata." }), metadataList(selectedRecord)]);
   sections.push(detailSection(translation().summary, summaryBody));
+  const routingBody = createElement("div");
+  const routingMetadata = createElement("dl", { className: "detail-meta" });
+  for (const [label, value] of [
+    ["Routing kind", selectedRecord.routingKind],
+    ["Entity class", selectedRecord.entityClass],
+    ["Coverage disposition", selectedRecord.coverageDisposition]
+  ]) routingMetadata.append(createElement("dt", { text: label }), createElement("dd", { text: value || "Not recorded" }));
+  routingBody.append(routingMetadata);
+  if (selectedRecord.redirects.length) {
+    routingBody.append(createElement("h4", { text: "Source-native redirect rules" }));
+    routingBody.append(topologyTable(["Matched path", "Rule", "Segments", "Destination"], selectedRecord.redirects.map((redirect) => [
+      redirect.path || "/",
+      redirect.type,
+      redirect.segmentsMode,
+      redirect.destinationUrl ? [createExternalLink(redirect.destination || redirect.destinationUrl, redirect.destinationUrl)] : redirect.destination
+    ])));
+  } else routingBody.append(createElement("p", { text: "No source-declared redirect rule was supplied for this record." }));
+  sections.push(detailSection("Routing", routingBody));
   const relationshipBody = relationshipsLoading
     ? createElement("p", { text: "Loading the route-scoped adjacency shard…" })
     : selectedRelationships.length
@@ -1033,10 +1176,11 @@ function renderAll() {
   renderFacets();
   renderView();
   renderDetail();
-  if (!document.getElementById("view-content").getAttribute("aria-busy") || document.getElementById("view-content").getAttribute("aria-busy") === "false") {
+  const topologyBusy = state.view === "sitemap" && siteTopologyLoading;
+  if (!topologyBusy && (!document.getElementById("view-content").getAttribute("aria-busy") || document.getElementById("view-content").getAttribute("aria-busy") === "false")) {
     setStatus(visibleRecords().length + " " + translation().results + " in the active context.");
   }
-  document.getElementById("view-content").setAttribute("aria-busy", "false");
+  document.getElementById("view-content").setAttribute("aria-busy", String(topologyBusy));
 }
 
 function bindEvents() {

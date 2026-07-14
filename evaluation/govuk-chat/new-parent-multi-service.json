@@ -1,0 +1,81 @@
+{
+  "capture_contract": {
+    "answer_fields": [
+      "answer_text",
+      "source_cards_in_display_order",
+      "retrieved_at",
+      "surface",
+      "capture_status"
+    ],
+    "do_not_store": [
+      "account identity",
+      "cookies or tokens",
+      "personal information",
+      "conversation identifiers"
+    ],
+    "ground_truth_boundary": "GOV.UK Chat output is a time-stamped comparator observation. It is not the OKF gold answer and must be checked against the cited current GOV.UK pages.",
+    "source_card_fields": [
+      "position",
+      "title",
+      "url"
+    ]
+  },
+  "official_context": [
+    {
+      "claim": "GOV.UK describes a new-parent question as a multi-department Chat example.",
+      "url": "https://insidegovuk.blog.gov.uk/2025/12/16/gov-uk-has-entered-the-chat-our-vision-for-gov-uk-chat/"
+    },
+    {
+      "claim": "GOV.UK Chat answers include links to the original source material for verification.",
+      "url": "https://www.gov.uk/algorithmic-transparency-records/dsit-gov-dot-uk-chat"
+    },
+    {
+      "claim": "The public GOV.UK Chat surface is in the GOV.UK app; the web interface is a departmental testing surface.",
+      "url": "https://docs.publishing.service.gov.uk/manual/govuk-chat.html"
+    }
+  ],
+  "persona_ids": [
+    "persona-public-multi-service-life-event",
+    "persona-public-parent-carer"
+  ],
+  "schema": "govuk-chat-comparison-walkthrough.v1",
+  "published_example": "evaluation/govuk-chat/official-published-example.json",
+  "status": "official_published_example_captured_live_walkthrough_requires_signon",
+  "story_ids": [
+    "story-multi-service-life-event",
+    "story-parent-carer"
+  ],
+  "turns": [
+    {
+      "bundle_comparison": "Discover the starting records and owning organisations without claiming personal eligibility.",
+      "operation": "locate_known_item",
+      "question": "I've just had a baby. What government help and payments should I check?",
+      "turn_id": "new-parent-01"
+    },
+    {
+      "bundle_comparison": "Expose jurisdiction and personal-fact boundaries, and identify authoritative eligibility tools or services.",
+      "operation": "determine_applicability",
+      "question": "How can I work out which of those apply to me without sharing personal information here?",
+      "turn_id": "new-parent-02"
+    },
+    {
+      "bundle_comparison": "Traverse from the life event to Child Benefit records, HMRC ownership and the official transaction hand-off.",
+      "operation": "traverse_relationships",
+      "question": "What do I need to do about Child Benefit, and where is the official page?",
+      "turn_id": "new-parent-03"
+    },
+    {
+      "bundle_comparison": "Traverse forward to childcare support while preserving age, location and effective-date constraints.",
+      "operation": "follow_process",
+      "question": "What childcare support should I check as my child gets older?",
+      "turn_id": "new-parent-04"
+    },
+    {
+      "bundle_comparison": "Compare the ordered GOV.UK Chat source cards with OKF canonical URLs, stable IDs, route state and typed relationships.",
+      "operation": "verify_provenance",
+      "question": "Please list the GOV.UK pages you used and the order I should check them in.",
+      "turn_id": "new-parent-05"
+    }
+  ],
+  "walkthrough_id": "govuk-chat-new-parent-multi-service-v1"
+}

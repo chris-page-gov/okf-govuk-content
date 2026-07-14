@@ -28,6 +28,7 @@ jobs:
       - run: .venv/bin/python scripts/check_repository_policy.py
       - run: .venv/bin/python scripts/preflight_sources.py --check
       - run: .venv/bin/python scripts/build_research_assets.py --check
+      - run: .venv/bin/python scripts/build_walkthrough_inventory.py --check
       - run: .venv/bin/python scripts/check_persona_saturation.py
       - run: .venv/bin/python scripts/build_status_projections.py --check
       - run: .venv/bin/python scripts/build_aim_scorecard.py --check

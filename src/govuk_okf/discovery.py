@@ -41,10 +41,10 @@ class DiscoveryIndex:
         if not self.bundle.is_dir():
             raise DiscoveryError(f"bundle directory does not exist: {bundle}")
         self.descriptor = self._load_json("okf-explorer.json")
-        self.manifest = self._load_json(self.descriptor["entrypoints"]["data_manifest"])
-        self.search_manifest = self._load_json(self.descriptor["entrypoints"]["search_manifest"])
-        self.adjacency_manifest = self._load_json(self.descriptor["entrypoints"]["relationship_adjacency"])
-        route_entrypoint = self.descriptor["entrypoints"].get("route_index") or self.manifest.get("indexes", {}).get("route_index")
+        self.manifest = self._load_json(self._entrypoint("data_manifest"))
+        self.search_manifest = self._load_json(self._entrypoint("search_manifest"))
+        self.adjacency_manifest = self._load_json(self._entrypoint("relationship_adjacency"))
+        route_entrypoint = self._entrypoint("route_index") or self.manifest.get("indexes", {}).get("route_index")
         if not route_entrypoint:
             raise DiscoveryError("bundle has no route index")
         self.route_manifest = self._load_json(route_entrypoint)
@@ -103,6 +103,15 @@ class DiscoveryIndex:
         self._json_cache: OrderedDict[str, Any] = OrderedDict()
         self._gzip_cache: OrderedDict[str, Any] = OrderedDict()
         self._result_docs: list[dict[str, Any]] | None = None
+
+    def _entrypoint(self, name: str) -> object:
+        entrypoint = self.descriptor.get("entrypoints", {}).get(name)
+        integrity = self.descriptor.get("entrypoint_integrity", {}).get(name)
+        if integrity is None:
+            return entrypoint
+        if not isinstance(integrity, dict) or integrity.get("path") != entrypoint:
+            raise DiscoveryError(f"descriptor entrypoint and integrity path differ: {name}")
+        return integrity
 
     def _resolve(self, relative: object) -> Path:
         value = relative.get("path") if isinstance(relative, dict) else relative

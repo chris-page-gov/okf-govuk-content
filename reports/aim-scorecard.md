@@ -37,8 +37,8 @@ Boundary: A fixture demonstrates the pipeline but cannot fulfil an independent f
 
 Evidence:
 
-- `E-BUNDLE-DESCRIPTOR` — pass; `bundle/okf-explorer.json`; SHA-256 `7b88c67ab4bbaa35523a9bcdd71ce5fc670ca20fc87856a000c3c2fd15895bc7`; observed `true`.
-- `E-INDEPENDENT-WIKI` — pass; `bundle/okf-explorer.json/description`; SHA-256 `7b88c67ab4bbaa35523a9bcdd71ce5fc670ca20fc87856a000c3c2fd15895bc7`; observed `"Derived, non-authoritative semantic catalogue of GOV.UK content, navigation, organisations, taxonomies and relationships."`.
+- `E-BUNDLE-DESCRIPTOR` — pass; `bundle/okf-explorer.json`; SHA-256 `d92365e243c381d3b3c9000dad492687a2bf566283f4494c5901fda300e7fdeb`; observed `true`.
+- `E-INDEPENDENT-WIKI` — pass; `bundle/okf-explorer.json/description`; SHA-256 `d92365e243c381d3b3c9000dad492687a2bf566283f4494c5901fda300e7fdeb`; observed `"Derived, non-authoritative semantic catalogue of GOV.UK content, navigation, organisations, taxonomies and relationships."`.
 - `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `"fixture"`.
 - `E-SNAPSHOT-UNSAMPLED` — not met; `release/manifest.yaml/snapshot/sampled`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `true`.
 - `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
@@ -72,7 +72,7 @@ Evidence:
 - `E-FULL-CORPUS` — not met; `release/status.json/full_corpus_reconciled`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
 - `E-ZERO-OMISSIONS` — not met; `release/status.json/unexplained_omissions`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `null`.
 - `E-RECONCILIATION-ARTEFACT` — not met; `release/manifest.yaml/artifacts/reconciliation`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `null`.
-- `E-RIGHTS-RELEASE` — not met; `release/rights-privacy-audit.json/rights_privacy_audit_passed`; SHA-256 `ea97f507d53b40b790bb466235c5b9b46c6df70801f8a748753aaf984f961825`; observed `false`.
+- `E-RIGHTS-RELEASE` — not met; `release/rights-privacy-audit.json/rights_privacy_audit_passed`; SHA-256 `033ed1d2c4abd712c9badf2ee180aeaef98c0ff89bfed7d3823f14f4c36fecca`; observed `false`.
 
 Negative findings and limitations:
 
@@ -97,8 +97,8 @@ Boundary: Fixture UI and automated checks support only partial fulfilment withou
 
 Evidence:
 
-- `E-EXPLORER-FOUNDATION` — pass; `explorer/src/index.html`; SHA-256 `32def87a1256763faa51bc71ceefd455e8c4fcabb56a79c12f8c432c783d5a83`; observed `true`.
-- `E-EXPLORER-NONBROWSER-TESTS` — not met; `explorer/src/evidence/fixture-browser.json/completed_non_browser_checks/failed`; SHA-256 `90ca66d8d35350529a11e2695b0e9a760ad6675d1953bfd5c43b0d8e73830594`; observed `null`.
+- `E-EXPLORER-FOUNDATION` — pass; `explorer/src/index.html`; SHA-256 `6fabf38316aefa702b252d26a3b7e28cc4c2f0e99738df874552c2a29dc3a674`; observed `true`.
+- `E-EXPLORER-NONBROWSER-TESTS` — not met; `explorer/src/evidence/fixture-browser.json/completed_non_browser_checks/failed`; SHA-256 `f51c11b36a16a97602e3aa7caad5d58535c089583917a34d9f96d2360252745c`; observed `null`.
 - `E-PERSONA-FOUNDATION` — pass; `personas/manifest.json`; SHA-256 `48fef769daa62ff839fe2c5e52cde31064becdf2e625f76c7ce5213888c9b8e2`; observed `true`.
 - `E-HUMAN-COMPLETE` — not met; `release/status.json/human_evaluation_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_authorised"`.
 - `E-HUMAN-AIM-FULFILLED` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_yet_testable"`.
@@ -162,7 +162,7 @@ Evidence:
 
 - `E-PROFILE` — pass; `semantic/profile/govuk-okf-profile-v1.yamlld`; SHA-256 `897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8`; observed `true`.
 - `E-SEMANTIC-FIXTURE` — pass; `release/semantic-validation.json/passed`; SHA-256 `46c36354ca25306d700c0339e73f78545f302e8219b7a0b5ef05d7f07f1d10a3`; observed `true`.
-- `E-STATIC-SEARCH` — pass; `bundle/data/search/manifest.json`; SHA-256 `78eb22f2b7e1798fecbb593b36c7b50421af0901c32c718a64fffb31027a9b6e`; observed `true`.
+- `E-STATIC-SEARCH` — pass; `bundle/data/search/manifest.json`; SHA-256 `7e6e0845fdffc3e9196e812d4ce887166df8291098882a3066d15f772f8e8b30`; observed `true`.
 - `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `"fixture"`.
 - `E-FULL-CORPUS` — not met; `release/status.json/full_corpus_reconciled`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
 - `E-SEMANTIC-RELEASE` — not met; `release/status.json/semantic_validation_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
@@ -280,9 +280,9 @@ Boundary: A reproducible fixture and implemented controller are partial until th
 Evidence:
 
 - `E-ACTIVITY-LEDGER` — pass; `provenance/activity-ledger.jsonl`; SHA-256 `0aca93c7b4228424a1bf8faa70d54ebfa2276e753fec29d8be2dcfb1d089ca8d`; observed `true`.
-- `E-REQUIREMENT-COVERAGE` — pass; `governance/requirements-status.json/counts/requirements`; SHA-256 `6c82321c5440e494511080ea7d7a0d259accd389ebd828985ee8896cbf7af04e`; observed `95`.
-- `E-TRACEABILITY-COVERAGE` — pass; `governance/traceability-status.json/counts/clauses`; SHA-256 `346407b2fdebfae8b4447c198a0ea96fea0bd7345e73a85d2f68b1706111933c`; observed `21`.
-- `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `58d32a29040c6f0c7dee2549b2ee99827cda79d51b80885bd4354524a9c12592`; observed `true`.
+- `E-REQUIREMENT-COVERAGE` — pass; `governance/requirements-status.json/counts/requirements`; SHA-256 `86f55a02a4519db93f412b2e82b62c539e3196eb2f921c9f039c5cb6ba733f48`; observed `95`.
+- `E-TRACEABILITY-COVERAGE` — pass; `governance/traceability-status.json/counts/clauses`; SHA-256 `b092cf4bb0f7d583824595d9816d524781a272f14b5883364ef71a6a13b11dcf`; observed `21`.
+- `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `eb370e3c02947590a081d8e44d933264875cdfa75c2ce611ba9a5dbee59598aa`; observed `true`.
 - `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `"fixture"`.
 - `E-CLEAN-ROOM-RELEASE` — not met; `release/status.json/clean_room_reproduction_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
 - `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.

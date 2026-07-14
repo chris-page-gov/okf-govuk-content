@@ -3,9 +3,9 @@
     "corpus_manifests": [],
     "generated_at": "2026-07-11T23:30:00Z",
     "publication_manifest": {
-      "bytes": 5403,
+      "bytes": 5451,
       "path": "bundle/data/manifest.json",
-      "sha256": "05a7472c8e6dcbe7db96e3cedfaacb567bc1a24426fdf6256eb9f3632fc4ac7e"
+      "sha256": "ee90dd727636ce25f743604ed7ed4e15966631a3dfb2f663e67091889c874492"
     },
     "review_ledger": {
       "bytes": 110,
@@ -144,8 +144,8 @@
   "sampled": true,
   "scan": {
     "classification_items": 36,
-    "compressed_bytes_scanned": 605179,
-    "files_scanned": 745,
+    "compressed_bytes_scanned": 617402,
+    "files_scanned": 746,
     "limits": {
       "max_compressed_bytes_per_file": 52428800,
       "max_depth": 64,
@@ -158,8 +158,8 @@
       "max_uncompressed_bytes_per_file": 67108864
     },
     "mode": "bounded_streaming_disk_backed",
-    "publication_assets_scanned": 745,
-    "record_objects_scanned": 975,
+    "publication_assets_scanned": 746,
+    "record_objects_scanned": 976,
     "record_observations_by_source": {
       "publication:datasets": 14,
       "publication:publishers": 6,
@@ -175,10 +175,10 @@
     "corpus_snapshot_bound": false,
     "frozen_source": null,
     "full_unsampled_snapshot": false,
-    "publication_asset_set_sha256": "4d20cae5f140520e914eeae0285622fe489f0bb039324b95b1e234028f625f9c",
+    "publication_asset_set_sha256": "ceb9ab12a3f395f972a0e1c8e81bcd069b9c76b7089339c830301de484136e9b",
     "publication_manifest": {
       "path": "bundle/data/manifest.json",
-      "sha256": "05a7472c8e6dcbe7db96e3cedfaacb567bc1a24426fdf6256eb9f3632fc4ac7e"
+      "sha256": "ee90dd727636ce25f743604ed7ed4e15966631a3dfb2f663e67091889c874492"
     },
     "release_manifest": {
       "path": "release/manifest.yaml",

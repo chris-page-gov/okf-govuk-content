@@ -13,6 +13,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 from .publication import (
     DATA_PLANE_BUDGETS,
@@ -228,8 +229,36 @@ class PublicationValidator:
               assertion_id TEXT PRIMARY KEY,
               source TEXT NOT NULL,
               target TEXT NOT NULL,
+              kind TEXT NOT NULL,
               row_sha256 TEXT NOT NULL
             );
+            CREATE TABLE topology_records (
+              ordinal INTEGER PRIMARY KEY,
+              open TEXT NOT NULL,
+              url TEXT NOT NULL,
+              hostname TEXT NOT NULL,
+              scheme TEXT NOT NULL,
+              routing_kind TEXT NOT NULL,
+              coverage_disposition TEXT NOT NULL,
+              stable_content_identifier INTEGER NOT NULL
+            );
+            CREATE TABLE topology_redirects (
+              dataset_ordinal INTEGER NOT NULL,
+              redirect_ordinal INTEGER NOT NULL,
+              source_route TEXT NOT NULL,
+              source_url TEXT NOT NULL,
+              source_host TEXT NOT NULL,
+              path TEXT NOT NULL,
+              destination TEXT NOT NULL,
+              destination_url TEXT NOT NULL,
+              destination_host TEXT NOT NULL,
+              type TEXT NOT NULL,
+              segments_mode TEXT NOT NULL,
+              evidence_url TEXT NOT NULL,
+              evidence_locator TEXT NOT NULL,
+              retrieved_at TEXT NOT NULL,
+              PRIMARY KEY (dataset_ordinal, redirect_ordinal)
+            ) WITHOUT ROWID;
             CREATE TABLE search_tokens (
               token TEXT PRIMARY KEY,
               shard TEXT NOT NULL,
@@ -510,6 +539,7 @@ class PublicationValidator:
             "data_manifest",
             "overview_index",
             "analysis_overview",
+            "site_topology",
             "search_manifest",
             "relationship_adjacency",
             "route_index",
@@ -522,8 +552,18 @@ class PublicationValidator:
         for name, relative in entrypoints.items():
             if name != "viewer":
                 self.check_file(relative, label=f"descriptor entrypoint {name}")
+        entrypoint_integrity = descriptor.get("entrypoint_integrity", {})
+        if not isinstance(entrypoint_integrity, dict) or not required_entrypoints <= set(entrypoint_integrity):
+            self.errors.add("Explorer descriptor is missing required entrypoint integrity metadata")
+            entrypoint_integrity = entrypoint_integrity if isinstance(entrypoint_integrity, dict) else {}
+        for name in required_entrypoints:
+            reference = entrypoint_integrity.get(name)
+            if not isinstance(reference, dict) or reference.get("path") != entrypoints.get(name):
+                self.errors.add(f"descriptor entrypoint and integrity path differ: {name}")
+                continue
+            self.check_file(reference, label=f"descriptor entrypoint integrity {name}")
         manifest = self.load_json(
-            entrypoints.get("data_manifest", "data/manifest.json"),
+            entrypoint_integrity.get("data_manifest", entrypoints.get("data_manifest", "data/manifest.json")),
             label="data manifest",
             default={},
         )
@@ -612,6 +652,81 @@ class PublicationValidator:
                 self.errors.add(f"body field retained in {route}")
             if not str(row.get("url", "")).startswith(("https://", "http://")):
                 self.errors.add(f"unsafe dataset URL in {route}")
+            self.register_topology_record(ordinal, route, row)
+
+    def register_topology_record(
+        self, ordinal: int, route: str, row: dict[str, Any]
+    ) -> None:
+        url = str(row.get("url") or row.get("@id") or "")
+        parsed = urlparse(url)
+        hostname = (parsed.hostname or "").casefold()
+        scheme = parsed.scheme.casefold()
+        redirects = row.get("redirects") or []
+        if not isinstance(redirects, list):
+            self.errors.add(f"dataset redirects are not an array: {route}")
+            redirects = []
+        entity_class = str(row.get("entity_class") or "content_identity")
+        coverage = str(row.get("coverage_disposition") or "represented")
+        expected_routing_kind = (
+            "redirect"
+            if redirects
+            else "external_boundary"
+            if entity_class == "external_boundary" or hostname != "www.gov.uk"
+            else "tombstone"
+            if coverage == "tombstone_only"
+            else "canonical"
+        )
+        routing_kind = str(row.get("routing_kind") or "")
+        if routing_kind != expected_routing_kind:
+            self.errors.add(f"dataset routing kind differs from record fields: {route}")
+        if not hostname or scheme not in {"http", "https"}:
+            self.errors.add(f"dataset cannot be represented in site topology: {route}")
+        self.connection.execute(
+            "INSERT INTO topology_records(ordinal, open, url, hostname, scheme, "
+            "routing_kind, coverage_disposition, stable_content_identifier) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            (
+                ordinal,
+                route,
+                url,
+                hostname,
+                scheme,
+                routing_kind,
+                coverage,
+                int(bool(row.get("canonical_content_id"))),
+            ),
+        )
+        for redirect_ordinal, redirect in enumerate(redirects):
+            if not isinstance(redirect, dict):
+                self.errors.add(f"dataset redirect is not an object: {route}")
+                continue
+            destination = str(redirect.get("destination") or "")
+            destination_url = str(redirect.get("destination_url") or "")
+            destination_host = (urlparse(destination_url).hostname or "").casefold()
+            if not destination or not destination_url.startswith(("https://", "http://")):
+                self.errors.add(f"dataset redirect destination is invalid: {route}")
+            self.connection.execute(
+                "INSERT INTO topology_redirects(dataset_ordinal, redirect_ordinal, "
+                "source_route, source_url, source_host, path, destination, destination_url, "
+                "destination_host, type, segments_mode, evidence_url, evidence_locator, "
+                "retrieved_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    ordinal,
+                    redirect_ordinal,
+                    route,
+                    url,
+                    hostname,
+                    str(redirect.get("path") or parsed.path or "/"),
+                    destination,
+                    destination_url,
+                    destination_host,
+                    str(redirect.get("type") or "unknown"),
+                    str(redirect.get("segments_mode") or "unknown"),
+                    str(row.get("evidence_url") or ""),
+                    str(row.get("evidence_locator") or "/"),
+                    str(row.get("retrieved_at") or ""),
+                ),
+            )
 
     def ingest_records(self, manifest: dict[str, Any], descriptor: dict[str, Any]) -> None:
         chunks = manifest.get("chunks", {})
@@ -753,12 +868,13 @@ class PublicationValidator:
                     )
                 try:
                     self.connection.execute(
-                        "INSERT INTO relationships(assertion_id, source, target, row_sha256) "
-                        "VALUES (?, ?, ?, ?)",
+                        "INSERT INTO relationships(assertion_id, source, target, kind, row_sha256) "
+                        "VALUES (?, ?, ?, ?, ?)",
                         (
                             assertion,
                             str(edge.get("source", "")),
                             str(edge.get("target", "")),
+                            str(edge.get("kind", "")),
                             hashlib.sha256(canonical_json_bytes(edge)).hexdigest(),
                         ),
                     )
@@ -1949,6 +2065,248 @@ class PublicationValidator:
         if size > MAX_BOOTSTRAP:
             self.errors.add("uncompressed bootstrap metadata exceeds 2 MiB")
 
+    def validate_site_topology(
+        self, descriptor: dict[str, Any], manifest: dict[str, Any]
+    ) -> None:
+        reference = descriptor.get("entrypoints", {}).get("site_topology")
+        if not reference:
+            self.errors.add("Explorer descriptor has no site-topology entrypoint")
+            return
+        topology = self.load_json(
+            reference,
+            label="site topology",
+            max_bytes=MAX_UNCOMPRESSED_SHARD,
+            default={},
+        )
+        if not isinstance(topology, dict):
+            self.errors.add("site topology must be a JSON object")
+            return
+        if topology.get("schema") != "govuk-site-topology.v1":
+            self.errors.add("site topology schema is invalid")
+        if topology.get("snapshot") != manifest.get("snapshot"):
+            self.errors.add("site topology snapshot differs from data manifest")
+        if topology.get("generated_at") != manifest.get("generated_at"):
+            self.errors.add("site topology generation time differs from data manifest")
+        if topology.get("status") != "snapshot_projection_not_release_completeness_claim":
+            self.errors.add("site topology makes an unsupported status claim")
+        counts = topology.get("counts")
+        if not isinstance(counts, dict):
+            self.errors.add("site topology counts must be an object")
+            counts = {}
+        if counts.get("published_records") != self.counts["datasets"]:
+            self.errors.add("site topology published-record count differs")
+        if counts.get("relationship_assertions") != self.counts["relationships"]:
+            self.errors.add("site topology relationship count differs")
+
+        overview = self.load_json(
+            descriptor.get("entrypoints", {}).get("overview_index"),
+            label="overview index for site topology",
+            max_bytes=MAX_UNCOMPRESSED_SHARD,
+            default={},
+        )
+        source_count = (
+            overview.get("coverage", {}).get("source_records")
+            if isinstance(overview, dict)
+            else None
+        )
+        if counts.get("source_records") != source_count:
+            self.errors.add("site topology source-record count differs from overview")
+
+        expected_hosts_by_name: dict[str, dict[str, Any]] = {}
+        for hostname, scheme, routing_kind, route in self.connection.execute(
+            "SELECT hostname, scheme, routing_kind, open FROM topology_records "
+            "ORDER BY ordinal"
+        ):
+            expected = expected_hosts_by_name.setdefault(
+                hostname,
+                {
+                    "hostname": hostname,
+                    "record_count": 0,
+                    "schemes": set(),
+                    "routing_kinds": Counter(),
+                    "example_routes": [],
+                },
+            )
+            expected["record_count"] += 1
+            expected["schemes"].add(scheme)
+            expected["routing_kinds"][routing_kind] += 1
+            if len(expected["example_routes"]) < 3:
+                expected["example_routes"].append(route)
+
+        def host_kind(hostname: str) -> str:
+            if hostname == "www.gov.uk":
+                return "main_publishing_estate"
+            if hostname == "gov.uk" or hostname.endswith(".gov.uk"):
+                return "gov_uk_domain_boundary"
+            return "other_external_boundary"
+
+        host_kind_order = {
+            "main_publishing_estate": 0,
+            "gov_uk_domain_boundary": 1,
+            "other_external_boundary": 2,
+        }
+        expected_hosts = []
+        for hostname, value in sorted(
+            expected_hosts_by_name.items(),
+            key=lambda item: (host_kind_order[host_kind(item[0])], item[0]),
+        ):
+            expected_hosts.append(
+                {
+                    "hostname": hostname,
+                    "host_kind": host_kind(hostname),
+                    "record_count": value["record_count"],
+                    "schemes": sorted(value["schemes"]),
+                    "routing_kinds": [
+                        {"value": key, "count": count}
+                        for key, count in sorted(value["routing_kinds"].items())
+                    ],
+                    "example_routes": value["example_routes"],
+                }
+            )
+        hosts = topology.get("hosts")
+        if not isinstance(hosts, list):
+            self.errors.add("site topology hosts must be an array")
+            hosts = []
+        if hosts != expected_hosts:
+            self.errors.add("site topology host inventory differs from record shards")
+
+        routing_counts = Counter(
+            dict(
+                self.connection.execute(
+                    "SELECT routing_kind, COUNT(*) FROM topology_records GROUP BY routing_kind"
+                )
+            )
+        )
+        coverage_counts = Counter(
+            dict(
+                self.connection.execute(
+                    "SELECT coverage_disposition, COUNT(*) FROM topology_records "
+                    "GROUP BY coverage_disposition"
+                )
+            )
+        )
+        redirect_count = int(
+            self.connection.execute("SELECT COUNT(*) FROM topology_redirects").fetchone()[0]
+        )
+        stable_identifier_count = int(
+            self.connection.execute(
+                "SELECT COALESCE(SUM(stable_content_identifier), 0) FROM topology_records"
+            ).fetchone()[0]
+        )
+        cross_host_redirect_count = int(
+            self.connection.execute(
+                "SELECT COUNT(*) FROM topology_redirects WHERE source_host <> '' "
+                "AND destination_host <> '' AND source_host <> destination_host"
+            ).fetchone()[0]
+        )
+        expected_counts = {
+            "source_records": source_count,
+            "published_records": self.counts["datasets"],
+            "hosts": len(expected_hosts),
+            "main_publishing_estate_records": sum(
+                row["record_count"]
+                for row in expected_hosts
+                if row["host_kind"] == "main_publishing_estate"
+            ),
+            "gov_uk_domain_boundary_hosts": sum(
+                1 for row in expected_hosts if row["host_kind"] == "gov_uk_domain_boundary"
+            ),
+            "other_external_boundary_hosts": sum(
+                1 for row in expected_hosts if row["host_kind"] == "other_external_boundary"
+            ),
+            "redirect_records": routing_counts["redirect"],
+            "redirect_rules": redirect_count,
+            "cross_host_redirect_rules": cross_host_redirect_count,
+            "stable_content_identifiers": stable_identifier_count,
+            "relationship_assertions": self.counts["relationships"],
+        }
+        if counts != expected_counts:
+            self.errors.add("site topology counts differ from record and relationship shards")
+
+        expected_coverage = [
+            {"value": key, "count": count}
+            for key, count in sorted(coverage_counts.items())
+        ]
+        if topology.get("coverage_dispositions") != expected_coverage:
+            self.errors.add("site topology coverage dispositions differ from record shards")
+        expected_routing = [
+            {"value": key, "count": count}
+            for key, count in sorted(routing_counts.items())
+        ]
+        if topology.get("routing_kinds") != expected_routing:
+            self.errors.add("site topology routing kinds differ from record shards")
+        relationship_counts = Counter(
+            dict(
+                self.connection.execute(
+                    "SELECT kind, COUNT(*) FROM relationships GROUP BY kind"
+                )
+            )
+        )
+        expected_relationships = [
+            {"value": key, "count": count}
+            for key, count in sorted(
+                relationship_counts.items(), key=lambda item: (-item[1], item[0])
+            )
+        ]
+        if topology.get("relationship_kinds") != expected_relationships:
+            self.errors.add("site topology relationship kinds differ from relationship shards")
+
+        expected_mechanism_counts = {
+            "canonical_url": self.counts["datasets"],
+            "stable_content_identifier": stable_identifier_count,
+            "redirect_rule": redirect_count,
+            "external_boundary": routing_counts["external_boundary"],
+            "typed_relationship": self.counts["relationships"],
+        }
+        mechanisms = topology.get("routing_mechanisms")
+        if not isinstance(mechanisms, list) or {
+            str(row.get("id") or ""): row.get("count")
+            for row in mechanisms
+            if isinstance(row, dict)
+        } != expected_mechanism_counts:
+            self.errors.add("site topology routing mechanisms differ from source planes")
+
+        redirect_columns = (
+            "source_route, source_url, source_host, path, destination, destination_url, "
+            "destination_host, type, segments_mode, evidence_url, evidence_locator, retrieved_at"
+        )
+        expected_redirects = [
+            dict(zip(
+                (
+                    "source_route",
+                    "source_url",
+                    "source_host",
+                    "path",
+                    "destination",
+                    "destination_url",
+                    "destination_host",
+                    "type",
+                    "segments_mode",
+                    "evidence_url",
+                    "evidence_locator",
+                    "retrieved_at",
+                ),
+                row,
+                strict=True,
+            ))
+            for row in self.connection.execute(
+                f"SELECT {redirect_columns} FROM topology_redirects "
+                "ORDER BY source_url, path, destination_url, type, segments_mode, "
+                "dataset_ordinal, redirect_ordinal LIMIT 100"
+            )
+        ]
+        redirects = topology.get("redirect_samples")
+        if not isinstance(redirects, list):
+            self.errors.add("site topology redirect samples must be an array")
+            redirects = []
+        if redirects != expected_redirects:
+            self.errors.add("site topology redirect sample differs from record shards")
+        if topology.get("redirect_samples_complete") != (redirect_count <= 100):
+            self.errors.add("site topology redirect-sample completeness flag differs")
+        relative = self.path(reference).relative_to(self.bundle).as_posix()
+        if manifest.get("indexes", {}).get("site_topology") != relative:
+            self.errors.add("data manifest and descriptor site-topology references differ")
+
     def validate_data_plane_root(
         self, descriptor: dict[str, Any], manifest: dict[str, Any]
     ) -> None:
@@ -1972,6 +2330,7 @@ class PublicationValidator:
             self.validate_route_index(descriptor, manifest)
             self.validate_search(descriptor, manifest)
             self.validate_adjacency(descriptor, manifest)
+            self.validate_site_topology(descriptor, manifest)
             self.validate_data_plane_root(descriptor, manifest)
             self.validate_semantic_projection(descriptor, manifest)
             self.validate_bootstrap(descriptor)

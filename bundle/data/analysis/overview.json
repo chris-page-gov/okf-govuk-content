@@ -13,6 +13,7 @@
     "authoritative_destination": "https://www.gov.uk/",
     "boundary": "frozen union of verified official public enumerators",
     "page_bodies": "not mirrored",
+    "source_records": 12,
     "unexplained_omissions": 0
   },
   "generated_at": "2026-07-11T23:30:00Z",
@@ -28,6 +29,53 @@
     "ordinary_shard_compressed_budget_bytes": 5242880,
     "search_cold_p95_budget_ms": 1500,
     "search_warm_p95_budget_ms": 500
+  },
+  "routing_overview": {
+    "counts": {
+      "cross_host_redirect_rules": 0,
+      "gov_uk_domain_boundary_hosts": 1,
+      "hosts": 2,
+      "main_publishing_estate_records": 13,
+      "other_external_boundary_hosts": 0,
+      "published_records": 14,
+      "redirect_records": 1,
+      "redirect_rules": 1,
+      "relationship_assertions": 16,
+      "source_records": 12,
+      "stable_content_identifiers": 10
+    },
+    "mechanisms": [
+      {
+        "count": 14,
+        "full_detail": "data/records-*.json.gz via the route index",
+        "id": "canonical_url",
+        "label": "Canonical and observed URLs"
+      },
+      {
+        "count": 10,
+        "full_detail": "data/routes/manifest.json",
+        "id": "stable_content_identifier",
+        "label": "Stable GOV.UK content identifiers"
+      },
+      {
+        "count": 1,
+        "full_detail": "redirects on each record plus redirects-to adjacency",
+        "id": "redirect_rule",
+        "label": "Source-declared redirect rules"
+      },
+      {
+        "count": 1,
+        "full_detail": "external-boundary records and host inventory",
+        "id": "external_boundary",
+        "label": "Routes to independently operated sites"
+      },
+      {
+        "count": 16,
+        "full_detail": "data/adjacency/manifest.json",
+        "id": "typed_relationship",
+        "label": "Structured navigation and routing relationships"
+      }
+    ]
   },
   "schema": "okf-explorer-analysis.v1",
   "snapshot": "fixture-2026-07-11"

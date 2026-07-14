@@ -47,8 +47,9 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(yaml_dump(expected_semantic) + "\n", (output / "okf-bundle.yamlld").read_text(encoding="utf-8"))
             self.assertEqual(semantic, yaml_load_subset((output / "okf-bundle.yamlld").read_text(encoding="utf-8")))
             self.assertEqual(result["semantic_projection_sha256"], descriptor["semantic_projection_sha256"])
-            search_reference = descriptor["entrypoints"]["search_manifest"]
+            search_reference = descriptor["entrypoint_integrity"]["search_manifest"]
             self.assertEqual("data/search/manifest.json", search_reference["path"])
+            self.assertEqual(search_reference["path"], descriptor["entrypoints"]["search_manifest"])
             self.assertEqual(
                 hashlib.sha256((output / search_reference["path"]).read_bytes()).hexdigest(),
                 search_reference["sha256"],
@@ -57,10 +58,12 @@ class PublicationTests(unittest.TestCase):
                 "data_manifest",
                 "overview_index",
                 "analysis_overview",
+                "site_topology",
                 "relationship_adjacency",
                 "route_index",
             ):
-                reference = descriptor["entrypoints"][name]
+                reference = descriptor["entrypoint_integrity"][name]
+                self.assertEqual(reference["path"], descriptor["entrypoints"][name])
                 self.assertEqual(
                     hashlib.sha256((output / reference["path"]).read_bytes()).hexdigest(),
                     reference["sha256"],
@@ -127,6 +130,59 @@ class PublicationTests(unittest.TestCase):
                 result_docs.extend(json.loads((output / path).read_text(encoding="utf-8")))
             self.assertEqual(list(range(len(result_docs))), [record["ordinal"] for record in result_docs])
             self.assertEqual([record["open"] for record in datasets], [record["open"] for record in result_docs])
+            redirect = next(record for record in datasets if record["url"].endswith("/dfe"))
+            self.assertEqual("redirect", redirect["routing_kind"])
+            self.assertEqual("content_identity", redirect["entity_class"])
+            self.assertEqual("represented", redirect["coverage_disposition"])
+            self.assertEqual(
+                {
+                    "ordinal": 0,
+                    "path": "/dfe",
+                    "destination": "/government/organisations/department-for-education",
+                    "destination_url": "https://www.gov.uk/government/organisations/department-for-education",
+                    "type": "exact",
+                    "segments_mode": "unknown",
+                },
+                redirect["redirects"][0],
+            )
+
+    def test_site_topology_covers_hosts_and_routing_mechanisms(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "bundle"
+            self.build(output)
+            topology = json.loads(
+                (output / "data" / "site-topology.json").read_text(encoding="utf-8")
+            )
+            manifest = json.loads(
+                (output / "data" / "manifest.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual("govuk-site-topology.v1", topology["schema"])
+            self.assertEqual("fixture-2026-07-11", topology["snapshot"])
+            self.assertEqual(
+                manifest["counts"]["datasets"], topology["counts"]["published_records"]
+            )
+            self.assertEqual(
+                manifest["counts"]["relationships"],
+                topology["counts"]["relationship_assertions"],
+            )
+            self.assertEqual(
+                ["www.gov.uk", "apply.example.service.gov.uk"],
+                [row["hostname"] for row in topology["hosts"]],
+            )
+            self.assertEqual(1, topology["counts"]["redirect_rules"])
+            self.assertTrue(topology["redirect_samples_complete"])
+            self.assertEqual(
+                "/government/organisations/department-for-education",
+                topology["redirect_samples"][0]["destination"],
+            )
+            self.assertEqual(
+                "external_boundary",
+                next(
+                    row
+                    for row in topology["hosts"]
+                    if row["hostname"] == "apply.example.service.gov.uk"
+                )["routing_kinds"][0]["value"],
+            )
 
     def test_route_index_retains_typed_matches_for_shared_identifiers(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

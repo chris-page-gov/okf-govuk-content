@@ -11,21 +11,20 @@
     "resources": 1,
     "schema_families": 13
   },
-  "data_plane_manifest_root_sha256": "8e9364157031fde34c6756c14b352d3bc74263fb15f3430eb36af384a97491f8",
+  "data_plane_manifest_root_sha256": "013122b394d9c90a8858c9f70d8600d03eddb749fa6aee6fcefe372a87b2e488",
   "description": "Derived, non-authoritative semantic catalogue of GOV.UK content, navigation, organisations, taxonomies and relationships.",
-  "entrypoints": {
+  "entrypoint_integrity": {
     "analysis_overview": {
       "path": "data/analysis/overview.json",
-      "sha256": "339bf8383b45e5c2bab6ec70006ab6fb7212af7ece39b47b300cbf65da02d79d"
+      "sha256": "a83e16957ff167ab6e9d3c2de0cdbb8832c72184949136386c7df586c373551f"
     },
     "data_manifest": {
       "path": "data/manifest.json",
-      "sha256": "05a7472c8e6dcbe7db96e3cedfaacb567bc1a24426fdf6256eb9f3632fc4ac7e"
+      "sha256": "ee90dd727636ce25f743604ed7ed4e15966631a3dfb2f663e67091889c874492"
     },
-    "markdown_index": "index.md",
     "overview_index": {
       "path": "data/overview.json",
-      "sha256": "fbb5a5a2f7a3989e26d745b040679281cd0eaa9ce195ec728810c5e9c266b21d"
+      "sha256": "c3657957dc403f8c34050716aefd92eea895cf9853f33610fb4c9550cf6e09bb"
     },
     "relationship_adjacency": {
       "path": "data/adjacency/manifest.json",
@@ -37,15 +36,37 @@
     },
     "search_manifest": {
       "path": "data/search/manifest.json",
-      "sha256": "78eb22f2b7e1798fecbb593b36c7b50421af0901c32c718a64fffb31027a9b6e"
+      "sha256": "7e6e0845fdffc3e9196e812d4ce887166df8291098882a3066d15f772f8e8b30"
     },
+    "semantic_projection": {
+      "path": "data/semantic/manifest.json",
+      "sha256": "0d7161f7b84d6f67904f80e00d14b90b2971241afa6a379b2ee896d1efc50a08"
+    },
+    "site_topology": {
+      "path": "data/site-topology.json",
+      "sha256": "b2b5ad791d2d27896d6c95ac00bd3d26e82e6c2d7755ef39cea21c1aad72696f"
+    }
+  },
+  "entrypoints": {
+    "analysis_overview": "data/analysis/overview.json",
+    "data_manifest": "data/manifest.json",
+    "markdown_index": "index.md",
+    "overview_index": "data/overview.json",
+    "relationship_adjacency": "data/adjacency/manifest.json",
+    "route_index": "data/routes/manifest.json",
+    "search_manifest": "data/search/manifest.json",
     "semantic_projection": "data/semantic/manifest.json",
+    "site_topology": "data/site-topology.json",
     "viewer": "https://chris-page-gov.github.io/okf-explorer/"
   },
   "extensions": {
     "govuk-okf-profile.v1": {
       "provenance_required": true,
       "source_native_before_inference": true
+    },
+    "govuk-site-topology.v1": {
+      "entrypoint": "site_topology",
+      "full_record_detail": true
     },
     "okf-explorer-analysis.v1": {
       "entrypoint": "analysis_overview",

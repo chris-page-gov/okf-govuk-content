@@ -1,6 +1,6 @@
 import { tokenize } from "./search-core.js";
 
-export const VIEW_IDS = Object.freeze(["results", "browse", "relationships", "timeline", "compare"]);
+export const VIEW_IDS = Object.freeze(["results", "sitemap", "browse", "relationships", "timeline", "compare"]);
 export const MODE_IDS = Object.freeze(["simple", "explore", "evidence"]);
 export const MAX_GRAPH_NODES = 250;
 export const MAX_GRAPH_EDGES = 500;
@@ -168,6 +168,16 @@ export function normaliseRecord(raw, fallbackRoute = "") {
   const route = safeRoute(source.open || source.route || fallbackRoute || "dataset/" + name);
   const language = normaliseLanguage(source.locale || source.language || "en");
   const inferred = source.inferred === true || source.assertion_status === "inferred" || source.source_status === "inferred";
+  const redirects = toArray(source.redirects)
+    .filter((value) => value && typeof value === "object")
+    .map((value, ordinal) => ({
+      ordinal: Number.isInteger(Number(value.ordinal)) ? Number(value.ordinal) : ordinal,
+      path: cleanText(value.path || "", 2048),
+      destination: cleanText(value.destination || "", 2048),
+      destinationUrl: safeExternalUrl(value.destination_url || ""),
+      type: cleanText(value.type || "unknown", 80),
+      segmentsMode: cleanText(value.segments_mode || "unknown", 80)
+    }));
   return {
     route,
     id: cleanText(source.id || source.content_id || route, 768),
@@ -178,6 +188,10 @@ export function normaliseRecord(raw, fallbackRoute = "") {
     publisher: cleanText(source.publisher_title || source.publisher || source.organisation || "Not recorded", 300),
     owner: cleanText(source.owner_title || source.owner || "", 300),
     status: cleanText(source.lifecycle_status || source.status || source.state || "not recorded", 100),
+    routingKind: cleanText(source.routing_kind || "canonical", 80),
+    entityClass: cleanText(source.entity_class || "content_identity", 100),
+    coverageDisposition: cleanText(source.coverage_disposition || "represented", 100),
+    redirects,
     firstPublishedAt: cleanText(source.first_published_at || source.publication_date || source.created_at || "", 80),
     updatedAt: cleanText(source.public_updated_at || source.updated_at || source.timestamp || "", 80),
     language,
