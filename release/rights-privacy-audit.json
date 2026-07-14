@@ -1,5 +1,17 @@
 {
   "audit_input_contract": {
+    "comparator_evidence": [
+      {
+        "bytes": 3779,
+        "path": "evaluation/govuk-chat/new-parent-multi-service.json",
+        "sha256": "26e8a31524d3bcf780db0e2a6a709296f1e9f22d78659c0f5dab8b7f2afbfbb1"
+      },
+      {
+        "bytes": 2748,
+        "path": "evaluation/govuk-chat/official-published-example.json",
+        "sha256": "c6913abec6e50a97089551ccdc97ed6f49200d17dd0c9704bc7050c920c1ce35"
+      }
+    ],
     "corpus_manifests": [],
     "generated_at": "2026-07-11T23:30:00Z",
     "publication_manifest": {
@@ -75,6 +87,42 @@
       }
     }
   },
+  "comparator_evidence": {
+    "controls_passed": true,
+    "dispositions": [
+      {
+        "binary_bytes_published": false,
+        "disposition": "link_metadata_only_pending_item_review",
+        "item_level_review_triggered": true,
+        "path": "evaluation/govuk-chat/new-parent-multi-service.json",
+        "rights_verified": false
+      },
+      {
+        "binary_bytes_published": false,
+        "disposition": "bounded_excerpt_link_and_digest_pending_item_review",
+        "item_level_review_triggered": true,
+        "path": "evaluation/govuk-chat/official-published-example.json",
+        "rights_verified": false
+      }
+    ],
+    "files": [
+      {
+        "bytes": 3779,
+        "path": "evaluation/govuk-chat/new-parent-multi-service.json",
+        "sha256": "26e8a31524d3bcf780db0e2a6a709296f1e9f22d78659c0f5dab8b7f2afbfbb1"
+      },
+      {
+        "bytes": 2748,
+        "path": "evaluation/govuk-chat/official-published-example.json",
+        "sha256": "c6913abec6e50a97089551ccdc97ed6f49200d17dd0c9704bc7050c920c1ce35"
+      }
+    ],
+    "limitations": [
+      "These controls prove bounded retention and an explicit review trigger; they do not determine that OGL, fair dealing or another permission applies.",
+      "The official screenshot bytes are not retained or published by the repository."
+    ],
+    "schema": "afhf-govuk-okf-comparator-rights-evidence.v1"
+  },
   "corpus_manifest_declarations": {
     "complete_page_bodies_retained_true": 0,
     "count": 0,
@@ -97,7 +145,7 @@
     "source_constraints": {
       "path": "research/source-constraints.json",
       "rights_constraint_id": "SRC-CONSTRAINT-006",
-      "sha256": "dd03b03714f05e71f2867e4ec1b0caf02cf7c4f29002a5422deefadf1a4782f0"
+      "sha256": "96338c787a24ee3fcbfa700620412003f533d3d5c0439d54b1b39828281d5814"
     },
     "source_preflight": {
       "completed_at": "2026-07-12T07:39:52+00:00",

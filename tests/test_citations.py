@@ -3,10 +3,12 @@ from __future__ import annotations
 import hashlib
 import gzip
 import copy
+from email.message import Message
 import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 import urllib.request
 
 from govuk_okf.citations import (
@@ -16,6 +18,7 @@ from govuk_okf.citations import (
     CitationError,
     collect_citations,
     digest_text,
+    fetch_evidence,
     normalise_url,
     stable_id,
     verify_release,
@@ -104,6 +107,200 @@ class CitationTests(unittest.TestCase):
             inventory = collect_citations(root, self.policy())
             self.assertEqual(len(inventory["citations"]), 1)
             self.assertEqual(inventory["citations"][0]["requested_url"], "https://example.test/spec")
+
+    def test_govuk_chat_json_urls_are_structured_citations_with_json_pointers(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            comparison = root / "evaluation/govuk-chat"
+            comparison.mkdir(parents=True)
+            (comparison / "new-parent-multi-service.json").write_text(
+                json.dumps(
+                    {
+                        "schema": "govuk-chat-comparison-walkthrough.v1",
+                        "official_context": [
+                            {
+                                "claim": "The official source documents the bounded comparator.",
+                                "url": "https://example.test/context",
+                            }
+                        ],
+                    },
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (comparison / "official-published-example.json").write_text(
+                json.dumps(
+                    {
+                        "schema": "govuk-chat-published-observation.v1",
+                        "source_page_url": "https://example.test/page",
+                        "source_image_url": "https://example.test/image.png",
+                        "capture": {"asset_sha256": "a" * 64},
+                        "question": "What does the example show?",
+                        "answer": {
+                            "short_verbatim_excerpt": "A bounded excerpt.",
+                            "structured_summary": [
+                                "The first structured point.",
+                                "The second structured point.",
+                            ],
+                        },
+                        "source_cards": [
+                            {"position": 1, "title": "Source card", "url": "https://example.test/card"}
+                        ],
+                    },
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            inventory = collect_citations(root, self.policy())
+            self.assertEqual(len(inventory["claims"]), 8)
+            self.assertEqual(len(inventory["citations"]), 9)
+            self.assertEqual(
+                {source["requested_url"] for source in inventory["sources"]},
+                {
+                    "https://example.test/context",
+                    "https://example.test/page",
+                    "https://example.test/image.png",
+                    "https://example.test/card",
+                },
+            )
+            image_source = next(
+                source for source in inventory["sources"] if source["requested_url"].endswith("image.png")
+            )
+            self.assertEqual(image_source["expected_document_sha256"], "a" * 64)
+            self.assertEqual(image_source["locator_hint"]["kind"], "binary_sha256")
+            self.assertTrue(all(citation["structured_source"] for citation in inventory["citations"]))
+            pointers = {claim["source_location"]["json_pointer"] for claim in inventory["claims"]}
+            self.assertEqual(
+                pointers,
+                {
+                    "/official_context/0/url",
+                    "/source_page_url",
+                    "/source_image_url",
+                    "/question",
+                    "/answer/short_verbatim_excerpt",
+                    "/answer/structured_summary/0",
+                    "/answer/structured_summary/1",
+                    "/source_cards/0",
+                },
+            )
+            card_claim = next(
+                claim for claim in inventory["claims"] if claim["source_location"]["json_pointer"] == "/source_cards/0"
+            )
+            self.assertIn("position 1", card_claim["text"])
+            self.assertIn("Source card", card_claim["text"])
+            self.assertIn("https://example.test/card", card_claim["text"])
+            card_citations = [
+                citation
+                for citation in inventory["citations"]
+                if citation["claim_id"] == card_claim["claim_id"]
+            ]
+            self.assertEqual(
+                {citation["requested_url"] for citation in card_citations},
+                {"https://example.test/image.png", "https://example.test/card"},
+            )
+
+    def test_govuk_chat_source_card_positions_must_match_array_order(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            comparison = root / "evaluation/govuk-chat"
+            comparison.mkdir(parents=True)
+            (comparison / "official-published-example.json").write_text(
+                json.dumps(
+                    {
+                        "schema": "govuk-chat-published-observation.v1",
+                        "source_page_url": "https://example.test/page",
+                        "source_image_url": "https://example.test/image.png",
+                        "capture": {"asset_sha256": "a" * 64},
+                        "question": "Question?",
+                        "answer": {
+                            "short_verbatim_excerpt": "A bounded excerpt.",
+                            "structured_summary": ["A structured point."],
+                        },
+                        "source_cards": [
+                            {"position": 2, "title": "Second", "url": "https://example.test/two"},
+                            {"position": 1, "title": "First", "url": "https://example.test/one"},
+                        ],
+                    },
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(CitationError, "unique, contiguous and match array order"):
+                collect_citations(root, self.policy())
+
+    def test_binary_comparator_evidence_is_verified_by_exact_sha256(self) -> None:
+        body = b"\x89PNG\r\n\x1a\nexact-test-image"
+        digest = hashlib.sha256(body).hexdigest()
+        headers = Message()
+        headers["Content-Type"] = "image/png"
+
+        class Response:
+            status = 200
+
+            def read(self, _limit: int) -> bytes:
+                return body
+
+            def geturl(self) -> str:
+                return "https://example.test/image.png"
+
+            def getcode(self) -> int:
+                return 200
+
+            def close(self) -> None:
+                return None
+
+        response = Response()
+        response.headers = headers
+
+        class Opener:
+            def open(self, _request: object, timeout: float) -> Response:
+                self.timeout = timeout
+                return response
+
+        source = {
+            "source_id": "SRC-BINARY",
+            "requested_url": "https://example.test/image.png",
+            "publisher": "Example Standards Body",
+            "expected_hosts": ["example.test"],
+            "expected_document_sha256": digest,
+            "locator": {"kind": "binary_sha256", "value": digest},
+        }
+        contexts = [
+            {
+                "citation_id": "CIT-BINARY",
+                "claim_sha256": "a" * 64,
+                "claim_text": "The source image is hash bound.",
+                "link_label": "source image",
+            }
+        ]
+        with patch("urllib.request.build_opener", return_value=Opener()):
+            evidence = fetch_evidence(
+                source,
+                citation_contexts=contexts,
+                timeout=1,
+                max_bytes=1024,
+                user_agent="test",
+            )
+        self.assertEqual(evidence["document_sha256"], digest)
+        self.assertEqual(evidence["evidence_excerpt"], f"sha256:{digest}")
+        self.assertEqual(evidence["checks"]["identity_matches"], "pass")
+        self.assertEqual(evidence["checks"]["locator_found"], "pass")
+        self.assertEqual(evidence["citation_evidence"][0]["checks"]["locator_found"], "pass")
+
+        source["expected_document_sha256"] = "0" * 64
+        with patch("urllib.request.build_opener", return_value=Opener()):
+            mismatch = fetch_evidence(
+                source,
+                citation_contexts=contexts,
+                timeout=1,
+                max_bytes=1024,
+                user_agent="test",
+            )
+        self.assertEqual(mismatch["checks"]["identity_matches"], "fail")
+        self.assertEqual(mismatch["checks"]["locator_found"], "fail")
 
     def fixture(self, *, material: bool = True) -> tuple[dict, list, list]:
         source_url = "https://example.test/spec"

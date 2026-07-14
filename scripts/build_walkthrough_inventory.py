@@ -208,10 +208,12 @@ def build_inventory() -> dict[str, Any]:
             "persona_ids": comparison["persona_ids"],
             "story_ids": comparison["story_ids"],
             "status": comparison["status"],
+            "rights_and_reuse": comparison["rights_and_reuse"],
             "published_example": {
                 "path": PUBLISHED_EXAMPLE_PATH.relative_to(ROOT).as_posix(),
                 "question": published_example["question"],
                 "status": published_example["status"],
+                "rights_and_reuse": published_example["rights_and_reuse"],
             },
         },
         "generated_from": [
@@ -285,6 +287,8 @@ def render_markdown(inventory: dict[str, Any]) -> str:
             f"The prompt and capture contract is `{comparison['path']}`. GOV.UK Chat answer text and source-card order must be captured with a retrieval time and kept separate from bundle-derived evidence. Current capture status: `{comparison['status']}`.",
             "",
             f"One official published question/answer example is already recorded at `{comparison['published_example']['path']}`: “{comparison['published_example']['question']}” Its status is `{comparison['published_example']['status']}`; it is not a live replay of the new-parent journey.",
+            "",
+            "The machine-readable walkthrough also carries each comparator asset's explicit rights disposition. The repository retains only links, minimal source-card metadata, one bounded attributed excerpt, a structured paraphrase and the official image digest; it does not retain or publish the image bytes. These controls trigger item-level review and are not a legal conclusion that OGL, fair dealing or another permission applies.",
             "",
             "## Machine-readable companion",
             "",

@@ -219,6 +219,21 @@ VALID_REVIEW_DISPOSITIONS = {
 
 RIGHTS_AUDIT_SCHEMA = "afhf-govuk-okf-rights-privacy-audit.v1"
 RIGHTS_AUDIT_INPUT_SCHEMA = "afhf-govuk-okf-rights-audit-inputs.v1"
+COMPARATOR_RIGHTS_SCHEMA = "govuk-chat-comparator-rights-disposition.v1"
+DEFAULT_COMPARATOR_EVIDENCE_PATHS = (
+    Path("evaluation/govuk-chat/new-parent-multi-service.json"),
+    Path("evaluation/govuk-chat/official-published-example.json"),
+)
+WALKTHROUGH_REVIEW_TRIGGER = (
+    "review_required_before_retaining_or_republishing_any_chat_answer_or_source_asset"
+)
+PUBLISHED_OBSERVATION_REVIEW_TRIGGER = (
+    "item_level_review_required_before_expanding_the_excerpt_or_copying_the_image"
+)
+PUBLISHED_ANSWER_RIGHTS_STATUS = (
+    "not_independently_verified_for_republication_beyond_this_bounded_evidence_use"
+)
+PUBLISHED_SOURCE_CARD_RIGHTS_STATUS = "linked_GOV.UK_items_may_contain_item_level_exceptions"
 
 
 def _normalise_key(value: object) -> str:
@@ -378,10 +393,30 @@ def audit_from_input_contract(
             allow_missing=False,
         )
         errors.extend(review_errors)
+    comparator_bindings = contract.get("comparator_evidence", [])
+    if not isinstance(comparator_bindings, list):
+        raise RightsAuditError("rights audit input contract comparator evidence is invalid")
+    comparator_paths: list[Path] = []
+    for ordinal, binding in enumerate(comparator_bindings):
+        path, binding_errors = _load_bound_path(
+            root,
+            binding,
+            f"rights audit comparator evidence {ordinal}",
+            limits.max_manifest_bytes,
+            allow_missing=False,
+        )
+        errors.extend(binding_errors)
+        if path is not None:
+            comparator_paths.append(path)
     generated_at = contract.get("generated_at")
     if not isinstance(generated_at, str) or not generated_at.strip():
         errors.append("rights audit input contract generated_at is invalid")
-    if errors or publication is None or len(corpus_paths) != len(corpus_bindings):
+    if (
+        errors
+        or publication is None
+        or len(corpus_paths) != len(corpus_bindings)
+        or len(comparator_paths) != len(comparator_bindings)
+    ):
         raise RightsAuditError("; ".join(errors or ["rights audit inputs are incomplete"]))
     return audit_release(
         root,
@@ -389,6 +424,7 @@ def audit_from_input_contract(
         publication_manifest_path=publication,
         corpus_manifest_paths=corpus_paths,
         review_ledger_path=review_path,
+        comparator_evidence_paths=comparator_paths,
         generated_at=generated_at,
         auto_review_ledger=False,
         limits=limits,
@@ -424,6 +460,117 @@ def audit_contract_has_missing_corpus_inputs(
     if errors:
         raise RightsAuditError("; ".join(errors))
     return missing
+
+
+def _comparator_rights_evidence(
+    root: Path,
+    paths: Iterable[Path],
+    limits: AuditLimits,
+) -> tuple[dict[str, Any], list[str]]:
+    """Validate and bind the small GOV.UK Chat comparator rights contract."""
+
+    errors: list[str] = []
+    files: list[dict[str, Any]] = []
+    dispositions: list[dict[str, Any]] = []
+    for supplied in paths:
+        path = supplied if supplied.is_absolute() else root / supplied
+        try:
+            binding = _bound_file(root, path, "comparator rights evidence", limits.max_manifest_bytes)
+            document = _load_json(path.resolve(), limits.max_manifest_bytes)
+        except RightsAuditError as exc:
+            errors.append(str(exc))
+            continue
+        files.append(binding)
+        relative = binding["path"]
+        if not isinstance(document, dict):
+            errors.append(f"{relative}: comparator evidence must be an object")
+            continue
+        rights = document.get("rights_and_reuse")
+        valid_common = (
+            isinstance(rights, dict)
+            and rights.get("schema") == COMPARATOR_RIGHTS_SCHEMA
+            and rights.get("not_a_legal_conclusion") is True
+        )
+        if not valid_common:
+            errors.append(f"{relative}: comparator rights disposition is incomplete")
+            continue
+        if document.get("schema") == "govuk-chat-comparison-walkthrough.v1":
+            valid = (
+                valid_common
+                and rights.get("fair_use_or_fair_dealing_trigger") == WALKTHROUGH_REVIEW_TRIGGER
+                and rights.get("disposition") == "links_and_minimal_source_metadata_only"
+                and rights.get("published_material_retained") is False
+                and rights.get("official_context_rights_status")
+                == "not_independently_verified_for_each_linked_item"
+            )
+            disposition = "link_metadata_only_pending_item_review"
+            binary_bytes_published = False
+        elif document.get("schema") == "govuk-chat-published-observation.v1":
+            capture = document.get("capture")
+            answer_document = document.get("answer")
+            image = rights.get("image")
+            answer = rights.get("answer")
+            cards = rights.get("source_cards")
+            excerpt = (
+                answer_document.get("short_verbatim_excerpt")
+                if isinstance(answer_document, dict)
+                else None
+            )
+            valid = (
+                valid_common
+                and rights.get("fair_use_or_fair_dealing_trigger")
+                == PUBLISHED_OBSERVATION_REVIEW_TRIGGER
+                and isinstance(capture, dict)
+                and capture.get("asset_retained") is False
+                and isinstance(capture.get("asset_sha256"), str)
+                and re.fullmatch(r"[0-9a-f]{64}", capture["asset_sha256"]) is not None
+                and isinstance(image, dict)
+                and image.get("bytes_retained") is False
+                and image.get("bytes_published") is False
+                and image.get("disposition") == "source_url_and_sha256_only"
+                and image.get("rights_status") == "not_independently_verified"
+                and isinstance(answer, dict)
+                and answer.get("disposition")
+                == "short_attributed_excerpt_and_structured_paraphrase_only"
+                and answer.get("rights_status") == PUBLISHED_ANSWER_RIGHTS_STATUS
+                and isinstance(cards, dict)
+                and cards.get("destination_content_copied") is False
+                and cards.get("disposition") == "ordered_title_and_url_metadata_only"
+                and cards.get("rights_status") == PUBLISHED_SOURCE_CARD_RIGHTS_STATUS
+                and isinstance(excerpt, str)
+                and 0 < len(excerpt.split()) <= 25
+            )
+            disposition = "bounded_excerpt_link_and_digest_pending_item_review"
+            binary_bytes_published = False
+        else:
+            valid = False
+            disposition = "unsupported"
+            binary_bytes_published = True
+        if not valid:
+            errors.append(f"{relative}: comparator rights controls do not match the declared schema")
+            continue
+        dispositions.append(
+            {
+                "path": relative,
+                "disposition": disposition,
+                "rights_verified": False,
+                "item_level_review_triggered": True,
+                "binary_bytes_published": binary_bytes_published,
+            }
+        )
+    return (
+        {
+            "schema": "afhf-govuk-okf-comparator-rights-evidence.v1",
+            "controls_passed": not errors,
+            "files": files,
+            "dispositions": dispositions,
+            "limitations": [
+                "These controls prove bounded retention and an explicit review trigger; they do not determine that OGL, fair dealing or another permission applies.",
+                "The official screenshot bytes are not retained or published by the repository.",
+            ],
+        },
+        errors,
+    )
 
 
 def _load_json(path: Path, ceiling: int) -> Any:
@@ -1055,6 +1202,7 @@ def audit_release(
     review_ledger_path: Path | None = None,
     generated_at: str | None = None,
     review_packet_path: Path | None = None,
+    comparator_evidence_paths: Iterable[Path] | None = None,
     auto_review_ledger: bool = True,
     limits: AuditLimits = AuditLimits(),
 ) -> dict[str, Any]:
@@ -1103,6 +1251,23 @@ def audit_release(
     errors.extend(publication_errors)
     policy_evidence, policy_errors = _policy_evidence(root, limits)
     errors.extend(policy_errors)
+    if comparator_evidence_paths is None:
+        resolved_comparator_paths = [root / path for path in DEFAULT_COMPARATOR_EVIDENCE_PATHS]
+    else:
+        resolved_comparator_paths = [
+            path if path.is_absolute() else root / path for path in comparator_evidence_paths
+        ]
+    expected_comparator_paths = {
+        (root / path).resolve() for path in DEFAULT_COMPARATOR_EVIDENCE_PATHS
+    }
+    if len(resolved_comparator_paths) != len(DEFAULT_COMPARATOR_EVIDENCE_PATHS) or {
+        path.resolve() for path in resolved_comparator_paths
+    } != expected_comparator_paths:
+        errors.append("rights audit must bind both repository GOV.UK Chat comparator documents")
+    comparator_evidence, comparator_errors = _comparator_rights_evidence(
+        root, resolved_comparator_paths, limits
+    )
+    errors.extend(comparator_errors)
     corpus_paths = [path if path.is_absolute() else root / path for path in corpus_manifest_paths]
     corpus_input_bindings: list[dict[str, Any]] = []
     for ordinal, path in enumerate(corpus_paths):
@@ -1348,7 +1513,12 @@ def audit_release(
             violation_count = sum(finding_counts.values())
             full_snapshot = snapshot_kind == "full_corpus" and sampled is False
             corpus_bound = bool(corpus_paths) and bool(record_manifests) and not corpus_errors
-            controls_passed = not errors and violation_count == 0 and policy_evidence["checks_passed"]
+            controls_passed = (
+                not errors
+                and violation_count == 0
+                and policy_evidence["checks_passed"]
+                and comparator_evidence["controls_passed"]
+            )
             unresolved_permitted = bool(
                 policy_evidence["metadata_and_link_default_permits_unresolved_triggers"]
             )
@@ -1420,6 +1590,7 @@ def audit_release(
                     ),
                     "corpus_manifests": corpus_input_bindings,
                     "review_ledger": review_input_binding,
+                    "comparator_evidence": comparator_evidence["files"],
                 },
                 "scan": {
                     "mode": "bounded_streaming_disk_backed",
@@ -1465,6 +1636,7 @@ def audit_release(
                     "review_packet": packet_evidence,
                 },
                 "policy_evidence": policy_evidence,
+                "comparator_evidence": comparator_evidence,
                 "corpus_manifest_declarations": {
                     "count": len(corpus_documents),
                     "metadata_only_false": sum(row.get("metadata_only") is False for row in corpus_documents),
@@ -1591,6 +1763,35 @@ def validate_audit_evidence(
             "sha256": review_binding.get("sha256"),
         }:
             errors.append("rights/privacy review-ledger bindings disagree")
+    comparator_bindings = contract.get("comparator_evidence", [])
+    if not isinstance(comparator_bindings, list):
+        errors.append("rights audit comparator-evidence contract is invalid")
+        comparator_bindings = []
+    comparator_paths: list[Path] = []
+    for ordinal, comparator_binding in enumerate(comparator_bindings):
+        path, comparator_errors = _load_bound_path(
+            root,
+            comparator_binding,
+            f"rights audit comparator evidence {ordinal}",
+            limits.max_manifest_bytes,
+            allow_missing=False,
+        )
+        errors.extend(comparator_errors)
+        if path is not None:
+            comparator_paths.append(path)
+    expected_comparator_paths = {
+        (root / path).resolve() for path in DEFAULT_COMPARATOR_EVIDENCE_PATHS
+    }
+    if len(comparator_bindings) != len(DEFAULT_COMPARATOR_EVIDENCE_PATHS) or {
+        path.resolve() for path in comparator_paths
+    } != expected_comparator_paths:
+        errors.append("rights audit must bind both repository GOV.UK Chat comparator documents")
+    recomputed_comparator, comparator_errors = _comparator_rights_evidence(
+        root, comparator_paths, limits
+    )
+    errors.extend(comparator_errors)
+    if evidence.get("comparator_evidence") != recomputed_comparator:
+        errors.append("rights/privacy comparator-evidence binding or disposition is stale")
     if contract.get("generated_at") != evidence.get("generated_at"):
         errors.append("rights/privacy generated-at differs from its audit input contract")
     snapshot = release.get("snapshot")
@@ -1675,6 +1876,20 @@ def rebind_audit_release(
         raise RightsAuditError("; ".join(input_errors))
     if archived_inputs and not allow_missing_corpus_inputs:
         raise RightsAuditError("rights audit corpus inputs are unavailable")
+    comparator_bindings = contract.get("comparator_evidence", [])
+    if not isinstance(comparator_bindings, list):
+        raise RightsAuditError("rights audit comparator-evidence contract is invalid")
+    for ordinal, comparator_binding in enumerate(comparator_bindings):
+        _, errors = _load_bound_path(
+            root,
+            comparator_binding,
+            f"rights audit comparator evidence {ordinal}",
+            limits.max_manifest_bytes,
+            allow_missing=False,
+        )
+        input_errors.extend(errors)
+    if input_errors:
+        raise RightsAuditError("; ".join(input_errors))
 
     release_path = _safe_path(root, "release/manifest.yaml", "release manifest")
     release = _load_json(release_path, limits.max_manifest_bytes)

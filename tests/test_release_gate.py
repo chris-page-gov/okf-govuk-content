@@ -7,6 +7,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from govuk_okf.rights_audit import AuditLimits, _comparator_rights_evidence
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("check_release", ROOT / "scripts" / "check_release.py")
@@ -38,6 +40,22 @@ def refresh_checksums(root: Path) -> None:
         bundle / "checksums.json",
         {"algorithm": "sha256", "file_count": len(rows), "files": rows, "schema": "okf-checksums.v1"},
     )
+
+
+def comparator_rights_fixture(root: Path) -> dict[str, object]:
+    paths: list[Path] = []
+    for relative in (
+        "evaluation/govuk-chat/new-parent-multi-service.json",
+        "evaluation/govuk-chat/official-published-example.json",
+    ):
+        path = root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes((ROOT / relative).read_bytes())
+        paths.append(path)
+    evidence, errors = _comparator_rights_evidence(root, paths, AuditLimits())
+    if errors:
+        raise AssertionError(f"invalid comparator rights fixture: {errors}")
+    return evidence
 
 
 def clean_room_input_manifest(
@@ -89,6 +107,7 @@ def clean_room_input_manifest(
 def make_release(root: Path) -> None:
     release_id = "T1-20260712-closing"
     counts = {"datasets": 3, "records": 3, "relationships": 0, "resources": 0, "publishers": 1}
+    comparator_evidence = comparator_rights_fixture(root)
     (root / "semantic").mkdir(parents=True, exist_ok=True)
     (root / "uv.lock").write_text("locked Python dependencies\n", encoding="utf-8")
     (root / "semantic/package-lock.json").write_text("locked Node dependencies\n", encoding="utf-8")
@@ -408,8 +427,10 @@ def make_release(root: Path) -> None:
                 "generated_at": reproduction["generated_at"],
                 "publication_manifest": rights_binding(publication_manifest_path),
                 "corpus_manifests": [rights_binding(rights_corpus_manifest)],
+                "comparator_evidence": comparator_evidence["files"],
                 "review_ledger": None,
             },
+            "comparator_evidence": comparator_evidence,
             "snapshot_binding": {
                 "release_manifest": {
                     "path": "release/manifest.yaml",

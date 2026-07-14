@@ -117,6 +117,26 @@ semantic versioning.
 
 ### Fixed
 
+- Assigned the sitemap/routing topology decision its unique `ADR-007`
+  identity, leaving the search-sharding decision as `ADR-006`, and synchronized
+  architecture and status references.
+- Kept every packaged Explorer descriptor entrypoint a string path and placed
+  the release data-plane SHA-256 in `entrypoint_integrity`, with fail-closed
+  packaging and validation tests.
+- Extended deterministic citation collection to every external URL in the
+  structured GOV.UK Chat comparator assets and to the observed question,
+  bounded excerpt, structured-summary sentences and ordered source-card
+  fields. Screenshot-dependent claims bind the exact binary digest, each card
+  binds both screenshot and destination, and duplicate, gapped or out-of-order
+  card positions fail closed. The comparator now carries hash-bound, exact
+  conservative rights dispositions, retains no image bytes, records the
+  authenticated-access boundary and keeps all new or changed evidence blocked
+  until source and semantic review rather than overstating verification.
+- Added complete, honest activity provenance for the sitemap/topology and
+  walkthrough implementation, separating unavailable Codex product usage from
+  exact zero external paid-model usage and from the independently managed GOV.UK
+  source-request counter.
+
 - Made requirement, traceability and task projections derive their release
   state from the jointly validated manifest/status controls. Checkpoints cannot
   claim passes; publishable states require the complete two-stage promotion

@@ -61,6 +61,59 @@ def policy_files(root: Path, *, metadata_link_default: bool = True) -> None:
     )
 
 
+def comparator_files(root: Path) -> list[Path]:
+    walkthrough = root / "evaluation/govuk-chat/new-parent-multi-service.json"
+    published = root / "evaluation/govuk-chat/official-published-example.json"
+    common = {
+        "schema": "govuk-chat-comparator-rights-disposition.v1",
+        "not_a_legal_conclusion": True,
+    }
+    write_json(
+        walkthrough,
+        {
+            "schema": "govuk-chat-comparison-walkthrough.v1",
+            "rights_and_reuse": {
+                **common,
+                "fair_use_or_fair_dealing_trigger":
+                "review_required_before_retaining_or_republishing_any_chat_answer_or_source_asset",
+                "disposition": "links_and_minimal_source_metadata_only",
+                "published_material_retained": False,
+                "official_context_rights_status": "not_independently_verified_for_each_linked_item",
+            },
+        },
+    )
+    write_json(
+        published,
+        {
+            "schema": "govuk-chat-published-observation.v1",
+            "capture": {"asset_retained": False, "asset_sha256": "a" * 64},
+            "answer": {"short_verbatim_excerpt": "A short bounded excerpt."},
+            "rights_and_reuse": {
+                **common,
+                "fair_use_or_fair_dealing_trigger":
+                "item_level_review_required_before_expanding_the_excerpt_or_copying_the_image",
+                "answer": {
+                    "disposition": "short_attributed_excerpt_and_structured_paraphrase_only",
+                    "rights_status":
+                    "not_independently_verified_for_republication_beyond_this_bounded_evidence_use",
+                },
+                "image": {
+                    "bytes_retained": False,
+                    "bytes_published": False,
+                    "disposition": "source_url_and_sha256_only",
+                    "rights_status": "not_independently_verified",
+                },
+                "source_cards": {
+                    "destination_content_copied": False,
+                    "disposition": "ordered_title_and_url_metadata_only",
+                    "rights_status": "linked_GOV.UK_items_may_contain_item_level_exceptions",
+                },
+            },
+        },
+    )
+    return [walkthrough, published]
+
+
 def make_release(
     root: Path,
     records: list[dict[str, object]],
@@ -72,6 +125,7 @@ def make_release(
     reviews: list[dict[str, object]] | None = None,
 ) -> tuple[Path, Path]:
     policy_files(root, metadata_link_default=metadata_link_default)
+    comparator_files(root)
     bundle = root / "bundle"
     shard = bundle / "data/records-0.json.gz"
     raw = canonical_json_bytes(records) + b"\n"
@@ -173,6 +227,14 @@ class RightsAuditTests(unittest.TestCase):
         if snapshot["kind"] == "fixture":
             result = audit_release(root)
             self.assertTrue(result["mechanical_controls_passed"], result["errors"])
+            self.assertTrue(result["comparator_evidence"]["controls_passed"])
+            self.assertEqual(2, len(result["comparator_evidence"]["files"]))
+            self.assertTrue(
+                all(
+                    disposition["rights_verified"] is False
+                    for disposition in result["comparator_evidence"]["dispositions"]
+                )
+            )
             self.assertTrue(result["retention_and_secret_findings"]["passed"])
             self.assertFalse(result["rights_privacy_audit_passed"])
             self.assertFalse(result["snapshot_binding"]["full_unsampled_snapshot"])
@@ -272,6 +334,94 @@ class RightsAuditTests(unittest.TestCase):
             )
             self.assertIsNone(result["audit_input_contract"]["review_ledger"])
             self.assertEqual(result, audit_from_input_contract(root, result["audit_input_contract"]))
+
+    def test_comparator_rights_dispositions_are_hash_bound_and_replayed(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            corpus, ledger = make_release(root, [{"canonical_url": "https://www.gov.uk/example"}])
+            comparators = comparator_files(root)
+            result = audit_release(
+                root,
+                corpus_manifest_paths=[corpus],
+                review_ledger_path=ledger,
+                comparator_evidence_paths=comparators,
+            )
+            self.assertTrue(result["comparator_evidence"]["controls_passed"], result["errors"])
+            self.assertEqual(2, len(result["audit_input_contract"]["comparator_evidence"]))
+            self.assertEqual(result, audit_from_input_contract(root, result["audit_input_contract"]))
+
+            comparators[0].write_bytes(comparators[0].read_bytes() + b" ")
+            with self.assertRaisesRegex(RightsAuditError, "content differs"):
+                audit_from_input_contract(root, result["audit_input_contract"])
+            with self.assertRaisesRegex(RightsAuditError, "content differs"):
+                rebind_audit_release(root, result)
+
+    def test_comparator_rights_dispositions_reject_semantic_tampering(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            corpus, ledger = make_release(root, [{"canonical_url": "https://www.gov.uk/example"}])
+            comparators = comparator_files(root)
+            cases = (
+                (comparators[0], ("rights_and_reuse", "fair_use_or_fair_dealing_trigger")),
+                (comparators[0], ("rights_and_reuse", "disposition")),
+                (comparators[0], ("rights_and_reuse", "official_context_rights_status")),
+                (comparators[1], ("rights_and_reuse", "fair_use_or_fair_dealing_trigger")),
+                (comparators[1], ("rights_and_reuse", "answer", "rights_status")),
+                (comparators[1], ("rights_and_reuse", "image", "disposition")),
+                (comparators[1], ("rights_and_reuse", "source_cards", "disposition")),
+                (comparators[1], ("rights_and_reuse", "source_cards", "rights_status")),
+            )
+            originals = {
+                path: json.loads(path.read_text(encoding="utf-8")) for path in comparators
+            }
+            for path, keys in cases:
+                with self.subTest(path=path.name, keys=keys):
+                    document = json.loads(json.dumps(originals[path]))
+                    target = document
+                    for key in keys[:-1]:
+                        target = target[key]
+                    target[keys[-1]] = "unsafe_overstatement"
+                    write_json(path, document)
+                    result = audit_release(
+                        root,
+                        corpus_manifest_paths=[corpus],
+                        review_ledger_path=ledger,
+                    )
+                    self.assertFalse(result["comparator_evidence"]["controls_passed"])
+                    self.assertTrue(
+                        any("comparator rights controls" in error for error in result["errors"]),
+                        result["errors"],
+                    )
+                    write_json(path, originals[path])
+
+    def test_comparator_contract_requires_both_fixed_repository_documents(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            corpus, ledger = make_release(root, [{"canonical_url": "https://www.gov.uk/example"}])
+            comparators = comparator_files(root)
+            comparators[1].unlink()
+            result = audit_release(
+                root,
+                corpus_manifest_paths=[corpus],
+                review_ledger_path=ledger,
+            )
+            self.assertFalse(result["comparator_evidence"]["controls_passed"])
+            self.assertTrue(
+                any("comparator rights evidence" in error for error in result["errors"]),
+                result["errors"],
+            )
+
+            write_json(comparators[1], json.loads(comparators[0].read_text(encoding="utf-8")))
+            result = audit_release(
+                root,
+                corpus_manifest_paths=[corpus],
+                review_ledger_path=ledger,
+                comparator_evidence_paths=[comparators[0], comparators[0]],
+            )
+            self.assertTrue(
+                any("must bind both" in error for error in result["errors"]),
+                result["errors"],
+            )
 
     def test_structural_fields_trigger_but_narrative_words_do_not(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

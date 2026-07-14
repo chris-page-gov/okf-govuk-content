@@ -1,4 +1,4 @@
-# ADR-006: Publish a sitemap and routing topology without expanding the release boundary
+# ADR-007: Publish a sitemap and routing topology without expanding the release boundary
 
 Date: 2026-07-14
 

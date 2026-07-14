@@ -92,6 +92,8 @@ The prompt and capture contract is `evaluation/govuk-chat/new-parent-multi-servi
 
 One official published question/answer example is already recorded at `evaluation/govuk-chat/official-published-example.json`: “My child is turning 4, what do I need to do to get them ready for school?” Its status is `official_published_example_not_a_live_replay`; it is not a live replay of the new-parent journey.
 
+The machine-readable walkthrough also carries each comparator asset's explicit rights disposition. The repository retains only links, minimal source-card metadata, one bounded attributed excerpt, a structured paraphrase and the official image digest; it does not retain or publish the image bytes. These controls trigger item-level review and are not a legal conclusion that OGL, fair dealing or another permission applies.
+
 ## Machine-readable companion
 
 The complete field-level inventory, expanded evidence references, provenance requirements and source-file hashes are in `evaluation/walkthroughs/persona-story-inventory.json`.

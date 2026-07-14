@@ -114,6 +114,52 @@ class ReleasePackagingTests(unittest.TestCase):
         self.assertTrue((first / "assets" / "bundle-checksums.json").is_file())
         self.assertTrue((first / "assets" / "evidence-sbom.cdx.json").is_file())
         self.assertTrue((first / "assets" / "evidence-browser-workflow.json").is_file())
+        descriptor = json.loads((first / "site" / "okf-explorer.json").read_text(encoding="utf-8"))
+        self.assertEqual(descriptor["entrypoints"]["release_data_plane"], "release-data-plane.json")
+        self.assertEqual(
+            descriptor["entrypoint_integrity"]["release_data_plane"],
+            {
+                "path": "release-data-plane.json",
+                "sha256": hashlib.sha256(
+                    (first / "site" / "release-data-plane.json").read_bytes()
+                ).hexdigest(),
+            },
+        )
+        self.assertTrue(all(isinstance(value, str) for value in descriptor["entrypoints"].values()))
+
+    def test_packaging_rejects_a_non_object_entrypoint_integrity_map(self) -> None:
+        write_json(
+            self.bundle / "okf-explorer.json",
+            {
+                "entrypoints": {"data_manifest": "data/manifest.json"},
+                "entrypoint_integrity": "invalid",
+            },
+        )
+        build_bundle_checksums(self.bundle)
+        with self.assertRaisesRegex(PackagingError, "entrypoint integrity must be an object"):
+            package_verified_release(
+                repository_root=self.root,
+                bundle=self.bundle,
+                output=self.root / "invalid-integrity",
+                tag="v0.1.0",
+                browser_evidence=self.root / "browser.json",
+            )
+
+    def test_package_verifier_reports_tampered_entrypoint_integrity_shape(self) -> None:
+        output = self.root / "verified"
+        package_verified_release(
+            repository_root=self.root,
+            bundle=self.bundle,
+            output=output,
+            tag="v0.1.0",
+            browser_evidence=self.root / "browser.json",
+        )
+        descriptor_path = output / "site" / "okf-explorer.json"
+        descriptor = json.loads(descriptor_path.read_text(encoding="utf-8"))
+        descriptor["entrypoint_integrity"] = "invalid"
+        write_json(descriptor_path, descriptor)
+        errors = check_verified_release(output)
+        self.assertIn("Explorer descriptor entrypoint integrity must be an object", errors)
 
     def test_tampering_and_nonempty_output_fail_closed(self) -> None:
         output = self.root / "verified"

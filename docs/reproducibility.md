@@ -156,6 +156,15 @@ chain to the GOV.UK Knowledge Asset guide; and the OpenAI article 403 to the
 official CDN BrowseComp paper. Failed originals, timestamps and evidence IDs
 remain visible and no TLS or access-control bypass is used.
 
+GOV.UK Chat is also an explicit access restriction, not an automated source.
+The public service requires the signed-in GOV.UK app and the production web
+testing surface requires GOV.UK Signon. Reproduction does not access either
+surface. Its comparator is limited to public official descriptions, minimal
+source-card metadata, one bounded attributed excerpt, a structured paraphrase
+and the official image URL plus digest; the image bytes are neither retained
+nor published, and each rights disposition remains an item-review trigger
+rather than a legal conclusion.
+
 ## Closing full snapshot
 
 The exact resumable T1, content-addressed source resolution, release-v2,

@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "7b8f55e882def72828aff30dfbbfd277c1e91d35172099ffe68118c2c368e612",
-    "before_sha256": "7b8f55e882def72828aff30dfbbfd277c1e91d35172099ffe68118c2c368e612",
+    "after_sha256": "1c3033f925cb774c6ae5375ce394d79bd037848e68ef7470fcbaa3f9c4c785b4",
+    "before_sha256": "1c3033f925cb774c6ae5375ce394d79bd037848e68ef7470fcbaa3f9c4c785b4",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -97,7 +97,7 @@
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-07-14T13:09:12Z",
+  "ended_at": "2026-07-14T18:24:46Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.5.2-arm64-arm-64bit",
@@ -259,10 +259,10 @@
         "tree_sha256": "0e7f1b4dc121977ae4a7a816c55a4bd12e3cd31758562b025b12f5b127c3fc06"
       },
       {
-        "bytes": 80133,
+        "bytes": 91358,
         "file_count": 1,
         "path": "provenance/activity-ledger.jsonl",
-        "tree_sha256": "04876a6c7a5436755ab0631ff5ffd4a19c13b82b9bd699adc2336c26d3ed643d"
+        "tree_sha256": "176948ef3d56bd78f89c0ac9733cd968a19158861ad45abfb42dd910b3cb348f"
       },
       {
         "bytes": 8590,
@@ -271,10 +271,10 @@
         "tree_sha256": "b8c715389e62e8c6e338587d267100e4f4d24dd1d69c08f35230dcc08fe10ba2"
       },
       {
-        "bytes": 13206,
+        "bytes": 13630,
         "file_count": 1,
         "path": "provenance/reproduction-declarations.json",
-        "tree_sha256": "573f9df93809108e44b36cdabd38531355a9d11d8d0f2dc291926b08fd50bb93"
+        "tree_sha256": "aa47cecbdfdbd308f39b895db9d3507cb58e0869e511ed412a48cf151876cac9"
       },
       {
         "bytes": 1273,
@@ -283,10 +283,10 @@
         "tree_sha256": "f4b4cbbae1a2bb985bb5ec351663777f6a38de8cad59d3619e4537fca3026e2f"
       },
       {
-        "bytes": 12824,
+        "bytes": 12852,
         "file_count": 1,
         "path": "release/provenance-validation.json",
-        "tree_sha256": "e86be86f426413251b5758d7a7207ea66f829270cffd93482c06c1d748d56a29"
+        "tree_sha256": "f876fb47035b4d1710b508e1044de845522f5b63cf1be8f2d889a4ec857bbab3"
       },
       {
         "bytes": 1574,
@@ -301,16 +301,16 @@
         "tree_sha256": "b70a3f1dee5904b1ae50dadbb25e8673087887355f126613608144c995acc6ec"
       },
       {
-        "bytes": 3536,
+        "bytes": 4329,
         "file_count": 1,
         "path": "research/source-constraints.json",
-        "tree_sha256": "5eff26615be089f5d22a8cc72d82f4b1ff7136ac776652b443a079598b566702"
+        "tree_sha256": "2710ab6cef995ba152168c2b1777cf2615b8ea3bd575f51e4e7c5fec55515366"
       },
       {
-        "bytes": 1085529,
+        "bytes": 1107085,
         "file_count": 28,
         "path": "src",
-        "tree_sha256": "9df614066ed9a0653cd85deaa971a3c20158559ff756292d48dc275ef82abd90"
+        "tree_sha256": "b07059c719fc228b8a50e165fd850913e888b08e8914fb42508641249c34ae42"
       },
       {
         "bytes": 1652,
@@ -337,10 +337,10 @@
         "tree_sha256": "41fe9d143ef6498121f144e4f42d77e6134669a43c0bcec92843a7f4e041a014"
       },
       {
-        "bytes": 50681,
+        "bytes": 50707,
         "file_count": 1,
         "path": "scripts/check_provenance.py",
-        "tree_sha256": "2acb1d8b8d1d5e5318c32bb7fdd6c4494faa3b82cfdde5b4ab911236b9efa72c"
+        "tree_sha256": "d5b7cc2c7cc0e299c2dc65871f6c7f5c7dc48333a3c234e9d3041bb6cbf5343e"
       },
       {
         "bytes": 68726,
@@ -417,13 +417,13 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "d403cafe23b4cc8de1ac738e0c580d090adc7b132fc7d18dc21b8af40f959e19"
+    "tree_sha256": "0ea496c5e5bee32fa084af97c2ba90065383e1037df7665d6a227d47ea6403f5"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
-      "activities": 29,
-      "activities_with_unavailable_cost": 23,
-      "activities_with_unavailable_tokens": 23,
+      "activities": 31,
+      "activities_with_unavailable_cost": 25,
+      "activities_with_unavailable_tokens": 25,
       "external_paid_model_api_calls": 0,
       "external_paid_model_cost_gbp": 0.0,
       "external_paid_model_input_tokens": 0,
@@ -431,7 +431,7 @@
       "known_cost_gbp": 0.0,
       "known_tokens": 0,
       "latest_source_request_checkpoint": 4283,
-      "ledger_sha256": "0aca93c7b4228424a1bf8faa70d54ebfa2276e753fec29d8be2dcfb1d089ca8d",
+      "ledger_sha256": "56f8dca67de9b415709d4db252b975d9bb52cbf9aadbcf9a715c6d6685c01e90",
       "source_request_activities_pending_final_count": 2,
       "source_request_exact_attempts": 11580,
       "source_requests_included_in_model_cost": false
@@ -482,7 +482,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-14T13:09:12Z",
+  "recorded_at": "2026-07-14T18:24:46Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
@@ -509,6 +509,8 @@
     "metadata_only": true,
     "policy_artifacts": [
       "LICENSE.md",
+      "evaluation/govuk-chat/new-parent-multi-service.json",
+      "evaluation/govuk-chat/official-published-example.json",
       "research/official-source-audit.md",
       "research/source-constraints.json"
     ],
@@ -535,10 +537,14 @@
     {
       "constraint_id": "SRC-CONSTRAINT-008",
       "disposition": "Represent observed redirect/gone history and publish the residual public-enumerability limit."
+    },
+    {
+      "constraint_id": "SRC-CONSTRAINT-009",
+      "disposition": "Do not automate or bypass the signed-in app or Signon-protected testing surface. Keep the comparator bounded to public official evidence, explicitly unverified item rights and no retained or published screenshot bytes."
     }
   ],
   "source_binding": null,
-  "started_at": "2026-07-14T13:09:11Z",
+  "started_at": "2026-07-14T18:24:45Z",
   "test_evidence": null,
   "validators": {
     "passed": true,

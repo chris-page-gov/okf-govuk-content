@@ -1,8 +1,8 @@
 {
   "activity_counts": {
     "deterministic": 6,
-    "model_assisted_or_mixed": 23,
-    "total": 29
+    "model_assisted_or_mixed": 25,
+    "total": 31
   },
   "candidate_blockers": [
     "non-release snapshot label: fixture-2026-07-11",
@@ -37,9 +37,9 @@
     ]
   },
   "hash_chain": {
-    "hash_chained_v2_rows": 25,
-    "last_entry_sha256": "140547bb1c861e80ab88c95636b246d522839c5651f59f92a69819cf9de4af91",
-    "ledger_sha256": "0aca93c7b4228424a1bf8faa70d54ebfa2276e753fec29d8be2dcfb1d089ca8d",
+    "hash_chained_v2_rows": 27,
+    "last_entry_sha256": "9ae6b0f627e7a4405415b9871bd502f4209e4652519877dfc60b1f86016ffab8",
+    "ledger_sha256": "56f8dca67de9b415709d4db252b975d9bb52cbf9aadbcf9a715c6d6685c01e90",
     "legacy_rows": 4,
     "passed": true,
     "superseded_activity_ids": [
@@ -49,23 +49,23 @@
     ]
   },
   "inputs": {
-    "activity_ledger_sha256": "0aca93c7b4228424a1bf8faa70d54ebfa2276e753fec29d8be2dcfb1d089ca8d",
+    "activity_ledger_sha256": "56f8dca67de9b415709d4db252b975d9bb52cbf9aadbcf9a715c6d6685c01e90",
     "activity_schema_sha256": "07b1d3e8a31ef57b6edd655fc2c0fb80378953502750b64065cef0f11012db9a",
-    "declarations_sha256": "c0842ac7edd53f168bbdf58a3f2b97a1276d1f74adfbd5f7b5be0ea288ebb482",
+    "declarations_sha256": "02314e9c83db45950d5951cc7113a6a2a0fd1cdafaca5d332a3992211f7f4b6c",
     "launch_manifest_sha256": "288a112954285cc47a8f51faa4729aac96aa7636af5f58633bdd0d4e0f422294",
     "model_lock_sha256": "60e47b0e9237ab4bd7fff53524dd731cff090e54532a3bd28a2dc1e5dc6c6d3c",
     "source_request_budget_sha256": "28e0db5068c90f7bc0403ad2362f30113714fadc99f489c05e7d7db689fc0b07",
-    "validator_sha256": "e4e53885ed5c0a7d37a85c78ff24428a2c60d8e71607fcd7f5cf02b5a54aaf19"
+    "validator_sha256": "4574476a039eb53c29af2b446fa49751e2ecc31956927229ea769c3201652f9b"
   },
   "model_usage": {
-    "activities_with_unavailable_exact_model_version": 23,
+    "activities_with_unavailable_exact_model_version": 25,
     "deterministic_activities": 6,
     "exact_model_versions": [],
-    "model_assisted_activities": 23,
+    "model_assisted_activities": 25,
     "product_session": {
-      "activities_with_unavailable_cost": 23,
-      "activities_with_unavailable_input_tokens": 23,
-      "activities_with_unavailable_output_tokens": 23,
+      "activities_with_unavailable_cost": 25,
+      "activities_with_unavailable_input_tokens": 25,
+      "activities_with_unavailable_output_tokens": 25,
       "known_input_tokens": 0,
       "known_marginal_cost_gbp": 0.0,
       "known_output_tokens": 0,
@@ -315,12 +315,13 @@
   "schema": "afhf-govuk-okf-provenance-validation.v1",
   "snapshot": "fixture-2026-07-11",
   "source_access_restrictions": {
-    "count": 4,
+    "count": 5,
     "ids": [
       "SRC-CONSTRAINT-005",
       "SRC-CONSTRAINT-006",
       "SRC-CONSTRAINT-007",
-      "SRC-CONSTRAINT-008"
+      "SRC-CONSTRAINT-008",
+      "SRC-CONSTRAINT-009"
     ]
   },
   "source_request_budget": {
@@ -350,7 +351,7 @@
     "final_activity_entries_required": 11,
     "output_bound_terminal_entries": 2,
     "release_snapshot_bound_terminal_entries": 9,
-    "source_access_restrictions": 4
+    "source_access_restrictions": 5
   },
   "validation_errors": [],
   "validation_mode": "checkpoint",

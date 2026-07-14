@@ -23,6 +23,14 @@ short excerpt, a structured paraphrase, the screenshot digest and the two GOV.UK
 source destinations shown in the answer. It is published evidence, not a live
 replay of the five-turn walkthrough.
 
+Both JSON records carry an explicit `rights_and_reuse` disposition. Linked
+pages and source cards retain only minimal identifying metadata. The screenshot
+bytes are neither retained nor published; only the official URL and observed
+SHA-256 remain. The short attributed excerpt and structured paraphrase are a
+bounded evidence use, not a conclusion that wider republication is licensed.
+The image and any longer Chat output require item-level rights or fair-dealing
+review before copying.
+
 GOV.UK Chat observations are time-sensitive comparator evidence, not gold.
 Verify claims against the linked current GOV.UK pages, then compare each source
 URL with the bundle record, route state, stable ID, relationships and evidence

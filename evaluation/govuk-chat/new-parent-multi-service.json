@@ -38,6 +38,14 @@
     "persona-public-multi-service-life-event",
     "persona-public-parent-carer"
   ],
+  "rights_and_reuse": {
+    "disposition": "links_and_minimal_source_metadata_only",
+    "fair_use_or_fair_dealing_trigger": "review_required_before_retaining_or_republishing_any_chat_answer_or_source_asset",
+    "not_a_legal_conclusion": true,
+    "official_context_rights_status": "not_independently_verified_for_each_linked_item",
+    "published_material_retained": false,
+    "schema": "govuk-chat-comparator-rights-disposition.v1"
+  },
   "schema": "govuk-chat-comparison-walkthrough.v1",
   "published_example": "evaluation/govuk-chat/official-published-example.json",
   "status": "official_published_example_captured_live_walkthrough_requires_signon",

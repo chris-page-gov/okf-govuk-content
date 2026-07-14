@@ -25,11 +25,11 @@
     },
     {
       "path": "evaluation/govuk-chat/new-parent-multi-service.json",
-      "sha256": "f68420c5a0d25dd59b1e0e5cb72a4a8832190194afe448b81d3f8e6d07e23cba"
+      "sha256": "26e8a31524d3bcf780db0e2a6a709296f1e9f22d78659c0f5dab8b7f2afbfbb1"
     },
     {
       "path": "evaluation/govuk-chat/official-published-example.json",
-      "sha256": "a9a138ce5afd8a530f5fca87cbc9a3ff9ff3f053ebae396fa4e3e21367c60efe"
+      "sha256": "c6913abec6e50a97089551ccdc97ed6f49200d17dd0c9704bc7050c920c1ce35"
     },
     {
       "path": "questions/bindings/story-accessibility-specialist.jsonl",
@@ -3756,7 +3756,35 @@
     "published_example": {
       "path": "evaluation/govuk-chat/official-published-example.json",
       "question": "My child is turning 4, what do I need to do to get them ready for school?",
+      "rights_and_reuse": {
+        "answer": {
+          "disposition": "short_attributed_excerpt_and_structured_paraphrase_only",
+          "rights_status": "not_independently_verified_for_republication_beyond_this_bounded_evidence_use"
+        },
+        "fair_use_or_fair_dealing_trigger": "item_level_review_required_before_expanding_the_excerpt_or_copying_the_image",
+        "image": {
+          "bytes_published": false,
+          "bytes_retained": false,
+          "disposition": "source_url_and_sha256_only",
+          "rights_status": "not_independently_verified"
+        },
+        "not_a_legal_conclusion": true,
+        "schema": "govuk-chat-comparator-rights-disposition.v1",
+        "source_cards": {
+          "destination_content_copied": false,
+          "disposition": "ordered_title_and_url_metadata_only",
+          "rights_status": "linked_GOV.UK_items_may_contain_item_level_exceptions"
+        }
+      },
       "status": "official_published_example_not_a_live_replay"
+    },
+    "rights_and_reuse": {
+      "disposition": "links_and_minimal_source_metadata_only",
+      "fair_use_or_fair_dealing_trigger": "review_required_before_retaining_or_republishing_any_chat_answer_or_source_asset",
+      "not_a_legal_conclusion": true,
+      "official_context_rights_status": "not_independently_verified_for_each_linked_item",
+      "published_material_retained": false,
+      "schema": "govuk-chat-comparator-rights-disposition.v1"
     },
     "status": "official_published_example_captured_live_walkthrough_requires_signon",
     "story_ids": [

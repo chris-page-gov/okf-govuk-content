@@ -144,19 +144,42 @@
     {
       "authority_class": "official_primary",
       "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "gov chat answers include links original source material"
+      ],
+      "labels": [
+        "GOV.UK Chat answers include links to the original source material for verification."
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GOV.UK Chat answers include links to the original source material for verification."
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/algorithmic-transparency-records/dsit-gov-dot-uk-chat",
+      "schema_version": "1.0",
+      "source_id": "SRC-06590155EED3C10E",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
         "docs.publishing.service.gov.uk"
       ],
       "expected_identity_terms": [
+        "gov sitemap developer manual",
         "generation documentation",
         "gov sitemap"
       ],
       "labels": [
+        "GOV.UK sitemap developer manual",
         "generation documentation",
         "GOV.UK sitemap"
       ],
       "locator_hint": {
         "kind": "heading_text_fingerprint",
-        "value": "generation documentation"
+        "value": "GOV.UK sitemap developer manual"
       },
       "publisher": "Government Digital Service",
       "requested_url": "https://docs.publishing.service.gov.uk/manual/govuk-sitemap.html",
@@ -245,6 +268,7 @@
         "www.gov.uk"
       ],
       "expected_identity_terms": [
+        "robots policy",
         "robots txt",
         "robots txt",
         "robots"
@@ -254,6 +278,7 @@
         "sitemap"
       ],
       "labels": [
+        "robots policy",
         "robots.txt",
         "Robots.txt",
         "robots"
@@ -551,6 +576,27 @@
       "version_or_commit": "4f77f1bdd0bb5cd861aad8e86fe4db71a2785fe5"
     },
     {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "insidegovuk.blog.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "gov describes new parent question multi department chat"
+      ],
+      "labels": [
+        "GOV.UK describes a new-parent question as a multi-department Chat example."
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GOV.UK describes a new-parent question as a multi-department Chat example."
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://insidegovuk.blog.gov.uk/2025/12/16/gov-uk-has-entered-the-chat-our-vision-for-gov-uk-chat/",
+      "schema_version": "1.0",
+      "source_id": "SRC-34EEE2BD1C43765C",
+      "version_or_commit": null
+    },
+    {
       "authority_class": "original_peer_reviewed",
       "expected_hosts": [
         "proceedings.neurips.cc"
@@ -569,6 +615,27 @@
       "requested_url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/6ddc001d07ca4f319af96a3024f6dbd1-Paper-Conference.pdf",
       "schema_version": "1.0",
       "source_id": "SRC-394CEF342A79F593",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "gds.blog.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "gov chat launch source page"
+      ],
+      "labels": [
+        "GOV.UK Chat launch source page"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GOV.UK Chat launch source page"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://gds.blog.gov.uk/2026/05/14/gov-uk-chat-launches/",
+      "schema_version": "1.0",
+      "source_id": "SRC-3B317443DE415693",
       "version_or_commit": null
     },
     {
@@ -1091,6 +1158,27 @@
     {
       "authority_class": "official_primary",
       "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "school admissions admission criteria"
+      ],
+      "labels": [
+        "School admissions: Admission criteria"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "School admissions: Admission criteria"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/schools-admissions/admissions-criteria",
+      "schema_version": "1.0",
+      "source_id": "SRC-634298561C4F5E70",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
         "www.usa.gov"
       ],
       "expected_identity_terms": [
@@ -1529,6 +1617,27 @@
       "version_or_commit": null
     },
     {
+      "authority_class": "official_primary",
+      "expected_hosts": [
+        "www.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "apply primary school place"
+      ],
+      "labels": [
+        "Apply for a primary school place"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Apply for a primary school place"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://www.gov.uk/apply-for-primary-school-place",
+      "schema_version": "1.0",
+      "source_id": "SRC-8FBF3F9C2FF045BA",
+      "version_or_commit": null
+    },
+    {
       "authority_class": "original_research",
       "expected_hosts": [
         "arxiv.org"
@@ -1581,6 +1690,27 @@
     {
       "authority_class": "official_primary",
       "expected_hosts": [
+        "docs.publishing.service.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "public gov chat surface gov app web interface"
+      ],
+      "labels": [
+        "The public GOV.UK Chat surface is in the GOV.UK app; the web interface is a departmental testing surface."
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "The public GOV.UK Chat surface is in the GOV.UK app; the web interface is a departmental testing surface."
+      },
+      "publisher": "Government Digital Service",
+      "requested_url": "https://docs.publishing.service.gov.uk/manual/govuk-chat.html",
+      "schema_version": "1.0",
+      "source_id": "SRC-988757DE640B36E2",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_hosts": [
         "design.canada.ca"
       ],
       "expected_identity_terms": [
@@ -1599,6 +1729,29 @@
       "requested_url": "https://design.canada.ca/specifications/information-findability/organizing-content.html",
       "schema_version": "1.0",
       "source_id": "SRC-9925A6B3F0959D8A",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "docs.github.com"
+      ],
+      "expected_identity_terms": [
+        "github release asset limits",
+        "github release limits"
+      ],
+      "labels": [
+        "GitHub Release asset limits",
+        "GitHub Release limits"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GitHub Release asset limits"
+      },
+      "publisher": "Version-pinned upstream repository",
+      "requested_url": "https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases",
+      "schema_version": "1.0",
+      "source_id": "SRC-A5AE543794811184",
       "version_or_commit": null
     },
     {
@@ -2193,6 +2346,27 @@
       "version_or_commit": null
     },
     {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "docs.github.com"
+      ],
+      "expected_identity_terms": [
+        "github pages limits"
+      ],
+      "labels": [
+        "GitHub Pages limits"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "GitHub Pages limits"
+      },
+      "publisher": "Version-pinned upstream repository",
+      "requested_url": "https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits",
+      "schema_version": "1.0",
+      "source_id": "SRC-D6A33A39068B2E80",
+      "version_or_commit": null
+    },
+    {
       "authority_class": "official_primary",
       "expected_hosts": [
         "docs.publishing.service.gov.uk"
@@ -2211,6 +2385,33 @@
       "requested_url": "https://docs.publishing.service.gov.uk/manual/taxonomy.html",
       "schema_version": "1.0",
       "source_id": "SRC-DA0056B173F6692F",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "official_primary",
+      "expected_document_sha256": "a39a6954cbede0ea24a57ddb3d9766665be2650eed36fe0cf5e7601a161df392",
+      "expected_hosts": [
+        "gds.blog.gov.uk"
+      ],
+      "expected_identity_terms": [
+        "gov chat official published example image"
+      ],
+      "labels": [
+        "GOV.UK Chat official published example image"
+      ],
+      "licence": "not_independently_verified_url_and_sha256_only",
+      "locator": {
+        "kind": "binary_sha256",
+        "value": "a39a6954cbede0ea24a57ddb3d9766665be2650eed36fe0cf5e7601a161df392"
+      },
+      "locator_hint": {
+        "kind": "binary_sha256",
+        "value": "a39a6954cbede0ea24a57ddb3d9766665be2650eed36fe0cf5e7601a161df392"
+      },
+      "publisher": "UK Government",
+      "requested_url": "https://gds.blog.gov.uk/wp-content/uploads/sites/60/2026/05/Example-Questions-Mockup-to-embed-within-post-620x413.png",
+      "schema_version": "1.0",
+      "source_id": "SRC-DBA67E9AA3C8366A",
       "version_or_commit": null
     },
     {
@@ -2380,6 +2581,29 @@
       "requested_url": "https://arxiv.org/abs/2307.13854",
       "schema_version": "1.0",
       "source_id": "SRC-EFF46C739F8899C1",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "docs.github.com"
+      ],
+      "expected_identity_terms": [
+        "immutable releases draft first publication",
+        "immutable release draft first behaviour"
+      ],
+      "labels": [
+        "Immutable Releases and draft-first publication",
+        "immutable Release draft-first behaviour"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Immutable Releases and draft-first publication"
+      },
+      "publisher": "Version-pinned upstream repository",
+      "requested_url": "https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases",
+      "schema_version": "1.0",
+      "source_id": "SRC-F6B5739716A2D036",
       "version_or_commit": null
     },
     {
