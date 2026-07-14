@@ -12,6 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from govuk_okf.publication import (  # noqa: E402
+    MAX_DATA_PLANE_SHARD_COMPRESSED_BYTES,
+    POSTINGS_PARTITIONING_CONTRACT,
     build_publication,
     compare_trees,
     load_jsonl,
@@ -19,8 +21,10 @@ from govuk_okf.publication import (  # noqa: E402
     synchronize,
 )
 from govuk_okf.acquisition import write_jsonl_gzip_shards  # noqa: E402
+from govuk_okf.discovery import DiscoveryIndex  # noqa: E402
 from govuk_okf.publication_disk import build_publication_from_path  # noqa: E402
 from govuk_okf.publication_validation import validate_bundle  # noqa: E402
+from govuk_okf.util import pretty_json  # noqa: E402
 
 
 class PublicationScaleTests(unittest.TestCase):
@@ -94,6 +98,7 @@ class PublicationScaleTests(unittest.TestCase):
 
     def test_higher_volume_build_caps_postings_with_bounded_python_heap(self) -> None:
         record_count = 2_048
+        skew_tokens = " ".join(f"ca{ordinal:06d}" for ordinal in range(64))
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             source = root / "source-records.jsonl.gz"
@@ -124,7 +129,10 @@ class PublicationScaleTests(unittest.TestCase):
                         "coverage_disposition": "represented",
                         "content_id": f"00000000-0000-4000-8000-{index:012d}",
                         "base_path": f"/synthetic/{index}",
-                        "title": f"Synthetic record {index} common government guidance",
+                        "title": (
+                            f"Synthetic record {index} common government guidance "
+                            f"{skew_tokens}"
+                        ),
                         "description": "Shared terms for a bounded-memory scale test.",
                         "document_type": "guidance",
                         "schema_name": "publication",
@@ -178,6 +186,10 @@ class PublicationScaleTests(unittest.TestCase):
                 )
             )
             self.assertEqual(record_count, search["counts"]["documents"])
+            self.assertEqual(
+                POSTINGS_PARTITIONING_CONTRACT,
+                search["postings_partitioning"],
+            )
             self.assertGreater(
                 search["counts"]["uncapped_postings"], search["counts"]["postings"]
             )
@@ -187,6 +199,74 @@ class PublicationScaleTests(unittest.TestCase):
                 )
             )
             self.assertEqual(2_000, len(postings["tokens"]["common"]))
+            ca_paths = [
+                path
+                for path in search["entrypoints"]["postings"]
+                if Path(path).name.startswith("ca-")
+            ]
+            self.assertEqual(
+                [
+                    "data/search/postings/ca-00000.json",
+                    "data/search/postings/ca-00001.json",
+                ],
+                ca_paths,
+            )
+            self.assertTrue(
+                all(
+                    (output / relative).stat().st_size
+                    <= MAX_DATA_PLANE_SHARD_COMPRESSED_BYTES
+                    for relative in search["entrypoints"]["postings"]
+                )
+            )
+            ca_lexicon = json.loads(
+                (output / search["entrypoints"]["lexicon"]["ca"]).read_text(
+                    encoding="utf-8"
+                )
+            )
+            routed_tokens: dict[str, str] = {
+                row["token"]: row["postings"] for row in ca_lexicon
+            }
+            self.assertEqual(
+                {f"ca{ordinal:06d}" for ordinal in range(64)},
+                set(routed_tokens),
+            )
+            observed_tokens: set[str] = set()
+            for relative in ca_paths:
+                payload = json.loads((output / relative).read_text(encoding="utf-8"))
+                for token in payload["tokens"]:
+                    self.assertEqual(relative, routed_tokens[token])
+                    self.assertNotIn(token, observed_tokens)
+                    observed_tokens.add(token)
+            self.assertEqual(set(routed_tokens), observed_tokens)
+            self.assertTrue(
+                DiscoveryIndex(output).search("ca000063", limit=5)["results"]
+            )
+            memory_output = root / "memory-bundle"
+            build_publication(
+                load_jsonl(source),
+                memory_output,
+                "2026-07-12T00:00:00Z",
+                "synthetic-2048",
+            )
+            memory_search = json.loads(
+                (memory_output / "data/search/manifest.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            memory_ca_paths = [
+                path
+                for path in memory_search["entrypoints"]["postings"]
+                if Path(path).name.startswith("ca-")
+            ]
+            self.assertEqual(ca_paths, memory_ca_paths)
+            for relative in [
+                *ca_paths,
+                search["entrypoints"]["lexicon"]["ca"],
+            ]:
+                self.assertEqual(
+                    (output / relative).read_bytes(),
+                    (memory_output / relative).read_bytes(),
+                )
             route_manifest = json.loads(
                 (output / "data" / "routes" / "manifest.json").read_text(
                     encoding="utf-8"
@@ -199,6 +279,40 @@ class PublicationScaleTests(unittest.TestCase):
             )
             self.assertEqual(256, len(route_manifest["buckets"]))
             self.assertEqual(256, len(adjacency_manifest["buckets"]))
+
+            first_payload_path = output / ca_paths[0]
+            second_payload_path = output / ca_paths[1]
+            first_payload = json.loads(first_payload_path.read_text(encoding="utf-8"))
+            second_payload = json.loads(second_payload_path.read_text(encoding="utf-8"))
+            moved_token = next(reversed(first_payload["tokens"]))
+            moved_rows = first_payload["tokens"].pop(moved_token)
+            second_payload["tokens"][moved_token] = moved_rows
+            first_payload_path.write_text(
+                pretty_json(first_payload), encoding="utf-8"
+            )
+            second_payload_path.write_text(
+                pretty_json(second_payload), encoding="utf-8"
+            )
+            for row in ca_lexicon:
+                if row["token"] == moved_token:
+                    row["postings"] = ca_paths[1]
+            ca_lexicon[-1]["postings"] = ca_paths[0]
+            (output / search["entrypoints"]["lexicon"]["ca"]).write_text(
+                pretty_json(ca_lexicon), encoding="utf-8"
+            )
+            tampered = validate_bundle(output)
+            self.assertFalse(tampered.passed)
+            self.assertTrue(
+                any("partition split is not greedy" in error for error in tampered.errors),
+                tampered.errors,
+            )
+            self.assertTrue(
+                any(
+                    "postings assignments are not contiguous" in error
+                    for error in tampered.errors
+                ),
+                tampered.errors,
+            )
 
 
 if __name__ == "__main__":

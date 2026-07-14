@@ -17,10 +17,19 @@ from typing import Any
 from .publication import (
     DATA_PLANE_BUDGETS,
     DATA_PLANE_SCHEMA_VERSION,
+    DOC_MAP_CHUNK_SIZE,
+    DOC_MAP_PARTITION_INDEX_WIDTH,
+    DOC_MAP_PARTITIONING_CONTRACT,
     MAX_DATA_PLANE_SHARD_COMPRESSED_BYTES,
     MAX_DATA_PLANE_SHARD_UNCOMPRESSED_BYTES,
+    POSTINGS_PARTITIONING_CONTRACT,
+    PublicationError,
     assertion_id,
     data_plane_manifest_root,
+    matches_exact_json_contract,
+    postings_entry_serialized_size,
+    postings_partition_serialized_size,
+    postings_partition_relative_path,
     search_shard,
     semantic_descriptor,
     semantic_route_iri,
@@ -30,6 +39,7 @@ from .publication import (
 from .util import (
     adjacency_bucket,
     canonical_json_bytes,
+    pretty_json,
     read_gzip_json,
     yaml_dump,
     yaml_load_subset,
@@ -986,24 +996,77 @@ class PublicationValidator:
         if not isinstance(entrypoints, dict):
             self.errors.add("search entrypoints must be an object")
             entrypoints = {}
+        partitioning = search.get("postings_partitioning")
+        partitioned_postings = "postings_partitioning" in search
+        if partitioned_postings and not matches_exact_json_contract(
+            partitioning, POSTINGS_PARTITIONING_CONTRACT
+        ):
+            self.errors.add(
+                "search postings partitioning contract is unsupported or has drifted"
+            )
+        if partitioned_postings and search.get("lexicon_shard_length") != (
+            POSTINGS_PARTITIONING_CONTRACT["logical_shard_length"]
+        ):
+            self.errors.add(
+                "search logical lexicon width differs from postings partitioning"
+            )
         result_paths = entrypoints.get("result_docs", [])
-        if not isinstance(result_paths, list):
-            self.errors.add("search result-doc entrypoint must be a list")
+        if not isinstance(result_paths, list) or not all(
+            isinstance(value, str) and value for value in result_paths
+        ):
+            self.errors.add("search result-doc entrypoint must be a path list")
             result_paths = []
         lexicon_paths = entrypoints.get("lexicon", {})
-        if not isinstance(lexicon_paths, dict):
-            self.errors.add("search lexicon entrypoint must be an object")
+        if not isinstance(lexicon_paths, dict) or not all(
+            isinstance(key, str)
+            and key
+            and isinstance(value, str)
+            and value
+            for key, value in lexicon_paths.items()
+        ):
+            self.errors.add("search lexicon entrypoint must be a path object")
             lexicon_paths = {}
         posting_paths = entrypoints.get("postings", [])
-        if not isinstance(posting_paths, list):
-            self.errors.add("search postings entrypoint must be a list")
+        if not isinstance(posting_paths, list) or not all(
+            isinstance(value, str) and value for value in posting_paths
+        ):
+            self.errors.add("search postings entrypoint must be a path list")
             posting_paths = []
         prefix_paths = entrypoints.get("prefixes", {})
-        if not isinstance(prefix_paths, dict):
-            self.errors.add("search prefix entrypoint must be an object")
+        if not isinstance(prefix_paths, dict) or not all(
+            isinstance(key, str)
+            and key
+            and isinstance(value, str)
+            and value
+            for key, value in prefix_paths.items()
+        ):
+            self.errors.add("search prefix entrypoint must be a path object")
             prefix_paths = {}
-        doc_map_path = entrypoints.get("doc_map")
-        doc_map_paths = [doc_map_path] if isinstance(doc_map_path, str) else []
+        doc_map_value = entrypoints.get("doc_map")
+        doc_map_partitioning = search.get("doc_map_partitioning")
+        partitioned_doc_map = "doc_map_partitioning" in search
+        if partitioned_doc_map:
+            if not matches_exact_json_contract(
+                doc_map_partitioning, DOC_MAP_PARTITIONING_CONTRACT
+            ):
+                self.errors.add(
+                    "search document-map partitioning contract is unsupported or has drifted"
+                )
+            if not isinstance(doc_map_value, list) or not all(
+                isinstance(value, str) for value in doc_map_value
+            ):
+                self.errors.add(
+                    "partitioned search document-map entrypoint must be a path list"
+                )
+                doc_map_paths = []
+            else:
+                doc_map_paths = list(doc_map_value)
+        else:
+            if not isinstance(doc_map_value, str):
+                self.errors.add("legacy search document-map entrypoint must be a path")
+                doc_map_paths = []
+            else:
+                doc_map_paths = [doc_map_value]
         result_metadata = self.register_shard_metadata(
             label="search result-doc",
             paths=result_paths,
@@ -1105,102 +1168,244 @@ class PublicationValidator:
                 first_key=token_keys[0] if token_keys else None,
                 last_key=token_keys[-1] if token_keys else None,
             )
-            paths = {
-                str(entry.get("postings"))
-                for entry in entries
-                if isinstance(entry, dict) and isinstance(entry.get("postings"), str)
-            }
-            if len(paths) != 1 and entries:
-                self.errors.add(f"search lexicon shard has inconsistent postings: {shard}")
-            postings_relative = next(iter(paths), "")
-            referenced_posting_paths.update(paths)
-            payload = self.load_json(
-                postings_relative,
-                label=f"search postings shard {postings_relative}",
-                max_bytes=MAX_SHARD,
-                default={},
-            ) if postings_relative else {}
-            tokens_payload = payload.get("tokens", {}) if isinstance(payload, dict) else {}
-            if not isinstance(tokens_payload, dict):
-                self.errors.add(f"search postings tokens are not an object: {postings_relative}")
-                tokens_payload = {}
-            posting_keys = sorted(str(token) for token in tokens_payload)
-            posting_metadata = postings_metadata.get(postings_relative)
-            self.check_shard_observation(
-                posting_metadata,
-                label=f"search postings shard {postings_relative}",
-                count=len(tokens_payload),
-                first_key=posting_keys[0] if posting_keys else None,
-                last_key=posting_keys[-1] if posting_keys else None,
-            )
-            if posting_metadata is not None and posting_metadata.get(
-                "posting_count"
-            ) != sum(
-                len(rows) if isinstance(rows, list) else 0
-                for rows in tokens_payload.values()
-            ):
-                self.errors.add(
-                    f"search posting count differs from shard metadata: {postings_relative}"
-                )
-            lexicon_tokens: set[str] = set()
+            entries_by_path: dict[str, list[dict[str, Any]]] = {}
+            path_order: list[str] = []
+            previous_lexicon_token: str | None = None
+            active_postings_path: str | None = None
+            closed_postings_paths: set[str] = set()
             for entry in entries:
                 if not isinstance(entry, dict):
                     self.errors.add(f"search lexicon contains a non-object: {relative}")
                     continue
-                token = str(entry.get("token", ""))
-                lexicon_tokens.add(token)
-                token_count += 1
-                if search_shard(token, shard_length) != shard or tokenise(token) != {token}:
+                postings_value = entry.get("postings")
+                if not isinstance(postings_value, str) or not postings_value:
                     self.errors.add(
-                        f"search token is in the wrong shard or not canonical: {token}"
+                        f"search lexicon entry has no postings reference: {relative}"
                     )
-                df = entry.get("df")
-                if not isinstance(df, int) or isinstance(df, bool) or df < 0:
-                    self.errors.add(f"search token has invalid document frequency: {token}")
-                    df = 0
-                try:
-                    self.connection.execute(
-                        "INSERT INTO search_tokens(token, shard, df) VALUES (?, ?, ?)",
-                        (token, shard, df),
+                    continue
+                token = str(entry.get("token", ""))
+                if (
+                    previous_lexicon_token is not None
+                    and token <= previous_lexicon_token
+                ):
+                    self.errors.add(
+                        f"search lexicon tokens are not strictly sorted: {relative}"
                     )
-                except sqlite3.IntegrityError:
-                    self.errors.add(f"duplicate search token: {token}")
-                postings = tokens_payload.get(token, [])
-                if not isinstance(postings, list):
-                    self.errors.add(f"search postings are not an array: {token}")
-                    postings = []
-                retained_postings += len(postings)
-                uncapped_postings += df
-                if df < len(postings) or len(postings) != min(df, max_postings):
-                    self.errors.add(f"search posting count does not match df/cap: {token}")
-                seen_ordinals: set[int] = set()
-                ranking: list[tuple[int, int]] = []
-                for posting in postings:
-                    if (
-                        not isinstance(posting, list)
-                        or len(posting) != 3
-                        or any(
-                            not isinstance(value, int) or isinstance(value, bool)
-                            for value in posting
+                previous_lexicon_token = token
+                if postings_value != active_postings_path:
+                    if postings_value in closed_postings_paths:
+                        self.errors.add(
+                            "search lexicon postings assignments are not contiguous: "
+                            f"{shard}"
                         )
+                    if active_postings_path is not None:
+                        closed_postings_paths.add(active_postings_path)
+                    active_postings_path = postings_value
+                if postings_value not in entries_by_path:
+                    entries_by_path[postings_value] = []
+                    path_order.append(postings_value)
+                entries_by_path[postings_value].append(entry)
+            if entries and not path_order:
+                self.errors.add(f"search lexicon shard has no postings: {shard}")
+            if not partitioned_postings and len(path_order) != (1 if entries else 0):
+                self.errors.add(
+                    f"legacy search lexicon shard has inconsistent postings: {shard}"
+                )
+            try:
+                expected_paths = [
+                    postings_partition_relative_path(shard, index, len(path_order))
+                    for index in range(len(path_order))
+                ]
+            except PublicationError:
+                expected_paths = []
+                self.errors.add(f"search postings logical shard is invalid: {shard}")
+            if path_order != expected_paths:
+                self.errors.add(
+                    f"search postings partitions are not canonical or contiguous: {shard}"
+                )
+            referenced_posting_paths.update(path_order)
+            previous_partition_last: str | None = None
+            previous_partition_size: int | None = None
+            for partition_index, postings_relative in enumerate(path_order):
+                payload = self.load_json(
+                    postings_relative,
+                    label=f"search postings shard {postings_relative}",
+                    max_bytes=MAX_SHARD,
+                    default={},
+                )
+                tokens_payload = (
+                    payload.get("tokens", {}) if isinstance(payload, dict) else {}
+                )
+                if not isinstance(tokens_payload, dict):
+                    self.errors.add(
+                        f"search postings tokens are not an object: {postings_relative}"
+                    )
+                    tokens_payload = {}
+                posting_keys = [str(token) for token in tokens_payload]
+                if posting_keys != sorted(posting_keys):
+                    self.errors.add(
+                        "search postings tokens are not strictly sorted: "
+                        f"{postings_relative}"
+                    )
+                if not posting_keys:
+                    self.errors.add(
+                        f"search postings partition is empty: {postings_relative}"
+                    )
+                canonical_size = postings_partition_serialized_size(
+                    (token, tokens_payload[token]) for token in posting_keys
+                )
+                canonical_bytes = pretty_json(
+                    {"tokens": tokens_payload}
+                ).encode("utf-8")
+                try:
+                    physical_bytes = self.path(postings_relative).read_bytes()
+                except (OSError, ValueError):
+                    physical_bytes = b""
+                if (
+                    len(canonical_bytes) != canonical_size
+                    or physical_bytes != canonical_bytes
+                ):
+                    self.errors.add(
+                        "search postings partition is not canonical pretty JSON: "
+                        f"{postings_relative}"
+                    )
+                if posting_keys and previous_partition_last is not None:
+                    if previous_partition_last >= posting_keys[0]:
+                        self.errors.add(
+                            "search postings token ranges overlap or are not ordered: "
+                            f"{shard}"
+                        )
+                    first_rows = tokens_payload[posting_keys[0]]
+                    if (
+                        partitioned_postings
+                        and previous_partition_size is not None
+                        and previous_partition_size
+                        + postings_entry_serialized_size(
+                            posting_keys[0], first_rows, first=False
+                        )
+                        <= MAX_SHARD
                     ):
-                        self.errors.add(f"search postings are malformed: {token}")
-                        continue
-                    ordinal, score, _mask = posting
-                    if ordinal in seen_ordinals:
-                        self.errors.add(f"search postings are duplicate: {token}")
-                    seen_ordinals.add(ordinal)
-                    if not 0 <= ordinal < dataset_count:
-                        self.errors.add(f"search posting ordinal is out of range: {token}")
-                    ranking.append((-score, ordinal))
-                if ranking != sorted(ranking):
-                    self.errors.add(f"search postings are not deterministically ranked: {token}")
-            if set(tokens_payload) != lexicon_tokens:
-                self.errors.add(f"search lexicon/postings token sets differ: {shard}")
+                        self.errors.add(
+                            "search postings partition split is not greedy: "
+                            f"{postings_relative}"
+                        )
+                if posting_keys:
+                    previous_partition_last = posting_keys[-1]
+                previous_partition_size = canonical_size
+                posting_metadata = postings_metadata.get(postings_relative)
+                self.check_shard_observation(
+                    posting_metadata,
+                    label=f"search postings shard {postings_relative}",
+                    count=len(tokens_payload),
+                    first_key=posting_keys[0] if posting_keys else None,
+                    last_key=posting_keys[-1] if posting_keys else None,
+                )
+                if partitioned_postings and posting_metadata is not None:
+                    expected_partition_fields = {
+                        "shard": shard,
+                        "partition": partition_index,
+                        "partition_count": len(path_order),
+                        "partitioning_schema": POSTINGS_PARTITIONING_CONTRACT[
+                            "schema"
+                        ],
+                    }
+                    if any(
+                        posting_metadata.get(key) != value
+                        for key, value in expected_partition_fields.items()
+                    ):
+                        self.errors.add(
+                            "search postings partition metadata differs from its "
+                            f"contract: {postings_relative}"
+                        )
+                if posting_metadata is not None and posting_metadata.get(
+                    "posting_count"
+                ) != sum(
+                    len(rows) if isinstance(rows, list) else 0
+                    for rows in tokens_payload.values()
+                ):
+                    self.errors.add(
+                        "search posting count differs from shard metadata: "
+                        f"{postings_relative}"
+                    )
+                partition_entries = entries_by_path.get(postings_relative, [])
+                partition_tokens = {
+                    str(entry.get("token", "")) for entry in partition_entries
+                }
+                if set(tokens_payload) != partition_tokens:
+                    self.errors.add(
+                        "search lexicon/postings token sets differ: "
+                        f"{postings_relative}"
+                    )
+                for entry in partition_entries:
+                    token = str(entry.get("token", ""))
+                    token_count += 1
+                    if search_shard(token, shard_length) != shard or tokenise(
+                        token
+                    ) != {token}:
+                        self.errors.add(
+                            "search token is in the wrong shard or not canonical: "
+                            f"{token}"
+                        )
+                    df = entry.get("df")
+                    if not isinstance(df, int) or isinstance(df, bool) or df < 0:
+                        self.errors.add(
+                            f"search token has invalid document frequency: {token}"
+                        )
+                        df = 0
+                    try:
+                        self.connection.execute(
+                            "INSERT INTO search_tokens(token, shard, df) VALUES (?, ?, ?)",
+                            (token, shard, df),
+                        )
+                    except sqlite3.IntegrityError:
+                        self.errors.add(f"duplicate search token: {token}")
+                    postings = tokens_payload.get(token, [])
+                    if not isinstance(postings, list):
+                        self.errors.add(f"search postings are not an array: {token}")
+                        postings = []
+                    retained_postings += len(postings)
+                    uncapped_postings += df
+                    if df < len(postings) or len(postings) != min(df, max_postings):
+                        self.errors.add(
+                            f"search posting count does not match df/cap: {token}"
+                        )
+                    seen_ordinals: set[int] = set()
+                    ranking: list[tuple[int, int]] = []
+                    for posting in postings:
+                        if (
+                            not isinstance(posting, list)
+                            or len(posting) != 3
+                            or any(
+                                not isinstance(value, int)
+                                or isinstance(value, bool)
+                                for value in posting
+                            )
+                        ):
+                            self.errors.add(f"search postings are malformed: {token}")
+                            continue
+                        ordinal, score, _mask = posting
+                        if ordinal in seen_ordinals:
+                            self.errors.add(f"search postings are duplicate: {token}")
+                        seen_ordinals.add(ordinal)
+                        if not 0 <= ordinal < dataset_count:
+                            self.errors.add(
+                                f"search posting ordinal is out of range: {token}"
+                            )
+                        ranking.append((-score, ordinal))
+                    if ranking != sorted(ranking):
+                        self.errors.add(
+                            "search postings are not deterministically ranked: "
+                            f"{token}"
+                        )
             self.connection.commit()
         manifest_postings = set(posting_paths)
         if manifest_postings != referenced_posting_paths:
             self.errors.add("search postings manifest does not match lexicon references")
+        if search.get("counts", {}).get("postings_shards") not in {
+            None,
+            len(posting_paths),
+        }:
+            self.errors.add("search postings-shard count differs from manifest")
         for relative in manifest_postings:
             self.check_file(
                 relative, label=f"search postings shard {relative}", max_bytes=MAX_SHARD
@@ -1223,24 +1428,98 @@ class PublicationValidator:
                 first_key=keys[0] if keys else None,
                 last_key=keys[-1] if keys else None,
             )
-        doc_map = self.load_json(
-            doc_map_path or "",
-            label="search document map",
-            max_bytes=MAX_SHARD,
-            default={},
-        )
-        if not isinstance(doc_map, dict):
-            self.errors.add("search document map is not an object")
-            doc_map = {}
-        self.check_shard_observation(
-            doc_map_metadata.get(str(doc_map_path)),
-            label=f"search document map {doc_map_path}",
-            count=len(doc_map),
-            first_key="0" if doc_map else None,
-            last_key=str(len(doc_map) - 1) if doc_map else None,
-        )
-        if len(doc_map) != dataset_count:
+        doc_map_count = 0
+        if partitioned_doc_map:
+            expected_doc_map_paths = [
+                "data/search/doc-map-"
+                f"{partition:0{DOC_MAP_PARTITION_INDEX_WIDTH}d}.json"
+                for partition in range(len(doc_map_paths))
+            ]
+            if doc_map_paths != expected_doc_map_paths:
+                self.errors.add(
+                    "search document-map partitions are not canonical or contiguous"
+                )
+        for partition, doc_map_path in enumerate(doc_map_paths):
+            doc_map = self.load_json(
+                doc_map_path,
+                label=f"search document map {doc_map_path}",
+                max_bytes=MAX_SHARD,
+                default={},
+            )
+            if not isinstance(doc_map, dict):
+                self.errors.add(
+                    f"search document map is not an object: {doc_map_path}"
+                )
+                doc_map = {}
+            expected_first = doc_map_count
+            expected_keys = {
+                str(ordinal)
+                for ordinal in range(expected_first, expected_first + len(doc_map))
+            }
+            if set(doc_map) != expected_keys:
+                self.errors.add(
+                    "search document-map ordinals are not contiguous and exact: "
+                    f"{doc_map_path}"
+                )
+            for key, route in doc_map.items():
+                try:
+                    ordinal = int(key)
+                except (TypeError, ValueError):
+                    continue
+                expected = self.connection.execute(
+                    "SELECT open FROM records WHERE kind='datasets' AND ordinal=?",
+                    (ordinal,),
+                ).fetchone()
+                if expected is None or route != expected[0]:
+                    self.errors.add(
+                        f"search document-map route differs at ordinal {ordinal}"
+                    )
+            last = expected_first + len(doc_map) - 1
+            self.check_shard_observation(
+                doc_map_metadata.get(str(doc_map_path)),
+                label=f"search document map {doc_map_path}",
+                count=len(doc_map),
+                first_key=str(expected_first) if doc_map else None,
+                last_key=str(last) if doc_map else None,
+            )
+            metadata = doc_map_metadata.get(str(doc_map_path))
+            if partitioned_doc_map and metadata is not None:
+                expected_fields = {
+                    "partition": partition,
+                    "partition_count": len(doc_map_paths),
+                    "first_ordinal": expected_first,
+                    "last_ordinal": last,
+                    "partitioning_schema": DOC_MAP_PARTITIONING_CONTRACT["schema"],
+                }
+                if any(
+                    metadata.get(key) != value
+                    for key, value in expected_fields.items()
+                ):
+                    self.errors.add(
+                        "search document-map partition metadata differs from its "
+                        f"contract: {doc_map_path}"
+                    )
+                if len(doc_map) > DOC_MAP_CHUNK_SIZE:
+                    self.errors.add(
+                        f"search document-map partition exceeds record cap: {doc_map_path}"
+                    )
+                if not doc_map:
+                    self.errors.add(
+                        f"search document-map partition is empty: {doc_map_path}"
+                    )
+                if partition < len(doc_map_paths) - 1 and len(doc_map) != DOC_MAP_CHUNK_SIZE:
+                    self.errors.add(
+                        "non-final search document-map partition is not full: "
+                        f"{doc_map_path}"
+                    )
+            doc_map_count += len(doc_map)
+        if doc_map_count != dataset_count:
             self.errors.add("search document map count differs from datasets")
+        if search.get("counts", {}).get("doc_map_shards") not in {
+            None,
+            len(doc_map_paths),
+        }:
+            self.errors.add("search document-map shard count differs from manifest")
         if token_count != search.get("counts", {}).get("tokens"):
             self.errors.add("search token count differs from manifest")
         if retained_postings != search.get("counts", {}).get("postings"):

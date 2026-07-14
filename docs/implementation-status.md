@@ -1,6 +1,6 @@
 # Implementation status
 
-- Status date: 13 July 2026
+- Status date: 14 July 2026
 - Milestone: T0 census closed
 - Publication ready: **no**
 
@@ -16,7 +16,7 @@ development and review; it is not evidence that Release 1 covers GOV.UK.
 | Contract and controller | 95 requirements, 11 gates and 36 task contracts imported; controller checks pass | Accepted run evidence and terminal requirement dispositions |
 | Official sources | Dated 32-source and 93-URL plan preflight retained; T0 closed from 137 opposing-pass Search partitions, 35 byte-stable sitemap shards and closed organisations/navigation | T0 hydration, T1 union closure and final rights/citation snapshot binding |
 | Semantic profile | YAML-LD profile, JSON schemas, crosswalks, shapes and JSON-LD fixture projection produced | Release-snapshot equivalence, integrity and provenance evidence |
-| Bundle and Explorer | 14-record fixture, static search, route index, adjacency, query/hash replay, Pages fallback, passing local/protected-CI real-Chromium gate and read-only CLI produced | Axe, accessibility-expert and screen-reader review, full hydrated corpus and measured full-snapshot accessibility/security/performance gates |
+| Bundle and Explorer | 14-record fixture, static search, route index, adjacency, query/hash replay, Pages fallback, passing local/protected-CI real-Chromium gate and read-only CLI produced; exact-byte postings partitions and 1,000-record document maps preserve logical lookup and legacy manifests while bounding physical files | Rerun the exact 836,998-record T0 capacity build, then complete the hydrated closing corpus and measured full-snapshot accessibility/security/performance gates; axe, accessibility-expert and screen-reader review remain open |
 | Security | Completed repository-wide scan recorded 14 findings; its remediation diff scan confirmed those fixes and found three residual low issues, all fixed at `27890dc`; 32 focused post-fix tests pass | Run and hash-bind a new full-repository scan after the hydrated release snapshot and publication artefacts are frozen; `security_scan_passed` remains false |
 | Census and hydration | Unsampled T0 closed at 848,977 candidates and 836,998 publication records; 848,971 represented plus six redirects, with zero exceptions/unexplained omissions; every shard digest passes; the resumable checkpoint now enforces the authorised 10 GiB retained-metadata ceiling, durably spools successful responses, admits all writes before mutation and rejects duplicate source identities/path escapes | Complete the prepared hydration queue, re-enumerate T1, close drift and retain zero unexplained omissions |
 | Personas and stories | Machine-applicable saturation passes for 48 primary persona hypotheses, 17 overlays, 11 dimensions, 83 schema families, 136 overlay pairs, five high-risk t-way scenarios and two successive no-new challenge passes | Authorised human validation and final-snapshot regeneration of six release-v2 stories per persona; UI preference remains not yet testable |
@@ -87,6 +87,11 @@ fails projection generation.
   8 Content API requests/s, before retries, linked discoveries and T1. ADR-004
   limits the deterministic rendered-link detector to 75,000 pages and preserves
   a 76,952-attempt lower-bound reserve for retries, discoveries and closing.
+- The first exact T0 capacity build ran 44,342.28 seconds and failed closed on
+  a 6,712,946-byte `ca` postings file. ADR-006 implements deterministic bounded
+  physical partitions and its failure-shaped regression passes, but the exact
+  T0 rerun must still prove all postings, lexicon, prefix, document-map and
+  other shard distributions before capacity can be accepted.
 - Search API v1 is unsupported and has no immutable cursor; sitemap coverage is
   “majority” rather than complete and its shards changed during audit. Opposing
   partition passes and byte-stable retries are mandatory.

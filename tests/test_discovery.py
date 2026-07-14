@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import tempfile
 import unittest
@@ -85,6 +86,83 @@ class DiscoveryTests(unittest.TestCase):
         descriptor["entrypoints"]["search_manifest"]["sha256"] = "0" * 64
         descriptor_path.write_text(json.dumps(descriptor), encoding="utf-8")
         with self.assertRaisesRegex(DiscoveryError, "SHA-256 differs"):
+            DiscoveryIndex(self.bundle)
+
+    def rewrite_search_manifest(self, search: dict[str, object]) -> None:
+        search_path = self.bundle / "data/search/manifest.json"
+        search_path.write_text(
+            json.dumps(search, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        descriptor_path = self.bundle / "okf-explorer.json"
+        descriptor = json.loads(descriptor_path.read_text(encoding="utf-8"))
+        descriptor["entrypoints"]["search_manifest"]["sha256"] = hashlib.sha256(
+            search_path.read_bytes()
+        ).hexdigest()
+        descriptor_path.write_text(
+            json.dumps(descriptor, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+
+    def test_legacy_singleton_search_manifest_remains_discoverable(self) -> None:
+        search_path = self.bundle / "data/search/manifest.json"
+        search = json.loads(search_path.read_text(encoding="utf-8"))
+        search.pop("postings_partitioning")
+        search.pop("doc_map_partitioning")
+        search["entrypoints"]["doc_map"] = search["entrypoints"]["doc_map"][0]
+        self.rewrite_search_manifest(search)
+        legacy = DiscoveryIndex(self.bundle)
+        self.assertTrue(legacy.search("universal credit")["results"])
+
+    def test_declared_partition_contract_drift_fails_closed(self) -> None:
+        search_path = self.bundle / "data/search/manifest.json"
+        search = json.loads(search_path.read_text(encoding="utf-8"))
+        search["postings_partitioning"]["token_atomic"] = False
+        self.rewrite_search_manifest(search)
+        with self.assertRaisesRegex(DiscoveryError, "partitioning contract"):
+            DiscoveryIndex(self.bundle)
+
+        for field, value in (
+            ("postings_partitioning", None),
+            ("doc_map_partitioning", None),
+        ):
+            with self.subTest(field=field, value=value):
+                build_publication(
+                    load_jsonl(
+                        ROOT / "tests" / "fixtures" / "corpus" / "source-records.jsonl"
+                    ),
+                    self.bundle,
+                    "2026-07-11T23:30:00Z",
+                    "fixture-2026-07-11",
+                )
+                search = json.loads(search_path.read_text(encoding="utf-8"))
+                search[field] = value
+                self.rewrite_search_manifest(search)
+                with self.assertRaisesRegex(DiscoveryError, "partitioning contract"):
+                    DiscoveryIndex(self.bundle)
+
+        build_publication(
+            load_jsonl(ROOT / "tests" / "fixtures" / "corpus" / "source-records.jsonl"),
+            self.bundle,
+            "2026-07-11T23:30:00Z",
+            "fixture-2026-07-11",
+        )
+        search = json.loads(search_path.read_text(encoding="utf-8"))
+        search["postings_partitioning"]["token_atomic"] = 1
+        self.rewrite_search_manifest(search)
+        with self.assertRaisesRegex(DiscoveryError, "partitioning contract"):
+            DiscoveryIndex(self.bundle)
+
+        build_publication(
+            load_jsonl(ROOT / "tests" / "fixtures" / "corpus" / "source-records.jsonl"),
+            self.bundle,
+            "2026-07-11T23:30:00Z",
+            "fixture-2026-07-11",
+        )
+        search = json.loads(search_path.read_text(encoding="utf-8"))
+        search["lexicon_shard_length"] = 3
+        self.rewrite_search_manifest(search)
+        with self.assertRaisesRegex(DiscoveryError, "logical lexicon width"):
             DiscoveryIndex(self.bundle)
 
 

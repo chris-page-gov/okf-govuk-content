@@ -1,8 +1,8 @@
 {
   "activity_counts": {
     "deterministic": 6,
-    "model_assisted_or_mixed": 22,
-    "total": 28
+    "model_assisted_or_mixed": 23,
+    "total": 29
   },
   "candidate_blockers": [
     "non-release snapshot label: fixture-2026-07-11",
@@ -37,9 +37,9 @@
     ]
   },
   "hash_chain": {
-    "hash_chained_v2_rows": 24,
-    "last_entry_sha256": "cde40a0879cc98767d42514279cf514d338ebe50c0941b6a43985301893046a5",
-    "ledger_sha256": "12fa35cf2eaf1d58592bd38a7b7bd8d42da200a19b704ab51b172c65b58d4a57",
+    "hash_chained_v2_rows": 25,
+    "last_entry_sha256": "140547bb1c861e80ab88c95636b246d522839c5651f59f92a69819cf9de4af91",
+    "ledger_sha256": "0aca93c7b4228424a1bf8faa70d54ebfa2276e753fec29d8be2dcfb1d089ca8d",
     "legacy_rows": 4,
     "passed": true,
     "superseded_activity_ids": [
@@ -49,7 +49,7 @@
     ]
   },
   "inputs": {
-    "activity_ledger_sha256": "12fa35cf2eaf1d58592bd38a7b7bd8d42da200a19b704ab51b172c65b58d4a57",
+    "activity_ledger_sha256": "0aca93c7b4228424a1bf8faa70d54ebfa2276e753fec29d8be2dcfb1d089ca8d",
     "activity_schema_sha256": "07b1d3e8a31ef57b6edd655fc2c0fb80378953502750b64065cef0f11012db9a",
     "declarations_sha256": "c0842ac7edd53f168bbdf58a3f2b97a1276d1f74adfbd5f7b5be0ea288ebb482",
     "launch_manifest_sha256": "288a112954285cc47a8f51faa4729aac96aa7636af5f58633bdd0d4e0f422294",
@@ -58,14 +58,14 @@
     "validator_sha256": "e4e53885ed5c0a7d37a85c78ff24428a2c60d8e71607fcd7f5cf02b5a54aaf19"
   },
   "model_usage": {
-    "activities_with_unavailable_exact_model_version": 22,
+    "activities_with_unavailable_exact_model_version": 23,
     "deterministic_activities": 6,
     "exact_model_versions": [],
-    "model_assisted_activities": 22,
+    "model_assisted_activities": 23,
     "product_session": {
-      "activities_with_unavailable_cost": 22,
-      "activities_with_unavailable_input_tokens": 22,
-      "activities_with_unavailable_output_tokens": 22,
+      "activities_with_unavailable_cost": 23,
+      "activities_with_unavailable_input_tokens": 23,
+      "activities_with_unavailable_output_tokens": 23,
       "known_input_tokens": 0,
       "known_marginal_cost_gbp": 0.0,
       "known_output_tokens": 0,

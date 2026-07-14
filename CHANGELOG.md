@@ -23,6 +23,12 @@ semantic versioning.
 - Byte-equivalent bounded-memory SQLite compiler for gzip and sharded
   full-corpus inputs, with streamed search, route and adjacency indexes and a
   measured capacity report.
+- Versioned exact-byte physical postings partitions and contiguous document-map
+  shards that preserve the two-character `okf-static-search.v1` logical
+  lexicon, per-token pointers and legacy singleton manifests while bounding
+  skewed output at 5 MiB. The regression reproduces the failed T0 `ca` shape,
+  verifies deterministic token routing and includes every physical partition
+  in release range packs.
 - Lazy profile-valid JSON-LD entity/evidence/vocabulary/assertion shards with
   per-shard hashes, sizes and key ranges, plus a bounded SQLite publication
   validator.

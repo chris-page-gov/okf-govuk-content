@@ -12,6 +12,24 @@ export const SEARCH_LIMITS = Object.freeze({
   maxPostingsPerToken: 50000
 });
 
+export const POSTINGS_PARTITIONING_CONTRACT = Object.freeze({
+  schema: "okf-search-postings-partitioning.v1",
+  algorithm: "greedy-contiguous-token-range-exact-utf8-json-v1",
+  logical_shard_length: 2,
+  max_bytes: 5 * 1024 * 1024,
+  partition_index_width: 5,
+  token_atomic: true,
+  single_partition_legacy_path: true
+});
+
+export const DOC_MAP_PARTITIONING_CONTRACT = Object.freeze({
+  schema: "okf-search-doc-map-partitioning.v1",
+  algorithm: "contiguous-ordinal-max-count-v1",
+  max_records: 1000,
+  max_bytes: 5 * 1024 * 1024,
+  partition_index_width: 5
+});
+
 function boundedInteger(value, fallback, minimum, maximum, label) {
   const candidate = value === undefined || value === null || value === "" ? fallback : Number(value);
   if (!Number.isInteger(candidate) || candidate < minimum || candidate > maximum) {
@@ -26,12 +44,32 @@ function referenceCount(value, label) {
   throw new Error(`Search manifest ${label} entrypoints are malformed`);
 }
 
+function exactContract(value, expected, label) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error(`Search manifest ${label} contract is malformed`);
+  }
+  const actualKeys = Object.keys(value).sort();
+  const expectedKeys = Object.keys(expected).sort();
+  if (
+    actualKeys.length !== expectedKeys.length
+    || actualKeys.some((key, index) => key !== expectedKeys[index] || value[key] !== expected[key])
+  ) {
+    throw new Error(`Search manifest ${label} contract is unsupported or has drifted`);
+  }
+}
+
 export function validateSearchManifest(value, expectedSnapshot = "") {
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Search manifest must be an object");
   if (value.schema !== "okf-static-search.v1") throw new Error("Unsupported static-search manifest");
   const entrypoints = value.entrypoints;
   if (!entrypoints || typeof entrypoints !== "object" || Array.isArray(entrypoints)) {
     throw new Error("Search manifest entrypoints are malformed");
+  }
+  if (
+    !Array.isArray(entrypoints.postings)
+    || entrypoints.postings.some((path) => typeof path !== "string" || !path)
+  ) {
+    throw new Error("Search manifest postings entrypoints must be a path list");
   }
   for (const [label, references] of [
     ["result_docs", entrypoints.result_docs],
@@ -43,11 +81,44 @@ export function validateSearchManifest(value, expectedSnapshot = "") {
       throw new Error(`Search manifest ${label} entrypoints exceed the supported limit`);
     }
   }
+  const hasPostingsPartitioning = Object.prototype.hasOwnProperty.call(value, "postings_partitioning");
+  const postingsPartitioning = value.postings_partitioning;
+  if (hasPostingsPartitioning) {
+    exactContract(postingsPartitioning, POSTINGS_PARTITIONING_CONTRACT, "postings_partitioning");
+    if (Number(value.lexicon_shard_length) !== POSTINGS_PARTITIONING_CONTRACT.logical_shard_length) {
+      throw new Error("Search manifest logical lexicon width differs from postings_partitioning");
+    }
+  }
+  const hasDocMapPartitioning = Object.prototype.hasOwnProperty.call(value, "doc_map_partitioning");
+  const docMapPartitioning = value.doc_map_partitioning;
+  if (!hasDocMapPartitioning) {
+    if (typeof entrypoints.doc_map !== "string" || !entrypoints.doc_map) {
+      throw new Error("Legacy search manifest doc_map entrypoint must be one path");
+    }
+  } else {
+    exactContract(docMapPartitioning, DOC_MAP_PARTITIONING_CONTRACT, "doc_map_partitioning");
+    if (
+      !Array.isArray(entrypoints.doc_map)
+      || entrypoints.doc_map.some((path) => typeof path !== "string" || !path)
+    ) {
+      throw new Error("Partitioned search manifest doc_map entrypoint must be a path list");
+    }
+    if (referenceCount(entrypoints.doc_map, "doc_map") > SEARCH_LIMITS.maxManifestShardReferences) {
+      throw new Error("Search manifest doc_map entrypoints exceed the supported limit");
+    }
+  }
   const snapshot = String(value.snapshot_id || value.snapshot || "");
   if (expectedSnapshot && snapshot !== expectedSnapshot) {
     throw new Error("Search manifest snapshot differs from the loaded bundle snapshot");
   }
   const counts = value.counts && typeof value.counts === "object" ? value.counts : {};
+  if (counts.postings_shards !== undefined && Number(counts.postings_shards) !== entrypoints.postings.length) {
+    throw new Error("Search manifest postings_shards count differs from its entrypoints");
+  }
+  const docMapCount = Array.isArray(entrypoints.doc_map) ? entrypoints.doc_map.length : 1;
+  if (counts.doc_map_shards !== undefined && Number(counts.doc_map_shards) !== docMapCount) {
+    throw new Error("Search manifest doc_map_shards count differs from its entrypoints");
+  }
   return {
     ...value,
     token_min_length: boundedInteger(value.token_min_length, 2, 2, 16, "token_min_length"),

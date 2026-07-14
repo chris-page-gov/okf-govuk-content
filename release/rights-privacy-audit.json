@@ -5,7 +5,7 @@
     "publication_manifest": {
       "bytes": 5403,
       "path": "bundle/data/manifest.json",
-      "sha256": "643fccb55fd2a123dceb4239ac697cfaf4337f82b8d75c3a6b7d46a3e43e14a4"
+      "sha256": "05a7472c8e6dcbe7db96e3cedfaacb567bc1a24426fdf6256eb9f3632fc4ac7e"
     },
     "review_ledger": {
       "bytes": 110,
@@ -144,7 +144,7 @@
   "sampled": true,
   "scan": {
     "classification_items": 36,
-    "compressed_bytes_scanned": 595463,
+    "compressed_bytes_scanned": 605179,
     "files_scanned": 745,
     "limits": {
       "max_compressed_bytes_per_file": 52428800,
@@ -175,10 +175,10 @@
     "corpus_snapshot_bound": false,
     "frozen_source": null,
     "full_unsampled_snapshot": false,
-    "publication_asset_set_sha256": "b44fdba306c0f290e36bbbd4212bd6a2f2ce3fa93fdfdfefbdd4e701bb7ebe8d",
+    "publication_asset_set_sha256": "4d20cae5f140520e914eeae0285622fe489f0bb039324b95b1e234028f625f9c",
     "publication_manifest": {
       "path": "bundle/data/manifest.json",
-      "sha256": "643fccb55fd2a123dceb4239ac697cfaf4337f82b8d75c3a6b7d46a3e43e14a4"
+      "sha256": "05a7472c8e6dcbe7db96e3cedfaacb567bc1a24426fdf6256eb9f3632fc4ac7e"
     },
     "release_manifest": {
       "path": "release/manifest.yaml",

@@ -1,7 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { mapWithConcurrency, QueryBudget, SEARCH_LIMITS, validateSearchManifest } from "../src/search-contract.js";
+import {
+  DOC_MAP_PARTITIONING_CONTRACT,
+  mapWithConcurrency,
+  POSTINGS_PARTITIONING_CONTRACT,
+  QueryBudget,
+  SEARCH_LIMITS,
+  validateSearchManifest
+} from "../src/search-contract.js";
 
 function manifest(overrides = {}) {
   return {
@@ -13,7 +20,13 @@ function manifest(overrides = {}) {
     result_limit: 200,
     result_doc_chunk_size: 1000,
     counts: { max_postings_per_token: 2000 },
-    entrypoints: { result_docs: [], lexicon: {}, postings: [], prefixes: {} },
+    entrypoints: {
+      doc_map: "data/search/doc-map.json",
+      result_docs: [],
+      lexicon: {},
+      postings: [],
+      prefixes: {}
+    },
     ...overrides
   };
 }
@@ -25,6 +38,73 @@ test("search manifest limits and snapshot are fixed by the client", () => {
   assert.throws(
     () => validateSearchManifest(manifest({ counts: { max_postings_per_token: SEARCH_LIMITS.maxPostingsPerToken + 1 } }), "snap-1"),
     /max_postings_per_token/
+  );
+});
+
+test("search manifest accepts legacy singleton and versioned partition entrypoints", () => {
+  assert.equal(
+    validateSearchManifest(manifest(), "snap-1").entrypoints.doc_map,
+    "data/search/doc-map.json"
+  );
+  const partitioned = manifest({
+    postings_partitioning: { ...POSTINGS_PARTITIONING_CONTRACT },
+    doc_map_partitioning: { ...DOC_MAP_PARTITIONING_CONTRACT },
+    counts: {
+      max_postings_per_token: 2000,
+      postings_shards: 2,
+      doc_map_shards: 2
+    },
+    entrypoints: {
+      doc_map: ["data/search/doc-map-00000.json", "data/search/doc-map-00001.json"],
+      result_docs: [],
+      lexicon: {},
+      postings: ["data/search/postings/ca-00000.json", "data/search/postings/ca-00001.json"],
+      prefixes: {}
+    }
+  });
+  assert.equal(validateSearchManifest(partitioned, "snap-1").entrypoints.postings.length, 2);
+});
+
+test("search manifest rejects contract drift, wrong doc-map shape, and shard-count drift", () => {
+  assert.throws(
+    () => validateSearchManifest(manifest({
+      postings_partitioning: { ...POSTINGS_PARTITIONING_CONTRACT, token_atomic: false }
+    })),
+    /unsupported or has drifted/
+  );
+  assert.throws(
+    () => validateSearchManifest(manifest({ postings_partitioning: null })),
+    /contract is malformed/
+  );
+  assert.throws(
+    () => validateSearchManifest(manifest({ doc_map_partitioning: null })),
+    /contract is malformed/
+  );
+  assert.throws(
+    () => validateSearchManifest(manifest({
+      postings_partitioning: { ...POSTINGS_PARTITIONING_CONTRACT, token_atomic: 1 }
+    })),
+    /unsupported or has drifted/
+  );
+  assert.throws(
+    () => validateSearchManifest(manifest({
+      postings_partitioning: { ...POSTINGS_PARTITIONING_CONTRACT },
+      lexicon_shard_length: 3
+    })),
+    /logical lexicon width/
+  );
+  assert.throws(
+    () => validateSearchManifest(manifest({
+      doc_map_partitioning: { ...DOC_MAP_PARTITIONING_CONTRACT }
+    })),
+    /path list/
+  );
+  assert.throws(
+    () => validateSearchManifest(manifest({ counts: {
+      max_postings_per_token: 2000,
+      postings_shards: 1
+    } })),
+    /postings_shards/
   );
 });
 

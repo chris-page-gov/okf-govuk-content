@@ -154,7 +154,10 @@ python3 scripts/build_bundle.py \
 
 The fixture and disk compilers are byte-equivalent; the publication validator
 uses the same bounded-shard/SQLite approach. Measured capacity and temporary-
-disk limits are recorded in `reports/publication-scale.md`.
+disk limits are recorded in `reports/publication-scale.md`. Static search keeps
+its two-character logical lexicon while ADR-006 bounds skewed physical postings
+files by exact bytes and chunks the ordinal document map; a complete frozen
+snapshot build remains the release capacity proof.
 
 The fixture currently reproduces byte for byte, while its full release gate
 correctly remains false. The closing-snapshot command and evidence contract are

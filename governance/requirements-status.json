@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-13",
+  "as_of": "2026-07-14",
   "counts": {
     "by_implementation_status": {
       "blocked": 1,
@@ -10,7 +10,7 @@
     "requirements": 95
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "af245f24b768a5170ffbcebad303f66460d083417031404301fa4d188a614e59",
+  "generated_from_sha256": "c57cdb6a2c4bb1a16707ea6699782e3ff2ee4f241d535e2fbc637ea9d489706d",
   "interpretation": "accepted is the contract status; implementation passed is reserved for independently verified evidence at the declared milestone, while blocked human-only evidence remains visible",
   "milestone": "t0_census_closed",
   "publication_ready": false,
@@ -55,10 +55,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-002"
     },
     {
@@ -73,10 +80,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-003"
     },
     {
@@ -91,10 +105,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-004"
     },
     {
@@ -109,10 +130,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-005"
     },
     {
@@ -127,10 +155,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-006"
     },
     {
@@ -145,10 +180,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-007"
     },
     {
@@ -161,10 +203,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-008"
     },
     {
@@ -183,16 +232,21 @@
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
         "governance/decisions/ADR-005-github-pages-range-pack-data-plane.md",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
         "src/govuk_okf/release_data_plane.py",
         "src/govuk_okf/release_packaging.py",
+        "tests/test_publication_scale.py",
+        "tests/test_release_packaging.py",
+        "tests/test_shard_contracts.py",
         "scripts/smoke_published_bundle.py",
         ".github/workflows/release.yml",
         ".github/workflows/pages.yml",
         "reports/cost-and-capacity.md",
+        "reports/publication-scale.md",
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. Repository-native publication now packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. The 300-record measurement is not a full-corpus forecast, so capacity remains unresolved until the hydrated closing artifact is measured. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. The first exact T0 capacity build ran 44,342.28 seconds and failed closed when the ca postings file reached 6,712,946 bytes against 5,242,880. ADR-006 now deterministically partitions complete tokens by exact physical bytes and chunks the document map without changing logical lookup; fast skew, legacy, tamper, discovery and packaging tests pass. Repository-native publication packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. Capacity remains unresolved until the exact T0 rerun and hydrated closing artifact measure every remaining shard and pack. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-009"
     },
     {
@@ -211,16 +265,21 @@
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
         "governance/decisions/ADR-005-github-pages-range-pack-data-plane.md",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
         "src/govuk_okf/release_data_plane.py",
         "src/govuk_okf/release_packaging.py",
+        "tests/test_publication_scale.py",
+        "tests/test_release_packaging.py",
+        "tests/test_shard_contracts.py",
         "scripts/smoke_published_bundle.py",
         ".github/workflows/release.yml",
         ".github/workflows/pages.yml",
         "reports/cost-and-capacity.md",
+        "reports/publication-scale.md",
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. Repository-native publication now packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. The 300-record measurement is not a full-corpus forecast, so capacity remains unresolved until the hydrated closing artifact is measured. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. The first exact T0 capacity build ran 44,342.28 seconds and failed closed when the ca postings file reached 6,712,946 bytes against 5,242,880. ADR-006 now deterministically partitions complete tokens by exact physical bytes and chunks the document map without changing logical lookup; fast skew, legacy, tamper, discovery and packaging tests pass. Repository-native publication packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. Capacity remains unresolved until the exact T0 rerun and hydrated closing artifact measure every remaining shard and pack. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-010"
     },
     {
@@ -237,10 +296,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-011"
     },
     {
@@ -257,10 +323,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-012"
     },
     {
@@ -278,10 +351,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-013"
     },
     {
@@ -297,10 +377,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-014"
     },
     {
@@ -316,10 +403,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-015"
     },
     {
@@ -335,10 +429,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-016"
     },
     {
@@ -354,10 +455,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-017"
     },
     {
@@ -374,10 +482,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-018"
     },
     {
@@ -392,10 +507,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-019"
     },
     {
@@ -410,10 +532,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-020"
     },
     {
@@ -428,10 +557,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-021"
     },
     {
@@ -446,10 +582,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-022"
     },
     {
@@ -464,10 +607,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-023"
     },
     {
@@ -641,16 +791,21 @@
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
         "governance/decisions/ADR-005-github-pages-range-pack-data-plane.md",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
         "src/govuk_okf/release_data_plane.py",
         "src/govuk_okf/release_packaging.py",
+        "tests/test_publication_scale.py",
+        "tests/test_release_packaging.py",
+        "tests/test_shard_contracts.py",
         "scripts/smoke_published_bundle.py",
         ".github/workflows/release.yml",
         ".github/workflows/pages.yml",
         "reports/cost-and-capacity.md",
+        "reports/publication-scale.md",
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. Repository-native publication now packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. The 300-record measurement is not a full-corpus forecast, so capacity remains unresolved until the hydrated closing artifact is measured. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. The first exact T0 capacity build ran 44,342.28 seconds and failed closed when the ca postings file reached 6,712,946 bytes against 5,242,880. ADR-006 now deterministically partitions complete tokens by exact physical bytes and chunks the document map without changing logical lookup; fast skew, legacy, tamper, discovery and packaging tests pass. Repository-native publication packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. Capacity remains unresolved until the exact T0 rerun and hydrated closing artifact measure every remaining shard and pack. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-033"
     },
     {
@@ -668,16 +823,21 @@
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
         "governance/decisions/ADR-005-github-pages-range-pack-data-plane.md",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
         "src/govuk_okf/release_data_plane.py",
         "src/govuk_okf/release_packaging.py",
+        "tests/test_publication_scale.py",
+        "tests/test_release_packaging.py",
+        "tests/test_shard_contracts.py",
         "scripts/smoke_published_bundle.py",
         ".github/workflows/release.yml",
         ".github/workflows/pages.yml",
         "reports/cost-and-capacity.md",
+        "reports/publication-scale.md",
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. Repository-native publication now packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. The 300-record measurement is not a full-corpus forecast, so capacity remains unresolved until the hydrated closing artifact is measured. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. The first exact T0 capacity build ran 44,342.28 seconds and failed closed when the ca postings file reached 6,712,946 bytes against 5,242,880. ADR-006 now deterministically partitions complete tokens by exact physical bytes and chunks the document map without changing logical lookup; fast skew, legacy, tamper, discovery and packaging tests pass. Repository-native publication packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. Capacity remains unresolved until the exact T0 rerun and hydrated closing artifact measure every remaining shard and pack. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-034"
     },
     {
@@ -694,10 +854,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-035"
     },
     {
@@ -712,10 +879,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-036"
     },
     {
@@ -732,10 +906,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-037"
     },
     {
@@ -752,10 +933,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-038"
     },
     {
@@ -772,10 +960,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-039"
     },
     {
@@ -791,10 +986,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-040"
     },
     {
@@ -809,10 +1011,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-041"
     },
     {
@@ -827,10 +1036,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-042"
     },
     {
@@ -845,10 +1061,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-043"
     },
     {
@@ -864,10 +1087,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-044"
     },
     {
@@ -883,10 +1113,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-045"
     },
     {
@@ -902,10 +1139,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-046"
     },
     {
@@ -921,10 +1165,17 @@
         "explorer/src/index.html",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
-        "src/govuk_okf/discovery.py"
+        "explorer/src/search-contract.js",
+        "src/govuk_okf/discovery.py",
+        "src/govuk_okf/publication.py",
+        "src/govuk_okf/publication_disk.py",
+        "src/govuk_okf/publication_validation.py",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "tests/test_publication_scale.py",
+        "tests/test_shard_contracts.py"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The no-skip real-Chromium browser gate now passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and full-corpus evidence remain pending.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. The static-search contract now preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending.",
       "requirement_id": "REQ-047"
     },
     {
@@ -941,16 +1192,21 @@
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
         "governance/decisions/ADR-005-github-pages-range-pack-data-plane.md",
+        "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
         "src/govuk_okf/release_data_plane.py",
         "src/govuk_okf/release_packaging.py",
+        "tests/test_publication_scale.py",
+        "tests/test_release_packaging.py",
+        "tests/test_shard_contracts.py",
         "scripts/smoke_published_bundle.py",
         ".github/workflows/release.yml",
         ".github/workflows/pages.yml",
         "reports/cost-and-capacity.md",
+        "reports/publication-scale.md",
         "release/status.json"
       ],
       "implementation_status": "in_progress",
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. Repository-native publication now packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. The 300-record measurement is not a full-corpus forecast, so capacity remains unresolved until the hydrated closing artifact is measured. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. The first exact T0 capacity build ran 44,342.28 seconds and failed closed when the ca postings file reached 6,712,946 bytes against 5,242,880. ADR-006 now deterministically partitions complete tokens by exact physical bytes and chunks the document map without changing logical lookup; fast skew, legacy, tamper, discovery and packaging tests pass. Repository-native publication packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. Capacity remains unresolved until the exact T0 rerun and hydrated closing artifact measure every remaining shard and pack. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress.",
       "requirement_id": "REQ-048"
     },
     {

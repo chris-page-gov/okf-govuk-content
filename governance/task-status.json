@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-13",
+  "as_of": "2026-07-14",
   "counts": {
     "accepted": 0,
     "by_implementation_status": {
@@ -10,7 +10,7 @@
     "tasks": 36
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "af245f24b768a5170ffbcebad303f66460d083417031404301fa4d188a614e59",
+  "generated_from_sha256": "c57cdb6a2c4bb1a16707ea6699782e3ff2ee4f241d535e2fbc637ea9d489706d",
   "interpretation": "A produced task has an artefact foundation only; accepted is reserved for a satisfied promotion gate with terminal evidence, and human-only tasks remain blocked without authority.",
   "milestone": "t0_census_closed",
   "publication_ready": false,

@@ -23,7 +23,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "bundle/okf-explorer.json",
-          "sha256": "d9681ab679febae7ec755a294d0e7b3ee40568d8ccbd3874ac770bda71acc1bc"
+          "sha256": "7b88c67ab4bbaa35523a9bcdd71ce5fc670ca20fc87856a000c3c2fd15895bc7"
         },
         {
           "check_id": "E-INDEPENDENT-WIKI",
@@ -34,7 +34,7 @@
           "operator": "json_string_contains",
           "path": "bundle/okf-explorer.json",
           "pointer": "/description",
-          "sha256": "d9681ab679febae7ec755a294d0e7b3ee40568d8ccbd3874ac770bda71acc1bc"
+          "sha256": "7b88c67ab4bbaa35523a9bcdd71ce5fc670ca20fc87856a000c3c2fd15895bc7"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -242,7 +242,7 @@
           "operator": "json_equals",
           "path": "release/rights-privacy-audit.json",
           "pointer": "/rights_privacy_audit_passed",
-          "sha256": "da241a558296b0c294cab7bedef9f38cb99c9edbc571c194e4a01312f091e3c7"
+          "sha256": "ea97f507d53b40b790bb466235c5b9b46c6df70801f8a748753aaf984f961825"
         }
       ],
       "exceptions": [],
@@ -634,7 +634,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "bundle/data/search/manifest.json",
-          "sha256": "5324e944efc26b9c775de0b8a65f9ac10e00efc75081b1dc3c719c063ac37574"
+          "sha256": "78eb22f2b7e1798fecbb593b36c7b50421af0901c32c718a64fffb31027a9b6e"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -1206,7 +1206,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "provenance/activity-ledger.jsonl",
-          "sha256": "12fa35cf2eaf1d58592bd38a7b7bd8d42da200a19b704ab51b172c65b58d4a57"
+          "sha256": "0aca93c7b4228424a1bf8faa70d54ebfa2276e753fec29d8be2dcfb1d089ca8d"
         },
         {
           "check_id": "E-REQUIREMENT-COVERAGE",
@@ -1217,7 +1217,7 @@
           "operator": "json_equals",
           "path": "governance/requirements-status.json",
           "pointer": "/counts/requirements",
-          "sha256": "3f1a101fb0cab06bb36edfdeb993d045726e44fe7a2bdd58bde2e5f80dbf58b0"
+          "sha256": "6c82321c5440e494511080ea7d7a0d259accd389ebd828985ee8896cbf7af04e"
         },
         {
           "check_id": "E-TRACEABILITY-COVERAGE",
@@ -1228,7 +1228,7 @@
           "operator": "json_equals",
           "path": "governance/traceability-status.json",
           "pointer": "/counts/clauses",
-          "sha256": "772f515ab110b7013b4406f1fe13f697abe30a7ddd7b1f9a0b94f6fbd6d10f25"
+          "sha256": "346407b2fdebfae8b4447c198a0ea96fea0bd7345e73a85d2f68b1706111933c"
         },
         {
           "check_id": "E-CLEAN-ROOM-FIXTURE",
@@ -1239,7 +1239,7 @@
           "operator": "json_equals",
           "path": "release/clean-room-reproduction.json",
           "pointer": "/fixture_reproduction_passed",
-          "sha256": "508e857ad74b0ea2cce39c85ebb45c9cd42253aec5b16fb4e6c716ae81311a1e"
+          "sha256": "58d32a29040c6f0c7dee2549b2ee99827cda79d51b80885bd4354524a9c12592"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -1489,7 +1489,7 @@
         "operator": "json_equals",
         "path": "release/rights-privacy-audit.json",
         "pointer": "/rights_privacy_audit_passed",
-        "sha256": "da241a558296b0c294cab7bedef9f38cb99c9edbc571c194e4a01312f091e3c7"
+        "sha256": "ea97f507d53b40b790bb466235c5b9b46c6df70801f8a748753aaf984f961825"
       }
     ],
     "passed": false,

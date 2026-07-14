@@ -32,7 +32,16 @@ an untyped native identifier with more than one match is ambiguous and must
 not be resolved by choosing the first row. The kind-local ordinal selects a
 record from the matching `data/manifest.json` chunk list.
 
-The search worker follows `okf-static-search.v1`: NFKD tokenisation, two-character lexicon shards, prefix suggestions, posting triples and ordinal-addressed result-document chunks. Query cancellation prevents superseded results from replacing current state.
+The search worker follows `okf-static-search.v1`: NFKD tokenisation,
+two-character logical lexicon shards, prefix suggestions, posting triples and
+ordinal-addressed result-document chunks. Under
+`okf-search-postings-partitioning.v1`, a lexicon row points to the exact bounded
+physical partition containing its complete token; lookup therefore does not
+probe or merge partitions. The client accepts the legacy one-file layout when
+the additive declaration is absent and fails closed on contract drift. The
+versioned document-map declaration uses a path list, although interactive
+search still resolves result documents directly by ordinal chunk. Query
+cancellation prevents superseded results from replacing current state.
 
 ## Canonical state and deep links
 

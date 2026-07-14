@@ -4,6 +4,8 @@ Initial preflight date: 2026-07-11
 
 Implementation usage checkpoint: 2026-07-13T07:59:00Z
 
+Static-search capacity checkpoint: 2026-07-14
+
 Official-source request checkpoint: 2026-07-12T08:20:20Z
 
 ## Observed volume
@@ -114,3 +116,19 @@ fall back to Release CORS, external storage or a narrower corpus.
 Primary constraints are [GitHub Pages limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits),
 [GitHub Release limits](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
 and [immutable Release draft-first behaviour](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases).
+
+## Static-search capacity attempt
+
+The first deterministic capacity build over all 836,998 T0 publication records
+made zero model calls and ran for 44,342.28 seconds. It stopped at the frozen
+ordinary-shard gate when `data/search/postings/ca.json` reached 6,712,946 bytes
+against a 5,242,880-byte maximum. No source request, paid model call or external
+storage fallback was used, and no incomplete target bundle was promoted.
+
+ADR-006 introduces exact-byte, token-atomic physical postings partitions while
+preserving the two-character logical lexicon and legacy singleton paths. It
+also chunks the predicted singleton document-map risk into 1,000-record ordinal
+ranges. The deterministic 2,048-record skew test passes, but full publication
+capacity remains unresolved until the exact T0 build and eventual hydrated
+closing snapshot are rebuilt, packaged and measured. Oversized lexicon, prefix,
+adjacency or other distributions continue to fail closed.
