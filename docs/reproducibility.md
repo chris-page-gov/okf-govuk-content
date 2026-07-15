@@ -5,6 +5,14 @@ site. Reacquisition creates a new T0/T1 snapshot and is expected to change.
 Reproduction consumes an already frozen metadata source and must not contact
 GOV.UK or a model provider.
 
+The mounted EXTSSD cache is deliberately outside the reproduction contract. It
+contains resumable raw acquisition responses and a local SQLite/FTS5 index of
+normalised Search part extracts. Frozen corpus records, bundle shards and
+release assets contain no extract text and remain reproducible when that cache
+is absent. A new live acquisition that retains Search extracts must run
+`scripts/check_storage.py --prepare` and preserve at least 10 GiB free on both
+the repository and external-cache filesystems.
+
 ## Locked dependency inventory
 
 Python dependencies are locked in `uv.lock`. The semantic JSON-LD/RDFC test

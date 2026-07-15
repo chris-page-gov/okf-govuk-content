@@ -1,6 +1,6 @@
 schema_version: 1
-snapshot_date: "2026-07-11"
-observation_window: "2026-07-11T22:45:09Z/2026-07-11T23:21:00Z"
+snapshot_date: "2026-07-15"
+observation_window: "2026-07-11T22:45:09Z/2026-07-15T11:35:00Z"
 policy:
   public_reproducible_only: true
   metadata_only: true
@@ -8,6 +8,8 @@ policy:
   content_api_rate_limit_requests_per_second: 10
   configured_content_api_requests_per_second: 8
   default_www_gov_uk_requests_per_second: 2
+  local_search_extract_cache: external_only_not_a_release_dependency
+  minimum_free_disk_gib: 10
 sources:
   - id: govuk-sitemap
     family: official_enumerator
@@ -28,8 +30,9 @@ sources:
     role: Public search-index enumerator using provably exhaustive partition leaves.
     coverage_claim: unsupported_public_interface_with_known_exclusions
     authentication: none
-    acquisition: count-only root then disjoint document-type/date partitions
+    acquisition: count-only root then disjoint document-type/date partitions with expanded content, organisation, taxonomy, part, historic and content-purpose metadata
     constraint: Never treat a 1500-result request as corpus coverage.
+    local_extract_disposition: parts body snippets are normalised into the external analytical SQLite cache; public records retain part metadata only
     observed_total: 715465
     observed_document_types: 137
     observed_external_content: 461
@@ -101,6 +104,7 @@ sources:
     role: Source-native identity/relationship model and internal comparator.
     coverage_claim: not_public_release_dependency
     authentication: not_authorised
+    access_request_status: planned_for_govuk_team_meeting_2026-07-20
   - id: organisations-api
     family: official_enumerator
     url: https://www.gov.uk/api/organisations

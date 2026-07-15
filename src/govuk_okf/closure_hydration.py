@@ -110,12 +110,10 @@ class CompleteCorpusHydrator(CorpusHydrator):
             if frozen_limit is None or int(frozen_limit[0]) != self.max_rendered_requests or existing != target:
                 raise ValueError("rendered gap selection contract changed after it was frozen; use a new snapshot label")
         else:
-            completed = int(connection.execute("SELECT COUNT(*) FROM queue WHERE state='complete'").fetchone()[0])
-            if completed:
-                raise ValueError("rendered gap selection is missing after hydration began; use a new snapshot label")
             best_by_stratum: dict[str, tuple[str, str, str]] = {}
             cursor = connection.execute(
-                f"SELECT url, locale, input_json FROM queue WHERE {self._rendered_eligible_sql()}"
+                f"SELECT url, locale, COALESCE(input_json, record_json) FROM queue "
+                f"WHERE {self._rendered_eligible_sql()}"
             )
             for url, locale, input_json in cursor:
                 record = json.loads(input_json)
@@ -184,6 +182,20 @@ class CompleteCorpusHydrator(CorpusHydrator):
                 ("rendered_selection_canonical_sha256", selection_digest.hexdigest()),
             ):
                 connection.execute("INSERT OR REPLACE INTO meta(key, value) VALUES (?, ?)", (key, value))
+            connection.execute(
+                """
+                UPDATE queue
+                SET input_json=record_json,
+                    record_json=NULL,
+                    state='pending',
+                    hydration_status=NULL
+                WHERE state='complete'
+                  AND EXISTS (
+                    SELECT 1 FROM rendered_selection AS selected
+                    WHERE selected.url=queue.url AND selected.locale=queue.locale
+                  )
+                """
+            )
             connection.commit()
         self.rendered_selection = {
             (str(url), str(locale))

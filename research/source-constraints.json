@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-07-14T15:50:46Z",
+  "checked_at": "2026-07-15T11:35:00Z",
   "constraints": [
     {
       "id": "SRC-CONSTRAINT-001",
@@ -40,7 +40,7 @@
       "status": "blocked",
       "class": "authenticated_internal_access",
       "reason": "Bulk authoritative and current search/graph surfaces are not publicly reproducible.",
-      "disposition": "Comparator-only; no authenticated source permission was granted."
+      "disposition": "Comparator-only for now; no authenticated source permission was granted. A human request for an authoritative bulk source is planned for the GOV.UK team meeting on 20 July 2026, after which source admission still requires an explicit decision and frozen reconciliation evidence."
     },
     {
       "id": "SRC-CONSTRAINT-006",
@@ -80,6 +80,14 @@
       "class": "authenticated_user_and_internal_testing_access",
       "reason": "The public GOV.UK Chat service is delivered through the signed-in GOV.UK app, while its production web interface is a departmental testing surface protected by GOV.UK Signon.",
       "disposition": "Do not automate, bypass or make either authenticated surface a release dependency. Limit the checked-in comparator to public official descriptions, minimal source metadata, one bounded attributed excerpt, a structured paraphrase and an official image URL plus digest; keep live replay and expanded reuse blocked pending authorised access and item-level rights review."
+    },
+    {
+      "id": "SRC-CONSTRAINT-010",
+      "source": "search-api-v1-parts-body",
+      "status": "active_local_only",
+      "class": "rights_and_publication_boundary",
+      "reason": "Search parts body values are useful truncated extracts but may contain Crown, third-party or personal material and are not needed in the public OKF record plane.",
+      "disposition": "Store normalised extracts only in the authorised external SQLite analytical cache with source hashes and evidence. Strip body text from every corpus, bundle and release projection; do not make the external cache a clean-reproduction dependency."
     }
   ]
 }

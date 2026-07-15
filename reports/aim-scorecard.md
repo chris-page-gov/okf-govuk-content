@@ -72,7 +72,7 @@ Evidence:
 - `E-FULL-CORPUS` — not met; `release/status.json/full_corpus_reconciled`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
 - `E-ZERO-OMISSIONS` — not met; `release/status.json/unexplained_omissions`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `null`.
 - `E-RECONCILIATION-ARTEFACT` — not met; `release/manifest.yaml/artifacts/reconciliation`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `null`.
-- `E-RIGHTS-RELEASE` — not met; `release/rights-privacy-audit.json/rights_privacy_audit_passed`; SHA-256 `d0803ff593c0fe69cc20a50e2a0627d7c2c3b8e042e0b4bf3f534411e4b83c41`; observed `false`.
+- `E-RIGHTS-RELEASE` — not met; `release/rights-privacy-audit.json/rights_privacy_audit_passed`; SHA-256 `24f40fe22f32c0fb94fc42067b39c2ead39a1311d6949065d8fffc086e003d8d`; observed `false`.
 
 Negative findings and limitations:
 
@@ -279,10 +279,10 @@ Boundary: A reproducible fixture and implemented controller are partial until th
 
 Evidence:
 
-- `E-ACTIVITY-LEDGER` — pass; `provenance/activity-ledger.jsonl`; SHA-256 `56f8dca67de9b415709d4db252b975d9bb52cbf9aadbcf9a715c6d6685c01e90`; observed `true`.
-- `E-REQUIREMENT-COVERAGE` — pass; `governance/requirements-status.json/counts/requirements`; SHA-256 `7f863148283a5be5740ae8d794023c542a5799b4dba771a045a1651638c599c0`; observed `95`.
-- `E-TRACEABILITY-COVERAGE` — pass; `governance/traceability-status.json/counts/clauses`; SHA-256 `175f90f7d93da83ca5ad8ccaa1d75f1a174401e534e382b9eb0310e50b6ef71f`; observed `21`.
-- `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `98e3e9bc90ac35124cf15175c342da71e04981eaceda8440c663888bace59bf4`; observed `true`.
+- `E-ACTIVITY-LEDGER` — pass; `provenance/activity-ledger.jsonl`; SHA-256 `638bfc7f64f8472859d1b124dfa685b9cc955dc792c4d1856657ef68f14769d7`; observed `true`.
+- `E-REQUIREMENT-COVERAGE` — pass; `governance/requirements-status.json/counts/requirements`; SHA-256 `b92ee3a9ca6299d04e8b69d8a8de4840bb279ada241bf75a8448d6af35d7f565`; observed `95`.
+- `E-TRACEABILITY-COVERAGE` — pass; `governance/traceability-status.json/counts/clauses`; SHA-256 `bf929e1f730b67bfe136c5a8a0c8467a282a658fec168e2fea76bb7023863c37`; observed `21`.
+- `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `cbc2500ddf3a18e4547a3a6b02c2e9dc14f294549cd5d344876f181f00c7419a`; observed `true`.
 - `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `"fixture"`.
 - `E-CLEAN-ROOM-RELEASE` — not met; `release/status.json/clean_room_reproduction_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
 - `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.

@@ -143,16 +143,29 @@ The browser command requires installed Chrome/Chromium and an ephemeral
 `127.0.0.1` listener. `CHROME_PATH` can identify a non-standard executable.
 It never skips merely because the browser is absent.
 
-The full-corpus hydration uses the globally shared request counter and the
-ADR-004 75,000-page deterministic rendered-link detector:
+The current migration acquires expanded Search metadata first, stores Search
+part extracts only in the external local analytical database, and selects the
+Content API work that is immediately required for missing identities,
+structure, explicit lifecycle dispositions and audit. Attachment/resource and
+historic enrichment is a machine-visible deferred population pending the bulk
+source discussion or a targeted pass. Verify the 10 GiB minimum-free-space rule
+and prepare the detected EXTSSD cache first:
 
 ```sh
-python3 scripts/hydrate_corpus.py T0-20260712 --rendered-scan-limit 75000
+python3 scripts/check_storage.py --prepare
+python3 scripts/acquire_corpus.py T0R-YYYYMMDD
+python3 scripts/plan_hydration.py T0R-YYYYMMDD
+python3 scripts/hydrate_corpus.py T0R-YYYYMMDD --rendered-scan-limit 75000
+python3 scripts/query_extracts.py T0R-YYYYMMDD 'benefits OR eligibility'
 ```
 
-The command is resumable. Its initial structured work has a theoretical
-minimum of about 29 hours at the authorised 8 Content API requests/s; a
-checkpoint is not a completion claim.
+The historical `T0-20260712` universal-hydration checkpoint is preserved and
+cannot be reused under the selective policy. The new selection is deterministic
+and resumable. For `T0R-20260715`, it selects 170,468 of 874,507 records
+(19.49%), defers 465,865 attachment/resource or historic records and leaves
+233,727 represented by bulk metadata. The theoretical eight-request-per-second
+floor falls from roughly 30.4 hours to about 5.9 hours. A closed queue is not a
+claim that every route has Content API fields.
 
 Full-corpus gzip snapshots and explicit `records-*`/`part-*` shard directories
 select the bounded SQLite compiler automatically:

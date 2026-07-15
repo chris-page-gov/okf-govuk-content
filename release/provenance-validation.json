@@ -1,8 +1,8 @@
 {
   "activity_counts": {
     "deterministic": 6,
-    "model_assisted_or_mixed": 25,
-    "total": 31
+    "model_assisted_or_mixed": 27,
+    "total": 33
   },
   "candidate_blockers": [
     "non-release snapshot label: fixture-2026-07-11",
@@ -37,35 +37,36 @@
     ]
   },
   "hash_chain": {
-    "hash_chained_v2_rows": 27,
-    "last_entry_sha256": "9ae6b0f627e7a4405415b9871bd502f4209e4652519877dfc60b1f86016ffab8",
-    "ledger_sha256": "56f8dca67de9b415709d4db252b975d9bb52cbf9aadbcf9a715c6d6685c01e90",
+    "hash_chained_v2_rows": 29,
+    "last_entry_sha256": "81d087d0b4e75e9820510a211a841245d1a639e39d2397ebcd93aeb9a49abe69",
+    "ledger_sha256": "638bfc7f64f8472859d1b124dfa685b9cc955dc792c4d1856657ef68f14769d7",
     "legacy_rows": 4,
     "passed": true,
     "superseded_activity_ids": [
+      "ACT-B1-BULK-FIRST-MIGRATION-20260715-001",
       "ACT-B1-T0-20260712-CHECKPOINT-001",
       "ACT-D2-SECURITY-SCAN-001",
       "ACT-F2-CITATION-COLLECTOR-001"
     ]
   },
   "inputs": {
-    "activity_ledger_sha256": "56f8dca67de9b415709d4db252b975d9bb52cbf9aadbcf9a715c6d6685c01e90",
+    "activity_ledger_sha256": "638bfc7f64f8472859d1b124dfa685b9cc955dc792c4d1856657ef68f14769d7",
     "activity_schema_sha256": "07b1d3e8a31ef57b6edd655fc2c0fb80378953502750b64065cef0f11012db9a",
     "declarations_sha256": "02314e9c83db45950d5951cc7113a6a2a0fd1cdafaca5d332a3992211f7f4b6c",
-    "launch_manifest_sha256": "288a112954285cc47a8f51faa4729aac96aa7636af5f58633bdd0d4e0f422294",
+    "launch_manifest_sha256": "81b30cd6d92cb4137ee50f0de1fe222027d9e691fb65884c289b6f3cded5214d",
     "model_lock_sha256": "60e47b0e9237ab4bd7fff53524dd731cff090e54532a3bd28a2dc1e5dc6c6d3c",
     "source_request_budget_sha256": "28e0db5068c90f7bc0403ad2362f30113714fadc99f489c05e7d7db689fc0b07",
     "validator_sha256": "4574476a039eb53c29af2b446fa49751e2ecc31956927229ea769c3201652f9b"
   },
   "model_usage": {
-    "activities_with_unavailable_exact_model_version": 25,
+    "activities_with_unavailable_exact_model_version": 27,
     "deterministic_activities": 6,
     "exact_model_versions": [],
-    "model_assisted_activities": 25,
+    "model_assisted_activities": 27,
     "product_session": {
-      "activities_with_unavailable_cost": 25,
-      "activities_with_unavailable_input_tokens": 25,
-      "activities_with_unavailable_output_tokens": 25,
+      "activities_with_unavailable_cost": 27,
+      "activities_with_unavailable_input_tokens": 27,
+      "activities_with_unavailable_output_tokens": 27,
       "known_input_tokens": 0,
       "known_marginal_cost_gbp": 0.0,
       "known_output_tokens": 0,
@@ -335,6 +336,7 @@
   },
   "unresolved_activity_status": {
     "superseded_activity_ids": [
+      "ACT-B1-BULK-FIRST-MIGRATION-20260715-001",
       "ACT-B1-T0-20260712-CHECKPOINT-001",
       "ACT-D2-SECURITY-SCAN-001",
       "ACT-F2-CITATION-COLLECTOR-001"

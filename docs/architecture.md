@@ -9,7 +9,9 @@ an authoritative bulk inventory.
 ```mermaid
 flowchart LR
   A["Official-source preflight"] --> B["T0/T1 census"]
-  B --> C["Resumable metadata hydration"]
+  B --> X["External Search extract index"]
+  B --> P["Deterministic enrichment selection"]
+  P --> C["Selective Content API enrichment"]
   C --> D["Semantic and static bundle compilation"]
   D --> S["Sitemap and routing topology"]
   S --> E["Explorer and read-only discovery"]
@@ -47,8 +49,10 @@ retrieval time, derivation, software version, confidence and snapshot.
 Complete bodies are neither release inputs nor outputs. The hydrator retains a
 bounded, allowlisted source-native metadata envelope. Attachment metadata and
 canonical links may be published; attachment bodies and third-party material
-are not copied. Structured link extraction may inspect an allowed response
-transiently, but body text is not retained.
+are not copied. Search `parts[].body` snippets are the one local analytical
+exception: normalised extracts, hashes and source-native relationships are
+stored in SQLite/FTS5 on the authorised external cache, while every public
+source record retains part metadata only. The database is not a release input.
 
 ## 1. Preflight and census
 
@@ -65,10 +69,17 @@ byte-stability pass over the complete sitemap. Development flags such as
 cannot pass the release gate.
 
 ```sh
+python3 scripts/check_storage.py --prepare
 python3 scripts/acquire_corpus.py T0-YYYYMMDD
+python3 scripts/plan_hydration.py T0-YYYYMMDD
+python3 scripts/query_extracts.py T0-YYYYMMDD 'housing OR eligibility'
 ```
 
-The census is resumable under `corpus/cache/<label>/` and writes:
+The census cache defaults to
+`/Volumes/EXTSSD/okf-govuk-content/cache/<label>/acquisition/` (the detected
+`ExtSSD-Data` mount is also accepted). `OKF_GOVUK_EXTERNAL_CACHE_ROOT` can name
+another explicitly authorised absolute location. Body-free frozen outputs stay
+in the repository and include:
 
 - `corpus/source-manifests/<label>/manifest.json`;
 - `corpus/inventory/<label>-candidates.jsonl.gz`;
@@ -80,21 +91,31 @@ tombstone-only or evidenced exception. Accounting closure and representation
 success are distinct; `unexplained_omissions = 0` cannot be described as full
 representation when exception rates are material.
 
-## 2. Hydration and closure
+## 2. Selective enrichment and closure
 
-Hydration performs public, rate-limited Content API lookups and follows only
-allowlisted structured links. It checkpoints queue state in SQLite/WAL at
-`corpus/cache/<label>/hydration/checkpoint.sqlite`. The default 8 requests per
-second is below the documented 10 requests per second ceiling and shares a
-cross-process host timestamp.
+ADR-008 treats expanded Search metadata as the first representation layer.
+Hydration performs public, rate-limited Content API lookups only for the
+versioned selection: sitemap-only or identity-poor routes, structural classes,
+explicit redirect/tombstone dispositions, structured-link closure and a stable
+one-percent audit sample. Attachment/resource families and historic Search
+records are explicitly deferred pending an authoritative bulk source or a
+separately scheduled targeted pass. Every other record is explicitly
+`bulk_metadata_only` or `bulk_metadata_only_deferred`. The selection manifest
+records the denominator, reasons, document types and decision-set hash.
+
+The hydrator checkpoints queue state in SQLite/WAL under the external cache.
+The default 8 requests per second is below the documented 10 requests per
+second ceiling and shares a cross-process host timestamp. A pre-ADR-008
+checkpoint is preserved but cannot be silently reused; start a new census
+label/cache root.
 
 Before a successful network result is admitted to the checkpoint, it is fsync'd
 to a private, hash-bound spool under `.tmp/hydration-spool/`, with a 256 MiB
 maximum document bound. A storage stop can therefore resume without repeating
 that request. SQLite batches, candidate and alias materialisation, immutable
-shards and control documents are all admitted before writing against the signed
-10 GiB retained-metadata ceiling; the operational stop is 95% so rollback and
-control-document headroom remain available. Fresh source inventories require
+shards and control documents are admitted only when at least 10 GiB will remain
+free on each active repository/cache filesystem after the reserved write.
+Fresh source inventories require
 unique `(url, locale)` identities, and checkpoint, spool and export paths reject
 symbolic-link escape or ambiguous crash debris.
 
@@ -112,7 +133,9 @@ snapshot. A closed unrestricted run writes:
 
 Repeat the same contracts for T1 and retain the closing delta. A release needs
 closed opposing Search partitions, byte-stable sitemap evidence, a closed
-organisation census, a closed hydration queue and zero unexplained omissions.
+organisation census, a closed selective-enrichment queue, an exact selection
+manifest and zero unexplained omissions. Closure does not imply that every
+record received Content API enrichment; field-level status remains explicit.
 
 ## 3. Compile and query the bundle
 

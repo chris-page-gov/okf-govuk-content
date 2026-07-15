@@ -7,7 +7,6 @@ import concurrent.futures
 import hashlib
 import json
 import os
-import re
 import shutil
 import sqlite3
 import tempfile
@@ -29,6 +28,17 @@ from .acquisition import (
     write_jsonl_gzip_shards,
     write_text_atomic,
 )
+from .hydration_policy import (
+    POLICY_VERSION,
+    apply_bulk_metadata_disposition,
+    hydration_decision,
+)
+from .storage import (
+    StoragePolicyError,
+    assert_minimum_free_disk,
+    free_disk_bytes,
+    load_storage_policy,
+)
 from .util import canonical_json_bytes, pretty_json
 
 
@@ -36,11 +46,6 @@ class HydrationError(RuntimeError):
     """Raised when a hydration closure cannot be represented safely."""
 
 
-_STORAGE_CEILING_PATTERN = re.compile(
-    r"^\s*retained_metadata_storage_gib:\s*([0-9]+)\s*$",
-    re.MULTILINE,
-)
-_STORAGE_OPERATIONAL_PERCENT = 95
 _SQLITE_WRITE_SAFETY_FACTOR = 3
 _SQLITE_WRITE_FIXED_RESERVE = 8 * 1024 * 1024
 _SQLITE_ROW_OVERHEAD_RESERVE = 512
@@ -52,16 +57,6 @@ _MAX_SPOOL_DOCUMENT_BYTES = 256 * 1024 * 1024
 _TRANSIENT_SPOOL_RESERVE_PER_REQUEST = _MAX_SPOOL_DOCUMENT_BYTES
 _TRANSIENT_SPOOL_MINIMUM_FREE = 256 * 1024 * 1024
 _SPOOL_SCHEMA = "govuk-okf-hydration-spool.v1"
-
-
-def _launch_storage_ceiling_bytes(root: Path) -> int:
-    launch = root / "governance" / "launch-manifest.yaml"
-    if not launch.is_file():
-        raise HydrationError("launch manifest is required to authorise retained hydration storage")
-    match = _STORAGE_CEILING_PATTERN.search(launch.read_text(encoding="utf-8"))
-    if not match or int(match.group(1)) < 1:
-        raise HydrationError("launch manifest has no positive retained_metadata_storage_gib ceiling")
-    return int(match.group(1)) * 1024**3
 
 
 def _regular_file_bytes(root: Path) -> int:
@@ -224,7 +219,8 @@ class CorpusHydrator:
         requests_per_second: float = 8.0,
         workers: int = 16,
         batch_size: int = 256,
-        retained_storage_bytes: int | None = None,
+        minimum_free_disk_bytes: int | None = None,
+        cache_root: Path | None = None,
     ) -> None:
         if workers < 1 or batch_size < 1:
             raise HydrationError("workers and batch_size must be positive")
@@ -233,7 +229,15 @@ class CorpusHydrator:
         self.source_path = source_path.resolve()
         self.workers = workers
         self.batch_size = batch_size
-        self.cache_root = self.root / "corpus" / "cache" / label / "hydration"
+        try:
+            self.storage_policy = load_storage_policy(self.root)
+        except StoragePolicyError as exc:
+            raise HydrationError(str(exc)) from exc
+        self.cache_root = (
+            cache_root.resolve()
+            if cache_root is not None
+            else self.storage_policy.cache_root(label, "hydration")
+        )
         self.database_path = self.cache_root / "checkpoint.sqlite"
         self.spool_root = (
             self.root
@@ -247,16 +251,13 @@ class CorpusHydrator:
         self.records_root = self.root / "corpus" / "records" / label
         self.inventory_root = self.root / "corpus" / "inventory"
         self.reconciliation_root = self.root / "corpus" / "reconciliation"
-        self.storage_ceiling_bytes = (
-            retained_storage_bytes
-            if retained_storage_bytes is not None
-            else _launch_storage_ceiling_bytes(self.root)
+        self.minimum_free_disk_bytes = (
+            minimum_free_disk_bytes
+            if minimum_free_disk_bytes is not None
+            else self.storage_policy.minimum_free_bytes
         )
-        if self.storage_ceiling_bytes < 1:
-            raise HydrationError("retained hydration storage ceiling must be positive")
-        self.storage_operational_bytes = (
-            self.storage_ceiling_bytes * _STORAGE_OPERATIONAL_PERCENT // 100
-        )
+        if self.minimum_free_disk_bytes < 1:
+            raise HydrationError("minimum free disk requirement must be positive")
         self.limiter = HostLimiter(
             requests_per_second,
             state_path=self.root / ".tmp" / "rate-limits" / "content-api.timestamp",
@@ -348,7 +349,7 @@ class CorpusHydrator:
             raise
 
     def retained_storage_bytes(self) -> int:
-        """Return retained corpus bytes governed by the launch storage ceiling."""
+        """Return retained repository corpus bytes for transparent accounting."""
 
         return _regular_file_bytes(self.root / "corpus")
 
@@ -361,6 +362,7 @@ class CorpusHydrator:
             "hydrator": type(self).__name__,
             "snapshot": self.label,
             "source_path": source_path,
+            "hydration_policy": POLICY_VERSION,
         }
 
     def _spool_contract_sha256(self) -> str:
@@ -588,21 +590,26 @@ class CorpusHydrator:
         reserve_bytes: int = 0,
         use_authorised_ceiling: bool = False,
     ) -> int:
-        observed = self.retained_storage_bytes()
-        limit = self.storage_ceiling_bytes if use_authorised_ceiling else self.storage_operational_bytes
-        if observed + reserve_bytes > limit:
-            raise HydrationError(
-                f"retained metadata storage would exceed the {phase} limit: "
-                f"{observed}+{reserve_bytes}>{limit} bytes "
-                f"(authorised ceiling {self.storage_ceiling_bytes})"
-            )
-        return observed
+        del use_authorised_ceiling  # retained for compatibility with interrupted checkpoints
+        targets = {self.root, self.cache_root}
+        try:
+            for target in targets:
+                assert_minimum_free_disk(
+                    target,
+                    self.minimum_free_disk_bytes,
+                    reserve_bytes=reserve_bytes,
+                    phase=phase,
+                )
+        except StoragePolicyError as exc:
+            raise HydrationError(str(exc)) from exc
+        return self.retained_storage_bytes()
 
     def _checkpoint_wal_for_storage(self, connection: sqlite3.Connection, *, force: bool = False) -> None:
         wal = self.database_path.with_name(self.database_path.name + "-wal")
         if force or (
             wal.is_file()
-            and self.retained_storage_bytes() > self.storage_operational_bytes * 9 // 10
+            and free_disk_bytes(self.cache_root)
+            < self.minimum_free_disk_bytes + max(wal.stat().st_size * 2, 128 * 1024 * 1024)
         ):
             busy, _pages, _checkpointed = connection.execute(
                 "PRAGMA wal_checkpoint(TRUNCATE)"
@@ -621,18 +628,33 @@ class CorpusHydrator:
             )
             if path.is_file()
         )
+        checks = []
+        for target in sorted({self.root, self.cache_root}, key=lambda value: value.as_posix()):
+            try:
+                checks.append(
+                    assert_minimum_free_disk(
+                        target,
+                        self.minimum_free_disk_bytes,
+                        reserve_bytes=_CONTROL_DOCUMENT_RESERVE,
+                        phase="storage accounting",
+                    )
+                )
+            except StoragePolicyError as exc:
+                raise HydrationError(str(exc)) from exc
         return {
-            "scope": "retained files below corpus/; transient export/VACUUM files are deleted before completion",
-            "authorised_ceiling_bytes": self.storage_ceiling_bytes,
-            "operational_stop_bytes": self.storage_operational_bytes,
+            "scope": "repository corpus plus hydration cache; transient export/VACUUM files are deleted before completion",
+            "minimum_free_disk_bytes": self.minimum_free_disk_bytes,
             "observed_retained_bytes_before_control_documents": observed,
             "control_document_reserve_bytes": _CONTROL_DOCUMENT_RESERVE,
             "conservative_accounted_bytes": observed + _CONTROL_DOCUMENT_RESERVE,
             "hydration_checkpoint_bytes": checkpoint,
+            "hydration_cache_root_kind": (
+                "external" if self.storage_policy.external_cache_root is not None else "repository"
+            ),
+            "free_disk_checks": checks,
             "transient_export_peak_bytes": transient_export_peak_bytes,
             "transient_export_state_deleted_after_verification": True,
-            "within_authorised_ceiling": observed + _CONTROL_DOCUMENT_RESERVE
-            <= self.storage_ceiling_bytes,
+            "minimum_free_disk_satisfied": True,
         }
 
     def _augment_export_documents(
@@ -793,6 +815,13 @@ class CorpusHydrator:
         completed = int(
             connection.execute("SELECT COUNT(*) FROM queue WHERE state='complete'").fetchone()[0]
         )
+        previous_policy = connection.execute(
+            "SELECT value FROM meta WHERE key='hydration_policy'"
+        ).fetchone()
+        if completed and (previous_policy is None or previous_policy[0] != POLICY_VERSION):
+            raise HydrationError(
+                "hydration checkpoint predates the bulk-first policy; preserve it and use a new cache root"
+            )
         if completed and (previous is None or previous[0] != source_digest):
             raise HydrationError("source inventory changed after hydration began; use a new snapshot label")
         replace_unstarted = completed == 0
@@ -807,8 +836,12 @@ class CorpusHydrator:
             self._clear_spool()
 
         digest = hashlib.sha256()
+        selection_digest = hashlib.sha256()
         inserted_count = 0
-        insert_batch: list[tuple[str, str, str]] = []
+        selected_count = 0
+        selection_reasons: collections.Counter[str] = collections.Counter()
+        selection_dispositions: collections.Counter[str] = collections.Counter()
+        insert_batch: list[tuple[str, str, str | None, str, str | None, str | None]] = []
         insert_batch_bytes = 0
 
         def flush_insert_batch() -> None:
@@ -822,8 +855,8 @@ class CorpusHydrator:
             )
             connection.executemany(
                 ("INSERT INTO " if replace_unstarted else "INSERT OR IGNORE INTO ")
-                + "queue(url, locale, input_json, state) "
-                "VALUES (?, ?, ?, 'pending')",
+                + "queue(url, locale, input_json, state, hydration_status, record_json) "
+                "VALUES (?, ?, ?, ?, ?, ?)",
                 insert_batch,
             )
             insert_batch.clear()
@@ -845,17 +878,39 @@ class CorpusHydrator:
                 payload = canonical_json_bytes(record)
                 digest.update(payload)
                 payload_text = payload.decode("utf-8")
+                decision = hydration_decision(record)
+                decision_record = decision.record(record)
+                selection_digest.update(canonical_json_bytes(decision_record))
+                selection_dispositions[decision.disposition] += 1
+                if decision.selected:
+                    selected_count += 1
+                    selection_reasons.update(decision.reasons)
+                    queue_payload: tuple[str | None, str, str | None, str | None] = (
+                        payload_text,
+                        "pending",
+                        None,
+                        None,
+                    )
+                else:
+                    represented = apply_bulk_metadata_disposition(record, decision)
+                    represented_text = canonical_json_bytes(represented).decode("utf-8")
+                    queue_payload = (
+                        None,
+                        "complete",
+                        str(represented["hydration_status"]),
+                        represented_text,
+                    )
                 row_bytes = (
                     len(url.encode("utf-8"))
                     + len(locale.encode("utf-8"))
-                    + len(payload)
+                    + len((queue_payload[0] or queue_payload[3] or "").encode("utf-8"))
                 )
                 if insert_batch and (
                     len(insert_batch) >= _SQLITE_BATCH_MAX_RECORDS
                     or insert_batch_bytes + row_bytes > _SQLITE_BATCH_MAX_PAYLOAD_BYTES
                 ):
                     flush_insert_batch()
-                insert_batch.append((url, locale, payload_text))
+                insert_batch.append((url, locale, *queue_payload))
                 insert_batch_bytes += row_bytes
                 if (
                     len(insert_batch) >= _SQLITE_BATCH_MAX_RECORDS
@@ -874,6 +929,26 @@ class CorpusHydrator:
                 "INSERT OR REPLACE INTO meta(key, value) VALUES ('source_records', ?)",
                 (str(count),),
             )
+            connection.execute(
+                "INSERT OR REPLACE INTO meta(key, value) VALUES ('hydration_policy', ?)",
+                (POLICY_VERSION,),
+            )
+            connection.execute(
+                "INSERT OR REPLACE INTO meta(key, value) VALUES ('hydration_selection_sha256', ?)",
+                (selection_digest.hexdigest(),),
+            )
+            connection.execute(
+                "INSERT OR REPLACE INTO meta(key, value) VALUES ('hydration_selected_records', ?)",
+                (str(selected_count),),
+            )
+            connection.execute(
+                "INSERT OR REPLACE INTO meta(key, value) VALUES ('hydration_selection_reasons', ?)",
+                (json.dumps(dict(sorted(selection_reasons.items())), sort_keys=True),),
+            )
+            connection.execute(
+                "INSERT OR REPLACE INTO meta(key, value) VALUES ('hydration_selection_dispositions', ?)",
+                (json.dumps(dict(sorted(selection_dispositions.items())), sort_keys=True),),
+            )
             connection.commit()
             self._checkpoint_wal_for_storage(connection, force=True)
             self._assert_retained_storage(phase="prepared hydration checkpoint")
@@ -889,6 +964,12 @@ class CorpusHydrator:
         if urlparse(url).netloc != "www.gov.uk":
             record["hydration_status"] = "external_boundary"
             return record, "external_boundary", []
+        if record.get("enrichment_selected") is False:
+            hydration_status = str(
+                record.get("hydration_status") or "bulk_metadata_represented"
+            )
+            record["hydration_status"] = hydration_status
+            return record, hydration_status, []
         path = urlparse(url).path or "/"
         endpoint = CONTENT_API_ROOT + (quote(path, safe="/%:@-._~") if path != "/" else "")
         body, evidence = request_observation(endpoint, limiter=self.limiter, max_bytes=64 * 1024 * 1024)
@@ -914,6 +995,12 @@ class CorpusHydrator:
                 "redirect_only" if result.get("document_type") == "redirect" else "represented"
             )
             hydration_status = "content_api_represented"
+            result["enrichment_policy"] = POLICY_VERSION
+            result["enrichment_selected"] = True
+            result["enrichment_selection_reasons"] = list(
+                hydration_decision(record).reasons
+            )
+            result["enrichment_status"] = "content_api_enriched"
         else:
             result = dict(record)
             constraints = list(result.get("constraints") or [])
@@ -930,6 +1017,12 @@ class CorpusHydrator:
             hydration_status = (
                 "content_api_unavailable" if status in {404, 410} else "content_api_exception"
             )
+            result["enrichment_policy"] = POLICY_VERSION
+            result["enrichment_selected"] = True
+            result["enrichment_selection_reasons"] = list(
+                hydration_decision(record).reasons
+            )
+            result["enrichment_status"] = "content_api_enrichment_failed"
         result["hydration_status"] = hydration_status
         result["content_api_status"] = status
         result["content_api_final_url"] = evidence.get("final_url")
@@ -974,7 +1067,11 @@ class CorpusHydrator:
                         free = shutil.disk_usage(self.root).free
                         spool_capacity = max(
                             0,
-                            (free - _TRANSIENT_SPOOL_MINIMUM_FREE)
+                            (
+                                free
+                                - self.minimum_free_disk_bytes
+                                - _TRANSIENT_SPOOL_MINIMUM_FREE
+                            )
                             // _TRANSIENT_SPOOL_RESERVE_PER_REQUEST,
                         )
                         admitted = missing_rows[: min(spool_capacity, self.workers)]
@@ -1026,15 +1123,32 @@ class CorpusHydrator:
                             )
                             for linked_record in linked:
                                 linked_url, linked_locale = _record_key(linked_record)
-                                connection.execute(
-                                    "INSERT OR IGNORE INTO queue(url, locale, input_json, state) "
-                                    "VALUES (?, ?, ?, 'pending')",
-                                    (
-                                        linked_url,
-                                        linked_locale,
-                                        canonical_json_bytes(linked_record).decode("utf-8"),
-                                    ),
-                                )
+                                decision = hydration_decision(linked_record)
+                                if decision.selected:
+                                    connection.execute(
+                                        "INSERT OR IGNORE INTO queue(url, locale, input_json, state) "
+                                        "VALUES (?, ?, ?, 'pending')",
+                                        (
+                                            linked_url,
+                                            linked_locale,
+                                            canonical_json_bytes(linked_record).decode("utf-8"),
+                                        ),
+                                    )
+                                else:
+                                    represented = apply_bulk_metadata_disposition(
+                                        linked_record, decision
+                                    )
+                                    connection.execute(
+                                        "INSERT OR IGNORE INTO queue"
+                                        "(url, locale, input_json, state, hydration_status, record_json) "
+                                        "VALUES (?, ?, NULL, 'complete', ?, ?)",
+                                        (
+                                            linked_url,
+                                            linked_locale,
+                                            represented["hydration_status"],
+                                            canonical_json_bytes(represented).decode("utf-8"),
+                                        ),
+                                    )
                         connection.commit()
                     except Exception:
                         connection.rollback()
@@ -1053,6 +1167,18 @@ class CorpusHydrator:
                     "SELECT hydration_status, COUNT(*) FROM queue WHERE state='complete' GROUP BY hydration_status"
                 )
             }
+            selection_reasons_row = connection.execute(
+                "SELECT value FROM meta WHERE key='hydration_selection_reasons'"
+            ).fetchone()
+            selection_dispositions_row = connection.execute(
+                "SELECT value FROM meta WHERE key='hydration_selection_dispositions'"
+            ).fetchone()
+            selected_row = connection.execute(
+                "SELECT value FROM meta WHERE key='hydration_selected_records'"
+            ).fetchone()
+            selection_digest_row = connection.execute(
+                "SELECT value FROM meta WHERE key='hydration_selection_sha256'"
+            ).fetchone()
             return {
                 "schema_version": 1,
                 "snapshot": self.label,
@@ -1064,6 +1190,21 @@ class CorpusHydrator:
                 "closed": pending == 0,
                 "sampled": request_limit is not None,
                 "status_counts": dict(sorted(status_counts.items())),
+                "hydration_selection": {
+                    "policy": POLICY_VERSION,
+                    "selected_records": int(selected_row[0]) if selected_row else pending,
+                    "selection_reasons": (
+                        json.loads(selection_reasons_row[0]) if selection_reasons_row else {}
+                    ),
+                    "dispositions": (
+                        json.loads(selection_dispositions_row[0])
+                        if selection_dispositions_row
+                        else {}
+                    ),
+                    "decision_set_sha256": (
+                        str(selection_digest_row[0]) if selection_digest_row else None
+                    ),
+                },
             }
         finally:
             connection.close()
@@ -1335,6 +1476,26 @@ class CorpusHydrator:
                     "SELECT hydration_status, COUNT(*) FROM queue GROUP BY hydration_status"
                 )
             }
+            selected_records = int(
+                connection.execute(
+                    "SELECT value FROM meta WHERE key='hydration_selected_records'"
+                ).fetchone()[0]
+            )
+            selection_reasons = json.loads(
+                connection.execute(
+                    "SELECT value FROM meta WHERE key='hydration_selection_reasons'"
+                ).fetchone()[0]
+            )
+            selection_dispositions = json.loads(
+                connection.execute(
+                    "SELECT value FROM meta WHERE key='hydration_selection_dispositions'"
+                ).fetchone()[0]
+            )
+            selection_digest = str(
+                connection.execute(
+                    "SELECT value FROM meta WHERE key='hydration_selection_sha256'"
+                ).fetchone()[0]
+            )
             enumeration: dict[str, Any] = {}
             if enumeration_reconciliation is not None:
                 enumeration = json.loads(enumeration_reconciliation.read_text(encoding="utf-8"))
@@ -1358,6 +1519,15 @@ class CorpusHydrator:
                     "pending": 0,
                     "closed": True,
                     "status_counts": dict(sorted(hydration_status.items())),
+                    "selection": {
+                        "policy": POLICY_VERSION,
+                        "selected_records": selected_records,
+                        "bulk_or_already_represented_records": record_count
+                        - selected_records,
+                        "selection_reasons": selection_reasons,
+                        "dispositions": selection_dispositions,
+                        "decision_set_sha256": selection_digest,
+                    },
                 },
                 "hydrated_records_path": source_target.relative_to(self.root).as_posix(),
                 "hydrated_record_shards": [
@@ -1395,6 +1565,8 @@ class CorpusHydrator:
                 "completed_at": datetime.now(timezone.utc).isoformat(),
                 "metadata_only": True,
                 "complete_page_bodies_retained": False,
+                "hydration_policy": POLICY_VERSION,
+                "selective_content_api_enrichment": True,
                 "source_records": record_count,
                 "source_records_sha256": record_digest,
                 "source_record_manifest": source_target.relative_to(self.root).as_posix(),

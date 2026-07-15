@@ -1,9 +1,11 @@
 # Post-hydration closing and release runbook
 
-This is the fail-closed continuation after the unrestricted T0 hydration command
-exits zero and exports `corpus/reconciliation/<T0>-hydrated.json`. Do not start
-T1 while that process is still running. A retry must reuse the same labels and
-paths; never create a second label to hide an open or failed checkpoint.
+This is the fail-closed continuation after a new ADR-008 opening census and its
+selective enrichment command exit zero and export
+`corpus/reconciliation/<OPENING>-hydrated.json`. The historical universal
+`T0-20260712` checkpoint is preserved as evidence, not migrated in place. A
+retry of the new policy must reuse its labels and paths; never create a second
+label to hide an open or failed checkpoint.
 
 The deterministic acquisition, closing, compilation, question and evaluation
 commands make no model calls. T1 acquisition and closing consume only the
@@ -12,27 +14,33 @@ offline against the frozen evidence; if evidence must be fetched again, book
 those attempts in the separate citation aggregate before finalising the shared
 request snapshot.
 
-## 1. Freeze labels and close T1
+## 1. Build the new opening census, freeze labels and close T1
 
 Set these values once. `T1_LABEL` is the UTC date on which the authoritative T1
 enumeration starts; keep it unchanged across resumes.
 
 ```sh
-T0_LABEL=T0-20260712
+OPENING_LABEL=T0R-YYYYMMDD
 T1_LABEL=T1-YYYYMMDD
 RELEASE_ID=${T1_LABEL}-closed
 T1_DATE=YYYY-MM-DD
 
+.venv/bin/python scripts/check_storage.py --prepare
+.venv/bin/python scripts/acquire_corpus.py "$OPENING_LABEL"
+.venv/bin/python scripts/plan_hydration.py "$OPENING_LABEL"
+.venv/bin/python scripts/hydrate_corpus.py \
+  "$OPENING_LABEL" --rendered-scan-limit 75000
 .venv/bin/python scripts/acquire_corpus.py "$T1_LABEL"
 .venv/bin/python scripts/close_corpus.py \
-  "$T0_LABEL" "$T1_LABEL" \
+  "$OPENING_LABEL" "$T1_LABEL" \
   --label "$RELEASE_ID" \
   --rate 8 \
   --www-rate 2 \
   --official-request-ceiling 1000000
 ```
 
-Both commands are resumable when invoked again with the same arguments. Do not
+The acquisition and hydration commands are resumable when invoked again with
+the same arguments. Do not
 use `--work-limit`, sampling limits, single Search pass, unstable-sitemap
 options or `--no-export` for a release run.
 
@@ -73,8 +81,9 @@ and separately retains `reconciliation_path`.
 
 Append the real `ACT-D1-T0-HYDRATION-TERMINAL-001` and
 `ACT-E1-T1-RECONCILIATION-TERMINAL-001` rows only after their outputs, request
-intervals and hashes are known. The T0 hydration row remains T0-bound; the T1
-row must include `$RELEASE_ID` in `source_snapshots`. Construct every manual
+intervals and hashes are known. The opening hydration row remains bound to
+`$OPENING_LABEL`; the T1 row must include `$RELEASE_ID` in `source_snapshots`.
+Construct every manual
 terminal with the declaration-driven commands in
 [`terminal-activity-closure.md`](terminal-activity-closure.md); never append a
 pre-authored terminal JSON object.

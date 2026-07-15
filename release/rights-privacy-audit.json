@@ -145,7 +145,7 @@
     "source_constraints": {
       "path": "research/source-constraints.json",
       "rights_constraint_id": "SRC-CONSTRAINT-006",
-      "sha256": "96338c787a24ee3fcbfa700620412003f533d3d5c0439d54b1b39828281d5814"
+      "sha256": "3709854b2af13e9372689c91a9de27909cbab1131bb275d2d1b5a3b9d4eb398c"
     },
     "source_preflight": {
       "completed_at": "2026-07-12T07:39:52+00:00",

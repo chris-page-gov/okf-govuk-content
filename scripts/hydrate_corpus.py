@@ -17,6 +17,7 @@ from govuk_okf.closure_hydration import (  # noqa: E402
     DEFAULT_RENDERED_SCAN_LIMIT,
     CompleteCorpusHydrator,
 )
+from govuk_okf.storage import StoragePolicyError  # noqa: E402
 
 
 def main() -> int:
@@ -28,6 +29,7 @@ def main() -> int:
     parser.add_argument("--rendered-rate", type=float, default=2.0, help="rendered www.gov.uk request ceiling")
     parser.add_argument("--workers", type=int, default=16)
     parser.add_argument("--batch-size", type=int, default=256)
+    parser.add_argument("--cache-root", type=Path, help="explicit hydration checkpoint/cache root")
     parser.add_argument("--request-limit", type=int, help="bounded development run; never exportable as complete")
     parser.add_argument("--skip-rendered-gap", action="store_true", help="development only: omit transient rendered-link closure")
     parser.add_argument("--queue-ceiling", type=int, default=1_500_000)
@@ -69,6 +71,7 @@ def main() -> int:
         requests_per_second=args.rate,
         workers=args.workers,
         batch_size=args.batch_size,
+        cache_root=args.cache_root,
         **extra,
     )
     try:
@@ -77,7 +80,14 @@ def main() -> int:
         if progress["closed"] and not args.no_export and args.request_limit is None:
             result = hydrator.export(reconciliation if reconciliation.is_file() else None)
             print(json.dumps(result, sort_keys=True))
-    except (HydrationError, OSError, ValueError, json.JSONDecodeError, sqlite3.Error) as exc:
+    except (
+        HydrationError,
+        StoragePolicyError,
+        OSError,
+        ValueError,
+        json.JSONDecodeError,
+        sqlite3.Error,
+    ) as exc:
         print(f"hydration failed closed: {exc}", file=sys.stderr)
         return 1
     return 0

@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "1c3033f925cb774c6ae5375ce394d79bd037848e68ef7470fcbaa3f9c4c785b4",
-    "before_sha256": "1c3033f925cb774c6ae5375ce394d79bd037848e68ef7470fcbaa3f9c4c785b4",
+    "after_sha256": "b9bfbd9ba6c4e7c9c0e3f28001e978975ae175c882c249b7c635474ea9c2e12c",
+    "before_sha256": "b9bfbd9ba6c4e7c9c0e3f28001e978975ae175c882c249b7c635474ea9c2e12c",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -97,7 +97,7 @@
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-07-14T18:24:46Z",
+  "ended_at": "2026-07-15T07:51:40Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.5.2-arm64-arm-64bit",
@@ -241,10 +241,10 @@
         "tree_sha256": "5074788418fb13578520e4b3e81fbadf54ddded0d913b2eb9509b35150ac8ea0"
       },
       {
-        "bytes": 2286,
+        "bytes": 2966,
         "file_count": 1,
         "path": "governance/launch-manifest.yaml",
-        "tree_sha256": "80bf3e74c882063fb2eb98d991671d657ad8c2d2a35fb7636fbcb9d78926d7ef"
+        "tree_sha256": "cf1a570a9d6eef18ab8597d5ae1c67577d727858cbbca375f6863d34e6c811ab"
       },
       {
         "bytes": 1798,
@@ -259,10 +259,10 @@
         "tree_sha256": "0e7f1b4dc121977ae4a7a816c55a4bd12e3cd31758562b025b12f5b127c3fc06"
       },
       {
-        "bytes": 91358,
+        "bytes": 102182,
         "file_count": 1,
         "path": "provenance/activity-ledger.jsonl",
-        "tree_sha256": "176948ef3d56bd78f89c0ac9733cd968a19158861ad45abfb42dd910b3cb348f"
+        "tree_sha256": "71d5195825d556f56e13ee8f1d48720c0a36625f66bb80c01862cd3792001ba8"
       },
       {
         "bytes": 8590,
@@ -283,10 +283,10 @@
         "tree_sha256": "f4b4cbbae1a2bb985bb5ec351663777f6a38de8cad59d3619e4537fca3026e2f"
       },
       {
-        "bytes": 12852,
+        "bytes": 12952,
         "file_count": 1,
         "path": "release/provenance-validation.json",
-        "tree_sha256": "f876fb47035b4d1710b508e1044de845522f5b63cf1be8f2d889a4ec857bbab3"
+        "tree_sha256": "8c2d26d23f37c28353064fe6420c860daa73a003af8af2933f5d7bb586ad3ae6"
       },
       {
         "bytes": 1574,
@@ -295,22 +295,22 @@
         "tree_sha256": "8f8b76adab0651d4e1090e097c0a3d8e490d0f096ff9e356be23b470ed20d7d7"
       },
       {
-        "bytes": 7423,
+        "bytes": 9505,
         "file_count": 1,
         "path": "research/official-source-audit.md",
-        "tree_sha256": "b70a3f1dee5904b1ae50dadbb25e8673087887355f126613608144c995acc6ec"
+        "tree_sha256": "04d532d2dffc4197f1257bf5ec60c54a8d7822966a521b41002a36b30e0e4c20"
       },
       {
-        "bytes": 4329,
+        "bytes": 5170,
         "file_count": 1,
         "path": "research/source-constraints.json",
-        "tree_sha256": "2710ab6cef995ba152168c2b1777cf2615b8ea3bd575f51e4e7c5fec55515366"
+        "tree_sha256": "5b11cd86be9b4923fab1009f4124bb01b0600f8222524265cf1b43c24960e901"
       },
       {
-        "bytes": 1107085,
-        "file_count": 28,
+        "bytes": 1154357,
+        "file_count": 31,
         "path": "src",
-        "tree_sha256": "b07059c719fc228b8a50e165fd850913e888b08e8914fb42508641249c34ae42"
+        "tree_sha256": "a9910c43b57c8e49e15f261adeba86341ba1568b67298d3fdabd94088698f8e0"
       },
       {
         "bytes": 1652,
@@ -417,21 +417,21 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "0ea496c5e5bee32fa084af97c2ba90065383e1037df7665d6a227d47ea6403f5"
+    "tree_sha256": "5cb83298414a7304cb25945c3f768766bbe3e76b4b1911063f26ffcb3a3e4dc1"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
-      "activities": 31,
-      "activities_with_unavailable_cost": 25,
-      "activities_with_unavailable_tokens": 25,
+      "activities": 33,
+      "activities_with_unavailable_cost": 27,
+      "activities_with_unavailable_tokens": 27,
       "external_paid_model_api_calls": 0,
       "external_paid_model_cost_gbp": 0.0,
       "external_paid_model_input_tokens": 0,
       "external_paid_model_output_tokens": 0,
       "known_cost_gbp": 0.0,
       "known_tokens": 0,
-      "latest_source_request_checkpoint": 4283,
-      "ledger_sha256": "56f8dca67de9b415709d4db252b975d9bb52cbf9aadbcf9a715c6d6685c01e90",
+      "latest_source_request_checkpoint": 81798,
+      "ledger_sha256": "638bfc7f64f8472859d1b124dfa685b9cc955dc792c4d1856657ef68f14769d7",
       "source_request_activities_pending_final_count": 2,
       "source_request_exact_attempts": 11580,
       "source_requests_included_in_model_cost": false
@@ -482,7 +482,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-14T18:24:46Z",
+  "recorded_at": "2026-07-15T07:51:40Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
@@ -544,7 +544,7 @@
     }
   ],
   "source_binding": null,
-  "started_at": "2026-07-14T18:24:45Z",
+  "started_at": "2026-07-15T07:51:39Z",
   "test_evidence": null,
   "validators": {
     "passed": true,
