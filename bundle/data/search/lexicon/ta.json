@@ -1,7 +1,47 @@
 [
   {
-    "df": 2,
+    "df": 1,
     "postings": "data/search/postings/ta.json",
-    "token": "taxon"
+    "token": "take"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ta.json",
+    "token": "taken"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ta.json",
+    "token": "taking"
+  },
+  {
+    "df": 7,
+    "postings": "data/search/postings/ta.json",
+    "token": "tax"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ta.json",
+    "token": "tax-credits-appeals-complaints"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ta.json",
+    "token": "tax-credits-overpayments"
+  },
+  {
+    "df": 4,
+    "postings": "data/search/postings/ta.json",
+    "token": "tax-free"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ta.json",
+    "token": "tax-free-childcare"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ta.json",
+    "token": "taxed"
   }
 ]

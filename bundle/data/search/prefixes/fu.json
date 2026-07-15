@@ -1,0 +1,112 @@
+{
+  "ful": [
+    {
+      "df": 2,
+      "token": "full-time"
+    }
+  ],
+  "full": [
+    {
+      "df": 2,
+      "token": "full-time"
+    }
+  ],
+  "full-": [
+    {
+      "df": 2,
+      "token": "full-time"
+    }
+  ],
+  "full-t": [
+    {
+      "df": 2,
+      "token": "full-time"
+    }
+  ],
+  "full-ti": [
+    {
+      "df": 2,
+      "token": "full-time"
+    }
+  ],
+  "full-tim": [
+    {
+      "df": 2,
+      "token": "full-time"
+    }
+  ],
+  "full-time": [
+    {
+      "df": 2,
+      "token": "full-time"
+    }
+  ],
+  "fun": [
+    {
+      "df": 3,
+      "token": "funding"
+    },
+    {
+      "df": 1,
+      "token": "fund"
+    }
+  ],
+  "fund": [
+    {
+      "df": 3,
+      "token": "funding"
+    },
+    {
+      "df": 1,
+      "token": "fund"
+    }
+  ],
+  "fundi": [
+    {
+      "df": 3,
+      "token": "funding"
+    }
+  ],
+  "fundin": [
+    {
+      "df": 3,
+      "token": "funding"
+    }
+  ],
+  "funding": [
+    {
+      "df": 3,
+      "token": "funding"
+    }
+  ],
+  "fur": [
+    {
+      "df": 1,
+      "token": "further"
+    }
+  ],
+  "furt": [
+    {
+      "df": 1,
+      "token": "further"
+    }
+  ],
+  "furth": [
+    {
+      "df": 1,
+      "token": "further"
+    }
+  ],
+  "furthe": [
+    {
+      "df": 1,
+      "token": "further"
+    }
+  ],
+  "further": [
+    {
+      "df": 1,
+      "token": "further"
+    }
+  ]
+}

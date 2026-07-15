@@ -1,0 +1,132 @@
+{
+  "get": [
+    {
+      "df": 21,
+      "token": "get"
+    },
+    {
+      "df": 1,
+      "token": "get-childcare"
+    },
+    {
+      "df": 1,
+      "token": "get-extra-early-years-funding"
+    },
+    {
+      "df": 1,
+      "token": "gets"
+    }
+  ],
+  "get-": [
+    {
+      "df": 1,
+      "token": "get-childcare"
+    },
+    {
+      "df": 1,
+      "token": "get-extra-early-years-funding"
+    }
+  ],
+  "get-c": [
+    {
+      "df": 1,
+      "token": "get-childcare"
+    }
+  ],
+  "get-ch": [
+    {
+      "df": 1,
+      "token": "get-childcare"
+    }
+  ],
+  "get-chi": [
+    {
+      "df": 1,
+      "token": "get-childcare"
+    }
+  ],
+  "get-chil": [
+    {
+      "df": 1,
+      "token": "get-childcare"
+    }
+  ],
+  "get-child": [
+    {
+      "df": 1,
+      "token": "get-childcare"
+    }
+  ],
+  "get-childc": [
+    {
+      "df": 1,
+      "token": "get-childcare"
+    }
+  ],
+  "get-childca": [
+    {
+      "df": 1,
+      "token": "get-childcare"
+    }
+  ],
+  "get-childcar": [
+    {
+      "df": 1,
+      "token": "get-childcare"
+    }
+  ],
+  "get-e": [
+    {
+      "df": 1,
+      "token": "get-extra-early-years-funding"
+    }
+  ],
+  "get-ex": [
+    {
+      "df": 1,
+      "token": "get-extra-early-years-funding"
+    }
+  ],
+  "get-ext": [
+    {
+      "df": 1,
+      "token": "get-extra-early-years-funding"
+    }
+  ],
+  "get-extr": [
+    {
+      "df": 1,
+      "token": "get-extra-early-years-funding"
+    }
+  ],
+  "get-extra": [
+    {
+      "df": 1,
+      "token": "get-extra-early-years-funding"
+    }
+  ],
+  "get-extra-": [
+    {
+      "df": 1,
+      "token": "get-extra-early-years-funding"
+    }
+  ],
+  "get-extra-e": [
+    {
+      "df": 1,
+      "token": "get-extra-early-years-funding"
+    }
+  ],
+  "get-extra-ea": [
+    {
+      "df": 1,
+      "token": "get-extra-early-years-funding"
+    }
+  ],
+  "gets": [
+    {
+      "df": 1,
+      "token": "gets"
+    }
+  ]
+}

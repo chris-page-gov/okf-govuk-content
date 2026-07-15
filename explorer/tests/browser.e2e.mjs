@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
@@ -100,6 +101,66 @@ function packageFixture(fixtureRoot, output) {
   );
 }
 
+async function addDemonstratorFixture(bundleRoot) {
+  const descriptorPath = join(bundleRoot, "okf-explorer.json");
+  const descriptor = JSON.parse(await readFile(descriptorPath, "utf8"));
+  const aiFiles = {
+    documentation: { path: "ai/README.md", content: "# Use this fixture bundle with an AI\n\nThe live GOV.UK page remains authoritative.\n" },
+    context_pack: { path: "ai/context.md", content: "# Fixture context\n\nTwo bounded metadata records for browser verification.\n" },
+    context_json: { path: "ai/context.json", content: `${JSON.stringify({ schema: "govuk-okf-portable-ai-context.v1", records: 2, authoritative: false }, null, 2)}\n` },
+    mcp_manifest: { path: "ai/mcp.json", content: `${JSON.stringify({ schema: "govuk-okf-mcp-configuration.v1", transport: "stdio", read_only: true }, null, 2)}\n` }
+  };
+  await mkdir(join(bundleRoot, "ai"), { recursive: true });
+  const aiIntegrity = {};
+  for (const [key, file] of Object.entries(aiFiles)) {
+    const bytes = Buffer.from(file.content, "utf8");
+    await writeFile(join(bundleRoot, file.path), bytes);
+    aiIntegrity[key] = {
+      path: file.path,
+      sha256: createHash("sha256").update(bytes).digest("hex"),
+      bytes: bytes.byteLength
+    };
+  }
+  const demonstrator = {
+    schema: "govuk-new-child-demonstrator.v1",
+    snapshot: fixtureSnapshot,
+    title: "New child journey browser fixture",
+    status: "bounded_demonstrator",
+    authoritative: false,
+    scope_statement: "Exactly the declared fixture seeds; outside destinations remain typed boundaries.",
+    seed_count: 2,
+    publication_record_count: 2,
+    retained_record_ceiling: 250,
+    official_request_ceiling: 500,
+    source_queries: [{ label: "Fixture browse area", browse_path: "fixture/new-child", search_url: "https://www.gov.uk/api/search.json?count=0", reported_total: 2 }],
+    coverage: { seed_expected: 2, seed_represented: 2, unexplained_seed_omissions: 0, boundary_reference_count: 1, by_boundary_class: { dynamic_service: 1 } },
+    journey_groups: [{
+      id: "first-actions",
+      title: "First actions",
+      description: "Fixture stage assembled from advertised record routes.",
+      record_routes: [
+        "dataset/00000000-0000-4000-8000-000000000001-en",
+        "dataset/00000000-0000-4000-8000-000000000002-en"
+      ],
+      example_questions: ["Which official records help me understand the next steps?"]
+    }],
+    featured_routes: ["dataset/00000000-0000-4000-8000-000000000001-en"],
+    boundaries: [{ source_route: "dataset/00000000-0000-4000-8000-000000000001-en", target_url: "https://www.gov.uk/", title: "GOV.UK", predicate: "hands off to", class: "dynamic_service" }],
+    ai_handoff: { documentation: aiFiles.documentation.path, context_pack: aiFiles.context_pack.path, context_json: aiFiles.context_json.path, mcp_manifest: aiFiles.mcp_manifest.path },
+    ai_handoff_integrity: aiIntegrity
+  };
+  const demonstratorBytes = Buffer.from(`${JSON.stringify(demonstrator, null, 2)}\n`, "utf8");
+  descriptor.entrypoints.demonstrator = "data/demonstrator.json";
+  descriptor.entrypoint_integrity ||= {};
+  descriptor.entrypoint_integrity.demonstrator = {
+    path: "data/demonstrator.json",
+    sha256: createHash("sha256").update(demonstratorBytes).digest("hex")
+  };
+  await writeFile(descriptorPath, `${JSON.stringify(descriptor, null, 2)}\n`, "utf8");
+  await writeFile(join(bundleRoot, "data", "demonstrator.json"), demonstratorBytes);
+  return { aiIntegrity, demonstratorBytes };
+}
+
 test("real browser verifies fixture accessibility, routing, gzip and performance budgets", { timeout: 120000 }, async (context) => {
   const server = await startFixtureServer();
   const browser = await launchChrome();
@@ -130,6 +191,91 @@ test("full-release mode binds evidence to a non-fixture snapshot", async () => {
   );
 });
 
+test("real browser renders the bounded journey from its advertised contract", { timeout: 120000 }, async (context) => {
+  const temporary = await mkdtemp(join(tmpdir(), "govuk-okf-demonstrator-browser-"));
+  const fixtureRoot = join(temporary, "repository");
+  let server = null;
+  let browser = null;
+  try {
+    await buildSinglePackFixture(fixtureRoot);
+    const fixture = await addDemonstratorFixture(join(fixtureRoot, "bundle"));
+    server = await startFixtureServer({ root: join(fixtureRoot, "bundle") });
+    browser = await launchChrome();
+    const url = new URL(server.baseUrl);
+    url.searchParams.set("view", "journey");
+    url.searchParams.set("mode", "explore");
+    url.searchParams.set("snapshot", fixtureSnapshot);
+    await browser.navigate(url.toString());
+    await browser.waitFor("document.documentElement.dataset.explorerReady === 'true' && document.documentElement.dataset.demonstratorRecordsReady === 'true'");
+    const rendered = await browser.evaluate(`(() => {
+      const visible = (node) => {
+        const style = getComputedStyle(node);
+        return !node.hidden && style.display !== "none" && style.visibility !== "hidden" && node.getClientRects().length > 0;
+      };
+      const headings = [...document.querySelectorAll("h1, h2, h3, h4, h5, h6")]
+        .filter(visible)
+        .map((node) => Number(node.tagName.slice(1)));
+      return {
+        view: new URL(location.href).searchParams.get("view"),
+        callout: !document.querySelector("#demonstrator-callout").hidden,
+        stages: document.querySelectorAll(".journey-stage").length,
+        records: document.querySelectorAll(".journey-record").length,
+        coverage: document.querySelector(".journey-metrics")?.textContent || "",
+        scope: document.querySelector(".journey-scope-statement")?.textContent || "",
+        ai: document.querySelector(".ai-handoff")?.textContent || "",
+        visibleH1s: [...document.querySelectorAll("h1")].filter(visible).length,
+        headingJumps: headings.slice(1).filter((level, index) => level > headings[index] + 1).length,
+        duplicateIds: [...document.querySelectorAll("[id]")]
+          .map((node) => node.id)
+          .filter((id, index, values) => values.indexOf(id) !== index),
+        unnamedActions: [...document.querySelectorAll("a, button")]
+          .filter(visible)
+          .filter((node) => !(node.textContent || node.getAttribute("aria-label") || "").trim())
+          .length
+      };
+    })()`);
+    assert.equal(rendered.view, "journey");
+    assert.equal(rendered.callout, true);
+    assert.equal(rendered.stages, 1);
+    assert.equal(rendered.records, 2);
+    assert.match(rendered.coverage, /2declared seed records/);
+    assert.match(rendered.coverage, /0unexplained seed omissions/);
+    assert.match(rendered.scope, /declared fixture seeds/);
+    assert.match(rendered.ai, /MCP/);
+    assert.equal(rendered.visibleH1s, 1);
+    assert.equal(rendered.headingJumps, 0);
+    assert.deepEqual(rendered.duplicateIds, []);
+    assert.equal(rendered.unnamedActions, 0);
+    const handoffs = await browser.evaluate(`(async () => {
+      const hex = (buffer) => [...new Uint8Array(buffer)].map((value) => value.toString(16).padStart(2, "0")).join("");
+      return Promise.all([...document.querySelectorAll(".ai-handoff a")].map(async (link) => {
+        const response = await fetch(link.href, { cache: "no-store" });
+        const bytes = await response.arrayBuffer();
+        return {
+          label: link.textContent.trim(),
+          path: new URL(link.href).pathname.split("/okf-govuk-content/")[1],
+          status: response.status,
+          bytes: bytes.byteLength,
+          sha256: hex(await crypto.subtle.digest("SHA-256", bytes))
+        };
+      }));
+    })()`);
+    assert.equal(handoffs.length, 4);
+    const observedByPath = Object.fromEntries(handoffs.map((entry) => [entry.path, entry]));
+    for (const expected of Object.values(fixture.aiIntegrity)) {
+      const observed = observedByPath[expected.path];
+      assert.ok(observed, `browser did not expose AI handoff ${expected.path}`);
+      assert.equal(observed.status, 200);
+      assert.equal(observed.bytes, expected.bytes);
+      assert.equal(observed.sha256, expected.sha256);
+    }
+  } finally {
+    if (browser) await browser.close();
+    if (server) await server.close();
+    await rm(temporary, { recursive: true, force: true });
+  }
+});
+
 test("exact single-pack Pages fixture proves distinct virtual range requests", { timeout: 180000 }, async () => {
   const temporary = await mkdtemp(join(tmpdir(), "govuk-okf-packed-browser-"));
   const fixtureRoot = join(temporary, "repository");
@@ -149,7 +295,10 @@ test("exact single-pack Pages fixture proves distinct virtual range requests", {
     const evidence = await runFixtureBrowserAudit(browser, server, {
       iterations: 1,
       generatedAt: "single-pack-test",
-      snapshot: fixtureSnapshot
+      snapshot: fixtureSnapshot,
+      route: "publisher/government-digital-service",
+      routeTitle: "Government Digital Service",
+      searchQuery: "welcome"
     });
     assert.equal(evidence.routing_and_data.pass, true, JSON.stringify(evidence.routing_and_data, null, 2));
     assert.deepEqual(evidence.routing_and_data.physical_pack_resources.length, 1);

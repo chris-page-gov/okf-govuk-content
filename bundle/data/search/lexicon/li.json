@@ -2,6 +2,26 @@
   {
     "df": 1,
     "postings": "data/search/postings/li.json",
-    "token": "link"
+    "token": "life"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/li.json",
+    "token": "limit"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/li.json",
+    "token": "live"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/li.json",
+    "token": "lives"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/li.json",
+    "token": "living"
   }
 ]

@@ -1,0 +1,17 @@
+[
+  {
+    "df": 6,
+    "postings": "data/search/postings/al.json",
+    "token": "allowance"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/al.json",
+    "token": "alone"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/al.json",
+    "token": "also"
+  }
+]

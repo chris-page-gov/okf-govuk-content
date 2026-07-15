@@ -1,20 +1,134 @@
 {
   "pla": [
     {
-      "df": 1,
+      "df": 2,
       "token": "place"
+    },
+    {
+      "df": 1,
+      "token": "plan"
+    },
+    {
+      "df": 1,
+      "token": "plan-shared-parental-leave-pay"
+    },
+    {
+      "df": 1,
+      "token": "play"
+    },
+    {
+      "df": 1,
+      "token": "playgroup"
     }
   ],
   "plac": [
     {
-      "df": 1,
+      "df": 2,
       "token": "place"
     }
   ],
   "place": [
     {
-      "df": 1,
+      "df": 2,
       "token": "place"
+    }
+  ],
+  "plan": [
+    {
+      "df": 1,
+      "token": "plan"
+    },
+    {
+      "df": 1,
+      "token": "plan-shared-parental-leave-pay"
+    }
+  ],
+  "plan-": [
+    {
+      "df": 1,
+      "token": "plan-shared-parental-leave-pay"
+    }
+  ],
+  "plan-s": [
+    {
+      "df": 1,
+      "token": "plan-shared-parental-leave-pay"
+    }
+  ],
+  "plan-sh": [
+    {
+      "df": 1,
+      "token": "plan-shared-parental-leave-pay"
+    }
+  ],
+  "plan-sha": [
+    {
+      "df": 1,
+      "token": "plan-shared-parental-leave-pay"
+    }
+  ],
+  "plan-shar": [
+    {
+      "df": 1,
+      "token": "plan-shared-parental-leave-pay"
+    }
+  ],
+  "plan-share": [
+    {
+      "df": 1,
+      "token": "plan-shared-parental-leave-pay"
+    }
+  ],
+  "plan-shared": [
+    {
+      "df": 1,
+      "token": "plan-shared-parental-leave-pay"
+    }
+  ],
+  "plan-shared-": [
+    {
+      "df": 1,
+      "token": "plan-shared-parental-leave-pay"
+    }
+  ],
+  "play": [
+    {
+      "df": 1,
+      "token": "play"
+    },
+    {
+      "df": 1,
+      "token": "playgroup"
+    }
+  ],
+  "playg": [
+    {
+      "df": 1,
+      "token": "playgroup"
+    }
+  ],
+  "playgr": [
+    {
+      "df": 1,
+      "token": "playgroup"
+    }
+  ],
+  "playgro": [
+    {
+      "df": 1,
+      "token": "playgroup"
+    }
+  ],
+  "playgrou": [
+    {
+      "df": 1,
+      "token": "playgroup"
+    }
+  ],
+  "playgroup": [
+    {
+      "df": 1,
+      "token": "playgroup"
     }
   ]
 }

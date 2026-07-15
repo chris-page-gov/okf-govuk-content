@@ -1,11 +1,21 @@
 [
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings/go.json",
-    "token": "gov.uk"
+    "token": "go"
   },
   {
-    "df": 6,
+    "df": 1,
+    "postings": "data/search/postings/go.json",
+    "token": "goes"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/go.json",
+    "token": "going"
+  },
+  {
+    "df": 66,
     "postings": "data/search/postings/go.json",
     "token": "government"
   }

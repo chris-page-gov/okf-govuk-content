@@ -1,7 +1,17 @@
 [
   {
-    "df": 3,
+    "df": 2,
     "postings": "data/search/postings/pe.json",
-    "token": "pensions"
+    "token": "people"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/pe.json",
+    "token": "periods"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pe.json",
+    "token": "personal"
   }
 ]

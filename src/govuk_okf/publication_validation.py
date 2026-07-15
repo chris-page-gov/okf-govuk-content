@@ -15,6 +15,17 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
+from .demonstrator_projection import (
+    AI_HANDOFF_PATHS,
+    DEMONSTRATOR_SCHEMA,
+    EXPECTED_BROWSE_PATHS,
+    EXPECTED_GROUP_IDS,
+    EXPECTED_SEEDS,
+    EXPECTED_SUBGROUP_MEMBERSHIP_COUNTS,
+    OVERVIEW_GROUP_ID,
+    SUBGROUP_IDS,
+    SUBGROUP_MEMBERSHIP_BY_ID,
+)
 from .publication import (
     DATA_PLANE_BUDGETS,
     DATA_PLANE_SCHEMA_VERSION,
@@ -518,11 +529,16 @@ class PublicationValidator:
         ) != "okf-large-corpus":
             self.errors.add("Explorer descriptor does not use the large-corpus contract")
         if isinstance(descriptor.get("counts"), dict) and semantic.get("snapshot"):
+            entrypoints_for_scope = descriptor.get("entrypoints")
+            is_demonstrator = isinstance(entrypoints_for_scope, dict) and bool(
+                entrypoints_for_scope.get("demonstrator")
+            )
             expected_yaml = yaml_dump(
                 semantic_descriptor(
                     descriptor["counts"],
                     str(descriptor.get("generated_at")),
                     str(semantic["snapshot"]),
+                    demonstrator=is_demonstrator,
                 )
             ) + "\n"
             try:
@@ -556,7 +572,7 @@ class PublicationValidator:
         if not isinstance(entrypoint_integrity, dict) or not required_entrypoints <= set(entrypoint_integrity):
             self.errors.add("Explorer descriptor is missing required entrypoint integrity metadata")
             entrypoint_integrity = entrypoint_integrity if isinstance(entrypoint_integrity, dict) else {}
-        for name in required_entrypoints:
+        for name in sorted(set(required_entrypoints) | set(entrypoint_integrity)):
             reference = entrypoint_integrity.get(name)
             if not isinstance(reference, dict) or reference.get("path") != entrypoints.get(name):
                 self.errors.add(f"descriptor entrypoint and integrity path differ: {name}")
@@ -2322,6 +2338,268 @@ class PublicationValidator:
         if integrity.get("leaf_count") != len(self.data_plane_shards):
             self.errors.add("data-plane manifest leaf count differs")
 
+    def validate_demonstrator(
+        self, descriptor: dict[str, Any], manifest: dict[str, Any]
+    ) -> None:
+        reference = descriptor.get("entrypoints", {}).get("demonstrator")
+        indexed = manifest.get("indexes", {}).get("demonstrator")
+        if reference is None and indexed is None:
+            return
+        if reference != indexed:
+            self.errors.add("data manifest and descriptor demonstrator references differ")
+            return
+        integrity = descriptor.get("entrypoint_integrity", {}).get("demonstrator")
+        document = self.load_json(
+            integrity or reference,
+            label="new-child demonstrator",
+            max_bytes=MAX_UNCOMPRESSED_SHARD,
+            default={},
+        )
+        if not isinstance(document, dict) or document.get("schema") != DEMONSTRATOR_SCHEMA:
+            self.errors.add("new-child demonstrator schema is invalid")
+            return
+        if document.get("snapshot") != descriptor.get("snapshot"):
+            self.errors.add("new-child demonstrator snapshot differs")
+        if document.get("authoritative") is not False:
+            self.errors.add("new-child demonstrator must be explicitly non-authoritative")
+        if descriptor.get("status") != "bounded-demonstrator" or not all(
+            phrase in str(descriptor.get("description") or "").casefold()
+            for phrase in ("69", "not a complete gov.uk corpus")
+        ):
+            self.errors.add("Explorer descriptor does not state the bounded demonstrator scope")
+        coverage = document.get("coverage")
+        if not isinstance(coverage, dict) or any(
+            coverage.get(key) != expected
+            for key, expected in (
+                ("seed_expected", EXPECTED_SEEDS),
+                ("seed_represented", EXPECTED_SEEDS),
+                ("unexplained_seed_omissions", 0),
+            )
+        ):
+            self.errors.add("new-child demonstrator seed coverage does not close at 69/69")
+        if document.get("publication_record_count") != descriptor.get("counts", {}).get("datasets"):
+            self.errors.add("new-child demonstrator publication count differs")
+        groups = document.get("journey_groups")
+        if not isinstance(groups, list):
+            self.errors.add("new-child demonstrator journey groups are missing")
+            groups = []
+        group_ids = [
+            str(group.get("id") or "") for group in groups if isinstance(group, dict)
+        ]
+        if tuple(group_ids) != EXPECTED_GROUP_IDS or len(group_ids) != len(set(group_ids)):
+            self.errors.add("new-child demonstrator must declare the exact four journey groups")
+        routes_by_group: dict[str, set[str]] = {}
+        for group in groups:
+            if not isinstance(group, dict) or not isinstance(group.get("record_routes"), list):
+                self.errors.add("new-child demonstrator journey group is invalid")
+                continue
+            group_id = str(group.get("id") or "")
+            routes = [str(route) for route in group["record_routes"]]
+            if len(routes) != len(set(routes)):
+                self.errors.add(f"new-child journey group contains duplicate routes: {group_id}")
+            routes_by_group[group_id] = set(routes)
+            for route in routes:
+                row = self.connection.execute(
+                    "SELECT kind FROM routes WHERE open = ?", (route,)
+                ).fetchone()
+                if row is None or row[0] != "datasets":
+                    self.errors.add(f"new-child journey route is not a dataset: {route}")
+        overview_routes = routes_by_group.get(OVERVIEW_GROUP_ID, set())
+        if len(overview_routes) != EXPECTED_SEEDS:
+            self.errors.add("new-child overview group does not contain 69 unique routes")
+        subgroup_union: set[str] = set()
+        for group_id in SUBGROUP_IDS:
+            subgroup_routes = routes_by_group.get(group_id, set())
+            if not subgroup_routes or not subgroup_routes <= overview_routes:
+                self.errors.add(f"new-child subgroup is empty or outside overview: {group_id}")
+            subgroup_union.update(subgroup_routes)
+        if subgroup_union != overview_routes:
+            self.errors.add("new-child three-subgroup union does not equal overview")
+
+        acquisition = document.get("acquisition_evidence")
+        if not isinstance(acquisition, dict):
+            self.errors.add("new-child frozen acquisition evidence is missing")
+            acquisition = {}
+        snapshot = str(document.get("snapshot") or "")
+        repository_prefix = f"demo/snapshots/{snapshot}/"
+        contracts = acquisition.get("contracts")
+        live_contract = contracts.get("live") if isinstance(contracts, dict) else None
+        frozen_contract = contracts.get("frozen") if isinstance(contracts, dict) else None
+        if (
+            not isinstance(live_contract, dict)
+            or not isinstance(frozen_contract, dict)
+            or live_contract.get("repository_path") != "demo/new-child-cohort.json"
+            or frozen_contract.get("repository_path") != repository_prefix + "contract.json"
+            or not re.fullmatch(r"[0-9a-f]{64}", str(live_contract.get("raw_sha256") or ""))
+            or not re.fullmatch(r"[0-9a-f]{64}", str(frozen_contract.get("raw_sha256") or ""))
+            or not re.fullmatch(
+                r"[0-9a-f]{64}", str(live_contract.get("canonical_sha256") or "")
+            )
+            or live_contract.get("canonical_sha256") != frozen_contract.get("canonical_sha256")
+        ):
+            self.errors.add("new-child live and frozen contract bindings are invalid")
+        for name in ("snapshot_manifest", "frozen_index", "cohort_manifest", "request_receipts"):
+            reference_row = acquisition.get(name)
+            if (
+                not isinstance(reference_row, dict)
+                or not str(reference_row.get("repository_path") or "").startswith(repository_prefix)
+                or not re.fullmatch(r"[0-9a-f]{64}", str(reference_row.get("sha256") or ""))
+            ):
+                self.errors.add(f"new-child acquisition reference is invalid: {name}")
+        membership_counts = acquisition.get("seed_membership_counts")
+        if (
+            not isinstance(membership_counts, dict)
+            or membership_counts != EXPECTED_SUBGROUP_MEMBERSHIP_COUNTS
+        ):
+            self.errors.add("new-child frozen membership counts are invalid")
+            membership_counts = {}
+        if not str(acquisition.get("retrieval_started_at") or "") or not str(
+            acquisition.get("retrieval_ended_at") or ""
+        ):
+            self.errors.add("new-child acquisition times are missing")
+        official_attempts = acquisition.get("official_request_attempts")
+        if not isinstance(official_attempts, int) or not 1 <= official_attempts <= 500:
+            self.errors.add("new-child official request-attempt count is invalid")
+
+        queries = document.get("source_queries")
+        if not isinstance(queries, list):
+            self.errors.add("new-child source-query evidence is missing")
+            queries = []
+        query_ids = [str(query.get("id") or "") for query in queries if isinstance(query, dict)]
+        if tuple(query_ids) != EXPECTED_GROUP_IDS or len(query_ids) != len(set(query_ids)):
+            self.errors.add("new-child source-query evidence does not cover the exact journey groups")
+        receipts_reference = acquisition.get("request_receipts")
+        for query in queries:
+            if not isinstance(query, dict):
+                self.errors.add("new-child source-query row is invalid")
+                continue
+            query_id = str(query.get("id") or "")
+            derived_count = query.get("derived_membership_count")
+            expected_count = len(routes_by_group.get(query_id, set()))
+            if derived_count != expected_count or query.get("reported_total") != expected_count:
+                self.errors.add(f"new-child source-query count differs from routes: {query_id}")
+            reproducibility_url = str(query.get("reproducibility_url") or "")
+            if (
+                not reproducibility_url.startswith("https://www.gov.uk/api/search.json?")
+                or query.get("search_url") != reproducibility_url
+            ):
+                self.errors.add(f"new-child reproducibility URL is invalid: {query_id}")
+            browse_paths = query.get("browse_paths")
+            if not isinstance(browse_paths, list) or not browse_paths:
+                self.errors.add(f"new-child query has no declared browse paths: {query_id}")
+                browse_paths = []
+            if query_id == OVERVIEW_GROUP_ID:
+                if tuple(map(str, browse_paths)) != EXPECTED_BROWSE_PATHS:
+                    self.errors.add("new-child overview query browse paths differ from frozen counts")
+                expected_phases = ("count", "open", "close")
+            else:
+                expected_path = SUBGROUP_MEMBERSHIP_BY_ID.get(query_id)
+                if (
+                    browse_paths != [expected_path]
+                    or membership_counts.get(expected_path) != expected_count
+                ):
+                    self.errors.add(f"new-child subgroup count differs from frozen cohort: {query_id}")
+                expected_phases = ("open", "close")
+            observations = query.get("observations")
+            if not isinstance(observations, list):
+                self.errors.add(f"new-child query observations are missing: {query_id}")
+                observations = []
+            phases = tuple(
+                str(row.get("phase") or "") for row in observations if isinstance(row, dict)
+            )
+            if phases != expected_phases:
+                self.errors.add(f"new-child query observation phases differ: {query_id}")
+            for observation in observations:
+                if not isinstance(observation, dict):
+                    self.errors.add(f"new-child query observation is invalid: {query_id}")
+                    continue
+                phase = str(observation.get("phase") or "")
+                if (
+                    observation.get("observed_total") != expected_count
+                    or observation.get("status") != 200
+                    or not str(observation.get("retrieved_at") or "")
+                    or not str(observation.get("requested_url") or "").startswith(
+                        "https://www.gov.uk/api/search.json?"
+                    )
+                ):
+                    self.errors.add(f"new-child observed query evidence is incomplete: {query_id}/{phase}")
+                result_count = observation.get("observed_result_count")
+                expected_results = 0 if phase == "count" else expected_count
+                if result_count != expected_results:
+                    self.errors.add(f"new-child observed result count differs: {query_id}/{phase}")
+                request = observation.get("request")
+                envelope = observation.get("envelope")
+                if (
+                    not isinstance(request, dict)
+                    or not isinstance(request.get("local_sequence"), int)
+                    or not isinstance(request.get("programme_sequence"), int)
+                    or not re.fullmatch(
+                        r"[0-9a-f]{64}", str(request.get("transfer_sha256") or "")
+                    )
+                    or not isinstance(receipts_reference, dict)
+                    or request.get("receipts_path") != receipts_reference.get("repository_path")
+                    or request.get("receipts_sha256") != receipts_reference.get("sha256")
+                ):
+                    self.errors.add(f"new-child request evidence is invalid: {query_id}/{phase}")
+                if (
+                    not isinstance(envelope, dict)
+                    or not str(envelope.get("repository_path") or "").startswith(
+                        repository_prefix + "frozen/envelopes/"
+                    )
+                    or not re.fullmatch(r"[0-9a-f]{64}", str(envelope.get("sha256") or ""))
+                ):
+                    self.errors.add(f"new-child envelope evidence is invalid: {query_id}/{phase}")
+        boundaries = document.get("boundaries")
+        if not isinstance(boundaries, list):
+            self.errors.add("new-child demonstrator boundaries are not an array")
+            boundaries = []
+        if isinstance(coverage, dict) and coverage.get("boundary_reference_count") != len(boundaries):
+            self.errors.add("new-child boundary count differs from coverage")
+        for boundary in boundaries:
+            if not isinstance(boundary, dict):
+                self.errors.add("new-child boundary is not an object")
+                continue
+            source_route = str(boundary.get("source_route") or "")
+            if self.connection.execute(
+                "SELECT 1 FROM routes WHERE open = ?", (source_route,)
+            ).fetchone() is None:
+                self.errors.add(f"new-child boundary source route is unknown: {source_route}")
+            for field in ("target_url", "evidence_url"):
+                if not str(boundary.get(field) or "").startswith("https://"):
+                    self.errors.add(f"new-child boundary has unsafe {field}: {source_route}")
+            if not boundary.get("evidence_sha256") or not boundary.get("evidence_locator"):
+                self.errors.add(f"new-child boundary evidence is incomplete: {source_route}")
+        handoff = document.get("ai_handoff")
+        if not isinstance(handoff, dict):
+            self.errors.add("new-child AI handoff is missing")
+            return
+        integrity = document.get("ai_handoff_integrity")
+        if (
+            set(handoff) != set(AI_HANDOFF_PATHS)
+            or not isinstance(integrity, dict)
+            or set(integrity) != set(AI_HANDOFF_PATHS)
+        ):
+            self.errors.add("new-child AI handoff integrity map is incomplete")
+            integrity = integrity if isinstance(integrity, dict) else {}
+        for name, expected_path in AI_HANDOFF_PATHS.items():
+            reference_row = integrity.get(name)
+            if handoff.get(name) != expected_path or not isinstance(reference_row, dict):
+                self.errors.add(f"new-child AI handoff reference differs: {name}")
+                continue
+            if reference_row.get("path") != expected_path:
+                self.errors.add(f"new-child AI handoff integrity path differs: {name}")
+            valid = self.check_file(
+                reference_row,
+                label=f"new-child AI handoff {name}",
+                max_bytes=MAX_UNCOMPRESSED_SHARD,
+            )
+            if valid:
+                try:
+                    if reference_row.get("bytes") != self.path(reference_row).stat().st_size:
+                        self.errors.add(f"new-child AI handoff byte count differs: {name}")
+                except (OSError, ValueError) as exc:
+                    self.errors.add(f"cannot measure new-child AI handoff {name}: {exc}")
+
     def validate(self) -> ValidationResult:
         descriptor, _root_semantic, manifest = self.validate_root()
         if descriptor and manifest:
@@ -2331,6 +2609,7 @@ class PublicationValidator:
             self.validate_search(descriptor, manifest)
             self.validate_adjacency(descriptor, manifest)
             self.validate_site_topology(descriptor, manifest)
+            self.validate_demonstrator(descriptor, manifest)
             self.validate_data_plane_root(descriptor, manifest)
             self.validate_semantic_projection(descriptor, manifest)
             self.validate_bootstrap(descriptor)

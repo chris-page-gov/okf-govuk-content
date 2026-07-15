@@ -1,0 +1,488 @@
+{
+  "artifacts": {
+    "boundary_references": {
+      "path": "boundary-references.jsonl",
+      "records": 3889,
+      "sha256": "65e4aee7145126e7e9750665734f0adb3c8708cd4253dd6a20f53da0949ca86e"
+    },
+    "source_records": {
+      "path": "source-records.jsonl",
+      "records": 69,
+      "sha256": "827d01d031e07fa165ab18af0f0c96f8c227b13b75ca08a82f422afd93a41cf1"
+    }
+  },
+  "classifications": {
+    "boundary_classes": {
+      "depth-ceiling": 3136,
+      "predicate-outside-declared-closure": 365,
+      "typed-one-hop-metadata": 388
+    },
+    "document_types": {
+      "answer": 21,
+      "detailed_guide": 1,
+      "guide": 32,
+      "local_transaction": 8,
+      "place": 1,
+      "smart_answer": 2,
+      "step_by_step_nav": 1,
+      "transaction": 3
+    },
+    "seed_memberships": {
+      "childcare-parenting/childcare": 23,
+      "childcare-parenting/financial-help-children": 47,
+      "childcare-parenting/pregnancy-birth": 15
+    }
+  },
+  "closure": {
+    "depth": 1,
+    "hydrate_predicates": [
+      "available_translations",
+      "lead_organisations",
+      "mainstream_browse_pages",
+      "organisations",
+      "original_primary_publishing_organisation",
+      "owning_organisation",
+      "pages_part_of_step_nav",
+      "pages_related_to_step_nav",
+      "pages_secondary_to_step_nav",
+      "part_of_step_navs",
+      "primary_publishing_organisation",
+      "related_to_step_navs"
+    ],
+    "recursed_from_one_hop_records": false,
+    "retained_record_ceiling": 250
+  },
+  "cohort_id": "new-child-support",
+  "counts": {
+    "boundary_references": 3889,
+    "depth_ceiling_boundary_references": 3136,
+    "direct_boundary_references": 753,
+    "retained_content_metadata_records": 118,
+    "seed_denominator": 69,
+    "seed_records": 69,
+    "unexplained_seed_omissions": 0
+  },
+  "derived_non_authoritative": true,
+  "journey_groups": [
+    {
+      "id": "new-child-overview",
+      "membership": "all-seeds",
+      "title": "New child support overview"
+    },
+    {
+      "id": "pregnancy-and-birth",
+      "membership": "childcare-parenting/pregnancy-birth",
+      "title": "Pregnancy and birth"
+    },
+    {
+      "id": "financial-help-for-children",
+      "membership": "childcare-parenting/financial-help-children",
+      "title": "Financial help for children"
+    },
+    {
+      "id": "childcare",
+      "membership": "childcare-parenting/childcare",
+      "title": "Childcare"
+    }
+  ],
+  "raw_metadata": {
+    "attachments_downloaded": false,
+    "complete_page_bodies_retained": false,
+    "envelope_set_sha256": "418be3d04c37133e1823a5d8e989fffa3c4e7ec83ab4d5b878acffb4689a9e9b",
+    "envelopes": 127,
+    "nested_link_targets_retained": false,
+    "rendered_pages_retained": false
+  },
+  "retrieval": {
+    "ended_at": "2026-07-15T06:25:17.571009+00:00",
+    "global_request_attempt_interval": null,
+    "local_request_attempt_interval": [
+      1,
+      127
+    ],
+    "official_request_attempt_ceiling": 500,
+    "official_request_attempts": 127,
+    "programme_request_count_after": 76969,
+    "programme_request_count_before": 76784,
+    "programme_request_ledger": "programme-official-source-request-counter",
+    "programme_request_sequence_ranges": [
+      [
+        76786,
+        76787
+      ],
+      [
+        76789,
+        76789
+      ],
+      [
+        76791,
+        76796
+      ],
+      [
+        76798,
+        76799
+      ],
+      [
+        76801,
+        76806
+      ],
+      [
+        76808,
+        76808
+      ],
+      [
+        76811,
+        76813
+      ],
+      [
+        76815,
+        76815
+      ],
+      [
+        76817,
+        76817
+      ],
+      [
+        76819,
+        76819
+      ],
+      [
+        76821,
+        76821
+      ],
+      [
+        76823,
+        76823
+      ],
+      [
+        76825,
+        76826
+      ],
+      [
+        76829,
+        76829
+      ],
+      [
+        76831,
+        76833
+      ],
+      [
+        76835,
+        76836
+      ],
+      [
+        76839,
+        76839
+      ],
+      [
+        76841,
+        76841
+      ],
+      [
+        76843,
+        76843
+      ],
+      [
+        76845,
+        76845
+      ],
+      [
+        76847,
+        76848
+      ],
+      [
+        76851,
+        76858
+      ],
+      [
+        76860,
+        76866
+      ],
+      [
+        76868,
+        76876
+      ],
+      [
+        76878,
+        76882
+      ],
+      [
+        76884,
+        76884
+      ],
+      [
+        76886,
+        76887
+      ],
+      [
+        76889,
+        76890
+      ],
+      [
+        76892,
+        76892
+      ],
+      [
+        76894,
+        76894
+      ],
+      [
+        76896,
+        76896
+      ],
+      [
+        76898,
+        76898
+      ],
+      [
+        76900,
+        76900
+      ],
+      [
+        76902,
+        76902
+      ],
+      [
+        76904,
+        76904
+      ],
+      [
+        76906,
+        76909
+      ],
+      [
+        76911,
+        76914
+      ],
+      [
+        76916,
+        76916
+      ],
+      [
+        76918,
+        76918
+      ],
+      [
+        76920,
+        76920
+      ],
+      [
+        76922,
+        76922
+      ],
+      [
+        76924,
+        76925
+      ],
+      [
+        76927,
+        76927
+      ],
+      [
+        76929,
+        76929
+      ],
+      [
+        76931,
+        76931
+      ],
+      [
+        76933,
+        76933
+      ],
+      [
+        76935,
+        76935
+      ],
+      [
+        76937,
+        76940
+      ],
+      [
+        76942,
+        76945
+      ],
+      [
+        76947,
+        76950
+      ],
+      [
+        76952,
+        76955
+      ],
+      [
+        76957,
+        76960
+      ],
+      [
+        76962,
+        76966
+      ],
+      [
+        76968,
+        76969
+      ]
+    ],
+    "programme_request_sequences": [
+      76786,
+      76787,
+      76789,
+      76791,
+      76792,
+      76793,
+      76794,
+      76795,
+      76796,
+      76798,
+      76799,
+      76801,
+      76802,
+      76803,
+      76804,
+      76805,
+      76806,
+      76808,
+      76811,
+      76812,
+      76813,
+      76815,
+      76817,
+      76819,
+      76821,
+      76823,
+      76825,
+      76826,
+      76829,
+      76831,
+      76832,
+      76833,
+      76835,
+      76836,
+      76839,
+      76841,
+      76843,
+      76845,
+      76847,
+      76848,
+      76851,
+      76852,
+      76853,
+      76854,
+      76855,
+      76856,
+      76857,
+      76858,
+      76860,
+      76861,
+      76862,
+      76863,
+      76864,
+      76865,
+      76866,
+      76868,
+      76869,
+      76870,
+      76871,
+      76872,
+      76873,
+      76874,
+      76875,
+      76876,
+      76878,
+      76879,
+      76880,
+      76881,
+      76882,
+      76884,
+      76886,
+      76887,
+      76889,
+      76890,
+      76892,
+      76894,
+      76896,
+      76898,
+      76900,
+      76902,
+      76904,
+      76906,
+      76907,
+      76908,
+      76909,
+      76911,
+      76912,
+      76913,
+      76914,
+      76916,
+      76918,
+      76920,
+      76922,
+      76924,
+      76925,
+      76927,
+      76929,
+      76931,
+      76933,
+      76935,
+      76937,
+      76938,
+      76939,
+      76940,
+      76942,
+      76943,
+      76944,
+      76945,
+      76947,
+      76948,
+      76949,
+      76950,
+      76952,
+      76953,
+      76954,
+      76955,
+      76957,
+      76958,
+      76959,
+      76960,
+      76962,
+      76963,
+      76964,
+      76965,
+      76966,
+      76968,
+      76969
+    ],
+    "request_attempt_interval": [
+      1,
+      127
+    ],
+    "request_receipts_path": "frozen/request-attempt-receipts.jsonl",
+    "request_receipts_sha256": "167868f25a8898eeb39fbdc72ec456b7a9e038bbe4d4d23e5d42f311b88bd8da",
+    "started_at": "2026-07-15T06:24:16.662649+00:00",
+    "zero_model_calls": true
+  },
+  "rights": {
+    "fair_use_trigger": "No complete page body or attachment is retained; any later body, image or third-party asset use requires separate item-level review.",
+    "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+    "source": "official-public-govuk",
+    "status": "metadata-and-links-only-subject-to-item-specific-exceptions"
+  },
+  "schema": "govuk-okf-new-child-demo-manifest.v1",
+  "scope": "A reproducible, metadata-only demonstrator. Completeness is claimed only for the frozen Search API seed result and the declared one-hop metadata closure, never for all GOV.UK or all policy relevant to a new child.",
+  "snapshot_id": "NEW-CHILD-20260715",
+  "source_queries": {
+    "combined_count": "https://www.gov.uk/api/search.json?count=0&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare",
+    "combined_records_close": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+    "combined_records_open": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+    "groups": {
+      "childcare-parenting/childcare": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "childcare-parenting/financial-help-children": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "childcare-parenting/pregnancy-birth": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids"
+    },
+    "groups_close": {
+      "childcare-parenting/childcare": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "childcare-parenting/financial-help-children": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "childcare-parenting/pregnancy-birth": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids"
+    }
+  }
+}

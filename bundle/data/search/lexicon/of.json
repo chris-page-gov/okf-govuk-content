@@ -1,7 +1,32 @@
 [
   {
+    "df": 1,
+    "postings": "data/search/postings/of.json",
+    "token": "off"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/of.json",
+    "token": "offence"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/of.json",
+    "token": "offers"
+  },
+  {
     "df": 2,
     "postings": "data/search/postings/of.json",
     "token": "office"
+  },
+  {
+    "df": 4,
+    "postings": "data/search/postings/of.json",
+    "token": "ofsted"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/of.json",
+    "token": "ofsted-explore-an-area"
   }
 ]

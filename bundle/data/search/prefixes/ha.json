@@ -1,0 +1,50 @@
+{
+  "hap": [
+    {
+      "df": 1,
+      "token": "happens"
+    }
+  ],
+  "happ": [
+    {
+      "df": 1,
+      "token": "happens"
+    }
+  ],
+  "happe": [
+    {
+      "df": 1,
+      "token": "happens"
+    }
+  ],
+  "happen": [
+    {
+      "df": 1,
+      "token": "happens"
+    }
+  ],
+  "happens": [
+    {
+      "df": 1,
+      "token": "happens"
+    }
+  ],
+  "has": [
+    {
+      "df": 3,
+      "token": "has"
+    }
+  ],
+  "hav": [
+    {
+      "df": 3,
+      "token": "have"
+    }
+  ],
+  "have": [
+    {
+      "df": 3,
+      "token": "have"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "muc": [
+    {
+      "df": 2,
+      "token": "much"
+    }
+  ],
+  "much": [
+    {
+      "df": 2,
+      "token": "much"
+    }
+  ],
+  "mul": [
+    {
+      "df": 1,
+      "token": "multiple"
+    }
+  ],
+  "mult": [
+    {
+      "df": 1,
+      "token": "multiple"
+    }
+  ],
+  "multi": [
+    {
+      "df": 1,
+      "token": "multiple"
+    }
+  ],
+  "multip": [
+    {
+      "df": 1,
+      "token": "multiple"
+    }
+  ],
+  "multipl": [
+    {
+      "df": 1,
+      "token": "multiple"
+    }
+  ],
+  "multiple": [
+    {
+      "df": 1,
+      "token": "multiple"
+    }
+  ],
+  "mus": [
+    {
+      "df": 2,
+      "token": "must"
+    }
+  ],
+  "must": [
+    {
+      "df": 2,
+      "token": "must"
+    }
+  ]
+}

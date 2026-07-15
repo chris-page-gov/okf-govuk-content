@@ -1,80 +1,342 @@
 {
+  "die": [
+    {
+      "df": 1,
+      "token": "dies"
+    }
+  ],
+  "dies": [
+    {
+      "df": 1,
+      "token": "dies"
+    }
+  ],
   "dig": [
     {
-      "df": 2,
+      "df": 66,
       "token": "digital"
     }
   ],
   "digi": [
     {
-      "df": 2,
+      "df": 66,
       "token": "digital"
     }
   ],
   "digit": [
     {
-      "df": 2,
+      "df": 66,
       "token": "digital"
     }
   ],
   "digita": [
     {
-      "df": 2,
+      "df": 66,
       "token": "digital"
     }
   ],
   "digital": [
     {
-      "df": 2,
+      "df": 66,
       "token": "digital"
+    }
+  ],
+  "dir": [
+    {
+      "df": 1,
+      "token": "direct"
+    }
+  ],
+  "dire": [
+    {
+      "df": 1,
+      "token": "direct"
+    }
+  ],
+  "direc": [
+    {
+      "df": 1,
+      "token": "direct"
+    }
+  ],
+  "direct": [
+    {
+      "df": 1,
+      "token": "direct"
     }
   ],
   "dis": [
     {
+      "df": 3,
+      "token": "disabilities"
+    },
+    {
+      "df": 2,
+      "token": "disability"
+    },
+    {
+      "df": 2,
+      "token": "disabled"
+    },
+    {
       "df": 1,
-      "token": "discovered"
+      "token": "disability-living-allowance-children"
+    },
+    {
+      "df": 1,
+      "token": "disabled-facilities-grants"
+    },
+    {
+      "df": 1,
+      "token": "discrimination"
+    }
+  ],
+  "disa": [
+    {
+      "df": 3,
+      "token": "disabilities"
+    },
+    {
+      "df": 2,
+      "token": "disability"
+    },
+    {
+      "df": 2,
+      "token": "disabled"
+    },
+    {
+      "df": 1,
+      "token": "disability-living-allowance-children"
+    },
+    {
+      "df": 1,
+      "token": "disabled-facilities-grants"
+    }
+  ],
+  "disab": [
+    {
+      "df": 3,
+      "token": "disabilities"
+    },
+    {
+      "df": 2,
+      "token": "disability"
+    },
+    {
+      "df": 2,
+      "token": "disabled"
+    },
+    {
+      "df": 1,
+      "token": "disability-living-allowance-children"
+    },
+    {
+      "df": 1,
+      "token": "disabled-facilities-grants"
+    }
+  ],
+  "disabi": [
+    {
+      "df": 3,
+      "token": "disabilities"
+    },
+    {
+      "df": 2,
+      "token": "disability"
+    },
+    {
+      "df": 1,
+      "token": "disability-living-allowance-children"
+    }
+  ],
+  "disabil": [
+    {
+      "df": 3,
+      "token": "disabilities"
+    },
+    {
+      "df": 2,
+      "token": "disability"
+    },
+    {
+      "df": 1,
+      "token": "disability-living-allowance-children"
+    }
+  ],
+  "disabili": [
+    {
+      "df": 3,
+      "token": "disabilities"
+    },
+    {
+      "df": 2,
+      "token": "disability"
+    },
+    {
+      "df": 1,
+      "token": "disability-living-allowance-children"
+    }
+  ],
+  "disabilit": [
+    {
+      "df": 3,
+      "token": "disabilities"
+    },
+    {
+      "df": 2,
+      "token": "disability"
+    },
+    {
+      "df": 1,
+      "token": "disability-living-allowance-children"
+    }
+  ],
+  "disabiliti": [
+    {
+      "df": 3,
+      "token": "disabilities"
+    }
+  ],
+  "disabilitie": [
+    {
+      "df": 3,
+      "token": "disabilities"
+    }
+  ],
+  "disabilities": [
+    {
+      "df": 3,
+      "token": "disabilities"
+    }
+  ],
+  "disability": [
+    {
+      "df": 2,
+      "token": "disability"
+    },
+    {
+      "df": 1,
+      "token": "disability-living-allowance-children"
+    }
+  ],
+  "disability-": [
+    {
+      "df": 1,
+      "token": "disability-living-allowance-children"
+    }
+  ],
+  "disability-l": [
+    {
+      "df": 1,
+      "token": "disability-living-allowance-children"
+    }
+  ],
+  "disabl": [
+    {
+      "df": 2,
+      "token": "disabled"
+    },
+    {
+      "df": 1,
+      "token": "disabled-facilities-grants"
+    }
+  ],
+  "disable": [
+    {
+      "df": 2,
+      "token": "disabled"
+    },
+    {
+      "df": 1,
+      "token": "disabled-facilities-grants"
+    }
+  ],
+  "disabled": [
+    {
+      "df": 2,
+      "token": "disabled"
+    },
+    {
+      "df": 1,
+      "token": "disabled-facilities-grants"
+    }
+  ],
+  "disabled-": [
+    {
+      "df": 1,
+      "token": "disabled-facilities-grants"
+    }
+  ],
+  "disabled-f": [
+    {
+      "df": 1,
+      "token": "disabled-facilities-grants"
+    }
+  ],
+  "disabled-fa": [
+    {
+      "df": 1,
+      "token": "disabled-facilities-grants"
+    }
+  ],
+  "disabled-fac": [
+    {
+      "df": 1,
+      "token": "disabled-facilities-grants"
     }
   ],
   "disc": [
     {
       "df": 1,
-      "token": "discovered"
+      "token": "discrimination"
     }
   ],
-  "disco": [
+  "discr": [
     {
       "df": 1,
-      "token": "discovered"
+      "token": "discrimination"
     }
   ],
-  "discov": [
+  "discri": [
     {
       "df": 1,
-      "token": "discovered"
+      "token": "discrimination"
     }
   ],
-  "discove": [
+  "discrim": [
     {
       "df": 1,
-      "token": "discovered"
+      "token": "discrimination"
     }
   ],
-  "discover": [
+  "discrimi": [
     {
       "df": 1,
-      "token": "discovered"
+      "token": "discrimination"
     }
   ],
-  "discovere": [
+  "discrimin": [
     {
       "df": 1,
-      "token": "discovered"
+      "token": "discrimination"
     }
   ],
-  "discovered": [
+  "discrimina": [
     {
       "df": 1,
-      "token": "discovered"
+      "token": "discrimination"
+    }
+  ],
+  "discriminat": [
+    {
+      "df": 1,
+      "token": "discrimination"
+    }
+  ],
+  "discriminati": [
+    {
+      "df": 1,
+      "token": "discrimination"
     }
   ]
 }

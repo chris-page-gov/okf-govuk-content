@@ -99,6 +99,10 @@
       "@id": "okf:counts",
       "@type": "@json"
     },
+    "scope": {
+      "@id": "govuk:scope",
+      "@type": "@json"
+    },
     "extensions": {
       "@id": "okf:extension",
       "@container": "@set"

@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/wi.json",
+    "token": "widowed"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/wi.json",
+    "token": "widowed-parents-allowance"
+  }
+]

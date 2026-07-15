@@ -1,27 +1,22 @@
 [
   {
-    "df": 1,
-    "postings": "data/search/postings/pu.json",
-    "token": "public"
-  },
-  {
-    "df": 1,
-    "postings": "data/search/postings/pu.json",
-    "token": "publication"
-  },
-  {
-    "df": 1,
-    "postings": "data/search/postings/pu.json",
-    "token": "publications"
-  },
-  {
-    "df": 13,
+    "df": 69,
     "postings": "data/search/postings/pu.json",
     "token": "published"
   },
   {
-    "df": 7,
+    "df": 2,
     "postings": "data/search/postings/pu.json",
     "token": "publisher"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pu.json",
+    "token": "pupil"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pu.json",
+    "token": "puts"
   }
 ]

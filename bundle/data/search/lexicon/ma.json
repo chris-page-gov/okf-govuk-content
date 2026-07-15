@@ -2,11 +2,46 @@
   {
     "df": 1,
     "postings": "data/search/postings/ma.json",
-    "token": "mainstream_browse_page"
+    "token": "ma1"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ma.json",
+    "token": "make"
   },
   {
     "df": 1,
     "postings": "data/search/postings/ma.json",
-    "token": "maintenance"
+    "token": "making"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ma.json",
+    "token": "managing"
+  },
+  {
+    "df": 7,
+    "postings": "data/search/postings/ma.json",
+    "token": "maternity"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ma.json",
+    "token": "maternity-allowance"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ma.json",
+    "token": "maternity-paternity-pay-leave"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ma.json",
+    "token": "maternity-pay-leave"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ma.json",
+    "token": "may"
   }
 ]

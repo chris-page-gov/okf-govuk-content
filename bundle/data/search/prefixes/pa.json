@@ -1,37 +1,459 @@
 {
-  "pay": [
+  "pai": [
+    {
+      "df": 2,
+      "token": "paid"
+    },
     {
       "df": 1,
+      "token": "pairs"
+    }
+  ],
+  "paid": [
+    {
+      "df": 2,
+      "token": "paid"
+    }
+  ],
+  "pair": [
+    {
+      "df": 1,
+      "token": "pairs"
+    }
+  ],
+  "pairs": [
+    {
+      "df": 1,
+      "token": "pairs"
+    }
+  ],
+  "par": [
+    {
+      "df": 7,
+      "token": "parents"
+    },
+    {
+      "df": 4,
+      "token": "parental"
+    },
+    {
+      "df": 3,
+      "token": "parent"
+    },
+    {
+      "df": 2,
+      "token": "partner"
+    },
+    {
+      "df": 1,
+      "token": "parental-leave"
+    },
+    {
+      "df": 1,
+      "token": "parenting"
+    },
+    {
+      "df": 1,
+      "token": "parents-learning-allowance"
+    },
+    {
+      "df": 1,
+      "token": "partners"
+    }
+  ],
+  "pare": [
+    {
+      "df": 7,
+      "token": "parents"
+    },
+    {
+      "df": 4,
+      "token": "parental"
+    },
+    {
+      "df": 3,
+      "token": "parent"
+    },
+    {
+      "df": 1,
+      "token": "parental-leave"
+    },
+    {
+      "df": 1,
+      "token": "parenting"
+    },
+    {
+      "df": 1,
+      "token": "parents-learning-allowance"
+    }
+  ],
+  "paren": [
+    {
+      "df": 7,
+      "token": "parents"
+    },
+    {
+      "df": 4,
+      "token": "parental"
+    },
+    {
+      "df": 3,
+      "token": "parent"
+    },
+    {
+      "df": 1,
+      "token": "parental-leave"
+    },
+    {
+      "df": 1,
+      "token": "parenting"
+    },
+    {
+      "df": 1,
+      "token": "parents-learning-allowance"
+    }
+  ],
+  "parent": [
+    {
+      "df": 7,
+      "token": "parents"
+    },
+    {
+      "df": 4,
+      "token": "parental"
+    },
+    {
+      "df": 3,
+      "token": "parent"
+    },
+    {
+      "df": 1,
+      "token": "parental-leave"
+    },
+    {
+      "df": 1,
+      "token": "parenting"
+    },
+    {
+      "df": 1,
+      "token": "parents-learning-allowance"
+    }
+  ],
+  "parenta": [
+    {
+      "df": 4,
+      "token": "parental"
+    },
+    {
+      "df": 1,
+      "token": "parental-leave"
+    }
+  ],
+  "parental": [
+    {
+      "df": 4,
+      "token": "parental"
+    },
+    {
+      "df": 1,
+      "token": "parental-leave"
+    }
+  ],
+  "parental-": [
+    {
+      "df": 1,
+      "token": "parental-leave"
+    }
+  ],
+  "parental-l": [
+    {
+      "df": 1,
+      "token": "parental-leave"
+    }
+  ],
+  "parental-le": [
+    {
+      "df": 1,
+      "token": "parental-leave"
+    }
+  ],
+  "parental-lea": [
+    {
+      "df": 1,
+      "token": "parental-leave"
+    }
+  ],
+  "parenti": [
+    {
+      "df": 1,
+      "token": "parenting"
+    }
+  ],
+  "parentin": [
+    {
+      "df": 1,
+      "token": "parenting"
+    }
+  ],
+  "parenting": [
+    {
+      "df": 1,
+      "token": "parenting"
+    }
+  ],
+  "parents": [
+    {
+      "df": 7,
+      "token": "parents"
+    },
+    {
+      "df": 1,
+      "token": "parents-learning-allowance"
+    }
+  ],
+  "parents-": [
+    {
+      "df": 1,
+      "token": "parents-learning-allowance"
+    }
+  ],
+  "parents-l": [
+    {
+      "df": 1,
+      "token": "parents-learning-allowance"
+    }
+  ],
+  "parents-le": [
+    {
+      "df": 1,
+      "token": "parents-learning-allowance"
+    }
+  ],
+  "parents-lea": [
+    {
+      "df": 1,
+      "token": "parents-learning-allowance"
+    }
+  ],
+  "parents-lear": [
+    {
+      "df": 1,
+      "token": "parents-learning-allowance"
+    }
+  ],
+  "part": [
+    {
+      "df": 2,
+      "token": "partner"
+    },
+    {
+      "df": 1,
+      "token": "partners"
+    }
+  ],
+  "partn": [
+    {
+      "df": 2,
+      "token": "partner"
+    },
+    {
+      "df": 1,
+      "token": "partners"
+    }
+  ],
+  "partne": [
+    {
+      "df": 2,
+      "token": "partner"
+    },
+    {
+      "df": 1,
+      "token": "partners"
+    }
+  ],
+  "partner": [
+    {
+      "df": 2,
+      "token": "partner"
+    },
+    {
+      "df": 1,
+      "token": "partners"
+    }
+  ],
+  "partners": [
+    {
+      "df": 1,
+      "token": "partners"
+    }
+  ],
+  "pat": [
+    {
+      "df": 4,
+      "token": "paternity"
+    },
+    {
+      "df": 1,
+      "token": "paternity-pay-leave"
+    }
+  ],
+  "pate": [
+    {
+      "df": 4,
+      "token": "paternity"
+    },
+    {
+      "df": 1,
+      "token": "paternity-pay-leave"
+    }
+  ],
+  "pater": [
+    {
+      "df": 4,
+      "token": "paternity"
+    },
+    {
+      "df": 1,
+      "token": "paternity-pay-leave"
+    }
+  ],
+  "patern": [
+    {
+      "df": 4,
+      "token": "paternity"
+    },
+    {
+      "df": 1,
+      "token": "paternity-pay-leave"
+    }
+  ],
+  "paterni": [
+    {
+      "df": 4,
+      "token": "paternity"
+    },
+    {
+      "df": 1,
+      "token": "paternity-pay-leave"
+    }
+  ],
+  "paternit": [
+    {
+      "df": 4,
+      "token": "paternity"
+    },
+    {
+      "df": 1,
+      "token": "paternity-pay-leave"
+    }
+  ],
+  "paternity": [
+    {
+      "df": 4,
+      "token": "paternity"
+    },
+    {
+      "df": 1,
+      "token": "paternity-pay-leave"
+    }
+  ],
+  "paternity-": [
+    {
+      "df": 1,
+      "token": "paternity-pay-leave"
+    }
+  ],
+  "paternity-p": [
+    {
+      "df": 1,
+      "token": "paternity-pay-leave"
+    }
+  ],
+  "paternity-pa": [
+    {
+      "df": 1,
+      "token": "paternity-pay-leave"
+    }
+  ],
+  "pay": [
+    {
+      "df": 11,
+      "token": "pay"
+    },
+    {
+      "df": 7,
       "token": "payments"
+    },
+    {
+      "df": 2,
+      "token": "paying"
+    },
+    {
+      "df": 2,
+      "token": "payment"
+    }
+  ],
+  "payi": [
+    {
+      "df": 2,
+      "token": "paying"
+    }
+  ],
+  "payin": [
+    {
+      "df": 2,
+      "token": "paying"
+    }
+  ],
+  "paying": [
+    {
+      "df": 2,
+      "token": "paying"
     }
   ],
   "paym": [
     {
-      "df": 1,
+      "df": 7,
       "token": "payments"
+    },
+    {
+      "df": 2,
+      "token": "payment"
     }
   ],
   "payme": [
     {
-      "df": 1,
+      "df": 7,
       "token": "payments"
+    },
+    {
+      "df": 2,
+      "token": "payment"
     }
   ],
   "paymen": [
     {
-      "df": 1,
+      "df": 7,
       "token": "payments"
+    },
+    {
+      "df": 2,
+      "token": "payment"
     }
   ],
   "payment": [
     {
-      "df": 1,
+      "df": 7,
       "token": "payments"
+    },
+    {
+      "df": 2,
+      "token": "payment"
     }
   ],
   "payments": [
     {
-      "df": 1,
+      "df": 7,
       "token": "payments"
     }
   ]

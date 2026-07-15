@@ -2,11 +2,31 @@
   {
     "df": 1,
     "postings": "data/search/postings/ne.json",
-    "token": "need"
+    "token": "near"
   },
   {
     "df": 1,
     "postings": "data/search/postings/ne.json",
-    "token": "news"
+    "token": "need"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ne.json",
+    "token": "needs"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ne.json",
+    "token": "neonatal"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ne.json",
+    "token": "neonatal-care-pay-leave"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ne.json",
+    "token": "new"
   }
 ]

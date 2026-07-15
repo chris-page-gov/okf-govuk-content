@@ -50,6 +50,38 @@ canonical links may be published; attachment bodies and third-party material
 are not copied. Structured link extraction may inspect an allowed response
 transiently, but body text is not retained.
 
+### Bounded demonstrator branch
+
+`ADR-008` defines a separate review milestone for the new-child journey. It
+does not change the full Release 1 denominator above. One combined Search API
+query supplies exactly 69 deduplicated seeds from three mainstream browse
+paths; each seed is hydrated from the Content API, while typed targets outside
+the seed set remain boundary references. The immutable acquisition is bounded
+to 250 retained metadata records and 500 official-source attempts.
+
+```mermaid
+flowchart LR
+  S["Combined Search API query"] --> D["69 stable seed identities"]
+  D --> C["Allowlisted Content API metadata"]
+  C --> I["Seed-to-seed relationships"]
+  C --> B["Typed boundary references"]
+  I --> O["69-record OKF bundle"]
+  B --> O
+  O --> X["Explorer journey view"]
+  O --> A["Portable AI context"]
+  O --> M["Read-only local MCP"]
+```
+
+The frozen snapshot can be checked or rebuilt without network access:
+
+```sh
+python3 scripts/acquire_new_child_demo.py check demo/snapshots/NEW-CHILD-20260715
+python3 scripts/build_bundle.py --check
+```
+
+The demonstrator has its own exact 69/69 completeness claim. It must never be
+described as complete GOV.UK coverage or used alone to determine entitlement.
+
 ## 1. Preflight and census
 
 Validate the frozen audit offline before a network run:
@@ -116,8 +148,9 @@ organisation census, a closed hydration queue and zero unexplained omissions.
 
 ## 3. Compile and query the bundle
 
-The default build uses `tests/fixtures/corpus/source-records.jsonl`; it is only
-for deterministic development. A full build must name the hydrated snapshot:
+The default build uses the frozen 69-record demonstrator source; it is only for
+deterministic development and review. A full build must name the hydrated
+closing snapshot:
 
 ```sh
 python3 scripts/build_bundle.py \

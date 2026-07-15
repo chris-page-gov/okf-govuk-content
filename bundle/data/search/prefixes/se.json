@@ -1,63 +1,93 @@
 {
-  "see": [
+  "sea": [
     {
-      "df": 1,
-      "token": "see"
+      "df": 2,
+      "token": "search"
+    }
+  ],
+  "sear": [
+    {
+      "df": 2,
+      "token": "search"
+    }
+  ],
+  "searc": [
+    {
+      "df": 2,
+      "token": "search"
+    }
+  ],
+  "search": [
+    {
+      "df": 2,
+      "token": "search"
+    }
+  ],
+  "sen": [
+    {
+      "df": 2,
+      "token": "send"
+    }
+  ],
+  "send": [
+    {
+      "df": 2,
+      "token": "send"
     }
   ],
   "ser": [
     {
-      "df": 2,
+      "df": 66,
       "token": "service"
     },
     {
-      "df": 1,
+      "df": 2,
       "token": "services"
     }
   ],
   "serv": [
     {
-      "df": 2,
+      "df": 66,
       "token": "service"
     },
     {
-      "df": 1,
+      "df": 2,
       "token": "services"
     }
   ],
   "servi": [
     {
-      "df": 2,
+      "df": 66,
       "token": "service"
     },
     {
-      "df": 1,
+      "df": 2,
       "token": "services"
     }
   ],
   "servic": [
     {
-      "df": 2,
+      "df": 66,
       "token": "service"
     },
     {
-      "df": 1,
+      "df": 2,
       "token": "services"
     }
   ],
   "service": [
     {
-      "df": 2,
+      "df": 66,
       "token": "service"
     },
     {
-      "df": 1,
+      "df": 2,
       "token": "services"
     }
   ],
   "services": [
     {
-      "df": 1,
+      "df": 2,
       "token": "services"
     }
   ]

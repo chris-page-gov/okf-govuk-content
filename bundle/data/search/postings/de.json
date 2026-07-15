@@ -1,48 +1,74 @@
 {
   "tokens": {
-    "department": [
+    "deal": [
       [
-        3,
+        2,
         21,
         5
       ],
       [
-        12,
+        19,
+        5,
+        4
+      ]
+    ],
+    "dealing": [
+      [
+        19,
         16,
         1
+      ]
+    ],
+    "dealing-tax-credits-someone-else": [
+      [
+        19,
+        2,
+        64
+      ]
+    ],
+    "death": [
+      [
+        15,
+        5,
+        4
+      ]
+    ],
+    "decision": [
+      [
+        59,
+        5,
+        4
+      ]
+    ],
+    "department": [
+      [
+        18,
+        5,
+        4
       ],
       [
-        4,
-        8,
-        2
+        48,
+        5,
+        4
       ]
     ],
-    "department-for-education": [
+    "detailed_guide": [
       [
+        50,
         11,
-        2,
-        64
+        56
       ]
     ],
-    "department-for-work-pensions": [
+    "details": [
       [
         3,
-        2,
-        64
-      ]
-    ],
-    "destination": [
+        5,
+        4
+      ],
       [
-        11,
-        16,
-        1
-      ]
-    ],
-    "development": [
-      [
-        7,
-        8,
-        2
+        35,
+        5,
+        4
       ]
     ]
   }

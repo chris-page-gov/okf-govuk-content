@@ -2,6 +2,11 @@
   {
     "df": 1,
     "postings": "data/search/postings/op.json",
-    "token": "operated"
+    "token": "open"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/op.json",
+    "token": "opt"
   }
 ]

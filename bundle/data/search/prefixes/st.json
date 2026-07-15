@@ -1,44 +1,108 @@
 {
   "sta": [
     {
-      "df": 1,
-      "token": "standards"
-    }
-  ],
-  "stan": [
+      "df": 6,
+      "token": "statutory"
+    },
+    {
+      "df": 4,
+      "token": "start"
+    },
     {
       "df": 1,
-      "token": "standards"
-    }
-  ],
-  "stand": [
+      "token": "starting"
+    },
     {
       "df": 1,
-      "token": "standards"
+      "token": "status"
     }
   ],
-  "standa": [
+  "star": [
+    {
+      "df": 4,
+      "token": "start"
+    },
     {
       "df": 1,
-      "token": "standards"
+      "token": "starting"
     }
   ],
-  "standar": [
+  "start": [
+    {
+      "df": 4,
+      "token": "start"
+    },
     {
       "df": 1,
-      "token": "standards"
+      "token": "starting"
     }
   ],
-  "standard": [
+  "starti": [
     {
       "df": 1,
-      "token": "standards"
+      "token": "starting"
     }
   ],
-  "standards": [
+  "startin": [
     {
       "df": 1,
-      "token": "standards"
+      "token": "starting"
+    }
+  ],
+  "starting": [
+    {
+      "df": 1,
+      "token": "starting"
+    }
+  ],
+  "stat": [
+    {
+      "df": 6,
+      "token": "statutory"
+    },
+    {
+      "df": 1,
+      "token": "status"
+    }
+  ],
+  "statu": [
+    {
+      "df": 6,
+      "token": "statutory"
+    },
+    {
+      "df": 1,
+      "token": "status"
+    }
+  ],
+  "status": [
+    {
+      "df": 1,
+      "token": "status"
+    }
+  ],
+  "statut": [
+    {
+      "df": 6,
+      "token": "statutory"
+    }
+  ],
+  "statuto": [
+    {
+      "df": 6,
+      "token": "statutory"
+    }
+  ],
+  "statutor": [
+    {
+      "df": 6,
+      "token": "statutory"
+    }
+  ],
+  "statutory": [
+    {
+      "df": 6,
+      "token": "statutory"
     }
   ],
   "ste": [
@@ -107,6 +171,134 @@
     {
       "df": 1,
       "token": "step_by_step_nav"
+    }
+  ],
+  "sti": [
+    {
+      "df": 1,
+      "token": "stillbirth"
+    }
+  ],
+  "stil": [
+    {
+      "df": 1,
+      "token": "stillbirth"
+    }
+  ],
+  "still": [
+    {
+      "df": 1,
+      "token": "stillbirth"
+    }
+  ],
+  "stillb": [
+    {
+      "df": 1,
+      "token": "stillbirth"
+    }
+  ],
+  "stillbi": [
+    {
+      "df": 1,
+      "token": "stillbirth"
+    }
+  ],
+  "stillbir": [
+    {
+      "df": 1,
+      "token": "stillbirth"
+    }
+  ],
+  "stillbirt": [
+    {
+      "df": 1,
+      "token": "stillbirth"
+    }
+  ],
+  "stillbirth": [
+    {
+      "df": 1,
+      "token": "stillbirth"
+    }
+  ],
+  "sto": [
+    {
+      "df": 3,
+      "token": "stop"
+    }
+  ],
+  "stop": [
+    {
+      "df": 3,
+      "token": "stop"
+    }
+  ],
+  "stu": [
+    {
+      "df": 2,
+      "token": "students"
+    },
+    {
+      "df": 1,
+      "token": "studying"
+    }
+  ],
+  "stud": [
+    {
+      "df": 2,
+      "token": "students"
+    },
+    {
+      "df": 1,
+      "token": "studying"
+    }
+  ],
+  "stude": [
+    {
+      "df": 2,
+      "token": "students"
+    }
+  ],
+  "studen": [
+    {
+      "df": 2,
+      "token": "students"
+    }
+  ],
+  "student": [
+    {
+      "df": 2,
+      "token": "students"
+    }
+  ],
+  "students": [
+    {
+      "df": 2,
+      "token": "students"
+    }
+  ],
+  "study": [
+    {
+      "df": 1,
+      "token": "studying"
+    }
+  ],
+  "studyi": [
+    {
+      "df": 1,
+      "token": "studying"
+    }
+  ],
+  "studyin": [
+    {
+      "df": 1,
+      "token": "studying"
+    }
+  ],
+  "studying": [
+    {
+      "df": 1,
+      "token": "studying"
     }
   ]
 }

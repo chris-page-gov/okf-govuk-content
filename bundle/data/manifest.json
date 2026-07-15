@@ -25,18 +25,19 @@
     ]
   },
   "counts": {
-    "datasets": 14,
-    "document_types": 13,
-    "languages": 2,
-    "publishers": 6,
-    "records": 14,
-    "relationships": 16,
-    "resources": 1,
-    "schema_families": 13
+    "datasets": 69,
+    "document_types": 8,
+    "languages": 1,
+    "publishers": 14,
+    "records": 69,
+    "relationships": 392,
+    "resources": 0,
+    "schema_families": 8
   },
-  "generated_at": "2026-07-11T23:30:00Z",
+  "generated_at": "2026-07-15T06:25:17Z",
   "indexes": {
     "analysis": "data/analysis/overview.json",
+    "demonstrator": "data/demonstrator.json",
     "facets": "data/facets.json",
     "graph": "data/graph.json",
     "overview": "data/overview.json",
@@ -47,15 +48,15 @@
     "site_topology": "data/site-topology.json"
   },
   "integrity": {
-    "adjacency_shard_manifest_sha256": "671f49b6601886f4502530dc6c1279856f13f4e6ac8b3fe1cb7c2054f417e88a",
+    "adjacency_shard_manifest_sha256": "5f7b348c3fb361daaa97389d15d22b98e29b0dfef51bb6921bf2dedf2e2c2a02",
     "algorithm": "sha256-canonical-shard-leaves-v1",
-    "leaf_count": 731,
-    "manifest_root_sha256": "013122b394d9c90a8858c9f70d8600d03eddb749fa6aee6fcefe372a87b2e488",
-    "record_shard_manifest_sha256": "f2d0bf2772b9bd528b934d815167e636791f4a2260acc0cb919e021d3c7aca32",
-    "route_shard_manifest_sha256": "368b0c3cfaba258267fb75364e2900f916dec0caf360debcf826e8c6cadeb5a1",
+    "leaf_count": 935,
+    "manifest_root_sha256": "99a114006c9d5c33774352d9b8f5c2513d978229372d06ab1d3f822b0a81f5dc",
+    "record_shard_manifest_sha256": "b20d7332b2f9a06b0b132a89e561cd2a4aff79601c6efb4e31b483d17c996e6c",
+    "route_shard_manifest_sha256": "55facefaa86a94dac04217c051edd798ffc574733c32dc356ad093c72cce8606",
     "schema": "okf-data-plane-integrity.v1",
     "schema_version": "1.0",
-    "search_shard_manifest_sha256": "e2f89407d0932276064e3551e701141153f8e43dd4cebfa748eafcd0428b90af"
+    "search_shard_manifest_sha256": "912bba35638c56515a3c14998b9b13356a9b9bac1fd3a51316e8888ed40c4e82"
   },
   "performance": {
     "full_record_hydration": "lazy",
@@ -68,87 +69,87 @@
   "schema": "okf-data-manifest.v1",
   "schema_version": "1.0",
   "search": {
-    "documents": 14,
+    "documents": 69,
     "result_limit": 200,
     "schema": "okf-static-search.v1",
-    "tokens": 135
+    "tokens": 512
   },
   "semantic": {
-    "assertion_nodes": 16,
-    "entity_nodes": 71,
+    "assertion_nodes": 392,
+    "entity_nodes": 237,
     "schema": "govuk-okf-semantic-projection.v1",
     "startup": "lazy"
   },
   "shards": {
     "datasets": [
       {
-        "compressed_bytes": 3279,
+        "compressed_bytes": 17114,
         "compression": "gzip",
-        "count": 14,
-        "first_key": "dataset/00000000-0000-4000-8000-000000000001-en",
+        "count": 69,
+        "first_key": "dataset/03cad033-6800-4db2-92b4-87e9a6021272-en",
         "kind": "datasets",
-        "last_key": "dataset/route-fd6ef6feaa2439c773e6dba8-en",
+        "last_key": "dataset/fdd55911-6fcc-4b9e-be9f-34e93298b691-en",
         "ordinal": 0,
         "path": "data/records-0.json.gz",
         "schema": "okf-record-shard.v1",
         "schema_version": "1.0",
-        "sha256": "a210a25bc93c518d689616dd13fc263d7c73fd927b20184464e1d693a4047ae9",
-        "snapshot": "fixture-2026-07-11",
-        "uncompressed_bytes": 20719
+        "sha256": "c915290d532a88bd899fa81ee6373e148c9ebba4ab0b8078b22f8b3f6e2b7a5e",
+        "snapshot": "NEW-CHILD-20260715",
+        "uncompressed_bytes": 136290
       }
     ],
     "publishers": [
       {
-        "compressed_bytes": 953,
+        "compressed_bytes": 1963,
         "compression": "gzip",
-        "count": 6,
-        "first_key": "publisher/department-for-work-pensions",
+        "count": 14,
+        "first_key": "publisher/department-for-business-and-trade",
         "kind": "publishers",
-        "last_key": "publisher/uk-hydrographic-office",
+        "last_key": "publisher/student-loans-company",
         "ordinal": 0,
         "path": "data/publishers-0.json.gz",
         "schema": "okf-publisher-shard.v1",
         "schema_version": "1.0",
-        "sha256": "ce444b4bbe64314080bf8fa8f03f5afb9d74425c913ffe169eed072572a86f03",
-        "snapshot": "fixture-2026-07-11",
-        "uncompressed_bytes": 4105
+        "sha256": "4f2d361b3937c524b75c3d69723039db8fcee22b16a59600a9daf5aceea0d863",
+        "snapshot": "NEW-CHILD-20260715",
+        "uncompressed_bytes": 10065
       }
     ],
     "relationships": [
       {
-        "compressed_bytes": 2148,
+        "compressed_bytes": 29500,
         "compression": "gzip",
-        "count": 16,
-        "first_key": "dataset/00000000-0000-4000-8000-000000000001-en\u0000level one taxons\u0000dataset/00000000-0000-4000-8000-000000000002-en\u0000assertion-81d56134164fc0dee7d2131065902102e45bc9339d9a012d7bce1cb0c67ab170",
+        "count": 392,
+        "first_key": "dataset/03cad033-6800-4db2-92b4-87e9a6021272-en\u0000associated with organisation\u0000publisher/department-for-education\u0000assertion-41c9eaeb0be95dcade8b1ab741b2423e0ae98b9b965d0e90097b4b7c3bf51d36",
         "kind": "relationships",
-        "last_key": "dataset/route-d084b0cfcff4f595e28ad883-en\u0000redirects to\u0000dataset/route-a890bf972f04d7c0debacee6-en\u0000assertion-4d355e74a22f8a199358bdf3c3670af08d977b05672f3819f4491e2f4e3f41cb",
+        "last_key": "dataset/fdd55911-6fcc-4b9e-be9f-34e93298b691-en\u0000related to\u0000dataset/e8466219-50e7-4880-aaa4-aeafde38ceeb-en\u0000assertion-2c99bb21d7560c6065e333b05c68eba50d9c80dfad358e3e9228f95ad158acd9",
         "ordinal": 0,
         "path": "data/relationships-0.json.gz",
         "schema": "okf-relationship-shard.v1",
         "schema_version": "1.0",
-        "sha256": "49b4980846746ec9e3982a9c100d993e393d5e2f486a011d1d4f8d998f23baec",
-        "snapshot": "fixture-2026-07-11",
-        "uncompressed_bytes": 11915
+        "sha256": "33e0347fe2af9f4f4f15d9a6a20b2d53e1408a76858c5617823cf2c8d8f9b4b6",
+        "snapshot": "NEW-CHILD-20260715",
+        "uncompressed_bytes": 301406
       }
     ],
     "resources": [
       {
-        "compressed_bytes": 509,
+        "compressed_bytes": 23,
         "compression": "gzip",
-        "count": 1,
-        "first_key": "resource/11111111-1111-4111-8111-111111111111",
+        "count": 0,
+        "first_key": null,
         "kind": "resources",
-        "last_key": "resource/11111111-1111-4111-8111-111111111111",
+        "last_key": null,
         "ordinal": 0,
         "path": "data/resources-0.json.gz",
         "schema": "okf-resource-shard.v1",
         "schema_version": "1.0",
-        "sha256": "4b55fc8d9e0ef2d9a8d2269affc27f6fd5c0c8ba590fea933f76e0e2ac09c342",
-        "snapshot": "fixture-2026-07-11",
-        "uncompressed_bytes": 1110
+        "sha256": "abc129be8d26e8d4afe9ce45f9d5a73c8ed9aa62810ca24ee789fe4581dc4a80",
+        "snapshot": "NEW-CHILD-20260715",
+        "uncompressed_bytes": 3
       }
     ]
   },
-  "snapshot": "fixture-2026-07-11",
-  "title": "What’s on GOV.UK static metadata index"
+  "snapshot": "NEW-CHILD-20260715",
+  "title": "Bounded 69-record GOV.UK new-child static metadata index"
 }

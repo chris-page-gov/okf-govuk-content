@@ -1,7 +1,37 @@
 [
   {
-    "df": 1,
+    "df": 12,
     "postings": "data/search/postings/wh.json",
     "token": "what"
+  },
+  {
+    "df": 13,
+    "postings": "data/search/postings/wh.json",
+    "token": "when"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/wh.json",
+    "token": "where"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/wh.json",
+    "token": "which"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/wh.json",
+    "token": "while"
+  },
+  {
+    "df": 9,
+    "postings": "data/search/postings/wh.json",
+    "token": "who"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/wh.json",
+    "token": "why"
   }
 ]

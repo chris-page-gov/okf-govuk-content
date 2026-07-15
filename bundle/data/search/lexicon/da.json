@@ -1,0 +1,22 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/da.json",
+    "token": "date"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/da.json",
+    "token": "dates"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/da.json",
+    "token": "daycare"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/da.json",
+    "token": "days"
+  }
+]

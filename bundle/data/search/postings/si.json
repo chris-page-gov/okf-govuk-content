@@ -2,16 +2,23 @@
   "tokens": {
     "sign": [
       [
-        4,
-        16,
-        1
+        35,
+        21,
+        5
       ]
     ],
-    "sign-in-universal-credit": [
+    "sign-in-childcare-account": [
       [
-        4,
+        35,
         2,
         64
+      ]
+    ],
+    "single": [
+      [
+        57,
+        5,
+        4
       ]
     ]
   }

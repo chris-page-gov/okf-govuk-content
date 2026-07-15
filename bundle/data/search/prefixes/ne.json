@@ -1,5 +1,21 @@
 {
+  "nea": [
+    {
+      "df": 1,
+      "token": "near"
+    }
+  ],
+  "near": [
+    {
+      "df": 1,
+      "token": "near"
+    }
+  ],
   "nee": [
+    {
+      "df": 2,
+      "token": "needs"
+    },
     {
       "df": 1,
       "token": "need"
@@ -7,20 +23,108 @@
   ],
   "need": [
     {
+      "df": 2,
+      "token": "needs"
+    },
+    {
       "df": 1,
       "token": "need"
     }
   ],
-  "new": [
+  "needs": [
     {
-      "df": 1,
-      "token": "news"
+      "df": 2,
+      "token": "needs"
     }
   ],
-  "news": [
+  "neo": [
+    {
+      "df": 2,
+      "token": "neonatal"
+    },
     {
       "df": 1,
-      "token": "news"
+      "token": "neonatal-care-pay-leave"
+    }
+  ],
+  "neon": [
+    {
+      "df": 2,
+      "token": "neonatal"
+    },
+    {
+      "df": 1,
+      "token": "neonatal-care-pay-leave"
+    }
+  ],
+  "neona": [
+    {
+      "df": 2,
+      "token": "neonatal"
+    },
+    {
+      "df": 1,
+      "token": "neonatal-care-pay-leave"
+    }
+  ],
+  "neonat": [
+    {
+      "df": 2,
+      "token": "neonatal"
+    },
+    {
+      "df": 1,
+      "token": "neonatal-care-pay-leave"
+    }
+  ],
+  "neonata": [
+    {
+      "df": 2,
+      "token": "neonatal"
+    },
+    {
+      "df": 1,
+      "token": "neonatal-care-pay-leave"
+    }
+  ],
+  "neonatal": [
+    {
+      "df": 2,
+      "token": "neonatal"
+    },
+    {
+      "df": 1,
+      "token": "neonatal-care-pay-leave"
+    }
+  ],
+  "neonatal-": [
+    {
+      "df": 1,
+      "token": "neonatal-care-pay-leave"
+    }
+  ],
+  "neonatal-c": [
+    {
+      "df": 1,
+      "token": "neonatal-care-pay-leave"
+    }
+  ],
+  "neonatal-ca": [
+    {
+      "df": 1,
+      "token": "neonatal-care-pay-leave"
+    }
+  ],
+  "neonatal-car": [
+    {
+      "df": 1,
+      "token": "neonatal-care-pay-leave"
+    }
+  ],
+  "new": [
+    {
+      "df": 2,
+      "token": "new"
     }
   ]
 }

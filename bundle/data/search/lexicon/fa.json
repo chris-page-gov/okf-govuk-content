@@ -1,0 +1,17 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/fa.json",
+    "token": "facilities"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/fa.json",
+    "token": "families"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/fa.json",
+    "token": "family"
+  }
+]

@@ -244,9 +244,10 @@ test("large-corpus bootstrap stays overview-first and route adjacency loads one 
   const originalFetch = globalThis.fetch;
   const calls = [];
   const payloads = new Map([
-    ["https://example.test/project/data/manifest.json", { snapshot: "snap-1", indexes: { overview: "data/overview.json", analysis: "data/analysis.json", site_topology: "data/site-topology.json", relationship_adjacency: "data/adjacency/manifest.json", route_index: "data/routes/manifest.json" }, chunks: { datasets: ["data/records-0.json"], publishers: [], resources: [] } }],
+    ["https://example.test/project/data/manifest.json", { snapshot: "snap-1", indexes: { overview: "data/overview.json", analysis: "data/analysis.json", demonstrator: "data/demonstrator.json", site_topology: "data/site-topology.json", relationship_adjacency: "data/adjacency/manifest.json", route_index: "data/routes/manifest.json" }, chunks: { datasets: ["data/records-0.json"], publishers: [], resources: [] } }],
     ["https://example.test/project/data/overview.json", { title: "Overview", counts: { records: 1 }, sample_records: [{ name: "one", title: "One", open: "dataset/one" }] }],
     ["https://example.test/project/data/analysis.json", { schema: "okf-explorer-analysis.v1", facet_analysis: [] }],
+    ["https://example.test/project/data/demonstrator.json", { schema: "govuk-new-child-demonstrator.v1", snapshot: "snap-1", seed_count: 69, coverage: { seed_expected: 69, seed_represented: 69, unexplained_seed_omissions: 0 }, journey_groups: [], boundaries: [] }],
     ["https://example.test/project/data/site-topology.json", { schema: "govuk-site-topology.v1", snapshot: "snap-1", counts: { hosts: 1 }, hosts: [{ hostname: "www.gov.uk", record_count: 1 }] }],
     ["https://example.test/project/data/adjacency/manifest.json", { schema: "okf-relationship-adjacency.v1", algorithm: "fnv1a32-prefix-2", buckets: { 83: "data/adjacency/83.json" } }],
     ["https://example.test/project/data/adjacency/83.json", { "dataset/dataset-one": [{ source: "dataset/dataset-one", target: "publisher/publisher-one", kind: "published by" }] }],
@@ -263,6 +264,7 @@ test("large-corpus bootstrap stays overview-first and route adjacency loads one 
   const store = new LargeCorpusStore("https://example.test/project/okf-explorer.json", descriptor, "https://example.test");
   await store.bootstrap();
   assert.equal(store.snapshotId(), "snap-1");
+  assert.equal(store.demonstrator.seedCount, 69);
   assert.equal(store.overviewRecords()[0].route, "dataset/one");
   assert.equal(calls.includes("https://example.test/project/data/records-0.json"), false);
   assert.equal(calls.includes("https://example.test/project/data/site-topology.json"), false);

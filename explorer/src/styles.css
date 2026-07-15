@@ -303,6 +303,60 @@ button.primary-button:active {
   background: #eef6fc;
 }
 
+.demonstrator-callout {
+  position: relative;
+  margin: 2rem 0;
+  border: 0.125rem solid var(--black);
+  border-left: 0.65rem solid var(--purple);
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f4f0ff 0%, #ffffff 72%);
+  box-shadow: 0 0.35rem 0 var(--black);
+}
+
+.demonstrator-callout::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--yellow);
+  content: attr(data-seed-count);
+  display: grid;
+  place-items: center;
+  color: var(--black);
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.demonstrator-callout h2,
+.demonstrator-callout-lede,
+.demonstrator-coverage-line {
+  max-width: calc(70ch - 3rem);
+}
+
+.demonstrator-callout-lede {
+  font-size: 1.12rem;
+}
+
+.demonstrator-coverage-line {
+  border-left: 0.3rem solid var(--green);
+  padding-left: 0.75rem;
+}
+
+.demonstrator-actions,
+.ai-handoff-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-top: 1rem;
+}
+
+.demonstrator-actions .primary-button {
+  padding-inline: 1.2rem;
+}
+
 .section-heading-row,
 .filter-heading-row {
   display: flex;
@@ -511,6 +565,181 @@ button.primary-button:active {
   gap: 1rem;
 }
 
+.journey-introduction {
+  margin-bottom: 1.5rem;
+  border-top: 0.55rem solid var(--purple);
+  padding: 1.5rem;
+  background: #f4f0ff;
+}
+
+.journey-question {
+  max-width: 52rem;
+  margin: 1.25rem 0;
+  border-left: 0.4rem solid var(--purple);
+  padding: 0.25rem 1.25rem;
+  color: var(--black);
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.journey-question p {
+  margin: 0;
+}
+
+.journey-warning {
+  max-width: 70ch;
+  border: 0.125rem solid var(--black);
+  border-left: 0.5rem solid var(--yellow);
+  padding: 0.9rem 1rem;
+  background: var(--white);
+}
+
+.journey-scope-statement {
+  max-width: 70ch;
+  border-left: 0.35rem solid var(--blue);
+  padding: 0.75rem 1rem;
+  background: var(--white);
+}
+
+.journey-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 2.5rem;
+}
+
+.journey-stages {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.journey-stages::before {
+  position: absolute;
+  z-index: 0;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  left: 1.45rem;
+  width: 0.3rem;
+  background: var(--blue);
+  content: "";
+}
+
+.journey-stage {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 3.2rem minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.journey-stage-number {
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 0.2rem solid var(--black);
+  border-radius: 50%;
+  background: var(--yellow);
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.journey-stage-content {
+  border: 0.0625rem solid var(--mid-grey);
+  border-top: 0.35rem solid var(--blue);
+  padding: 1.25rem;
+  background: var(--white);
+}
+
+.journey-questions {
+  margin-block: 0.8rem 1.2rem;
+  border-left: 0.25rem solid var(--yellow);
+  padding-left: 1.75rem;
+}
+
+.journey-record-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.journey-record {
+  border: 0.0625rem solid var(--mid-grey);
+  padding: 0.9rem;
+  background: var(--light-grey);
+}
+
+.journey-record h4 {
+  margin: 0.5rem 0;
+  font-size: 1.05rem;
+}
+
+.journey-record p {
+  margin-block: 0.45rem;
+}
+
+.journey-record-meta {
+  color: var(--dark-grey);
+  font-size: 0.9rem;
+}
+
+.journey-evidence-section {
+  margin-block: 2.5rem;
+  padding-top: 1rem;
+  border-top: 0.25rem solid var(--black);
+}
+
+.publisher-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.75rem;
+}
+
+.publisher-card {
+  border-left: 0.35rem solid var(--green);
+  padding: 0.8rem;
+  background: var(--light-grey);
+}
+
+.publisher-card strong,
+.publisher-card span {
+  display: block;
+}
+
+.publisher-card span {
+  margin-top: 0.25rem;
+  color: var(--dark-grey);
+}
+
+.ai-handoff {
+  margin: 2.5rem 0;
+  border: 0.125rem solid var(--black);
+  border-left: 0.65rem solid var(--green);
+  padding: 1.5rem;
+  background: #e8f5ef;
+}
+
+.ai-handoff-links a,
+.ai-handoff-links span {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  border: 0.125rem solid var(--black);
+  padding: 0.45rem 0.8rem;
+  background: var(--white);
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.badge.demonstrator {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
 .result-card,
 .browse-card,
 .timeline-event,
@@ -677,6 +906,8 @@ button.primary-button:active {
 .topology-table th,
 .compare-table th {
   background: var(--light-grey);
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .topology-notice {
@@ -811,6 +1042,24 @@ body[data-mode="explore"] .mode-evidence {
     flex-direction: column;
   }
 
+  .demonstrator-callout {
+    padding-top: 4.75rem;
+  }
+
+  .journey-stage {
+    grid-template-columns: 2.6rem minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+
+  .journey-stage-number {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
+  .journey-stages::before {
+    left: 1.15rem;
+  }
+
   .result-meta,
   .detail-meta {
     grid-template-columns: 1fr;
@@ -882,11 +1131,16 @@ body[data-mode="explore"] .mode-evidence {
 
 @media (forced-colors: active) {
   .derived-banner,
+  .demonstrator-callout,
   .scope-panel,
   .result-card,
   .browse-card,
   .timeline-event,
-  .summary-card {
+  .summary-card,
+  .journey-introduction,
+  .journey-stage-content,
+  .journey-record,
+  .ai-handoff {
     border: 0.125rem solid CanvasText;
   }
 

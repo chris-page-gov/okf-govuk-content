@@ -1,0 +1,22 @@
+[
+  {
+    "df": 7,
+    "postings": "data/search/postings/lo.json",
+    "token": "local"
+  },
+  {
+    "df": 8,
+    "postings": "data/search/postings/lo.json",
+    "token": "local_transaction"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/lo.json",
+    "token": "long"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/lo.json",
+    "token": "looking"
+  }
+]

@@ -1,152 +1,314 @@
 {
   "inc": [
     {
+      "df": 3,
+      "token": "including"
+    },
+    {
+      "df": 2,
+      "token": "income"
+    },
+    {
       "df": 1,
-      "token": "includes"
+      "token": "include"
     }
   ],
   "incl": [
     {
+      "df": 3,
+      "token": "including"
+    },
+    {
       "df": 1,
-      "token": "includes"
+      "token": "include"
     }
   ],
   "inclu": [
     {
+      "df": 3,
+      "token": "including"
+    },
+    {
       "df": 1,
-      "token": "includes"
+      "token": "include"
     }
   ],
   "includ": [
     {
+      "df": 3,
+      "token": "including"
+    },
+    {
       "df": 1,
-      "token": "includes"
+      "token": "include"
     }
   ],
   "include": [
     {
       "df": 1,
-      "token": "includes"
+      "token": "include"
     }
   ],
-  "includes": [
+  "includi": [
     {
-      "df": 1,
-      "token": "includes"
+      "df": 3,
+      "token": "including"
+    }
+  ],
+  "includin": [
+    {
+      "df": 3,
+      "token": "including"
+    }
+  ],
+  "including": [
+    {
+      "df": 3,
+      "token": "including"
+    }
+  ],
+  "inco": [
+    {
+      "df": 2,
+      "token": "income"
+    }
+  ],
+  "incom": [
+    {
+      "df": 2,
+      "token": "income"
+    }
+  ],
+  "income": [
+    {
+      "df": 2,
+      "token": "income"
     }
   ],
   "ind": [
     {
       "df": 1,
-      "token": "independently"
+      "token": "individual"
     }
   ],
-  "inde": [
+  "indi": [
     {
       "df": 1,
-      "token": "independently"
+      "token": "individual"
     }
   ],
-  "indep": [
+  "indiv": [
     {
       "df": 1,
-      "token": "independently"
+      "token": "individual"
     }
   ],
-  "indepe": [
+  "indivi": [
     {
       "df": 1,
-      "token": "independently"
+      "token": "individual"
     }
   ],
-  "indepen": [
+  "individ": [
     {
       "df": 1,
-      "token": "independently"
+      "token": "individual"
     }
   ],
-  "independ": [
+  "individu": [
     {
       "df": 1,
-      "token": "independently"
+      "token": "individual"
     }
   ],
-  "independe": [
+  "individua": [
     {
       "df": 1,
-      "token": "independently"
+      "token": "individual"
     }
   ],
-  "independen": [
+  "individual": [
     {
       "df": 1,
-      "token": "independently"
-    }
-  ],
-  "independent": [
-    {
-      "df": 1,
-      "token": "independently"
-    }
-  ],
-  "independentl": [
-    {
-      "df": 1,
-      "token": "independently"
+      "token": "individual"
     }
   ],
   "inf": [
     {
-      "df": 3,
+      "df": 1,
       "token": "information"
     }
   ],
   "info": [
     {
-      "df": 3,
+      "df": 1,
       "token": "information"
     }
   ],
   "infor": [
     {
-      "df": 3,
+      "df": 1,
       "token": "information"
     }
   ],
   "inform": [
     {
-      "df": 3,
+      "df": 1,
       "token": "information"
     }
   ],
   "informa": [
     {
-      "df": 3,
+      "df": 1,
       "token": "information"
     }
   ],
   "informat": [
     {
-      "df": 3,
+      "df": 1,
       "token": "information"
     }
   ],
   "informati": [
     {
-      "df": 3,
+      "df": 1,
       "token": "information"
     }
   ],
   "informatio": [
     {
-      "df": 3,
+      "df": 1,
       "token": "information"
     }
   ],
   "information": [
     {
-      "df": 3,
+      "df": 1,
       "token": "information"
+    }
+  ],
+  "ins": [
+    {
+      "df": 1,
+      "token": "inspection"
+    },
+    {
+      "df": 1,
+      "token": "insurance"
+    }
+  ],
+  "insp": [
+    {
+      "df": 1,
+      "token": "inspection"
+    }
+  ],
+  "inspe": [
+    {
+      "df": 1,
+      "token": "inspection"
+    }
+  ],
+  "inspec": [
+    {
+      "df": 1,
+      "token": "inspection"
+    }
+  ],
+  "inspect": [
+    {
+      "df": 1,
+      "token": "inspection"
+    }
+  ],
+  "inspecti": [
+    {
+      "df": 1,
+      "token": "inspection"
+    }
+  ],
+  "inspectio": [
+    {
+      "df": 1,
+      "token": "inspection"
+    }
+  ],
+  "inspection": [
+    {
+      "df": 1,
+      "token": "inspection"
+    }
+  ],
+  "insu": [
+    {
+      "df": 1,
+      "token": "insurance"
+    }
+  ],
+  "insur": [
+    {
+      "df": 1,
+      "token": "insurance"
+    }
+  ],
+  "insura": [
+    {
+      "df": 1,
+      "token": "insurance"
+    }
+  ],
+  "insuran": [
+    {
+      "df": 1,
+      "token": "insurance"
+    }
+  ],
+  "insuranc": [
+    {
+      "df": 1,
+      "token": "insurance"
+    }
+  ],
+  "insurance": [
+    {
+      "df": 1,
+      "token": "insurance"
+    }
+  ],
+  "int": [
+    {
+      "df": 1,
+      "token": "interest"
+    }
+  ],
+  "inte": [
+    {
+      "df": 1,
+      "token": "interest"
+    }
+  ],
+  "inter": [
+    {
+      "df": 1,
+      "token": "interest"
+    }
+  ],
+  "intere": [
+    {
+      "df": 1,
+      "token": "interest"
+    }
+  ],
+  "interes": [
+    {
+      "df": 1,
+      "token": "interest"
+    }
+  ],
+  "interest": [
+    {
+      "df": 1,
+      "token": "interest"
     }
   ]
 }

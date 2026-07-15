@@ -1,0 +1,62 @@
+{
+  "gra": [
+    {
+      "df": 2,
+      "token": "grant"
+    },
+    {
+      "df": 2,
+      "token": "grants"
+    }
+  ],
+  "gran": [
+    {
+      "df": 2,
+      "token": "grant"
+    },
+    {
+      "df": 2,
+      "token": "grants"
+    }
+  ],
+  "grant": [
+    {
+      "df": 2,
+      "token": "grant"
+    },
+    {
+      "df": 2,
+      "token": "grants"
+    }
+  ],
+  "grants": [
+    {
+      "df": 2,
+      "token": "grants"
+    }
+  ],
+  "gro": [
+    {
+      "df": 1,
+      "token": "groups"
+    }
+  ],
+  "grou": [
+    {
+      "df": 1,
+      "token": "groups"
+    }
+  ],
+  "group": [
+    {
+      "df": 1,
+      "token": "groups"
+    }
+  ],
+  "groups": [
+    {
+      "df": 1,
+      "token": "groups"
+    }
+  ]
+}

@@ -1,40 +1,378 @@
 {
   "fin": [
     {
-      "df": 1,
+      "df": 15,
       "token": "find"
     },
     {
+      "df": 2,
+      "token": "financial"
+    },
+    {
       "df": 1,
-      "token": "finding"
+      "token": "find-family-hub-local-area"
+    },
+    {
+      "df": 1,
+      "token": "find-free-early-education"
+    },
+    {
+      "df": 1,
+      "token": "find-nursery-school-place"
+    },
+    {
+      "df": 1,
+      "token": "find-ofsted-inspection-report"
+    },
+    {
+      "df": 1,
+      "token": "find-registered-childminder"
+    },
+    {
+      "df": 1,
+      "token": "find-sure-start-childrens-centre"
+    }
+  ],
+  "fina": [
+    {
+      "df": 2,
+      "token": "financial"
+    }
+  ],
+  "finan": [
+    {
+      "df": 2,
+      "token": "financial"
+    }
+  ],
+  "financ": [
+    {
+      "df": 2,
+      "token": "financial"
+    }
+  ],
+  "financi": [
+    {
+      "df": 2,
+      "token": "financial"
+    }
+  ],
+  "financia": [
+    {
+      "df": 2,
+      "token": "financial"
+    }
+  ],
+  "financial": [
+    {
+      "df": 2,
+      "token": "financial"
     }
   ],
   "find": [
     {
-      "df": 1,
+      "df": 15,
       "token": "find"
     },
     {
       "df": 1,
-      "token": "finding"
-    }
-  ],
-  "findi": [
+      "token": "find-family-hub-local-area"
+    },
     {
       "df": 1,
-      "token": "finding"
-    }
-  ],
-  "findin": [
+      "token": "find-free-early-education"
+    },
     {
       "df": 1,
-      "token": "finding"
-    }
-  ],
-  "finding": [
+      "token": "find-nursery-school-place"
+    },
     {
       "df": 1,
-      "token": "finding"
+      "token": "find-ofsted-inspection-report"
+    },
+    {
+      "df": 1,
+      "token": "find-registered-childminder"
+    },
+    {
+      "df": 1,
+      "token": "find-sure-start-childrens-centre"
+    }
+  ],
+  "find-": [
+    {
+      "df": 1,
+      "token": "find-family-hub-local-area"
+    },
+    {
+      "df": 1,
+      "token": "find-free-early-education"
+    },
+    {
+      "df": 1,
+      "token": "find-nursery-school-place"
+    },
+    {
+      "df": 1,
+      "token": "find-ofsted-inspection-report"
+    },
+    {
+      "df": 1,
+      "token": "find-registered-childminder"
+    },
+    {
+      "df": 1,
+      "token": "find-sure-start-childrens-centre"
+    }
+  ],
+  "find-f": [
+    {
+      "df": 1,
+      "token": "find-family-hub-local-area"
+    },
+    {
+      "df": 1,
+      "token": "find-free-early-education"
+    }
+  ],
+  "find-fa": [
+    {
+      "df": 1,
+      "token": "find-family-hub-local-area"
+    }
+  ],
+  "find-fam": [
+    {
+      "df": 1,
+      "token": "find-family-hub-local-area"
+    }
+  ],
+  "find-fami": [
+    {
+      "df": 1,
+      "token": "find-family-hub-local-area"
+    }
+  ],
+  "find-famil": [
+    {
+      "df": 1,
+      "token": "find-family-hub-local-area"
+    }
+  ],
+  "find-family": [
+    {
+      "df": 1,
+      "token": "find-family-hub-local-area"
+    }
+  ],
+  "find-family-": [
+    {
+      "df": 1,
+      "token": "find-family-hub-local-area"
+    }
+  ],
+  "find-fr": [
+    {
+      "df": 1,
+      "token": "find-free-early-education"
+    }
+  ],
+  "find-fre": [
+    {
+      "df": 1,
+      "token": "find-free-early-education"
+    }
+  ],
+  "find-free": [
+    {
+      "df": 1,
+      "token": "find-free-early-education"
+    }
+  ],
+  "find-free-": [
+    {
+      "df": 1,
+      "token": "find-free-early-education"
+    }
+  ],
+  "find-free-e": [
+    {
+      "df": 1,
+      "token": "find-free-early-education"
+    }
+  ],
+  "find-free-ea": [
+    {
+      "df": 1,
+      "token": "find-free-early-education"
+    }
+  ],
+  "find-n": [
+    {
+      "df": 1,
+      "token": "find-nursery-school-place"
+    }
+  ],
+  "find-nu": [
+    {
+      "df": 1,
+      "token": "find-nursery-school-place"
+    }
+  ],
+  "find-nur": [
+    {
+      "df": 1,
+      "token": "find-nursery-school-place"
+    }
+  ],
+  "find-nurs": [
+    {
+      "df": 1,
+      "token": "find-nursery-school-place"
+    }
+  ],
+  "find-nurse": [
+    {
+      "df": 1,
+      "token": "find-nursery-school-place"
+    }
+  ],
+  "find-nurser": [
+    {
+      "df": 1,
+      "token": "find-nursery-school-place"
+    }
+  ],
+  "find-nursery": [
+    {
+      "df": 1,
+      "token": "find-nursery-school-place"
+    }
+  ],
+  "find-o": [
+    {
+      "df": 1,
+      "token": "find-ofsted-inspection-report"
+    }
+  ],
+  "find-of": [
+    {
+      "df": 1,
+      "token": "find-ofsted-inspection-report"
+    }
+  ],
+  "find-ofs": [
+    {
+      "df": 1,
+      "token": "find-ofsted-inspection-report"
+    }
+  ],
+  "find-ofst": [
+    {
+      "df": 1,
+      "token": "find-ofsted-inspection-report"
+    }
+  ],
+  "find-ofste": [
+    {
+      "df": 1,
+      "token": "find-ofsted-inspection-report"
+    }
+  ],
+  "find-ofsted": [
+    {
+      "df": 1,
+      "token": "find-ofsted-inspection-report"
+    }
+  ],
+  "find-ofsted-": [
+    {
+      "df": 1,
+      "token": "find-ofsted-inspection-report"
+    }
+  ],
+  "find-r": [
+    {
+      "df": 1,
+      "token": "find-registered-childminder"
+    }
+  ],
+  "find-re": [
+    {
+      "df": 1,
+      "token": "find-registered-childminder"
+    }
+  ],
+  "find-reg": [
+    {
+      "df": 1,
+      "token": "find-registered-childminder"
+    }
+  ],
+  "find-regi": [
+    {
+      "df": 1,
+      "token": "find-registered-childminder"
+    }
+  ],
+  "find-regis": [
+    {
+      "df": 1,
+      "token": "find-registered-childminder"
+    }
+  ],
+  "find-regist": [
+    {
+      "df": 1,
+      "token": "find-registered-childminder"
+    }
+  ],
+  "find-registe": [
+    {
+      "df": 1,
+      "token": "find-registered-childminder"
+    }
+  ],
+  "find-s": [
+    {
+      "df": 1,
+      "token": "find-sure-start-childrens-centre"
+    }
+  ],
+  "find-su": [
+    {
+      "df": 1,
+      "token": "find-sure-start-childrens-centre"
+    }
+  ],
+  "find-sur": [
+    {
+      "df": 1,
+      "token": "find-sure-start-childrens-centre"
+    }
+  ],
+  "find-sure": [
+    {
+      "df": 1,
+      "token": "find-sure-start-childrens-centre"
+    }
+  ],
+  "find-sure-": [
+    {
+      "df": 1,
+      "token": "find-sure-start-childrens-centre"
+    }
+  ],
+  "find-sure-s": [
+    {
+      "df": 1,
+      "token": "find-sure-start-childrens-centre"
+    }
+  ],
+  "find-sure-st": [
+    {
+      "df": 1,
+      "token": "find-sure-start-childrens-centre"
     }
   ]
 }

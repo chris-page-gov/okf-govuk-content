@@ -1,0 +1,166 @@
+{
+  "aff": [
+    {
+      "df": 2,
+      "token": "affect"
+    },
+    {
+      "df": 1,
+      "token": "affected"
+    }
+  ],
+  "affe": [
+    {
+      "df": 2,
+      "token": "affect"
+    },
+    {
+      "df": 1,
+      "token": "affected"
+    }
+  ],
+  "affec": [
+    {
+      "df": 2,
+      "token": "affect"
+    },
+    {
+      "df": 1,
+      "token": "affected"
+    }
+  ],
+  "affect": [
+    {
+      "df": 2,
+      "token": "affect"
+    },
+    {
+      "df": 1,
+      "token": "affected"
+    }
+  ],
+  "affecte": [
+    {
+      "df": 1,
+      "token": "affected"
+    }
+  ],
+  "affected": [
+    {
+      "df": 1,
+      "token": "affected"
+    }
+  ],
+  "aft": [
+    {
+      "df": 3,
+      "token": "after"
+    },
+    {
+      "df": 1,
+      "token": "after-school"
+    },
+    {
+      "df": 1,
+      "token": "after-school-holiday-club"
+    }
+  ],
+  "afte": [
+    {
+      "df": 3,
+      "token": "after"
+    },
+    {
+      "df": 1,
+      "token": "after-school"
+    },
+    {
+      "df": 1,
+      "token": "after-school-holiday-club"
+    }
+  ],
+  "after": [
+    {
+      "df": 3,
+      "token": "after"
+    },
+    {
+      "df": 1,
+      "token": "after-school"
+    },
+    {
+      "df": 1,
+      "token": "after-school-holiday-club"
+    }
+  ],
+  "after-": [
+    {
+      "df": 1,
+      "token": "after-school"
+    },
+    {
+      "df": 1,
+      "token": "after-school-holiday-club"
+    }
+  ],
+  "after-s": [
+    {
+      "df": 1,
+      "token": "after-school"
+    },
+    {
+      "df": 1,
+      "token": "after-school-holiday-club"
+    }
+  ],
+  "after-sc": [
+    {
+      "df": 1,
+      "token": "after-school"
+    },
+    {
+      "df": 1,
+      "token": "after-school-holiday-club"
+    }
+  ],
+  "after-sch": [
+    {
+      "df": 1,
+      "token": "after-school"
+    },
+    {
+      "df": 1,
+      "token": "after-school-holiday-club"
+    }
+  ],
+  "after-scho": [
+    {
+      "df": 1,
+      "token": "after-school"
+    },
+    {
+      "df": 1,
+      "token": "after-school-holiday-club"
+    }
+  ],
+  "after-schoo": [
+    {
+      "df": 1,
+      "token": "after-school"
+    },
+    {
+      "df": 1,
+      "token": "after-school-holiday-club"
+    }
+  ],
+  "after-school": [
+    {
+      "df": 1,
+      "token": "after-school"
+    },
+    {
+      "df": 1,
+      "token": "after-school-holiday-club"
+    }
+  ]
+}

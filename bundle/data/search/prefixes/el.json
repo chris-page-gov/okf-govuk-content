@@ -1,0 +1,96 @@
+{
+  "eli": [
+    {
+      "df": 15,
+      "token": "eligibility"
+    },
+    {
+      "df": 3,
+      "token": "eligible"
+    }
+  ],
+  "elig": [
+    {
+      "df": 15,
+      "token": "eligibility"
+    },
+    {
+      "df": 3,
+      "token": "eligible"
+    }
+  ],
+  "eligi": [
+    {
+      "df": 15,
+      "token": "eligibility"
+    },
+    {
+      "df": 3,
+      "token": "eligible"
+    }
+  ],
+  "eligib": [
+    {
+      "df": 15,
+      "token": "eligibility"
+    },
+    {
+      "df": 3,
+      "token": "eligible"
+    }
+  ],
+  "eligibi": [
+    {
+      "df": 15,
+      "token": "eligibility"
+    }
+  ],
+  "eligibil": [
+    {
+      "df": 15,
+      "token": "eligibility"
+    }
+  ],
+  "eligibili": [
+    {
+      "df": 15,
+      "token": "eligibility"
+    }
+  ],
+  "eligibilit": [
+    {
+      "df": 15,
+      "token": "eligibility"
+    }
+  ],
+  "eligibility": [
+    {
+      "df": 15,
+      "token": "eligibility"
+    }
+  ],
+  "eligibl": [
+    {
+      "df": 3,
+      "token": "eligible"
+    }
+  ],
+  "eligible": [
+    {
+      "df": 3,
+      "token": "eligible"
+    }
+  ],
+  "els": [
+    {
+      "df": 3,
+      "token": "else"
+    }
+  ],
+  "else": [
+    {
+      "df": 3,
+      "token": "else"
+    }
+  ]
+}

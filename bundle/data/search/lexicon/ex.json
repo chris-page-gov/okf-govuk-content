@@ -2,16 +2,16 @@
   {
     "df": 1,
     "postings": "data/search/postings/ex.json",
-    "token": "example"
+    "token": "explore"
   },
   {
     "df": 1,
     "postings": "data/search/postings/ex.json",
-    "token": "external"
+    "token": "extensions"
   },
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings/ex.json",
-    "token": "external_content"
+    "token": "extra"
   }
 ]

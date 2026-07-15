@@ -1,0 +1,26 @@
+{
+  "bab": [
+    {
+      "df": 4,
+      "token": "baby"
+    }
+  ],
+  "baby": [
+    {
+      "df": 4,
+      "token": "baby"
+    }
+  ],
+  "ban": [
+    {
+      "df": 2,
+      "token": "bank"
+    }
+  ],
+  "bank": [
+    {
+      "df": 2,
+      "token": "bank"
+    }
+  ]
+}

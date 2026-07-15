@@ -1,67 +1,125 @@
 {
   "tha": [
     {
-      "df": 2,
-      "token": "thailand"
+      "df": 4,
+      "token": "that"
     }
   ],
-  "thai": [
+  "that": [
     {
-      "df": 2,
-      "token": "thailand"
+      "df": 4,
+      "token": "that"
     }
   ],
-  "thail": [
+  "the": [
     {
       "df": 2,
-      "token": "thailand"
+      "token": "their"
+    },
+    {
+      "df": 2,
+      "token": "there"
+    },
+    {
+      "df": 2,
+      "token": "they"
+    },
+    {
+      "df": 1,
+      "token": "them"
     }
   ],
-  "thaila": [
+  "thei": [
     {
       "df": 2,
-      "token": "thailand"
+      "token": "their"
     }
   ],
-  "thailan": [
+  "their": [
     {
       "df": 2,
-      "token": "thailand"
+      "token": "their"
     }
   ],
-  "thailand": [
+  "them": [
+    {
+      "df": 1,
+      "token": "them"
+    }
+  ],
+  "ther": [
     {
       "df": 2,
-      "token": "thailand"
+      "token": "there"
+    }
+  ],
+  "there": [
+    {
+      "df": 2,
+      "token": "there"
+    }
+  ],
+  "they": [
+    {
+      "df": 2,
+      "token": "they"
+    }
+  ],
+  "thi": [
+    {
+      "df": 2,
+      "token": "this"
+    },
+    {
+      "df": 1,
+      "token": "think"
+    }
+  ],
+  "thin": [
+    {
+      "df": 1,
+      "token": "think"
+    }
+  ],
+  "think": [
+    {
+      "df": 1,
+      "token": "think"
+    }
+  ],
+  "this": [
+    {
+      "df": 2,
+      "token": "this"
     }
   ],
   "thr": [
     {
-      "df": 1,
+      "df": 3,
       "token": "through"
     }
   ],
   "thro": [
     {
-      "df": 1,
+      "df": 3,
       "token": "through"
     }
   ],
   "throu": [
     {
-      "df": 1,
+      "df": 3,
       "token": "through"
     }
   ],
   "throug": [
     {
-      "df": 1,
+      "df": 3,
       "token": "through"
     }
   ],
   "through": [
     {
-      "df": 1,
+      "df": 3,
       "token": "through"
     }
   ]

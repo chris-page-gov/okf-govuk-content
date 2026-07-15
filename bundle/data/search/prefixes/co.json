@@ -2,177 +2,499 @@
   "col": [
     {
       "df": 1,
-      "token": "collection"
-    },
-    {
-      "df": 1,
-      "token": "collections"
+      "token": "colleges"
     }
   ],
   "coll": [
     {
       "df": 1,
-      "token": "collection"
-    },
-    {
-      "df": 1,
-      "token": "collections"
+      "token": "colleges"
     }
   ],
   "colle": [
     {
       "df": 1,
-      "token": "collection"
-    },
-    {
-      "df": 1,
-      "token": "collections"
+      "token": "colleges"
     }
   ],
-  "collec": [
+  "colleg": [
     {
       "df": 1,
-      "token": "collection"
-    },
-    {
-      "df": 1,
-      "token": "collections"
+      "token": "colleges"
     }
   ],
-  "collect": [
+  "college": [
     {
       "df": 1,
-      "token": "collection"
-    },
-    {
-      "df": 1,
-      "token": "collections"
+      "token": "colleges"
     }
   ],
-  "collecti": [
+  "colleges": [
     {
       "df": 1,
-      "token": "collection"
-    },
-    {
-      "df": 1,
-      "token": "collections"
-    }
-  ],
-  "collectio": [
-    {
-      "df": 1,
-      "token": "collection"
-    },
-    {
-      "df": 1,
-      "token": "collections"
-    }
-  ],
-  "collection": [
-    {
-      "df": 1,
-      "token": "collection"
-    },
-    {
-      "df": 1,
-      "token": "collections"
-    }
-  ],
-  "collections": [
-    {
-      "df": 1,
-      "token": "collections"
+      "token": "colleges"
     }
   ],
   "com": [
     {
-      "df": 1,
-      "token": "commonwealth"
-    }
-  ],
-  "comm": [
+      "df": 4,
+      "token": "complaints"
+    },
+    {
+      "df": 3,
+      "token": "complain"
+    },
+    {
+      "df": 2,
+      "token": "complaint"
+    },
     {
       "df": 1,
-      "token": "commonwealth"
-    }
-  ],
-  "commo": [
+      "token": "complain-about-childcare"
+    },
     {
       "df": 1,
-      "token": "commonwealth"
+      "token": "complain-about-school"
     }
   ],
-  "common": [
+  "comp": [
+    {
+      "df": 4,
+      "token": "complaints"
+    },
+    {
+      "df": 3,
+      "token": "complain"
+    },
+    {
+      "df": 2,
+      "token": "complaint"
+    },
     {
       "df": 1,
-      "token": "commonwealth"
+      "token": "complain-about-childcare"
+    },
+    {
+      "df": 1,
+      "token": "complain-about-school"
     }
   ],
-  "commonw": [
+  "compl": [
+    {
+      "df": 4,
+      "token": "complaints"
+    },
+    {
+      "df": 3,
+      "token": "complain"
+    },
+    {
+      "df": 2,
+      "token": "complaint"
+    },
     {
       "df": 1,
-      "token": "commonwealth"
+      "token": "complain-about-childcare"
+    },
+    {
+      "df": 1,
+      "token": "complain-about-school"
     }
   ],
-  "commonwe": [
+  "compla": [
+    {
+      "df": 4,
+      "token": "complaints"
+    },
+    {
+      "df": 3,
+      "token": "complain"
+    },
+    {
+      "df": 2,
+      "token": "complaint"
+    },
     {
       "df": 1,
-      "token": "commonwealth"
+      "token": "complain-about-childcare"
+    },
+    {
+      "df": 1,
+      "token": "complain-about-school"
     }
   ],
-  "commonwea": [
+  "complai": [
+    {
+      "df": 4,
+      "token": "complaints"
+    },
+    {
+      "df": 3,
+      "token": "complain"
+    },
+    {
+      "df": 2,
+      "token": "complaint"
+    },
     {
       "df": 1,
-      "token": "commonwealth"
+      "token": "complain-about-childcare"
+    },
+    {
+      "df": 1,
+      "token": "complain-about-school"
     }
   ],
-  "commonweal": [
+  "complain": [
+    {
+      "df": 4,
+      "token": "complaints"
+    },
+    {
+      "df": 3,
+      "token": "complain"
+    },
+    {
+      "df": 2,
+      "token": "complaint"
+    },
     {
       "df": 1,
-      "token": "commonwealth"
+      "token": "complain-about-childcare"
+    },
+    {
+      "df": 1,
+      "token": "complain-about-school"
     }
   ],
-  "commonwealt": [
+  "complain-": [
     {
       "df": 1,
-      "token": "commonwealth"
+      "token": "complain-about-childcare"
+    },
+    {
+      "df": 1,
+      "token": "complain-about-school"
     }
   ],
-  "commonwealth": [
+  "complain-a": [
     {
       "df": 1,
-      "token": "commonwealth"
+      "token": "complain-about-childcare"
+    },
+    {
+      "df": 1,
+      "token": "complain-about-school"
+    }
+  ],
+  "complain-ab": [
+    {
+      "df": 1,
+      "token": "complain-about-childcare"
+    },
+    {
+      "df": 1,
+      "token": "complain-about-school"
+    }
+  ],
+  "complain-abo": [
+    {
+      "df": 1,
+      "token": "complain-about-childcare"
+    },
+    {
+      "df": 1,
+      "token": "complain-about-school"
+    }
+  ],
+  "complaint": [
+    {
+      "df": 4,
+      "token": "complaints"
+    },
+    {
+      "df": 2,
+      "token": "complaint"
+    }
+  ],
+  "complaints": [
+    {
+      "df": 4,
+      "token": "complaints"
     }
   ],
   "con": [
     {
+      "df": 2,
+      "token": "continue"
+    },
+    {
       "df": 1,
-      "token": "content"
+      "token": "confirm"
+    }
+  ],
+  "conf": [
+    {
+      "df": 1,
+      "token": "confirm"
+    }
+  ],
+  "confi": [
+    {
+      "df": 1,
+      "token": "confirm"
+    }
+  ],
+  "confir": [
+    {
+      "df": 1,
+      "token": "confirm"
+    }
+  ],
+  "confirm": [
+    {
+      "df": 1,
+      "token": "confirm"
     }
   ],
   "cont": [
     {
-      "df": 1,
-      "token": "content"
+      "df": 2,
+      "token": "continue"
     }
   ],
-  "conte": [
+  "conti": [
     {
-      "df": 1,
-      "token": "content"
+      "df": 2,
+      "token": "continue"
     }
   ],
-  "conten": [
+  "contin": [
     {
-      "df": 1,
-      "token": "content"
+      "df": 2,
+      "token": "continue"
     }
   ],
-  "content": [
+  "continu": [
+    {
+      "df": 2,
+      "token": "continue"
+    }
+  ],
+  "continue": [
+    {
+      "df": 2,
+      "token": "continue"
+    }
+  ],
+  "cos": [
+    {
+      "df": 4,
+      "token": "costs"
+    },
+    {
+      "df": 2,
+      "token": "cost"
+    }
+  ],
+  "cost": [
+    {
+      "df": 4,
+      "token": "costs"
+    },
+    {
+      "df": 2,
+      "token": "cost"
+    }
+  ],
+  "costs": [
+    {
+      "df": 4,
+      "token": "costs"
+    }
+  ],
+  "cou": [
+    {
+      "df": 6,
+      "token": "council"
+    },
     {
       "df": 1,
-      "token": "content"
+      "token": "could"
+    },
+    {
+      "df": 1,
+      "token": "counselling"
+    },
+    {
+      "df": 1,
+      "token": "countries"
+    },
+    {
+      "df": 1,
+      "token": "country"
+    },
+    {
+      "df": 1,
+      "token": "courses"
+    }
+  ],
+  "coul": [
+    {
+      "df": 1,
+      "token": "could"
+    }
+  ],
+  "could": [
+    {
+      "df": 1,
+      "token": "could"
+    }
+  ],
+  "coun": [
+    {
+      "df": 6,
+      "token": "council"
+    },
+    {
+      "df": 1,
+      "token": "counselling"
+    },
+    {
+      "df": 1,
+      "token": "countries"
+    },
+    {
+      "df": 1,
+      "token": "country"
+    }
+  ],
+  "counc": [
+    {
+      "df": 6,
+      "token": "council"
+    }
+  ],
+  "counci": [
+    {
+      "df": 6,
+      "token": "council"
+    }
+  ],
+  "council": [
+    {
+      "df": 6,
+      "token": "council"
+    }
+  ],
+  "couns": [
+    {
+      "df": 1,
+      "token": "counselling"
+    }
+  ],
+  "counse": [
+    {
+      "df": 1,
+      "token": "counselling"
+    }
+  ],
+  "counsel": [
+    {
+      "df": 1,
+      "token": "counselling"
+    }
+  ],
+  "counsell": [
+    {
+      "df": 1,
+      "token": "counselling"
+    }
+  ],
+  "counselli": [
+    {
+      "df": 1,
+      "token": "counselling"
+    }
+  ],
+  "counsellin": [
+    {
+      "df": 1,
+      "token": "counselling"
+    }
+  ],
+  "counselling": [
+    {
+      "df": 1,
+      "token": "counselling"
+    }
+  ],
+  "count": [
+    {
+      "df": 1,
+      "token": "countries"
+    },
+    {
+      "df": 1,
+      "token": "country"
+    }
+  ],
+  "countr": [
+    {
+      "df": 1,
+      "token": "countries"
+    },
+    {
+      "df": 1,
+      "token": "country"
+    }
+  ],
+  "countri": [
+    {
+      "df": 1,
+      "token": "countries"
+    }
+  ],
+  "countrie": [
+    {
+      "df": 1,
+      "token": "countries"
+    }
+  ],
+  "countries": [
+    {
+      "df": 1,
+      "token": "countries"
+    }
+  ],
+  "country": [
+    {
+      "df": 1,
+      "token": "country"
+    }
+  ],
+  "cour": [
+    {
+      "df": 1,
+      "token": "courses"
+    }
+  ],
+  "cours": [
+    {
+      "df": 1,
+      "token": "courses"
+    }
+  ],
+  "course": [
+    {
+      "df": 1,
+      "token": "courses"
+    }
+  ],
+  "courses": [
+    {
+      "df": 1,
+      "token": "courses"
     }
   ]
 }

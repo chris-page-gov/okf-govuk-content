@@ -1,430 +1,620 @@
 {
   "counts": {
-    "datasets": 14,
-    "document_types": 13,
-    "languages": 2,
-    "publishers": 6,
-    "records": 14,
-    "relationships": 16,
-    "resources": 1,
-    "schema_families": 13
+    "datasets": 69,
+    "document_types": 8,
+    "languages": 1,
+    "publishers": 14,
+    "records": 69,
+    "relationships": 392,
+    "resources": 0,
+    "schema_families": 8
   },
   "coverage": {
     "authoritative_destination": "https://www.gov.uk/",
-    "boundary": "frozen union of verified official public enumerators",
+    "boundary": "bounded 69-record new-child Search API seed denominator",
     "page_bodies": "not mirrored",
-    "source_records": 12,
+    "source_records": 69,
     "unexplained_omissions": 0
   },
   "facets": {
     "document_type": [
       {
+        "count": 32,
+        "value": "guide"
+      },
+      {
+        "count": 21,
+        "value": "answer"
+      },
+      {
+        "count": 8,
+        "value": "local_transaction"
+      },
+      {
+        "count": 3,
+        "value": "transaction"
+      },
+      {
         "count": 2,
-        "value": "taxon"
+        "value": "smart_answer"
       },
       {
         "count": 1,
-        "value": "document_collection"
+        "value": "detailed_guide"
       },
       {
         "count": 1,
-        "value": "external_content"
-      },
-      {
-        "count": 1,
-        "value": "guidance"
-      },
-      {
-        "count": 1,
-        "value": "homepage"
-      },
-      {
-        "count": 1,
-        "value": "mainstream_browse_page"
-      },
-      {
-        "count": 1,
-        "value": "organisation"
-      },
-      {
-        "count": 1,
-        "value": "redirect"
-      },
-      {
-        "count": 1,
-        "value": "redirect_destination"
+        "value": "place"
       },
       {
         "count": 1,
         "value": "step_by_step_nav"
-      },
-      {
-        "count": 1,
-        "value": "transaction"
-      },
-      {
-        "count": 1,
-        "value": "travel_advice"
-      },
-      {
-        "count": 1,
-        "value": "world_location"
       }
     ],
     "language": [
       {
-        "count": 13,
+        "count": 69,
         "value": "en"
-      },
-      {
-        "count": 1,
-        "value": "cy"
       }
     ],
     "lifecycle": [
       {
-        "count": 13,
+        "count": 69,
         "value": "published"
-      },
-      {
-        "count": 1,
-        "value": "redirect"
       }
     ],
     "publisher": [
       {
-        "count": 7,
-        "value": "Publisher not available from admitted source"
-      },
-      {
-        "count": 2,
+        "count": 66,
         "value": "Government Digital Service"
       },
       {
-        "count": 1,
-        "value": "Department for Work and Pensions"
+        "count": 2,
+        "value": "Publisher not available from admitted source"
       },
       {
         "count": 1,
-        "value": "Driver and Vehicle Standards Agency"
-      },
-      {
-        "count": 1,
-        "value": "Foreign, Commonwealth & Development Office"
-      },
-      {
-        "count": 1,
-        "value": "The National Archives"
-      },
-      {
-        "count": 1,
-        "value": "UK Hydrographic Office"
+        "value": "Ofsted"
       }
     ],
     "schema": "okf-facets.v1",
     "schema_name": [
       {
+        "count": 32,
+        "value": "guide"
+      },
+      {
+        "count": 21,
+        "value": "answer"
+      },
+      {
+        "count": 8,
+        "value": "local_transaction"
+      },
+      {
+        "count": 3,
+        "value": "transaction"
+      },
+      {
         "count": 2,
-        "value": "taxon"
+        "value": "smart_answer"
       },
       {
         "count": 1,
-        "value": "document_collection"
+        "value": "detailed_guide"
       },
       {
         "count": 1,
-        "value": "external_content"
-      },
-      {
-        "count": 1,
-        "value": "homepage"
-      },
-      {
-        "count": 1,
-        "value": "mainstream_browse_page"
-      },
-      {
-        "count": 1,
-        "value": "organisation"
-      },
-      {
-        "count": 1,
-        "value": "publication"
-      },
-      {
-        "count": 1,
-        "value": "redirect"
+        "value": "place"
       },
       {
         "count": 1,
         "value": "step_by_step_nav"
-      },
-      {
-        "count": 1,
-        "value": "transaction"
-      },
-      {
-        "count": 1,
-        "value": "travel_advice"
-      },
-      {
-        "count": 1,
-        "value": "unknown"
-      },
-      {
-        "count": 1,
-        "value": "world_location"
       }
     ],
     "source_membership": [
       {
-        "count": 10,
-        "value": "fixture-content-api"
+        "count": 69,
+        "value": "new-child-demo-search-seed"
       },
       {
-        "count": 1,
-        "value": "fixture-organisations-api"
+        "count": 69,
+        "value": "structured-content-api"
       },
       {
-        "count": 1,
-        "value": "fixture-search-api"
+        "count": 47,
+        "value": "mainstream-browse:childcare-parenting/financial-help-children"
       },
       {
-        "count": 1,
-        "value": "redirect-destination"
+        "count": 23,
+        "value": "mainstream-browse:childcare-parenting/childcare"
       },
       {
-        "count": 1,
-        "value": "structured-linked-content"
+        "count": 15,
+        "value": "mainstream-browse:childcare-parenting/pregnancy-birth"
       }
     ]
   },
-  "generated_at": "2026-07-11T23:30:00Z",
+  "generated_at": "2026-07-15T06:25:17Z",
   "sample_records": [
     {
-      "@id": "https://www.gov.uk/",
+      "@id": "https://www.gov.uk/get-extra-early-years-funding",
       "access_model": "anonymous",
-      "base_path": "/",
-      "canonical_content_id": "00000000-0000-4000-8000-000000000001",
+      "base_path": "/get-extra-early-years-funding",
+      "canonical_content_id": "03cad033-6800-4db2-92b4-87e9a6021272",
       "confidence": "source-declared",
       "coverage_disposition": "represented",
-      "description": "The best place to find government services and information.",
-      "document_type": "homepage",
+      "demo": {
+        "cohort_id": "new-child-support",
+        "is_seed": true,
+        "journey_groups": [
+          "new-child-overview",
+          "childcare",
+          "financial-help-for-children"
+        ],
+        "seed_memberships": [
+          "childcare-parenting/childcare",
+          "childcare-parenting/financial-help-children"
+        ]
+      },
+      "description": "Get extra funding for your early years childcare provider so they can provide better care for your child - early years pupil premium, disability access fund.",
+      "document_type": "answer",
       "entity_class": "content_identity",
       "evidence_locator": "/",
-      "evidence_sha256": "79021b6d9484766bb497bac32746b5c63af31f9cf9541ce1a39caafd781ab120",
-      "evidence_url": "https://www.gov.uk/",
-      "first_published_at": "2012-10-17T00:00:00Z",
+      "evidence_sha256": "a7291b595ac9324ced0e9267efa690a66770b4f405282d9936854eb3eeabc52f",
+      "evidence_url": "https://www.gov.uk/api/content/get-extra-early-years-funding",
+      "first_published_at": "2018-10-16T16:30:43+01:00",
       "jurisdiction": [
         "United Kingdom"
       ],
       "language": "en",
       "lifecycle": "published",
-      "name": "00000000-0000-4000-8000-000000000001-en",
-      "notes": "The best place to find government services and information.",
-      "open": "dataset/00000000-0000-4000-8000-000000000001-en",
+      "name": "03cad033-6800-4db2-92b4-87e9a6021272-en",
+      "notes": "Get extra funding for your early years childcare provider so they can provide better care for your child - early years pupil premium, disability access fund.",
+      "open": "dataset/03cad033-6800-4db2-92b4-87e9a6021272-en",
       "ordinal": 0,
-      "public_updated_at": "2026-02-18T13:00:23Z",
+      "public_updated_at": "2018-10-22T11:44:03+01:00",
       "publisher": "government-digital-service",
       "publisher_title": "Government Digital Service",
       "record_type": "GOV.UK content item",
       "redirects": [],
-      "retrieved_at": "2026-07-11T23:30:00Z",
+      "retrieved_at": "2026-07-15T06:24:19.781100+00:00",
       "routing_kind": "canonical",
-      "schema_name": "homepage",
-      "source_adapter": "govuk_public_metadata",
+      "schema_name": "answer",
+      "source_adapter": "govuk_content_api",
       "source_memberships": [
-        "fixture-content-api"
+        "mainstream-browse:childcare-parenting/childcare",
+        "mainstream-browse:childcare-parenting/financial-help-children",
+        "new-child-demo-search-seed",
+        "structured-content-api"
       ],
-      "source_native_id": "00000000-0000-4000-8000-000000000001",
+      "source_native_id": "03cad033-6800-4db2-92b4-87e9a6021272",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
+        "answer",
         "en",
-        "homepage",
         "published"
       ],
-      "timestamp": "2026-02-18T13:00:23Z",
-      "title": "Welcome to GOV.UK",
-      "url": "https://www.gov.uk/"
+      "timestamp": "2018-10-22T11:44:03+01:00",
+      "title": "Get extra funding for your early years provider",
+      "url": "https://www.gov.uk/get-extra-early-years-funding"
     },
     {
-      "@id": "https://www.gov.uk/education",
+      "@id": "https://www.gov.uk/child-benefit-tax-calculator",
       "access_model": "anonymous",
-      "base_path": "/education",
-      "canonical_content_id": "00000000-0000-4000-8000-000000000002",
+      "base_path": "/child-benefit-tax-calculator",
+      "canonical_content_id": "0e1de8f1-9909-4e45-a6a3-bffe95470275",
       "confidence": "source-declared",
       "coverage_disposition": "represented",
-      "description": "Education and training information.",
-      "document_type": "taxon",
+      "demo": {
+        "cohort_id": "new-child-support",
+        "is_seed": true,
+        "journey_groups": [
+          "new-child-overview",
+          "financial-help-for-children"
+        ],
+        "seed_memberships": [
+          "childcare-parenting/financial-help-children"
+        ]
+      },
+      "description": "Estimate the Child Benefit you've received and your High Income Child Benefit tax charge",
+      "document_type": "smart_answer",
       "entity_class": "content_identity",
       "evidence_locator": "/",
-      "evidence_sha256": "386d78b1fe44b459f7f9ec24fa32414e679f2fc7b820594c5232b86c33c8d088",
-      "evidence_url": "https://www.gov.uk/education",
-      "first_published_at": "2016-01-01T00:00:00Z",
+      "evidence_sha256": "e560aafc0a5f6806a5f4ae3287f80d444a647a750743097c615aa2cc68ccd963",
+      "evidence_url": "https://www.gov.uk/api/content/child-benefit-tax-calculator",
+      "first_published_at": "2017-06-14T10:57:50+01:00",
       "jurisdiction": [
         "United Kingdom"
       ],
       "language": "en",
       "lifecycle": "published",
-      "name": "00000000-0000-4000-8000-000000000002-en",
-      "notes": "Education and training information.",
-      "open": "dataset/00000000-0000-4000-8000-000000000002-en",
+      "name": "0e1de8f1-9909-4e45-a6a3-bffe95470275-en",
+      "notes": "Estimate the Child Benefit you've received and your High Income Child Benefit tax charge",
+      "open": "dataset/0e1de8f1-9909-4e45-a6a3-bffe95470275-en",
       "ordinal": 1,
-      "public_updated_at": "2026-07-10T10:00:00Z",
-      "publisher": "unknown",
-      "publisher_title": "Publisher not available from admitted source",
+      "public_updated_at": "2021-06-16T09:18:51+01:00",
+      "publisher": "government-digital-service",
+      "publisher_title": "Government Digital Service",
       "record_type": "GOV.UK content item",
       "redirects": [],
-      "retrieved_at": "2026-07-11T23:30:00Z",
+      "retrieved_at": "2026-07-15T06:24:20.047363+00:00",
       "routing_kind": "canonical",
-      "schema_name": "taxon",
-      "source_adapter": "govuk_public_metadata",
+      "schema_name": "smart_answer",
+      "source_adapter": "govuk_content_api",
       "source_memberships": [
-        "fixture-content-api"
+        "mainstream-browse:childcare-parenting/financial-help-children",
+        "new-child-demo-search-seed",
+        "structured-content-api"
       ],
-      "source_native_id": "00000000-0000-4000-8000-000000000002",
+      "source_native_id": "0e1de8f1-9909-4e45-a6a3-bffe95470275",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
         "en",
         "published",
-        "taxon"
+        "smart_answer"
       ],
-      "timestamp": "2026-07-10T10:00:00Z",
-      "title": "Education, training and skills",
-      "url": "https://www.gov.uk/education"
+      "timestamp": "2021-06-16T09:18:51+01:00",
+      "title": "Child Benefit tax calculator",
+      "url": "https://www.gov.uk/child-benefit-tax-calculator"
     },
     {
-      "@id": "https://www.gov.uk/browse/working",
+      "@id": "https://www.gov.uk/claim-child-benefit-behalf-someone-else",
       "access_model": "anonymous",
-      "base_path": "/browse/working",
-      "canonical_content_id": "00000000-0000-4000-8000-000000000003",
+      "base_path": "/claim-child-benefit-behalf-someone-else",
+      "canonical_content_id": "0ed58e79-d9f6-4bed-bbe4-c6b5bad1a543",
       "confidence": "source-declared",
       "coverage_disposition": "represented",
-      "description": "Includes holidays, finding a job and redundancy.",
-      "document_type": "mainstream_browse_page",
+      "demo": {
+        "cohort_id": "new-child-support",
+        "is_seed": true,
+        "journey_groups": [
+          "new-child-overview",
+          "financial-help-for-children"
+        ],
+        "seed_memberships": [
+          "childcare-parenting/financial-help-children"
+        ]
+      },
+      "description": "Claim or deal with Child Benefit for someone else - if your child has a baby, authorisation form CH105, appointees, voluntary organisations",
+      "document_type": "guide",
       "entity_class": "content_identity",
       "evidence_locator": "/",
-      "evidence_sha256": "50e9286dfd787a271bd537cad844ba2577b2bafbd03dd694ff54c47a215c365e",
-      "evidence_url": "https://www.gov.uk/browse/working",
-      "first_published_at": "2012-10-17T00:00:00Z",
+      "evidence_sha256": "f7433cb50bbd618c65c36d63decfd859130fd856e53601639046b66f8eb00b4d",
+      "evidence_url": "https://www.gov.uk/api/content/claim-child-benefit-behalf-someone-else",
+      "first_published_at": "2012-01-26T12:56:40+00:00",
       "jurisdiction": [
         "United Kingdom"
       ],
       "language": "en",
       "lifecycle": "published",
-      "name": "00000000-0000-4000-8000-000000000003-en",
-      "notes": "Includes holidays, finding a job and redundancy.",
-      "open": "dataset/00000000-0000-4000-8000-000000000003-en",
+      "name": "0ed58e79-d9f6-4bed-bbe4-c6b5bad1a543-en",
+      "notes": "Claim or deal with Child Benefit for someone else - if your child has a baby, authorisation form CH105, appointees, voluntary organisations",
+      "open": "dataset/0ed58e79-d9f6-4bed-bbe4-c6b5bad1a543-en",
       "ordinal": 2,
-      "public_updated_at": "2026-07-09T10:00:00Z",
+      "public_updated_at": "2015-02-19T13:45:13+00:00",
       "publisher": "government-digital-service",
       "publisher_title": "Government Digital Service",
       "record_type": "GOV.UK content item",
       "redirects": [],
-      "retrieved_at": "2026-07-11T23:30:00Z",
+      "retrieved_at": "2026-07-15T06:24:20.297394+00:00",
       "routing_kind": "canonical",
-      "schema_name": "mainstream_browse_page",
-      "source_adapter": "govuk_public_metadata",
+      "schema_name": "guide",
+      "source_adapter": "govuk_content_api",
       "source_memberships": [
-        "fixture-content-api"
+        "mainstream-browse:childcare-parenting/financial-help-children",
+        "new-child-demo-search-seed",
+        "structured-content-api"
       ],
-      "source_native_id": "00000000-0000-4000-8000-000000000003",
+      "source_native_id": "0ed58e79-d9f6-4bed-bbe4-c6b5bad1a543",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
         "en",
-        "mainstream_browse_page",
+        "guide",
         "published"
       ],
-      "timestamp": "2026-07-09T10:00:00Z",
-      "title": "Working, jobs and pensions",
-      "url": "https://www.gov.uk/browse/working"
+      "timestamp": "2015-02-19T13:45:13+00:00",
+      "title": "Claim and deal with Child Benefit for someone else",
+      "url": "https://www.gov.uk/claim-child-benefit-behalf-someone-else"
     },
     {
-      "@id": "https://www.gov.uk/government/organisations/department-for-work-pensions",
+      "@id": "https://www.gov.uk/report-changes-child-benefit",
       "access_model": "anonymous",
-      "base_path": "/government/organisations/department-for-work-pensions",
-      "canonical_content_id": "00000000-0000-4000-8000-000000000004",
+      "base_path": "/report-changes-child-benefit",
+      "canonical_content_id": "10e436e5-26e0-4462-913f-9a497f7e793e",
       "confidence": "source-declared",
       "coverage_disposition": "represented",
-      "description": "The department responsible for welfare, pensions and child maintenance policy.",
-      "document_type": "organisation",
+      "demo": {
+        "cohort_id": "new-child-support",
+        "is_seed": true,
+        "journey_groups": [
+          "new-child-overview",
+          "financial-help-for-children"
+        ],
+        "seed_memberships": [
+          "childcare-parenting/financial-help-children"
+        ]
+      },
+      "description": "How and when to report changes that affect your Child Benefit payments, such as earnings going above £60,000. How to update a change of address or bank details.\r\n",
+      "document_type": "guide",
       "entity_class": "content_identity",
       "evidence_locator": "/",
-      "evidence_sha256": "8d70cef32ef573f8f70076f8fcb79959a9cfbcd6858f80a0b46de5991535dfa2",
-      "evidence_url": "https://www.gov.uk/government/organisations/department-for-work-pensions",
-      "first_published_at": "2012-10-17T00:00:00Z",
+      "evidence_sha256": "45c93c9618788dca0845dd9e7400959433e76fbc449bebe1600c60aee1d34d2f",
+      "evidence_url": "https://www.gov.uk/api/content/report-changes-child-benefit",
+      "first_published_at": "2012-10-03T13:52:33+01:00",
       "jurisdiction": [
         "United Kingdom"
       ],
       "language": "en",
       "lifecycle": "published",
-      "name": "00000000-0000-4000-8000-000000000004-en",
-      "notes": "The department responsible for welfare, pensions and child maintenance policy.",
-      "open": "dataset/00000000-0000-4000-8000-000000000004-en",
+      "name": "10e436e5-26e0-4462-913f-9a497f7e793e-en",
+      "notes": "How and when to report changes that affect your Child Benefit payments, such as earnings going above £60,000. How to update a change of address or bank details.\r\n",
+      "open": "dataset/10e436e5-26e0-4462-913f-9a497f7e793e-en",
       "ordinal": 3,
-      "public_updated_at": "2026-05-20T09:02:43Z",
-      "publisher": "unknown",
-      "publisher_title": "Publisher not available from admitted source",
+      "public_updated_at": "2014-12-04T10:35:37+00:00",
+      "publisher": "government-digital-service",
+      "publisher_title": "Government Digital Service",
       "record_type": "GOV.UK content item",
       "redirects": [],
-      "retrieved_at": "2026-07-11T23:30:00Z",
+      "retrieved_at": "2026-07-15T06:24:20.545416+00:00",
       "routing_kind": "canonical",
-      "schema_name": "organisation",
-      "source_adapter": "govuk_public_metadata",
+      "schema_name": "guide",
+      "source_adapter": "govuk_content_api",
       "source_memberships": [
-        "fixture-organisations-api"
+        "mainstream-browse:childcare-parenting/financial-help-children",
+        "new-child-demo-search-seed",
+        "structured-content-api"
       ],
-      "source_native_id": "00000000-0000-4000-8000-000000000004",
+      "source_native_id": "10e436e5-26e0-4462-913f-9a497f7e793e",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
         "en",
-        "organisation",
+        "guide",
         "published"
       ],
-      "timestamp": "2026-05-20T09:02:43Z",
-      "title": "Department for Work and Pensions",
-      "url": "https://www.gov.uk/government/organisations/department-for-work-pensions"
+      "timestamp": "2014-12-04T10:35:37+00:00",
+      "title": "Report changes that affect your Child Benefit",
+      "url": "https://www.gov.uk/report-changes-child-benefit"
     },
     {
-      "@id": "https://www.gov.uk/sign-in-universal-credit",
+      "@id": "https://www.gov.uk/disabled-facilities-grants",
       "access_model": "anonymous",
-      "base_path": "/sign-in-universal-credit",
-      "canonical_content_id": "00000000-0000-4000-8000-000000000005",
+      "base_path": "/disabled-facilities-grants",
+      "canonical_content_id": "145d29c4-cb5c-4b1c-8664-094912f8a34e",
       "confidence": "source-declared",
       "coverage_disposition": "represented",
-      "description": "Report a change, add a journal note and see payments.",
+      "demo": {
+        "cohort_id": "new-child-support",
+        "is_seed": true,
+        "journey_groups": [
+          "new-child-overview",
+          "financial-help-for-children"
+        ],
+        "seed_memberships": [
+          "childcare-parenting/financial-help-children"
+        ]
+      },
+      "description": "Disabled Facilities Grants help towards the costs of making changes to your home so you can continue to live there",
+      "document_type": "guide",
+      "entity_class": "content_identity",
+      "evidence_locator": "/",
+      "evidence_sha256": "5794c6d9b77e0285e74ff437b10216d6acdc6dce9351b1bd0f23fff39bc37a9b",
+      "evidence_url": "https://www.gov.uk/api/content/disabled-facilities-grants",
+      "first_published_at": "2011-12-07T09:02:24+00:00",
+      "jurisdiction": [
+        "United Kingdom"
+      ],
+      "language": "en",
+      "lifecycle": "published",
+      "name": "145d29c4-cb5c-4b1c-8664-094912f8a34e-en",
+      "notes": "Disabled Facilities Grants help towards the costs of making changes to your home so you can continue to live there",
+      "open": "dataset/145d29c4-cb5c-4b1c-8664-094912f8a34e-en",
+      "ordinal": 4,
+      "public_updated_at": "2016-06-16T14:58:16+01:00",
+      "publisher": "government-digital-service",
+      "publisher_title": "Government Digital Service",
+      "record_type": "GOV.UK content item",
+      "redirects": [],
+      "retrieved_at": "2026-07-15T06:24:20.796569+00:00",
+      "routing_kind": "canonical",
+      "schema_name": "guide",
+      "source_adapter": "govuk_content_api",
+      "source_memberships": [
+        "mainstream-browse:childcare-parenting/financial-help-children",
+        "new-child-demo-search-seed",
+        "structured-content-api"
+      ],
+      "source_native_id": "145d29c4-cb5c-4b1c-8664-094912f8a34e",
+      "source_tier": "official-public",
+      "status": "published",
+      "tags": [
+        "en",
+        "guide",
+        "published"
+      ],
+      "timestamp": "2016-06-16T14:58:16+01:00",
+      "title": "Disabled Facilities Grants",
+      "url": "https://www.gov.uk/disabled-facilities-grants"
+    },
+    {
+      "@id": "https://www.gov.uk/help-for-disabled-child",
+      "access_model": "anonymous",
+      "base_path": "/help-for-disabled-child",
+      "canonical_content_id": "16c39c48-c2e5-46e8-a71f-7f1c965f9c51",
+      "confidence": "source-declared",
+      "coverage_disposition": "represented",
+      "demo": {
+        "cohort_id": "new-child-support",
+        "is_seed": true,
+        "journey_groups": [
+          "new-child-overview",
+          "financial-help-for-children"
+        ],
+        "seed_memberships": [
+          "childcare-parenting/financial-help-children"
+        ]
+      },
+      "description": "Your rights and the support you can get if you have a disabled child, including childcare, car costs, house adaptations and education",
+      "document_type": "guide",
+      "entity_class": "content_identity",
+      "evidence_locator": "/",
+      "evidence_sha256": "c63dd30cf2bd924e27600b72550ebcc00c172ec5cc1ac3a7cf5b84c8afb5084f",
+      "evidence_url": "https://www.gov.uk/api/content/help-for-disabled-child",
+      "first_published_at": "2012-01-26T13:20:51+00:00",
+      "jurisdiction": [
+        "United Kingdom"
+      ],
+      "language": "en",
+      "lifecycle": "published",
+      "name": "16c39c48-c2e5-46e8-a71f-7f1c965f9c51-en",
+      "notes": "Your rights and the support you can get if you have a disabled child, including childcare, car costs, house adaptations and education",
+      "open": "dataset/16c39c48-c2e5-46e8-a71f-7f1c965f9c51-en",
+      "ordinal": 5,
+      "public_updated_at": "2015-03-13T15:03:48+00:00",
+      "publisher": "government-digital-service",
+      "publisher_title": "Government Digital Service",
+      "record_type": "GOV.UK content item",
+      "redirects": [],
+      "retrieved_at": "2026-07-15T06:24:21.548600+00:00",
+      "routing_kind": "canonical",
+      "schema_name": "guide",
+      "source_adapter": "govuk_content_api",
+      "source_memberships": [
+        "mainstream-browse:childcare-parenting/financial-help-children",
+        "new-child-demo-search-seed",
+        "structured-content-api"
+      ],
+      "source_native_id": "16c39c48-c2e5-46e8-a71f-7f1c965f9c51",
+      "source_tier": "official-public",
+      "status": "published",
+      "tags": [
+        "en",
+        "guide",
+        "published"
+      ],
+      "timestamp": "2015-03-13T15:03:48+00:00",
+      "title": "Help if you have a disabled child",
+      "url": "https://www.gov.uk/help-for-disabled-child"
+    },
+    {
+      "@id": "https://www.gov.uk/help-with-childcare-costs",
+      "access_model": "anonymous",
+      "base_path": "/help-with-childcare-costs",
+      "canonical_content_id": "1a3d4b71-78dc-41b3-97c9-965405892d2e",
+      "confidence": "source-declared",
+      "coverage_disposition": "represented",
+      "demo": {
+        "cohort_id": "new-child-support",
+        "is_seed": true,
+        "journey_groups": [
+          "new-child-overview",
+          "childcare",
+          "financial-help-for-children"
+        ],
+        "seed_memberships": [
+          "childcare-parenting/childcare",
+          "childcare-parenting/financial-help-children"
+        ]
+      },
+      "description": "Help with the cost of paying for approved childcare - Tax-Free Childcare, 15 and 30 hours childcare, Early Learning for 2 year olds, childcare vouchers, Learner Support.",
+      "document_type": "guide",
+      "entity_class": "content_identity",
+      "evidence_locator": "/",
+      "evidence_sha256": "7bcf5d66a89e87316466dd8db45cf8f906f1ab93beeadea2a729b748e6ee631b",
+      "evidence_url": "https://www.gov.uk/api/content/help-with-childcare-costs",
+      "first_published_at": "2012-01-26T13:15:33+00:00",
+      "jurisdiction": [
+        "United Kingdom"
+      ],
+      "language": "en",
+      "lifecycle": "published",
+      "name": "1a3d4b71-78dc-41b3-97c9-965405892d2e-en",
+      "notes": "Help with the cost of paying for approved childcare - Tax-Free Childcare, 15 and 30 hours childcare, Early Learning for 2 year olds, childcare vouchers, Learner Support.",
+      "open": "dataset/1a3d4b71-78dc-41b3-97c9-965405892d2e-en",
+      "ordinal": 6,
+      "public_updated_at": "2015-03-24T16:22:50+00:00",
+      "publisher": "government-digital-service",
+      "publisher_title": "Government Digital Service",
+      "record_type": "GOV.UK content item",
+      "redirects": [],
+      "retrieved_at": "2026-07-15T06:24:21.892548+00:00",
+      "routing_kind": "canonical",
+      "schema_name": "guide",
+      "source_adapter": "govuk_content_api",
+      "source_memberships": [
+        "mainstream-browse:childcare-parenting/childcare",
+        "mainstream-browse:childcare-parenting/financial-help-children",
+        "new-child-demo-search-seed",
+        "structured-content-api"
+      ],
+      "source_native_id": "1a3d4b71-78dc-41b3-97c9-965405892d2e",
+      "source_tier": "official-public",
+      "status": "published",
+      "tags": [
+        "en",
+        "guide",
+        "published"
+      ],
+      "timestamp": "2015-03-24T16:22:50+00:00",
+      "title": "Help paying for childcare",
+      "url": "https://www.gov.uk/help-with-childcare-costs"
+    },
+    {
+      "@id": "https://www.gov.uk/plan-shared-parental-leave-pay",
+      "access_model": "anonymous",
+      "base_path": "/plan-shared-parental-leave-pay",
+      "canonical_content_id": "1de204a4-466c-4641-8b93-7c8e6b60ee39",
+      "confidence": "source-declared",
+      "coverage_disposition": "represented",
+      "demo": {
+        "cohort_id": "new-child-support",
+        "is_seed": true,
+        "journey_groups": [
+          "new-child-overview",
+          "financial-help-for-children",
+          "pregnancy-and-birth"
+        ],
+        "seed_memberships": [
+          "childcare-parenting/financial-help-children",
+          "childcare-parenting/pregnancy-birth"
+        ]
+      },
+      "description": "Plan how and when you and your partner take Shared Parental Leave. Find out how much Statutory Shared Parental Pay you would get and when to give notice.",
       "document_type": "transaction",
       "entity_class": "content_identity",
       "evidence_locator": "/",
-      "evidence_sha256": "1a4926dcf02bc39e096f9cc21a7b52856601b8119e13d87ff501ba34cc273dc6",
-      "evidence_url": "https://www.gov.uk/sign-in-universal-credit",
-      "first_published_at": "2017-08-23T15:17:23Z",
+      "evidence_sha256": "383feea61b6c57ce27865acc25ba5ec3de8aac87da433564ae29c3e9a14f3ca6",
+      "evidence_url": "https://www.gov.uk/api/content/plan-shared-parental-leave-pay",
+      "first_published_at": "2021-06-17T07:39:26+01:00",
       "jurisdiction": [
         "United Kingdom"
       ],
       "language": "en",
       "lifecycle": "published",
-      "name": "00000000-0000-4000-8000-000000000005-en",
-      "notes": "Report a change, add a journal note and see payments.",
-      "open": "dataset/00000000-0000-4000-8000-000000000005-en",
-      "ordinal": 4,
-      "public_updated_at": "2026-07-08T09:00:00Z",
-      "publisher": "department-for-work-pensions",
-      "publisher_title": "Department for Work and Pensions",
+      "name": "1de204a4-466c-4641-8b93-7c8e6b60ee39-en",
+      "notes": "Plan how and when you and your partner take Shared Parental Leave. Find out how much Statutory Shared Parental Pay you would get and when to give notice.",
+      "open": "dataset/1de204a4-466c-4641-8b93-7c8e6b60ee39-en",
+      "ordinal": 7,
+      "public_updated_at": "2021-06-17T07:39:25+01:00",
+      "publisher": "government-digital-service",
+      "publisher_title": "Government Digital Service",
       "record_type": "GOV.UK content item",
       "redirects": [],
-      "retrieved_at": "2026-07-11T23:30:00Z",
+      "retrieved_at": "2026-07-15T06:24:22.536117+00:00",
       "routing_kind": "canonical",
       "schema_name": "transaction",
-      "source_adapter": "govuk_public_metadata",
+      "source_adapter": "govuk_content_api",
       "source_memberships": [
-        "fixture-content-api"
+        "mainstream-browse:childcare-parenting/financial-help-children",
+        "mainstream-browse:childcare-parenting/pregnancy-birth",
+        "new-child-demo-search-seed",
+        "structured-content-api"
       ],
-      "source_native_id": "00000000-0000-4000-8000-000000000005",
+      "source_native_id": "1de204a4-466c-4641-8b93-7c8e6b60ee39",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
@@ -432,265 +622,152 @@
         "published",
         "transaction"
       ],
-      "timestamp": "2026-07-08T09:00:00Z",
-      "title": "Sign in to your Universal Credit account",
-      "url": "https://www.gov.uk/sign-in-universal-credit"
+      "timestamp": "2021-06-17T07:39:25+01:00",
+      "title": "Plan your Shared Parental Leave and Pay",
+      "url": "https://www.gov.uk/plan-shared-parental-leave-pay"
     },
     {
-      "@id": "https://www.gov.uk/government/publications/ukho-1825-archives-catalogue",
+      "@id": "https://www.gov.uk/maternity-paternity-pay-leave",
       "access_model": "anonymous",
-      "base_path": "/government/publications/ukho-1825-archives-catalogue",
-      "canonical_content_id": "00000000-0000-4000-8000-000000000006",
+      "base_path": "/maternity-paternity-pay-leave",
+      "canonical_content_id": "1f6b4ecc-ce2c-488a-b9c7-b78b3bba5598",
       "confidence": "source-declared",
       "coverage_disposition": "represented",
-      "description": "Catalogue of United Kingdom Hydrographic Office archives.",
-      "document_type": "guidance",
+      "demo": {
+        "cohort_id": "new-child-support",
+        "is_seed": true,
+        "journey_groups": [
+          "new-child-overview",
+          "financial-help-for-children",
+          "pregnancy-and-birth"
+        ],
+        "seed_memberships": [
+          "childcare-parenting/financial-help-children",
+          "childcare-parenting/pregnancy-birth"
+        ]
+      },
+      "description": "Maternity or Paternity Leave or Pay, or Maternity Allowance for parents",
+      "document_type": "smart_answer",
       "entity_class": "content_identity",
       "evidence_locator": "/",
-      "evidence_sha256": "fb3b48cd7d0894b40a53f0bc0a43e3cca7ca051387ed42f7f5cc7b1bdc7f2283",
-      "evidence_url": "https://www.gov.uk/government/publications/ukho-1825-archives-catalogue",
-      "first_published_at": "1945-07-18T10:11:00Z",
+      "evidence_sha256": "f096db04f611989955e7b98e96c4f9adce125570103f56325c640bb856f4eb72",
+      "evidence_url": "https://www.gov.uk/api/content/maternity-paternity-pay-leave",
+      "first_published_at": "2016-02-23T16:21:57+00:00",
       "jurisdiction": [
         "United Kingdom"
       ],
       "language": "en",
       "lifecycle": "published",
-      "name": "00000000-0000-4000-8000-000000000006-en",
-      "notes": "Catalogue of United Kingdom Hydrographic Office archives.",
-      "open": "dataset/00000000-0000-4000-8000-000000000006-en",
-      "ordinal": 5,
-      "public_updated_at": "2024-06-01T09:00:00Z",
-      "publisher": "uk-hydrographic-office",
-      "publisher_title": "UK Hydrographic Office",
-      "record_type": "GOV.UK content item",
-      "redirects": [],
-      "retrieved_at": "2026-07-11T23:30:00Z",
-      "routing_kind": "canonical",
-      "schema_name": "publication",
-      "source_adapter": "govuk_public_metadata",
-      "source_memberships": [
-        "fixture-content-api"
-      ],
-      "source_native_id": "00000000-0000-4000-8000-000000000006",
-      "source_tier": "official-public",
-      "status": "published",
-      "tags": [
-        "en",
-        "guidance",
-        "publication",
-        "published"
-      ],
-      "timestamp": "2024-06-01T09:00:00Z",
-      "title": "UKHO 1825 archives catalogue",
-      "url": "https://www.gov.uk/government/publications/ukho-1825-archives-catalogue"
-    },
-    {
-      "@id": "https://www.gov.uk/government/collections/archive-catalogues",
-      "access_model": "anonymous",
-      "base_path": "/government/collections/archive-catalogues",
-      "canonical_content_id": "00000000-0000-4000-8000-000000000007",
-      "confidence": "source-declared",
-      "coverage_disposition": "represented",
-      "description": "A collection of public archive catalogues.",
-      "document_type": "document_collection",
-      "entity_class": "content_identity",
-      "evidence_locator": "/",
-      "evidence_sha256": "2d74fec067d50ff383a75a02e472dc6344a65d3091ead7c7cc7ae60acec516d2",
-      "evidence_url": "https://www.gov.uk/government/collections/archive-catalogues",
-      "first_published_at": "2014-01-01T00:00:00Z",
-      "jurisdiction": [
-        "United Kingdom"
-      ],
-      "language": "en",
-      "lifecycle": "published",
-      "name": "00000000-0000-4000-8000-000000000007-en",
-      "notes": "A collection of public archive catalogues.",
-      "open": "dataset/00000000-0000-4000-8000-000000000007-en",
-      "ordinal": 6,
-      "public_updated_at": "2026-06-01T09:00:00Z",
-      "publisher": "the-national-archives",
-      "publisher_title": "The National Archives",
-      "record_type": "GOV.UK content item",
-      "redirects": [],
-      "retrieved_at": "2026-07-11T23:30:00Z",
-      "routing_kind": "canonical",
-      "schema_name": "document_collection",
-      "source_adapter": "govuk_public_metadata",
-      "source_memberships": [
-        "fixture-content-api"
-      ],
-      "source_native_id": "00000000-0000-4000-8000-000000000007",
-      "source_tier": "official-public",
-      "status": "published",
-      "tags": [
-        "document_collection",
-        "en",
-        "published"
-      ],
-      "timestamp": "2026-06-01T09:00:00Z",
-      "title": "Archive catalogues",
-      "url": "https://www.gov.uk/government/collections/archive-catalogues"
-    },
-    {
-      "@id": "https://www.gov.uk/foreign-travel-advice/thailand",
-      "access_model": "anonymous",
-      "base_path": "/foreign-travel-advice/thailand",
-      "canonical_content_id": "00000000-0000-4000-8000-000000000009",
-      "confidence": "source-declared",
-      "coverage_disposition": "represented",
-      "description": "Latest information and advice for travel to Thailand.",
-      "document_type": "travel_advice",
-      "entity_class": "content_identity",
-      "evidence_locator": "/",
-      "evidence_sha256": "05dfe3343fd9d766a2524e9c8058deb698de1b3785f17178fe133d01ba2bacf8",
-      "evidence_url": "https://www.gov.uk/foreign-travel-advice/thailand",
-      "first_published_at": "2013-03-22T00:00:00Z",
-      "jurisdiction": [
-        "United Kingdom"
-      ],
-      "language": "en",
-      "lifecycle": "published",
-      "name": "00000000-0000-4000-8000-000000000009-en",
-      "notes": "Latest information and advice for travel to Thailand.",
-      "open": "dataset/00000000-0000-4000-8000-000000000009-en",
-      "ordinal": 7,
-      "public_updated_at": "2026-07-11T12:00:00Z",
-      "publisher": "foreign-commonwealth-development-office",
-      "publisher_title": "Foreign, Commonwealth & Development Office",
-      "record_type": "GOV.UK content item",
-      "redirects": [],
-      "retrieved_at": "2026-07-11T23:30:00Z",
-      "routing_kind": "canonical",
-      "schema_name": "travel_advice",
-      "source_adapter": "govuk_public_metadata",
-      "source_memberships": [
-        "fixture-content-api"
-      ],
-      "source_native_id": "00000000-0000-4000-8000-000000000009",
-      "source_tier": "official-public",
-      "status": "published",
-      "tags": [
-        "en",
-        "published",
-        "travel_advice"
-      ],
-      "timestamp": "2026-07-11T12:00:00Z",
-      "title": "Thailand travel advice",
-      "url": "https://www.gov.uk/foreign-travel-advice/thailand"
-    },
-    {
-      "@id": "https://www.gov.uk/addysg",
-      "access_model": "anonymous",
-      "base_path": "/addysg",
-      "canonical_content_id": "00000000-0000-4000-8000-000000000010",
-      "confidence": "source-declared",
-      "coverage_disposition": "represented",
-      "description": "Gwybodaeth am addysg a hyfforddiant.",
-      "document_type": "taxon",
-      "entity_class": "content_identity",
-      "evidence_locator": "/",
-      "evidence_sha256": "e6aa871a4e1c304a4ab19f4ff4ab06342d7e29dc27e3785c51afc540571480b5",
-      "evidence_url": "https://www.gov.uk/addysg",
-      "first_published_at": "2018-01-01T00:00:00Z",
-      "jurisdiction": [
-        "United Kingdom"
-      ],
-      "language": "cy",
-      "lifecycle": "published",
-      "name": "00000000-0000-4000-8000-000000000010-cy",
-      "notes": "Gwybodaeth am addysg a hyfforddiant.",
-      "open": "dataset/00000000-0000-4000-8000-000000000010-cy",
+      "name": "1f6b4ecc-ce2c-488a-b9c7-b78b3bba5598-en",
+      "notes": "Maternity or Paternity Leave or Pay, or Maternity Allowance for parents",
+      "open": "dataset/1f6b4ecc-ce2c-488a-b9c7-b78b3bba5598-en",
       "ordinal": 8,
-      "public_updated_at": "2026-07-10T10:00:00Z",
+      "public_updated_at": "2021-06-16T09:18:51+01:00",
       "publisher": "unknown",
       "publisher_title": "Publisher not available from admitted source",
       "record_type": "GOV.UK content item",
       "redirects": [],
-      "retrieved_at": "2026-07-11T23:30:00Z",
+      "retrieved_at": "2026-07-15T06:24:22.929662+00:00",
       "routing_kind": "canonical",
-      "schema_name": "taxon",
-      "source_adapter": "govuk_public_metadata",
+      "schema_name": "smart_answer",
+      "source_adapter": "govuk_content_api",
       "source_memberships": [
-        "fixture-content-api"
+        "mainstream-browse:childcare-parenting/financial-help-children",
+        "mainstream-browse:childcare-parenting/pregnancy-birth",
+        "new-child-demo-search-seed",
+        "structured-content-api"
       ],
-      "source_native_id": "00000000-0000-4000-8000-000000000010",
-      "source_tier": "official-public",
-      "status": "published",
-      "tags": [
-        "cy",
-        "published",
-        "taxon"
-      ],
-      "timestamp": "2026-07-10T10:00:00Z",
-      "title": "Addysg, hyfforddiant a sgiliau",
-      "url": "https://www.gov.uk/addysg"
-    },
-    {
-      "@id": "https://www.gov.uk/learn-to-drive-a-car",
-      "access_model": "anonymous",
-      "base_path": "/learn-to-drive-a-car",
-      "canonical_content_id": "00000000-0000-4000-8000-000000000011",
-      "confidence": "source-declared",
-      "coverage_disposition": "represented",
-      "description": "Check what you need to do to learn to drive.",
-      "document_type": "step_by_step_nav",
-      "entity_class": "content_identity",
-      "evidence_locator": "/",
-      "evidence_sha256": "25e94b5553c5ad864d8cff7a2949394e1c6d0df224c1bd30892131a67b8837f3",
-      "evidence_url": "https://www.gov.uk/learn-to-drive-a-car",
-      "first_published_at": "2018-01-01T00:00:00Z",
-      "jurisdiction": [
-        "United Kingdom"
-      ],
-      "language": "en",
-      "lifecycle": "published",
-      "name": "00000000-0000-4000-8000-000000000011-en",
-      "notes": "Check what you need to do to learn to drive.",
-      "open": "dataset/00000000-0000-4000-8000-000000000011-en",
-      "ordinal": 9,
-      "public_updated_at": "2026-07-01T09:00:00Z",
-      "publisher": "driver-and-vehicle-standards-agency",
-      "publisher_title": "Driver and Vehicle Standards Agency",
-      "record_type": "GOV.UK content item",
-      "redirects": [],
-      "retrieved_at": "2026-07-11T23:30:00Z",
-      "routing_kind": "canonical",
-      "schema_name": "step_by_step_nav",
-      "source_adapter": "govuk_public_metadata",
-      "source_memberships": [
-        "fixture-content-api"
-      ],
-      "source_native_id": "00000000-0000-4000-8000-000000000011",
+      "source_native_id": "1f6b4ecc-ce2c-488a-b9c7-b78b3bba5598",
       "source_tier": "official-public",
       "status": "published",
       "tags": [
         "en",
         "published",
-        "step_by_step_nav"
+        "smart_answer"
       ],
-      "timestamp": "2026-07-01T09:00:00Z",
-      "title": "Learn to drive a car: step by step",
-      "url": "https://www.gov.uk/learn-to-drive-a-car"
+      "timestamp": "2021-06-16T09:18:51+01:00",
+      "title": "Check if you can get Maternity or Paternity Leave or Pay, or Maternity Allowance",
+      "url": "https://www.gov.uk/maternity-paternity-pay-leave"
+    },
+    {
+      "@id": "https://www.gov.uk/junior-individual-savings-accounts",
+      "access_model": "anonymous",
+      "base_path": "/junior-individual-savings-accounts",
+      "canonical_content_id": "21a2bfa6-c62b-4280-9682-58c876bef012",
+      "confidence": "source-declared",
+      "coverage_disposition": "represented",
+      "demo": {
+        "cohort_id": "new-child-support",
+        "is_seed": true,
+        "journey_groups": [
+          "new-child-overview",
+          "financial-help-for-children"
+        ],
+        "seed_memberships": [
+          "childcare-parenting/financial-help-children"
+        ]
+      },
+      "description": "How to open a Junior ISA for your child - including managing and adding money to an account.",
+      "document_type": "guide",
+      "entity_class": "content_identity",
+      "evidence_locator": "/",
+      "evidence_sha256": "ead8a92f95930a3e0272cbabdb8f195be47f6cf1c2b3f2501955fd53b4044cba",
+      "evidence_url": "https://www.gov.uk/api/content/junior-individual-savings-accounts",
+      "first_published_at": "2012-09-27T17:35:08+01:00",
+      "jurisdiction": [
+        "United Kingdom"
+      ],
+      "language": "en",
+      "lifecycle": "published",
+      "name": "21a2bfa6-c62b-4280-9682-58c876bef012-en",
+      "notes": "How to open a Junior ISA for your child - including managing and adding money to an account.",
+      "open": "dataset/21a2bfa6-c62b-4280-9682-58c876bef012-en",
+      "ordinal": 9,
+      "public_updated_at": "2015-04-10T17:00:11+01:00",
+      "publisher": "government-digital-service",
+      "publisher_title": "Government Digital Service",
+      "record_type": "GOV.UK content item",
+      "redirects": [],
+      "retrieved_at": "2026-07-15T06:24:23.034010+00:00",
+      "routing_kind": "canonical",
+      "schema_name": "guide",
+      "source_adapter": "govuk_content_api",
+      "source_memberships": [
+        "mainstream-browse:childcare-parenting/financial-help-children",
+        "new-child-demo-search-seed",
+        "structured-content-api"
+      ],
+      "source_native_id": "21a2bfa6-c62b-4280-9682-58c876bef012",
+      "source_tier": "official-public",
+      "status": "published",
+      "tags": [
+        "en",
+        "guide",
+        "published"
+      ],
+      "timestamp": "2015-04-10T17:00:11+01:00",
+      "title": "Junior Individual Savings Accounts (ISA)",
+      "url": "https://www.gov.uk/junior-individual-savings-accounts"
     }
   ],
   "schema": "okf-large-overview.v1",
   "site_topology": {
     "counts": {
       "cross_host_redirect_rules": 0,
-      "gov_uk_domain_boundary_hosts": 1,
-      "hosts": 2,
-      "main_publishing_estate_records": 13,
+      "gov_uk_domain_boundary_hosts": 0,
+      "hosts": 1,
+      "main_publishing_estate_records": 69,
       "other_external_boundary_hosts": 0,
-      "published_records": 14,
-      "redirect_records": 1,
-      "redirect_rules": 1,
-      "relationship_assertions": 16,
-      "source_records": 12,
-      "stable_content_identifiers": 10
+      "published_records": 69,
+      "redirect_records": 0,
+      "redirect_rules": 0,
+      "relationship_assertions": 392,
+      "source_records": 69,
+      "stable_content_identifiers": 69
     },
     "entrypoint": "data/site-topology.json",
     "status": "snapshot_projection_not_release_completeness_claim"
   },
-  "snapshot": "fixture-2026-07-11",
-  "title": "What’s on GOV.UK public metadata corpus"
+  "snapshot": "NEW-CHILD-20260715",
+  "title": "Having a new child: bounded GOV.UK metadata demonstrator"
 }

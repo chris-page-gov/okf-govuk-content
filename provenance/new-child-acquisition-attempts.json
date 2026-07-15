@@ -1,0 +1,75 @@
+{
+  "schema": "govuk-okf-new-child-demonstrator-acquisition-history.v1",
+  "snapshot_id": "NEW-CHILD-20260715",
+  "scope": "Bounded public metadata acquisition for the exact 69-record new-child demonstrator; this is not the full GOV.UK corpus.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "superseded_before_publication",
+      "started_at": "2026-07-15T06:05:52.346302+00:00",
+      "ended_at": "2026-07-15T06:06:23.229166+00:00",
+      "official_source_request_attempts": 124,
+      "programme_request_sequences": {
+        "kind": "contiguous_interval",
+        "first": 76018,
+        "last": 76141
+      },
+      "snapshot_manifest_sha256": "dd1a50cee069b33f0c8a35297dbd6b607d1d43234c81c929ee4d7506a62a1da7",
+      "source_records_sha256": "e6a15afa8658e0fce0aa61430085d42e801d1a32db1881a4837f7b586c011e3a",
+      "published": false,
+      "retained_in_repository": false,
+      "disposition": "Preserved outside the repository as audit evidence only. Independent review found recursively retained nested link objects, incomplete retry receipts, missing closing group checks and other fail-closed gaps. No generated publication or screenshot may use this attempt."
+    },
+    {
+      "attempt": 2,
+      "status": "accepted_bounded_snapshot",
+      "started_at": "2026-07-15T06:24:16.662649+00:00",
+      "ended_at": "2026-07-15T06:25:17.571009+00:00",
+      "official_source_request_attempts": 127,
+      "programme_request_attribution": {
+        "kind": "exact_interleaving_safe_sequences",
+        "evidence": "demo/snapshots/NEW-CHILD-20260715/publication/cohort-manifest.json#/retrieval/programme_request_sequences",
+        "first_owned_sequence": 76786,
+        "last_owned_sequence": 76969,
+        "owned_sequences": 127,
+        "programme_count_before": 76784,
+        "programme_count_after": 76969
+      },
+      "contract_integrity": {
+        "live_source_bytes_sha256": "45bc769f460c25444da931fc2244933a3e46970975789f02c7fd4ed0993cbf73",
+        "frozen_pretty_bytes_sha256": "6ff10a1dce0104c230f1cc63aee62208c56b63d7fa3501372df6c204a080cf22",
+        "canonical_json_sha256": "129dae3815118e956fd2d24750fa16704d04213ae6e80408930c7d01e9424d1e",
+        "semantically_identical": true
+      },
+      "snapshot_manifest_sha256": "172c119ab10e736d18ce4eceb6e56f66b92e27aaaaaac64f53311d3146c0a901",
+      "frozen_index_sha256": "a627fab1f3c77ed6ef5108178279c50b9d47f74b3b87165d286dd9a72186e090",
+      "cohort_manifest_sha256": "d90734a703139c3c9fb0474fa42c62d85cdfc4e2fbbd83bf6eaba609272ea205",
+      "source_records_sha256": "827d01d031e07fa165ab18af0f0c96f8c227b13b75ca08a82f422afd93a41cf1",
+      "checks": {
+        "seed_denominator": 69,
+        "seed_records": 69,
+        "unexplained_seed_omissions": 0,
+        "retained_content_metadata_records": 118,
+        "direct_boundary_references": 753,
+        "request_receipt_events": 254,
+        "frozen_rebuild_identical": true,
+        "complete_page_bodies_retained": false,
+        "rendered_pages_retained": false,
+        "attachments_downloaded": false,
+        "nested_link_targets_retained": false,
+        "model_calls": 0
+      }
+    }
+  ],
+  "rights_and_access": {
+    "sources": [
+      "https://www.gov.uk/api/search.json",
+      "https://www.gov.uk/api/content/*"
+    ],
+    "public_metadata_only": true,
+    "robots_and_rate_limits_respected": true,
+    "personal_data_collected": false,
+    "complete_page_bodies_retained": false,
+    "attachment_bytes_downloaded": false
+  }
+}

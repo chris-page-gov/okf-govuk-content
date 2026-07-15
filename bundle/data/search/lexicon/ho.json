@@ -2,11 +2,41 @@
   {
     "df": 1,
     "postings": "data/search/postings/ho.json",
+    "token": "holiday"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ho.json",
     "token": "holidays"
+  },
+  {
+    "df": 4,
+    "postings": "data/search/postings/ho.json",
+    "token": "home"
   },
   {
     "df": 1,
     "postings": "data/search/postings/ho.json",
-    "token": "homepage"
+    "token": "homework"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ho.json",
+    "token": "hospital"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ho.json",
+    "token": "hours"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ho.json",
+    "token": "house"
+  },
+  {
+    "df": 28,
+    "postings": "data/search/postings/ho.json",
+    "token": "how"
   }
 ]

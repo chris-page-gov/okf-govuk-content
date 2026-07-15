@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-14",
+  "as_of": "2026-07-15",
   "counts": {
     "accepted": 0,
     "by_implementation_status": {
@@ -10,11 +10,11 @@
     "tasks": 36
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "7ebb850832782c88cc7a9911bb67ad4b6bae3d3fed55470059154f1268942314",
+  "generated_from_sha256": "1c0d4eec531bcd46705a078b2dd326d0d8cc8b9924e73f34b9eb162366248305",
   "interpretation": "A produced task has an artefact foundation only; accepted is reserved for a satisfied promotion gate with terminal evidence, and human-only tasks remain blocked without authority.",
   "milestone": "t0_census_closed",
   "publication_ready": false,
-  "release_id": "fixture-2026-07-11",
+  "release_id": "NEW-CHILD-20260715",
   "release_kind": "fixture",
   "release_state": "checkpoint",
   "schema": "afhf-govuk-okf-task-status.v1",

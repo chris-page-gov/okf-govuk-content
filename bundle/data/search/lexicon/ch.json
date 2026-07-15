@@ -2,16 +2,141 @@
   {
     "df": 1,
     "postings": "data/search/postings/ch.json",
-    "token": "change"
+    "token": "ch105"
   },
   {
     "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "ch2"
+  },
+  {
+    "df": 6,
+    "postings": "data/search/postings/ch.json",
+    "token": "change"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/ch.json",
+    "token": "changes"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "changes-affect-tax-credits"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ch.json",
+    "token": "charge"
+  },
+  {
+    "df": 6,
     "postings": "data/search/postings/ch.json",
     "token": "check"
   },
   {
-    "df": 1,
+    "df": 27,
     "postings": "data/search/postings/ch.json",
     "token": "child"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child-benefit"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child-benefit-16-19"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child-benefit-abroad"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child-benefit-child-lives-with-someone-else"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child-benefit-child-parent-dies"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child-benefit-complaints"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child-benefit-for-children-in-hospital-or-care"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child-benefit-move-to-uk"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child-benefit-payment-dates"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child-benefit-proof"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child-benefit-tax-calculator"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "child-benefit-tax-charge"
+  },
+  {
+    "df": 15,
+    "postings": "data/search/postings/ch.json",
+    "token": "childcare"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "childcare-calculator"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "childcare-grant"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "childcare-out-of-school-hours"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ch.json",
+    "token": "childminder"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ch.json",
+    "token": "childminders"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ch.json",
+    "token": "childminding"
+  },
+  {
+    "df": 11,
+    "postings": "data/search/postings/ch.json",
+    "token": "children"
   }
 ]

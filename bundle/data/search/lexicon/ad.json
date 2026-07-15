@@ -2,20 +2,35 @@
   {
     "df": 1,
     "postings": "data/search/postings/ad.json",
-    "token": "add"
+    "token": "adaptations"
   },
   {
     "df": 1,
     "postings": "data/search/postings/ad.json",
-    "token": "addysg"
+    "token": "adding"
   },
   {
-    "df": 7,
+    "df": 1,
+    "postings": "data/search/postings/ad.json",
+    "token": "additional"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/ad.json",
+    "token": "address"
+  },
+  {
+    "df": 2,
     "postings": "data/search/postings/ad.json",
     "token": "admitted"
   },
   {
-    "df": 1,
+    "df": 2,
+    "postings": "data/search/postings/ad.json",
+    "token": "adoption"
+  },
+  {
+    "df": 2,
     "postings": "data/search/postings/ad.json",
     "token": "advice"
   }

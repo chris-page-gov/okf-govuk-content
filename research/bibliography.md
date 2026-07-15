@@ -1,6 +1,6 @@
 # Release bibliography
 
-Snapshot: `T0-20260712`
+Snapshot: `NEW-CHILD-20260715`
 
 This file is generated from the citation catalogue. Verification status is
 reported separately because a reachable source is not automatically evidence
@@ -240,6 +240,12 @@ that a claim is semantically supported.
   `content-hash snapshot`; locator
   `heading_text_fingerprint:GAIA`; document SHA-256
   `f9c8b370ce36d9a75a4ffc0d35e70b96899648975871cfbd30b6dba4f83aecf7`.
+- **Model Context Protocol project**. [MCP stdio and Streamable HTTP transports](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports).
+  `SRC-937FAE6437B3FC36`; normative_standard; retrieved
+  `not_fetched`; version/commit
+  `2025-11-25`; locator
+  `heading_text_fingerprint:MCP stdio and Streamable HTTP transports`; document SHA-256
+  `missing`.
 - **Model Context Protocol project**. [Resources - Model Context Protocol](https://modelcontextprotocol.io/specification/2025-11-25/server/resources).
   `SRC-0327381847788538`; normative_standard; retrieved
   `2026-07-12T07:49:58Z`; version/commit
@@ -306,12 +312,36 @@ that a claim is semantically supported.
   `content-hash snapshot`; locator
   `heading_text_fingerprint:Multi-agent`; document SHA-256
   `7a0c7346a23f68ec203cd08ac9a17b18cef142b5f56184aab793ee1d86426f37`.
+- **OpenAI**. [OpenAI: Secure MCP Tunnel](https://developers.openai.com/api/docs/guides/secure-mcp-tunnels).
+  `SRC-86C7F909ED4A1F9E`; vendor_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:OpenAI: Secure MCP Tunnel`; document SHA-256
+  `missing`.
+- **OpenAI**. [OpenAI API: MCP and connectors](https://developers.openai.com/api/docs/guides/tools-connectors-mcp).
+  `SRC-8F086A24D994E466`; vendor_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:OpenAI API: MCP and connectors`; document SHA-256
+  `missing`.
 - **OpenAI**. [Models | OpenAI API](https://developers.openai.com/api/docs/models).
   `SRC-0E5BA6524C75AB00`; vendor_primary; retrieved
   `2026-07-12T07:49:59Z`; version/commit
   `content-hash snapshot`; locator
   `heading_text_fingerprint:OpenAI Models, “Choosing a model”`; document SHA-256
   `591bd5ba5716bf5e7cdde7bed53b3360a9677a0df1e39c34abbbe06b065efa4f`.
+- **OpenAI**. [OpenAI: configure MCP in Codex](https://developers.openai.com/codex/mcp).
+  `SRC-CC16690AD5FAAE89`; vendor_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:OpenAI: configure MCP in Codex`; document SHA-256
+  `missing`.
+- **OpenAI**. [OpenAI: developer mode and MCP apps in ChatGPT](https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt).
+  `SRC-5A74F649300C7670`; original_research; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:OpenAI: developer mode and MCP apps in ChatGPT`; document SHA-256
+  `missing`.
 - **OpenAI**. [Models | ChatGPT Learn](https://learn.chatgpt.com/docs/models).
   `SRC-C272FA6FAF4691DE`; vendor_primary; retrieved
   `2026-07-12T07:50:17Z`; version/commit
@@ -594,6 +624,12 @@ that a claim is semantically supported.
   `b1e987aa7b3e62c105ff2b2db87667f7638726f8`; locator
   `commit_path:publishing-api@b1e987aa7b3e62c105ff2b2db87667f7638726f8:content_schemas`; document SHA-256
   `4cefd45c20e3af8ddab69c31cc449406aa5132fe9f43a21a7a3b2ee9c8830074`.
+- **Version-pinned upstream repository**. [Official MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk).
+  `SRC-B275EC28FDDD14C2`; maintainer_primary; retrieved
+  `not_fetched`; version/commit
+  `content-hash snapshot`; locator
+  `heading_text_fingerprint:Official MCP Python SDK`; document SHA-256
+  `missing`.
 - **World Wide Web Consortium**. [SKOS Simple Knowledge Organization System Reference](https://www.w3.org/TR/2009/REC-skos-reference-20090818/).
   `SRC-55498A4AC6604944`; normative_standard; retrieved
   `2026-07-12T07:50:07Z`; version/commit

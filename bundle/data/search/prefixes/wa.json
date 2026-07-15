@@ -1,0 +1,32 @@
+{
+  "wag": [
+    {
+      "df": 1,
+      "token": "wage"
+    }
+  ],
+  "wage": [
+    {
+      "df": 1,
+      "token": "wage"
+    }
+  ],
+  "wal": [
+    {
+      "df": 1,
+      "token": "walk"
+    }
+  ],
+  "walk": [
+    {
+      "df": 1,
+      "token": "walk"
+    }
+  ],
+  "was": [
+    {
+      "df": 1,
+      "token": "was"
+    }
+  ]
+}

@@ -1,13 +1,18 @@
 [
   {
-    "df": 2,
+    "df": 7,
     "postings": "data/search/postings/re.json",
-    "token": "redirect"
+    "token": "re"
   },
   {
     "df": 1,
     "postings": "data/search/postings/re.json",
-    "token": "redirect_destination"
+    "token": "received"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "receiving"
   },
   {
     "df": 1,
@@ -15,18 +20,83 @@
     "token": "redundancy"
   },
   {
-    "df": 1,
+    "df": 3,
     "postings": "data/search/postings/re.json",
-    "token": "relationship"
+    "token": "register"
   },
   {
     "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "register-birth"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "register-birth-abroad"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "register-stillbirth"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "registered"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/re.json",
+    "token": "repay"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "repay-child-benefit-overpayments"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "repaying"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "repayment"
+  },
+  {
+    "df": 4,
     "postings": "data/search/postings/re.json",
     "token": "report"
   },
   {
     "df": 1,
     "postings": "data/search/postings/re.json",
-    "token": "responsible"
+    "token": "report-changes-child-benefit"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "reporting"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "reports"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "residential"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "restart"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/re.json",
+    "token": "returning"
   }
 ]

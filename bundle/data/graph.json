@@ -1,45 +1,41 @@
 {
   "nodes": {
-    "datasets": 14,
-    "publishers": 6,
-    "resources": 1
+    "datasets": 69,
+    "publishers": 14,
+    "resources": 0
   },
   "relationships_by_kind": [
     {
-      "count": 7,
-      "value": "published by"
+      "count": 133,
+      "value": "related to"
     },
     {
-      "count": 2,
+      "count": 96,
+      "value": "associated with organisation"
+    },
+    {
+      "count": 69,
       "value": "available in language"
     },
     {
-      "count": 1,
-      "value": "applies to world location"
+      "count": 67,
+      "value": "published by"
+    },
+    {
+      "count": 9,
+      "value": "ordered related items overrides"
+    },
+    {
+      "count": 9,
+      "value": "part of step by step"
+    },
+    {
+      "count": 8,
+      "value": "pages part of step nav"
     },
     {
       "count": 1,
-      "value": "child of"
-    },
-    {
-      "count": 1,
-      "value": "classified under"
-    },
-    {
-      "count": 1,
-      "value": "has attachment"
-    },
-    {
-      "count": 1,
-      "value": "level one taxons"
-    },
-    {
-      "count": 1,
-      "value": "part of collection"
-    },
-    {
-      "count": 1,
-      "value": "redirects to"
+      "value": "pages related to step nav"
     }
   ],
   "schema": "okf-graph-summary.v1"

@@ -41,12 +41,23 @@ class PublicationTests(unittest.TestCase):
             semantic = json.loads((output / "okf-bundle.jsonld").read_text(encoding="utf-8"))
             self.assertEqual("okf-explorer-large-corpus.v1", descriptor["schema"])
             self.assertEqual("okf-large-corpus", descriptor["kind"])
+            self.assertEqual("What’s on GOV.UK", descriptor["title"])
+            self.assertEqual("preview", descriptor["status"])
+            self.assertNotIn("scope", descriptor)
             self.assertEqual("okf:Bundle", semantic["@type"])
             expected_semantic = semantic_descriptor(descriptor["counts"], "2026-07-11T23:30:00Z", "fixture-2026-07-11")
             self.assertEqual(expected_semantic, semantic)
             self.assertEqual(yaml_dump(expected_semantic) + "\n", (output / "okf-bundle.yamlld").read_text(encoding="utf-8"))
             self.assertEqual(semantic, yaml_load_subset((output / "okf-bundle.yamlld").read_text(encoding="utf-8")))
             self.assertEqual(result["semantic_projection_sha256"], descriptor["semantic_projection_sha256"])
+            topology = json.loads(
+                (output / "data" / "site-topology.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual("GOV.UK sitemap and routing topology", topology["title"])
+            self.assertEqual(
+                "one Search API-derived enumerator within the reconciled source union",
+                topology["scope"]["official_sitemap_role"],
+            )
             search_reference = descriptor["entrypoint_integrity"]["search_manifest"]
             self.assertEqual("data/search/manifest.json", search_reference["path"])
             self.assertEqual(search_reference["path"], descriptor["entrypoints"]["search_manifest"])

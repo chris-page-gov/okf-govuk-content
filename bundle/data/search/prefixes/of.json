@@ -3,6 +3,58 @@
     {
       "df": 2,
       "token": "office"
+    },
+    {
+      "df": 1,
+      "token": "off"
+    },
+    {
+      "df": 1,
+      "token": "offence"
+    },
+    {
+      "df": 1,
+      "token": "offers"
+    }
+  ],
+  "offe": [
+    {
+      "df": 1,
+      "token": "offence"
+    },
+    {
+      "df": 1,
+      "token": "offers"
+    }
+  ],
+  "offen": [
+    {
+      "df": 1,
+      "token": "offence"
+    }
+  ],
+  "offenc": [
+    {
+      "df": 1,
+      "token": "offence"
+    }
+  ],
+  "offence": [
+    {
+      "df": 1,
+      "token": "offence"
+    }
+  ],
+  "offer": [
+    {
+      "df": 1,
+      "token": "offers"
+    }
+  ],
+  "offers": [
+    {
+      "df": 1,
+      "token": "offers"
     }
   ],
   "offi": [
@@ -21,6 +73,82 @@
     {
       "df": 2,
       "token": "office"
+    }
+  ],
+  "ofs": [
+    {
+      "df": 4,
+      "token": "ofsted"
+    },
+    {
+      "df": 1,
+      "token": "ofsted-explore-an-area"
+    }
+  ],
+  "ofst": [
+    {
+      "df": 4,
+      "token": "ofsted"
+    },
+    {
+      "df": 1,
+      "token": "ofsted-explore-an-area"
+    }
+  ],
+  "ofste": [
+    {
+      "df": 4,
+      "token": "ofsted"
+    },
+    {
+      "df": 1,
+      "token": "ofsted-explore-an-area"
+    }
+  ],
+  "ofsted": [
+    {
+      "df": 4,
+      "token": "ofsted"
+    },
+    {
+      "df": 1,
+      "token": "ofsted-explore-an-area"
+    }
+  ],
+  "ofsted-": [
+    {
+      "df": 1,
+      "token": "ofsted-explore-an-area"
+    }
+  ],
+  "ofsted-e": [
+    {
+      "df": 1,
+      "token": "ofsted-explore-an-area"
+    }
+  ],
+  "ofsted-ex": [
+    {
+      "df": 1,
+      "token": "ofsted-explore-an-area"
+    }
+  ],
+  "ofsted-exp": [
+    {
+      "df": 1,
+      "token": "ofsted-explore-an-area"
+    }
+  ],
+  "ofsted-expl": [
+    {
+      "df": 1,
+      "token": "ofsted-explore-an-area"
+    }
+  ],
+  "ofsted-explo": [
+    {
+      "df": 1,
+      "token": "ofsted-explore-an-area"
     }
   ]
 }

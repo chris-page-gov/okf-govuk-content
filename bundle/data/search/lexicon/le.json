@@ -7,6 +7,26 @@
   {
     "df": 1,
     "postings": "data/search/postings/le.json",
-    "token": "learn-to-drive-a-car"
+    "token": "learner"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/le.json",
+    "token": "learning"
+  },
+  {
+    "df": 12,
+    "postings": "data/search/postings/le.json",
+    "token": "leave"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/le.json",
+    "token": "leaving"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/le.json",
+    "token": "legal"
   }
 ]

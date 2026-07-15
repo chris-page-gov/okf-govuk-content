@@ -1,7 +1,7 @@
 # AF/HF GOV.UK OKF aim scorecard
 
-- Assessment: `aim-assessment-fixture-2026-07-11`
-- Snapshot: `fixture-2026-07-11` (`fixture`, sampled: `true`)
+- Assessment: `aim-assessment-NEW-CHILD-20260715`
+- Snapshot: `NEW-CHILD-20260715` (`fixture`, sampled: `true`)
 - Assessment tier: `fixture_checkpoint`
 Acceptance Gate 11: `pending`
 
@@ -37,12 +37,12 @@ Boundary: A fixture demonstrates the pipeline but cannot fulfil an independent f
 
 Evidence:
 
-- `E-BUNDLE-DESCRIPTOR` — pass; `bundle/okf-explorer.json`; SHA-256 `d92365e243c381d3b3c9000dad492687a2bf566283f4494c5901fda300e7fdeb`; observed `true`.
-- `E-INDEPENDENT-WIKI` — pass; `bundle/okf-explorer.json/description`; SHA-256 `d92365e243c381d3b3c9000dad492687a2bf566283f4494c5901fda300e7fdeb`; observed `"Derived, non-authoritative semantic catalogue of GOV.UK content, navigation, organisations, taxonomies and relationships."`.
-- `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `"fixture"`.
-- `E-SNAPSHOT-UNSAMPLED` — not met; `release/manifest.yaml/snapshot/sampled`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `true`.
-- `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
-- `E-CLEAN-ROOM-RELEASE` — not met; `release/status.json/clean_room_reproduction_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
+- `E-BUNDLE-DESCRIPTOR` — pass; `bundle/okf-explorer.json`; SHA-256 `3087b21a3830ec44abb10c05bf600dad37de1145b08a019f53fcf5929a07429c`; observed `true`.
+- `E-INDEPENDENT-WIKI` — pass; `bundle/okf-explorer.json/description`; SHA-256 `3087b21a3830ec44abb10c05bf600dad37de1145b08a019f53fcf5929a07429c`; observed `"Derived, non-authoritative projection of exactly 69 frozen GOV.UK new-child metadata records; not a complete GOV.UK corpus."`.
+- `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c`; observed `"fixture"`.
+- `E-SNAPSHOT-UNSAMPLED` — not met; `release/manifest.yaml/snapshot/sampled`; SHA-256 `bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c`; observed `true`.
+- `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
+- `E-CLEAN-ROOM-RELEASE` — not met; `release/status.json/clean_room_reproduction_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
 
 Negative findings and limitations:
 
@@ -67,12 +67,12 @@ Boundary: A source audit or sampled capacity run is supporting evidence only, no
 Evidence:
 
 - `E-SOURCE-PREFLIGHT` — pass; `research/source-preflight.json/summary/official_failed`; SHA-256 `ffd1ba217dab2a247032f328ebe0a7124f1764e2d38e9c309f6271fccd055ca6`; observed `0`.
-- `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `"fixture"`.
-- `E-SNAPSHOT-UNSAMPLED` — not met; `release/manifest.yaml/snapshot/sampled`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `true`.
-- `E-FULL-CORPUS` — not met; `release/status.json/full_corpus_reconciled`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
-- `E-ZERO-OMISSIONS` — not met; `release/status.json/unexplained_omissions`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `null`.
-- `E-RECONCILIATION-ARTEFACT` — not met; `release/manifest.yaml/artifacts/reconciliation`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `null`.
-- `E-RIGHTS-RELEASE` — not met; `release/rights-privacy-audit.json/rights_privacy_audit_passed`; SHA-256 `d0803ff593c0fe69cc20a50e2a0627d7c2c3b8e042e0b4bf3f534411e4b83c41`; observed `false`.
+- `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c`; observed `"fixture"`.
+- `E-SNAPSHOT-UNSAMPLED` — not met; `release/manifest.yaml/snapshot/sampled`; SHA-256 `bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c`; observed `true`.
+- `E-FULL-CORPUS` — not met; `release/status.json/full_corpus_reconciled`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
+- `E-ZERO-OMISSIONS` — not met; `release/status.json/unexplained_omissions`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `null`.
+- `E-RECONCILIATION-ARTEFACT` — not met; `release/manifest.yaml/artifacts/reconciliation`; SHA-256 `bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c`; observed `null`.
+- `E-RIGHTS-RELEASE` — not met; `release/rights-privacy-audit.json/rights_privacy_audit_passed`; SHA-256 `bbb4f9d06226d9270c7a1a4e359fee51fc0806fd89a0463de974f6e4bc11403e`; observed `false`.
 
 Negative findings and limitations:
 
@@ -97,13 +97,13 @@ Boundary: Fixture UI and automated checks support only partial fulfilment withou
 
 Evidence:
 
-- `E-EXPLORER-FOUNDATION` — pass; `explorer/src/index.html`; SHA-256 `6fabf38316aefa702b252d26a3b7e28cc4c2f0e99738df874552c2a29dc3a674`; observed `true`.
+- `E-EXPLORER-FOUNDATION` — pass; `explorer/src/index.html`; SHA-256 `8e4854b78abc35924bf82f9a3d4d3af9edc88ef7d4efd0d52c99f9c8eed649b6`; observed `true`.
 - `E-EXPLORER-NONBROWSER-TESTS` — not met; `explorer/src/evidence/fixture-browser.json/completed_non_browser_checks/failed`; SHA-256 `f51c11b36a16a97602e3aa7caad5d58535c089583917a34d9f96d2360252745c`; observed `null`.
 - `E-PERSONA-FOUNDATION` — pass; `personas/manifest.json`; SHA-256 `48fef769daa62ff839fe2c5e52cde31064becdf2e625f76c7ce5213888c9b8e2`; observed `true`.
-- `E-HUMAN-COMPLETE` — not met; `release/status.json/human_evaluation_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_authorised"`.
-- `E-HUMAN-AIM-FULFILLED` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_yet_testable"`.
-- `E-HUMAN-AIM-PARTLY` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_yet_testable"`.
-- `E-HUMAN-AIM-FAILED` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_yet_testable"`.
+- `E-HUMAN-COMPLETE` — not met; `release/status.json/human_evaluation_status`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `"not_authorised"`.
+- `E-HUMAN-AIM-FULFILLED` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `"not_yet_testable"`.
+- `E-HUMAN-AIM-PARTLY` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `"not_yet_testable"`.
+- `E-HUMAN-AIM-FAILED` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `"not_yet_testable"`.
 
 Negative findings and limitations:
 
@@ -130,11 +130,11 @@ Boundary: Synthetic, automated, expert-only or agent evidence cannot satisfy thi
 
 Evidence:
 
-- `E-HUMAN-NOT-AVAILABLE` — pass; `release/status.json/human_evaluation_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_authorised"`.
-- `E-HUMAN-COMPLETE` — not met; `release/status.json/human_evaluation_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_authorised"`.
-- `E-HUMAN-AIM-FULFILLED` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_yet_testable"`.
-- `E-HUMAN-AIM-PARTLY` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_yet_testable"`.
-- `E-HUMAN-AIM-FAILED` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_yet_testable"`.
+- `E-HUMAN-NOT-AVAILABLE` — pass; `release/status.json/human_evaluation_status`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `"not_authorised"`.
+- `E-HUMAN-COMPLETE` — not met; `release/status.json/human_evaluation_status`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `"not_authorised"`.
+- `E-HUMAN-AIM-FULFILLED` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `"not_yet_testable"`.
+- `E-HUMAN-AIM-PARTLY` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `"not_yet_testable"`.
+- `E-HUMAN-AIM-FAILED` — not met; `release/status.json/human_ui_of_choice_status`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `"not_yet_testable"`.
 
 Negative findings and limitations:
 
@@ -161,11 +161,11 @@ Boundary: Passing fixture semantics demonstrates the model, not complete full-co
 Evidence:
 
 - `E-PROFILE` — pass; `semantic/profile/govuk-okf-profile-v1.yamlld`; SHA-256 `897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8`; observed `true`.
-- `E-SEMANTIC-FIXTURE` — pass; `release/semantic-validation.json/passed`; SHA-256 `46c36354ca25306d700c0339e73f78545f302e8219b7a0b5ef05d7f07f1d10a3`; observed `true`.
-- `E-STATIC-SEARCH` — pass; `bundle/data/search/manifest.json`; SHA-256 `7e6e0845fdffc3e9196e812d4ce887166df8291098882a3066d15f772f8e8b30`; observed `true`.
-- `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `"fixture"`.
-- `E-FULL-CORPUS` — not met; `release/status.json/full_corpus_reconciled`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
-- `E-SEMANTIC-RELEASE` — not met; `release/status.json/semantic_validation_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
+- `E-SEMANTIC-FIXTURE` — pass; `release/semantic-validation.json/passed`; SHA-256 `949cce1349e7bb0a881ebf425e7370a4887aba9d0deb2cd1e239dee47c4f9330`; observed `true`.
+- `E-STATIC-SEARCH` — pass; `bundle/data/search/manifest.json`; SHA-256 `4ee930c908e56b630901509457a1f5a8a81f9957256fc38d032d915d04c679ed`; observed `true`.
+- `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c`; observed `"fixture"`.
+- `E-FULL-CORPUS` — not met; `release/status.json/full_corpus_reconciled`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
+- `E-SEMANTIC-RELEASE` — not met; `release/status.json/semantic_validation_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
 
 Negative findings and limitations:
 
@@ -189,10 +189,10 @@ Boundary: This is not a claim that the metadata layer itself answers substantive
 Evidence:
 
 - `E-EVALUATION-HARNESS` — pass; `scripts/run_evaluation.py`; SHA-256 `7d263dd599fd9ca36df60e7268edf77ed335ecb7ca50c97c0fb5338c04cf67c6`; observed `true`.
-- `E-QUESTIONS-RELEASE` — not met; `release/status.json/question_contract_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
-- `E-AGENT-EVALUATION` — not met; `release/status.json/agent_evaluation_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_started"`.
+- `E-QUESTIONS-RELEASE` — not met; `release/status.json/question_contract_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
+- `E-AGENT-EVALUATION` — not met; `release/status.json/agent_evaluation_status`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `"not_started"`.
 - `E-MACHINE-RESULTS` — not met; `evaluation/results/status.json/agent_evaluation_status`; SHA-256 `missing`; observed `null`.
-- `E-CITATIONS-RELEASE` — not met; `release/status.json/citation_verification_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
+- `E-CITATIONS-RELEASE` — not met; `release/status.json/citation_verification_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
 - `E-PAIRED-COMPARISONS` — not met; `evaluation/results/paired-comparisons.json`; SHA-256 `missing`; observed `false`.
 - `E-AGENT-AIM-FULFILLED` — not met; `evaluation/results/aim-findings.json/aim_statuses/AIM-006/status`; SHA-256 `missing`; observed `null`.
 - `E-AGENT-AIM-FAILED` — not met; `evaluation/results/aim-findings.json/aim_statuses/AIM-006/status`; SHA-256 `missing`; observed `null`.
@@ -227,8 +227,8 @@ Evidence:
 - `E-SOURCE-PREFLIGHT` — pass; `research/source-preflight.json/summary/official_failed`; SHA-256 `ffd1ba217dab2a247032f328ebe0a7124f1764e2d38e9c309f6271fccd055ca6`; observed `0`.
 - `E-COMPARATOR-REPORT` — pass; `reports/comparators.md`; SHA-256 `f6b88ff72a271eeb5e55649f6845c73eb6286de1f6e3d6b73c4ca38dcebbe196`; observed `true`.
 - `E-PAIRED-COMPARISONS` — not met; `evaluation/results/paired-comparisons.json`; SHA-256 `missing`; observed `false`.
-- `E-CITATIONS-RELEASE` — not met; `release/status.json/citation_verification_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
-- `E-AGENT-EVALUATION` — not met; `release/status.json/agent_evaluation_status`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `"not_started"`.
+- `E-CITATIONS-RELEASE` — not met; `release/status.json/citation_verification_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
+- `E-AGENT-EVALUATION` — not met; `release/status.json/agent_evaluation_status`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `"not_started"`.
 
 Negative findings and limitations:
 
@@ -252,9 +252,9 @@ Boundary: Internal validation proves conformance; full reuse requires independen
 Evidence:
 
 - `E-PROFILE` — pass; `semantic/profile/govuk-okf-profile-v1.yamlld`; SHA-256 `897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8`; observed `true`.
-- `E-SEMANTIC-FIXTURE` — pass; `release/semantic-validation.json/passed`; SHA-256 `46c36354ca25306d700c0339e73f78545f302e8219b7a0b5ef05d7f07f1d10a3`; observed `true`.
-- `E-SEMANTIC-RELEASE` — not met; `release/status.json/semantic_validation_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
-- `E-CLEAN-ROOM-RELEASE` — not met; `release/status.json/clean_room_reproduction_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
+- `E-SEMANTIC-FIXTURE` — pass; `release/semantic-validation.json/passed`; SHA-256 `949cce1349e7bb0a881ebf425e7370a4887aba9d0deb2cd1e239dee47c4f9330`; observed `true`.
+- `E-SEMANTIC-RELEASE` — not met; `release/status.json/semantic_validation_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
+- `E-CLEAN-ROOM-RELEASE` — not met; `release/status.json/clean_room_reproduction_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
 - `E-PORTABILITY-AIM-FULFILLED` — not met; `release/portability-validation.json/aim_status`; SHA-256 `missing`; observed `null`.
 - `E-PORTABILITY-AIM-FAILED` — not met; `release/portability-validation.json/aim_status`; SHA-256 `missing`; observed `null`.
 
@@ -279,13 +279,13 @@ Boundary: A reproducible fixture and implemented controller are partial until th
 
 Evidence:
 
-- `E-ACTIVITY-LEDGER` — pass; `provenance/activity-ledger.jsonl`; SHA-256 `56f8dca67de9b415709d4db252b975d9bb52cbf9aadbcf9a715c6d6685c01e90`; observed `true`.
-- `E-REQUIREMENT-COVERAGE` — pass; `governance/requirements-status.json/counts/requirements`; SHA-256 `7f863148283a5be5740ae8d794023c542a5799b4dba771a045a1651638c599c0`; observed `95`.
-- `E-TRACEABILITY-COVERAGE` — pass; `governance/traceability-status.json/counts/clauses`; SHA-256 `175f90f7d93da83ca5ad8ccaa1d75f1a174401e534e382b9eb0310e50b6ef71f`; observed `21`.
-- `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `98e3e9bc90ac35124cf15175c342da71e04981eaceda8440c663888bace59bf4`; observed `true`.
-- `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2`; observed `"fixture"`.
-- `E-CLEAN-ROOM-RELEASE` — not met; `release/status.json/clean_room_reproduction_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
-- `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9`; observed `false`.
+- `E-ACTIVITY-LEDGER` — pass; `provenance/activity-ledger.jsonl`; SHA-256 `ef8e284e5adc62fda840c7bcc7a352ce948840a2c7751f16b07d32825bf45f42`; observed `true`.
+- `E-REQUIREMENT-COVERAGE` — pass; `governance/requirements-status.json/counts/requirements`; SHA-256 `339629a660f85292ad8c9c9713f696d70f9bfa48f9db50eca2133acb541509bb`; observed `95`.
+- `E-TRACEABILITY-COVERAGE` — pass; `governance/traceability-status.json/counts/clauses`; SHA-256 `e4a5e331b80cbe2bfcedd5f8059ae00bb4211007c9f85f10746c34eb9ccc32e7`; observed `21`.
+- `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `1b72f45c0c1850b3912e1032d14bac5f3c8bab4ce7706d578415f182cf990414`; observed `true`.
+- `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c`; observed `"fixture"`.
+- `E-CLEAN-ROOM-RELEASE` — not met; `release/status.json/clean_room_reproduction_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
+- `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
 
 Negative findings and limitations:
 

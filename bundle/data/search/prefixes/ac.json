@@ -1,32 +1,160 @@
 {
   "acc": [
     {
-      "df": 1,
+      "df": 2,
       "token": "account"
+    },
+    {
+      "df": 2,
+      "token": "accounts"
+    },
+    {
+      "df": 1,
+      "token": "access"
+    },
+    {
+      "df": 1,
+      "token": "accommodation"
+    }
+  ],
+  "acce": [
+    {
+      "df": 1,
+      "token": "access"
+    }
+  ],
+  "acces": [
+    {
+      "df": 1,
+      "token": "access"
+    }
+  ],
+  "access": [
+    {
+      "df": 1,
+      "token": "access"
     }
   ],
   "acco": [
     {
-      "df": 1,
+      "df": 2,
       "token": "account"
+    },
+    {
+      "df": 2,
+      "token": "accounts"
+    },
+    {
+      "df": 1,
+      "token": "accommodation"
+    }
+  ],
+  "accom": [
+    {
+      "df": 1,
+      "token": "accommodation"
+    }
+  ],
+  "accomm": [
+    {
+      "df": 1,
+      "token": "accommodation"
+    }
+  ],
+  "accommo": [
+    {
+      "df": 1,
+      "token": "accommodation"
+    }
+  ],
+  "accommod": [
+    {
+      "df": 1,
+      "token": "accommodation"
+    }
+  ],
+  "accommoda": [
+    {
+      "df": 1,
+      "token": "accommodation"
+    }
+  ],
+  "accommodat": [
+    {
+      "df": 1,
+      "token": "accommodation"
+    }
+  ],
+  "accommodati": [
+    {
+      "df": 1,
+      "token": "accommodation"
+    }
+  ],
+  "accommodatio": [
+    {
+      "df": 1,
+      "token": "accommodation"
     }
   ],
   "accou": [
     {
-      "df": 1,
+      "df": 2,
       "token": "account"
+    },
+    {
+      "df": 2,
+      "token": "accounts"
     }
   ],
   "accoun": [
     {
-      "df": 1,
+      "df": 2,
       "token": "account"
+    },
+    {
+      "df": 2,
+      "token": "accounts"
     }
   ],
   "account": [
     {
-      "df": 1,
+      "df": 2,
       "token": "account"
+    },
+    {
+      "df": 2,
+      "token": "accounts"
+    }
+  ],
+  "accounts": [
+    {
+      "df": 2,
+      "token": "accounts"
+    }
+  ],
+  "acr": [
+    {
+      "df": 1,
+      "token": "across"
+    }
+  ],
+  "acro": [
+    {
+      "df": 1,
+      "token": "across"
+    }
+  ],
+  "acros": [
+    {
+      "df": 1,
+      "token": "across"
+    }
+  ],
+  "across": [
+    {
+      "df": 1,
+      "token": "across"
     }
   ]
 }

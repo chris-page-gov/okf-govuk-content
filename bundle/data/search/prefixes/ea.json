@@ -1,0 +1,54 @@
+{
+  "ear": [
+    {
+      "df": 4,
+      "token": "early"
+    },
+    {
+      "df": 1,
+      "token": "earnings"
+    }
+  ],
+  "earl": [
+    {
+      "df": 4,
+      "token": "early"
+    }
+  ],
+  "early": [
+    {
+      "df": 4,
+      "token": "early"
+    }
+  ],
+  "earn": [
+    {
+      "df": 1,
+      "token": "earnings"
+    }
+  ],
+  "earni": [
+    {
+      "df": 1,
+      "token": "earnings"
+    }
+  ],
+  "earnin": [
+    {
+      "df": 1,
+      "token": "earnings"
+    }
+  ],
+  "earning": [
+    {
+      "df": 1,
+      "token": "earnings"
+    }
+  ],
+  "earnings": [
+    {
+      "df": 1,
+      "token": "earnings"
+    }
+  ]
+}

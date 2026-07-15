@@ -1,7 +1,12 @@
 [
   {
+    "df": 2,
+    "postings": "data/search/postings/hi.json",
+    "token": "high"
+  },
+  {
     "df": 1,
     "postings": "data/search/postings/hi.json",
-    "token": "historic"
+    "token": "higher"
   }
 ]

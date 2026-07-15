@@ -1,11 +1,16 @@
 [
   {
-    "df": 1,
+    "df": 29,
     "postings": "data/search/postings/yo.json",
     "token": "you"
   },
   {
-    "df": 1,
+    "df": 2,
+    "postings": "data/search/postings/yo.json",
+    "token": "young"
+  },
+  {
+    "df": 37,
     "postings": "data/search/postings/yo.json",
     "token": "your"
   }

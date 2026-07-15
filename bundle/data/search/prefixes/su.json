@@ -1,0 +1,112 @@
+{
+  "suc": [
+    {
+      "df": 3,
+      "token": "such"
+    }
+  ],
+  "such": [
+    {
+      "df": 3,
+      "token": "such"
+    }
+  ],
+  "sup": [
+    {
+      "df": 4,
+      "token": "support"
+    }
+  ],
+  "supp": [
+    {
+      "df": 4,
+      "token": "support"
+    }
+  ],
+  "suppo": [
+    {
+      "df": 4,
+      "token": "support"
+    }
+  ],
+  "suppor": [
+    {
+      "df": 4,
+      "token": "support"
+    }
+  ],
+  "support": [
+    {
+      "df": 4,
+      "token": "support"
+    }
+  ],
+  "sur": [
+    {
+      "df": 2,
+      "token": "sure"
+    },
+    {
+      "df": 1,
+      "token": "sure-start-maternity-grant"
+    }
+  ],
+  "sure": [
+    {
+      "df": 2,
+      "token": "sure"
+    },
+    {
+      "df": 1,
+      "token": "sure-start-maternity-grant"
+    }
+  ],
+  "sure-": [
+    {
+      "df": 1,
+      "token": "sure-start-maternity-grant"
+    }
+  ],
+  "sure-s": [
+    {
+      "df": 1,
+      "token": "sure-start-maternity-grant"
+    }
+  ],
+  "sure-st": [
+    {
+      "df": 1,
+      "token": "sure-start-maternity-grant"
+    }
+  ],
+  "sure-sta": [
+    {
+      "df": 1,
+      "token": "sure-start-maternity-grant"
+    }
+  ],
+  "sure-star": [
+    {
+      "df": 1,
+      "token": "sure-start-maternity-grant"
+    }
+  ],
+  "sure-start": [
+    {
+      "df": 1,
+      "token": "sure-start-maternity-grant"
+    }
+  ],
+  "sure-start-": [
+    {
+      "df": 1,
+      "token": "sure-start-maternity-grant"
+    }
+  ],
+  "sure-start-m": [
+    {
+      "df": 1,
+      "token": "sure-start-maternity-grant"
+    }
+  ]
+}

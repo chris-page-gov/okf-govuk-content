@@ -1,8 +1,10 @@
 # What’s on GOV.UK
 
-This derived, non-authoritative OKF Bundle Wiki maps the public GOV.UK metadata estate. GOV.UK remains authoritative.
+This derived, non-authoritative OKF Bundle Wiki is a discovery aid. GOV.UK remains authoritative.
 
-- Snapshot: `fixture-2026-07-11`
-- Records: 14
-- Relationships: 16
-- Attachments: 1
+This is a bounded 69-record new-child demonstrator, not a complete GOV.UK corpus.
+
+- Snapshot: `NEW-CHILD-20260715`
+- Records: 69
+- Relationships: 392
+- Attachments: 0

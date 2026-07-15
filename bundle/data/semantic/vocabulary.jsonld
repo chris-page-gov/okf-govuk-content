@@ -14,35 +14,35 @@
         "locatorValue": "semantic/profile/govuk-okf-profile-v1.yamlld"
       },
       "mediaType": "application/yaml",
-      "retrievedAt": "2026-07-11T23:30:00Z",
+      "retrievedAt": "2026-07-15T06:25:17Z",
       "rightsStatus": "source_declared",
       "sha256": "897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8",
-      "snapshotId": "fixture-2026-07-11",
+      "snapshotId": "NEW-CHILD-20260715",
       "sourceAuthority": "unknown",
       "sourceSystem": "govuk_okf_profile",
       "title": "GOV.UK OKF profile and pinned Publishing API schema crosswalk"
     },
     {
-      "@id": "urn:govuk:inference:compile:9c9190feff949c11eb0481d2aac059a57afcc562b73897b0979904025c2e4ae3",
+      "@id": "urn:govuk:inference:compile:ce9f34739fb715bccc628d647099270e0b00bfba5c9deae6c793cf42e2a7e6f4",
       "@type": "govuk:InferenceActivity",
       "authority": "normalized",
       "derivationMethod": "deterministic-semantic-projection-v1",
       "description": "Deterministic projection of validated Explorer records and relationships.",
-      "endedAt": "2026-07-11T23:30:00Z",
+      "endedAt": "2026-07-15T06:25:17Z",
       "evidence": [
         {
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceNativeId": "fixture-2026-07-11",
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "snapshotId": "NEW-CHILD-20260715",
+      "sourceNativeId": "NEW-CHILD-20260715",
       "sourceSystem": "govuk-okf-compiler",
-      "startedAt": "2026-07-11T23:30:00Z",
+      "startedAt": "2026-07-15T06:25:17Z",
       "title": "Deterministic GOV.UK OKF semantic projection"
     },
     {
-      "@id": "urn:govuk:content-type:taxon",
+      "@id": "urn:govuk:content-type:guide",
       "@type": "govuk:ContentType",
       "authority": "source_native",
       "description": "Source-native GOV.UK document type.",
@@ -51,15 +51,15 @@
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceName": "taxon",
-      "sourceNativeId": "taxon",
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "snapshotId": "NEW-CHILD-20260715",
+      "sourceName": "guide",
+      "sourceNativeId": "guide",
       "sourceSystem": "govuk_content_metadata",
-      "title": "taxon"
+      "title": "guide"
     },
     {
-      "@id": "urn:govuk:content-type:document_collection",
+      "@id": "urn:govuk:content-type:answer",
       "@type": "govuk:ContentType",
       "authority": "source_native",
       "description": "Source-native GOV.UK document type.",
@@ -68,15 +68,15 @@
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceName": "document_collection",
-      "sourceNativeId": "document_collection",
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "snapshotId": "NEW-CHILD-20260715",
+      "sourceName": "answer",
+      "sourceNativeId": "answer",
       "sourceSystem": "govuk_content_metadata",
-      "title": "document collection"
+      "title": "answer"
     },
     {
-      "@id": "urn:govuk:content-type:external_content",
+      "@id": "urn:govuk:content-type:local_transaction",
       "@type": "govuk:ContentType",
       "authority": "source_native",
       "description": "Source-native GOV.UK document type.",
@@ -85,131 +85,12 @@
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceName": "external_content",
-      "sourceNativeId": "external_content",
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "snapshotId": "NEW-CHILD-20260715",
+      "sourceName": "local_transaction",
+      "sourceNativeId": "local_transaction",
       "sourceSystem": "govuk_content_metadata",
-      "title": "external content"
-    },
-    {
-      "@id": "urn:govuk:content-type:guidance",
-      "@type": "govuk:ContentType",
-      "authority": "source_native",
-      "description": "Source-native GOV.UK document type.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceName": "guidance",
-      "sourceNativeId": "guidance",
-      "sourceSystem": "govuk_content_metadata",
-      "title": "guidance"
-    },
-    {
-      "@id": "urn:govuk:content-type:homepage",
-      "@type": "govuk:ContentType",
-      "authority": "source_native",
-      "description": "Source-native GOV.UK document type.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceName": "homepage",
-      "sourceNativeId": "homepage",
-      "sourceSystem": "govuk_content_metadata",
-      "title": "homepage"
-    },
-    {
-      "@id": "urn:govuk:content-type:mainstream_browse_page",
-      "@type": "govuk:ContentType",
-      "authority": "source_native",
-      "description": "Source-native GOV.UK document type.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceName": "mainstream_browse_page",
-      "sourceNativeId": "mainstream_browse_page",
-      "sourceSystem": "govuk_content_metadata",
-      "title": "mainstream browse page"
-    },
-    {
-      "@id": "urn:govuk:content-type:organisation",
-      "@type": "govuk:ContentType",
-      "authority": "source_native",
-      "description": "Source-native GOV.UK document type.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceName": "organisation",
-      "sourceNativeId": "organisation",
-      "sourceSystem": "govuk_content_metadata",
-      "title": "organisation"
-    },
-    {
-      "@id": "urn:govuk:content-type:redirect",
-      "@type": "govuk:ContentType",
-      "authority": "source_native",
-      "description": "Source-native GOV.UK document type.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceName": "redirect",
-      "sourceNativeId": "redirect",
-      "sourceSystem": "govuk_content_metadata",
-      "title": "redirect"
-    },
-    {
-      "@id": "urn:govuk:content-type:redirect_destination",
-      "@type": "govuk:ContentType",
-      "authority": "source_native",
-      "description": "Source-native GOV.UK document type.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceName": "redirect_destination",
-      "sourceNativeId": "redirect_destination",
-      "sourceSystem": "govuk_content_metadata",
-      "title": "redirect destination"
-    },
-    {
-      "@id": "urn:govuk:content-type:step_by_step_nav",
-      "@type": "govuk:ContentType",
-      "authority": "source_native",
-      "description": "Source-native GOV.UK document type.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceName": "step_by_step_nav",
-      "sourceNativeId": "step_by_step_nav",
-      "sourceSystem": "govuk_content_metadata",
-      "title": "step by step nav"
+      "title": "local transaction"
     },
     {
       "@id": "urn:govuk:content-type:transaction",
@@ -221,15 +102,15 @@
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "snapshotId": "NEW-CHILD-20260715",
       "sourceName": "transaction",
       "sourceNativeId": "transaction",
       "sourceSystem": "govuk_content_metadata",
       "title": "transaction"
     },
     {
-      "@id": "urn:govuk:content-type:travel_advice",
+      "@id": "urn:govuk:content-type:smart_answer",
       "@type": "govuk:ContentType",
       "authority": "source_native",
       "description": "Source-native GOV.UK document type.",
@@ -238,15 +119,15 @@
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceName": "travel_advice",
-      "sourceNativeId": "travel_advice",
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "snapshotId": "NEW-CHILD-20260715",
+      "sourceName": "smart_answer",
+      "sourceNativeId": "smart_answer",
       "sourceSystem": "govuk_content_metadata",
-      "title": "travel advice"
+      "title": "smart answer"
     },
     {
-      "@id": "urn:govuk:content-type:world_location",
+      "@id": "urn:govuk:content-type:detailed_guide",
       "@type": "govuk:ContentType",
       "authority": "source_native",
       "description": "Source-native GOV.UK document type.",
@@ -255,183 +136,103 @@
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceName": "world_location",
-      "sourceNativeId": "world_location",
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "snapshotId": "NEW-CHILD-20260715",
+      "sourceName": "detailed_guide",
+      "sourceNativeId": "detailed_guide",
       "sourceSystem": "govuk_content_metadata",
-      "title": "world location"
+      "title": "detailed guide"
     },
     {
-      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:taxon",
-      "@type": "govuk:SchemaFamily",
+      "@id": "urn:govuk:content-type:place",
+      "@type": "govuk:ContentType",
       "authority": "source_native",
-      "description": "Version-pinned GOV.UK Publishing API schema family.",
+      "description": "Source-native GOV.UK document type.",
       "evidence": [
         {
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "schemaName": "taxon",
-      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
-      "sourceNativeId": "taxon",
-      "sourceSystem": "alphagov_publishing_api",
-      "title": "taxon"
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "snapshotId": "NEW-CHILD-20260715",
+      "sourceName": "place",
+      "sourceNativeId": "place",
+      "sourceSystem": "govuk_content_metadata",
+      "title": "place"
     },
     {
-      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:document_collection",
-      "@type": "govuk:SchemaFamily",
+      "@id": "urn:govuk:content-type:step_by_step_nav",
+      "@type": "govuk:ContentType",
       "authority": "source_native",
-      "description": "Version-pinned GOV.UK Publishing API schema family.",
+      "description": "Source-native GOV.UK document type.",
       "evidence": [
         {
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "schemaName": "document_collection",
-      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
-      "sourceNativeId": "document_collection",
-      "sourceSystem": "alphagov_publishing_api",
-      "title": "document collection"
-    },
-    {
-      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:external_content",
-      "@type": "govuk:SchemaFamily",
-      "authority": "source_native",
-      "description": "Version-pinned GOV.UK Publishing API schema family.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "schemaName": "external_content",
-      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
-      "sourceNativeId": "external_content",
-      "sourceSystem": "alphagov_publishing_api",
-      "title": "external content"
-    },
-    {
-      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:homepage",
-      "@type": "govuk:SchemaFamily",
-      "authority": "source_native",
-      "description": "Version-pinned GOV.UK Publishing API schema family.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "schemaName": "homepage",
-      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
-      "sourceNativeId": "homepage",
-      "sourceSystem": "alphagov_publishing_api",
-      "title": "homepage"
-    },
-    {
-      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:mainstream_browse_page",
-      "@type": "govuk:SchemaFamily",
-      "authority": "source_native",
-      "description": "Version-pinned GOV.UK Publishing API schema family.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "schemaName": "mainstream_browse_page",
-      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
-      "sourceNativeId": "mainstream_browse_page",
-      "sourceSystem": "alphagov_publishing_api",
-      "title": "mainstream browse page"
-    },
-    {
-      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:organisation",
-      "@type": "govuk:SchemaFamily",
-      "authority": "source_native",
-      "description": "Version-pinned GOV.UK Publishing API schema family.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "schemaName": "organisation",
-      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
-      "sourceNativeId": "organisation",
-      "sourceSystem": "alphagov_publishing_api",
-      "title": "organisation"
-    },
-    {
-      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:publication",
-      "@type": "govuk:SchemaFamily",
-      "authority": "source_native",
-      "description": "Version-pinned GOV.UK Publishing API schema family.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "schemaName": "publication",
-      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
-      "sourceNativeId": "publication",
-      "sourceSystem": "alphagov_publishing_api",
-      "title": "publication"
-    },
-    {
-      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:redirect",
-      "@type": "govuk:SchemaFamily",
-      "authority": "source_native",
-      "description": "Version-pinned GOV.UK Publishing API schema family.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "schemaName": "redirect",
-      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
-      "sourceNativeId": "redirect",
-      "sourceSystem": "alphagov_publishing_api",
-      "title": "redirect"
-    },
-    {
-      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:step_by_step_nav",
-      "@type": "govuk:SchemaFamily",
-      "authority": "source_native",
-      "description": "Version-pinned GOV.UK Publishing API schema family.",
-      "evidence": [
-        {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
-        }
-      ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "schemaName": "step_by_step_nav",
-      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
-      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "snapshotId": "NEW-CHILD-20260715",
+      "sourceName": "step_by_step_nav",
       "sourceNativeId": "step_by_step_nav",
-      "sourceSystem": "alphagov_publishing_api",
+      "sourceSystem": "govuk_content_metadata",
       "title": "step by step nav"
+    },
+    {
+      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:guide",
+      "@type": "govuk:SchemaFamily",
+      "authority": "source_native",
+      "description": "Version-pinned GOV.UK Publishing API schema family.",
+      "evidence": [
+        {
+          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+        }
+      ],
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "schemaName": "guide",
+      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
+      "snapshotId": "NEW-CHILD-20260715",
+      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
+      "sourceNativeId": "guide",
+      "sourceSystem": "alphagov_publishing_api",
+      "title": "guide"
+    },
+    {
+      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:answer",
+      "@type": "govuk:SchemaFamily",
+      "authority": "source_native",
+      "description": "Version-pinned GOV.UK Publishing API schema family.",
+      "evidence": [
+        {
+          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+        }
+      ],
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "schemaName": "answer",
+      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
+      "snapshotId": "NEW-CHILD-20260715",
+      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
+      "sourceNativeId": "answer",
+      "sourceSystem": "alphagov_publishing_api",
+      "title": "answer"
+    },
+    {
+      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:local_transaction",
+      "@type": "govuk:SchemaFamily",
+      "authority": "source_native",
+      "description": "Version-pinned GOV.UK Publishing API schema family.",
+      "evidence": [
+        {
+          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+        }
+      ],
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "schemaName": "local_transaction",
+      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
+      "snapshotId": "NEW-CHILD-20260715",
+      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
+      "sourceNativeId": "local_transaction",
+      "sourceSystem": "alphagov_publishing_api",
+      "title": "local transaction"
     },
     {
       "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:transaction",
@@ -443,17 +244,17 @@
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
+      "retrievedAt": "2026-07-15T06:25:17Z",
       "schemaName": "transaction",
       "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
+      "snapshotId": "NEW-CHILD-20260715",
       "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
       "sourceNativeId": "transaction",
       "sourceSystem": "alphagov_publishing_api",
       "title": "transaction"
     },
     {
-      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:travel_advice",
+      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:smart_answer",
       "@type": "govuk:SchemaFamily",
       "authority": "source_native",
       "description": "Version-pinned GOV.UK Publishing API schema family.",
@@ -462,17 +263,17 @@
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "schemaName": "travel_advice",
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "schemaName": "smart_answer",
       "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
+      "snapshotId": "NEW-CHILD-20260715",
       "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
-      "sourceNativeId": "travel_advice",
+      "sourceNativeId": "smart_answer",
       "sourceSystem": "alphagov_publishing_api",
-      "title": "travel advice"
+      "title": "smart answer"
     },
     {
-      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:unknown",
+      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:detailed_guide",
       "@type": "govuk:SchemaFamily",
       "authority": "source_native",
       "description": "Version-pinned GOV.UK Publishing API schema family.",
@@ -481,17 +282,17 @@
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "schemaName": "unknown",
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "schemaName": "detailed_guide",
       "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
+      "snapshotId": "NEW-CHILD-20260715",
       "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
-      "sourceNativeId": "unknown",
+      "sourceNativeId": "detailed_guide",
       "sourceSystem": "alphagov_publishing_api",
-      "title": "unknown"
+      "title": "detailed guide"
     },
     {
-      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:world_location",
+      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:place",
       "@type": "govuk:SchemaFamily",
       "authority": "source_native",
       "description": "Version-pinned GOV.UK Publishing API schema family.",
@@ -500,14 +301,33 @@
           "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
         }
       ],
-      "retrievedAt": "2026-07-11T23:30:00Z",
-      "schemaName": "world_location",
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "schemaName": "place",
       "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
-      "snapshotId": "fixture-2026-07-11",
+      "snapshotId": "NEW-CHILD-20260715",
       "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
-      "sourceNativeId": "world_location",
+      "sourceNativeId": "place",
       "sourceSystem": "alphagov_publishing_api",
-      "title": "world location"
+      "title": "place"
+    },
+    {
+      "@id": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:step_by_step_nav",
+      "@type": "govuk:SchemaFamily",
+      "authority": "source_native",
+      "description": "Version-pinned GOV.UK Publishing API schema family.",
+      "evidence": [
+        {
+          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+        }
+      ],
+      "retrievedAt": "2026-07-15T06:25:17Z",
+      "schemaName": "step_by_step_nav",
+      "schemaUri": "https://github.com/alphagov/publishing-api/tree/b1e987aa7b3e62c105ff2b2db87667f7638726f8/content_schemas",
+      "snapshotId": "NEW-CHILD-20260715",
+      "sourceCommit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8",
+      "sourceNativeId": "step_by_step_nav",
+      "sourceSystem": "alphagov_publishing_api",
+      "title": "step by step nav"
     }
   ]
 }

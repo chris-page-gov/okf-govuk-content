@@ -1,0 +1,44 @@
+{
+  "mil": [
+    {
+      "df": 1,
+      "token": "milk"
+    }
+  ],
+  "milk": [
+    {
+      "df": 1,
+      "token": "milk"
+    }
+  ],
+  "min": [
+    {
+      "df": 1,
+      "token": "minimum"
+    }
+  ],
+  "mini": [
+    {
+      "df": 1,
+      "token": "minimum"
+    }
+  ],
+  "minim": [
+    {
+      "df": 1,
+      "token": "minimum"
+    }
+  ],
+  "minimu": [
+    {
+      "df": 1,
+      "token": "minimum"
+    }
+  ],
+  "minimum": [
+    {
+      "df": 1,
+      "token": "minimum"
+    }
+  ]
+}

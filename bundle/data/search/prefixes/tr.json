@@ -1,20 +1,16 @@
 {
   "tra": [
     {
-      "df": 2,
+      "df": 3,
       "token": "transaction"
+    },
+    {
+      "df": 3,
+      "token": "transport"
     },
     {
       "df": 1,
       "token": "training"
-    },
-    {
-      "df": 1,
-      "token": "travel"
-    },
-    {
-      "df": 1,
-      "token": "travel_advice"
     }
   ],
   "trai": [
@@ -49,116 +45,82 @@
   ],
   "tran": [
     {
-      "df": 2,
+      "df": 3,
       "token": "transaction"
+    },
+    {
+      "df": 3,
+      "token": "transport"
     }
   ],
   "trans": [
     {
-      "df": 2,
+      "df": 3,
       "token": "transaction"
+    },
+    {
+      "df": 3,
+      "token": "transport"
     }
   ],
   "transa": [
     {
-      "df": 2,
+      "df": 3,
       "token": "transaction"
     }
   ],
   "transac": [
     {
-      "df": 2,
+      "df": 3,
       "token": "transaction"
     }
   ],
   "transact": [
     {
-      "df": 2,
+      "df": 3,
       "token": "transaction"
     }
   ],
   "transacti": [
     {
-      "df": 2,
+      "df": 3,
       "token": "transaction"
     }
   ],
   "transactio": [
     {
-      "df": 2,
+      "df": 3,
       "token": "transaction"
     }
   ],
   "transaction": [
     {
-      "df": 2,
+      "df": 3,
       "token": "transaction"
     }
   ],
-  "trav": [
+  "transp": [
     {
-      "df": 1,
-      "token": "travel"
-    },
-    {
-      "df": 1,
-      "token": "travel_advice"
+      "df": 3,
+      "token": "transport"
     }
   ],
-  "trave": [
+  "transpo": [
     {
-      "df": 1,
-      "token": "travel"
-    },
-    {
-      "df": 1,
-      "token": "travel_advice"
+      "df": 3,
+      "token": "transport"
     }
   ],
-  "travel": [
+  "transpor": [
     {
-      "df": 1,
-      "token": "travel"
-    },
-    {
-      "df": 1,
-      "token": "travel_advice"
+      "df": 3,
+      "token": "transport"
     }
   ],
-  "travel_": [
+  "transport": [
     {
-      "df": 1,
-      "token": "travel_advice"
-    }
-  ],
-  "travel_a": [
-    {
-      "df": 1,
-      "token": "travel_advice"
-    }
-  ],
-  "travel_ad": [
-    {
-      "df": 1,
-      "token": "travel_advice"
-    }
-  ],
-  "travel_adv": [
-    {
-      "df": 1,
-      "token": "travel_advice"
-    }
-  ],
-  "travel_advi": [
-    {
-      "df": 1,
-      "token": "travel_advice"
-    }
-  ],
-  "travel_advic": [
-    {
-      "df": 1,
-      "token": "travel_advice"
+      "df": 3,
+      "token": "transport"
     }
   ]
 }

@@ -1,4 +1,5 @@
 import { isAllowedBundleUrl, normaliseRecord, relationshipBucket } from "./core.js";
+import { normaliseDemonstrator } from "./demonstrator.js";
 import { prepareReleaseDataPlane, releaseDataPlaneDocument, releaseDataRequest } from "./release-data-plane.js";
 
 const MAX_JSON_BYTES = 64 * 1024 * 1024;
@@ -264,6 +265,7 @@ export class LargeCorpusStore {
     this.overview = null;
     this.analysis = null;
     this.siteTopology = null;
+    this.demonstrator = null;
     this.adjacencyManifest = null;
     this.adjacencyBuckets = new Map();
     this.routeIndex = null;
@@ -296,6 +298,13 @@ export class LargeCorpusStore {
       } catch {
         this.analysis = null;
       }
+    }
+    const demonstratorReference = descriptorEntrypoint(this.descriptor, "demonstrator") || this.manifest.indexes && this.manifest.indexes.demonstrator;
+    if (demonstratorReference) {
+      const demonstrator = (await this.fetch(demonstratorReference, signal)).value;
+      this.assertResourceSnapshot(demonstrator, "Demonstrator contract");
+      this.demonstrator = normaliseDemonstrator(demonstrator);
+      if (!this.demonstrator) throw new Error("Unsupported new-child demonstrator contract");
     }
     this.snapshotId();
     return this;

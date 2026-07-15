@@ -1,180 +1,104 @@
 {
   "pub": [
     {
-      "df": 13,
+      "df": 69,
       "token": "published"
     },
     {
-      "df": 7,
+      "df": 2,
       "token": "publisher"
-    },
-    {
-      "df": 1,
-      "token": "public"
-    },
-    {
-      "df": 1,
-      "token": "publication"
-    },
-    {
-      "df": 1,
-      "token": "publications"
     }
   ],
   "publ": [
     {
-      "df": 13,
+      "df": 69,
       "token": "published"
     },
     {
-      "df": 7,
+      "df": 2,
       "token": "publisher"
-    },
-    {
-      "df": 1,
-      "token": "public"
-    },
-    {
-      "df": 1,
-      "token": "publication"
-    },
-    {
-      "df": 1,
-      "token": "publications"
     }
   ],
   "publi": [
     {
-      "df": 13,
+      "df": 69,
       "token": "published"
     },
     {
-      "df": 7,
+      "df": 2,
       "token": "publisher"
-    },
-    {
-      "df": 1,
-      "token": "public"
-    },
-    {
-      "df": 1,
-      "token": "publication"
-    },
-    {
-      "df": 1,
-      "token": "publications"
-    }
-  ],
-  "public": [
-    {
-      "df": 1,
-      "token": "public"
-    },
-    {
-      "df": 1,
-      "token": "publication"
-    },
-    {
-      "df": 1,
-      "token": "publications"
-    }
-  ],
-  "publica": [
-    {
-      "df": 1,
-      "token": "publication"
-    },
-    {
-      "df": 1,
-      "token": "publications"
-    }
-  ],
-  "publicat": [
-    {
-      "df": 1,
-      "token": "publication"
-    },
-    {
-      "df": 1,
-      "token": "publications"
-    }
-  ],
-  "publicati": [
-    {
-      "df": 1,
-      "token": "publication"
-    },
-    {
-      "df": 1,
-      "token": "publications"
-    }
-  ],
-  "publicatio": [
-    {
-      "df": 1,
-      "token": "publication"
-    },
-    {
-      "df": 1,
-      "token": "publications"
-    }
-  ],
-  "publication": [
-    {
-      "df": 1,
-      "token": "publication"
-    },
-    {
-      "df": 1,
-      "token": "publications"
-    }
-  ],
-  "publications": [
-    {
-      "df": 1,
-      "token": "publications"
     }
   ],
   "publis": [
     {
-      "df": 13,
+      "df": 69,
       "token": "published"
     },
     {
-      "df": 7,
+      "df": 2,
       "token": "publisher"
     }
   ],
   "publish": [
     {
-      "df": 13,
+      "df": 69,
       "token": "published"
     },
     {
-      "df": 7,
+      "df": 2,
       "token": "publisher"
     }
   ],
   "publishe": [
     {
-      "df": 13,
+      "df": 69,
       "token": "published"
     },
     {
-      "df": 7,
+      "df": 2,
       "token": "publisher"
     }
   ],
   "published": [
     {
-      "df": 13,
+      "df": 69,
       "token": "published"
     }
   ],
   "publisher": [
     {
-      "df": 7,
+      "df": 2,
       "token": "publisher"
+    }
+  ],
+  "pup": [
+    {
+      "df": 1,
+      "token": "pupil"
+    }
+  ],
+  "pupi": [
+    {
+      "df": 1,
+      "token": "pupil"
+    }
+  ],
+  "pupil": [
+    {
+      "df": 1,
+      "token": "pupil"
+    }
+  ],
+  "put": [
+    {
+      "df": 1,
+      "token": "puts"
+    }
+  ],
+  "puts": [
+    {
+      "df": 1,
+      "token": "puts"
     }
   ]
 }

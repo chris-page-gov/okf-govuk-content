@@ -1,0 +1,22 @@
+[
+  {
+    "df": 2,
+    "postings": "data/search/postings/ab.json",
+    "token": "able"
+  },
+  {
+    "df": 7,
+    "postings": "data/search/postings/ab.json",
+    "token": "about"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ab.json",
+    "token": "above"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/ab.json",
+    "token": "abroad"
+  }
+]

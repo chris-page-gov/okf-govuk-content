@@ -25,6 +25,8 @@ test("HTML is CSP-safe and contains task-first accessible landmarks", async () =
   assert.match(html, /Derived, non-authoritative service/);
   assert.match(html, /id="skip-link"/);
   assert.match(html, /href="accessibility\.html"/);
+  assert.match(html, /id="demonstrator-callout"/);
+  assert.match(html, /data-view="journey"/);
 });
 
 test("Pages fallback preserves state without inline executable content", async () => {
@@ -62,7 +64,7 @@ test("accessibility statement distinguishes historical fixture and current relea
 });
 
 test("application never uses executable source HTML sinks", async () => {
-  const files = await Promise.all(["app.js", "data.js", "search.worker.js", "accessibility-evidence.js"].map((name) => readFile(join(source, name), "utf8")));
+  const files = await Promise.all(["app.js", "data.js", "demonstrator.js", "search.worker.js", "accessibility-evidence.js"].map((name) => readFile(join(source, name), "utf8")));
   const code = files.join("\n");
   assert.doesNotMatch(code, /\.innerHTML\s*=/);
   assert.doesNotMatch(code, /\beval\s*\(/);
@@ -81,6 +83,8 @@ test("CSS includes reflow, reduced-motion, focus and forced-colour support", asy
   assert.match(css, /forced-colors/);
   assert.match(css, /max-width:\s*52rem/);
   assert.match(css, /min-height:\s*2\.75rem/);
+  assert.match(css, /\.journey-stage/);
+  assert.match(css, /\.ai-handoff/);
 });
 
 test("all UX epics are explicit without claiming completed empirical acceptance", async () => {

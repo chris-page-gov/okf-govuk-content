@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/cc.json",
+    "token": "ccg1"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/cc.json",
+    "token": "ccg2"
+  }
+]

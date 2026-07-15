@@ -2,6 +2,26 @@
   {
     "df": 1,
     "postings": "data/search/postings/ag.json",
+    "token": "against"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ag.json",
+    "token": "age"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ag.json",
+    "token": "aged"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ag.json",
     "token": "agency"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ag.json",
+    "token": "agreement"
   }
 ]

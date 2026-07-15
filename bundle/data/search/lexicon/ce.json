@@ -1,0 +1,17 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/ce.json",
+    "token": "centre"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ce.json",
+    "token": "centres"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ce.json",
+    "token": "certificates"
+  }
+]

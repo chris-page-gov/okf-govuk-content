@@ -1,11 +1,41 @@
 [
   {
+    "df": 4,
+    "postings": "data/search/postings/th.json",
+    "token": "that"
+  },
+  {
     "df": 2,
     "postings": "data/search/postings/th.json",
-    "token": "thailand"
+    "token": "their"
   },
   {
     "df": 1,
+    "postings": "data/search/postings/th.json",
+    "token": "them"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/th.json",
+    "token": "there"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/th.json",
+    "token": "they"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/th.json",
+    "token": "think"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/th.json",
+    "token": "this"
+  },
+  {
+    "df": 3,
     "postings": "data/search/postings/th.json",
     "token": "through"
   }

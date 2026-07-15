@@ -63,6 +63,12 @@ test("sitemap is a replayable first-class view", () => {
   assert.equal(serialiseExplorerState(state, "https://example.test/").searchParams.get("view"), "sitemap");
 });
 
+test("the bounded journey is a replayable first-class view", () => {
+  const state = parseExplorerState("https://example.test/?view=journey&snapshot=NEW-CHILD-20260715");
+  assert.equal(state.view, "journey");
+  assert.equal(serialiseExplorerState(state, "https://example.test/").searchParams.get("view"), "journey");
+});
+
 test("language normalisation preserves a general BCP 47 path", () => {
   assert.equal(normaliseLanguage("cy"), "cy");
   assert.equal(normaliseLanguage("en-gb"), "en-GB");
@@ -84,6 +90,9 @@ test("records retain source-native discovery, lifecycle and provenance fields", 
     open: "dataset/passport",
     web_url: "https://www.gov.uk/browse/abroad/passports",
     source_status: "source-native",
+    evidence_locator: "/links/organisations/0",
+    evidence_sha256: "a".repeat(64),
+    demo: { seed_memberships: ["childcare"], journey_groups: ["leave-pay"], cohort_role: "seed" },
     routing_kind: "redirect",
     entity_class: "content_identity",
     coverage_disposition: "redirect_only",
@@ -100,6 +109,9 @@ test("records retain source-native discovery, lifecycle and provenance fields", 
   assert.equal(record.routingKind, "redirect");
   assert.equal(record.entityClass, "content_identity");
   assert.equal(record.coverageDisposition, "redirect_only");
+  assert.equal(record.evidenceLocator, "/links/organisations/0");
+  assert.equal(record.sourceHash, "a".repeat(64));
+  assert.deepEqual(record.demo, { seedMemberships: ["childcare"], journeyGroups: ["leave-pay"], cohortRole: "seed" });
   assert.deepEqual(record.redirects[0], {
     ordinal: 0,
     path: "/passport-old",
@@ -149,12 +161,30 @@ test("instrumentation is allowlisted and never retains query text", () => {
 });
 
 test("exports and citations retain canonical IDs and snapshot without raw source bodies", () => {
-  const record = normaliseRecord({ name: "a", id: "https://example.test/id/a", title: "Record A", notes: "Metadata summary", web_url: "https://www.gov.uk/a", status: "current", body: "must not export" });
+  const record = normaliseRecord({
+    name: "a",
+    id: "https://example.test/id/a",
+    content_id: "00000000-0000-4000-8000-00000000000a",
+    title: "Record A",
+    notes: "Metadata summary",
+    web_url: "https://www.gov.uk/a",
+    status: "current",
+    evidence_url: "https://www.gov.uk/api/content/a",
+    evidence_locator: "/title",
+    evidence_sha256: "a".repeat(64),
+    retrieved_at: "2026-07-15T00:00:00Z",
+    demo: { seed_memberships: ["new-child"], journey_groups: ["first-actions"], is_seed: true },
+    body: "must not export"
+  });
   const state = { query: "record", facets: {}, snapshot: "snapshot-1" };
   for (const format of ["markdown", "yamlld", "jsonld"]) {
     const output = buildContextExport(format, [record], state, { "@context": "https://example.test/context" });
     assert.match(output.text, /Record A/);
     assert.match(output.text, /snapshot-1/);
+    assert.match(output.text, /00000000-0000-4000-8000-00000000000a/);
+    assert.match(output.text, /\/title/);
+    assert.match(output.text, new RegExp("a{64}"));
+    assert.match(output.text, /first-actions/);
     assert.doesNotMatch(output.text, /must not export/);
   }
   assert.equal(buildCitation(record, "snapshot-1"), "Record A. https://www.gov.uk/a. What’s on GOV.UK snapshot snapshot-1.");

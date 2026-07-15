@@ -1,0 +1,20 @@
+{
+  "bir": [
+    {
+      "df": 2,
+      "token": "birth"
+    }
+  ],
+  "birt": [
+    {
+      "df": 2,
+      "token": "birth"
+    }
+  ],
+  "birth": [
+    {
+      "df": 2,
+      "token": "birth"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "sav": [
+    {
+      "df": 2,
+      "token": "savings"
+    },
+    {
+      "df": 1,
+      "token": "savings-for-children"
+    }
+  ],
+  "savi": [
+    {
+      "df": 2,
+      "token": "savings"
+    },
+    {
+      "df": 1,
+      "token": "savings-for-children"
+    }
+  ],
+  "savin": [
+    {
+      "df": 2,
+      "token": "savings"
+    },
+    {
+      "df": 1,
+      "token": "savings-for-children"
+    }
+  ],
+  "saving": [
+    {
+      "df": 2,
+      "token": "savings"
+    },
+    {
+      "df": 1,
+      "token": "savings-for-children"
+    }
+  ],
+  "savings": [
+    {
+      "df": 2,
+      "token": "savings"
+    },
+    {
+      "df": 1,
+      "token": "savings-for-children"
+    }
+  ],
+  "savings-": [
+    {
+      "df": 1,
+      "token": "savings-for-children"
+    }
+  ],
+  "savings-f": [
+    {
+      "df": 1,
+      "token": "savings-for-children"
+    }
+  ],
+  "savings-fo": [
+    {
+      "df": 1,
+      "token": "savings-for-children"
+    }
+  ],
+  "savings-for": [
+    {
+      "df": 1,
+      "token": "savings-for-children"
+    }
+  ],
+  "savings-for-": [
+    {
+      "df": 1,
+      "token": "savings-for-children"
+    }
+  ],
+  "say": [
+    {
+      "df": 1,
+      "token": "say"
+    }
+  ]
+}

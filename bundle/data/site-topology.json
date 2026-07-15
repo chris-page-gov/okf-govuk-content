@@ -1,20 +1,20 @@
 {
   "counts": {
     "cross_host_redirect_rules": 0,
-    "gov_uk_domain_boundary_hosts": 1,
-    "hosts": 2,
-    "main_publishing_estate_records": 13,
+    "gov_uk_domain_boundary_hosts": 0,
+    "hosts": 1,
+    "main_publishing_estate_records": 69,
     "other_external_boundary_hosts": 0,
-    "published_records": 14,
-    "redirect_records": 1,
-    "redirect_rules": 1,
-    "relationship_assertions": 16,
-    "source_records": 12,
-    "stable_content_identifiers": 10
+    "published_records": 69,
+    "redirect_records": 0,
+    "redirect_rules": 0,
+    "relationship_assertions": 392,
+    "source_records": 69,
+    "stable_content_identifiers": 69
   },
   "coverage_dispositions": [
     {
-      "count": 14,
+      "count": 69,
       "value": "represented"
     }
   ],
@@ -25,42 +25,21 @@
     "search": "data/search/manifest.json",
     "semantic_projection": "data/semantic/manifest.json"
   },
-  "generated_at": "2026-07-11T23:30:00Z",
+  "generated_at": "2026-07-15T06:25:17Z",
   "hosts": [
     {
       "example_routes": [
-        "dataset/00000000-0000-4000-8000-000000000001-en",
-        "dataset/00000000-0000-4000-8000-000000000002-en",
-        "dataset/00000000-0000-4000-8000-000000000003-en"
+        "dataset/03cad033-6800-4db2-92b4-87e9a6021272-en",
+        "dataset/0e1de8f1-9909-4e45-a6a3-bffe95470275-en",
+        "dataset/0ed58e79-d9f6-4bed-bbe4-c6b5bad1a543-en"
       ],
       "host_kind": "main_publishing_estate",
       "hostname": "www.gov.uk",
-      "record_count": 13,
+      "record_count": 69,
       "routing_kinds": [
         {
-          "count": 12,
+          "count": 69,
           "value": "canonical"
-        },
-        {
-          "count": 1,
-          "value": "redirect"
-        }
-      ],
-      "schemes": [
-        "https"
-      ]
-    },
-    {
-      "example_routes": [
-        "dataset/route-841a48e696089f20297a9733-en"
-      ],
-      "host_kind": "gov_uk_domain_boundary",
-      "hostname": "apply.example.service.gov.uk",
-      "record_count": 1,
-      "routing_kinds": [
-        {
-          "count": 1,
-          "value": "external_boundary"
         }
       ],
       "schemes": [
@@ -68,102 +47,75 @@
       ]
     }
   ],
-  "redirect_samples": [
-    {
-      "destination": "/government/organisations/department-for-education",
-      "destination_host": "www.gov.uk",
-      "destination_url": "https://www.gov.uk/government/organisations/department-for-education",
-      "evidence_locator": "/",
-      "evidence_url": "https://www.gov.uk/dfe",
-      "path": "/dfe",
-      "retrieved_at": "2026-07-11T23:30:00Z",
-      "segments_mode": "unknown",
-      "source_host": "www.gov.uk",
-      "source_route": "dataset/route-d084b0cfcff4f595e28ad883-en",
-      "source_url": "https://www.gov.uk/dfe",
-      "type": "exact"
-    }
-  ],
+  "redirect_samples": [],
   "redirect_samples_complete": true,
   "relationship_kinds": [
     {
-      "count": 7,
-      "value": "published by"
+      "count": 133,
+      "value": "related to"
     },
     {
-      "count": 2,
+      "count": 96,
+      "value": "associated with organisation"
+    },
+    {
+      "count": 69,
       "value": "available in language"
     },
     {
-      "count": 1,
-      "value": "applies to world location"
+      "count": 67,
+      "value": "published by"
+    },
+    {
+      "count": 9,
+      "value": "ordered related items overrides"
+    },
+    {
+      "count": 9,
+      "value": "part of step by step"
+    },
+    {
+      "count": 8,
+      "value": "pages part of step nav"
     },
     {
       "count": 1,
-      "value": "child of"
-    },
-    {
-      "count": 1,
-      "value": "classified under"
-    },
-    {
-      "count": 1,
-      "value": "has attachment"
-    },
-    {
-      "count": 1,
-      "value": "level one taxons"
-    },
-    {
-      "count": 1,
-      "value": "part of collection"
-    },
-    {
-      "count": 1,
-      "value": "redirects to"
+      "value": "pages related to step nav"
     }
   ],
   "routing_kinds": [
     {
-      "count": 12,
+      "count": 69,
       "value": "canonical"
-    },
-    {
-      "count": 1,
-      "value": "external_boundary"
-    },
-    {
-      "count": 1,
-      "value": "redirect"
     }
   ],
   "routing_mechanisms": [
     {
-      "count": 14,
+      "count": 69,
       "full_detail": "data/records-*.json.gz via the route index",
       "id": "canonical_url",
       "label": "Canonical and observed URLs"
     },
     {
-      "count": 10,
+      "count": 69,
       "full_detail": "data/routes/manifest.json",
       "id": "stable_content_identifier",
       "label": "Stable GOV.UK content identifiers"
     },
     {
-      "count": 1,
+      "count": 0,
       "full_detail": "redirects on each record plus redirects-to adjacency",
       "id": "redirect_rule",
       "label": "Source-declared redirect rules"
     },
     {
-      "count": 1,
+      "count": 0,
       "full_detail": "external-boundary records and host inventory",
       "id": "external_boundary",
       "label": "Routes to independently operated sites"
     },
     {
-      "count": 16,
+      "count": 392,
       "full_detail": "data/adjacency/manifest.json",
       "id": "typed_relationship",
       "label": "Structured navigation and routing relationships"
@@ -171,13 +123,13 @@
   ],
   "schema": "govuk-site-topology.v1",
   "scope": {
-    "boundary_sites": "Recorded as destinations and relationships, not mirrored as complete sites.",
-    "hydration": "Routing detail grows from the same deterministic projection as Content API hydration closes.",
+    "boundary_sites": "Recorded only as evidence-bearing destinations from the bounded seed set; they are not mirrored or claimed complete.",
+    "hydration": "Only the 69 frozen seed records and their declared one-hop metadata evidence are represented; no whole-estate closure is claimed.",
     "main_publishing_estate": "www.gov.uk",
-    "official_sitemap_role": "one Search API-derived enumerator within the reconciled source union",
+    "official_sitemap_role": "Three frozen Search API browse-path queries define this 69-record demonstrator; this is not an official or complete GOV.UK sitemap.",
     "page_bodies": "not retained or published"
   },
-  "snapshot": "fixture-2026-07-11",
+  "snapshot": "NEW-CHILD-20260715",
   "status": "snapshot_projection_not_release_completeness_claim",
-  "title": "GOV.UK sitemap and routing topology"
+  "title": "GOV.UK new-child demonstrator routing topology"
 }

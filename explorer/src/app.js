@@ -18,6 +18,13 @@ import {
   referencePath,
   SearchClient
 } from "./data.js";
+import {
+  demonstratorRecordRoutes,
+  demonstratorSummary,
+  groupRecords,
+  publisherBreakdown,
+  resolveBundleDocument
+} from "./demonstrator.js";
 
 const TRANSLATIONS = {
   en: {
@@ -39,6 +46,7 @@ const TRANSLATIONS = {
     retry: "Try again",
     close: "Close",
     tabs: {
+      journey: "New child journey",
       results: "Results",
       sitemap: "Sitemap & routing",
       browse: "Browse paths",
@@ -51,6 +59,7 @@ const TRANSLATIONS = {
     noResultsHelp: "Try fewer words, another spelling, a broader facet, or follow GOV.UK search. The catalogue does not invent an answer.",
     loading: "Loading the catalogue…",
     searching: "Searching the static index…",
+    result: "result",
     results: "results",
     sourceNative: "Source-native",
     inferred: "Inferred",
@@ -94,6 +103,7 @@ const TRANSLATIONS = {
     retry: "Rhoi cynnig arall arni",
     close: "Cau",
     tabs: {
+      journey: "Taith plentyn newydd",
       results: "Canlyniadau",
       sitemap: "Map safle a llwybro",
       browse: "Llwybrau pori",
@@ -106,6 +116,7 @@ const TRANSLATIONS = {
     noResultsHelp: "Rhowch gynnig ar lai o eiriau, sillafiad arall neu hidlydd ehangach. Nid yw’r catalog yn dyfeisio ateb.",
     loading: "Wrthi’n llwytho’r catalog…",
     searching: "Wrthi’n chwilio’r mynegai statig…",
+    result: "canlyniad",
     results: "canlyniad",
     sourceNative: "O’r ffynhonnell",
     inferred: "Wedi’i gasglu drwy resymeg",
@@ -142,6 +153,9 @@ let selectedRelationships = [];
 let relationshipsLoading = false;
 let siteTopologyLoading = false;
 let siteTopologyError = "";
+let demonstratorRecords = [];
+let demonstratorRecordsLoading = false;
+let demonstratorRecordsError = "";
 let requestSequence = 0;
 let suggestionTimer = null;
 let instrumentationConsent = false;
@@ -241,6 +255,8 @@ function applyChrome() {
     if (button.dataset.view === state.view) button.setAttribute("aria-current", "page");
     else button.removeAttribute("aria-current");
   });
+  const journeyTab = document.getElementById("journey-tab");
+  if (journeyTab) journeyTab.hidden = !(corpusStore && corpusStore.demonstrator);
 }
 
 function recordInstrumentation(kind, detail) {
@@ -288,6 +304,8 @@ function showFatal(error) {
 async function loadCatalogue() {
   document.documentElement.dataset.bootstrapReady = "false";
   document.documentElement.dataset.explorerReady = "false";
+  document.documentElement.dataset.demonstratorReady = "false";
+  document.documentElement.dataset.demonstratorRecordsReady = "false";
   document.documentElement.dataset.fatalError = "false";
   document.getElementById("fatal-error").hidden = true;
   setStatus(translation().loading);
@@ -300,6 +318,9 @@ async function loadCatalogue() {
   selectedRelationships = [];
   siteTopologyLoading = false;
   siteTopologyError = "";
+  demonstratorRecords = [];
+  demonstratorRecordsLoading = false;
+  demonstratorRecordsError = "";
   const query = new URLSearchParams(window.location.search);
   const explicitBundle = query.get("bundle") || "";
   const configured = document.documentElement.dataset.defaultBundle || "";
@@ -342,6 +363,7 @@ async function loadCatalogue() {
   }
   setBusy(false);
   renderAll();
+  document.documentElement.dataset.demonstratorReady = String(Boolean(corpusStore.demonstrator));
   document.documentElement.dataset.bootstrapReady = "true";
   recordBrowserMetric("firstUsefulRenderMs", performance.now());
   if (state.query) await runSearch(state.query, false);
@@ -424,6 +446,292 @@ function renderScope() {
   const noticeList = document.getElementById("scope-notices");
   noticeList.replaceChildren(...notices.map((notice) => createElement("p", { text: notice })));
   document.getElementById("scope-panel").setAttribute("aria-busy", "false");
+}
+
+function allKnownRecords() {
+  const byRoute = new Map();
+  for (const record of [...records, ...demonstratorRecords]) {
+    if (record && record.route && !byRoute.has(record.route)) byRoute.set(record.route, record);
+  }
+  if (selectedRecord && selectedRecord.route) byRoute.set(selectedRecord.route, selectedRecord);
+  return [...byRoute.values()];
+}
+
+function createBundleDocumentLink(label, reference) {
+  const href = corpusStore ? resolveBundleDocument(reference, corpusStore.baseUrl) : "";
+  return href
+    ? createElement("a", { text: label, attributes: { href } })
+    : createElement("span", { text: label + " (not included in this bundle)" });
+}
+
+function renderDemonstratorCallout() {
+  const panel = document.getElementById("demonstrator-callout");
+  const content = document.getElementById("demonstrator-callout-content");
+  const demonstrator = corpusStore && corpusStore.demonstrator;
+  if (!demonstrator) {
+    panel.hidden = true;
+    content.replaceChildren();
+    return;
+  }
+  panel.hidden = false;
+  const summary = demonstratorSummary(demonstrator, demonstratorRecords);
+  panel.dataset.seedCount = formatNumber(summary.expected);
+  const heading = createElement("h2", { id: "demonstrator-callout-heading", text: demonstrator.title });
+  const explanation = createElement("p", {
+    className: "demonstrator-callout-lede",
+    text: "A small, inspectable demonstration of how official GOV.UK metadata can connect a real-life journey across departments. It does not give personalised advice."
+  });
+  const coverage = createElement("p", { className: "demonstrator-coverage-line" }, [
+    createElement("strong", { text: formatNumber(summary.represented) + " of " + formatNumber(summary.expected) }),
+    " declared seed records represented; ",
+    createElement("strong", { text: formatNumber(summary.unexplainedOmissions) }),
+    " unexplained seed omissions."
+  ]);
+  const actions = createElement("div", { className: "demonstrator-actions" }, [
+    createButton("Explore the new child journey", () => syncState({ view: "journey", query: "", facets: {}, page: 1 }, true), "primary-button"),
+    createBundleDocumentLink("Use this bundle with an AI or MCP", demonstrator.aiHandoff.documentation)
+  ]);
+  content.replaceChildren(
+    createElement("p", { className: "eyebrow", text: "Bounded demonstrator · source-grounded discovery" }),
+    heading,
+    explanation,
+    coverage,
+    actions
+  );
+}
+
+async function ensureDemonstratorRecords() {
+  const demonstrator = corpusStore && corpusStore.demonstrator;
+  if (!demonstrator || demonstratorRecordsLoading) return;
+  const routes = demonstratorRecordRoutes(demonstrator);
+  const loadedRoutes = new Set(demonstratorRecords.map((record) => record.route));
+  const overviewByRoute = new Map(records.map((record) => [record.route, record]));
+  for (const route of routes) {
+    const record = overviewByRoute.get(route);
+    if (record && !loadedRoutes.has(route)) {
+      demonstratorRecords.push(record);
+      loadedRoutes.add(route);
+    }
+  }
+  const pending = routes.filter((route) => !loadedRoutes.has(route));
+  if (!pending.length) {
+    document.documentElement.dataset.demonstratorRecordsReady = "true";
+    return;
+  }
+  demonstratorRecordsLoading = true;
+  demonstratorRecordsError = "";
+  document.documentElement.dataset.demonstratorRecordsReady = "false";
+  if (state.view === "journey") renderJourney();
+  const failures = [];
+  try {
+    for (let offset = 0; offset < pending.length; offset += 8) {
+      const batch = pending.slice(offset, offset + 8);
+      const loaded = await Promise.all(batch.map(async (route) => {
+        try {
+          return await corpusStore.loadRecord(route);
+        } catch (error) {
+          failures.push({ route, error });
+          return null;
+        }
+      }));
+      for (const record of loaded) {
+        if (record && !loadedRoutes.has(record.route)) {
+          demonstratorRecords.push(record);
+          loadedRoutes.add(record.route);
+        }
+      }
+      if (state.view === "journey") renderJourney();
+    }
+    const missing = routes.filter((route) => !loadedRoutes.has(route));
+    if (missing.length) demonstratorRecordsError = formatNumber(missing.length) + " advertised demonstrator records could not be loaded. Their routes remain visible in the machine-readable contract.";
+    if (failures.length) console.warn("Some demonstrator records were unavailable", failures);
+  } finally {
+    demonstratorRecordsLoading = false;
+    document.documentElement.dataset.demonstratorRecordsReady = String(!demonstratorRecordsError);
+    if (state.view === "journey") renderAll();
+  }
+}
+
+function openJourneyGroup(group) {
+  records = allKnownRecords();
+  searchBacked = false;
+  syncState({
+    view: "results",
+    query: "",
+    facets: { journey_group: [group.id] },
+    page: 1
+  }, true);
+}
+
+function renderJourneyRecord(record) {
+  const heading = createElement("h4");
+  heading.append(createButton(record.title, () => selectRecord(record), "route-button"));
+  const card = createElement("article", { className: "journey-record" }, [
+    sourceBadge(record),
+    heading,
+    record.summary ? createElement("p", { text: record.summary }) : null,
+    createElement("p", { className: "journey-record-meta", text: [record.type, record.publisher].filter(Boolean).join(" · ") })
+  ].filter(Boolean));
+  if (record.canonicalUrl) card.append(createExternalLink("Open authoritative GOV.UK page", record.canonicalUrl));
+  return card;
+}
+
+function renderJourneyGroup(group, ordinal) {
+  const matched = groupRecords(group, demonstratorRecords);
+  const questionList = group.exampleQuestions.length
+    ? createElement("ul", { className: "journey-questions" }, group.exampleQuestions.slice(0, 3).map((question) => createElement("li", { text: question })))
+    : null;
+  const recordsRegion = createElement("div", { className: "journey-record-grid" });
+  for (const record of matched.slice(0, 4)) recordsRegion.append(renderJourneyRecord(record));
+  if (!matched.length && demonstratorRecordsLoading) recordsRegion.append(createElement("p", { className: "loading-state", text: "Loading this stage’s metadata records…" }));
+  if (!matched.length && !demonstratorRecordsLoading) recordsRegion.append(createElement("p", { className: "hint", text: "The stage is declared in the contract, but no full record has loaded in this browser session." }));
+  const section = createElement("section", { className: "journey-stage", attributes: { "aria-labelledby": "journey-stage-" + ordinal } }, [
+    createElement("div", { className: "journey-stage-number", text: String(ordinal + 1), attributes: { "aria-hidden": "true" } }),
+    createElement("div", { className: "journey-stage-content" }, [
+      createElement("p", { className: "eyebrow", text: formatNumber(group.recordRoutes.length) + " linked records" }),
+      createElement("h3", { id: "journey-stage-" + ordinal, text: group.title }),
+      group.description ? createElement("p", { text: group.description }) : null,
+      questionList,
+      recordsRegion,
+      createButton("View all records in " + group.title, () => openJourneyGroup(group), "secondary-button")
+    ].filter(Boolean))
+  ]);
+  return section;
+}
+
+function renderJourneySources(demonstrator) {
+  const rows = demonstrator.sourceQueries.map((query) => [
+    query.label || query.browsePath || "Declared source query",
+    query.browsePath || "Not recorded",
+    formatNumber(query.reportedTotal),
+    formatNumber(query.derivedMembershipCount),
+    (query.reproducibilityUrl || query.searchUrl)
+      ? [createExternalLink("Open the reproducibility query", query.reproducibilityUrl || query.searchUrl)]
+      : "Not recorded"
+  ]);
+  const observations = demonstrator.sourceQueries.flatMap((query) => query.observations.map((observation) => [
+    query.label || query.browsePath || "Declared source query",
+    observation.phase || "observed",
+    formatNumber(observation.observedTotal),
+    observation.retrievedAt || "Not recorded",
+    observation.programmeSequence ? formatNumber(observation.programmeSequence) : "Not recorded",
+    observation.envelopeSha256 || "Not recorded"
+  ]));
+  return createElement("section", { className: "journey-evidence-section mode-explore" }, [
+    createElement("h3", { text: "Declared seed queries" }),
+    createElement("p", { className: "hint", text: "Observed API totals and final represented-membership counts are shown separately. Repeated browse filters form the declared union, so subgroup counts must not be added together." }),
+    rows.length ? topologyTable(["Browse area", "Path", "Observed total", "Represented memberships", "Official query"], rows) : createElement("p", { text: "No source-query rows were supplied." }),
+    observations.length ? createElement("details", { className: "journey-source-observations" }, [
+      createElement("summary", { text: "Show exact opening and closing observations" }),
+      topologyTable(["Source", "Phase", "Observed total", "Retrieved", "Programme attempt", "Envelope SHA-256"], observations)
+    ]) : null
+  ].filter(Boolean));
+}
+
+function renderJourneyBoundaries(demonstrator) {
+  const classRows = Object.entries(demonstrator.coverage.byBoundaryClass || {})
+    .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+    .map(([boundaryClass, count]) => [boundaryClass.replaceAll("_", " "), formatNumber(count)]);
+  const rows = demonstrator.boundaries.slice(0, 80).map((boundary) => [
+    boundary.sourceRoute ? [routeButton(boundary.sourceRoute)] : "Not recorded",
+    boundary.predicate,
+    boundary.boundaryClass,
+    boundary.targetUrl ? [createExternalLink(boundary.title, boundary.targetUrl)] : boundary.title,
+    boundary.evidenceUrl ? [createExternalLink(boundary.evidenceLocator || "Source evidence", boundary.evidenceUrl)] : boundary.evidenceLocator || "Not recorded"
+  ]);
+  return createElement("section", { className: "journey-evidence-section" }, [
+    createElement("h3", { text: "Where the bounded bundle stops" }),
+    createElement("p", { text: "Relationships whose targets were not retained as one-hop records stay as evidence-bearing typed boundary references. The classes below are the exact acquisition classifications; the Explorer does not infer a service type or crawl the destination." }),
+    classRows.length ? topologyTable(["Observed boundary class", "References"], classRows) : null,
+    createElement("p", { className: "hint", text: `Showing ${formatNumber(rows.length)} of ${formatNumber(demonstrator.coverage.boundaryReferenceCount)} direct boundary references. The complete evidence-bearing list remains in data/demonstrator.json.` }),
+    rows.length ? topologyTable(["From record", "Relationship", "Boundary class", "Destination", "Evidence"], rows) : createElement("p", { className: "hint", text: "No boundary-reference rows were supplied in this snapshot." })
+  ].filter(Boolean));
+}
+
+function renderAiHandoff(demonstrator) {
+  const links = createElement("div", { className: "ai-handoff-links" }, [
+    createBundleDocumentLink("Read the AI input guide", demonstrator.aiHandoff.documentation),
+    createBundleDocumentLink("Open the full Markdown archive", demonstrator.aiHandoff.contextPack),
+    createBundleDocumentLink("Open the full JSON archive", demonstrator.aiHandoff.contextJson),
+    createBundleDocumentLink("Open the MCP manifest", demonstrator.aiHandoff.mcpManifest)
+  ]);
+  return createElement("section", { className: "ai-handoff", attributes: { "aria-labelledby": "ai-handoff-heading" } }, [
+    createElement("p", { className: "eyebrow", text: "One bundle, several AI entry points" }),
+    createElement("h3", { id: "ai-handoff-heading", text: "Use the same evidence with any AI" }),
+    createElement("p", { text: "Generate a compact question-specific context for a one-off prompt or file upload. The linked full Markdown and JSON packs are bulk archives for systems with sufficient context. Use the read-only MCP surface when an assistant can search, fetch and traverse records on demand, or JSON-LD for graph analysis." }),
+    createElement("p", { className: "hint", text: "The bundle supplies evidence and citations, not personalised eligibility decisions. The AI should follow GOV.UK links for current authoritative guidance and abstain when evidence is missing." }),
+    links
+  ]);
+}
+
+function renderJourney() {
+  const content = document.getElementById("view-content");
+  document.getElementById("pagination").replaceChildren();
+  const demonstrator = corpusStore && corpusStore.demonstrator;
+  if (!demonstrator) {
+    content.replaceChildren(createElement("div", { className: "empty-state" }, [
+      createElement("h3", { text: "This bundle does not advertise a bounded journey demonstrator." }),
+      createElement("p", { text: "Use Results, Browse paths or Sitemap & routing for the general catalogue." })
+    ]));
+    return;
+  }
+  if (!demonstratorRecords.length && !demonstratorRecordsLoading && !demonstratorRecordsError) ensureDemonstratorRecords();
+  const summary = demonstratorSummary(demonstrator, demonstratorRecords);
+  const question = demonstrator.journeyGroups.flatMap((group) => group.exampleQuestions).find(Boolean);
+  const introduction = createElement("section", { className: "journey-introduction" }, [
+    createElement("p", { className: "eyebrow", text: "Bounded journey demonstrator" }),
+    createElement("h3", { text: demonstrator.title }),
+    question ? createElement("blockquote", { className: "journey-question" }, [createElement("p", { text: question })]) : null,
+    createElement("p", { className: "lede", text: "Explore which official records contribute evidence, how they connect across organisations, and where this deliberately bounded dataset hands off to GOV.UK or another service." }),
+    demonstrator.scopeStatement ? createElement("p", { className: "journey-scope-statement" }, [
+      createElement("strong", { text: "Declared scope: " }),
+      demonstrator.scopeStatement
+    ]) : null,
+    createElement("div", { className: "journey-warning", role: "note" }, [
+      createElement("strong", { text: "This is not advice or a complete model of GOV.UK." }),
+      " It is complete only against its declared " + formatNumber(summary.expected) + "-record seed contract and remains derived and non-authoritative."
+    ])
+  ].filter(Boolean));
+  const metrics = createElement("div", { className: "journey-metrics" }, [
+    topologyCount("declared seed records", summary.expected),
+    topologyCount("represented seed records", summary.represented),
+    topologyCount("published records", demonstrator.publicationRecordCount),
+    topologyCount("unexplained seed omissions", summary.unexplainedOmissions),
+    topologyCount("loaded journey records", summary.loadedRecords),
+    topologyCount("recorded primary publishers", summary.organisations),
+    topologyCount("records with publisher unavailable", summary.recordsWithoutPublisher),
+    topologyCount("boundary references", summary.boundaryReferences),
+    topologyCount("retained-record ceiling", demonstrator.retainedRecordCeiling),
+    topologyCount("official-request ceiling", demonstrator.officialRequestCeiling)
+  ]);
+  const stages = createElement("div", { className: "journey-stages" });
+  demonstrator.journeyGroups.forEach((group, ordinal) => stages.append(renderJourneyGroup(group, ordinal)));
+  if (!demonstrator.journeyGroups.length) stages.append(createElement("p", { className: "empty-state", text: "No journey groups were supplied in the demonstrator contract." }));
+  const publishers = publisherBreakdown(demonstratorRecords);
+  const publisherSection = createElement("section", { className: "journey-evidence-section" }, [
+    createElement("h3", { text: "Recorded primary-publisher evidence" }),
+    createElement("p", { text: "These counts are calculated from admitted primary-publisher metadata. Missing publisher values remain a separate count, and linked organisations elsewhere in the graph are not relabelled as a record's publisher." }),
+    createElement("div", { className: "publisher-grid" }, publishers.slice(0, 12).map((row) => createElement("article", { className: "publisher-card" }, [
+      createElement("strong", { text: row.publisher }),
+      createElement("span", { text: formatNumber(row.count) + " records" })
+    ])))
+  ]);
+  const loadState = demonstratorRecordsError
+    ? createElement("div", { className: "error-summary", role: "alert", text: demonstratorRecordsError })
+    : demonstratorRecordsLoading
+      ? createElement("p", { className: "status-message", role: "status", text: "Loading the bounded record set for this journey…" })
+      : null;
+  content.replaceChildren(
+    introduction,
+    metrics,
+    loadState || createElement("span"),
+    createElement("h3", { text: "Follow the evidence journey" }),
+    stages,
+    publisherSection,
+    renderJourneySources(demonstrator),
+    renderJourneyBoundaries(demonstrator),
+    renderAiHandoff(demonstrator)
+  );
 }
 
 function facetDefinitions() {
@@ -525,6 +833,7 @@ function renderResultCard(record, position) {
   const heading = createElement("h3");
   heading.append(createButton(record.title, () => selectRecord(record, position)));
   const card = createElement("article", { className: "result-card" }, [sourceBadge(record), heading]);
+  if (record.demo.cohortRole) card.insertBefore(createElement("span", { className: "badge demonstrator", text: "Demonstrator: " + record.demo.cohortRole }), heading);
   if (record.summary) card.append(createElement("p", { text: record.summary }));
   card.append(metadataList(record, true));
   if (record.breadcrumb.length) card.append(createElement("p", { className: "mode-explore", text: "Path: " + record.breadcrumb.join(" > ") }));
@@ -635,7 +944,7 @@ function renderBrowse() {
 
 function labelForRoute(route) {
   if (selectedRecord && selectedRecord.route === route) return selectedRecord.title;
-  const match = records.find((record) => record.route === route);
+  const match = allKnownRecords().find((record) => record.route === route);
   return match ? match.title : route;
 }
 
@@ -908,7 +1217,8 @@ function renderTimeline() {
 }
 
 function pinnedRecords() {
-  return state.pins.map((route) => records.find((record) => record.route === route) || (selectedRecord && selectedRecord.route === route ? selectedRecord : normaliseRecord({ route, title: route, source_status: "not recorded" }, route)));
+  const byRoute = new Map(allKnownRecords().map((record) => [record.route, record]));
+  return state.pins.map((route) => byRoute.get(route) || normaliseRecord({ route, title: route, source_status: "not recorded" }, route));
 }
 
 function exportActions(recordsToExport) {
@@ -948,8 +1258,10 @@ function renderCompare() {
 }
 
 function viewDescription(view, count) {
+  const resultNoun = count === 1 ? translation().result : translation().results;
   const descriptions = {
-    results: count + " " + translation().results + " in the active context.",
+    journey: "A bounded, source-grounded map of new-child help, leave, benefits and childcare records.",
+    results: count + " " + resultNoun + " in the active context.",
     sitemap: "Hosts, routes, redirects, boundary destinations and routing mechanisms in the loaded snapshot.",
     browse: "Official browse, taxonomy, organisation and journey structures remain distinct.",
     relationships: "Typed, evidence-bearing paths for the selected record or aggregate snapshot.",
@@ -962,7 +1274,8 @@ function viewDescription(view, count) {
 function renderView() {
   const heading = document.getElementById("view-heading");
   heading.replaceChildren(createElement("div", {}, [createElement("h2", { text: translation().tabs[state.view] }), createElement("p", { text: viewDescription(state.view, visibleRecords().length) })]));
-  if (state.view === "sitemap") renderSitemap();
+  if (state.view === "journey") renderJourney();
+  else if (state.view === "sitemap") renderSitemap();
   else if (state.view === "browse") renderBrowse();
   else if (state.view === "relationships") renderRelationships();
   else if (state.view === "timeline") renderTimeline();
@@ -1038,10 +1351,16 @@ function renderDetail() {
   const provenance = createElement("dl", { className: "detail-meta" });
   const provenanceRows = [
     ["Canonical record ID", selectedRecord.id],
+    ["GOV.UK content ID", selectedRecord.contentId],
     ["Explorer route", selectedRecord.route],
     ["Snapshot", state.snapshot || "Not recorded"],
     ["Assertion state", selectedRecord.sourceStatus],
-    ["Retrieved", formatDate(selectedRecord.retrievedAt)]
+    ["Retrieved", formatDate(selectedRecord.retrievedAt)],
+    ["Evidence locator", selectedRecord.evidenceLocator],
+    ["Evidence SHA-256", selectedRecord.sourceHash],
+    ["Demonstrator role", selectedRecord.demo.cohortRole],
+    ["Seed membership", selectedRecord.demo.seedMemberships.join(", ")],
+    ["Journey groups", selectedRecord.demo.journeyGroups.join(", ")]
   ];
   if (selectedRecord.sourceStatus === "inferred") provenanceRows.push(["Confidence", selectedRecord.confidence || "Not recorded"]);
   for (const [label, value] of provenanceRows) provenance.append(createElement("dt", { text: label }), createElement("dd", { text: value || "Not recorded" }));
@@ -1094,7 +1413,7 @@ async function openRoute(route, push = true) {
   const started = performance.now();
   const safeRoute = String(route || "").replace(/[<>]/g, "").slice(0, 768);
   if (!safeRoute) return;
-  let record = records.find((item) => item.route === safeRoute) || (selectedRecord && selectedRecord.route === safeRoute ? selectedRecord : null);
+  let record = allKnownRecords().find((item) => item.route === safeRoute) || null;
   if (!record && corpusStore) {
     try {
       record = await corpusStore.loadRecord(safeRoute);
@@ -1172,13 +1491,15 @@ function renderAll() {
   if (!corpusStore) return;
   if (document.activeElement !== document.getElementById("search-input")) document.getElementById("search-input").value = state.query;
   renderScope();
+  renderDemonstratorCallout();
   renderActiveContext();
   renderFacets();
   renderView();
   renderDetail();
   const topologyBusy = state.view === "sitemap" && siteTopologyLoading;
   if (!topologyBusy && (!document.getElementById("view-content").getAttribute("aria-busy") || document.getElementById("view-content").getAttribute("aria-busy") === "false")) {
-    setStatus(visibleRecords().length + " " + translation().results + " in the active context.");
+    const count = visibleRecords().length;
+    setStatus(count + " " + (count === 1 ? translation().result : translation().results) + " in the active context.");
   }
   document.getElementById("view-content").setAttribute("aria-busy", String(topologyBusy));
 }
