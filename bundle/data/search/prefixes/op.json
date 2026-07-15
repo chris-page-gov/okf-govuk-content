@@ -2,37 +2,19 @@
   "ope": [
     {
       "df": 1,
-      "token": "operated"
+      "token": "open"
     }
   ],
-  "oper": [
+  "open": [
     {
       "df": 1,
-      "token": "operated"
+      "token": "open"
     }
   ],
-  "opera": [
+  "opt": [
     {
       "df": 1,
-      "token": "operated"
-    }
-  ],
-  "operat": [
-    {
-      "df": 1,
-      "token": "operated"
-    }
-  ],
-  "operate": [
-    {
-      "df": 1,
-      "token": "operated"
-    }
-  ],
-  "operated": [
-    {
-      "df": 1,
-      "token": "operated"
+      "token": "opt"
     }
   ]
 }

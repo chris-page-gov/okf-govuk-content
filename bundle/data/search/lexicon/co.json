@@ -2,21 +2,81 @@
   {
     "df": 1,
     "postings": "data/search/postings/co.json",
-    "token": "collection"
+    "token": "colleges"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/co.json",
+    "token": "complain"
   },
   {
     "df": 1,
     "postings": "data/search/postings/co.json",
-    "token": "collections"
+    "token": "complain-about-childcare"
   },
   {
     "df": 1,
     "postings": "data/search/postings/co.json",
-    "token": "commonwealth"
+    "token": "complain-about-school"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/co.json",
+    "token": "complaint"
+  },
+  {
+    "df": 4,
+    "postings": "data/search/postings/co.json",
+    "token": "complaints"
   },
   {
     "df": 1,
     "postings": "data/search/postings/co.json",
-    "token": "content"
+    "token": "confirm"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/co.json",
+    "token": "continue"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/co.json",
+    "token": "cost"
+  },
+  {
+    "df": 4,
+    "postings": "data/search/postings/co.json",
+    "token": "costs"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/co.json",
+    "token": "could"
+  },
+  {
+    "df": 6,
+    "postings": "data/search/postings/co.json",
+    "token": "council"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/co.json",
+    "token": "counselling"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/co.json",
+    "token": "countries"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/co.json",
+    "token": "country"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/co.json",
+    "token": "courses"
   }
 ]

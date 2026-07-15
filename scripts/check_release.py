@@ -79,6 +79,8 @@ CLEAN_ROOM_INPUT_PATHS = (
     "LICENSE.md",
     "governance/launch-manifest.yaml",
     "orchestration/models.lock.yaml",
+    "demo/new-child-cohort.json",
+    "demo/snapshots/NEW-CHILD-20260715",
     "pyproject.toml",
     "provenance/activity-ledger.jsonl",
     "provenance/activity-ledger.schema.json",

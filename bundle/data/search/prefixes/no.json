@@ -1,18 +1,30 @@
 {
   "not": [
     {
-      "df": 7,
+      "df": 6,
       "token": "not"
     },
     {
-      "df": 1,
-      "token": "note"
+      "df": 2,
+      "token": "notice"
     }
   ],
-  "note": [
+  "noti": [
     {
-      "df": 1,
-      "token": "note"
+      "df": 2,
+      "token": "notice"
+    }
+  ],
+  "notic": [
+    {
+      "df": 2,
+      "token": "notice"
+    }
+  ],
+  "notice": [
+    {
+      "df": 2,
+      "token": "notice"
     }
   ]
 }

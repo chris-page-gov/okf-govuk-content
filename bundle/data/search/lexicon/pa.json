@@ -1,6 +1,81 @@
 [
   {
+    "df": 2,
+    "postings": "data/search/postings/pa.json",
+    "token": "paid"
+  },
+  {
     "df": 1,
+    "postings": "data/search/postings/pa.json",
+    "token": "pairs"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/pa.json",
+    "token": "parent"
+  },
+  {
+    "df": 4,
+    "postings": "data/search/postings/pa.json",
+    "token": "parental"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pa.json",
+    "token": "parental-leave"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pa.json",
+    "token": "parenting"
+  },
+  {
+    "df": 7,
+    "postings": "data/search/postings/pa.json",
+    "token": "parents"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pa.json",
+    "token": "parents-learning-allowance"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/pa.json",
+    "token": "partner"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pa.json",
+    "token": "partners"
+  },
+  {
+    "df": 4,
+    "postings": "data/search/postings/pa.json",
+    "token": "paternity"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pa.json",
+    "token": "paternity-pay-leave"
+  },
+  {
+    "df": 11,
+    "postings": "data/search/postings/pa.json",
+    "token": "pay"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/pa.json",
+    "token": "paying"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/pa.json",
+    "token": "payment"
+  },
+  {
+    "df": 7,
     "postings": "data/search/postings/pa.json",
     "token": "payments"
   }

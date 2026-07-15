@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any, Callable, Iterable, Iterator, Sequence
 from urllib.parse import quote, urlparse
 
+from .demonstrator_projection import build_new_child_demonstrator, write_ai_handoff
 from .util import adjacency_bucket, canonical_json_bytes, chunks, pretty_json, sha256_text, slugify, write_gzip_json, yaml_dump
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -306,6 +307,26 @@ def normalise_source_record(record: dict[str, Any], observed_at: str) -> dict[st
         "evidence_sha256": record.get("evidence_sha256") or hashlib.sha256(canonical_json_bytes(record)).hexdigest(),
         "evidence_locator": record.get("evidence_locator") or "/",
         "retrieved_at": record.get("retrieved_at") or observed_at,
+        **(
+            {
+                "demo": {
+                    "is_seed": record["demo"].get("is_seed") is True,
+                    "cohort_id": str(record["demo"].get("cohort_id") or ""),
+                    "seed_memberships": [
+                        str(value)
+                        for value in record["demo"].get("seed_memberships") or []
+                        if isinstance(value, str) and value
+                    ],
+                    "journey_groups": [
+                        str(value)
+                        for value in record["demo"].get("journey_groups") or []
+                        if isinstance(value, str) and value
+                    ],
+                }
+            }
+            if isinstance(record.get("demo"), dict)
+            else {}
+        ),
         "_source": record,
     }
 
@@ -1400,6 +1421,7 @@ def build_site_topology(
     source_count: int,
     generated_at: str,
     snapshot_id: str,
+    demonstrator: bool = False,
 ) -> dict[str, Any]:
     """Build the compact host and routing control plane for the full record plane."""
 
@@ -1524,19 +1546,44 @@ def build_site_topology(
         "stable_content_identifiers": stable_content_identifiers,
         "relationship_assertions": len(relationships),
     }
-    return {
-        "schema": "govuk-site-topology.v1",
-        "title": "GOV.UK sitemap and routing topology",
-        "generated_at": generated_at,
-        "snapshot": snapshot_id,
-        "status": "snapshot_projection_not_release_completeness_claim",
-        "scope": {
+    title = (
+        "GOV.UK new-child demonstrator routing topology"
+        if demonstrator
+        else "GOV.UK sitemap and routing topology"
+    )
+    scope = (
+        {
+            "main_publishing_estate": "www.gov.uk",
+            "boundary_sites": (
+                "Recorded only as evidence-bearing destinations from the bounded seed set; "
+                "they are not mirrored or claimed complete."
+            ),
+            "page_bodies": "not retained or published",
+            "official_sitemap_role": (
+                "Three frozen Search API browse-path queries define this 69-record demonstrator; "
+                "this is not an official or complete GOV.UK sitemap."
+            ),
+            "hydration": (
+                "Only the 69 frozen seed records and their declared one-hop metadata evidence "
+                "are represented; no whole-estate closure is claimed."
+            ),
+        }
+        if demonstrator
+        else {
             "main_publishing_estate": "www.gov.uk",
             "boundary_sites": "Recorded as destinations and relationships, not mirrored as complete sites.",
             "page_bodies": "not retained or published",
             "official_sitemap_role": "one Search API-derived enumerator within the reconciled source union",
             "hydration": "Routing detail grows from the same deterministic projection as Content API hydration closes.",
-        },
+        }
+    )
+    return {
+        "schema": "govuk-site-topology.v1",
+        "title": title,
+        "generated_at": generated_at,
+        "snapshot": snapshot_id,
+        "status": "snapshot_projection_not_release_completeness_claim",
+        "scope": scope,
         "counts": counts,
         "coverage_dispositions": [
             {"value": key, "count": count}
@@ -1597,8 +1644,14 @@ def build_site_topology(
     }
 
 
-def semantic_descriptor(counts: dict[str, int], generated_at: str, snapshot_id: str) -> dict[str, Any]:
-    return {
+def semantic_descriptor(
+    counts: dict[str, int],
+    generated_at: str,
+    snapshot_id: str,
+    *,
+    demonstrator: bool = False,
+) -> dict[str, Any]:
+    descriptor = {
         "@context": GOVUK_CONTEXT_URL,
         "@id": HOME_URL + "okf-bundle.yamlld",
         "@type": "okf:Bundle",
@@ -1629,6 +1682,30 @@ def semantic_descriptor(counts: dict[str, int], generated_at: str, snapshot_id: 
             "okf-route-index.v1",
         ],
     }
+    if demonstrator:
+        descriptor.update(
+            {
+                "title": "Having a new child: bounded GOV.UK metadata demonstrator",
+                "description": (
+                    "Derived, non-authoritative semantic projection of exactly 69 frozen GOV.UK "
+                    "new-child metadata records; it is not a complete GOV.UK corpus."
+                ),
+                "status": "bounded-demonstrator",
+                "derivedNotice": (
+                    "GOV.UK remains authoritative. This demonstrator is complete only for its "
+                    "declared 69-record seed denominator and does not reproduce complete page "
+                    "bodies, transactions or the wider GOV.UK estate."
+                ),
+                "scope": {
+                    "kind": "bounded-new-child-metadata-demonstrator",
+                    "seedDenominator": 69,
+                    "authoritative": False,
+                    "completeGovukCorpus": False,
+                },
+            }
+        )
+        descriptor["extensions"].append("govuk-new-child-demonstrator.v1")
+    return descriptor
 
 
 def semantic_route_iri(route: str) -> str:
@@ -2300,6 +2377,7 @@ def _emit_publication(
     *,
     source_count: int,
     dispositions_close: bool,
+    demonstrator: dict[str, Any] | None = None,
     search_writer: Callable[..., dict[str, Any]] = write_search,
     adjacency_writer: Callable[..., dict[str, Any]] = write_adjacency,
     route_index_writer: Callable[..., dict[str, Any]] = write_route_index,
@@ -2475,9 +2553,15 @@ def _emit_publication(
         source_count=source_count,
         generated_at=generated_at,
         snapshot_id=snapshot_id,
+        demonstrator=demonstrator is not None,
     )
     site_topology_path = output / "data" / "site-topology.json"
     site_topology_path.write_text(pretty_json(site_topology), encoding="utf-8")
+    if demonstrator is not None:
+        write_ai_handoff(output, demonstrator, datasets, relationships)
+        (output / "data" / "demonstrator.json").write_text(
+            pretty_json(demonstrator), encoding="utf-8"
+        )
     semantic_projection_manifest = write_semantic_projection(
         output,
         datasets,
@@ -2512,15 +2596,27 @@ def _emit_publication(
 
     overview = {
         "schema": "okf-large-overview.v1",
-        "title": "What’s on GOV.UK public metadata corpus",
+        "title": (
+            "Having a new child: bounded GOV.UK metadata demonstrator"
+            if demonstrator is not None
+            else "What’s on GOV.UK public metadata corpus"
+        ),
         "generated_at": generated_at,
         "snapshot": snapshot_id,
         "counts": counts,
         "coverage": {
-            "boundary": "frozen union of verified official public enumerators",
+            "boundary": (
+                "bounded 69-record new-child Search API seed denominator"
+                if demonstrator is not None
+                else "frozen union of verified official public enumerators"
+            ),
             "source_records": source_count,
             "page_bodies": "not mirrored",
-            "unexplained_omissions": 0 if dispositions_close else None,
+            "unexplained_omissions": (
+                demonstrator["coverage"]["unexplained_seed_omissions"]
+                if demonstrator is not None
+                else 0 if dispositions_close else None
+            ),
             "authoritative_destination": "https://www.gov.uk/",
         },
         "site_topology": {
@@ -2586,7 +2682,11 @@ def _emit_publication(
     manifest = {
         "schema": "okf-data-manifest.v1",
         "schema_version": DATA_PLANE_SCHEMA_VERSION,
-        "title": "What’s on GOV.UK static metadata index",
+        "title": (
+            "Bounded 69-record GOV.UK new-child static metadata index"
+            if demonstrator is not None
+            else "What’s on GOV.UK static metadata index"
+        ),
         "generated_at": generated_at,
         "snapshot": snapshot_id,
         "counts": counts,
@@ -2625,6 +2725,7 @@ def _emit_publication(
             "relationship_adjacency": "data/adjacency/manifest.json",
             "route_index": "data/routes/manifest.json",
             "semantic_projection": "data/semantic/manifest.json",
+            **({"demonstrator": "data/demonstrator.json"} if demonstrator is not None else {}),
         },
         "search": {"schema": search_manifest["schema"], "documents": len(datasets), "tokens": search_manifest["counts"]["tokens"], "result_limit": 200},
         "semantic": {
@@ -2644,7 +2745,12 @@ def _emit_publication(
     }
     (output / "data" / "manifest.json").write_text(pretty_json(manifest), encoding="utf-8")
 
-    semantic = semantic_descriptor(counts, generated_at, snapshot_id)
+    semantic = semantic_descriptor(
+        counts,
+        generated_at,
+        snapshot_id,
+        demonstrator=demonstrator is not None,
+    )
     local_context = ROOT / "semantic" / "context" / "govuk-okf-v1.jsonld"
     if local_context.is_file():
         context_target = output / "context" / "govuk-okf-v1.jsonld"
@@ -2680,12 +2786,33 @@ def _emit_publication(
         "@id": HOME_URL + "okf-explorer.json",
         "schema": "okf-explorer-large-corpus.v1",
         "kind": "okf-large-corpus",
-        "title": "What’s on GOV.UK",
-        "description": "Derived, non-authoritative semantic catalogue of GOV.UK content, navigation, organisations, taxonomies and relationships.",
+        "title": (
+            "Having a new child: bounded GOV.UK metadata demonstrator"
+            if demonstrator is not None
+            else "What’s on GOV.UK"
+        ),
+        "description": (
+            "Derived, non-authoritative projection of exactly 69 frozen GOV.UK new-child "
+            "metadata records; not a complete GOV.UK corpus."
+            if demonstrator is not None
+            else "Derived, non-authoritative semantic catalogue of GOV.UK content, navigation, organisations, taxonomies and relationships."
+        ),
         "version": "0.1.0",
-        "status": "preview",
+        "status": "bounded-demonstrator" if demonstrator is not None else "preview",
         "generated_at": generated_at,
         "snapshot": snapshot_id,
+        **(
+            {
+                "scope": {
+                    "kind": "bounded-new-child-metadata-demonstrator",
+                    "seed_denominator": 69,
+                    "authoritative": False,
+                    "complete_govuk_corpus": False,
+                }
+            }
+            if demonstrator is not None
+            else {}
+        ),
         "profile": PROFILE_URL,
         "publisher": "https://github.com/chris-page-gov",
         "license": OGL_URL,
@@ -2704,6 +2831,7 @@ def _emit_publication(
             "route_index": "data/routes/manifest.json",
             "semantic_projection": "data/semantic/manifest.json",
             "markdown_index": "index.md",
+            **({"demonstrator": "data/demonstrator.json"} if demonstrator is not None else {}),
         },
         # The shared OKF Explorer contract requires string entrypoint paths.
         # Keep integrity metadata separate so generic clients remain compatible
@@ -2741,6 +2869,16 @@ def _emit_publication(
                 "path": "data/semantic/manifest.json",
                 "sha256": _file_sha256(output / "data" / "semantic" / "manifest.json"),
             },
+            **(
+                {
+                    "demonstrator": {
+                        "path": "data/demonstrator.json",
+                        "sha256": _file_sha256(output / "data" / "demonstrator.json"),
+                    }
+                }
+                if demonstrator is not None
+                else {}
+            ),
         },
         "performance": manifest["performance"],
         "vocabulary": {
@@ -2756,11 +2894,28 @@ def _emit_publication(
             "govuk-okf-profile.v1": {"provenance_required": True, "source_native_before_inference": True},
             "okf-explorer-analysis.v1": {"entrypoint": "analysis_overview", "mode": "external"},
             "govuk-site-topology.v1": {"entrypoint": "site_topology", "full_record_detail": True},
+            **(
+                {
+                    "govuk-new-child-demonstrator.v1": {
+                        "entrypoint": "demonstrator",
+                        "seed_denominator": 69,
+                        "authoritative": False,
+                    }
+                }
+                if demonstrator is not None
+                else {}
+            ),
         },
     }
     (output / "okf-explorer.json").write_text(pretty_json(descriptor), encoding="utf-8")
+    scope_note = (
+        "This is a bounded 69-record new-child demonstrator, not a complete GOV.UK corpus."
+        if demonstrator is not None
+        else "This bundle maps the declared public GOV.UK metadata estate."
+    )
     (output / "index.md").write_text(
-        "# What’s on GOV.UK\n\nThis derived, non-authoritative OKF Bundle Wiki maps the public GOV.UK metadata estate. GOV.UK remains authoritative.\n\n"
+        "# What’s on GOV.UK\n\nThis derived, non-authoritative OKF Bundle Wiki is a discovery aid. GOV.UK remains authoritative.\n\n"
+        f"{scope_note}\n\n"
         f"- Snapshot: `{snapshot_id}`\n- Records: {len(datasets):,}\n- Relationships: {len(relationships):,}\n- Attachments: {len(resources):,}\n",
         encoding="utf-8",
     )
@@ -2786,6 +2941,12 @@ def _build_publication_into(source_records: list[dict[str, Any]], output: Path, 
     dispositions_close = bool(source_records) and all(
         item.get("coverage_disposition") in allowed_dispositions for item in source_records
     )
+    demonstrator = build_new_child_demonstrator(
+        source_records,
+        datasets,
+        generated_at=generated_at,
+        snapshot_id=snapshot_id,
+    )
     return _emit_publication(
         datasets,
         publishers,
@@ -2796,6 +2957,7 @@ def _build_publication_into(source_records: list[dict[str, Any]], output: Path, 
         snapshot_id,
         source_count=len(source_records),
         dispositions_close=dispositions_close,
+        demonstrator=demonstrator,
     )
 
 

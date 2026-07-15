@@ -1,84 +1,192 @@
 {
+  "cal": [
+    {
+      "df": 1,
+      "token": "calculator"
+    }
+  ],
+  "calc": [
+    {
+      "df": 1,
+      "token": "calculator"
+    }
+  ],
+  "calcu": [
+    {
+      "df": 1,
+      "token": "calculator"
+    }
+  ],
+  "calcul": [
+    {
+      "df": 1,
+      "token": "calculator"
+    }
+  ],
+  "calcula": [
+    {
+      "df": 1,
+      "token": "calculator"
+    }
+  ],
+  "calculat": [
+    {
+      "df": 1,
+      "token": "calculator"
+    }
+  ],
+  "calculato": [
+    {
+      "df": 1,
+      "token": "calculator"
+    }
+  ],
+  "calculator": [
+    {
+      "df": 1,
+      "token": "calculator"
+    }
+  ],
+  "can": [
+    {
+      "df": 16,
+      "token": "can"
+    },
+    {
+      "df": 2,
+      "token": "cancel"
+    },
+    {
+      "df": 2,
+      "token": "cannot"
+    }
+  ],
+  "canc": [
+    {
+      "df": 2,
+      "token": "cancel"
+    }
+  ],
+  "cance": [
+    {
+      "df": 2,
+      "token": "cancel"
+    }
+  ],
+  "cancel": [
+    {
+      "df": 2,
+      "token": "cancel"
+    }
+  ],
+  "cann": [
+    {
+      "df": 2,
+      "token": "cannot"
+    }
+  ],
+  "canno": [
+    {
+      "df": 2,
+      "token": "cannot"
+    }
+  ],
+  "cannot": [
+    {
+      "df": 2,
+      "token": "cannot"
+    }
+  ],
   "car": [
+    {
+      "df": 6,
+      "token": "care"
+    },
     {
       "df": 1,
       "token": "car"
-    }
-  ],
-  "cat": [
-    {
-      "df": 1,
-      "token": "catalogue"
     },
     {
       "df": 1,
-      "token": "catalogues"
-    }
-  ],
-  "cata": [
-    {
-      "df": 1,
-      "token": "catalogue"
+      "token": "care-to-learn"
     },
     {
       "df": 1,
-      "token": "catalogues"
+      "token": "carers"
     }
   ],
-  "catal": [
+  "care": [
     {
-      "df": 1,
-      "token": "catalogue"
+      "df": 6,
+      "token": "care"
     },
     {
       "df": 1,
-      "token": "catalogues"
-    }
-  ],
-  "catalo": [
-    {
-      "df": 1,
-      "token": "catalogue"
+      "token": "care-to-learn"
     },
     {
       "df": 1,
-      "token": "catalogues"
+      "token": "carers"
     }
   ],
-  "catalog": [
+  "care-": [
     {
       "df": 1,
-      "token": "catalogue"
-    },
-    {
-      "df": 1,
-      "token": "catalogues"
+      "token": "care-to-learn"
     }
   ],
-  "catalogu": [
+  "care-t": [
     {
       "df": 1,
-      "token": "catalogue"
-    },
-    {
-      "df": 1,
-      "token": "catalogues"
+      "token": "care-to-learn"
     }
   ],
-  "catalogue": [
+  "care-to": [
     {
       "df": 1,
-      "token": "catalogue"
-    },
-    {
-      "df": 1,
-      "token": "catalogues"
+      "token": "care-to-learn"
     }
   ],
-  "catalogues": [
+  "care-to-": [
     {
       "df": 1,
-      "token": "catalogues"
+      "token": "care-to-learn"
+    }
+  ],
+  "care-to-l": [
+    {
+      "df": 1,
+      "token": "care-to-learn"
+    }
+  ],
+  "care-to-le": [
+    {
+      "df": 1,
+      "token": "care-to-learn"
+    }
+  ],
+  "care-to-lea": [
+    {
+      "df": 1,
+      "token": "care-to-learn"
+    }
+  ],
+  "care-to-lear": [
+    {
+      "df": 1,
+      "token": "care-to-learn"
+    }
+  ],
+  "carer": [
+    {
+      "df": 1,
+      "token": "carers"
+    }
+  ],
+  "carers": [
+    {
+      "df": 1,
+      "token": "carers"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-07-14",
+  "as_of": "2026-07-15",
   "milestone": "t0_census_closed",
   "publication_readiness_source": [
     "release/manifest.yaml",
@@ -29,18 +29,29 @@
         "bundle/data/site-topology.json",
         "explorer/src/index.html",
         "explorer/src/app.js",
+        "explorer/src/demonstrator.js",
+        "explorer/tests/demonstrator.test.mjs",
         "explorer/tests/browser.e2e.mjs",
         "explorer/requirements/browser-budgets.json",
         "explorer/src/search-contract.js",
         "src/govuk_okf/discovery.py",
+        "src/govuk_okf/demo_mcp.py",
+        "src/govuk_okf/demonstrator_projection.py",
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
         "tests/test_publication_scale.py",
-        "tests/test_shard_contracts.py"
+        "tests/test_shard_contracts.py",
+        "tests/test_demonstrator_projection.py",
+        "tests/test_demo_mcp.py",
+        "bundle/data/demonstrator.json",
+        "bundle/ai/new-child-context.md",
+        "docs/new-child-demonstrator.md",
+        "docs/ai-input.md",
+        "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations run against a representative fixture. A lazy sitemap/routing control plane now accounts for every observed host and record in the compiled snapshot, preserves complete source-native redirect fields per record, and exposes boundary sites without implying they are complete mirrors. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on declared contract drift. A failure-shaped 2,048-record skew regression proves deterministic split routing and release-pack collection. The no-skip real-Chromium browser gate passes locally and in protected pull-request CI for accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. Axe, accessibility-expert, screen-reader, participant and exact full-corpus evidence remain pending."
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates."
     },
     {
       "name": "official_source_audit_foundation",
@@ -54,7 +65,7 @@
         "research/official-source-audit.md",
         "release/rights-privacy-audit.json"
       ],
-      "qualification": "The dated public-source audit and preflight exist. The fixture rights/privacy scan has zero hard body/credential findings and two policy-controlled structural review triggers, but it does not substitute for T0/T1 source-union closure, the final snapshot-bound rights scan, or citation verification."
+      "qualification": "The dated public-source audit and preflight exist. The bounded NEW-CHILD-20260715 rights/privacy audit integrity-checks 954 publication assets, classifies 475 items and reports zero body/credential findings, zero retention/secret violations and zero item-review triggers. Its mechanical controls pass, but the sampled checkpoint is not a legal determination and does not substitute for T0/T1 source-union closure, the final snapshot-bound rights scan, or citation verification."
     },
     {
       "name": "persona_and_story_design_foundation",
@@ -105,6 +116,11 @@
         "scripts/acquire_corpus.py",
         "scripts/hydrate_corpus.py",
         "src/govuk_okf/hydration.py",
+        "src/govuk_okf/new_child_demo.py",
+        "scripts/acquire_new_child_demo.py",
+        "demo/new-child-cohort.json",
+        "demo/snapshots/NEW-CHILD-20260715/snapshot-manifest.json",
+        "demo/snapshots/NEW-CHILD-20260715/publication/cohort-manifest.json",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
         "governance/decisions/ADR-007-sitemap-routing-topology.md",
@@ -125,7 +141,7 @@
         "reports/publication-scale.md",
         "release/status.json"
       ],
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. The topology contract can project that admitted source union into hosts, canonical routes, stable identifiers, redirects, boundary destinations and typed routing relationships, but the checked-in bundle remains a fixture and no T0 preview is a release claim. A 75,000-page deterministic rendered-link detector preserves the shared request reserve. The resumable hydrator derives and enforces the launch-manifest 10 GiB retained-metadata ceiling, durably spools successful responses before database admission, reserves every SQLite and export write before mutation, rejects duplicate source identities and path escapes, and verifies durable exports before transient cleanup. The first exact T0 capacity build ran 44,342.28 seconds and failed closed when the ca postings file reached 6,712,946 bytes against 5,242,880. ADR-006 now deterministically partitions complete tokens by exact physical bytes and chunks the document map without changing logical lookup; fast skew, legacy, tamper, discovery and packaging tests pass. Repository-native publication packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. Capacity remains unresolved until the exact T0 rerun and hydrated closing artifact measure every remaining shard and pack. T0 hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain in progress."
+      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. The long full-corpus hydration was stopped and its checkpoint preserved because it could not close within the demonstration window; it is not promoted as release evidence. Instead, the separately contracted new-child acquisition verifies an exact 69-record Search seed, retains allowlisted Content API metadata and typed one-hop boundary evidence, uses zero model calls and a hard 250-record/500-attempt ceiling, and reproduces from content-addressed envelopes without network access. That bounded success does not satisfy T1 closing. The first exact T0 capacity build failed closed at 6,712,946 bytes against the 5,242,880-byte postings limit; ADR-006 partitions by exact bytes, but exact T0/full-closing capacity remains unresolved. Full hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain future release work."
     },
     {
       "name": "release_question_matrix",
@@ -182,7 +198,7 @@
         "release/citation-verification.json",
         "reports/citation-verification.md"
       ],
-      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. The deterministic inventory now covers 128 claims, 196 citation bindings and 111 sources, including every source-page, source-image, official-context, question, bounded excerpt, structured-summary sentence and ordered source-card object in the GOV.UK Chat JSON comparator assets with exact JSON Pointers. Screenshot-derived fields bind the expected binary digest; each ordered source-card claim jointly binds the screenshot and destination, while duplicate, gapped or out-of-order positions fail closed. The previously frozen fixture evidence still passes 160 bindings and 40 joint claims; 36 new or changed bindings and four joint claims are deliberately blocking because they have not yet received fresh claim-specific evidence and independent semantic-support review. No waiver converts that missing verification into a pass. The full inventory, evidence and reviews must be regenerated against the final closing snapshot before publication."
+      "qualification": "The source preflight covers 32/32 official and 93/93 plan URLs while preserving superseded access failures. The deterministic inventory now covers 137 claims, 205 citation bindings and 117 sources, including every source-page, source-image, official-context, question, bounded excerpt, structured-summary sentence and ordered source-card object in the GOV.UK Chat JSON comparator assets with exact JSON Pointers plus the demonstrator's current AI/MCP references. Screenshot-derived fields bind the expected binary digest; each ordered source-card claim jointly binds the screenshot and destination, while duplicate, gapped or out-of-order positions fail closed. Current frozen evidence passes 158 bindings and 40 joint claims; 47 citation failures and four joint-review failures remain 51 visible blockers because claim-specific evidence or independent semantic-support review is missing or stale. Zero waivers convert that missing verification into a pass. The full inventory, evidence and reviews must be regenerated against the final closing snapshot before publication."
     },
     {
       "name": "final_machine_status",

@@ -1,12 +1,42 @@
 [
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings/ap.json",
-    "token": "api"
+    "token": "appeal"
   },
   {
     "df": 1,
     "postings": "data/search/postings/ap.json",
-    "token": "apply.example.service.gov.uk"
+    "token": "appeals"
+  },
+  {
+    "df": 13,
+    "postings": "data/search/postings/ap.json",
+    "token": "apply"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ap.json",
+    "token": "apply-free-school-meals"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ap.json",
+    "token": "apply-school-transport-for-child-with-special-educational-needs-sen"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ap.json",
+    "token": "appointees"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ap.json",
+    "token": "appointments"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ap.json",
+    "token": "approved"
   }
 ]

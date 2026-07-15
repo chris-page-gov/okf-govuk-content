@@ -1,0 +1,17 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/ha.json",
+    "token": "happens"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/ha.json",
+    "token": "has"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/ha.json",
+    "token": "have"
+  }
+]

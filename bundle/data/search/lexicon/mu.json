@@ -1,0 +1,17 @@
+[
+  {
+    "df": 2,
+    "postings": "data/search/postings/mu.json",
+    "token": "much"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/mu.json",
+    "token": "multiple"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/mu.json",
+    "token": "must"
+  }
+]

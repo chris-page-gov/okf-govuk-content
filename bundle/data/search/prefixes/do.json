@@ -1,62 +1,26 @@
 {
-  "doc": [
+  "doe": [
     {
       "df": 1,
-      "token": "document_collection"
+      "token": "does"
     }
   ],
-  "docu": [
+  "does": [
     {
       "df": 1,
-      "token": "document_collection"
+      "token": "does"
     }
   ],
-  "docum": [
+  "dow": [
     {
       "df": 1,
-      "token": "document_collection"
+      "token": "down"
     }
   ],
-  "docume": [
+  "down": [
     {
       "df": 1,
-      "token": "document_collection"
-    }
-  ],
-  "documen": [
-    {
-      "df": 1,
-      "token": "document_collection"
-    }
-  ],
-  "document": [
-    {
-      "df": 1,
-      "token": "document_collection"
-    }
-  ],
-  "document_": [
-    {
-      "df": 1,
-      "token": "document_collection"
-    }
-  ],
-  "document_c": [
-    {
-      "df": 1,
-      "token": "document_collection"
-    }
-  ],
-  "document_co": [
-    {
-      "df": 1,
-      "token": "document_collection"
-    }
-  ],
-  "document_col": [
-    {
-      "df": 1,
-      "token": "document_collection"
+      "token": "down"
     }
   ]
 }

@@ -1,0 +1,1531 @@
+{
+  "acquisition": {
+    "ended_at": "2026-07-15T06:25:17.571009+00:00",
+    "global_request_attempt_interval": null,
+    "local_request_attempt_interval": [
+      1,
+      127
+    ],
+    "official_request_attempts": 127,
+    "programme_request_count_after": 76969,
+    "programme_request_count_before": 76784,
+    "programme_request_ledger": "programme-official-source-request-counter",
+    "programme_request_sequence_ranges": [
+      [
+        76786,
+        76787
+      ],
+      [
+        76789,
+        76789
+      ],
+      [
+        76791,
+        76796
+      ],
+      [
+        76798,
+        76799
+      ],
+      [
+        76801,
+        76806
+      ],
+      [
+        76808,
+        76808
+      ],
+      [
+        76811,
+        76813
+      ],
+      [
+        76815,
+        76815
+      ],
+      [
+        76817,
+        76817
+      ],
+      [
+        76819,
+        76819
+      ],
+      [
+        76821,
+        76821
+      ],
+      [
+        76823,
+        76823
+      ],
+      [
+        76825,
+        76826
+      ],
+      [
+        76829,
+        76829
+      ],
+      [
+        76831,
+        76833
+      ],
+      [
+        76835,
+        76836
+      ],
+      [
+        76839,
+        76839
+      ],
+      [
+        76841,
+        76841
+      ],
+      [
+        76843,
+        76843
+      ],
+      [
+        76845,
+        76845
+      ],
+      [
+        76847,
+        76848
+      ],
+      [
+        76851,
+        76858
+      ],
+      [
+        76860,
+        76866
+      ],
+      [
+        76868,
+        76876
+      ],
+      [
+        76878,
+        76882
+      ],
+      [
+        76884,
+        76884
+      ],
+      [
+        76886,
+        76887
+      ],
+      [
+        76889,
+        76890
+      ],
+      [
+        76892,
+        76892
+      ],
+      [
+        76894,
+        76894
+      ],
+      [
+        76896,
+        76896
+      ],
+      [
+        76898,
+        76898
+      ],
+      [
+        76900,
+        76900
+      ],
+      [
+        76902,
+        76902
+      ],
+      [
+        76904,
+        76904
+      ],
+      [
+        76906,
+        76909
+      ],
+      [
+        76911,
+        76914
+      ],
+      [
+        76916,
+        76916
+      ],
+      [
+        76918,
+        76918
+      ],
+      [
+        76920,
+        76920
+      ],
+      [
+        76922,
+        76922
+      ],
+      [
+        76924,
+        76925
+      ],
+      [
+        76927,
+        76927
+      ],
+      [
+        76929,
+        76929
+      ],
+      [
+        76931,
+        76931
+      ],
+      [
+        76933,
+        76933
+      ],
+      [
+        76935,
+        76935
+      ],
+      [
+        76937,
+        76940
+      ],
+      [
+        76942,
+        76945
+      ],
+      [
+        76947,
+        76950
+      ],
+      [
+        76952,
+        76955
+      ],
+      [
+        76957,
+        76960
+      ],
+      [
+        76962,
+        76966
+      ],
+      [
+        76968,
+        76969
+      ]
+    ],
+    "programme_request_sequences": [
+      76786,
+      76787,
+      76789,
+      76791,
+      76792,
+      76793,
+      76794,
+      76795,
+      76796,
+      76798,
+      76799,
+      76801,
+      76802,
+      76803,
+      76804,
+      76805,
+      76806,
+      76808,
+      76811,
+      76812,
+      76813,
+      76815,
+      76817,
+      76819,
+      76821,
+      76823,
+      76825,
+      76826,
+      76829,
+      76831,
+      76832,
+      76833,
+      76835,
+      76836,
+      76839,
+      76841,
+      76843,
+      76845,
+      76847,
+      76848,
+      76851,
+      76852,
+      76853,
+      76854,
+      76855,
+      76856,
+      76857,
+      76858,
+      76860,
+      76861,
+      76862,
+      76863,
+      76864,
+      76865,
+      76866,
+      76868,
+      76869,
+      76870,
+      76871,
+      76872,
+      76873,
+      76874,
+      76875,
+      76876,
+      76878,
+      76879,
+      76880,
+      76881,
+      76882,
+      76884,
+      76886,
+      76887,
+      76889,
+      76890,
+      76892,
+      76894,
+      76896,
+      76898,
+      76900,
+      76902,
+      76904,
+      76906,
+      76907,
+      76908,
+      76909,
+      76911,
+      76912,
+      76913,
+      76914,
+      76916,
+      76918,
+      76920,
+      76922,
+      76924,
+      76925,
+      76927,
+      76929,
+      76931,
+      76933,
+      76935,
+      76937,
+      76938,
+      76939,
+      76940,
+      76942,
+      76943,
+      76944,
+      76945,
+      76947,
+      76948,
+      76949,
+      76950,
+      76952,
+      76953,
+      76954,
+      76955,
+      76957,
+      76958,
+      76959,
+      76960,
+      76962,
+      76963,
+      76964,
+      76965,
+      76966,
+      76968,
+      76969
+    ],
+    "request_attempt_interval": [
+      1,
+      127
+    ],
+    "request_receipts_path": "frozen/request-attempt-receipts.jsonl",
+    "request_receipts_sha256": "167868f25a8898eeb39fbdc72ec456b7a9e038bbe4d4d23e5d42f311b88bd8da",
+    "started_at": "2026-07-15T06:24:16.662649+00:00"
+  },
+  "contract_sha256": "6ff10a1dce0104c230f1cc63aee62208c56b63d7fa3501372df6c204a080cf22",
+  "envelopes": [
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/1f25df3afae0a94118a4c69a378f9f2146c6f3c1716c66ebbc0eee598ea6bdde.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/childcare-parenting/pregnancy-birth",
+      "role": "content-closure:0016bab6ae37c4774d4509dc",
+      "scope": "one-hop",
+      "sha256": "1f25df3afae0a94118a4c69a378f9f2146c6f3c1716c66ebbc0eee598ea6bdde",
+      "target_url": "https://www.gov.uk/browse/childcare-parenting/pregnancy-birth"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/1a07d63432f4ecae49385886b9da386b403ceb11b18147436751afb9f3ad9139.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/births-deaths-marriages/register-offices",
+      "role": "content-closure:0444ba2d9296ceefc2d0c544",
+      "scope": "one-hop",
+      "sha256": "1a07d63432f4ecae49385886b9da386b403ceb11b18147436751afb9f3ad9139",
+      "target_url": "https://www.gov.uk/browse/births-deaths-marriages/register-offices"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/cce8c867abeac17441b53e5a320f9e580471c247cfcde4b0e1e3e96e1a2ec5b5.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/births-deaths-marriages/death",
+      "role": "content-closure:12834bba3c7416698b617a99",
+      "scope": "one-hop",
+      "sha256": "cce8c867abeac17441b53e5a320f9e580471c247cfcde4b0e1e3e96e1a2ec5b5",
+      "target_url": "https://www.gov.uk/browse/births-deaths-marriages/death"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/7b9fdb893ab53633a91e074e865e7568285e0765e1c7766979349b8f90445e17.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/employing-people/time-off",
+      "role": "content-closure:15b221fa98eb03baeed50bb5",
+      "scope": "one-hop",
+      "sha256": "7b9fdb893ab53633a91e074e865e7568285e0765e1c7766979349b8f90445e17",
+      "target_url": "https://www.gov.uk/browse/employing-people/time-off"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/9761d9c62433a747e9f02cccdc798167eba41eeafda986c4e7dc5a47d3a4ceb8.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/abroad/living-abroad",
+      "role": "content-closure:1c6e6c3ebdc15c5953f6ac29",
+      "scope": "one-hop",
+      "sha256": "9761d9c62433a747e9f02cccdc798167eba41eeafda986c4e7dc5a47d3a4ceb8",
+      "target_url": "https://www.gov.uk/browse/abroad/living-abroad"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/c48fbe0b4c687120003bbbfd5d54ee9a0101b1755b574148a71c08edcacffc4d.json",
+      "requested_url": "https://www.gov.uk/api/content/when-someone-dies",
+      "role": "content-closure:1ca1fd037b905d9d3e2a78f2",
+      "scope": "one-hop",
+      "sha256": "c48fbe0b4c687120003bbbfd5d54ee9a0101b1755b574148a71c08edcacffc4d",
+      "target_url": "https://www.gov.uk/when-someone-dies"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/27edc95c6fc79488f69fc5b5b8a0136f72037ae1f90d229336bc63c19f802a28.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/education/student-finance",
+      "role": "content-closure:1db20b9014ea2ede4f716881",
+      "scope": "one-hop",
+      "sha256": "27edc95c6fc79488f69fc5b5b8a0136f72037ae1f90d229336bc63c19f802a28",
+      "target_url": "https://www.gov.uk/browse/education/student-finance"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/958c4bc28c89dfd39294289451a51ee23d1b17eebcf5ed2028560da5c02fb641.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/ministry-of-housing-communities-local-government",
+      "role": "content-closure:1dff2ee65ad31287d5839d4f",
+      "scope": "one-hop",
+      "sha256": "958c4bc28c89dfd39294289451a51ee23d1b17eebcf5ed2028560da5c02fb641",
+      "target_url": "https://www.gov.uk/government/organisations/ministry-of-housing-communities-local-government"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/2778e5c5fb470fc796e3a1528626c8ef3a9b574de1a733063050dcc16dd58898.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/education/find-course",
+      "role": "content-closure:203a99e5908acff43c3f654a",
+      "scope": "one-hop",
+      "sha256": "2778e5c5fb470fc796e3a1528626c8ef3a9b574de1a733063050dcc16dd58898",
+      "target_url": "https://www.gov.uk/browse/education/find-course"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/479e59d874d1de3e1b5a2f45478080e5cfc63c328cddaa004cc9d1a5337b7349.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/employing-people/trade-unions",
+      "role": "content-closure:21fe2c26fbf92aec867354fc",
+      "scope": "one-hop",
+      "sha256": "479e59d874d1de3e1b5a2f45478080e5cfc63c328cddaa004cc9d1a5337b7349",
+      "target_url": "https://www.gov.uk/browse/employing-people/trade-unions"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/926b27f89b20eb5e654d62ec776e81cca1c424d25c5324c43e9efc40b1da8497.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/department-for-business-energy-and-industrial-strategy",
+      "role": "content-closure:23f32a13da7e6036563c0e02",
+      "scope": "one-hop",
+      "sha256": "926b27f89b20eb5e654d62ec776e81cca1c424d25c5324c43e9efc40b1da8497",
+      "target_url": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/4a2e1dad8311c1867a1226d255b0b4547985ba839e837d4ec173c0f3e0090b26.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/working/rights-trade-unions",
+      "role": "content-closure:27e7218a3e5132c660f9d7fe",
+      "scope": "one-hop",
+      "sha256": "4a2e1dad8311c1867a1226d255b0b4547985ba839e837d4ec173c0f3e0090b26",
+      "target_url": "https://www.gov.uk/browse/working/rights-trade-unions"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/b572571814a65855429a7ab61773be7155c9ad845c016afbe8220d534848a868.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/childcare-parenting/fostering-adoption-surrogacy",
+      "role": "content-closure:311d51dd366c4c84163038ca",
+      "scope": "one-hop",
+      "sha256": "b572571814a65855429a7ab61773be7155c9ad845c016afbe8220d534848a868",
+      "target_url": "https://www.gov.uk/browse/childcare-parenting/fostering-adoption-surrogacy"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/f8729e765429319e568f7f34c48b164704f6c0f681d126f67269765aaf114a4a.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/department-for-business-and-trade",
+      "role": "content-closure:38e5005965d76daca430b36c",
+      "scope": "one-hop",
+      "sha256": "f8729e765429319e568f7f34c48b164704f6c0f681d126f67269765aaf114a4a",
+      "target_url": "https://www.gov.uk/government/organisations/department-for-business-and-trade"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/52dd994f5e49cb03d8d0848335fe55d7099646e912acdd2589db9015742568f5.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/hm-passport-office",
+      "role": "content-closure:408907b7fd120809e60fd80e",
+      "scope": "one-hop",
+      "sha256": "52dd994f5e49cb03d8d0848335fe55d7099646e912acdd2589db9015742568f5",
+      "target_url": "https://www.gov.uk/government/organisations/hm-passport-office"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/819d7c5cfc75b52fad127bcf5f8d8cf4c3d4ef052679fe4ea0a12277808c218b.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/working/contract-working-hours",
+      "role": "content-closure:484ca42e6f7f5733d64c178e",
+      "scope": "one-hop",
+      "sha256": "819d7c5cfc75b52fad127bcf5f8d8cf4c3d4ef052679fe4ea0a12277808c218b",
+      "target_url": "https://www.gov.uk/browse/working/contract-working-hours"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/a54d5039939039116ac58944b3106aef7bf2a86606085db1d136819195ea00ab.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/births-deaths-marriages/marriage-divorce",
+      "role": "content-closure:4cda55d985a57ddcb5fffd0c",
+      "scope": "one-hop",
+      "sha256": "a54d5039939039116ac58944b3106aef7bf2a86606085db1d136819195ea00ab",
+      "target_url": "https://www.gov.uk/browse/births-deaths-marriages/marriage-divorce"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/fdb65b86579f95a15b2230653e01a4b5767f508f4f07a5a954c30f42e289a8f4.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/education/school-admissions-transport",
+      "role": "content-closure:4d143e92a9fd843f4352f51f",
+      "scope": "one-hop",
+      "sha256": "fdb65b86579f95a15b2230653e01a4b5767f508f4f07a5a954c30f42e289a8f4",
+      "target_url": "https://www.gov.uk/browse/education/school-admissions-transport"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/e4e05f2fa3f504f901fc824db2bcc8ad56764050415bf10fd402535bd79ce2ec.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/births-deaths-marriages/child-benefit",
+      "role": "content-closure:530b407e9b447720643204a3",
+      "scope": "one-hop",
+      "sha256": "e4e05f2fa3f504f901fc824db2bcc8ad56764050415bf10fd402535bd79ce2ec",
+      "target_url": "https://www.gov.uk/browse/births-deaths-marriages/child-benefit"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/14271b3624083d5d93f4fba1aea484d8bf760c72e77a86b6f4beda481319abfa.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/ofsted",
+      "role": "content-closure:609479aeefa98efdb8db00f3",
+      "scope": "one-hop",
+      "sha256": "14271b3624083d5d93f4fba1aea484d8bf760c72e77a86b6f4beda481319abfa",
+      "target_url": "https://www.gov.uk/government/organisations/ofsted"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/9cf9747fbf97e34eff66344c5eefb3ea1b7c8ba8a7a767f9cb8a93fbeae0ab0a.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/childcare-parenting/childcare",
+      "role": "content-closure:60aa5ef94b0972ebbcf9383f",
+      "scope": "one-hop",
+      "sha256": "9cf9747fbf97e34eff66344c5eefb3ea1b7c8ba8a7a767f9cb8a93fbeae0ab0a",
+      "target_url": "https://www.gov.uk/browse/childcare-parenting/childcare"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/eccf7f55b75e0c9a3ead0b8749630e2fe5a2000df87d1c683e7175a8469cf19e.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/abroad/travel-abroad",
+      "role": "content-closure:6152d7e68fa1c015487877d9",
+      "scope": "one-hop",
+      "sha256": "eccf7f55b75e0c9a3ead0b8749630e2fe5a2000df87d1c683e7175a8469cf19e",
+      "target_url": "https://www.gov.uk/browse/abroad/travel-abroad"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/54fd402907af52fe4187030a812be036c62112ef122e525ef9ed158f896dec2e.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/childcare-parenting/schools-education",
+      "role": "content-closure:62cb66925275f1830538eb27",
+      "scope": "one-hop",
+      "sha256": "54fd402907af52fe4187030a812be036c62112ef122e525ef9ed158f896dec2e",
+      "target_url": "https://www.gov.uk/browse/childcare-parenting/schools-education"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/46466c08746ba43f5d00cb130c1e21e01c7a3317957586d15f5b35326d4b6dcf.json",
+      "requested_url": "https://www.gov.uk/api/content/get-undergraduate-student-loan",
+      "role": "content-closure:6f5efc01e8e3d42e11d56a0b",
+      "scope": "one-hop",
+      "sha256": "46466c08746ba43f5d00cb130c1e21e01c7a3317957586d15f5b35326d4b6dcf",
+      "target_url": "https://www.gov.uk/get-undergraduate-student-loan"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/c16e96fd34ec53198716bad890b5c09bc677fed7c7802e9541d20635ac7499d7.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/disabilities/carers",
+      "role": "content-closure:7a79b01cf4dfd818af8c1ed6",
+      "scope": "one-hop",
+      "sha256": "c16e96fd34ec53198716bad890b5c09bc677fed7c7802e9541d20635ac7499d7",
+      "target_url": "https://www.gov.uk/browse/disabilities/carers"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/28baaffa60457bad553f31522c73a5be96d396b0c52b17c92dc4e8c33a3d9e48.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/tax/income-tax",
+      "role": "content-closure:7f3777650dd6cc59bd2ad3bc",
+      "scope": "one-hop",
+      "sha256": "28baaffa60457bad553f31522c73a5be96d396b0c52b17c92dc4e8c33a3d9e48",
+      "target_url": "https://www.gov.uk/browse/tax/income-tax"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/5ce6a98d2be68a152e5b33d0a379987fb1d57a9b434d74bb59e2aa86f76e3823.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/benefits/manage-your-benefit",
+      "role": "content-closure:820e0c6c3a545bbf590f7494",
+      "scope": "one-hop",
+      "sha256": "5ce6a98d2be68a152e5b33d0a379987fb1d57a9b434d74bb59e2aa86f76e3823",
+      "target_url": "https://www.gov.uk/browse/benefits/manage-your-benefit"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/5fc23bc25134ef28acd3a6ad08aa2dcb86187fb5eef476d67940fc4d3c8af3fa.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/department-for-work-pensions",
+      "role": "content-closure:872d347f9da57b57cebd1552",
+      "scope": "one-hop",
+      "sha256": "5fc23bc25134ef28acd3a6ad08aa2dcb86187fb5eef476d67940fc4d3c8af3fa",
+      "target_url": "https://www.gov.uk/government/organisations/department-for-work-pensions"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/12938d32987f027015fde7fdbd79585f07ec5d7c399c5a61468ce8b959e31744.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/benefits/families",
+      "role": "content-closure:93dc87000290fa417177c9bd",
+      "scope": "one-hop",
+      "sha256": "12938d32987f027015fde7fdbd79585f07ec5d7c399c5a61468ce8b959e31744",
+      "target_url": "https://www.gov.uk/browse/benefits/families"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/5ab3614b0d8090cbb6fb0e10bb0937597fefe7d60cc997138d277bb1646d290c.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/tax/self-assessment",
+      "role": "content-closure:960982d221cd9f534d2dbc2a",
+      "scope": "one-hop",
+      "sha256": "5ab3614b0d8090cbb6fb0e10bb0937597fefe7d60cc997138d277bb1646d290c",
+      "target_url": "https://www.gov.uk/browse/tax/self-assessment"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/a12ba546e5c592bafc8549e1f8a709393627c8e8b48fd8ef2e7063f306dd5d7e.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/working/time-off",
+      "role": "content-closure:a613866eced6f4e50697db0d",
+      "scope": "one-hop",
+      "sha256": "a12ba546e5c592bafc8549e1f8a709393627c8e8b48fd8ef2e7063f306dd5d7e",
+      "target_url": "https://www.gov.uk/browse/working/time-off"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/e9cb4d1839f105c3bab346151156fdc1d9ea160ceb640fd330e51f266d9b1c7a.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/student-loans-company",
+      "role": "content-closure:a76f4fcf80a371f83574c9cd",
+      "scope": "one-hop",
+      "sha256": "e9cb4d1839f105c3bab346151156fdc1d9ea160ceb640fd330e51f266d9b1c7a",
+      "target_url": "https://www.gov.uk/government/organisations/student-loans-company"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/25115961875764cbb152b3e25a5ac484c667ae1077099d8469a40c0ff89b4870.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/department-for-education",
+      "role": "content-closure:a890bf972f04d7c0debacee6",
+      "scope": "one-hop",
+      "sha256": "25115961875764cbb152b3e25a5ac484c667ae1077099d8469a40c0ff89b4870",
+      "target_url": "https://www.gov.uk/government/organisations/department-for-education"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/ac0424a18f59e939d990993d70811970faa9d2c67ff1c27a0dd75d96a4a6cf33.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/foreign-commonwealth-development-office",
+      "role": "content-closure:ab459b967db939a820de9396",
+      "scope": "one-hop",
+      "sha256": "ac0424a18f59e939d990993d70811970faa9d2c67ff1c27a0dd75d96a4a6cf33",
+      "target_url": "https://www.gov.uk/government/organisations/foreign-commonwealth-development-office"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/b6e9313e2f90be552c509a2ce2c437b9b185ddaf582ae9524503584effee2fae.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/disabilities/benefits",
+      "role": "content-closure:adef4dbf438a5090afaa342f",
+      "scope": "one-hop",
+      "sha256": "b6e9313e2f90be552c509a2ce2c437b9b185ddaf582ae9524503584effee2fae",
+      "target_url": "https://www.gov.uk/browse/disabilities/benefits"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/2509387bae2cfc87bd906452fc45ff1465f4912432690553955fc052dcdf099b.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/hm-revenue-customs",
+      "role": "content-closure:ae0d18943713f70a80d86d4e",
+      "scope": "one-hop",
+      "sha256": "2509387bae2cfc87bd906452fc45ff1465f4912432690553955fc052dcdf099b",
+      "target_url": "https://www.gov.uk/government/organisations/hm-revenue-customs"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/5b4610efaa1367c53961a47a8b0cb7641c810e8f7ca366f05a0a659160a2f5d5.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/health-and-safety-executive",
+      "role": "content-closure:b3495836113b5d9f96dc4fd9",
+      "scope": "one-hop",
+      "sha256": "5b4610efaa1367c53961a47a8b0cb7641c810e8f7ca366f05a0a659160a2f5d5",
+      "target_url": "https://www.gov.uk/government/organisations/health-and-safety-executive"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/1dd97e902b6a6cb0002beeccfa77b12c952e541a56f383a8d58f7f51e3e6d742.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/department-of-health-and-social-care",
+      "role": "content-closure:b99fc99f8d5bd5252c00e965",
+      "scope": "one-hop",
+      "sha256": "1dd97e902b6a6cb0002beeccfa77b12c952e541a56f383a8d58f7f51e3e6d742",
+      "target_url": "https://www.gov.uk/government/organisations/department-of-health-and-social-care"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/6e14436b7db2fabc72b6f5a1022c45714894a13af48e28b2e8f64f7ed79de8c7.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/births-deaths-marriages/child-adoption",
+      "role": "content-closure:bcac10f0f98f15c8388af5f0",
+      "scope": "one-hop",
+      "sha256": "6e14436b7db2fabc72b6f5a1022c45714894a13af48e28b2e8f64f7ed79de8c7",
+      "target_url": "https://www.gov.uk/browse/births-deaths-marriages/child-adoption"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/138f8e37e68d7b10d2f335450afd004813df1ea6920c51c750f63b7b65192c55.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/benefits/bereavement",
+      "role": "content-closure:c8d05ef91e54e949b82f0bba",
+      "scope": "one-hop",
+      "sha256": "138f8e37e68d7b10d2f335450afd004813df1ea6920c51c750f63b7b65192c55",
+      "target_url": "https://www.gov.uk/browse/benefits/bereavement"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/b037bc5af57fd5ffd3d130f3fdc295a412e40e66edff314173550f042b70e7d7.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/benefits/low-income",
+      "role": "content-closure:c944904513a6d523280ed79a",
+      "scope": "one-hop",
+      "sha256": "b037bc5af57fd5ffd3d130f3fdc295a412e40e66edff314173550f042b70e7d7",
+      "target_url": "https://www.gov.uk/browse/benefits/low-income"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/9eb341d9ad8fde5584b1faf7552bc7cd90c5339af9ed6aa6f1812e489928a293.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/childcare-parenting/financial-help-children",
+      "role": "content-closure:cad108eb409b1401dec1e6d9",
+      "scope": "one-hop",
+      "sha256": "9eb341d9ad8fde5584b1faf7552bc7cd90c5339af9ed6aa6f1812e489928a293",
+      "target_url": "https://www.gov.uk/browse/childcare-parenting/financial-help-children"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/5660e9b78c0d62918c2f1618a09c089ad4a1b1f76f891b8ff93e187bbe94971c.json",
+      "requested_url": "https://www.gov.uk/api/content/schools-admissions",
+      "role": "content-closure:cb1923ea6de7428bec66bff9",
+      "scope": "one-hop",
+      "sha256": "5660e9b78c0d62918c2f1618a09c089ad4a1b1f76f891b8ff93e187bbe94971c",
+      "target_url": "https://www.gov.uk/schools-admissions"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/510ddc6c776ce45290d54b735d4c49a655d9f7702f9c415693687ba7666f9db5.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/department-for-education-and-skills",
+      "role": "content-closure:ccbc2a049721d7e7bf5ed0b6",
+      "scope": "one-hop",
+      "sha256": "510ddc6c776ce45290d54b735d4c49a655d9f7702f9c415693687ba7666f9db5",
+      "target_url": "https://www.gov.uk/government/organisations/department-for-education-and-skills"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/4017729df27623fd33738589f231011693834217aaa3ba1605ff9faf7d6d054c.json",
+      "requested_url": "https://www.gov.uk/api/content/government/organisations/government-digital-service",
+      "role": "content-closure:d08f455f7ab03a4ff7cfec76",
+      "scope": "one-hop",
+      "sha256": "4017729df27623fd33738589f231011693834217aaa3ba1605ff9faf7d6d054c",
+      "target_url": "https://www.gov.uk/government/organisations/government-digital-service"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/f207d2bafb398af90d87ab2fb589b04fd80007b0d907e79db3fe19b8c6e0a32c.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/births-deaths-marriages/lasting-power-attorney",
+      "role": "content-closure:d16df43bd0167aeb13aea60c",
+      "scope": "one-hop",
+      "sha256": "f207d2bafb398af90d87ab2fb589b04fd80007b0d907e79db3fe19b8c6e0a32c",
+      "target_url": "https://www.gov.uk/browse/births-deaths-marriages/lasting-power-attorney"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/f36ac5d52783ed2fad07cde1bc6e4f01c1872bdeb38471e9e5b4c829bb1c65a8.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/disabilities/equipment",
+      "role": "content-closure:d8dd1729b0b4cab698c474b2",
+      "scope": "one-hop",
+      "sha256": "f36ac5d52783ed2fad07cde1bc6e4f01c1872bdeb38471e9e5b4c829bb1c65a8",
+      "target_url": "https://www.gov.uk/browse/disabilities/equipment"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/7eebe6b74e0ad2b7e857545c9dfa76e385c6e2b9380de7892283b0451a43ee2f.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/education/school-life",
+      "role": "content-closure:faf56817bb4800e0553bca0b",
+      "scope": "one-hop",
+      "sha256": "7eebe6b74e0ad2b7e857545c9dfa76e385c6e2b9380de7892283b0451a43ee2f",
+      "target_url": "https://www.gov.uk/browse/education/school-life"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/46ae5a6703a573d8c96cb720f3388aa941340f00312b5ccfa2d041cef88075f9.json",
+      "requested_url": "https://www.gov.uk/api/content/browse/benefits/disability",
+      "role": "content-closure:ff8a1553b7c9c593b8cb180a",
+      "scope": "one-hop",
+      "sha256": "46ae5a6703a573d8c96cb720f3388aa941340f00312b5ccfa2d041cef88075f9",
+      "target_url": "https://www.gov.uk/browse/benefits/disability"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/537f8248eb6a15e16bcdeaed0170d49b31c8ec97b8097e2a1f07d9cb7fd528b4.json",
+      "requested_url": "https://www.gov.uk/api/content/get-extra-early-years-funding",
+      "role": "content-seed:content-id:03cad033-6800-4db2-92b4-87e9a6021272",
+      "scope": "seed",
+      "sha256": "537f8248eb6a15e16bcdeaed0170d49b31c8ec97b8097e2a1f07d9cb7fd528b4",
+      "target_url": "https://www.gov.uk/get-extra-early-years-funding"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/40b73875ca98eae99e6576a40f0d8a2f61a8843fcb00ebc3bfd85e19e5f45b64.json",
+      "requested_url": "https://www.gov.uk/api/content/child-benefit-tax-calculator",
+      "role": "content-seed:content-id:0e1de8f1-9909-4e45-a6a3-bffe95470275",
+      "scope": "seed",
+      "sha256": "40b73875ca98eae99e6576a40f0d8a2f61a8843fcb00ebc3bfd85e19e5f45b64",
+      "target_url": "https://www.gov.uk/child-benefit-tax-calculator"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/3befc1f7d1a0a17d927db5225280926df563fd39a0e34198eae5bbb21cf81b28.json",
+      "requested_url": "https://www.gov.uk/api/content/claim-child-benefit-behalf-someone-else",
+      "role": "content-seed:content-id:0ed58e79-d9f6-4bed-bbe4-c6b5bad1a543",
+      "scope": "seed",
+      "sha256": "3befc1f7d1a0a17d927db5225280926df563fd39a0e34198eae5bbb21cf81b28",
+      "target_url": "https://www.gov.uk/claim-child-benefit-behalf-someone-else"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/ebcf8f6754b47bc53191c3e272ab24b3ead9398f81495c5ae119d0feab23f783.json",
+      "requested_url": "https://www.gov.uk/api/content/report-changes-child-benefit",
+      "role": "content-seed:content-id:10e436e5-26e0-4462-913f-9a497f7e793e",
+      "scope": "seed",
+      "sha256": "ebcf8f6754b47bc53191c3e272ab24b3ead9398f81495c5ae119d0feab23f783",
+      "target_url": "https://www.gov.uk/report-changes-child-benefit"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/756b1199da7b86494534e5c570b9be453b3b680b9a91bbfce26ab6f8c5433eb8.json",
+      "requested_url": "https://www.gov.uk/api/content/disabled-facilities-grants",
+      "role": "content-seed:content-id:145d29c4-cb5c-4b1c-8664-094912f8a34e",
+      "scope": "seed",
+      "sha256": "756b1199da7b86494534e5c570b9be453b3b680b9a91bbfce26ab6f8c5433eb8",
+      "target_url": "https://www.gov.uk/disabled-facilities-grants"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/68281a06d15a3eae56ec65e598682970bd29a8fa39078054abf749c98f480ef2.json",
+      "requested_url": "https://www.gov.uk/api/content/help-for-disabled-child",
+      "role": "content-seed:content-id:16c39c48-c2e5-46e8-a71f-7f1c965f9c51",
+      "scope": "seed",
+      "sha256": "68281a06d15a3eae56ec65e598682970bd29a8fa39078054abf749c98f480ef2",
+      "target_url": "https://www.gov.uk/help-for-disabled-child"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/3a0bfbe43ebf2d0e12d3b249d60f8d33374d310d59fd63ea9aa538da7307923b.json",
+      "requested_url": "https://www.gov.uk/api/content/help-with-childcare-costs",
+      "role": "content-seed:content-id:1a3d4b71-78dc-41b3-97c9-965405892d2e",
+      "scope": "seed",
+      "sha256": "3a0bfbe43ebf2d0e12d3b249d60f8d33374d310d59fd63ea9aa538da7307923b",
+      "target_url": "https://www.gov.uk/help-with-childcare-costs"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/7ebddc48edd657058c1ae0222b40b4fac9e4e4b2e02abef04808b94ff6b78a58.json",
+      "requested_url": "https://www.gov.uk/api/content/plan-shared-parental-leave-pay",
+      "role": "content-seed:content-id:1de204a4-466c-4641-8b93-7c8e6b60ee39",
+      "scope": "seed",
+      "sha256": "7ebddc48edd657058c1ae0222b40b4fac9e4e4b2e02abef04808b94ff6b78a58",
+      "target_url": "https://www.gov.uk/plan-shared-parental-leave-pay"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/0078978d73d457a81179f65846be354f7c386946db450b7653f9fabf61198ee6.json",
+      "requested_url": "https://www.gov.uk/api/content/maternity-paternity-pay-leave",
+      "role": "content-seed:content-id:1f6b4ecc-ce2c-488a-b9c7-b78b3bba5598",
+      "scope": "seed",
+      "sha256": "0078978d73d457a81179f65846be354f7c386946db450b7653f9fabf61198ee6",
+      "target_url": "https://www.gov.uk/maternity-paternity-pay-leave"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/3d96c1d94a83719141bd242536d964b9bc4f68fecb9ccc775f7a9c7a0a14c085.json",
+      "requested_url": "https://www.gov.uk/api/content/junior-individual-savings-accounts",
+      "role": "content-seed:content-id:21a2bfa6-c62b-4280-9682-58c876bef012",
+      "scope": "seed",
+      "sha256": "3d96c1d94a83719141bd242536d964b9bc4f68fecb9ccc775f7a9c7a0a14c085",
+      "target_url": "https://www.gov.uk/junior-individual-savings-accounts"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/7f9d93df063885221f93befacf9e86ec095c9a6ce2962b54aede2286081f3697.json",
+      "requested_url": "https://www.gov.uk/api/content/maternity-pay-leave",
+      "role": "content-seed:content-id:24d6d3fc-ab41-456d-adc7-a265674b45cc",
+      "scope": "seed",
+      "sha256": "7f9d93df063885221f93befacf9e86ec095c9a6ce2962b54aede2286081f3697",
+      "target_url": "https://www.gov.uk/maternity-pay-leave"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/d51d10e94cdf7c2160bf7047bbf03c0625f9805c881783859289e4b434d8e1eb.json",
+      "requested_url": "https://www.gov.uk/api/content/tax-credits-overpayments",
+      "role": "content-seed:content-id:24f57ae2-9d84-4f39-9817-1fbc39478668",
+      "scope": "seed",
+      "sha256": "d51d10e94cdf7c2160bf7047bbf03c0625f9805c881783859289e4b434d8e1eb",
+      "target_url": "https://www.gov.uk/tax-credits-overpayments"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/dfa7a4778514e342fdf02e0b4b037451b3af91ba7d54f7fd6ca74e306e916a93.json",
+      "requested_url": "https://www.gov.uk/api/content/child-benefit-abroad",
+      "role": "content-seed:content-id:25920434-312a-4fb7-b391-757b9c64faa2",
+      "scope": "seed",
+      "sha256": "dfa7a4778514e342fdf02e0b4b037451b3af91ba7d54f7fd6ca74e306e916a93",
+      "target_url": "https://www.gov.uk/child-benefit-abroad"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/3bf7f5a12da0010403df777b1dc5eb7e6fff024a3d5edc81232126d6b960d6ea.json",
+      "requested_url": "https://www.gov.uk/api/content/register-birth",
+      "role": "content-seed:content-id:28389deb-8fd3-44dc-95a9-e7d1935ac363",
+      "scope": "seed",
+      "sha256": "3bf7f5a12da0010403df777b1dc5eb7e6fff024a3d5edc81232126d6b960d6ea",
+      "target_url": "https://www.gov.uk/register-birth"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/e55dcc108952f9a8d1df154b894ac9ced634d5c5053c33db855f3b2f48465b79.json",
+      "requested_url": "https://www.gov.uk/api/content/find-registered-childminder",
+      "role": "content-seed:content-id:2f2ee25a-30c8-4ded-a160-88783f978206",
+      "scope": "seed",
+      "sha256": "e55dcc108952f9a8d1df154b894ac9ced634d5c5053c33db855f3b2f48465b79",
+      "target_url": "https://www.gov.uk/find-registered-childminder"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/3ce83587cc9a807ec0f8caa39e2c60d02623d9e28284546d1feaf59aa0bc8c1c.json",
+      "requested_url": "https://www.gov.uk/api/content/child-benefit-child-parent-dies",
+      "role": "content-seed:content-id:2f76be61-dca7-48a1-aaed-72e3bbc24be0",
+      "scope": "seed",
+      "sha256": "3ce83587cc9a807ec0f8caa39e2c60d02623d9e28284546d1feaf59aa0bc8c1c",
+      "target_url": "https://www.gov.uk/child-benefit-child-parent-dies"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/8c022affc6882d224a0f503d0262f5becf4eb2debee9e162f83fce10f141795d.json",
+      "requested_url": "https://www.gov.uk/api/content/tax-credits-appeals-complaints",
+      "role": "content-seed:content-id:33f3c46f-1df5-465d-8013-9731468584fe",
+      "scope": "seed",
+      "sha256": "8c022affc6882d224a0f503d0262f5becf4eb2debee9e162f83fce10f141795d",
+      "target_url": "https://www.gov.uk/tax-credits-appeals-complaints"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/79e0416351a553ea2229d255e629d6b2e6cdce42ed5e932743b29e503a559723.json",
+      "requested_url": "https://www.gov.uk/api/content/find-free-early-education",
+      "role": "content-seed:content-id:34409c2a-8c65-4910-bda8-3898403cb416",
+      "scope": "seed",
+      "sha256": "79e0416351a553ea2229d255e629d6b2e6cdce42ed5e932743b29e503a559723",
+      "target_url": "https://www.gov.uk/find-free-early-education"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/6abc16c332f97cf711c4ece767bd75c0322de3fc7f9a25a97c3117fa509b6aba.json",
+      "requested_url": "https://www.gov.uk/api/content/complain-about-childcare",
+      "role": "content-seed:content-id:3ae2e90e-4669-49c1-889c-409e6baebe2a",
+      "scope": "seed",
+      "sha256": "6abc16c332f97cf711c4ece767bd75c0322de3fc7f9a25a97c3117fa509b6aba",
+      "target_url": "https://www.gov.uk/complain-about-childcare"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/22e2e203ec6a8ee577fd86bccdbcfa0b0dfc0e185380319387d6eee8c9aa4623.json",
+      "requested_url": "https://www.gov.uk/api/content/dealing-tax-credits-someone-else",
+      "role": "content-seed:content-id:3b73d6f9-da30-4166-a3ba-ef5316b00803",
+      "scope": "seed",
+      "sha256": "22e2e203ec6a8ee577fd86bccdbcfa0b0dfc0e185380319387d6eee8c9aa4623",
+      "target_url": "https://www.gov.uk/dealing-tax-credits-someone-else"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/3fd943663e7115360b6690e54a0bd67f4a74e0fa610b05b69c1da5c58e7a1523.json",
+      "requested_url": "https://www.gov.uk/api/content/law-on-leaving-your-child-home-alone",
+      "role": "content-seed:content-id:3db5234c-a87f-4a30-b058-adee1236329e",
+      "scope": "seed",
+      "sha256": "3fd943663e7115360b6690e54a0bd67f4a74e0fa610b05b69c1da5c58e7a1523",
+      "target_url": "https://www.gov.uk/law-on-leaving-your-child-home-alone"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/66b1a1ab8753c31fd35eee54fe7e5d3902bb364fc4ef195f40405c73bd4c88ce.json",
+      "requested_url": "https://www.gov.uk/api/content/bereaved-partners-paternity-leave",
+      "role": "content-seed:content-id:3fa3c408-8d9b-4934-9eed-163b0a19d5f3",
+      "scope": "seed",
+      "sha256": "66b1a1ab8753c31fd35eee54fe7e5d3902bb364fc4ef195f40405c73bd4c88ce",
+      "target_url": "https://www.gov.uk/bereaved-partners-paternity-leave"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/ec6dc2d06080c91030defc590986eb09a6b2e06960725fff4fd220f0e00e8ee5.json",
+      "requested_url": "https://www.gov.uk/api/content/free-childcare-if-working",
+      "role": "content-seed:content-id:400ab081-84bd-4fbb-8c47-e599d0863232",
+      "scope": "seed",
+      "sha256": "ec6dc2d06080c91030defc590986eb09a6b2e06960725fff4fd220f0e00e8ee5",
+      "target_url": "https://www.gov.uk/free-childcare-if-working"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/762063ba6e73b1f54483f820fea5298fb0c112722e7f6379c7b854849e8b1381.json",
+      "requested_url": "https://www.gov.uk/api/content/apply-free-school-meals",
+      "role": "content-seed:content-id:4479426d-51c1-4b51-8930-543d994e8818",
+      "scope": "seed",
+      "sha256": "762063ba6e73b1f54483f820fea5298fb0c112722e7f6379c7b854849e8b1381",
+      "target_url": "https://www.gov.uk/apply-free-school-meals"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/e95c26143b70ffd21e50cb78849a80f02053dce0689ec3180fcd37dc8d6a5299.json",
+      "requested_url": "https://www.gov.uk/api/content/neonatal-care-pay-leave",
+      "role": "content-seed:content-id:47d8fc48-5c90-4c7e-8d76-45302353d5e4",
+      "scope": "seed",
+      "sha256": "e95c26143b70ffd21e50cb78849a80f02053dce0689ec3180fcd37dc8d6a5299",
+      "target_url": "https://www.gov.uk/neonatal-care-pay-leave"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/655f39695e1e55e837df0aa0887b7062ea9b525cd84724c74843373120c5c986.json",
+      "requested_url": "https://www.gov.uk/api/content/repay-child-benefit-overpayments",
+      "role": "content-seed:content-id:51bc92b9-5f12-45c0-99c1-1f3bdea9e369",
+      "scope": "seed",
+      "sha256": "655f39695e1e55e837df0aa0887b7062ea9b525cd84724c74843373120c5c986",
+      "target_url": "https://www.gov.uk/repay-child-benefit-overpayments"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/4f119b89d1194fd27c1d3ffc143143d405c99e3f4d7fe7ab69d0d32f9dbc6d05.json",
+      "requested_url": "https://www.gov.uk/api/content/register-birth-abroad",
+      "role": "content-seed:content-id:54889464-3225-4d61-9df7-402fcdce66e8",
+      "scope": "seed",
+      "sha256": "4f119b89d1194fd27c1d3ffc143143d405c99e3f4d7fe7ab69d0d32f9dbc6d05",
+      "target_url": "https://www.gov.uk/register-birth-abroad"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/13720aa09e02374b625919de82f5f06abc5d591b188e88ec15b5d1a0d4941ee6.json",
+      "requested_url": "https://www.gov.uk/api/content/sure-start-maternity-grant",
+      "role": "content-seed:content-id:5b4fb7fa-c986-496e-be54-e6d64ea218b8",
+      "scope": "seed",
+      "sha256": "13720aa09e02374b625919de82f5f06abc5d591b188e88ec15b5d1a0d4941ee6",
+      "target_url": "https://www.gov.uk/sure-start-maternity-grant"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/f46d9960820ec6379cca6656ac630cd773e8cb67aa43581b7f31866288816042.json",
+      "requested_url": "https://www.gov.uk/api/content/child-benefit-move-to-uk",
+      "role": "content-seed:content-id:5b5a2321-da86-4252-9d2c-9fa3f8e9bfa8",
+      "scope": "seed",
+      "sha256": "f46d9960820ec6379cca6656ac630cd773e8cb67aa43581b7f31866288816042",
+      "target_url": "https://www.gov.uk/child-benefit-move-to-uk"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/ff717fe3b35f0fce86df9ec6fbbb28d77bd9398ec986064156aa1b344f4a48f3.json",
+      "requested_url": "https://www.gov.uk/api/content/child-benefit-proof",
+      "role": "content-seed:content-id:5f8f95b8-66ef-45a6-94c2-29172ec19ab3",
+      "scope": "seed",
+      "sha256": "ff717fe3b35f0fce86df9ec6fbbb28d77bd9398ec986064156aa1b344f4a48f3",
+      "target_url": "https://www.gov.uk/child-benefit-proof"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/262b3f541cf8c7b0cbee5447d510be8be44f194faacdcab90c60ff7c08f71d0d.json",
+      "requested_url": "https://www.gov.uk/api/content/au-pairs-employment-law",
+      "role": "content-seed:content-id:61289398-23be-4fad-b7c0-0da35e512148",
+      "scope": "seed",
+      "sha256": "262b3f541cf8c7b0cbee5447d510be8be44f194faacdcab90c60ff7c08f71d0d",
+      "target_url": "https://www.gov.uk/au-pairs-employment-law"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/8ace17caaaae415f0ba19884e90aa2f03ad6b45a760e115884cf5ea07626d572.json",
+      "requested_url": "https://www.gov.uk/api/content/find-nursery-school-place",
+      "role": "content-seed:content-id:63f0efad-5e31-4516-9a33-b12cf18e410f",
+      "scope": "seed",
+      "sha256": "8ace17caaaae415f0ba19884e90aa2f03ad6b45a760e115884cf5ea07626d572",
+      "target_url": "https://www.gov.uk/find-nursery-school-place"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/b4575ee2ad24d0fa1f65669258edb5e6b50a7cf037e3e2869ef98a065e6826a1.json",
+      "requested_url": "https://www.gov.uk/api/content/child-benefit-tax-charge",
+      "role": "content-seed:content-id:65d2d5b2-22c4-4cfc-9399-9f7bcd145561",
+      "scope": "seed",
+      "sha256": "b4575ee2ad24d0fa1f65669258edb5e6b50a7cf037e3e2869ef98a065e6826a1",
+      "target_url": "https://www.gov.uk/child-benefit-tax-charge"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/accfe89b6c4aab76504c244f51bd1754cb845ab403d71a9fe0e99aa085303f47.json",
+      "requested_url": "https://www.gov.uk/api/content/find-sure-start-childrens-centre",
+      "role": "content-seed:content-id:6c0b86c0-95a7-4cb0-8965-b6c75f42602d",
+      "scope": "seed",
+      "sha256": "accfe89b6c4aab76504c244f51bd1754cb845ab403d71a9fe0e99aa085303f47",
+      "target_url": "https://www.gov.uk/find-sure-start-childrens-centre"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/ec19425aa7f1525abf0a91b8f98f11fea04194495f843b2ef3d89e739439221d.json",
+      "requested_url": "https://www.gov.uk/api/content/tax-free-childcare",
+      "role": "content-seed:content-id:6e2a4012-2448-47fd-b7ec-a47396e4b114",
+      "scope": "seed",
+      "sha256": "ec19425aa7f1525abf0a91b8f98f11fea04194495f843b2ef3d89e739439221d",
+      "target_url": "https://www.gov.uk/tax-free-childcare"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/d22aacaebef8729b43a2cdbe598208292fbda507417ba60518b142f88c3baa62.json",
+      "requested_url": "https://www.gov.uk/api/content/sign-in-childcare-account",
+      "role": "content-seed:content-id:7ae28e91-b918-4b9a-898c-fcdee95a83d0",
+      "scope": "seed",
+      "sha256": "d22aacaebef8729b43a2cdbe598208292fbda507417ba60518b142f88c3baa62",
+      "target_url": "https://www.gov.uk/sign-in-childcare-account"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/3c8847faaceb479bd6d1df9e443fcc99ee95c49b905b685694602edc3a127285.json",
+      "requested_url": "https://www.gov.uk/api/content/child-benefit-for-children-in-hospital-or-care",
+      "role": "content-seed:content-id:824913d8-94b1-497a-8ee4-fa4c3599b19c",
+      "scope": "seed",
+      "sha256": "3c8847faaceb479bd6d1df9e443fcc99ee95c49b905b685694602edc3a127285",
+      "target_url": "https://www.gov.uk/child-benefit-for-children-in-hospital-or-care"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/019f00f2e704105345e488dda65e212006e3884b8eee362a2ce591c0b58cf8a6.json",
+      "requested_url": "https://www.gov.uk/api/content/maternity-allowance",
+      "role": "content-seed:content-id:837dbc66-c780-49e1-94dc-b3e9b7fa8c71",
+      "scope": "seed",
+      "sha256": "019f00f2e704105345e488dda65e212006e3884b8eee362a2ce591c0b58cf8a6",
+      "target_url": "https://www.gov.uk/maternity-allowance"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/6f341dafe1ef66cc9fea61d53af5da48d33a74e2e87afb975026b09851bd79e0.json",
+      "requested_url": "https://www.gov.uk/api/content/childcare-grant",
+      "role": "content-seed:content-id:871c1c02-7117-43b6-bec7-60ac68156d4d",
+      "scope": "seed",
+      "sha256": "6f341dafe1ef66cc9fea61d53af5da48d33a74e2e87afb975026b09851bd79e0",
+      "target_url": "https://www.gov.uk/childcare-grant"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/60e63f6f4e608f8d03a04d8fdfeb00876135cf2b3a62a2db1cb66a7c507a01fd.json",
+      "requested_url": "https://www.gov.uk/api/content/childcare-out-of-school-hours",
+      "role": "content-seed:content-id:874212fa-3e94-453d-96f7-1cb2df761b2b",
+      "scope": "seed",
+      "sha256": "60e63f6f4e608f8d03a04d8fdfeb00876135cf2b3a62a2db1cb66a7c507a01fd",
+      "target_url": "https://www.gov.uk/childcare-out-of-school-hours"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/58350ecec1fedc7904d1c0553df045dcff4ba06133a3c85f7c9e56601ff7db78.json",
+      "requested_url": "https://www.gov.uk/api/content/apply-school-transport-for-child-with-special-educational-needs-sen",
+      "role": "content-seed:content-id:8ee55b42-4f25-45fd-bba6-adb0c67ff539",
+      "scope": "seed",
+      "sha256": "58350ecec1fedc7904d1c0553df045dcff4ba06133a3c85f7c9e56601ff7db78",
+      "target_url": "https://www.gov.uk/apply-school-transport-for-child-with-special-educational-needs-sen"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/3fba781d2f911ad0858e9982b47e6a13302358aaa359f0e93319edd267506ddd.json",
+      "requested_url": "https://www.gov.uk/api/content/healthy-start",
+      "role": "content-seed:content-id:95544523-5e1e-4754-9d87-d1c846f073c0",
+      "scope": "seed",
+      "sha256": "3fba781d2f911ad0858e9982b47e6a13302358aaa359f0e93319edd267506ddd",
+      "target_url": "https://www.gov.uk/healthy-start"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/4ec4523cd97a15c702d4952c9d67b1c316d0e8b8d799bc05655c886d55aec1c0.json",
+      "requested_url": "https://www.gov.uk/api/content/find-ofsted-inspection-report",
+      "role": "content-seed:content-id:a02fa764-c088-4e3c-958b-1627782e0610",
+      "scope": "seed",
+      "sha256": "4ec4523cd97a15c702d4952c9d67b1c316d0e8b8d799bc05655c886d55aec1c0",
+      "target_url": "https://www.gov.uk/find-ofsted-inspection-report"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/052a65f09ae94db1834109f6902e4876143cf2cd917c0905fe8885888139a257.json",
+      "requested_url": "https://www.gov.uk/api/content/child-benefit-child-lives-with-someone-else",
+      "role": "content-seed:content-id:a1aac09a-22ee-4e8f-b698-a350a0541a86",
+      "scope": "seed",
+      "sha256": "052a65f09ae94db1834109f6902e4876143cf2cd917c0905fe8885888139a257",
+      "target_url": "https://www.gov.uk/child-benefit-child-lives-with-someone-else"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/24666312285908a26ab44066ff5075397b7f49bebcc87807acd5d3158ac93c43.json",
+      "requested_url": "https://www.gov.uk/api/content/child-benefit-complaints",
+      "role": "content-seed:content-id:a6c7e355-6c65-437d-a498-d1ac5c8dbcd2",
+      "scope": "seed",
+      "sha256": "24666312285908a26ab44066ff5075397b7f49bebcc87807acd5d3158ac93c43",
+      "target_url": "https://www.gov.uk/child-benefit-complaints"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/7c5fe0e70b5dc5c51289aa7af0efd508e0935178d4522083dd43b5bfcc43fb6d.json",
+      "requested_url": "https://www.gov.uk/api/content/child-benefit",
+      "role": "content-seed:content-id:aed2cee3-7ca8-4f00-ab17-9193fff516ae",
+      "scope": "seed",
+      "sha256": "7c5fe0e70b5dc5c51289aa7af0efd508e0935178d4522083dd43b5bfcc43fb6d",
+      "target_url": "https://www.gov.uk/child-benefit"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/b11577ed08f9b6c06b3e5fec5ffe55d84c2c3352dd88847051fe4cbdf457af02.json",
+      "requested_url": "https://www.gov.uk/api/content/after-school-holiday-club",
+      "role": "content-seed:content-id:b46636df-3d64-4693-a1a7-8fd3d7e840c9",
+      "scope": "seed",
+      "sha256": "b11577ed08f9b6c06b3e5fec5ffe55d84c2c3352dd88847051fe4cbdf457af02",
+      "target_url": "https://www.gov.uk/after-school-holiday-club"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/9d94ec9337b6cf95a3ad0d8da5ae17d785bd361f56d93c71829b24f0366434ee.json",
+      "requested_url": "https://www.gov.uk/api/content/parental-leave",
+      "role": "content-seed:content-id:bb148231-a649-4ed0-9eb6-8b40965179b7",
+      "scope": "seed",
+      "sha256": "9d94ec9337b6cf95a3ad0d8da5ae17d785bd361f56d93c71829b24f0366434ee",
+      "target_url": "https://www.gov.uk/parental-leave"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/e6e8d8ef7e17a27835d04b31f91e7741ad779128a67860428c62c05ca5f3735d.json",
+      "requested_url": "https://www.gov.uk/api/content/complain-about-school",
+      "role": "content-seed:content-id:bb2a44bf-d1fb-4a5e-97e0-483cabd622fc",
+      "scope": "seed",
+      "sha256": "e6e8d8ef7e17a27835d04b31f91e7741ad779128a67860428c62c05ca5f3735d",
+      "target_url": "https://www.gov.uk/complain-about-school"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/e33c454e57dc02d4b2213580c0d93cc9ae94c51b37c9c9b539826efa0e799b2e.json",
+      "requested_url": "https://www.gov.uk/api/content/widowed-parents-allowance",
+      "role": "content-seed:content-id:bcbf0118-5f54-41c9-a297-09068bacbc0b",
+      "scope": "seed",
+      "sha256": "e33c454e57dc02d4b2213580c0d93cc9ae94c51b37c9c9b539826efa0e799b2e",
+      "target_url": "https://www.gov.uk/widowed-parents-allowance"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/db29a122ee7d967402f19e01a642d4882db9300bca1fd165dceae77323cda82c.json",
+      "requested_url": "https://www.gov.uk/api/content/guidance/ofsted-explore-an-area",
+      "role": "content-seed:content-id:bf9a2dbd-4bc9-4036-bd30-d75e970c490b",
+      "scope": "seed",
+      "sha256": "db29a122ee7d967402f19e01a642d4882db9300bca1fd165dceae77323cda82c",
+      "target_url": "https://www.gov.uk/guidance/ofsted-explore-an-area"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/76784f0774c734a98dc7467ddba5c74082fb92ce74f341a8ccfc76e211bfd451.json",
+      "requested_url": "https://www.gov.uk/api/content/care-to-learn",
+      "role": "content-seed:content-id:c1873350-0c82-469d-9f59-4658be95fdd2",
+      "scope": "seed",
+      "sha256": "76784f0774c734a98dc7467ddba5c74082fb92ce74f341a8ccfc76e211bfd451",
+      "target_url": "https://www.gov.uk/care-to-learn"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/75be8c0158509424d760834d46d5669fee06369e640bd24c3152a2e189dd28f3.json",
+      "requested_url": "https://www.gov.uk/api/content/changes-affect-tax-credits",
+      "role": "content-seed:content-id:c9259172-5432-43a6-b710-409d463c7627",
+      "scope": "seed",
+      "sha256": "75be8c0158509424d760834d46d5669fee06369e640bd24c3152a2e189dd28f3",
+      "target_url": "https://www.gov.uk/changes-affect-tax-credits"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/986068c4389504e269f087e5b07ae426a8d9ef36bdd5fa73a11ef45e3cafab76.json",
+      "requested_url": "https://www.gov.uk/api/content/child-benefit-16-19",
+      "role": "content-seed:content-id:d1f5ed43-f482-4927-95f4-22ccbcfbc89f",
+      "scope": "seed",
+      "sha256": "986068c4389504e269f087e5b07ae426a8d9ef36bdd5fa73a11ef45e3cafab76",
+      "target_url": "https://www.gov.uk/child-benefit-16-19"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/1d880ee90d4afdca6ed0ace0433d64b9063481e67626fba23bd7b2f899319b32.json",
+      "requested_url": "https://www.gov.uk/api/content/working-when-pregnant-your-rights",
+      "role": "content-seed:content-id:d9371e84-548c-4dd4-b5aa-503abd38215c",
+      "scope": "seed",
+      "sha256": "1d880ee90d4afdca6ed0ace0433d64b9063481e67626fba23bd7b2f899319b32",
+      "target_url": "https://www.gov.uk/working-when-pregnant-your-rights"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/5d5bc897ee8c7957be84a1cf0706989e2ea3fb05c7ce6a76764cefb86979f29e.json",
+      "requested_url": "https://www.gov.uk/api/content/employee-rights-when-on-leave",
+      "role": "content-seed:content-id:dac7e6bf-023a-4f65-b61a-6c72be82025e",
+      "scope": "seed",
+      "sha256": "5d5bc897ee8c7957be84a1cf0706989e2ea3fb05c7ce6a76764cefb86979f29e",
+      "target_url": "https://www.gov.uk/employee-rights-when-on-leave"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/d74222646b06bf012708f1e5c6ef72f0e3db8666e78d1a570d8010f23c72c5c3.json",
+      "requested_url": "https://www.gov.uk/api/content/child-benefit-payment-dates",
+      "role": "content-seed:content-id:db4795d9-0f5b-49b7-8a7b-64e626d1caf1",
+      "scope": "seed",
+      "sha256": "d74222646b06bf012708f1e5c6ef72f0e3db8666e78d1a570d8010f23c72c5c3",
+      "target_url": "https://www.gov.uk/child-benefit-payment-dates"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/dc856bc1c80eacf15ca7abe3fa22733a881005933bbe7293c07817711e35e220.json",
+      "requested_url": "https://www.gov.uk/api/content/find-family-hub-local-area",
+      "role": "content-seed:content-id:dc27599f-d80f-4279-b22e-a88969ef54c7",
+      "scope": "seed",
+      "sha256": "dc856bc1c80eacf15ca7abe3fa22733a881005933bbe7293c07817711e35e220",
+      "target_url": "https://www.gov.uk/find-family-hub-local-area"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/29205e4475e46457c8723a64b1eb7188d3d380e3d59ef9684d506211f2311045.json",
+      "requested_url": "https://www.gov.uk/api/content/shared-parental-leave-and-pay",
+      "role": "content-seed:content-id:dc68775c-3df8-4930-ad22-bde7bfbb3b61",
+      "scope": "seed",
+      "sha256": "29205e4475e46457c8723a64b1eb7188d3d380e3d59ef9684d506211f2311045",
+      "target_url": "https://www.gov.uk/shared-parental-leave-and-pay"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/45347f890f9e8e089d7d4ae044e19d9fa787cbdc9c850de954ce82e0ffdfcbd1.json",
+      "requested_url": "https://www.gov.uk/api/content/guardians-allowance",
+      "role": "content-seed:content-id:e2644b6d-2c90-47e3-89b7-bf69be25465b",
+      "scope": "seed",
+      "sha256": "45347f890f9e8e089d7d4ae044e19d9fa787cbdc9c850de954ce82e0ffdfcbd1",
+      "target_url": "https://www.gov.uk/guardians-allowance"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/396e33f20d99471d01e799719e854b93c9077337027fa941f60290078b6173b3.json",
+      "requested_url": "https://www.gov.uk/api/content/help-home-school-transport",
+      "role": "content-seed:content-id:e8466219-50e7-4880-aaa4-aeafde38ceeb",
+      "scope": "seed",
+      "sha256": "396e33f20d99471d01e799719e854b93c9077337027fa941f60290078b6173b3",
+      "target_url": "https://www.gov.uk/help-home-school-transport"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/3647f0e5d38024a08c8294ebc0f585b8294e3b4ea7da6c4ab9bd4a5888142434.json",
+      "requested_url": "https://www.gov.uk/api/content/register-stillbirth",
+      "role": "content-seed:content-id:e8c48e4e-24f0-4d87-bf75-587e986361ac",
+      "scope": "seed",
+      "sha256": "3647f0e5d38024a08c8294ebc0f585b8294e3b4ea7da6c4ab9bd4a5888142434",
+      "target_url": "https://www.gov.uk/register-stillbirth"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/d3bf7566ae6a7c5e7050e424b5b6e494c81cc2f64481c59f3a6cb9e18f9bc82e.json",
+      "requested_url": "https://www.gov.uk/api/content/savings-for-children",
+      "role": "content-seed:content-id:ed9c17c3-e58e-4c59-a35f-871b0b669a87",
+      "scope": "seed",
+      "sha256": "d3bf7566ae6a7c5e7050e424b5b6e494c81cc2f64481c59f3a6cb9e18f9bc82e",
+      "target_url": "https://www.gov.uk/savings-for-children"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/eb8b82b9005dc8f08b33685f82bff4bbe75de240ce18e35ce17f50e73a2c0e14.json",
+      "requested_url": "https://www.gov.uk/api/content/disability-living-allowance-children",
+      "role": "content-seed:content-id:ee6607f1-d0ba-412b-b91c-7717286290ae",
+      "scope": "seed",
+      "sha256": "eb8b82b9005dc8f08b33685f82bff4bbe75de240ce18e35ce17f50e73a2c0e14",
+      "target_url": "https://www.gov.uk/disability-living-allowance-children"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/1f9c5691e20ca440e7d2646e1251ae3b82a8d61e0d7441487592aec5a2df7a15.json",
+      "requested_url": "https://www.gov.uk/api/content/parents-learning-allowance",
+      "role": "content-seed:content-id:f17a4a04-fea2-4e6b-8f87-84f0560c9cba",
+      "scope": "seed",
+      "sha256": "1f9c5691e20ca440e7d2646e1251ae3b82a8d61e0d7441487592aec5a2df7a15",
+      "target_url": "https://www.gov.uk/parents-learning-allowance"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/ec3db3737339a11c2690a76227f81ea3ea077def2fafcc4c46b0fb0caa9fe50e.json",
+      "requested_url": "https://www.gov.uk/api/content/get-childcare",
+      "role": "content-seed:content-id:f237ec8e-e82c-4ffa-8fba-2a88a739783b",
+      "scope": "seed",
+      "sha256": "ec3db3737339a11c2690a76227f81ea3ea077def2fafcc4c46b0fb0caa9fe50e",
+      "target_url": "https://www.gov.uk/get-childcare"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/b10c05626e2b8277b62d942b26acaf4a2d3ff3933e40a19b5c0f7f261fb06407.json",
+      "requested_url": "https://www.gov.uk/api/content/childcare-calculator",
+      "role": "content-seed:content-id:f44b7afb-76e7-41c2-afd7-1a5bc32372f0",
+      "scope": "seed",
+      "sha256": "b10c05626e2b8277b62d942b26acaf4a2d3ff3933e40a19b5c0f7f261fb06407",
+      "target_url": "https://www.gov.uk/childcare-calculator"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/a7e9da89a8845677f362601615207b4ea095ec0d03edc31eb44faf9037957fda.json",
+      "requested_url": "https://www.gov.uk/api/content/paternity-pay-leave",
+      "role": "content-seed:content-id:fd693386-fb6b-4069-970e-63ea5dfc2ab5",
+      "scope": "seed",
+      "sha256": "a7e9da89a8845677f362601615207b4ea095ec0d03edc31eb44faf9037957fda",
+      "target_url": "https://www.gov.uk/paternity-pay-leave"
+    },
+    {
+      "kind": "content",
+      "path": "frozen/envelopes/edad6ece3e0173d42a1f6b82bda1170787eeb96af16ca750c7b4412a05cf26fd.json",
+      "requested_url": "https://www.gov.uk/api/content/free-school-transport",
+      "role": "content-seed:content-id:fdd55911-6fcc-4b9e-be9f-34e93298b691",
+      "scope": "seed",
+      "sha256": "edad6ece3e0173d42a1f6b82bda1170787eeb96af16ca750c7b4412a05cf26fd",
+      "target_url": "https://www.gov.uk/free-school-transport"
+    },
+    {
+      "kind": "search",
+      "path": "frozen/envelopes/d1ccf2408c91281895cfb3aa9692a4c980496369f057b78e92751b202c41c75b.json",
+      "requested_url": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "role": "search-combined-close",
+      "scope": null,
+      "sha256": "d1ccf2408c91281895cfb3aa9692a4c980496369f057b78e92751b202c41c75b",
+      "target_url": null
+    },
+    {
+      "kind": "search",
+      "path": "frozen/envelopes/3baf982e95626bff8a9a853290136da942154a5e7ef259f647bdf3dee1bf7b0d.json",
+      "requested_url": "https://www.gov.uk/api/search.json?count=0&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare",
+      "role": "search-combined-count",
+      "scope": null,
+      "sha256": "3baf982e95626bff8a9a853290136da942154a5e7ef259f647bdf3dee1bf7b0d",
+      "target_url": null
+    },
+    {
+      "kind": "search",
+      "path": "frozen/envelopes/e01c3f420f1df8d700b8b3a64832c93397fbb04066cba4823fb9fe39c0f22d4e.json",
+      "requested_url": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "role": "search-combined-open",
+      "scope": null,
+      "sha256": "e01c3f420f1df8d700b8b3a64832c93397fbb04066cba4823fb9fe39c0f22d4e",
+      "target_url": null
+    },
+    {
+      "kind": "search",
+      "path": "frozen/envelopes/9d716c52bf4d4a8e974807026823ba471edcc8e668e7bef025119f2a420480a2.json",
+      "requested_url": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "role": "search-group-close:childcare-parenting/childcare",
+      "scope": null,
+      "sha256": "9d716c52bf4d4a8e974807026823ba471edcc8e668e7bef025119f2a420480a2",
+      "target_url": null
+    },
+    {
+      "kind": "search",
+      "path": "frozen/envelopes/44408d7693262c2981ec2fbc881481fca77a10a3320c2ece9d14dd580516175d.json",
+      "requested_url": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "role": "search-group-close:childcare-parenting/financial-help-children",
+      "scope": null,
+      "sha256": "44408d7693262c2981ec2fbc881481fca77a10a3320c2ece9d14dd580516175d",
+      "target_url": null
+    },
+    {
+      "kind": "search",
+      "path": "frozen/envelopes/ee0f7e7aafd62eb1fd337472e81a1da93424a204039e649ec0509f359853b59e.json",
+      "requested_url": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "role": "search-group-close:childcare-parenting/pregnancy-birth",
+      "scope": null,
+      "sha256": "ee0f7e7aafd62eb1fd337472e81a1da93424a204039e649ec0509f359853b59e",
+      "target_url": null
+    },
+    {
+      "kind": "search",
+      "path": "frozen/envelopes/df086b41325df1bc72233cfa66b51700a7d8cf27f1367040362db6a96698c635.json",
+      "requested_url": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "role": "search-group:childcare-parenting/childcare",
+      "scope": null,
+      "sha256": "df086b41325df1bc72233cfa66b51700a7d8cf27f1367040362db6a96698c635",
+      "target_url": null
+    },
+    {
+      "kind": "search",
+      "path": "frozen/envelopes/7f134854cc505516968e446cc1a6feea2b4a0d08be3c147286ef6933d2ea8901.json",
+      "requested_url": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "role": "search-group:childcare-parenting/financial-help-children",
+      "scope": null,
+      "sha256": "7f134854cc505516968e446cc1a6feea2b4a0d08be3c147286ef6933d2ea8901",
+      "target_url": null
+    },
+    {
+      "kind": "search",
+      "path": "frozen/envelopes/6e997456ac1c17b4e47b891fa2517a99face0fa6c6ca02daeeb69301cbec83cc.json",
+      "requested_url": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "role": "search-group:childcare-parenting/pregnancy-birth",
+      "scope": null,
+      "sha256": "6e997456ac1c17b4e47b891fa2517a99face0fa6c6ca02daeeb69301cbec83cc",
+      "target_url": null
+    }
+  ],
+  "schema": "govuk-okf-new-child-demo-frozen-index.v1",
+  "snapshot_id": "NEW-CHILD-20260715",
+  "source_queries": {
+    "combined_count": "https://www.gov.uk/api/search.json?count=0&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare",
+    "combined_records_close": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+    "combined_records_open": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+    "groups": {
+      "childcare-parenting/childcare": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "childcare-parenting/financial-help-children": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "childcare-parenting/pregnancy-birth": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids"
+    },
+    "groups_close": {
+      "childcare-parenting/childcare": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fchildcare&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "childcare-parenting/financial-help-children": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Ffinancial-help-children&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids",
+      "childcare-parenting/pregnancy-birth": "https://www.gov.uk/api/search.json?count=1500&filter_mainstream_browse_pages=childcare-parenting%2Fpregnancy-birth&fields=title&fields=link&fields=description&fields=format&fields=content_store_document_type&fields=public_timestamp&fields=content_id&fields=mainstream_browse_pages&fields=organisation_content_ids"
+    }
+  }
+}

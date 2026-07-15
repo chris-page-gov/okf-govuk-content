@@ -1,0 +1,32 @@
+[
+  {
+    "df": 12,
+    "postings": "data/search/postings/cl.json",
+    "token": "claim"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/cl.json",
+    "token": "claim-child-benefit-behalf-someone-else"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/cl.json",
+    "token": "claimant"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/cl.json",
+    "token": "claims"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/cl.json",
+    "token": "classes"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/cl.json",
+    "token": "clubs"
+  }
+]

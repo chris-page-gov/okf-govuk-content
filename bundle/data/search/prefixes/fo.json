@@ -1,82 +1,46 @@
 {
+  "foo": [
+    {
+      "df": 1,
+      "token": "foods"
+    }
+  ],
+  "food": [
+    {
+      "df": 1,
+      "token": "foods"
+    }
+  ],
+  "foods": [
+    {
+      "df": 1,
+      "token": "foods"
+    }
+  ],
   "for": [
     {
-      "df": 1,
-      "token": "foreign"
+      "df": 9,
+      "token": "form"
     },
     {
       "df": 1,
-      "token": "foreign-travel-advice"
+      "token": "forms"
     }
   ],
-  "fore": [
+  "form": [
     {
-      "df": 1,
-      "token": "foreign"
+      "df": 9,
+      "token": "form"
     },
     {
       "df": 1,
-      "token": "foreign-travel-advice"
+      "token": "forms"
     }
   ],
-  "forei": [
+  "forms": [
     {
       "df": 1,
-      "token": "foreign"
-    },
-    {
-      "df": 1,
-      "token": "foreign-travel-advice"
-    }
-  ],
-  "foreig": [
-    {
-      "df": 1,
-      "token": "foreign"
-    },
-    {
-      "df": 1,
-      "token": "foreign-travel-advice"
-    }
-  ],
-  "foreign": [
-    {
-      "df": 1,
-      "token": "foreign"
-    },
-    {
-      "df": 1,
-      "token": "foreign-travel-advice"
-    }
-  ],
-  "foreign-": [
-    {
-      "df": 1,
-      "token": "foreign-travel-advice"
-    }
-  ],
-  "foreign-t": [
-    {
-      "df": 1,
-      "token": "foreign-travel-advice"
-    }
-  ],
-  "foreign-tr": [
-    {
-      "df": 1,
-      "token": "foreign-travel-advice"
-    }
-  ],
-  "foreign-tra": [
-    {
-      "df": 1,
-      "token": "foreign-travel-advice"
-    }
-  ],
-  "foreign-trav": [
-    {
-      "df": 1,
-      "token": "foreign-travel-advice"
+      "token": "forms"
     }
   ]
 }

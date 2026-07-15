@@ -1,13 +1,13 @@
 "@context": "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v1.jsonld"
 "@id": "https://chris-page-gov.github.io/okf-govuk-content/okf-bundle.yamlld"
 "@type": "okf:Bundle"
-title: "What’s on GOV.UK"
-description: "Derived, non-authoritative, snapshot-bounded semantic catalogue of the public GOV.UK metadata estate."
+title: "Having a new child: bounded GOV.UK metadata demonstrator"
+description: "Derived, non-authoritative semantic projection of exactly 69 frozen GOV.UK new-child metadata records; it is not a complete GOV.UK corpus."
 version: "0.1.0"
-status: "preview"
-generatedAt: "2026-07-11T23:30:00Z"
-snapshot: "fixture-2026-07-11"
-derivedNotice: "GOV.UK remains authoritative; this bundle does not reproduce complete page bodies or transactions."
+status: "bounded-demonstrator"
+generatedAt: "2026-07-15T06:25:17Z"
+snapshot: "NEW-CHILD-20260715"
+derivedNotice: "GOV.UK remains authoritative. This demonstrator is complete only for its declared 69-record seed denominator and does not reproduce complete page bodies, transactions or the wider GOV.UK estate."
 descriptor:
   "@id": "https://chris-page-gov.github.io/okf-govuk-content/okf-explorer.json"
 semanticDescriptor:
@@ -29,14 +29,14 @@ constraintLedger:
 semanticProjectionManifest:
   "@id": "https://chris-page-gov.github.io/okf-govuk-content/data/semantic/manifest.json"
 counts:
-  datasets: 14
-  document_types: 13
-  languages: 2
-  publishers: 6
-  records: 14
-  relationships: 16
-  resources: 1
-  schema_families: 13
+  datasets: 69
+  document_types: 8
+  languages: 1
+  publishers: 14
+  records: 69
+  relationships: 392
+  resources: 0
+  schema_families: 8
 extensions:
   - "govuk-okf-profile.v1"
   - "govuk-okf-semantic-projection.v1"
@@ -44,3 +44,9 @@ extensions:
   - "okf-static-search.v1"
   - "okf-relationship-adjacency.v1"
   - "okf-route-index.v1"
+  - "govuk-new-child-demonstrator.v1"
+scope:
+  kind: "bounded-new-child-metadata-demonstrator"
+  seedDenominator: 69
+  authoritative: false
+  completeGovukCorpus: false

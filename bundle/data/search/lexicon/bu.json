@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/bu.json",
+    "token": "but"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/bu.json",
+    "token": "buy"
+  }
+]

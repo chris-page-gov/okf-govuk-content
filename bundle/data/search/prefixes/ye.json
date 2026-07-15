@@ -1,0 +1,28 @@
+{
+  "yea": [
+    {
+      "df": 2,
+      "token": "year"
+    },
+    {
+      "df": 2,
+      "token": "years"
+    }
+  ],
+  "year": [
+    {
+      "df": 2,
+      "token": "year"
+    },
+    {
+      "df": 2,
+      "token": "years"
+    }
+  ],
+  "years": [
+    {
+      "df": 2,
+      "token": "years"
+    }
+  ]
+}

@@ -6,7 +6,7 @@
     },
     {
       "df": 1,
-      "token": "sign-in-universal-credit"
+      "token": "sign-in-childcare-account"
     }
   ],
   "sign": [
@@ -16,55 +16,79 @@
     },
     {
       "df": 1,
-      "token": "sign-in-universal-credit"
+      "token": "sign-in-childcare-account"
     }
   ],
   "sign-": [
     {
       "df": 1,
-      "token": "sign-in-universal-credit"
+      "token": "sign-in-childcare-account"
     }
   ],
   "sign-i": [
     {
       "df": 1,
-      "token": "sign-in-universal-credit"
+      "token": "sign-in-childcare-account"
     }
   ],
   "sign-in": [
     {
       "df": 1,
-      "token": "sign-in-universal-credit"
+      "token": "sign-in-childcare-account"
     }
   ],
   "sign-in-": [
     {
       "df": 1,
-      "token": "sign-in-universal-credit"
+      "token": "sign-in-childcare-account"
     }
   ],
-  "sign-in-u": [
+  "sign-in-c": [
     {
       "df": 1,
-      "token": "sign-in-universal-credit"
+      "token": "sign-in-childcare-account"
     }
   ],
-  "sign-in-un": [
+  "sign-in-ch": [
     {
       "df": 1,
-      "token": "sign-in-universal-credit"
+      "token": "sign-in-childcare-account"
     }
   ],
-  "sign-in-uni": [
+  "sign-in-chi": [
     {
       "df": 1,
-      "token": "sign-in-universal-credit"
+      "token": "sign-in-childcare-account"
     }
   ],
-  "sign-in-univ": [
+  "sign-in-chil": [
     {
       "df": 1,
-      "token": "sign-in-universal-credit"
+      "token": "sign-in-childcare-account"
+    }
+  ],
+  "sin": [
+    {
+      "df": 1,
+      "token": "single"
+    }
+  ],
+  "sing": [
+    {
+      "df": 1,
+      "token": "single"
+    }
+  ],
+  "singl": [
+    {
+      "df": 1,
+      "token": "single"
+    }
+  ],
+  "single": [
+    {
+      "df": 1,
+      "token": "single"
     }
   ]
 }

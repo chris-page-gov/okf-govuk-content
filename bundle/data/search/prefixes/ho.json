@@ -1,74 +1,178 @@
 {
   "hol": [
     {
-      "df": 1,
+      "df": 2,
       "token": "holidays"
+    },
+    {
+      "df": 1,
+      "token": "holiday"
     }
   ],
   "holi": [
     {
-      "df": 1,
+      "df": 2,
       "token": "holidays"
+    },
+    {
+      "df": 1,
+      "token": "holiday"
     }
   ],
   "holid": [
     {
-      "df": 1,
+      "df": 2,
       "token": "holidays"
+    },
+    {
+      "df": 1,
+      "token": "holiday"
     }
   ],
   "holida": [
     {
-      "df": 1,
+      "df": 2,
       "token": "holidays"
+    },
+    {
+      "df": 1,
+      "token": "holiday"
     }
   ],
   "holiday": [
     {
-      "df": 1,
+      "df": 2,
       "token": "holidays"
+    },
+    {
+      "df": 1,
+      "token": "holiday"
     }
   ],
   "holidays": [
     {
-      "df": 1,
+      "df": 2,
       "token": "holidays"
     }
   ],
   "hom": [
     {
+      "df": 4,
+      "token": "home"
+    },
+    {
       "df": 1,
-      "token": "homepage"
+      "token": "homework"
     }
   ],
   "home": [
     {
-      "df": 1,
-      "token": "homepage"
-    }
-  ],
-  "homep": [
+      "df": 4,
+      "token": "home"
+    },
     {
       "df": 1,
-      "token": "homepage"
+      "token": "homework"
     }
   ],
-  "homepa": [
+  "homew": [
     {
       "df": 1,
-      "token": "homepage"
+      "token": "homework"
     }
   ],
-  "homepag": [
+  "homewo": [
     {
       "df": 1,
-      "token": "homepage"
+      "token": "homework"
     }
   ],
-  "homepage": [
+  "homewor": [
     {
       "df": 1,
-      "token": "homepage"
+      "token": "homework"
+    }
+  ],
+  "homework": [
+    {
+      "df": 1,
+      "token": "homework"
+    }
+  ],
+  "hos": [
+    {
+      "df": 1,
+      "token": "hospital"
+    }
+  ],
+  "hosp": [
+    {
+      "df": 1,
+      "token": "hospital"
+    }
+  ],
+  "hospi": [
+    {
+      "df": 1,
+      "token": "hospital"
+    }
+  ],
+  "hospit": [
+    {
+      "df": 1,
+      "token": "hospital"
+    }
+  ],
+  "hospita": [
+    {
+      "df": 1,
+      "token": "hospital"
+    }
+  ],
+  "hospital": [
+    {
+      "df": 1,
+      "token": "hospital"
+    }
+  ],
+  "hou": [
+    {
+      "df": 2,
+      "token": "hours"
+    },
+    {
+      "df": 1,
+      "token": "house"
+    }
+  ],
+  "hour": [
+    {
+      "df": 2,
+      "token": "hours"
+    }
+  ],
+  "hours": [
+    {
+      "df": 2,
+      "token": "hours"
+    }
+  ],
+  "hous": [
+    {
+      "df": 1,
+      "token": "house"
+    }
+  ],
+  "house": [
+    {
+      "df": 1,
+      "token": "house"
+    }
+  ],
+  "how": [
+    {
+      "df": 28,
+      "token": "how"
     }
   ]
 }

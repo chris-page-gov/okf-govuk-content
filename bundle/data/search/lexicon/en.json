@@ -1,7 +1,27 @@
 [
   {
-    "df": 13,
+    "df": 69,
     "postings": "data/search/postings/en.json",
     "token": "en"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/en.json",
+    "token": "ends"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/en.json",
+    "token": "england"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/en.json",
+    "token": "entitled"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/en.json",
+    "token": "entitlement"
   }
 ]

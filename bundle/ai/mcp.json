@@ -1,0 +1,29 @@
+{
+  "args": [
+    "run",
+    "--project",
+    "<REPOSITORY_CHECKOUT>",
+    "govuk-okf-demo-mcp",
+    "--bundle",
+    "<BUNDLE_DIRECTORY>"
+  ],
+  "closed_world": true,
+  "command": "uv",
+  "cwd": "<REPOSITORY_CHECKOUT>",
+  "name": "GOV.UK new-child OKF demonstrator",
+  "note": "Replace both placeholders with absolute paths. The explicit working directory and uv --project binding make this recipe independent of the AI client's launch directory.",
+  "placeholders": {
+    "<BUNDLE_DIRECTORY>": "Absolute path to the bundle directory containing okf-explorer.json.",
+    "<REPOSITORY_CHECKOUT>": "Absolute path to the checked-out okf-govuk-content repository."
+  },
+  "read_only": true,
+  "schema": "govuk-okf-mcp-configuration.v1",
+  "tools": [
+    "search_new_child",
+    "fetch_new_child_record",
+    "traverse_new_child_relationships",
+    "get_new_child_evidence_pack",
+    "export_new_child_ai_context"
+  ],
+  "transport": "stdio"
+}

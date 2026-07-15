@@ -46,6 +46,6 @@ jobs:
         run: npm run test:browser --prefix explorer
       - run: npm test --prefix semantic
       - run: .venv/bin/python scripts/check_lockstep.py
-      - name: Clean fixture generation
-        run: .venv/bin/python scripts/build_bundle.py --output "$RUNNER_TEMP/bundle" --generated-at 2026-07-11T23:30:00Z --snapshot-id fixture-2026-07-11
+      - name: Clean bounded-demonstrator generation
+        run: .venv/bin/python scripts/build_bundle.py --source demo/snapshots/NEW-CHILD-20260715/publication/source-records.jsonl --output "$RUNNER_TEMP/bundle" --generated-at 2026-07-15T06:25:17Z --snapshot-id NEW-CHILD-20260715
       - run: git diff --check

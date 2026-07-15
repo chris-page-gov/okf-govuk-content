@@ -2,19 +2,19 @@
   "typ": [
     {
       "df": 1,
-      "token": "typed"
+      "token": "types"
     }
   ],
   "type": [
     {
       "df": 1,
-      "token": "typed"
+      "token": "types"
     }
   ],
-  "typed": [
+  "types": [
     {
       "df": 1,
-      "token": "typed"
+      "token": "types"
     }
   ]
 }

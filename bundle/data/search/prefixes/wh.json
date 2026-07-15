@@ -1,14 +1,88 @@
 {
   "wha": [
     {
-      "df": 1,
+      "df": 12,
       "token": "what"
     }
   ],
   "what": [
     {
-      "df": 1,
+      "df": 12,
       "token": "what"
+    }
+  ],
+  "whe": [
+    {
+      "df": 13,
+      "token": "when"
+    },
+    {
+      "df": 2,
+      "token": "where"
+    }
+  ],
+  "when": [
+    {
+      "df": 13,
+      "token": "when"
+    }
+  ],
+  "wher": [
+    {
+      "df": 2,
+      "token": "where"
+    }
+  ],
+  "where": [
+    {
+      "df": 2,
+      "token": "where"
+    }
+  ],
+  "whi": [
+    {
+      "df": 1,
+      "token": "which"
+    },
+    {
+      "df": 1,
+      "token": "while"
+    }
+  ],
+  "whic": [
+    {
+      "df": 1,
+      "token": "which"
+    }
+  ],
+  "which": [
+    {
+      "df": 1,
+      "token": "which"
+    }
+  ],
+  "whil": [
+    {
+      "df": 1,
+      "token": "while"
+    }
+  ],
+  "while": [
+    {
+      "df": 1,
+      "token": "while"
+    }
+  ],
+  "who": [
+    {
+      "df": 9,
+      "token": "who"
+    }
+  ],
+  "why": [
+    {
+      "df": 1,
+      "token": "why"
     }
   ]
 }

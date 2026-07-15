@@ -1,0 +1,24 @@
+{
+  "ccg": [
+    {
+      "df": 1,
+      "token": "ccg1"
+    },
+    {
+      "df": 1,
+      "token": "ccg2"
+    }
+  ],
+  "ccg1": [
+    {
+      "df": 1,
+      "token": "ccg1"
+    }
+  ],
+  "ccg2": [
+    {
+      "df": 1,
+      "token": "ccg2"
+    }
+  ]
+}

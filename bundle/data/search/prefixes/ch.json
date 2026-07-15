@@ -1,62 +1,1010 @@
 {
-  "cha": [
+  "ch1": [
     {
       "df": 1,
+      "token": "ch105"
+    }
+  ],
+  "ch10": [
+    {
+      "df": 1,
+      "token": "ch105"
+    }
+  ],
+  "ch105": [
+    {
+      "df": 1,
+      "token": "ch105"
+    }
+  ],
+  "ch2": [
+    {
+      "df": 1,
+      "token": "ch2"
+    }
+  ],
+  "cha": [
+    {
+      "df": 6,
       "token": "change"
+    },
+    {
+      "df": 3,
+      "token": "changes"
+    },
+    {
+      "df": 2,
+      "token": "charge"
+    },
+    {
+      "df": 1,
+      "token": "changes-affect-tax-credits"
     }
   ],
   "chan": [
     {
-      "df": 1,
+      "df": 6,
       "token": "change"
+    },
+    {
+      "df": 3,
+      "token": "changes"
+    },
+    {
+      "df": 1,
+      "token": "changes-affect-tax-credits"
     }
   ],
   "chang": [
     {
-      "df": 1,
+      "df": 6,
       "token": "change"
+    },
+    {
+      "df": 3,
+      "token": "changes"
+    },
+    {
+      "df": 1,
+      "token": "changes-affect-tax-credits"
     }
   ],
   "change": [
     {
-      "df": 1,
+      "df": 6,
       "token": "change"
+    },
+    {
+      "df": 3,
+      "token": "changes"
+    },
+    {
+      "df": 1,
+      "token": "changes-affect-tax-credits"
+    }
+  ],
+  "changes": [
+    {
+      "df": 3,
+      "token": "changes"
+    },
+    {
+      "df": 1,
+      "token": "changes-affect-tax-credits"
+    }
+  ],
+  "changes-": [
+    {
+      "df": 1,
+      "token": "changes-affect-tax-credits"
+    }
+  ],
+  "changes-a": [
+    {
+      "df": 1,
+      "token": "changes-affect-tax-credits"
+    }
+  ],
+  "changes-af": [
+    {
+      "df": 1,
+      "token": "changes-affect-tax-credits"
+    }
+  ],
+  "changes-aff": [
+    {
+      "df": 1,
+      "token": "changes-affect-tax-credits"
+    }
+  ],
+  "changes-affe": [
+    {
+      "df": 1,
+      "token": "changes-affect-tax-credits"
+    }
+  ],
+  "char": [
+    {
+      "df": 2,
+      "token": "charge"
+    }
+  ],
+  "charg": [
+    {
+      "df": 2,
+      "token": "charge"
+    }
+  ],
+  "charge": [
+    {
+      "df": 2,
+      "token": "charge"
     }
   ],
   "che": [
     {
-      "df": 1,
+      "df": 6,
       "token": "check"
     }
   ],
   "chec": [
     {
-      "df": 1,
+      "df": 6,
       "token": "check"
     }
   ],
   "check": [
     {
-      "df": 1,
+      "df": 6,
       "token": "check"
     }
   ],
   "chi": [
     {
-      "df": 1,
+      "df": 27,
       "token": "child"
+    },
+    {
+      "df": 15,
+      "token": "childcare"
+    },
+    {
+      "df": 11,
+      "token": "children"
+    },
+    {
+      "df": 2,
+      "token": "childminder"
+    },
+    {
+      "df": 2,
+      "token": "childminders"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-16-19"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-abroad"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-lives-with-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-parent-dies"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-complaints"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-for-children-in-hospital-or-care"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-move-to-uk"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-payment-dates"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-proof"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-calculator"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-charge"
+    },
+    {
+      "df": 1,
+      "token": "childcare-calculator"
+    },
+    {
+      "df": 1,
+      "token": "childcare-grant"
+    },
+    {
+      "df": 1,
+      "token": "childcare-out-of-school-hours"
+    },
+    {
+      "df": 1,
+      "token": "childminding"
     }
   ],
   "chil": [
     {
-      "df": 1,
+      "df": 27,
       "token": "child"
+    },
+    {
+      "df": 15,
+      "token": "childcare"
+    },
+    {
+      "df": 11,
+      "token": "children"
+    },
+    {
+      "df": 2,
+      "token": "childminder"
+    },
+    {
+      "df": 2,
+      "token": "childminders"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-16-19"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-abroad"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-lives-with-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-parent-dies"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-complaints"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-for-children-in-hospital-or-care"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-move-to-uk"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-payment-dates"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-proof"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-calculator"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-charge"
+    },
+    {
+      "df": 1,
+      "token": "childcare-calculator"
+    },
+    {
+      "df": 1,
+      "token": "childcare-grant"
+    },
+    {
+      "df": 1,
+      "token": "childcare-out-of-school-hours"
+    },
+    {
+      "df": 1,
+      "token": "childminding"
     }
   ],
   "child": [
     {
-      "df": 1,
+      "df": 27,
       "token": "child"
+    },
+    {
+      "df": 15,
+      "token": "childcare"
+    },
+    {
+      "df": 11,
+      "token": "children"
+    },
+    {
+      "df": 2,
+      "token": "childminder"
+    },
+    {
+      "df": 2,
+      "token": "childminders"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-16-19"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-abroad"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-lives-with-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-parent-dies"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-complaints"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-for-children-in-hospital-or-care"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-move-to-uk"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-payment-dates"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-proof"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-calculator"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-charge"
+    },
+    {
+      "df": 1,
+      "token": "childcare-calculator"
+    },
+    {
+      "df": 1,
+      "token": "childcare-grant"
+    },
+    {
+      "df": 1,
+      "token": "childcare-out-of-school-hours"
+    },
+    {
+      "df": 1,
+      "token": "childminding"
+    }
+  ],
+  "child-": [
+    {
+      "df": 1,
+      "token": "child-benefit"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-16-19"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-abroad"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-lives-with-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-parent-dies"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-complaints"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-for-children-in-hospital-or-care"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-move-to-uk"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-payment-dates"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-proof"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-calculator"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-charge"
+    }
+  ],
+  "child-b": [
+    {
+      "df": 1,
+      "token": "child-benefit"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-16-19"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-abroad"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-lives-with-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-parent-dies"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-complaints"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-for-children-in-hospital-or-care"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-move-to-uk"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-payment-dates"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-proof"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-calculator"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-charge"
+    }
+  ],
+  "child-be": [
+    {
+      "df": 1,
+      "token": "child-benefit"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-16-19"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-abroad"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-lives-with-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-parent-dies"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-complaints"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-for-children-in-hospital-or-care"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-move-to-uk"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-payment-dates"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-proof"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-calculator"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-charge"
+    }
+  ],
+  "child-ben": [
+    {
+      "df": 1,
+      "token": "child-benefit"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-16-19"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-abroad"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-lives-with-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-parent-dies"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-complaints"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-for-children-in-hospital-or-care"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-move-to-uk"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-payment-dates"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-proof"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-calculator"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-charge"
+    }
+  ],
+  "child-bene": [
+    {
+      "df": 1,
+      "token": "child-benefit"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-16-19"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-abroad"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-lives-with-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-parent-dies"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-complaints"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-for-children-in-hospital-or-care"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-move-to-uk"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-payment-dates"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-proof"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-calculator"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-charge"
+    }
+  ],
+  "child-benef": [
+    {
+      "df": 1,
+      "token": "child-benefit"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-16-19"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-abroad"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-lives-with-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-parent-dies"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-complaints"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-for-children-in-hospital-or-care"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-move-to-uk"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-payment-dates"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-proof"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-calculator"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-charge"
+    }
+  ],
+  "child-benefi": [
+    {
+      "df": 1,
+      "token": "child-benefit"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-16-19"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-abroad"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-lives-with-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-child-parent-dies"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-complaints"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-for-children-in-hospital-or-care"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-move-to-uk"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-payment-dates"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-proof"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-calculator"
+    },
+    {
+      "df": 1,
+      "token": "child-benefit-tax-charge"
+    }
+  ],
+  "childc": [
+    {
+      "df": 15,
+      "token": "childcare"
+    },
+    {
+      "df": 1,
+      "token": "childcare-calculator"
+    },
+    {
+      "df": 1,
+      "token": "childcare-grant"
+    },
+    {
+      "df": 1,
+      "token": "childcare-out-of-school-hours"
+    }
+  ],
+  "childca": [
+    {
+      "df": 15,
+      "token": "childcare"
+    },
+    {
+      "df": 1,
+      "token": "childcare-calculator"
+    },
+    {
+      "df": 1,
+      "token": "childcare-grant"
+    },
+    {
+      "df": 1,
+      "token": "childcare-out-of-school-hours"
+    }
+  ],
+  "childcar": [
+    {
+      "df": 15,
+      "token": "childcare"
+    },
+    {
+      "df": 1,
+      "token": "childcare-calculator"
+    },
+    {
+      "df": 1,
+      "token": "childcare-grant"
+    },
+    {
+      "df": 1,
+      "token": "childcare-out-of-school-hours"
+    }
+  ],
+  "childcare": [
+    {
+      "df": 15,
+      "token": "childcare"
+    },
+    {
+      "df": 1,
+      "token": "childcare-calculator"
+    },
+    {
+      "df": 1,
+      "token": "childcare-grant"
+    },
+    {
+      "df": 1,
+      "token": "childcare-out-of-school-hours"
+    }
+  ],
+  "childcare-": [
+    {
+      "df": 1,
+      "token": "childcare-calculator"
+    },
+    {
+      "df": 1,
+      "token": "childcare-grant"
+    },
+    {
+      "df": 1,
+      "token": "childcare-out-of-school-hours"
+    }
+  ],
+  "childcare-c": [
+    {
+      "df": 1,
+      "token": "childcare-calculator"
+    }
+  ],
+  "childcare-ca": [
+    {
+      "df": 1,
+      "token": "childcare-calculator"
+    }
+  ],
+  "childcare-g": [
+    {
+      "df": 1,
+      "token": "childcare-grant"
+    }
+  ],
+  "childcare-gr": [
+    {
+      "df": 1,
+      "token": "childcare-grant"
+    }
+  ],
+  "childcare-o": [
+    {
+      "df": 1,
+      "token": "childcare-out-of-school-hours"
+    }
+  ],
+  "childcare-ou": [
+    {
+      "df": 1,
+      "token": "childcare-out-of-school-hours"
+    }
+  ],
+  "childm": [
+    {
+      "df": 2,
+      "token": "childminder"
+    },
+    {
+      "df": 2,
+      "token": "childminders"
+    },
+    {
+      "df": 1,
+      "token": "childminding"
+    }
+  ],
+  "childmi": [
+    {
+      "df": 2,
+      "token": "childminder"
+    },
+    {
+      "df": 2,
+      "token": "childminders"
+    },
+    {
+      "df": 1,
+      "token": "childminding"
+    }
+  ],
+  "childmin": [
+    {
+      "df": 2,
+      "token": "childminder"
+    },
+    {
+      "df": 2,
+      "token": "childminders"
+    },
+    {
+      "df": 1,
+      "token": "childminding"
+    }
+  ],
+  "childmind": [
+    {
+      "df": 2,
+      "token": "childminder"
+    },
+    {
+      "df": 2,
+      "token": "childminders"
+    },
+    {
+      "df": 1,
+      "token": "childminding"
+    }
+  ],
+  "childminde": [
+    {
+      "df": 2,
+      "token": "childminder"
+    },
+    {
+      "df": 2,
+      "token": "childminders"
+    }
+  ],
+  "childminder": [
+    {
+      "df": 2,
+      "token": "childminder"
+    },
+    {
+      "df": 2,
+      "token": "childminders"
+    }
+  ],
+  "childminders": [
+    {
+      "df": 2,
+      "token": "childminders"
+    }
+  ],
+  "childmindi": [
+    {
+      "df": 1,
+      "token": "childminding"
+    }
+  ],
+  "childmindin": [
+    {
+      "df": 1,
+      "token": "childminding"
+    }
+  ],
+  "childminding": [
+    {
+      "df": 1,
+      "token": "childminding"
+    }
+  ],
+  "childr": [
+    {
+      "df": 11,
+      "token": "children"
+    }
+  ],
+  "childre": [
+    {
+      "df": 11,
+      "token": "children"
+    }
+  ],
+  "children": [
+    {
+      "df": 11,
+      "token": "children"
     }
   ]
 }

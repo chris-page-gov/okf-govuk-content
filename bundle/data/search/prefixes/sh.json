@@ -1,4 +1,80 @@
 {
+  "sha": [
+    {
+      "df": 2,
+      "token": "shared"
+    },
+    {
+      "df": 1,
+      "token": "shared-parental-leave-and-pay"
+    }
+  ],
+  "shar": [
+    {
+      "df": 2,
+      "token": "shared"
+    },
+    {
+      "df": 1,
+      "token": "shared-parental-leave-and-pay"
+    }
+  ],
+  "share": [
+    {
+      "df": 2,
+      "token": "shared"
+    },
+    {
+      "df": 1,
+      "token": "shared-parental-leave-and-pay"
+    }
+  ],
+  "shared": [
+    {
+      "df": 2,
+      "token": "shared"
+    },
+    {
+      "df": 1,
+      "token": "shared-parental-leave-and-pay"
+    }
+  ],
+  "shared-": [
+    {
+      "df": 1,
+      "token": "shared-parental-leave-and-pay"
+    }
+  ],
+  "shared-p": [
+    {
+      "df": 1,
+      "token": "shared-parental-leave-and-pay"
+    }
+  ],
+  "shared-pa": [
+    {
+      "df": 1,
+      "token": "shared-parental-leave-and-pay"
+    }
+  ],
+  "shared-par": [
+    {
+      "df": 1,
+      "token": "shared-parental-leave-and-pay"
+    }
+  ],
+  "shared-pare": [
+    {
+      "df": 1,
+      "token": "shared-parental-leave-and-pay"
+    }
+  ],
+  "shared-paren": [
+    {
+      "df": 1,
+      "token": "shared-parental-leave-and-pay"
+    }
+  ],
   "sho": [
     {
       "df": 1,
@@ -15,6 +91,18 @@
     {
       "df": 1,
       "token": "short"
+    }
+  ],
+  "shp": [
+    {
+      "df": 1,
+      "token": "shpp"
+    }
+  ],
+  "shpp": [
+    {
+      "df": 1,
+      "token": "shpp"
     }
   ]
 }

@@ -1,0 +1,272 @@
+{
+  "hea": [
+    {
+      "df": 1,
+      "token": "healthy"
+    },
+    {
+      "df": 1,
+      "token": "healthy-start"
+    }
+  ],
+  "heal": [
+    {
+      "df": 1,
+      "token": "healthy"
+    },
+    {
+      "df": 1,
+      "token": "healthy-start"
+    }
+  ],
+  "healt": [
+    {
+      "df": 1,
+      "token": "healthy"
+    },
+    {
+      "df": 1,
+      "token": "healthy-start"
+    }
+  ],
+  "health": [
+    {
+      "df": 1,
+      "token": "healthy"
+    },
+    {
+      "df": 1,
+      "token": "healthy-start"
+    }
+  ],
+  "healthy": [
+    {
+      "df": 1,
+      "token": "healthy"
+    },
+    {
+      "df": 1,
+      "token": "healthy-start"
+    }
+  ],
+  "healthy-": [
+    {
+      "df": 1,
+      "token": "healthy-start"
+    }
+  ],
+  "healthy-s": [
+    {
+      "df": 1,
+      "token": "healthy-start"
+    }
+  ],
+  "healthy-st": [
+    {
+      "df": 1,
+      "token": "healthy-start"
+    }
+  ],
+  "healthy-sta": [
+    {
+      "df": 1,
+      "token": "healthy-start"
+    }
+  ],
+  "healthy-star": [
+    {
+      "df": 1,
+      "token": "healthy-start"
+    }
+  ],
+  "hel": [
+    {
+      "df": 11,
+      "token": "help"
+    },
+    {
+      "df": 2,
+      "token": "helps"
+    },
+    {
+      "df": 1,
+      "token": "help-for-disabled-child"
+    },
+    {
+      "df": 1,
+      "token": "help-home-school-transport"
+    },
+    {
+      "df": 1,
+      "token": "help-with-childcare-costs"
+    }
+  ],
+  "help": [
+    {
+      "df": 11,
+      "token": "help"
+    },
+    {
+      "df": 2,
+      "token": "helps"
+    },
+    {
+      "df": 1,
+      "token": "help-for-disabled-child"
+    },
+    {
+      "df": 1,
+      "token": "help-home-school-transport"
+    },
+    {
+      "df": 1,
+      "token": "help-with-childcare-costs"
+    }
+  ],
+  "help-": [
+    {
+      "df": 1,
+      "token": "help-for-disabled-child"
+    },
+    {
+      "df": 1,
+      "token": "help-home-school-transport"
+    },
+    {
+      "df": 1,
+      "token": "help-with-childcare-costs"
+    }
+  ],
+  "help-f": [
+    {
+      "df": 1,
+      "token": "help-for-disabled-child"
+    }
+  ],
+  "help-fo": [
+    {
+      "df": 1,
+      "token": "help-for-disabled-child"
+    }
+  ],
+  "help-for": [
+    {
+      "df": 1,
+      "token": "help-for-disabled-child"
+    }
+  ],
+  "help-for-": [
+    {
+      "df": 1,
+      "token": "help-for-disabled-child"
+    }
+  ],
+  "help-for-d": [
+    {
+      "df": 1,
+      "token": "help-for-disabled-child"
+    }
+  ],
+  "help-for-di": [
+    {
+      "df": 1,
+      "token": "help-for-disabled-child"
+    }
+  ],
+  "help-for-dis": [
+    {
+      "df": 1,
+      "token": "help-for-disabled-child"
+    }
+  ],
+  "help-h": [
+    {
+      "df": 1,
+      "token": "help-home-school-transport"
+    }
+  ],
+  "help-ho": [
+    {
+      "df": 1,
+      "token": "help-home-school-transport"
+    }
+  ],
+  "help-hom": [
+    {
+      "df": 1,
+      "token": "help-home-school-transport"
+    }
+  ],
+  "help-home": [
+    {
+      "df": 1,
+      "token": "help-home-school-transport"
+    }
+  ],
+  "help-home-": [
+    {
+      "df": 1,
+      "token": "help-home-school-transport"
+    }
+  ],
+  "help-home-s": [
+    {
+      "df": 1,
+      "token": "help-home-school-transport"
+    }
+  ],
+  "help-home-sc": [
+    {
+      "df": 1,
+      "token": "help-home-school-transport"
+    }
+  ],
+  "help-w": [
+    {
+      "df": 1,
+      "token": "help-with-childcare-costs"
+    }
+  ],
+  "help-wi": [
+    {
+      "df": 1,
+      "token": "help-with-childcare-costs"
+    }
+  ],
+  "help-wit": [
+    {
+      "df": 1,
+      "token": "help-with-childcare-costs"
+    }
+  ],
+  "help-with": [
+    {
+      "df": 1,
+      "token": "help-with-childcare-costs"
+    }
+  ],
+  "help-with-": [
+    {
+      "df": 1,
+      "token": "help-with-childcare-costs"
+    }
+  ],
+  "help-with-c": [
+    {
+      "df": 1,
+      "token": "help-with-childcare-costs"
+    }
+  ],
+  "help-with-ch": [
+    {
+      "df": 1,
+      "token": "help-with-childcare-costs"
+    }
+  ],
+  "helps": [
+    {
+      "df": 2,
+      "token": "helps"
+    }
+  ]
+}

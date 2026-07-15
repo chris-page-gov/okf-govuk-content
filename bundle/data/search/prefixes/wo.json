@@ -1,110 +1,126 @@
 {
-  "wor": [
+  "wom": [
     {
       "df": 2,
+      "token": "women"
+    }
+  ],
+  "wome": [
+    {
+      "df": 2,
+      "token": "women"
+    }
+  ],
+  "women": [
+    {
+      "df": 2,
+      "token": "women"
+    }
+  ],
+  "wor": [
+    {
+      "df": 4,
       "token": "work"
     },
     {
-      "df": 1,
+      "df": 3,
       "token": "working"
     },
     {
       "df": 1,
-      "token": "world"
-    },
-    {
-      "df": 1,
-      "token": "world_location"
+      "token": "working-when-pregnant-your-rights"
     }
   ],
   "work": [
     {
-      "df": 2,
+      "df": 4,
       "token": "work"
     },
     {
-      "df": 1,
+      "df": 3,
       "token": "working"
+    },
+    {
+      "df": 1,
+      "token": "working-when-pregnant-your-rights"
     }
   ],
   "worki": [
     {
-      "df": 1,
+      "df": 3,
       "token": "working"
+    },
+    {
+      "df": 1,
+      "token": "working-when-pregnant-your-rights"
     }
   ],
   "workin": [
     {
-      "df": 1,
+      "df": 3,
       "token": "working"
+    },
+    {
+      "df": 1,
+      "token": "working-when-pregnant-your-rights"
     }
   ],
   "working": [
     {
-      "df": 1,
+      "df": 3,
       "token": "working"
-    }
-  ],
-  "worl": [
-    {
-      "df": 1,
-      "token": "world"
     },
     {
       "df": 1,
-      "token": "world_location"
+      "token": "working-when-pregnant-your-rights"
     }
   ],
-  "world": [
+  "working-": [
     {
       "df": 1,
-      "token": "world"
-    },
-    {
-      "df": 1,
-      "token": "world_location"
+      "token": "working-when-pregnant-your-rights"
     }
   ],
-  "world_": [
+  "working-w": [
     {
       "df": 1,
-      "token": "world_location"
+      "token": "working-when-pregnant-your-rights"
     }
   ],
-  "world_l": [
+  "working-wh": [
     {
       "df": 1,
-      "token": "world_location"
+      "token": "working-when-pregnant-your-rights"
     }
   ],
-  "world_lo": [
+  "working-whe": [
     {
       "df": 1,
-      "token": "world_location"
+      "token": "working-when-pregnant-your-rights"
     }
   ],
-  "world_loc": [
+  "working-when": [
     {
       "df": 1,
-      "token": "world_location"
+      "token": "working-when-pregnant-your-rights"
     }
   ],
-  "world_loca": [
+  "wou": [
     {
       "df": 1,
-      "token": "world_location"
+      "token": "would"
     }
   ],
-  "world_locat": [
+  "woul": [
     {
       "df": 1,
-      "token": "world_location"
+      "token": "would"
     }
   ],
-  "world_locati": [
+  "would": [
     {
       "df": 1,
-      "token": "world_location"
+      "token": "would"
     }
   ]
 }

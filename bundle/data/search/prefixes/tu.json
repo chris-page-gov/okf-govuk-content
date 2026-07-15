@@ -1,0 +1,20 @@
+{
+  "tur": [
+    {
+      "df": 1,
+      "token": "turns"
+    }
+  ],
+  "turn": [
+    {
+      "df": 1,
+      "token": "turns"
+    }
+  ],
+  "turns": [
+    {
+      "df": 1,
+      "token": "turns"
+    }
+  ]
+}

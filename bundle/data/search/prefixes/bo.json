@@ -1,38 +1,26 @@
 {
-  "bou": [
+  "bor": [
     {
       "df": 1,
-      "token": "boundary"
+      "token": "born"
     }
   ],
-  "boun": [
+  "born": [
     {
       "df": 1,
-      "token": "boundary"
+      "token": "born"
     }
   ],
-  "bound": [
+  "bot": [
     {
       "df": 1,
-      "token": "boundary"
+      "token": "both"
     }
   ],
-  "bounda": [
+  "both": [
     {
       "df": 1,
-      "token": "boundary"
-    }
-  ],
-  "boundar": [
-    {
-      "df": 1,
-      "token": "boundary"
-    }
-  ],
-  "boundary": [
-    {
-      "df": 1,
-      "token": "boundary"
+      "token": "both"
     }
   ]
 }

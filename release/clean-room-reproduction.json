@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "1c3033f925cb774c6ae5375ce394d79bd037848e68ef7470fcbaa3f9c4c785b4",
-    "before_sha256": "1c3033f925cb774c6ae5375ce394d79bd037848e68ef7470fcbaa3f9c4c785b4",
+    "after_sha256": "c119f49ba76bad43624918b4e49a4db391957c45ee70e77608febae670e9fb5c",
+    "before_sha256": "c119f49ba76bad43624918b4e49a4db391957c45ee70e77608febae670e9fb5c",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -16,9 +16,9 @@
         "--output",
         "{workspace}/bundle",
         "--generated-at",
-        "2026-07-11T23:30:00Z",
+        "2026-07-15T06:25:17Z",
         "--snapshot-id",
-        "fixture-2026-07-11",
+        "NEW-CHILD-20260715",
         "--compiler",
         "auto"
       ],
@@ -38,8 +38,8 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "eac0acff45c2fb71b65d771f6eee715e4a19c3a89d42ad4d57d11985deab5173",
-      "stdout_tail": "publication validated: 14 datasets, 1 resources, 6 publishers, 16 provenance-complete relationships, 126 semantic node occurrences\n"
+      "stdout_sha256": "e6b70e62993056d1505f363db6e815d2dd559d1928a89bcab4528fca72bdc974",
+      "stdout_tail": "publication validated: 69 datasets, 0 resources, 14 publishers, 392 provenance-complete relationships, 1106 semantic node occurrences\n"
     },
     {
       "command": [
@@ -51,8 +51,8 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "82befabb4ce15a6bc74e4824daa4834807e380ee2b829c9c1129fe5e68c13bef",
-      "stdout_tail": "wrote checksums for 781 files\n"
+      "stdout_sha256": "de351c866563e6707ece0b0e9772d50a03e597742de99ac22260fd52b2a4dd79",
+      "stdout_tail": "wrote checksums for 990 files\n"
     },
     {
       "command": [
@@ -65,8 +65,8 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "57cf65eb0b8abebd328e9d195224c3af8b0a3e6f4e9301a8c02970df9de071ab",
-      "stdout_tail": "checksums verified for 781 files\n"
+      "stdout_sha256": "2e29efc8f69580bd1ff4ca581e9c49be2cbea1681efdb11a605fc7e039274ec4",
+      "stdout_tail": "checksums verified for 990 files\n"
     },
     {
       "command": [
@@ -78,8 +78,8 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "f886f5ab0216a4108712f8d1ec2343d4774b2ead887f0806885b1c49a9a19d31",
-      "stdout_tail": "wrote SBOM: 37 locked components\n"
+      "stdout_sha256": "ea10d307e22f04a1cf4c73ebb0a947585e0cda1969c07217a1b211f4b1305ba9",
+      "stdout_tail": "wrote SBOM: 61 locked components\n"
     },
     {
       "command": [
@@ -92,17 +92,17 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "24e4d30ce7191380b2a07067e8757810372bea010cd50b63d2640f93ea850f39",
-      "stdout_tail": "SBOM verified: 37 locked components\n"
+      "stdout_sha256": "3b6b572bddcc6815cd4868588cbac96645896702b6e5d27d8d80208a811ff381",
+      "stdout_tail": "SBOM verified: 61 locked components\n"
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-07-14T18:24:46Z",
+  "ended_at": "2026-07-15T08:28:18Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python": {
-      "executable": "/Users/crpage/repos/okf-govuk-content/.venv/bin/python",
+      "executable": "/Users/crpage/tmp/okf-new-child-demonstrator/.venv/bin/python",
       "implementation": "CPython",
       "version": "3.12.11"
     },
@@ -230,9 +230,9 @@
     }
   ],
   "fixture_reproduction_passed": true,
-  "generated_at": "2026-07-11T23:30:00Z",
+  "generated_at": "2026-07-15T06:25:17Z",
   "inputs": {
-    "component_count": 30,
+    "component_count": 32,
     "components": [
       {
         "bytes": 1652,
@@ -253,16 +253,28 @@
         "tree_sha256": "6b5317df6359b40ad98119bd9098de213e8b66f1062c01f7419c9d7be76c6047"
       },
       {
-        "bytes": 578,
+        "bytes": 4391,
         "file_count": 1,
-        "path": "pyproject.toml",
-        "tree_sha256": "0e7f1b4dc121977ae4a7a816c55a4bd12e3cd31758562b025b12f5b127c3fc06"
+        "path": "demo/new-child-cohort.json",
+        "tree_sha256": "ee9cbf533b78f44a3b68917a753dfad85bbaeaf4824839506297fe4058158406"
       },
       {
-        "bytes": 91358,
+        "bytes": 6537193,
+        "file_count": 136,
+        "path": "demo/snapshots/NEW-CHILD-20260715",
+        "tree_sha256": "72f1f59972fc3631c71deafc7b6fcbfdda29e4e7d4d6fce7535432a6b940455e"
+      },
+      {
+        "bytes": 703,
+        "file_count": 1,
+        "path": "pyproject.toml",
+        "tree_sha256": "b3b38afed18911b8f425db57349510925c4df3aba346712465b9f9a2ce44821b"
+      },
+      {
+        "bytes": 103511,
         "file_count": 1,
         "path": "provenance/activity-ledger.jsonl",
-        "tree_sha256": "176948ef3d56bd78f89c0ac9733cd968a19158861ad45abfb42dd910b3cb348f"
+        "tree_sha256": "8b6339c8e360dff350500e2c6cf597e14fb0795ef38ec9ac7c800dc6335262d8"
       },
       {
         "bytes": 8590,
@@ -277,22 +289,22 @@
         "tree_sha256": "aa47cecbdfdbd308f39b895db9d3507cb58e0869e511ed412a48cf151876cac9"
       },
       {
-        "bytes": 1273,
+        "bytes": 2107,
         "file_count": 1,
         "path": "provenance/source-request-budget.json",
-        "tree_sha256": "f4b4cbbae1a2bb985bb5ec351663777f6a38de8cad59d3619e4537fca3026e2f"
+        "tree_sha256": "822b52dfb6f1b384877969a96e016966f2e7bb4d8600b0416a35e8637d0e736c"
       },
       {
-        "bytes": 12852,
+        "bytes": 12745,
         "file_count": 1,
         "path": "release/provenance-validation.json",
-        "tree_sha256": "f876fb47035b4d1710b508e1044de845522f5b63cf1be8f2d889a4ec857bbab3"
+        "tree_sha256": "d8acdabed91e79c1c4c585d90097b33e39f7f3056eb66462b97ee35d20d81b34"
       },
       {
         "bytes": 1574,
         "file_count": 1,
         "path": "release/manifest.yaml",
-        "tree_sha256": "8f8b76adab0651d4e1090e097c0a3d8e490d0f096ff9e356be23b470ed20d7d7"
+        "tree_sha256": "61995a5884f78c252055af4aca2b4faf12a3c893911f2f3953de0eec027dd6f7"
       },
       {
         "bytes": 7423,
@@ -307,16 +319,16 @@
         "tree_sha256": "2710ab6cef995ba152168c2b1777cf2615b8ea3bd575f51e4e7c5fec55515366"
       },
       {
-        "bytes": 1107085,
-        "file_count": 28,
+        "bytes": 1286271,
+        "file_count": 31,
         "path": "src",
-        "tree_sha256": "b07059c719fc228b8a50e165fd850913e888b08e8914fb42508641249c34ae42"
+        "tree_sha256": "14e54d3ce561729af8354c520ca91e935b9495b23e1fbff17d6fb1ef882a51da"
       },
       {
-        "bytes": 1652,
+        "bytes": 1751,
         "file_count": 1,
         "path": "scripts/build_bundle.py",
-        "tree_sha256": "41f479fd0c7ba5680db5e2f1fe688f8b37bd403247033507bbc950fdd55dc0fd"
+        "tree_sha256": "dd2c9a973a9b3da87ea14cc9f60e7ba88345bb9cf541fb7129bfa2b72407a577"
       },
       {
         "bytes": 2146,
@@ -343,16 +355,16 @@
         "tree_sha256": "d5b7cc2c7cc0e299c2dc65871f6c7f5c7dc48333a3c234e9d3041bb6cbf5343e"
       },
       {
-        "bytes": 68726,
+        "bytes": 68801,
         "file_count": 1,
         "path": "scripts/check_release.py",
-        "tree_sha256": "6088be3b815bff484320a715310cef542e6d4bcfa233a6882904e1437865cf05"
+        "tree_sha256": "2280c9b19c057f28f2063356fc1af13adc47dd5ed6f7b1c5dd8fe9a36a44fdbc"
       },
       {
-        "bytes": 40376,
+        "bytes": 40507,
         "file_count": 1,
         "path": "scripts/reproduce_release.py",
-        "tree_sha256": "95796947111ec07c113a951a05c6079b8f21d2cc959afc3090b98ee1d65cc047"
+        "tree_sha256": "c8ff05ebef7223e14fb65be8b30a1ad86da03ee659f6caa9b38fef31381090f9"
       },
       {
         "bytes": 805,
@@ -361,10 +373,10 @@
         "tree_sha256": "c963ebc2c63c9cd4adcb7cbe11d38c2aac6294cdf48425264f5d4ab5110554f4"
       },
       {
-        "bytes": 11179,
+        "bytes": 11252,
         "file_count": 1,
         "path": "semantic/context",
-        "tree_sha256": "4c2122e177d7a744a4d89326dc5661af1b46dddb1e831161047d3bfbad77cdee"
+        "tree_sha256": "d01fad251c72af1ca9860ca2c9c9e14aaffff436df980319c735f7c9d104c08d"
       },
       {
         "bytes": 21197,
@@ -397,33 +409,33 @@
         "tree_sha256": "a856a2fc2266de8205901fae641c34d2166584b9460cd6670e5a028e0161e692"
       },
       {
-        "bytes": 173626,
-        "file_count": 16,
+        "bytes": 210525,
+        "file_count": 17,
         "path": "explorer/src",
-        "tree_sha256": "d8de4bc4ed576a7bd8f2e7888426478bc5899f13b5f3ecb737066bbf05c622d9"
+        "tree_sha256": "f1ae2c88a562acd9f7710cb72f178186614d44806cebe882a5e0f25138a0b2ad"
       },
       {
-        "bytes": 47929,
+        "bytes": 126187,
         "file_count": 1,
         "path": "uv.lock",
-        "tree_sha256": "0d4987efad4ee721111dad0b38e5b449e91d90d2ed3398631d29ca00ea78be95"
+        "tree_sha256": "142c1dd4f2c22606473d323b74bb3e86db158438f2b7e9c04b271d8670fc5100"
       },
       {
-        "bytes": 8710,
+        "bytes": 1117319,
         "file_count": 1,
         "path": "frozen_source",
-        "source": "tests/fixtures/corpus/source-records.jsonl",
-        "tree_sha256": "e028d0e5974918ba8732ee551005c732f0c2241f4f0d11b723cc8d27980bf9a2"
+        "source": "demo/snapshots/NEW-CHILD-20260715/publication/source-records.jsonl",
+        "tree_sha256": "83ed2a9086b3d9972291406849084d0d1d24d45cbd680cc77bb0c04c1891b227"
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "0ea496c5e5bee32fa084af97c2ba90065383e1037df7665d6a227d47ea6403f5"
+    "tree_sha256": "3d4358f677bf06f17887864b13d202f882c841225ddfa64cff8e702b3146353a"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
-      "activities": 31,
-      "activities_with_unavailable_cost": 25,
-      "activities_with_unavailable_tokens": 25,
+      "activities": 33,
+      "activities_with_unavailable_cost": 27,
+      "activities_with_unavailable_tokens": 27,
       "external_paid_model_api_calls": 0,
       "external_paid_model_cost_gbp": 0.0,
       "external_paid_model_input_tokens": 0,
@@ -431,9 +443,9 @@
       "known_cost_gbp": 0.0,
       "known_tokens": 0,
       "latest_source_request_checkpoint": 4283,
-      "ledger_sha256": "56f8dca67de9b415709d4db252b975d9bb52cbf9aadbcf9a715c6d6685c01e90",
+      "ledger_sha256": "ef8e284e5adc62fda840c7bcc7a352ce948840a2c7751f16b07d32825bf45f42",
       "source_request_activities_pending_final_count": 2,
-      "source_request_exact_attempts": 11580,
+      "source_request_exact_attempts": 11831,
       "source_requests_included_in_model_cost": false
     },
     "declaration": {
@@ -461,34 +473,32 @@
   "outputs": {
     "bundle": {
       "actual": {
-        "bytes": 1026320,
-        "file_count": 782,
-        "tree_sha256": "1568b2195b291997210c1454a650de80c65822d7bab389c1c549a82d0f4eda67"
+        "bytes": 4004060,
+        "file_count": 991,
+        "tree_sha256": "03ca84908af9e5c5a120a15770617773a3411c91d0e6298fe3678a27993a097e"
       },
       "difference_count": 0,
       "differences": [],
       "exact_match": true,
       "expected": {
-        "bytes": 1026320,
-        "file_count": 782,
-        "tree_sha256": "1568b2195b291997210c1454a650de80c65822d7bab389c1c549a82d0f4eda67"
+        "bytes": 4004060,
+        "file_count": 991,
+        "tree_sha256": "03ca84908af9e5c5a120a15770617773a3411c91d0e6298fe3678a27993a097e"
       }
     },
     "sbom": {
       "exact_match": true,
-      "expected_sha256": "332ff7dff879dfe3a3a714397f8a1b0f13f7180929d26f83c950b6907a15f354",
+      "expected_sha256": "fc8473a6a4428cdc9ce400c01b54be6da58bd7bd1cad5e181ffe17b65ffe258e",
       "path": "release/sbom.cdx.json",
-      "reproduced_sha256": "332ff7dff879dfe3a3a714397f8a1b0f13f7180929d26f83c950b6907a15f354"
+      "reproduced_sha256": "fc8473a6a4428cdc9ce400c01b54be6da58bd7bd1cad5e181ffe17b65ffe258e"
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-14T18:24:46Z",
+  "recorded_at": "2026-07-15T08:28:18Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
     "snapshot is not an unsampled full corpus",
-    "snapshot identifier contains a non-release marker",
-    "fixture source cannot pass clean-room release",
     "release manifest identity differs from the reproduction contract",
     "release manifest does not identify an unsampled full corpus",
     "independent full-repository test evidence is missing"
@@ -518,9 +528,9 @@
   },
   "sampled": true,
   "schema": "afhf-govuk-okf-clean-room-reproduction.v1",
-  "snapshot": "fixture-2026-07-11",
+  "snapshot": "NEW-CHILD-20260715",
   "snapshot_kind": "fixture",
-  "source": "tests/fixtures/corpus/source-records.jsonl",
+  "source": "demo/snapshots/NEW-CHILD-20260715/publication/source-records.jsonl",
   "source_access_restrictions": [
     {
       "constraint_id": "SRC-CONSTRAINT-005",
@@ -544,7 +554,7 @@
     }
   ],
   "source_binding": null,
-  "started_at": "2026-07-14T18:24:45Z",
+  "started_at": "2026-07-15T08:28:17Z",
   "test_evidence": null,
   "validators": {
     "passed": true,

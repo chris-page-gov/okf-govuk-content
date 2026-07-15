@@ -2,6 +2,11 @@
   {
     "df": 1,
     "postings": "data/search/postings/bo.json",
-    "token": "boundary"
+    "token": "born"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/bo.json",
+    "token": "both"
   }
 ]

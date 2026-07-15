@@ -1,0 +1,37 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/he.json",
+    "token": "healthy"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/he.json",
+    "token": "healthy-start"
+  },
+  {
+    "df": 11,
+    "postings": "data/search/postings/he.json",
+    "token": "help"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/he.json",
+    "token": "help-for-disabled-child"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/he.json",
+    "token": "help-home-school-transport"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/he.json",
+    "token": "help-with-childcare-costs"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/he.json",
+    "token": "helps"
+  }
+]

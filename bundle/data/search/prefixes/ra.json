@@ -1,0 +1,28 @@
+{
+  "rat": [
+    {
+      "df": 2,
+      "token": "rate"
+    },
+    {
+      "df": 2,
+      "token": "rates"
+    }
+  ],
+  "rate": [
+    {
+      "df": 2,
+      "token": "rate"
+    },
+    {
+      "df": 2,
+      "token": "rates"
+    }
+  ],
+  "rates": [
+    {
+      "df": 2,
+      "token": "rates"
+    }
+  ]
+}

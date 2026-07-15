@@ -55,9 +55,11 @@
         "modelcontextprotocol.io"
       ],
       "expected_identity_terms": [
+        "mcp 2025 resources specification",
         "mcp resources specification"
       ],
       "labels": [
+        "MCP 2025-11-25 resources specification",
         "MCP Resources specification"
       ],
       "locator": {
@@ -994,6 +996,27 @@
       "version_or_commit": null
     },
     {
+      "authority_class": "original_research",
+      "expected_hosts": [
+        "help.openai.com"
+      ],
+      "expected_identity_terms": [
+        "openai developer mode mcp apps chatgpt"
+      ],
+      "labels": [
+        "OpenAI: developer mode and MCP apps in ChatGPT"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "OpenAI: developer mode and MCP apps in ChatGPT"
+      },
+      "publisher": "OpenAI",
+      "requested_url": "https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt",
+      "schema_version": "1.0",
+      "source_id": "SRC-5A74F649300C7670",
+      "version_or_commit": null
+    },
+    {
       "authority_class": "official_primary",
       "expected_hosts": [
         "www.gov.uk"
@@ -1497,6 +1520,29 @@
         "developers.openai.com"
       ],
       "expected_identity_terms": [
+        "openai secure mcp tunnel",
+        "openai secure mcp tunnel"
+      ],
+      "labels": [
+        "OpenAI: Secure MCP Tunnel",
+        "OpenAI Secure MCP Tunnel"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "OpenAI: Secure MCP Tunnel"
+      },
+      "publisher": "OpenAI",
+      "requested_url": "https://developers.openai.com/api/docs/guides/secure-mcp-tunnels",
+      "schema_version": "1.0",
+      "source_id": "SRC-86C7F909ED4A1F9E",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "vendor_primary",
+      "expected_hosts": [
+        "developers.openai.com"
+      ],
+      "expected_identity_terms": [
         "deep research"
       ],
       "labels": [
@@ -1617,6 +1663,27 @@
       "version_or_commit": null
     },
     {
+      "authority_class": "vendor_primary",
+      "expected_hosts": [
+        "developers.openai.com"
+      ],
+      "expected_identity_terms": [
+        "openai mcp connectors"
+      ],
+      "labels": [
+        "OpenAI API: MCP and connectors"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "OpenAI API: MCP and connectors"
+      },
+      "publisher": "OpenAI",
+      "requested_url": "https://developers.openai.com/api/docs/guides/tools-connectors-mcp",
+      "schema_version": "1.0",
+      "source_id": "SRC-8F086A24D994E466",
+      "version_or_commit": null
+    },
+    {
       "authority_class": "official_primary",
       "expected_hosts": [
         "www.gov.uk"
@@ -1657,6 +1724,27 @@
       "schema_version": "1.0",
       "source_id": "SRC-90E22E44D57E9CFB",
       "version_or_commit": null
+    },
+    {
+      "authority_class": "normative_standard",
+      "expected_hosts": [
+        "modelcontextprotocol.io"
+      ],
+      "expected_identity_terms": [
+        "mcp stdio streamable http transports"
+      ],
+      "labels": [
+        "MCP stdio and Streamable HTTP transports"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "MCP stdio and Streamable HTTP transports"
+      },
+      "publisher": "Model Context Protocol project",
+      "requested_url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports",
+      "schema_version": "1.0",
+      "source_id": "SRC-937FAE6437B3FC36",
+      "version_or_commit": "2025-11-25"
     },
     {
       "authority_class": "official_primary",
@@ -1929,6 +2017,27 @@
       "version_or_commit": "OpenAI BrowseComp paper, 2025"
     },
     {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "github.com"
+      ],
+      "expected_identity_terms": [
+        "official mcp python sdk"
+      ],
+      "labels": [
+        "Official MCP Python SDK"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "Official MCP Python SDK"
+      },
+      "publisher": "Version-pinned upstream repository",
+      "requested_url": "https://github.com/modelcontextprotocol/python-sdk",
+      "schema_version": "1.0",
+      "source_id": "SRC-B275EC28FDDD14C2",
+      "version_or_commit": null
+    },
+    {
       "authority_class": "vendor_primary",
       "expected_hosts": [
         "developers.openai.com"
@@ -2079,9 +2188,11 @@
         "modelcontextprotocol.io"
       ],
       "expected_identity_terms": [
+        "mcp 2025 tools specification",
         "mcp tools specification"
       ],
       "labels": [
+        "MCP 2025-11-25 tools specification",
         "MCP Tools specification"
       ],
       "locator": {
@@ -2249,6 +2360,27 @@
       "requested_url": "https://docs.publishing.service.gov.uk/content-schemas/mainstream_browse_page.html",
       "schema_version": "1.0",
       "source_id": "SRC-C98EA11F95703498",
+      "version_or_commit": null
+    },
+    {
+      "authority_class": "vendor_primary",
+      "expected_hosts": [
+        "developers.openai.com"
+      ],
+      "expected_identity_terms": [
+        "openai configure mcp codex"
+      ],
+      "labels": [
+        "OpenAI: configure MCP in Codex"
+      ],
+      "locator_hint": {
+        "kind": "heading_text_fingerprint",
+        "value": "OpenAI: configure MCP in Codex"
+      },
+      "publisher": "OpenAI",
+      "requested_url": "https://developers.openai.com/codex/mcp",
+      "schema_version": "1.0",
+      "source_id": "SRC-CC16690AD5FAAE89",
       "version_or_commit": null
     },
     {

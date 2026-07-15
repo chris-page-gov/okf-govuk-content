@@ -1,0 +1,18 @@
+{
+  "hub": [
+    {
+      "df": 1,
+      "token": "hub"
+    },
+    {
+      "df": 1,
+      "token": "hubs"
+    }
+  ],
+  "hubs": [
+    {
+      "df": 1,
+      "token": "hubs"
+    }
+  ]
+}

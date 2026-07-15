@@ -7,6 +7,11 @@
   {
     "df": 1,
     "postings": "data/search/postings/si.json",
-    "token": "sign-in-universal-credit"
+    "token": "sign-in-childcare-account"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/si.json",
+    "token": "single"
   }
 ]

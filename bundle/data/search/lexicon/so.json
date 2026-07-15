@@ -1,6 +1,16 @@
 [
   {
-    "df": 7,
+    "df": 2,
+    "postings": "data/search/postings/so.json",
+    "token": "so"
+  },
+  {
+    "df": 4,
+    "postings": "data/search/postings/so.json",
+    "token": "someone"
+  },
+  {
+    "df": 2,
     "postings": "data/search/postings/so.json",
     "token": "source"
   }

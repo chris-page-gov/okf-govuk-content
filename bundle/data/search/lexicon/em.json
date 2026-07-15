@@ -1,0 +1,37 @@
+[
+  {
+    "df": 4,
+    "postings": "data/search/postings/em.json",
+    "token": "employee"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/em.json",
+    "token": "employee-rights-when-on-leave"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/em.json",
+    "token": "employees"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/em.json",
+    "token": "employer"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/em.json",
+    "token": "employers"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/em.json",
+    "token": "employing"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/em.json",
+    "token": "employment"
+  }
+]

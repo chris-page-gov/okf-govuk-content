@@ -1,0 +1,168 @@
+{
+  "cla": [
+    {
+      "df": 12,
+      "token": "claim"
+    },
+    {
+      "df": 1,
+      "token": "claim-child-benefit-behalf-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "claimant"
+    },
+    {
+      "df": 1,
+      "token": "claims"
+    },
+    {
+      "df": 1,
+      "token": "classes"
+    }
+  ],
+  "clai": [
+    {
+      "df": 12,
+      "token": "claim"
+    },
+    {
+      "df": 1,
+      "token": "claim-child-benefit-behalf-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "claimant"
+    },
+    {
+      "df": 1,
+      "token": "claims"
+    }
+  ],
+  "claim": [
+    {
+      "df": 12,
+      "token": "claim"
+    },
+    {
+      "df": 1,
+      "token": "claim-child-benefit-behalf-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "claimant"
+    },
+    {
+      "df": 1,
+      "token": "claims"
+    }
+  ],
+  "claim-": [
+    {
+      "df": 1,
+      "token": "claim-child-benefit-behalf-someone-else"
+    }
+  ],
+  "claim-c": [
+    {
+      "df": 1,
+      "token": "claim-child-benefit-behalf-someone-else"
+    }
+  ],
+  "claim-ch": [
+    {
+      "df": 1,
+      "token": "claim-child-benefit-behalf-someone-else"
+    }
+  ],
+  "claim-chi": [
+    {
+      "df": 1,
+      "token": "claim-child-benefit-behalf-someone-else"
+    }
+  ],
+  "claim-chil": [
+    {
+      "df": 1,
+      "token": "claim-child-benefit-behalf-someone-else"
+    }
+  ],
+  "claim-child": [
+    {
+      "df": 1,
+      "token": "claim-child-benefit-behalf-someone-else"
+    }
+  ],
+  "claim-child-": [
+    {
+      "df": 1,
+      "token": "claim-child-benefit-behalf-someone-else"
+    }
+  ],
+  "claima": [
+    {
+      "df": 1,
+      "token": "claimant"
+    }
+  ],
+  "claiman": [
+    {
+      "df": 1,
+      "token": "claimant"
+    }
+  ],
+  "claimant": [
+    {
+      "df": 1,
+      "token": "claimant"
+    }
+  ],
+  "claims": [
+    {
+      "df": 1,
+      "token": "claims"
+    }
+  ],
+  "clas": [
+    {
+      "df": 1,
+      "token": "classes"
+    }
+  ],
+  "class": [
+    {
+      "df": 1,
+      "token": "classes"
+    }
+  ],
+  "classe": [
+    {
+      "df": 1,
+      "token": "classes"
+    }
+  ],
+  "classes": [
+    {
+      "df": 1,
+      "token": "classes"
+    }
+  ],
+  "clu": [
+    {
+      "df": 2,
+      "token": "clubs"
+    }
+  ],
+  "club": [
+    {
+      "df": 2,
+      "token": "clubs"
+    }
+  ],
+  "clubs": [
+    {
+      "df": 2,
+      "token": "clubs"
+    }
+  ]
+}

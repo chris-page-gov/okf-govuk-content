@@ -1,0 +1,72 @@
+{
+  "abl": [
+    {
+      "df": 2,
+      "token": "able"
+    }
+  ],
+  "able": [
+    {
+      "df": 2,
+      "token": "able"
+    }
+  ],
+  "abo": [
+    {
+      "df": 7,
+      "token": "about"
+    },
+    {
+      "df": 1,
+      "token": "above"
+    }
+  ],
+  "abou": [
+    {
+      "df": 7,
+      "token": "about"
+    }
+  ],
+  "about": [
+    {
+      "df": 7,
+      "token": "about"
+    }
+  ],
+  "abov": [
+    {
+      "df": 1,
+      "token": "above"
+    }
+  ],
+  "above": [
+    {
+      "df": 1,
+      "token": "above"
+    }
+  ],
+  "abr": [
+    {
+      "df": 3,
+      "token": "abroad"
+    }
+  ],
+  "abro": [
+    {
+      "df": 3,
+      "token": "abroad"
+    }
+  ],
+  "abroa": [
+    {
+      "df": 3,
+      "token": "abroad"
+    }
+  ],
+  "abroad": [
+    {
+      "df": 3,
+      "token": "abroad"
+    }
+  ]
+}

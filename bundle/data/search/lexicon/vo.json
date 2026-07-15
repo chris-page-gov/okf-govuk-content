@@ -1,0 +1,12 @@
+[
+  {
+    "df": 2,
+    "postings": "data/search/postings/vo.json",
+    "token": "voluntary"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/vo.json",
+    "token": "vouchers"
+  }
+]

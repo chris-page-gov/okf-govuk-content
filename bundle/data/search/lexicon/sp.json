@@ -1,0 +1,17 @@
+[
+  {
+    "df": 2,
+    "postings": "data/search/postings/sp.json",
+    "token": "special"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/sp.json",
+    "token": "spl"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/sp.json",
+    "token": "splitting"
+  }
+]

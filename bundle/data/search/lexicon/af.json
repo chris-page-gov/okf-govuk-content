@@ -1,0 +1,27 @@
+[
+  {
+    "df": 2,
+    "postings": "data/search/postings/af.json",
+    "token": "affect"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/af.json",
+    "token": "affected"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/af.json",
+    "token": "after"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/af.json",
+    "token": "after-school"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/af.json",
+    "token": "after-school-holiday-club"
+  }
+]

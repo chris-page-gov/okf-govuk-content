@@ -1,0 +1,142 @@
+{
+  "fre": [
+    {
+      "df": 6,
+      "token": "free"
+    },
+    {
+      "df": 1,
+      "token": "free-childcare-if-working"
+    },
+    {
+      "df": 1,
+      "token": "free-school-transport"
+    }
+  ],
+  "free": [
+    {
+      "df": 6,
+      "token": "free"
+    },
+    {
+      "df": 1,
+      "token": "free-childcare-if-working"
+    },
+    {
+      "df": 1,
+      "token": "free-school-transport"
+    }
+  ],
+  "free-": [
+    {
+      "df": 1,
+      "token": "free-childcare-if-working"
+    },
+    {
+      "df": 1,
+      "token": "free-school-transport"
+    }
+  ],
+  "free-c": [
+    {
+      "df": 1,
+      "token": "free-childcare-if-working"
+    }
+  ],
+  "free-ch": [
+    {
+      "df": 1,
+      "token": "free-childcare-if-working"
+    }
+  ],
+  "free-chi": [
+    {
+      "df": 1,
+      "token": "free-childcare-if-working"
+    }
+  ],
+  "free-chil": [
+    {
+      "df": 1,
+      "token": "free-childcare-if-working"
+    }
+  ],
+  "free-child": [
+    {
+      "df": 1,
+      "token": "free-childcare-if-working"
+    }
+  ],
+  "free-childc": [
+    {
+      "df": 1,
+      "token": "free-childcare-if-working"
+    }
+  ],
+  "free-childca": [
+    {
+      "df": 1,
+      "token": "free-childcare-if-working"
+    }
+  ],
+  "free-s": [
+    {
+      "df": 1,
+      "token": "free-school-transport"
+    }
+  ],
+  "free-sc": [
+    {
+      "df": 1,
+      "token": "free-school-transport"
+    }
+  ],
+  "free-sch": [
+    {
+      "df": 1,
+      "token": "free-school-transport"
+    }
+  ],
+  "free-scho": [
+    {
+      "df": 1,
+      "token": "free-school-transport"
+    }
+  ],
+  "free-schoo": [
+    {
+      "df": 1,
+      "token": "free-school-transport"
+    }
+  ],
+  "free-school": [
+    {
+      "df": 1,
+      "token": "free-school-transport"
+    }
+  ],
+  "free-school-": [
+    {
+      "df": 1,
+      "token": "free-school-transport"
+    }
+  ],
+  "fru": [
+    {
+      "df": 1,
+      "token": "fruit"
+    }
+  ],
+  "frui": [
+    {
+      "df": 1,
+      "token": "fruit"
+    }
+  ],
+  "fruit": [
+    {
+      "df": 1,
+      "token": "fruit"
+    }
+  ]
+}

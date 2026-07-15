@@ -2,16 +2,41 @@
   {
     "df": 1,
     "postings": "data/search/postings/ca.json",
+    "token": "calculator"
+  },
+  {
+    "df": 16,
+    "postings": "data/search/postings/ca.json",
+    "token": "can"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ca.json",
+    "token": "cancel"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ca.json",
+    "token": "cannot"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ca.json",
     "token": "car"
   },
   {
-    "df": 1,
+    "df": 6,
     "postings": "data/search/postings/ca.json",
-    "token": "catalogue"
+    "token": "care"
   },
   {
     "df": 1,
     "postings": "data/search/postings/ca.json",
-    "token": "catalogues"
+    "token": "care-to-learn"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ca.json",
+    "token": "carers"
   }
 ]

@@ -1,0 +1,22 @@
+[
+  {
+    "df": 3,
+    "postings": "data/search/postings/mo.json",
+    "token": "money"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/mo.json",
+    "token": "months"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/mo.json",
+    "token": "move"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/mo.json",
+    "token": "moved"
+  }
+]

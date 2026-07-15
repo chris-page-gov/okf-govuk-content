@@ -1,6 +1,6 @@
 [
   {
-    "df": 7,
+    "df": 3,
     "postings": "data/search/postings/av.json",
     "token": "available"
   }

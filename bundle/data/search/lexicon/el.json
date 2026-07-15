@@ -1,0 +1,17 @@
+[
+  {
+    "df": 15,
+    "postings": "data/search/postings/el.json",
+    "token": "eligibility"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/el.json",
+    "token": "eligible"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/el.json",
+    "token": "else"
+  }
+]

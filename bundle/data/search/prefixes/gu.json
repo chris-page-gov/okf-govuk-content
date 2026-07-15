@@ -1,38 +1,136 @@
 {
-  "gui": [
+  "gua": [
     {
       "df": 1,
+      "token": "guardian"
+    },
+    {
+      "df": 1,
+      "token": "guardians-allowance"
+    }
+  ],
+  "guar": [
+    {
+      "df": 1,
+      "token": "guardian"
+    },
+    {
+      "df": 1,
+      "token": "guardians-allowance"
+    }
+  ],
+  "guard": [
+    {
+      "df": 1,
+      "token": "guardian"
+    },
+    {
+      "df": 1,
+      "token": "guardians-allowance"
+    }
+  ],
+  "guardi": [
+    {
+      "df": 1,
+      "token": "guardian"
+    },
+    {
+      "df": 1,
+      "token": "guardians-allowance"
+    }
+  ],
+  "guardia": [
+    {
+      "df": 1,
+      "token": "guardian"
+    },
+    {
+      "df": 1,
+      "token": "guardians-allowance"
+    }
+  ],
+  "guardian": [
+    {
+      "df": 1,
+      "token": "guardian"
+    },
+    {
+      "df": 1,
+      "token": "guardians-allowance"
+    }
+  ],
+  "guardians": [
+    {
+      "df": 1,
+      "token": "guardians-allowance"
+    }
+  ],
+  "guardians-": [
+    {
+      "df": 1,
+      "token": "guardians-allowance"
+    }
+  ],
+  "guardians-a": [
+    {
+      "df": 1,
+      "token": "guardians-allowance"
+    }
+  ],
+  "guardians-al": [
+    {
+      "df": 1,
+      "token": "guardians-allowance"
+    }
+  ],
+  "gui": [
+    {
+      "df": 32,
+      "token": "guide"
+    },
+    {
+      "df": 2,
       "token": "guidance"
     }
   ],
   "guid": [
     {
-      "df": 1,
+      "df": 32,
+      "token": "guide"
+    },
+    {
+      "df": 2,
       "token": "guidance"
     }
   ],
   "guida": [
     {
-      "df": 1,
+      "df": 2,
       "token": "guidance"
     }
   ],
   "guidan": [
     {
-      "df": 1,
+      "df": 2,
       "token": "guidance"
     }
   ],
   "guidanc": [
     {
-      "df": 1,
+      "df": 2,
       "token": "guidance"
     }
   ],
   "guidance": [
     {
-      "df": 1,
+      "df": 2,
       "token": "guidance"
+    }
+  ],
+  "guide": [
+    {
+      "df": 32,
+      "token": "guide"
     }
   ]
 }

@@ -1,26 +1,44 @@
 {
-  "bro": [
+  "bre": [
     {
       "df": 1,
-      "token": "browse"
+      "token": "breakfast"
     }
   ],
-  "brow": [
+  "brea": [
     {
       "df": 1,
-      "token": "browse"
+      "token": "breakfast"
     }
   ],
-  "brows": [
+  "break": [
     {
       "df": 1,
-      "token": "browse"
+      "token": "breakfast"
     }
   ],
-  "browse": [
+  "breakf": [
     {
       "df": 1,
-      "token": "browse"
+      "token": "breakfast"
+    }
+  ],
+  "breakfa": [
+    {
+      "df": 1,
+      "token": "breakfast"
+    }
+  ],
+  "breakfas": [
+    {
+      "df": 1,
+      "token": "breakfast"
+    }
+  ],
+  "breakfast": [
+    {
+      "df": 1,
+      "token": "breakfast"
     }
   ]
 }

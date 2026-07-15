@@ -1,0 +1,116 @@
+{
+  "loc": [
+    {
+      "df": 8,
+      "token": "local_transaction"
+    },
+    {
+      "df": 7,
+      "token": "local"
+    }
+  ],
+  "loca": [
+    {
+      "df": 8,
+      "token": "local_transaction"
+    },
+    {
+      "df": 7,
+      "token": "local"
+    }
+  ],
+  "local": [
+    {
+      "df": 8,
+      "token": "local_transaction"
+    },
+    {
+      "df": 7,
+      "token": "local"
+    }
+  ],
+  "local_": [
+    {
+      "df": 8,
+      "token": "local_transaction"
+    }
+  ],
+  "local_t": [
+    {
+      "df": 8,
+      "token": "local_transaction"
+    }
+  ],
+  "local_tr": [
+    {
+      "df": 8,
+      "token": "local_transaction"
+    }
+  ],
+  "local_tra": [
+    {
+      "df": 8,
+      "token": "local_transaction"
+    }
+  ],
+  "local_tran": [
+    {
+      "df": 8,
+      "token": "local_transaction"
+    }
+  ],
+  "local_trans": [
+    {
+      "df": 8,
+      "token": "local_transaction"
+    }
+  ],
+  "local_transa": [
+    {
+      "df": 8,
+      "token": "local_transaction"
+    }
+  ],
+  "lon": [
+    {
+      "df": 1,
+      "token": "long"
+    }
+  ],
+  "long": [
+    {
+      "df": 1,
+      "token": "long"
+    }
+  ],
+  "loo": [
+    {
+      "df": 1,
+      "token": "looking"
+    }
+  ],
+  "look": [
+    {
+      "df": 1,
+      "token": "looking"
+    }
+  ],
+  "looki": [
+    {
+      "df": 1,
+      "token": "looking"
+    }
+  ],
+  "lookin": [
+    {
+      "df": 1,
+      "token": "looking"
+    }
+  ],
+  "looking": [
+    {
+      "df": 1,
+      "token": "looking"
+    }
+  ]
+}

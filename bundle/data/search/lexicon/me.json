@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/me.json",
+    "token": "meals"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/me.json",
+    "token": "methods"
+  }
+]

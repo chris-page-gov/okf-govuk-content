@@ -5,7 +5,6 @@ import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const budgets = JSON.parse(await readFile(join(here, "..", "requirements", "browser-budgets.json"), "utf8"));
-const ROUTE = "publisher/government-digital-service";
 const FIXTURE_SNAPSHOT = "fixture-2026-07-11";
 
 export function isGzipResourcePath(url) {
@@ -161,20 +160,50 @@ async function submitSearch(browser, query) {
   return Number(await browser.evaluate("document.documentElement.dataset.lastSearchMs"));
 }
 
-function routeUrl(baseUrl, snapshot, legacy = false) {
+function routeUrl(baseUrl, snapshot, route, legacy = false) {
   const url = new URL(baseUrl);
   url.searchParams.set("snapshot", snapshot);
   url.searchParams.set("view", "relationships");
-  if (legacy) url.searchParams.set("route", ROUTE);
-  else url.hash = ROUTE;
+  if (legacy) url.searchParams.set("route", route);
+  else url.hash = route;
   return url;
+}
+
+async function resolveBrowserTarget(baseUrl) {
+  const [manifestResponse, resultsResponse] = await Promise.all([
+    fetch(new URL("data/manifest.json", baseUrl), { cache: "no-store" }),
+    fetch(new URL("data/search/results-0.json", baseUrl), { cache: "no-store" })
+  ]);
+  if (!manifestResponse.ok || !resultsResponse.ok) {
+    throw new Error("browser audit could not load the advertised manifest and search bootstrap");
+  }
+  const manifest = await manifestResponse.json();
+  const results = await resultsResponse.json();
+  const row = Array.isArray(results)
+    ? results.find((candidate) => candidate && typeof candidate.open === "string" && typeof candidate.title === "string")
+    : null;
+  if (!row) throw new Error("browser audit search bootstrap contains no routable titled record");
+  return {
+    snapshot: String(manifest.snapshot || manifest.snapshot_id || ""),
+    route: row.publisher ? `publisher/${row.publisher}` : row.open,
+    title: row.publisher_title || row.title,
+    searchQuery: row.title
+  };
 }
 
 export async function runFixtureBrowserAudit(browser, server, options = {}) {
   const iterations = Math.max(1, Number(options.iterations || 3));
-  const snapshot = String(options.snapshot || FIXTURE_SNAPSHOT);
   const artifactTier = String(options.artifactTier || "representative_fixture");
   const fullRelease = artifactTier === "full_release_snapshot";
+  if (fullRelease && options.snapshot && /fixture|sample|capacity|development|test/i.test(String(options.snapshot))) {
+    throw new Error(`full-release browser evidence cannot use snapshot ${options.snapshot}`);
+  }
+  const hasExplicitTarget = options.snapshot && options.route && options.routeTitle && options.searchQuery;
+  const advertised = hasExplicitTarget ? {} : await resolveBrowserTarget(server.baseUrl);
+  const snapshot = String(options.snapshot || advertised.snapshot || FIXTURE_SNAPSHOT);
+  const route = String(options.route || advertised.route);
+  const routeTitle = String(options.routeTitle || advertised.title);
+  const searchQuery = String(options.searchQuery || advertised.searchQuery);
   if (fullRelease && /fixture|sample|capacity|development|test/i.test(snapshot)) {
     throw new Error(`full-release browser evidence cannot use snapshot ${snapshot}`);
   }
@@ -235,8 +264,8 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
       await browser.client.command("Emulation.setDeviceMetricsOverride", { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false });
     }
 
-    coldSearchSamples.push(await submitSearch(browser, "welcome"));
-    warmSearchSamples.push(await submitSearch(browser, "welcome"));
+    coldSearchSamples.push(await submitSearch(browser, searchQuery));
+    warmSearchSamples.push(await submitSearch(browser, searchQuery));
     recordDataRequests(browser.network, directGzipPaths, packRequests);
 
     if (iteration === 0) {
@@ -246,7 +275,10 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
       resultFocus = await browser.evaluate(`({ detail_heading_focused: document.activeElement.id === "detail-heading", canonical_hash_route: decodeURIComponent(location.hash.slice(1)), legacy_query_route_present: new URL(location.href).searchParams.has("route") })`);
     }
 
-    await browser.navigate(routeUrl(server.baseUrl, snapshot).toString(), "document.documentElement.dataset.explorerReady === 'true' && document.getElementById('detail-heading').textContent.includes('Government Digital Service')");
+    await browser.navigate(
+      routeUrl(server.baseUrl, snapshot, route).toString(),
+      `document.documentElement.dataset.explorerReady === 'true' && document.getElementById('detail-heading').textContent.includes(${JSON.stringify(routeTitle)})`
+    );
     routeSamples.push(Number(await browser.evaluate("document.documentElement.dataset.lastRouteMs")));
     recordDataRequests(browser.network, directGzipPaths, packRequests);
     const performance = await browser.client.command("Performance.getMetrics");
@@ -275,13 +307,13 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
   })()`);
   recordDataRequests(browser.network, directGzipPaths, packRequests);
 
-  await browser.navigate(routeUrl(server.baseUrl, snapshot, true).toString(), "document.documentElement.dataset.explorerReady === 'true'");
+  await browser.navigate(routeUrl(server.baseUrl, snapshot, route, true).toString(), "document.documentElement.dataset.explorerReady === 'true'");
   const legacyAlias = await browser.evaluate(`({ has_query_route: new URL(location.href).searchParams.has("route"), hash: decodeURIComponent(location.hash.slice(1)), heading: document.getElementById("detail-heading").textContent })`);
 
   const fallback = new URL("missing/nested", server.baseUrl);
   fallback.searchParams.set("snapshot", snapshot);
   fallback.searchParams.set("view", "relationships");
-  fallback.hash = ROUTE;
+  fallback.hash = route;
   await browser.navigate(fallback.toString(), "location.pathname.endsWith('/okf-govuk-content/') && document.documentElement.dataset.explorerReady === 'true'");
   const pagesFallback = await browser.evaluate(`({ pathname: location.pathname, hash: decodeURIComponent(location.hash.slice(1)), view: new URL(location.href).searchParams.get("view"), heading: document.getElementById("detail-heading").textContent })`);
   recordDataRequests(browser.network, directGzipPaths, packRequests);
@@ -332,8 +364,8 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
     sitemapRouting.view === "sitemap" && sitemapRouting.heading.includes("Sitemap") &&
     sitemapRouting.mechanism_cards >= 5 && sitemapRouting.host_rows >= 1 &&
     sitemapRouting.machine_path.endsWith("/data/site-topology.json") && !sitemapRouting.unavailable &&
-    !legacyAlias.has_query_route && legacyAlias.hash === ROUTE && legacyAlias.heading.includes("Government Digital Service") &&
-    pagesFallback.pathname === server.basePath && pagesFallback.hash === ROUTE && pagesFallback.view === "relationships" && pagesFallback.heading.includes("Government Digital Service");
+    !legacyAlias.has_query_route && legacyAlias.hash === route && legacyAlias.heading.includes(routeTitle) &&
+    pagesFallback.pathname === server.basePath && pagesFallback.hash === route && pagesFallback.view === "relationships" && pagesFallback.heading.includes(routeTitle);
 
   return {
     schema: "govuk-okf-explorer-browser-evidence.v1",
@@ -380,7 +412,7 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
     routing_and_data: {
       status: routePass ? "pass" : "failed",
       pass: routePass,
-      canonical_route_fragment: ROUTE,
+      canonical_route_fragment: route,
       sitemap_routing: sitemapRouting,
       legacy_query_alias: legacyAlias,
       pages_404_fallback: pagesFallback,

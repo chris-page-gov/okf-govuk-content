@@ -1,17 +1,7 @@
 [
   {
-    "df": 1,
+    "df": 3,
     "postings": "data/search/postings/uk.json",
     "token": "uk"
-  },
-  {
-    "df": 1,
-    "postings": "data/search/postings/uk.json",
-    "token": "ukho"
-  },
-  {
-    "df": 1,
-    "postings": "data/search/postings/uk.json",
-    "token": "ukho-1825-archives-catalogue"
   }
 ]

@@ -1,0 +1,82 @@
+{
+  "wid": [
+    {
+      "df": 1,
+      "token": "widowed"
+    },
+    {
+      "df": 1,
+      "token": "widowed-parents-allowance"
+    }
+  ],
+  "wido": [
+    {
+      "df": 1,
+      "token": "widowed"
+    },
+    {
+      "df": 1,
+      "token": "widowed-parents-allowance"
+    }
+  ],
+  "widow": [
+    {
+      "df": 1,
+      "token": "widowed"
+    },
+    {
+      "df": 1,
+      "token": "widowed-parents-allowance"
+    }
+  ],
+  "widowe": [
+    {
+      "df": 1,
+      "token": "widowed"
+    },
+    {
+      "df": 1,
+      "token": "widowed-parents-allowance"
+    }
+  ],
+  "widowed": [
+    {
+      "df": 1,
+      "token": "widowed"
+    },
+    {
+      "df": 1,
+      "token": "widowed-parents-allowance"
+    }
+  ],
+  "widowed-": [
+    {
+      "df": 1,
+      "token": "widowed-parents-allowance"
+    }
+  ],
+  "widowed-p": [
+    {
+      "df": 1,
+      "token": "widowed-parents-allowance"
+    }
+  ],
+  "widowed-pa": [
+    {
+      "df": 1,
+      "token": "widowed-parents-allowance"
+    }
+  ],
+  "widowed-par": [
+    {
+      "df": 1,
+      "token": "widowed-parents-allowance"
+    }
+  ],
+  "widowed-pare": [
+    {
+      "df": 1,
+      "token": "widowed-parents-allowance"
+    }
+  ]
+}

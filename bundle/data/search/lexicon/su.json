@@ -1,0 +1,22 @@
+[
+  {
+    "df": 3,
+    "postings": "data/search/postings/su.json",
+    "token": "such"
+  },
+  {
+    "df": 4,
+    "postings": "data/search/postings/su.json",
+    "token": "support"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/su.json",
+    "token": "sure"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/su.json",
+    "token": "sure-start-maternity-grant"
+  }
+]

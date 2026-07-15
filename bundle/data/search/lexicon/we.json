@@ -2,11 +2,6 @@
   {
     "df": 1,
     "postings": "data/search/postings/we.json",
-    "token": "welcome"
-  },
-  {
-    "df": 1,
-    "postings": "data/search/postings/we.json",
-    "token": "welfare"
+    "token": "website"
   }
 ]

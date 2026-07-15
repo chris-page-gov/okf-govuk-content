@@ -1,0 +1,123 @@
+{
+  "schema": "govuk-okf-new-child-cohort-contract.v1",
+  "cohort_id": "new-child-support",
+  "title": "New child: pregnancy, financial help and childcare",
+  "status": "bounded-demonstrator",
+  "authoritative_source": "GOV.UK",
+  "derived_non_authoritative": true,
+  "scope_statement": "A reproducible, metadata-only demonstrator. Completeness is claimed only for the frozen Search API seed result and the declared one-hop metadata closure, never for all GOV.UK or all policy relevant to a new child.",
+  "search": {
+    "endpoint": "https://www.gov.uk/api/search.json",
+    "filter_name": "filter_mainstream_browse_pages",
+    "filter_semantics": "Repeated filter values are OR alternatives in one Search API v1 request.",
+    "browse_paths": [
+      "childcare-parenting/pregnancy-birth",
+      "childcare-parenting/financial-help-children",
+      "childcare-parenting/childcare"
+    ],
+    "expected_seed_denominator": 69,
+    "maximum_page_size": 1500,
+    "fields": [
+      "title",
+      "link",
+      "description",
+      "format",
+      "content_store_document_type",
+      "public_timestamp",
+      "content_id",
+      "mainstream_browse_pages",
+      "organisation_content_ids"
+    ],
+    "deduplication": [
+      "content_id",
+      "canonical_link"
+    ],
+    "stability_check": "Repeat the exact combined result query after hydration and require the same 69 identities."
+  },
+  "journey_groups": [
+    {
+      "id": "new-child-overview",
+      "title": "New child support overview",
+      "membership": "all-seeds"
+    },
+    {
+      "id": "pregnancy-and-birth",
+      "title": "Pregnancy and birth",
+      "membership": "childcare-parenting/pregnancy-birth"
+    },
+    {
+      "id": "financial-help-for-children",
+      "title": "Financial help for children",
+      "membership": "childcare-parenting/financial-help-children"
+    },
+    {
+      "id": "childcare",
+      "title": "Childcare",
+      "membership": "childcare-parenting/childcare"
+    }
+  ],
+  "content_api": {
+    "endpoint_prefix": "https://www.gov.uk/api/content",
+    "seed_policy": "Every seed must return one valid public Content API metadata record.",
+    "closure_depth": 1,
+    "hydrate_predicates": [
+      "available_translations",
+      "lead_organisations",
+      "mainstream_browse_pages",
+      "organisations",
+      "original_primary_publishing_organisation",
+      "owning_organisation",
+      "pages_part_of_step_nav",
+      "pages_related_to_step_nav",
+      "pages_secondary_to_step_nav",
+      "part_of_step_navs",
+      "primary_publishing_organisation",
+      "related_to_step_navs"
+    ],
+    "publisher_link_predicates": [
+      "lead_organisations",
+      "organisations",
+      "original_primary_publishing_organisation",
+      "owning_organisation",
+      "primary_publishing_organisation"
+    ],
+    "retained_record_ceiling": 250,
+    "official_request_attempt_ceiling": 500,
+    "requests_per_second": 4.0,
+    "recursion_policy": "Seed records may discover one-hop metadata targets. One-hop records are never expanded recursively.",
+    "boundary_policy": "Every typed target outside the 69 seeds is represented as an evidence-bearing boundary reference. Only organisation predicates may additionally remain as compiler publisher links."
+  },
+  "retention": {
+    "complete_page_bodies": false,
+    "rendered_pages": false,
+    "attachments_downloaded": false,
+    "allowed": [
+      "source-native metadata fields",
+      "typed links",
+      "ordered step titles and link targets",
+      "attachment metadata",
+      "HTTP observation metadata",
+      "transfer hashes"
+    ],
+    "forbidden_keys_recursive": [
+      "body",
+      "govspeak",
+      "html",
+      "rendered_body"
+    ]
+  },
+  "rights": {
+    "source": "official-public-govuk",
+    "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+    "status": "metadata-and-links-only-subject-to-item-specific-exceptions",
+    "fair_use_trigger": "No complete page body or attachment is retained; any later body, image or third-party asset use requires separate item-level review."
+  },
+  "acceptance": {
+    "seed_records": 69,
+    "unexplained_seed_omissions": 0,
+    "all_seed_content_api_records_required": true,
+    "all_edges_resolved_or_boundary_classified": true,
+    "frozen_rebuild_without_network": true,
+    "canonical_output_order": "content_id then canonical_url"
+  }
+}

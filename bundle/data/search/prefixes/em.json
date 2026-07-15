@@ -1,0 +1,246 @@
+{
+  "emp": [
+    {
+      "df": 4,
+      "token": "employee"
+    },
+    {
+      "df": 2,
+      "token": "employees"
+    },
+    {
+      "df": 2,
+      "token": "employer"
+    },
+    {
+      "df": 2,
+      "token": "employment"
+    },
+    {
+      "df": 1,
+      "token": "employee-rights-when-on-leave"
+    },
+    {
+      "df": 1,
+      "token": "employers"
+    },
+    {
+      "df": 1,
+      "token": "employing"
+    }
+  ],
+  "empl": [
+    {
+      "df": 4,
+      "token": "employee"
+    },
+    {
+      "df": 2,
+      "token": "employees"
+    },
+    {
+      "df": 2,
+      "token": "employer"
+    },
+    {
+      "df": 2,
+      "token": "employment"
+    },
+    {
+      "df": 1,
+      "token": "employee-rights-when-on-leave"
+    },
+    {
+      "df": 1,
+      "token": "employers"
+    },
+    {
+      "df": 1,
+      "token": "employing"
+    }
+  ],
+  "emplo": [
+    {
+      "df": 4,
+      "token": "employee"
+    },
+    {
+      "df": 2,
+      "token": "employees"
+    },
+    {
+      "df": 2,
+      "token": "employer"
+    },
+    {
+      "df": 2,
+      "token": "employment"
+    },
+    {
+      "df": 1,
+      "token": "employee-rights-when-on-leave"
+    },
+    {
+      "df": 1,
+      "token": "employers"
+    },
+    {
+      "df": 1,
+      "token": "employing"
+    }
+  ],
+  "employ": [
+    {
+      "df": 4,
+      "token": "employee"
+    },
+    {
+      "df": 2,
+      "token": "employees"
+    },
+    {
+      "df": 2,
+      "token": "employer"
+    },
+    {
+      "df": 2,
+      "token": "employment"
+    },
+    {
+      "df": 1,
+      "token": "employee-rights-when-on-leave"
+    },
+    {
+      "df": 1,
+      "token": "employers"
+    },
+    {
+      "df": 1,
+      "token": "employing"
+    }
+  ],
+  "employe": [
+    {
+      "df": 4,
+      "token": "employee"
+    },
+    {
+      "df": 2,
+      "token": "employees"
+    },
+    {
+      "df": 2,
+      "token": "employer"
+    },
+    {
+      "df": 1,
+      "token": "employee-rights-when-on-leave"
+    },
+    {
+      "df": 1,
+      "token": "employers"
+    }
+  ],
+  "employee": [
+    {
+      "df": 4,
+      "token": "employee"
+    },
+    {
+      "df": 2,
+      "token": "employees"
+    },
+    {
+      "df": 1,
+      "token": "employee-rights-when-on-leave"
+    }
+  ],
+  "employee-": [
+    {
+      "df": 1,
+      "token": "employee-rights-when-on-leave"
+    }
+  ],
+  "employee-r": [
+    {
+      "df": 1,
+      "token": "employee-rights-when-on-leave"
+    }
+  ],
+  "employee-ri": [
+    {
+      "df": 1,
+      "token": "employee-rights-when-on-leave"
+    }
+  ],
+  "employee-rig": [
+    {
+      "df": 1,
+      "token": "employee-rights-when-on-leave"
+    }
+  ],
+  "employees": [
+    {
+      "df": 2,
+      "token": "employees"
+    }
+  ],
+  "employer": [
+    {
+      "df": 2,
+      "token": "employer"
+    },
+    {
+      "df": 1,
+      "token": "employers"
+    }
+  ],
+  "employers": [
+    {
+      "df": 1,
+      "token": "employers"
+    }
+  ],
+  "employi": [
+    {
+      "df": 1,
+      "token": "employing"
+    }
+  ],
+  "employin": [
+    {
+      "df": 1,
+      "token": "employing"
+    }
+  ],
+  "employing": [
+    {
+      "df": 1,
+      "token": "employing"
+    }
+  ],
+  "employm": [
+    {
+      "df": 2,
+      "token": "employment"
+    }
+  ],
+  "employme": [
+    {
+      "df": 2,
+      "token": "employment"
+    }
+  ],
+  "employmen": [
+    {
+      "df": 2,
+      "token": "employment"
+    }
+  ],
+  "employment": [
+    {
+      "df": 2,
+      "token": "employment"
+    }
+  ]
+}

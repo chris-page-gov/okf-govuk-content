@@ -2,16 +2,41 @@
   {
     "df": 1,
     "postings": "data/search/postings/in.json",
-    "token": "includes"
-  },
-  {
-    "df": 1,
-    "postings": "data/search/postings/in.json",
-    "token": "independently"
+    "token": "include"
   },
   {
     "df": 3,
     "postings": "data/search/postings/in.json",
+    "token": "including"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/in.json",
+    "token": "income"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/in.json",
+    "token": "individual"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/in.json",
     "token": "information"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/in.json",
+    "token": "inspection"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/in.json",
+    "token": "insurance"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/in.json",
+    "token": "interest"
   }
 ]

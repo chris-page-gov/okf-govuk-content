@@ -25,20 +25,29 @@ from typing import Any, Iterable
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE = ROOT / "tests" / "fixtures" / "corpus" / "source-records.jsonl"
+DEFAULT_SOURCE = (
+    ROOT
+    / "demo"
+    / "snapshots"
+    / "NEW-CHILD-20260715"
+    / "publication"
+    / "source-records.jsonl"
+)
 DEFAULT_BUNDLE = ROOT / "bundle"
 DEFAULT_SBOM = ROOT / "release" / "sbom.cdx.json"
 DEFAULT_EVIDENCE = ROOT / "release" / "clean-room-reproduction.json"
 DEFAULT_DECLARATIONS = ROOT / "provenance" / "reproduction-declarations.json"
 DEFAULT_ACTIVITY_LEDGER = ROOT / "provenance" / "activity-ledger.jsonl"
 DEFAULT_RELEASE_MANIFEST = ROOT / "release" / "manifest.yaml"
-DEFAULT_GENERATED_AT = "2026-07-11T23:30:00Z"
-DEFAULT_SNAPSHOT = "fixture-2026-07-11"
+DEFAULT_GENERATED_AT = "2026-07-15T06:25:17Z"
+DEFAULT_SNAPSHOT = "NEW-CHILD-20260715"
 DISALLOWED_RELEASE_MARKERS = ("fixture", "sample", "capacity", "development", "test")
 COPY_INPUTS = (
     "LICENSE.md",
     "governance/launch-manifest.yaml",
     "orchestration/models.lock.yaml",
+    "demo/new-child-cohort.json",
+    "demo/snapshots/NEW-CHILD-20260715",
     "pyproject.toml",
     "provenance/activity-ledger.jsonl",
     "provenance/activity-ledger.schema.json",

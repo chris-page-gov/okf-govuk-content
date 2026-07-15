@@ -15,10 +15,19 @@ from govuk_okf.publication import synchronize  # noqa: E402
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source", type=Path, default=ROOT / "tests" / "fixtures" / "corpus" / "source-records.jsonl")
+    parser.add_argument(
+        "--source",
+        type=Path,
+        default=ROOT
+        / "demo"
+        / "snapshots"
+        / "NEW-CHILD-20260715"
+        / "publication"
+        / "source-records.jsonl",
+    )
     parser.add_argument("--output", type=Path, default=ROOT / "bundle")
-    parser.add_argument("--generated-at", default="2026-07-11T23:30:00Z")
-    parser.add_argument("--snapshot-id", default="fixture-2026-07-11")
+    parser.add_argument("--generated-at", default="2026-07-15T06:25:17Z")
+    parser.add_argument("--snapshot-id", default="NEW-CHILD-20260715")
     parser.add_argument(
         "--compiler",
         choices=("auto", "memory", "disk"),

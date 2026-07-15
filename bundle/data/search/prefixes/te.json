@@ -1,0 +1,80 @@
+{
+  "tel": [
+    {
+      "df": 3,
+      "token": "tell"
+    },
+    {
+      "df": 1,
+      "token": "telephone"
+    },
+    {
+      "df": 1,
+      "token": "telling"
+    }
+  ],
+  "tele": [
+    {
+      "df": 1,
+      "token": "telephone"
+    }
+  ],
+  "telep": [
+    {
+      "df": 1,
+      "token": "telephone"
+    }
+  ],
+  "teleph": [
+    {
+      "df": 1,
+      "token": "telephone"
+    }
+  ],
+  "telepho": [
+    {
+      "df": 1,
+      "token": "telephone"
+    }
+  ],
+  "telephon": [
+    {
+      "df": 1,
+      "token": "telephone"
+    }
+  ],
+  "telephone": [
+    {
+      "df": 1,
+      "token": "telephone"
+    }
+  ],
+  "tell": [
+    {
+      "df": 3,
+      "token": "tell"
+    },
+    {
+      "df": 1,
+      "token": "telling"
+    }
+  ],
+  "telli": [
+    {
+      "df": 1,
+      "token": "telling"
+    }
+  ],
+  "tellin": [
+    {
+      "df": 1,
+      "token": "telling"
+    }
+  ],
+  "telling": [
+    {
+      "df": 1,
+      "token": "telling"
+    }
+  ]
+}

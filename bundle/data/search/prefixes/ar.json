@@ -1,108 +1,58 @@
 {
-  "arc": [
+  "are": [
     {
       "df": 2,
-      "token": "archives"
+      "token": "area"
     },
     {
       "df": 1,
-      "token": "archive"
-    },
-    {
-      "df": 1,
-      "token": "archive-catalogues"
+      "token": "areas"
     }
   ],
-  "arch": [
+  "area": [
     {
       "df": 2,
-      "token": "archives"
+      "token": "area"
     },
     {
       "df": 1,
-      "token": "archive"
-    },
-    {
-      "df": 1,
-      "token": "archive-catalogues"
+      "token": "areas"
     }
   ],
-  "archi": [
-    {
-      "df": 2,
-      "token": "archives"
-    },
+  "areas": [
     {
       "df": 1,
-      "token": "archive"
-    },
-    {
-      "df": 1,
-      "token": "archive-catalogues"
+      "token": "areas"
     }
   ],
-  "archiv": [
-    {
-      "df": 2,
-      "token": "archives"
-    },
+  "arr": [
     {
       "df": 1,
-      "token": "archive"
-    },
-    {
-      "df": 1,
-      "token": "archive-catalogues"
+      "token": "arrears"
     }
   ],
-  "archive": [
-    {
-      "df": 2,
-      "token": "archives"
-    },
+  "arre": [
     {
       "df": 1,
-      "token": "archive"
-    },
-    {
-      "df": 1,
-      "token": "archive-catalogues"
+      "token": "arrears"
     }
   ],
-  "archive-": [
+  "arrea": [
     {
       "df": 1,
-      "token": "archive-catalogues"
+      "token": "arrears"
     }
   ],
-  "archive-c": [
+  "arrear": [
     {
       "df": 1,
-      "token": "archive-catalogues"
+      "token": "arrears"
     }
   ],
-  "archive-ca": [
+  "arrears": [
     {
       "df": 1,
-      "token": "archive-catalogues"
-    }
-  ],
-  "archive-cat": [
-    {
-      "df": 1,
-      "token": "archive-catalogues"
-    }
-  ],
-  "archive-cata": [
-    {
-      "df": 1,
-      "token": "archive-catalogues"
-    }
-  ],
-  "archives": [
-    {
-      "df": 2,
-      "token": "archives"
+      "token": "arrears"
     }
   ]
 }

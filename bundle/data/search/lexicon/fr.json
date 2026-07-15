@@ -1,0 +1,22 @@
+[
+  {
+    "df": 6,
+    "postings": "data/search/postings/fr.json",
+    "token": "free"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/fr.json",
+    "token": "free-childcare-if-working"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/fr.json",
+    "token": "free-school-transport"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/fr.json",
+    "token": "fruit"
+  }
+]

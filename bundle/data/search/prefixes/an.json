@@ -1,0 +1,92 @@
+{
+  "ann": [
+    {
+      "df": 1,
+      "token": "annual"
+    }
+  ],
+  "annu": [
+    {
+      "df": 1,
+      "token": "annual"
+    }
+  ],
+  "annua": [
+    {
+      "df": 1,
+      "token": "annual"
+    }
+  ],
+  "annual": [
+    {
+      "df": 1,
+      "token": "annual"
+    }
+  ],
+  "ans": [
+    {
+      "df": 21,
+      "token": "answer"
+    }
+  ],
+  "answ": [
+    {
+      "df": 21,
+      "token": "answer"
+    }
+  ],
+  "answe": [
+    {
+      "df": 21,
+      "token": "answer"
+    }
+  ],
+  "answer": [
+    {
+      "df": 21,
+      "token": "answer"
+    }
+  ],
+  "ant": [
+    {
+      "df": 1,
+      "token": "antenatal"
+    }
+  ],
+  "ante": [
+    {
+      "df": 1,
+      "token": "antenatal"
+    }
+  ],
+  "anten": [
+    {
+      "df": 1,
+      "token": "antenatal"
+    }
+  ],
+  "antena": [
+    {
+      "df": 1,
+      "token": "antenatal"
+    }
+  ],
+  "antenat": [
+    {
+      "df": 1,
+      "token": "antenatal"
+    }
+  ],
+  "antenata": [
+    {
+      "df": 1,
+      "token": "antenatal"
+    }
+  ],
+  "antenatal": [
+    {
+      "df": 1,
+      "token": "antenatal"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import { tokenize } from "./search-core.js";
 
-export const VIEW_IDS = Object.freeze(["results", "sitemap", "browse", "relationships", "timeline", "compare"]);
+export const VIEW_IDS = Object.freeze(["journey", "results", "sitemap", "browse", "relationships", "timeline", "compare"]);
 export const MODE_IDS = Object.freeze(["simple", "explore", "evidence"]);
 export const MAX_GRAPH_NODES = 250;
 export const MAX_GRAPH_EDGES = 500;
@@ -164,6 +164,7 @@ export function isAllowedBundleUrl(value, currentOrigin) {
 
 export function normaliseRecord(raw, fallbackRoute = "") {
   const source = raw && typeof raw === "object" ? raw : {};
+  const demo = source.demo && typeof source.demo === "object" && !Array.isArray(source.demo) ? source.demo : {};
   const name = cleanText(source.name || source.content_id || source.id || "record", 512);
   const route = safeRoute(source.open || source.route || fallbackRoute || "dataset/" + name);
   const language = normaliseLanguage(source.locale || source.language || "en");
@@ -202,7 +203,15 @@ export function normaliseRecord(raw, fallbackRoute = "") {
     sourceStatus: inferred ? "inferred" : cleanText(source.source_status || source.assertion_status || "source-native", 80),
     confidence: inferred ? cleanText(source.confidence || "not recorded", 80) : "",
     evidenceUrl: safeExternalUrl(source.evidence_url || source.source_url || ""),
+    evidenceLocator: cleanText(source.evidence_locator || source.source_pointer || "", 512),
+    sourceHash: cleanText(source.evidence_sha256 || source.source_sha256 || source.sha256 || "", 128),
     retrievedAt: cleanText(source.retrieved_at || source.observed_at || "", 80),
+    contentId: cleanText(source.canonical_content_id || source.content_id || source.source_native_id || "", 768),
+    demo: {
+      seedMemberships: uniqueStrings(toArray(demo.seed_memberships || source.seed_memberships || source.facets?.seed_membership), 20),
+      journeyGroups: uniqueStrings(toArray(demo.journey_groups || source.journey_groups || source.facets?.journey_group), 20),
+      cohortRole: cleanText(demo.cohort_role || source.cohort_role || (demo.is_seed === true ? "seed" : ""), 80)
+    },
     lifecycleEvents: toArray(source.lifecycle_events).filter((event) => event && typeof event === "object").slice(0, 100),
     facets: source.facets && typeof source.facets === "object" ? source.facets : {},
     score: Number(source.score || 0),
@@ -225,7 +234,10 @@ export function facetValuesForRecord(record, key) {
     jurisdiction: record.jurisdictions,
     topic: record.topics,
     taxon: record.topics,
-    source_status: [record.sourceStatus]
+    source_status: [record.sourceStatus],
+    journey_group: record.demo.journeyGroups,
+    seed_membership: record.demo.seedMemberships,
+    cohort_role: [record.demo.cohortRole]
   };
   return uniqueStrings(fields[key] || toArray(record.raw && record.raw[key]));
 }
@@ -379,6 +391,7 @@ export function buildCitation(record, snapshot) {
 function exportRecord(record) {
   return {
     id: record.id,
+    content_id: record.contentId,
     route: record.route,
     title: record.title,
     type: record.type,
@@ -386,7 +399,14 @@ function exportRecord(record) {
     lifecycle_status: record.status,
     language: record.language,
     jurisdiction: record.jurisdictions,
-    source_status: record.sourceStatus
+    source_status: record.sourceStatus,
+    evidence_url: record.evidenceUrl,
+    evidence_locator: record.evidenceLocator,
+    evidence_sha256: record.sourceHash,
+    retrieved_at: record.retrievedAt,
+    seed_memberships: record.demo.seedMemberships,
+    journey_groups: record.demo.journeyGroups,
+    cohort_role: record.demo.cohortRole
   };
 }
 
@@ -399,7 +419,23 @@ export function buildContextExport(format, records, state, descriptor = {}) {
   if (format === "markdown") {
     const lines = ["# What’s on GOV.UK selection", "", "Snapshot: " + (state.snapshot || descriptor.snapshot_id || "not recorded"), "", "Query: " + (state.query || "none"), ""];
     for (const record of selected) {
-      lines.push("## " + record.title, "", "- Route: " + record.route, "- Type: " + record.type, "- Status: " + record.lifecycle_status, "- GOV.UK: " + (record.canonical_url || "not recorded"), "- Evidence state: " + record.source_status, "");
+      lines.push(
+        "## " + record.title,
+        "",
+        "- Route: " + record.route,
+        "- Content ID: " + (record.content_id || "not recorded"),
+        "- Type: " + record.type,
+        "- Status: " + record.lifecycle_status,
+        "- GOV.UK: " + (record.canonical_url || "not recorded"),
+        "- Evidence state: " + record.source_status,
+        "- Evidence URL: " + (record.evidence_url || "not recorded"),
+        "- Evidence locator: " + (record.evidence_locator || "not recorded"),
+        "- Evidence SHA-256: " + (record.evidence_sha256 || "not recorded"),
+        "- Retrieved: " + (record.retrieved_at || "not recorded"),
+        "- Demonstrator seed membership: " + (record.seed_memberships.join(", ") || "none"),
+        "- Demonstrator journey groups: " + (record.journey_groups.join(", ") || "none"),
+        ""
+      );
     }
     return { mediaType: "text/markdown", extension: "md", text: lines.join("\n") + "\n" };
   }
@@ -414,7 +450,23 @@ export function buildContextExport(format, records, state, descriptor = {}) {
   if (format === "yamlld") {
     const lines = ["\"@context\": " + yamlScalar(document["@context"]), "\"@type\": " + yamlScalar(document["@type"]), "snapshot: " + yamlScalar(document.snapshot), "query: " + yamlScalar(document.query), "records:"];
     for (const record of selected) {
-      lines.push("  - id: " + yamlScalar(record.id), "    route: " + yamlScalar(record.route), "    title: " + yamlScalar(record.title), "    type: " + yamlScalar(record.type), "    canonical_url: " + yamlScalar(record.canonical_url), "    lifecycle_status: " + yamlScalar(record.lifecycle_status), "    source_status: " + yamlScalar(record.source_status));
+      lines.push(
+        "  - id: " + yamlScalar(record.id),
+        "    content_id: " + yamlScalar(record.content_id),
+        "    route: " + yamlScalar(record.route),
+        "    title: " + yamlScalar(record.title),
+        "    type: " + yamlScalar(record.type),
+        "    canonical_url: " + yamlScalar(record.canonical_url),
+        "    lifecycle_status: " + yamlScalar(record.lifecycle_status),
+        "    source_status: " + yamlScalar(record.source_status),
+        "    evidence_url: " + yamlScalar(record.evidence_url),
+        "    evidence_locator: " + yamlScalar(record.evidence_locator),
+        "    evidence_sha256: " + yamlScalar(record.evidence_sha256),
+        "    retrieved_at: " + yamlScalar(record.retrieved_at),
+        "    seed_memberships: " + JSON.stringify(record.seed_memberships),
+        "    journey_groups: " + JSON.stringify(record.journey_groups),
+        "    cohort_role: " + yamlScalar(record.cohort_role)
+      );
     }
     return { mediaType: "application/yaml", extension: "yamlld", text: lines.join("\n") + "\n" };
   }

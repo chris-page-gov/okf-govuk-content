@@ -1,0 +1,68 @@
+{
+  "mon": [
+    {
+      "df": 3,
+      "token": "money"
+    },
+    {
+      "df": 1,
+      "token": "months"
+    }
+  ],
+  "mone": [
+    {
+      "df": 3,
+      "token": "money"
+    }
+  ],
+  "money": [
+    {
+      "df": 3,
+      "token": "money"
+    }
+  ],
+  "mont": [
+    {
+      "df": 1,
+      "token": "months"
+    }
+  ],
+  "month": [
+    {
+      "df": 1,
+      "token": "months"
+    }
+  ],
+  "months": [
+    {
+      "df": 1,
+      "token": "months"
+    }
+  ],
+  "mov": [
+    {
+      "df": 1,
+      "token": "move"
+    },
+    {
+      "df": 1,
+      "token": "moved"
+    }
+  ],
+  "move": [
+    {
+      "df": 1,
+      "token": "move"
+    },
+    {
+      "df": 1,
+      "token": "moved"
+    }
+  ],
+  "moved": [
+    {
+      "df": 1,
+      "token": "moved"
+    }
+  ]
+}

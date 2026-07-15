@@ -1,12 +1,42 @@
 [
   {
-    "df": 1,
+    "df": 2,
+    "postings": "data/search/postings/fi.json",
+    "token": "financial"
+  },
+  {
+    "df": 15,
     "postings": "data/search/postings/fi.json",
     "token": "find"
   },
   {
     "df": 1,
     "postings": "data/search/postings/fi.json",
-    "token": "finding"
+    "token": "find-family-hub-local-area"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/fi.json",
+    "token": "find-free-early-education"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/fi.json",
+    "token": "find-nursery-school-place"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/fi.json",
+    "token": "find-ofsted-inspection-report"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/fi.json",
+    "token": "find-registered-childminder"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/fi.json",
+    "token": "find-sure-start-childrens-centre"
   }
 ]

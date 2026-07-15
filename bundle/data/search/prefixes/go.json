@@ -1,71 +1,79 @@
 {
+  "goe": [
+    {
+      "df": 1,
+      "token": "goes"
+    }
+  ],
+  "goes": [
+    {
+      "df": 1,
+      "token": "goes"
+    }
+  ],
+  "goi": [
+    {
+      "df": 1,
+      "token": "going"
+    }
+  ],
+  "goin": [
+    {
+      "df": 1,
+      "token": "going"
+    }
+  ],
+  "going": [
+    {
+      "df": 1,
+      "token": "going"
+    }
+  ],
   "gov": [
     {
-      "df": 6,
+      "df": 66,
       "token": "government"
-    },
-    {
-      "df": 1,
-      "token": "gov.uk"
-    }
-  ],
-  "gov.": [
-    {
-      "df": 1,
-      "token": "gov.uk"
-    }
-  ],
-  "gov.u": [
-    {
-      "df": 1,
-      "token": "gov.uk"
-    }
-  ],
-  "gov.uk": [
-    {
-      "df": 1,
-      "token": "gov.uk"
     }
   ],
   "gove": [
     {
-      "df": 6,
+      "df": 66,
       "token": "government"
     }
   ],
   "gover": [
     {
-      "df": 6,
+      "df": 66,
       "token": "government"
     }
   ],
   "govern": [
     {
-      "df": 6,
+      "df": 66,
       "token": "government"
     }
   ],
   "governm": [
     {
-      "df": 6,
+      "df": 66,
       "token": "government"
     }
   ],
   "governme": [
     {
-      "df": 6,
+      "df": 66,
       "token": "government"
     }
   ],
   "governmen": [
     {
-      "df": 6,
+      "df": 66,
       "token": "government"
     }
   ],
   "government": [
     {
-      "df": 6,
+      "df": 66,
       "token": "government"
     }
   ]

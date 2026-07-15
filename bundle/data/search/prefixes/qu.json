@@ -1,0 +1,66 @@
+{
+  "qua": [
+    {
+      "df": 2,
+      "token": "qualify"
+    },
+    {
+      "df": 1,
+      "token": "qualifies"
+    }
+  ],
+  "qual": [
+    {
+      "df": 2,
+      "token": "qualify"
+    },
+    {
+      "df": 1,
+      "token": "qualifies"
+    }
+  ],
+  "quali": [
+    {
+      "df": 2,
+      "token": "qualify"
+    },
+    {
+      "df": 1,
+      "token": "qualifies"
+    }
+  ],
+  "qualif": [
+    {
+      "df": 2,
+      "token": "qualify"
+    },
+    {
+      "df": 1,
+      "token": "qualifies"
+    }
+  ],
+  "qualifi": [
+    {
+      "df": 1,
+      "token": "qualifies"
+    }
+  ],
+  "qualifie": [
+    {
+      "df": 1,
+      "token": "qualifies"
+    }
+  ],
+  "qualifies": [
+    {
+      "df": 1,
+      "token": "qualifies"
+    }
+  ],
+  "qualify": [
+    {
+      "df": 2,
+      "token": "qualify"
+    }
+  ]
+}

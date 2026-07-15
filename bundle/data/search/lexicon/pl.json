@@ -1,7 +1,27 @@
 [
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings/pl.json",
     "token": "place"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pl.json",
+    "token": "plan"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pl.json",
+    "token": "plan-shared-parental-leave-pay"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pl.json",
+    "token": "play"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pl.json",
+    "token": "playgroup"
   }
 ]
