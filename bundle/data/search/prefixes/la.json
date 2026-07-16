@@ -1,26 +1,66 @@
 {
-  "lat": [
+  "law": [
     {
       "df": 1,
-      "token": "latest"
+      "token": "law"
+    },
+    {
+      "df": 1,
+      "token": "law-on-leaving-your-child-home-alone"
     }
   ],
-  "late": [
+  "law-": [
     {
       "df": 1,
-      "token": "latest"
+      "token": "law-on-leaving-your-child-home-alone"
     }
   ],
-  "lates": [
+  "law-o": [
     {
       "df": 1,
-      "token": "latest"
+      "token": "law-on-leaving-your-child-home-alone"
     }
   ],
-  "latest": [
+  "law-on": [
     {
       "df": 1,
-      "token": "latest"
+      "token": "law-on-leaving-your-child-home-alone"
+    }
+  ],
+  "law-on-": [
+    {
+      "df": 1,
+      "token": "law-on-leaving-your-child-home-alone"
+    }
+  ],
+  "law-on-l": [
+    {
+      "df": 1,
+      "token": "law-on-leaving-your-child-home-alone"
+    }
+  ],
+  "law-on-le": [
+    {
+      "df": 1,
+      "token": "law-on-leaving-your-child-home-alone"
+    }
+  ],
+  "law-on-lea": [
+    {
+      "df": 1,
+      "token": "law-on-leaving-your-child-home-alone"
+    }
+  ],
+  "law-on-leav": [
+    {
+      "df": 1,
+      "token": "law-on-leaving-your-child-home-alone"
+    }
+  ],
+  "law-on-leavi": [
+    {
+      "df": 1,
+      "token": "law-on-leaving-your-child-home-alone"
     }
   ]
 }

@@ -1,0 +1,318 @@
+{
+  "pre": [
+    {
+      "df": 3,
+      "token": "pregnant"
+    },
+    {
+      "df": 1,
+      "token": "pregnancy"
+    },
+    {
+      "df": 1,
+      "token": "premium"
+    }
+  ],
+  "preg": [
+    {
+      "df": 3,
+      "token": "pregnant"
+    },
+    {
+      "df": 1,
+      "token": "pregnancy"
+    }
+  ],
+  "pregn": [
+    {
+      "df": 3,
+      "token": "pregnant"
+    },
+    {
+      "df": 1,
+      "token": "pregnancy"
+    }
+  ],
+  "pregna": [
+    {
+      "df": 3,
+      "token": "pregnant"
+    },
+    {
+      "df": 1,
+      "token": "pregnancy"
+    }
+  ],
+  "pregnan": [
+    {
+      "df": 3,
+      "token": "pregnant"
+    },
+    {
+      "df": 1,
+      "token": "pregnancy"
+    }
+  ],
+  "pregnanc": [
+    {
+      "df": 1,
+      "token": "pregnancy"
+    }
+  ],
+  "pregnancy": [
+    {
+      "df": 1,
+      "token": "pregnancy"
+    }
+  ],
+  "pregnant": [
+    {
+      "df": 3,
+      "token": "pregnant"
+    }
+  ],
+  "prem": [
+    {
+      "df": 1,
+      "token": "premium"
+    }
+  ],
+  "premi": [
+    {
+      "df": 1,
+      "token": "premium"
+    }
+  ],
+  "premiu": [
+    {
+      "df": 1,
+      "token": "premium"
+    }
+  ],
+  "premium": [
+    {
+      "df": 1,
+      "token": "premium"
+    }
+  ],
+  "pri": [
+    {
+      "df": 1,
+      "token": "private"
+    }
+  ],
+  "priv": [
+    {
+      "df": 1,
+      "token": "private"
+    }
+  ],
+  "priva": [
+    {
+      "df": 1,
+      "token": "private"
+    }
+  ],
+  "privat": [
+    {
+      "df": 1,
+      "token": "private"
+    }
+  ],
+  "private": [
+    {
+      "df": 1,
+      "token": "private"
+    }
+  ],
+  "pro": [
+    {
+      "df": 2,
+      "token": "process"
+    },
+    {
+      "df": 2,
+      "token": "provide"
+    },
+    {
+      "df": 2,
+      "token": "provider"
+    },
+    {
+      "df": 1,
+      "token": "proof"
+    },
+    {
+      "df": 1,
+      "token": "protection"
+    },
+    {
+      "df": 1,
+      "token": "prove"
+    },
+    {
+      "df": 1,
+      "token": "providers"
+    }
+  ],
+  "proc": [
+    {
+      "df": 2,
+      "token": "process"
+    }
+  ],
+  "proce": [
+    {
+      "df": 2,
+      "token": "process"
+    }
+  ],
+  "proces": [
+    {
+      "df": 2,
+      "token": "process"
+    }
+  ],
+  "process": [
+    {
+      "df": 2,
+      "token": "process"
+    }
+  ],
+  "proo": [
+    {
+      "df": 1,
+      "token": "proof"
+    }
+  ],
+  "proof": [
+    {
+      "df": 1,
+      "token": "proof"
+    }
+  ],
+  "prot": [
+    {
+      "df": 1,
+      "token": "protection"
+    }
+  ],
+  "prote": [
+    {
+      "df": 1,
+      "token": "protection"
+    }
+  ],
+  "protec": [
+    {
+      "df": 1,
+      "token": "protection"
+    }
+  ],
+  "protect": [
+    {
+      "df": 1,
+      "token": "protection"
+    }
+  ],
+  "protecti": [
+    {
+      "df": 1,
+      "token": "protection"
+    }
+  ],
+  "protectio": [
+    {
+      "df": 1,
+      "token": "protection"
+    }
+  ],
+  "protection": [
+    {
+      "df": 1,
+      "token": "protection"
+    }
+  ],
+  "prov": [
+    {
+      "df": 2,
+      "token": "provide"
+    },
+    {
+      "df": 2,
+      "token": "provider"
+    },
+    {
+      "df": 1,
+      "token": "prove"
+    },
+    {
+      "df": 1,
+      "token": "providers"
+    }
+  ],
+  "prove": [
+    {
+      "df": 1,
+      "token": "prove"
+    }
+  ],
+  "provi": [
+    {
+      "df": 2,
+      "token": "provide"
+    },
+    {
+      "df": 2,
+      "token": "provider"
+    },
+    {
+      "df": 1,
+      "token": "providers"
+    }
+  ],
+  "provid": [
+    {
+      "df": 2,
+      "token": "provide"
+    },
+    {
+      "df": 2,
+      "token": "provider"
+    },
+    {
+      "df": 1,
+      "token": "providers"
+    }
+  ],
+  "provide": [
+    {
+      "df": 2,
+      "token": "provide"
+    },
+    {
+      "df": 2,
+      "token": "provider"
+    },
+    {
+      "df": 1,
+      "token": "providers"
+    }
+  ],
+  "provider": [
+    {
+      "df": 2,
+      "token": "provider"
+    },
+    {
+      "df": 1,
+      "token": "providers"
+    }
+  ],
+  "providers": [
+    {
+      "df": 1,
+      "token": "providers"
+    }
+  ]
+}

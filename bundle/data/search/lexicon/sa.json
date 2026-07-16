@@ -1,0 +1,17 @@
+[
+  {
+    "df": 2,
+    "postings": "data/search/postings/sa.json",
+    "token": "savings"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/sa.json",
+    "token": "savings-for-children"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/sa.json",
+    "token": "say"
+  }
+]

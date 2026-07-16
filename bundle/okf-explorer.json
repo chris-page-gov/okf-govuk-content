@@ -2,54 +2,59 @@
   "@context": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/context.jsonld",
   "@id": "https://chris-page-gov.github.io/okf-govuk-content/okf-explorer.json",
   "counts": {
-    "datasets": 14,
-    "document_types": 13,
-    "languages": 2,
-    "publishers": 6,
-    "records": 14,
-    "relationships": 16,
-    "resources": 1,
-    "schema_families": 13
+    "datasets": 69,
+    "document_types": 8,
+    "languages": 1,
+    "publishers": 14,
+    "records": 69,
+    "relationships": 392,
+    "resources": 0,
+    "schema_families": 8
   },
-  "data_plane_manifest_root_sha256": "013122b394d9c90a8858c9f70d8600d03eddb749fa6aee6fcefe372a87b2e488",
-  "description": "Derived, non-authoritative semantic catalogue of GOV.UK content, navigation, organisations, taxonomies and relationships.",
+  "data_plane_manifest_root_sha256": "99a114006c9d5c33774352d9b8f5c2513d978229372d06ab1d3f822b0a81f5dc",
+  "description": "Derived, non-authoritative projection of exactly 69 frozen GOV.UK new-child metadata records; not a complete GOV.UK corpus.",
   "entrypoint_integrity": {
     "analysis_overview": {
       "path": "data/analysis/overview.json",
-      "sha256": "a83e16957ff167ab6e9d3c2de0cdbb8832c72184949136386c7df586c373551f"
+      "sha256": "b8d11b19f1e8acb6bfd5aa74cd9378884b8439db673fa0df94821cc9657ef88c"
     },
     "data_manifest": {
       "path": "data/manifest.json",
-      "sha256": "ee90dd727636ce25f743604ed7ed4e15966631a3dfb2f663e67091889c874492"
+      "sha256": "c520daf8f2f98fdb49f37b0dd89f4145bdf59d4e36ebd091096f3da43c94eb0f"
+    },
+    "demonstrator": {
+      "path": "data/demonstrator.json",
+      "sha256": "13499609888f23be9a1411e8abf4b1bbf02726572d9176f3cf373f3b53b36cdf"
     },
     "overview_index": {
       "path": "data/overview.json",
-      "sha256": "c3657957dc403f8c34050716aefd92eea895cf9853f33610fb4c9550cf6e09bb"
+      "sha256": "6436b1f7346e0be3e90129cc81f657a2ea3311a21be3b4d96eb971a292969eb2"
     },
     "relationship_adjacency": {
       "path": "data/adjacency/manifest.json",
-      "sha256": "af4b27155572d9cf1b356d35e940a298618332ca04b9390fabd0f8aa552fc0db"
+      "sha256": "876cb7afc391609e0e6ceca0f3dfb5527831de318ccde2cae7b2f6ec4b3424ef"
     },
     "route_index": {
       "path": "data/routes/manifest.json",
-      "sha256": "36e0b31cc84502fe2cabe33e1ac616ae2e4a92140d50e2f551c6c556cd16fb5c"
+      "sha256": "c129497d634201b817152bc84622b84ccbf4fbfe992882fbdc72348867bbe6eb"
     },
     "search_manifest": {
       "path": "data/search/manifest.json",
-      "sha256": "7e6e0845fdffc3e9196e812d4ce887166df8291098882a3066d15f772f8e8b30"
+      "sha256": "4ee930c908e56b630901509457a1f5a8a81f9957256fc38d032d915d04c679ed"
     },
     "semantic_projection": {
       "path": "data/semantic/manifest.json",
-      "sha256": "0d7161f7b84d6f67904f80e00d14b90b2971241afa6a379b2ee896d1efc50a08"
+      "sha256": "a1e50c26fd20df53f1858db7ac3127b093b1e89df84fc40dc5c56daaca2debf7"
     },
     "site_topology": {
       "path": "data/site-topology.json",
-      "sha256": "b2b5ad791d2d27896d6c95ac00bd3d26e82e6c2d7755ef39cea21c1aad72696f"
+      "sha256": "20ae108e3c0096611e36cf1c1779bebffa868de22291ebd0d55c49785fafa508"
     }
   },
   "entrypoints": {
     "analysis_overview": "data/analysis/overview.json",
     "data_manifest": "data/manifest.json",
+    "demonstrator": "data/demonstrator.json",
     "markdown_index": "index.md",
     "overview_index": "data/overview.json",
     "relationship_adjacency": "data/adjacency/manifest.json",
@@ -60,6 +65,11 @@
     "viewer": "https://chris-page-gov.github.io/okf-explorer/"
   },
   "extensions": {
+    "govuk-new-child-demonstrator.v1": {
+      "authoritative": false,
+      "entrypoint": "demonstrator",
+      "seed_denominator": 69
+    },
     "govuk-okf-profile.v1": {
       "provenance_required": true,
       "source_native_before_inference": true
@@ -73,7 +83,7 @@
       "mode": "external"
     }
   },
-  "generated_at": "2026-07-11T23:30:00Z",
+  "generated_at": "2026-07-15T06:25:17Z",
   "kind": "okf-large-corpus",
   "license": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
   "performance": {
@@ -87,11 +97,17 @@
   "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/",
   "publisher": "https://github.com/chris-page-gov",
   "schema": "okf-explorer-large-corpus.v1",
+  "scope": {
+    "authoritative": false,
+    "complete_govuk_corpus": false,
+    "kind": "bounded-new-child-metadata-demonstrator",
+    "seed_denominator": 69
+  },
   "semantic_descriptor": "https://chris-page-gov.github.io/okf-govuk-content/okf-bundle.yamlld",
-  "semantic_projection_sha256": "3b52b26c19b35ae7f1fcefb930b62ebafe0f18107be0549545c2b7108863230a",
-  "snapshot": "fixture-2026-07-11",
-  "status": "preview",
-  "title": "What’s on GOV.UK",
+  "semantic_projection_sha256": "e8b428334b250183f1460df9bc71f641ade9a84fa6d7f959cf02736ad9c73c2f",
+  "snapshot": "NEW-CHILD-20260715",
+  "status": "bounded-demonstrator",
+  "title": "Having a new child: bounded GOV.UK metadata demonstrator",
   "version": "0.1.0",
   "vocabulary": {
     "publisher_plural": "organisations",

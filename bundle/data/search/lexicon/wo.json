@@ -2,21 +2,26 @@
   {
     "df": 2,
     "postings": "data/search/postings/wo.json",
+    "token": "women"
+  },
+  {
+    "df": 4,
+    "postings": "data/search/postings/wo.json",
     "token": "work"
   },
   {
-    "df": 1,
+    "df": 3,
     "postings": "data/search/postings/wo.json",
     "token": "working"
   },
   {
     "df": 1,
     "postings": "data/search/postings/wo.json",
-    "token": "world"
+    "token": "working-when-pregnant-your-rights"
   },
   {
     "df": 1,
     "postings": "data/search/postings/wo.json",
-    "token": "world_location"
+    "token": "would"
   }
 ]

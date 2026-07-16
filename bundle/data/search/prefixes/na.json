@@ -1,4 +1,48 @@
 {
+  "nan": [
+    {
+      "df": 1,
+      "token": "nannies"
+    },
+    {
+      "df": 1,
+      "token": "nanny"
+    }
+  ],
+  "nann": [
+    {
+      "df": 1,
+      "token": "nannies"
+    },
+    {
+      "df": 1,
+      "token": "nanny"
+    }
+  ],
+  "nanni": [
+    {
+      "df": 1,
+      "token": "nannies"
+    }
+  ],
+  "nannie": [
+    {
+      "df": 1,
+      "token": "nannies"
+    }
+  ],
+  "nannies": [
+    {
+      "df": 1,
+      "token": "nannies"
+    }
+  ],
+  "nanny": [
+    {
+      "df": 1,
+      "token": "nanny"
+    }
+  ],
   "nat": [
     {
       "df": 1,

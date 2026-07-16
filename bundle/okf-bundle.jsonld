@@ -6,20 +6,20 @@
     "@id": "https://github.com/chris-page-gov/okf-govuk-content/blob/main/research/source-constraints.json"
   },
   "counts": {
-    "datasets": 14,
-    "document_types": 13,
-    "languages": 2,
-    "publishers": 6,
-    "records": 14,
-    "relationships": 16,
-    "resources": 1,
-    "schema_families": 13
+    "datasets": 69,
+    "document_types": 8,
+    "languages": 1,
+    "publishers": 14,
+    "records": 69,
+    "relationships": 392,
+    "resources": 0,
+    "schema_families": 8
   },
   "dataManifest": {
     "@id": "https://chris-page-gov.github.io/okf-govuk-content/data/manifest.json"
   },
-  "derivedNotice": "GOV.UK remains authoritative; this bundle does not reproduce complete page bodies or transactions.",
-  "description": "Derived, non-authoritative, snapshot-bounded semantic catalogue of the public GOV.UK metadata estate.",
+  "derivedNotice": "GOV.UK remains authoritative. This demonstrator is complete only for its declared 69-record seed denominator and does not reproduce complete page bodies, transactions or the wider GOV.UK estate.",
+  "description": "Derived, non-authoritative semantic projection of exactly 69 frozen GOV.UK new-child metadata records; it is not a complete GOV.UK corpus.",
   "descriptor": {
     "@id": "https://chris-page-gov.github.io/okf-govuk-content/okf-explorer.json"
   },
@@ -29,9 +29,10 @@
     "okf-explorer-large-corpus.v1",
     "okf-static-search.v1",
     "okf-relationship-adjacency.v1",
-    "okf-route-index.v1"
+    "okf-route-index.v1",
+    "govuk-new-child-demonstrator.v1"
   ],
-  "generatedAt": "2026-07-11T23:30:00Z",
+  "generatedAt": "2026-07-15T06:25:17Z",
   "home": {
     "@id": "https://chris-page-gov.github.io/okf-govuk-content/"
   },
@@ -44,17 +45,23 @@
   "publisher": {
     "@id": "https://github.com/chris-page-gov"
   },
+  "scope": {
+    "authoritative": false,
+    "completeGovukCorpus": false,
+    "kind": "bounded-new-child-metadata-demonstrator",
+    "seedDenominator": 69
+  },
   "semanticDescriptor": {
     "@id": "https://chris-page-gov.github.io/okf-govuk-content/okf-bundle.yamlld"
   },
   "semanticProjectionManifest": {
     "@id": "https://chris-page-gov.github.io/okf-govuk-content/data/semantic/manifest.json"
   },
-  "snapshot": "fixture-2026-07-11",
+  "snapshot": "NEW-CHILD-20260715",
   "sourceRegistry": {
     "@id": "https://github.com/chris-page-gov/okf-govuk-content/blob/main/research/source-registry.yaml"
   },
-  "status": "preview",
-  "title": "What’s on GOV.UK",
+  "status": "bounded-demonstrator",
+  "title": "Having a new child: bounded GOV.UK metadata demonstrator",
   "version": "0.1.0"
 }

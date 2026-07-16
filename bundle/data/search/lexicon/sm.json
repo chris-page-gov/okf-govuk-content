@@ -1,0 +1,12 @@
+[
+  {
+    "df": 2,
+    "postings": "data/search/postings/sm.json",
+    "token": "smart_answer"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/sm.json",
+    "token": "smp"
+  }
+]

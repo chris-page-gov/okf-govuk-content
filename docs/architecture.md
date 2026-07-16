@@ -54,6 +54,38 @@ exception: normalised extracts, hashes and source-native relationships are
 stored in SQLite/FTS5 on the authorised external cache, while every public
 source record retains part metadata only. The database is not a release input.
 
+### Bounded demonstrator branch
+
+`ADR-008` defines a separate review milestone for the new-child journey. It
+does not change the full Release 1 denominator above. One combined Search API
+query supplies exactly 69 deduplicated seeds from three mainstream browse
+paths; each seed is hydrated from the Content API, while typed targets outside
+the seed set remain boundary references. The immutable acquisition is bounded
+to 250 retained metadata records and 500 official-source attempts.
+
+```mermaid
+flowchart LR
+  S["Combined Search API query"] --> D["69 stable seed identities"]
+  D --> C["Allowlisted Content API metadata"]
+  C --> I["Seed-to-seed relationships"]
+  C --> B["Typed boundary references"]
+  I --> O["69-record OKF bundle"]
+  B --> O
+  O --> X["Explorer journey view"]
+  O --> A["Portable AI context"]
+  O --> M["Read-only local MCP"]
+```
+
+The frozen snapshot can be checked or rebuilt without network access:
+
+```sh
+python3 scripts/acquire_new_child_demo.py check demo/snapshots/NEW-CHILD-20260715
+python3 scripts/build_bundle.py --check
+```
+
+The demonstrator has its own exact 69/69 completeness claim. It must never be
+described as complete GOV.UK coverage or used alone to determine entitlement.
+
 ## 1. Preflight and census
 
 Validate the frozen audit offline before a network run:
@@ -93,7 +125,7 @@ representation when exception rates are material.
 
 ## 2. Selective enrichment and closure
 
-ADR-008 treats expanded Search metadata as the first representation layer.
+ADR-009 treats expanded Search metadata as the first representation layer.
 Hydration performs public, rate-limited Content API lookups only for the
 versioned selection: sitemap-only or identity-poor routes, structural classes,
 explicit redirect/tombstone dispositions, structured-link closure and a stable
@@ -105,7 +137,7 @@ records the denominator, reasons, document types and decision-set hash.
 
 The hydrator checkpoints queue state in SQLite/WAL under the external cache.
 The default 8 requests per second is below the documented 10 requests per
-second ceiling and shares a cross-process host timestamp. A pre-ADR-008
+second ceiling and shares a cross-process host timestamp. A pre-ADR-009
 checkpoint is preserved but cannot be silently reused; start a new census
 label/cache root.
 
@@ -139,8 +171,9 @@ record received Content API enrichment; field-level status remains explicit.
 
 ## 3. Compile and query the bundle
 
-The default build uses `tests/fixtures/corpus/source-records.jsonl`; it is only
-for deterministic development. A full build must name the hydrated snapshot:
+The default build uses the frozen 69-record demonstrator source; it is only for
+deterministic development and review. A full build must name the hydrated
+closing snapshot:
 
 ```sh
 python3 scripts/build_bundle.py \

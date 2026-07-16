@@ -7,11 +7,14 @@ license = { text = "MIT" }
 authors = [{ name = "Chris Page" }]
 dependencies = [
   "jsonschema[format]==4.26.0",
+  "mcp==1.28.1",
   "pyshacl==0.40.0",
 ]
 
 [project.scripts]
 govuk-okf = "govuk_okf.cli:main"
+govuk-okf-demo-mcp = "govuk_okf.demo_mcp:serve_main"
+govuk-okf-demo-query = "govuk_okf.demo_mcp:query_main"
 
 [build-system]
 requires = ["hatchling"]

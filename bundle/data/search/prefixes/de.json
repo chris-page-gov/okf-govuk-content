@@ -1,242 +1,272 @@
 {
+  "dea": [
+    {
+      "df": 2,
+      "token": "deal"
+    },
+    {
+      "df": 1,
+      "token": "dealing"
+    },
+    {
+      "df": 1,
+      "token": "dealing-tax-credits-someone-else"
+    },
+    {
+      "df": 1,
+      "token": "death"
+    }
+  ],
+  "deal": [
+    {
+      "df": 2,
+      "token": "deal"
+    },
+    {
+      "df": 1,
+      "token": "dealing"
+    },
+    {
+      "df": 1,
+      "token": "dealing-tax-credits-someone-else"
+    }
+  ],
+  "deali": [
+    {
+      "df": 1,
+      "token": "dealing"
+    },
+    {
+      "df": 1,
+      "token": "dealing-tax-credits-someone-else"
+    }
+  ],
+  "dealin": [
+    {
+      "df": 1,
+      "token": "dealing"
+    },
+    {
+      "df": 1,
+      "token": "dealing-tax-credits-someone-else"
+    }
+  ],
+  "dealing": [
+    {
+      "df": 1,
+      "token": "dealing"
+    },
+    {
+      "df": 1,
+      "token": "dealing-tax-credits-someone-else"
+    }
+  ],
+  "dealing-": [
+    {
+      "df": 1,
+      "token": "dealing-tax-credits-someone-else"
+    }
+  ],
+  "dealing-t": [
+    {
+      "df": 1,
+      "token": "dealing-tax-credits-someone-else"
+    }
+  ],
+  "dealing-ta": [
+    {
+      "df": 1,
+      "token": "dealing-tax-credits-someone-else"
+    }
+  ],
+  "dealing-tax": [
+    {
+      "df": 1,
+      "token": "dealing-tax-credits-someone-else"
+    }
+  ],
+  "dealing-tax-": [
+    {
+      "df": 1,
+      "token": "dealing-tax-credits-someone-else"
+    }
+  ],
+  "deat": [
+    {
+      "df": 1,
+      "token": "death"
+    }
+  ],
+  "death": [
+    {
+      "df": 1,
+      "token": "death"
+    }
+  ],
+  "dec": [
+    {
+      "df": 1,
+      "token": "decision"
+    }
+  ],
+  "deci": [
+    {
+      "df": 1,
+      "token": "decision"
+    }
+  ],
+  "decis": [
+    {
+      "df": 1,
+      "token": "decision"
+    }
+  ],
+  "decisi": [
+    {
+      "df": 1,
+      "token": "decision"
+    }
+  ],
+  "decisio": [
+    {
+      "df": 1,
+      "token": "decision"
+    }
+  ],
+  "decision": [
+    {
+      "df": 1,
+      "token": "decision"
+    }
+  ],
   "dep": [
     {
-      "df": 3,
+      "df": 2,
       "token": "department"
-    },
-    {
-      "df": 1,
-      "token": "department-for-education"
-    },
-    {
-      "df": 1,
-      "token": "department-for-work-pensions"
     }
   ],
   "depa": [
     {
-      "df": 3,
+      "df": 2,
       "token": "department"
-    },
-    {
-      "df": 1,
-      "token": "department-for-education"
-    },
-    {
-      "df": 1,
-      "token": "department-for-work-pensions"
     }
   ],
   "depar": [
     {
-      "df": 3,
+      "df": 2,
       "token": "department"
-    },
-    {
-      "df": 1,
-      "token": "department-for-education"
-    },
-    {
-      "df": 1,
-      "token": "department-for-work-pensions"
     }
   ],
   "depart": [
     {
-      "df": 3,
+      "df": 2,
       "token": "department"
-    },
-    {
-      "df": 1,
-      "token": "department-for-education"
-    },
-    {
-      "df": 1,
-      "token": "department-for-work-pensions"
     }
   ],
   "departm": [
     {
-      "df": 3,
+      "df": 2,
       "token": "department"
-    },
-    {
-      "df": 1,
-      "token": "department-for-education"
-    },
-    {
-      "df": 1,
-      "token": "department-for-work-pensions"
     }
   ],
   "departme": [
     {
-      "df": 3,
+      "df": 2,
       "token": "department"
-    },
-    {
-      "df": 1,
-      "token": "department-for-education"
-    },
-    {
-      "df": 1,
-      "token": "department-for-work-pensions"
     }
   ],
   "departmen": [
     {
-      "df": 3,
+      "df": 2,
       "token": "department"
-    },
-    {
-      "df": 1,
-      "token": "department-for-education"
-    },
-    {
-      "df": 1,
-      "token": "department-for-work-pensions"
     }
   ],
   "department": [
     {
-      "df": 3,
+      "df": 2,
       "token": "department"
+    }
+  ],
+  "det": [
+    {
+      "df": 2,
+      "token": "details"
     },
     {
       "df": 1,
-      "token": "department-for-education"
+      "token": "detailed_guide"
+    }
+  ],
+  "deta": [
+    {
+      "df": 2,
+      "token": "details"
     },
     {
       "df": 1,
-      "token": "department-for-work-pensions"
+      "token": "detailed_guide"
     }
   ],
-  "department-": [
+  "detai": [
     {
-      "df": 1,
-      "token": "department-for-education"
+      "df": 2,
+      "token": "details"
     },
     {
       "df": 1,
-      "token": "department-for-work-pensions"
+      "token": "detailed_guide"
     }
   ],
-  "department-f": [
+  "detail": [
     {
-      "df": 1,
-      "token": "department-for-education"
+      "df": 2,
+      "token": "details"
     },
     {
       "df": 1,
-      "token": "department-for-work-pensions"
+      "token": "detailed_guide"
     }
   ],
-  "des": [
+  "detaile": [
     {
       "df": 1,
-      "token": "destination"
+      "token": "detailed_guide"
     }
   ],
-  "dest": [
+  "detailed": [
     {
       "df": 1,
-      "token": "destination"
+      "token": "detailed_guide"
     }
   ],
-  "desti": [
+  "detailed_": [
     {
       "df": 1,
-      "token": "destination"
+      "token": "detailed_guide"
     }
   ],
-  "destin": [
+  "detailed_g": [
     {
       "df": 1,
-      "token": "destination"
+      "token": "detailed_guide"
     }
   ],
-  "destina": [
+  "detailed_gu": [
     {
       "df": 1,
-      "token": "destination"
+      "token": "detailed_guide"
     }
   ],
-  "destinat": [
+  "detailed_gui": [
     {
       "df": 1,
-      "token": "destination"
+      "token": "detailed_guide"
     }
   ],
-  "destinati": [
+  "details": [
     {
-      "df": 1,
-      "token": "destination"
-    }
-  ],
-  "destinatio": [
-    {
-      "df": 1,
-      "token": "destination"
-    }
-  ],
-  "destination": [
-    {
-      "df": 1,
-      "token": "destination"
-    }
-  ],
-  "dev": [
-    {
-      "df": 1,
-      "token": "development"
-    }
-  ],
-  "deve": [
-    {
-      "df": 1,
-      "token": "development"
-    }
-  ],
-  "devel": [
-    {
-      "df": 1,
-      "token": "development"
-    }
-  ],
-  "develo": [
-    {
-      "df": 1,
-      "token": "development"
-    }
-  ],
-  "develop": [
-    {
-      "df": 1,
-      "token": "development"
-    }
-  ],
-  "developm": [
-    {
-      "df": 1,
-      "token": "development"
-    }
-  ],
-  "developme": [
-    {
-      "df": 1,
-      "token": "development"
-    }
-  ],
-  "developmen": [
-    {
-      "df": 1,
-      "token": "development"
-    }
-  ],
-  "development": [
-    {
-      "df": 1,
-      "token": "development"
+      "df": 2,
+      "token": "details"
     }
   ]
 }

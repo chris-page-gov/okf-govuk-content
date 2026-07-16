@@ -1,14 +1,276 @@
 {
-  "bes": [
+  "bec": [
     {
       "df": 1,
-      "token": "best"
+      "token": "because"
     }
   ],
-  "best": [
+  "beca": [
     {
       "df": 1,
-      "token": "best"
+      "token": "because"
+    }
+  ],
+  "becau": [
+    {
+      "df": 1,
+      "token": "because"
+    }
+  ],
+  "becaus": [
+    {
+      "df": 1,
+      "token": "because"
+    }
+  ],
+  "because": [
+    {
+      "df": 1,
+      "token": "because"
+    }
+  ],
+  "bee": [
+    {
+      "df": 1,
+      "token": "been"
+    }
+  ],
+  "been": [
+    {
+      "df": 1,
+      "token": "been"
+    }
+  ],
+  "bef": [
+    {
+      "df": 2,
+      "token": "before"
+    }
+  ],
+  "befo": [
+    {
+      "df": 2,
+      "token": "before"
+    }
+  ],
+  "befor": [
+    {
+      "df": 2,
+      "token": "before"
+    }
+  ],
+  "before": [
+    {
+      "df": 2,
+      "token": "before"
+    }
+  ],
+  "ben": [
+    {
+      "df": 15,
+      "token": "benefit"
+    },
+    {
+      "df": 2,
+      "token": "benefits"
+    }
+  ],
+  "bene": [
+    {
+      "df": 15,
+      "token": "benefit"
+    },
+    {
+      "df": 2,
+      "token": "benefits"
+    }
+  ],
+  "benef": [
+    {
+      "df": 15,
+      "token": "benefit"
+    },
+    {
+      "df": 2,
+      "token": "benefits"
+    }
+  ],
+  "benefi": [
+    {
+      "df": 15,
+      "token": "benefit"
+    },
+    {
+      "df": 2,
+      "token": "benefits"
+    }
+  ],
+  "benefit": [
+    {
+      "df": 15,
+      "token": "benefit"
+    },
+    {
+      "df": 2,
+      "token": "benefits"
+    }
+  ],
+  "benefits": [
+    {
+      "df": 2,
+      "token": "benefits"
+    }
+  ],
+  "ber": [
+    {
+      "df": 2,
+      "token": "bereavement"
+    },
+    {
+      "df": 1,
+      "token": "bereaved"
+    },
+    {
+      "df": 1,
+      "token": "bereaved-partners-paternity-leave"
+    }
+  ],
+  "bere": [
+    {
+      "df": 2,
+      "token": "bereavement"
+    },
+    {
+      "df": 1,
+      "token": "bereaved"
+    },
+    {
+      "df": 1,
+      "token": "bereaved-partners-paternity-leave"
+    }
+  ],
+  "berea": [
+    {
+      "df": 2,
+      "token": "bereavement"
+    },
+    {
+      "df": 1,
+      "token": "bereaved"
+    },
+    {
+      "df": 1,
+      "token": "bereaved-partners-paternity-leave"
+    }
+  ],
+  "bereav": [
+    {
+      "df": 2,
+      "token": "bereavement"
+    },
+    {
+      "df": 1,
+      "token": "bereaved"
+    },
+    {
+      "df": 1,
+      "token": "bereaved-partners-paternity-leave"
+    }
+  ],
+  "bereave": [
+    {
+      "df": 2,
+      "token": "bereavement"
+    },
+    {
+      "df": 1,
+      "token": "bereaved"
+    },
+    {
+      "df": 1,
+      "token": "bereaved-partners-paternity-leave"
+    }
+  ],
+  "bereaved": [
+    {
+      "df": 1,
+      "token": "bereaved"
+    },
+    {
+      "df": 1,
+      "token": "bereaved-partners-paternity-leave"
+    }
+  ],
+  "bereaved-": [
+    {
+      "df": 1,
+      "token": "bereaved-partners-paternity-leave"
+    }
+  ],
+  "bereaved-p": [
+    {
+      "df": 1,
+      "token": "bereaved-partners-paternity-leave"
+    }
+  ],
+  "bereaved-pa": [
+    {
+      "df": 1,
+      "token": "bereaved-partners-paternity-leave"
+    }
+  ],
+  "bereaved-par": [
+    {
+      "df": 1,
+      "token": "bereaved-partners-paternity-leave"
+    }
+  ],
+  "bereavem": [
+    {
+      "df": 2,
+      "token": "bereavement"
+    }
+  ],
+  "bereaveme": [
+    {
+      "df": 2,
+      "token": "bereavement"
+    }
+  ],
+  "bereavemen": [
+    {
+      "df": 2,
+      "token": "bereavement"
+    }
+  ],
+  "bereavement": [
+    {
+      "df": 2,
+      "token": "bereavement"
+    }
+  ],
+  "bet": [
+    {
+      "df": 1,
+      "token": "better"
+    }
+  ],
+  "bett": [
+    {
+      "df": 1,
+      "token": "better"
+    }
+  ],
+  "bette": [
+    {
+      "df": 1,
+      "token": "better"
+    }
+  ],
+  "better": [
+    {
+      "df": 1,
+      "token": "better"
     }
   ]
 }

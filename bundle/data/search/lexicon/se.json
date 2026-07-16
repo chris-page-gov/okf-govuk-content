@@ -1,16 +1,21 @@
 [
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings/se.json",
-    "token": "see"
+    "token": "search"
   },
   {
     "df": 2,
     "postings": "data/search/postings/se.json",
+    "token": "send"
+  },
+  {
+    "df": 66,
+    "postings": "data/search/postings/se.json",
     "token": "service"
   },
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings/se.json",
     "token": "services"
   }

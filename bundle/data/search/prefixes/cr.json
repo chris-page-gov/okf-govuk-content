@@ -1,26 +1,48 @@
 {
   "cre": [
     {
-      "df": 1,
+      "df": 4,
+      "token": "credits"
+    },
+    {
+      "df": 2,
       "token": "credit"
     }
   ],
   "cred": [
     {
-      "df": 1,
+      "df": 4,
+      "token": "credits"
+    },
+    {
+      "df": 2,
       "token": "credit"
     }
   ],
   "credi": [
     {
-      "df": 1,
+      "df": 4,
+      "token": "credits"
+    },
+    {
+      "df": 2,
       "token": "credit"
     }
   ],
   "credit": [
     {
-      "df": 1,
+      "df": 4,
+      "token": "credits"
+    },
+    {
+      "df": 2,
       "token": "credit"
+    }
+  ],
+  "credits": [
+    {
+      "df": 4,
+      "token": "credits"
     }
   ]
 }

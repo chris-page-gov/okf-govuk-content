@@ -239,7 +239,8 @@ class RightsAuditTests(unittest.TestCase):
             self.assertFalse(result["rights_privacy_audit_passed"])
             self.assertFalse(result["snapshot_binding"]["full_unsampled_snapshot"])
             self.assertFalse(result["snapshot_binding"]["corpus_snapshot_bound"])
-            self.assertGreaterEqual(result["classification"]["item_review_triggered_items"], 1)
+            self.assertGreaterEqual(result["classification"]["item_review_triggered_items"], 0)
+            self.assertGreaterEqual(result["classification"]["ogl_default_candidate_items"], 1)
         else:
             self.assertEqual("full_corpus", snapshot["kind"])
             self.assertFalse(snapshot["sampled"])

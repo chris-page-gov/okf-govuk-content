@@ -20,7 +20,7 @@
         "items": { "type": "string", "maxLength": 256 }
       }
     },
-    "view": { "enum": ["results", "browse", "relationships", "timeline", "compare"] },
+    "view": { "enum": ["journey", "results", "sitemap", "browse", "relationships", "timeline", "compare"] },
     "mode": { "enum": ["simple", "explore", "evidence"] },
     "language": { "type": "string", "pattern": "^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$" },
     "route": { "type": "string", "maxLength": 768 },

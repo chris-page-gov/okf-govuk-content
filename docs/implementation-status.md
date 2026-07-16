@@ -1,13 +1,15 @@
 # Implementation status
 
 - Status date: 15 July 2026
-- Milestone: T0 census closed
+- Milestone: T0 census closed; bounded new-child demonstrator produced
 - Publication ready: **no**
 
-The repository has a working deterministic fixture pipeline and the main
-release-oriented implementations, but it has not completed the full-corpus,
-evaluation, citation or full-snapshot clean-room gates. The fixture bundle is useful for
-development and review; it is not evidence that Release 1 covers GOV.UK.
+The repository has a working deterministic 69-record new-child demonstrator
+and the main release-oriented implementations, but it has not completed the
+full-corpus, evaluation, citation or full-snapshot clean-room gates. The
+demonstrator is useful for GOV.UK team review; it is not evidence that Release 1
+covers GOV.UK or that these 69 records contain every route relevant to a new
+child.
 
 ## Current evidence
 
@@ -16,15 +18,16 @@ development and review; it is not evidence that Release 1 covers GOV.UK.
 | Contract and controller | 95 requirements, 11 gates and 36 task contracts imported; controller checks pass | Accepted run evidence and terminal requirement dispositions |
 | Official sources | Dated 32-source and 93-URL plan preflight retained; the new T0R-20260715 union closed from 715,902 opposing-pass Search rows, 35 byte-stable sitemap shards and closed organisations/navigation | Immediate enrichment, deferred-field disposition, T1 union closure and final rights/citation snapshot binding |
 | Semantic profile | YAML-LD profile, JSON schemas, crosswalks, shapes and JSON-LD fixture projection produced | Release-snapshot equivalence, integrity and provenance evidence |
-| Bundle and Explorer | 14-record fixture, static search, route index, adjacency, query/hash replay, Pages fallback, passing local/protected-CI real-Chromium gate and read-only CLI produced; exact-byte postings partitions and 1,000-record document maps preserve logical lookup and legacy manifests while bounding physical files | Rerun the exact 836,998-record T0 capacity build, then complete the hydrated closing corpus and measured full-snapshot accessibility/security/performance gates; axe, accessibility-expert and screen-reader review remain open |
+| Bundle and Explorer | Accepted body-free snapshot closes 69/69 seeds with zero unexplained omissions, 118 bounded metadata observations, 753 direct typed boundaries and 127 individually receipted HTTP 200 attempts; static search, route index, adjacency, dedicated journey view, source-query evidence, query/hash replay, Pages fallback and read-only discovery are produced; exact-byte postings partitions and 1,000-record document maps preserve logical lookup and legacy manifests while bounding physical files | The illustrated bounded review and focused security remediation are complete; separately rerun full-corpus capacity/closing and its accessibility/security/performance gates; axe, accessibility-expert and screen-reader review remain open |
+| AI handoff | Question-specific Markdown/JSON export is the universal default; the full portable pack is labelled bulk/archive. The deterministic Python/CLI adapter and official-SDK MCP server expose five read-only, idempotent, closed-world bounded tools, validate the 69-record identity and finite data-plane hashes, and make no model calls or arbitrary URL fetches | Retain the rule that metadata supports discovery, not eligibility or substantive guidance. Local stdio and SDK round trips pass; a remote MCP service would additionally require TLS, authentication, authorisation, Origin validation, rate limits and audit logging |
 | Security | Completed repository-wide scan recorded 14 findings; its remediation diff scan confirmed those fixes and found three residual low issues, all fixed at `27890dc`; 32 focused post-fix tests pass | Run and hash-bind a new full-repository scan after the hydrated release snapshot and publication artefacts are frozen; `security_scan_passed` remains false |
 | Census and hydration | Unsampled T0R-20260715 closed at 3,029,380 source-native candidate identities and 874,507 publication records with zero unexplained omissions. V2 selects 170,468 records (19.49%), defers 465,865 attachment/resource or historic records and represents 233,727 by bulk metadata. The external cache has 449 local-only extracts from 239 documents, and all active filesystems retain at least 10 GiB free. | Complete immediate enrichment, resolve or explicitly accept deferred field coverage, re-enumerate T1, close drift and retain zero unexplained omissions |
 | Personas and stories | Machine-applicable saturation passes for 48 primary persona hypotheses, 17 overlays, 11 dimensions, 83 schema families, 136 overlay pairs, five high-risk t-way scenarios and two successive no-new challenge passes | Authorised human validation and final-snapshot regeneration of six release-v2 stories per persona; UI preference remains not yet testable |
 | Questions | v2 corpus-anchored generator and separate verifier produced | Run against the closed snapshot and independently pass all gold/leakage/split checks |
 | Evaluation and aims | Deterministic SQLite/FTS harness, matched baselines/ablations, raw-trace and analysis contracts produced and fixture-tested | Complete 28,800-question release run against the closed snapshot and aim scorecard |
-| Citations and reproduction | 171/171 citations and 40/40 joint claims verified with zero waivers/blockers; lock-bound CycloneDX SBOM and byte-exact fixture rebuild produced | Regenerate the citation release evidence for the unsampled closing ID and append the distinct, output-hash-bound `ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001`; the existing fixture terminal is deliberately insufficient; then run the full-snapshot clean-room replay |
+| Citations and reproduction | The current 137-claim/205-citation inventory has 158 citation passes, 47 citation failures and 40/44 joint-claim review passes; all 51 failures remain visible blockers with zero waivers. The lock-bound CycloneDX SBOM and bounded-snapshot clean-room replay are generated separately | Acquire claim-specific evidence and independent support review for the blockers, then regenerate against the unsampled closing ID and append the distinct, output-hash-bound `ACT-F2-RELEASE-SNAPSHOT-CITATION-REVIEWS-TERMINAL-001`; the existing pre-release terminal is deliberately insufficient |
 | Usage and activity provenance | Four historical rows plus hash-chained v2 implementation, subagent, deterministic-run and pre-release citation/security terminal records; zero paid API use; source fallbacks, request-budget checkpoint and deterministic `release/provenance-validation.json` retained | Append the distinct final citation and security records so they supersede their pre-release terminals, append/supersede the other exact snapshot-bound terminal activities, close the shared request snapshot, then pass `check_provenance.py --require-release` against the unsampled T1 release ID |
-| Rights and privacy | Bounded disk-backed fixture audit scans 745 publication data assets with zero body/credential findings and records 2 conservative hashed item-review triggers | Rerun against the final T1 hydration manifest; retain final trigger counts/reviews and snapshot-bound evidence |
+| Rights and privacy | Bounded disk-backed audit scans 954 publication assets for `NEW-CHILD-20260715`: 475 classified items, zero body/credential findings, zero retention/secret violations and zero item-review triggers. Mechanical controls pass, but the sampled checkpoint is not a release rights determination | Rerun against the final T1 hydration manifest; retain final trigger counts/reviews and snapshot-bound evidence |
 | Human evidence | Not authorised | Governed participant research; until then UI of choice is `not_yet_testable` |
 
 ## Machine-readable status
@@ -84,13 +87,14 @@ fails projection generation.
 
 - Universal hydration would remain a long-running public-source operation: the
   historical 836,543-route queue has a theoretical minimum of about 29 hours at
-  8 Content API requests/s. ADR-008 replaces that default with expanded Search
+  8 Content API requests/s. ADR-009 replaces that default with expanded Search
   metadata and a versioned two-tier enrichment manifest. The new opening census
   selects 170,468 records, a theoretical minimum of about 5.9 hours, while
   separately exposing 465,865 deferred attachment/resource or historic records.
-  ADR-004 still limits
-  the deterministic rendered-link detector to 75,000 pages and preserves the
-  shared retry/discovery/closing reserve.
+  ADR-004 still limits the deterministic rendered-link detector to 75,000 pages
+  and preserves the shared retry/discovery/closing reserve. The prior universal
+  hydration job has been stopped and preserved; the bounded demonstrator does
+  not imply that this full-release blocker has passed.
 - The first exact T0 capacity build ran 44,342.28 seconds and failed closed on
   a 6,712,946-byte `ca` postings file. ADR-006 implements deterministic bounded
   physical partitions and its failure-shaped regression passes, but the exact

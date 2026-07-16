@@ -1,0 +1,50 @@
+{
+  "tou": [
+    {
+      "df": 1,
+      "token": "touch"
+    }
+  ],
+  "touc": [
+    {
+      "df": 1,
+      "token": "touch"
+    }
+  ],
+  "touch": [
+    {
+      "df": 1,
+      "token": "touch"
+    }
+  ],
+  "tow": [
+    {
+      "df": 1,
+      "token": "towards"
+    }
+  ],
+  "towa": [
+    {
+      "df": 1,
+      "token": "towards"
+    }
+  ],
+  "towar": [
+    {
+      "df": 1,
+      "token": "towards"
+    }
+  ],
+  "toward": [
+    {
+      "df": 1,
+      "token": "towards"
+    }
+  ],
+  "towards": [
+    {
+      "df": 1,
+      "token": "towards"
+    }
+  ]
+}

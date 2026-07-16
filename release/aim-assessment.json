@@ -23,18 +23,18 @@
           "observed": true,
           "operator": "path_exists",
           "path": "bundle/okf-explorer.json",
-          "sha256": "d92365e243c381d3b3c9000dad492687a2bf566283f4494c5901fda300e7fdeb"
+          "sha256": "3087b21a3830ec44abb10c05bf600dad37de1145b08a019f53fcf5929a07429c"
         },
         {
           "check_id": "E-INDEPENDENT-WIKI",
           "description": "The bundle identifies itself as independently derived and non-authoritative.",
           "expected": "Derived, non-authoritative",
           "matched": true,
-          "observed": "Derived, non-authoritative semantic catalogue of GOV.UK content, navigation, organisations, taxonomies and relationships.",
+          "observed": "Derived, non-authoritative projection of exactly 69 frozen GOV.UK new-child metadata records; not a complete GOV.UK corpus.",
           "operator": "json_string_contains",
           "path": "bundle/okf-explorer.json",
           "pointer": "/description",
-          "sha256": "d92365e243c381d3b3c9000dad492687a2bf566283f4494c5901fda300e7fdeb"
+          "sha256": "3087b21a3830ec44abb10c05bf600dad37de1145b08a019f53fcf5929a07429c"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -45,7 +45,7 @@
           "operator": "json_equals",
           "path": "release/manifest.yaml",
           "pointer": "/snapshot/kind",
-          "sha256": "a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2"
+          "sha256": "bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c"
         },
         {
           "check_id": "E-SNAPSHOT-UNSAMPLED",
@@ -56,7 +56,7 @@
           "operator": "json_equals",
           "path": "release/manifest.yaml",
           "pointer": "/snapshot/sampled",
-          "sha256": "a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2"
+          "sha256": "bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c"
         },
         {
           "check_id": "E-CHECKSUMS-RELEASE",
@@ -67,7 +67,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/checksum_validation_passed",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-CLEAN-ROOM-RELEASE",
@@ -78,7 +78,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/clean_room_reproduction_passed",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         }
       ],
       "exceptions": [],
@@ -188,7 +188,7 @@
           "operator": "json_equals",
           "path": "release/manifest.yaml",
           "pointer": "/snapshot/kind",
-          "sha256": "a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2"
+          "sha256": "bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c"
         },
         {
           "check_id": "E-SNAPSHOT-UNSAMPLED",
@@ -199,7 +199,7 @@
           "operator": "json_equals",
           "path": "release/manifest.yaml",
           "pointer": "/snapshot/sampled",
-          "sha256": "a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2"
+          "sha256": "bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c"
         },
         {
           "check_id": "E-FULL-CORPUS",
@@ -210,7 +210,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/full_corpus_reconciled",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-ZERO-OMISSIONS",
@@ -221,7 +221,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/unexplained_omissions",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-RECONCILIATION-ARTEFACT",
@@ -231,7 +231,7 @@
           "operator": "referenced_path_exists",
           "path": "release/manifest.yaml",
           "pointer": "/artifacts/reconciliation",
-          "sha256": "a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2"
+          "sha256": "bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c"
         },
         {
           "check_id": "E-RIGHTS-RELEASE",
@@ -242,7 +242,7 @@
           "operator": "json_equals",
           "path": "release/rights-privacy-audit.json",
           "pointer": "/rights_privacy_audit_passed",
-          "sha256": "24f40fe22f32c0fb94fc42067b39c2ead39a1311d6949065d8fffc086e003d8d"
+          "sha256": "59ceffde12c9ad7330cfa9677a347bb2846bca423cc892ec37ff96846b3b144f"
         }
       ],
       "exceptions": [],
@@ -336,7 +336,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "explorer/src/index.html",
-          "sha256": "6fabf38316aefa702b252d26a3b7e28cc4c2f0e99738df874552c2a29dc3a674"
+          "sha256": "8e4854b78abc35924bf82f9a3d4d3af9edc88ef7d4efd0d52c99f9c8eed649b6"
         },
         {
           "check_id": "E-EXPLORER-NONBROWSER-TESTS",
@@ -368,7 +368,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/human_evaluation_status",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-HUMAN-AIM-FULFILLED",
@@ -379,7 +379,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/human_ui_of_choice_status",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-HUMAN-AIM-PARTLY",
@@ -390,7 +390,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/human_ui_of_choice_status",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-HUMAN-AIM-FAILED",
@@ -401,7 +401,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/human_ui_of_choice_status",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         }
       ],
       "exceptions": [
@@ -494,7 +494,7 @@
           "operator": "json_in",
           "path": "release/status.json",
           "pointer": "/human_evaluation_status",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-HUMAN-COMPLETE",
@@ -505,7 +505,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/human_evaluation_status",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-HUMAN-AIM-FULFILLED",
@@ -516,7 +516,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/human_ui_of_choice_status",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-HUMAN-AIM-PARTLY",
@@ -527,7 +527,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/human_ui_of_choice_status",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-HUMAN-AIM-FAILED",
@@ -538,7 +538,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/human_ui_of_choice_status",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         }
       ],
       "exceptions": [
@@ -625,7 +625,7 @@
           "operator": "json_equals",
           "path": "release/semantic-validation.json",
           "pointer": "/passed",
-          "sha256": "46c36354ca25306d700c0339e73f78545f302e8219b7a0b5ef05d7f07f1d10a3"
+          "sha256": "3a333ce3dab784d0509e5a3ca344e82f97d2a672984ae586d83aa342e0ebeadf"
         },
         {
           "check_id": "E-STATIC-SEARCH",
@@ -634,7 +634,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "bundle/data/search/manifest.json",
-          "sha256": "7e6e0845fdffc3e9196e812d4ce887166df8291098882a3066d15f772f8e8b30"
+          "sha256": "4ee930c908e56b630901509457a1f5a8a81f9957256fc38d032d915d04c679ed"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -645,7 +645,7 @@
           "operator": "json_equals",
           "path": "release/manifest.yaml",
           "pointer": "/snapshot/kind",
-          "sha256": "a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2"
+          "sha256": "bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c"
         },
         {
           "check_id": "E-FULL-CORPUS",
@@ -656,7 +656,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/full_corpus_reconciled",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-SEMANTIC-RELEASE",
@@ -667,7 +667,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/semantic_validation_passed",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         }
       ],
       "exceptions": [],
@@ -769,7 +769,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/question_contract_passed",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-AGENT-EVALUATION",
@@ -780,7 +780,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/agent_evaluation_status",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-MACHINE-RESULTS",
@@ -803,7 +803,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/citation_verification_passed",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-PAIRED-COMPARISONS",
@@ -971,7 +971,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/citation_verification_passed",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-AGENT-EVALUATION",
@@ -982,7 +982,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/agent_evaluation_status",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         }
       ],
       "exceptions": [],
@@ -1071,7 +1071,7 @@
           "operator": "json_equals",
           "path": "release/semantic-validation.json",
           "pointer": "/passed",
-          "sha256": "46c36354ca25306d700c0339e73f78545f302e8219b7a0b5ef05d7f07f1d10a3"
+          "sha256": "3a333ce3dab784d0509e5a3ca344e82f97d2a672984ae586d83aa342e0ebeadf"
         },
         {
           "check_id": "E-SEMANTIC-RELEASE",
@@ -1082,7 +1082,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/semantic_validation_passed",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-CLEAN-ROOM-RELEASE",
@@ -1093,7 +1093,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/clean_room_reproduction_passed",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-PORTABILITY-AIM-FULFILLED",
@@ -1206,7 +1206,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "provenance/activity-ledger.jsonl",
-          "sha256": "638bfc7f64f8472859d1b124dfa685b9cc955dc792c4d1856657ef68f14769d7"
+          "sha256": "b07608a476fd9a41545cad616040c8e76c10ee35a65a484d2412a7dd4a860448"
         },
         {
           "check_id": "E-REQUIREMENT-COVERAGE",
@@ -1217,7 +1217,7 @@
           "operator": "json_equals",
           "path": "governance/requirements-status.json",
           "pointer": "/counts/requirements",
-          "sha256": "b92ee3a9ca6299d04e8b69d8a8de4840bb279ada241bf75a8448d6af35d7f565"
+          "sha256": "779b3678f0e2310a66f6d05ad59fe7f2ff47089d476e98dafa211d67ade7eb77"
         },
         {
           "check_id": "E-TRACEABILITY-COVERAGE",
@@ -1228,7 +1228,7 @@
           "operator": "json_equals",
           "path": "governance/traceability-status.json",
           "pointer": "/counts/clauses",
-          "sha256": "bf929e1f730b67bfe136c5a8a0c8467a282a658fec168e2fea76bb7023863c37"
+          "sha256": "fd459a4556a7c25e1fc3dd55e106f3769d6884a4447868c6523136b6755f3cd5"
         },
         {
           "check_id": "E-CLEAN-ROOM-FIXTURE",
@@ -1239,7 +1239,7 @@
           "operator": "json_equals",
           "path": "release/clean-room-reproduction.json",
           "pointer": "/fixture_reproduction_passed",
-          "sha256": "cbc2500ddf3a18e4547a3a6b02c2e9dc14f294549cd5d344876f181f00c7419a"
+          "sha256": "fd45dad1a1eed49ee72aaa60e6c07cc813426b636f6080b0fe5ba166c7850831"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -1250,7 +1250,7 @@
           "operator": "json_equals",
           "path": "release/manifest.yaml",
           "pointer": "/snapshot/kind",
-          "sha256": "a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2"
+          "sha256": "bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c"
         },
         {
           "check_id": "E-CLEAN-ROOM-RELEASE",
@@ -1261,7 +1261,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/clean_room_reproduction_passed",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         },
         {
           "check_id": "E-CHECKSUMS-RELEASE",
@@ -1272,7 +1272,7 @@
           "operator": "json_equals",
           "path": "release/status.json",
           "pointer": "/checksum_validation_passed",
-          "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+          "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
         }
       ],
       "exceptions": [],
@@ -1352,7 +1352,7 @@
     }
   ],
   "assessment_date": "2026-07-12",
-  "assessment_id": "aim-assessment-fixture-2026-07-11",
+  "assessment_id": "aim-assessment-NEW-CHILD-20260715",
   "assessment_tier": "fixture_checkpoint",
   "counts": {
     "aims": 9,
@@ -1379,7 +1379,7 @@
         "operator": "json_equals",
         "path": "release/manifest.yaml",
         "pointer": "/snapshot/kind",
-        "sha256": "a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2"
+        "sha256": "bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c"
       },
       {
         "check_id": "E-SNAPSHOT-UNSAMPLED",
@@ -1390,7 +1390,7 @@
         "operator": "json_equals",
         "path": "release/manifest.yaml",
         "pointer": "/snapshot/sampled",
-        "sha256": "a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2"
+        "sha256": "bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c"
       },
       {
         "check_id": "E-FULL-CORPUS",
@@ -1401,7 +1401,7 @@
         "operator": "json_equals",
         "path": "release/status.json",
         "pointer": "/full_corpus_reconciled",
-        "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+        "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
       },
       {
         "check_id": "E-ZERO-OMISSIONS",
@@ -1412,7 +1412,7 @@
         "operator": "json_equals",
         "path": "release/status.json",
         "pointer": "/unexplained_omissions",
-        "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+        "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
       },
       {
         "check_id": "E-SEMANTIC-RELEASE",
@@ -1423,7 +1423,7 @@
         "operator": "json_equals",
         "path": "release/status.json",
         "pointer": "/semantic_validation_passed",
-        "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+        "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
       },
       {
         "check_id": "E-QUESTIONS-RELEASE",
@@ -1434,7 +1434,7 @@
         "operator": "json_equals",
         "path": "release/status.json",
         "pointer": "/question_contract_passed",
-        "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+        "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
       },
       {
         "check_id": "E-AGENT-EVALUATION",
@@ -1445,7 +1445,7 @@
         "operator": "json_equals",
         "path": "release/status.json",
         "pointer": "/agent_evaluation_status",
-        "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+        "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
       },
       {
         "check_id": "E-CITATIONS-RELEASE",
@@ -1456,7 +1456,7 @@
         "operator": "json_equals",
         "path": "release/status.json",
         "pointer": "/citation_verification_passed",
-        "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+        "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
       },
       {
         "check_id": "E-CLEAN-ROOM-RELEASE",
@@ -1467,7 +1467,7 @@
         "operator": "json_equals",
         "path": "release/status.json",
         "pointer": "/clean_room_reproduction_passed",
-        "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+        "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
       },
       {
         "check_id": "E-CHECKSUMS-RELEASE",
@@ -1478,7 +1478,7 @@
         "operator": "json_equals",
         "path": "release/status.json",
         "pointer": "/checksum_validation_passed",
-        "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+        "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
       },
       {
         "check_id": "E-RIGHTS-RELEASE",
@@ -1489,7 +1489,7 @@
         "operator": "json_equals",
         "path": "release/rights-privacy-audit.json",
         "pointer": "/rights_privacy_audit_passed",
-        "sha256": "24f40fe22f32c0fb94fc42067b39c2ead39a1311d6949065d8fffc086e003d8d"
+        "sha256": "59ceffde12c9ad7330cfa9677a347bb2846bca423cc892ec37ff96846b3b144f"
       }
     ],
     "passed": false,
@@ -1529,11 +1529,11 @@
     },
     "release_manifest": {
       "path": "release/manifest.yaml",
-      "sha256": "a61235debedef4437ab9b5670effc00b0625f32f71708d3034ee28e2a838c9a2"
+      "sha256": "bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c"
     },
     "release_status": {
       "path": "release/status.json",
-      "sha256": "3543473af0d4896c7ad3b187d69834722a791f059dc18219c31dfcd161bdb2a9"
+      "sha256": "cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85"
     },
     "requirements": {
       "path": "governance/requirements.yaml",
@@ -1559,7 +1559,7 @@
   "schema": "afhf-govuk-okf-aim-assessment.v1",
   "snapshot": {
     "kind": "fixture",
-    "release_id": "fixture-2026-07-11",
+    "release_id": "NEW-CHILD-20260715",
     "sampled": true
   }
 }

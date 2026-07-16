@@ -1,0 +1,108 @@
+{
+  "cen": [
+    {
+      "df": 1,
+      "token": "centre"
+    },
+    {
+      "df": 1,
+      "token": "centres"
+    }
+  ],
+  "cent": [
+    {
+      "df": 1,
+      "token": "centre"
+    },
+    {
+      "df": 1,
+      "token": "centres"
+    }
+  ],
+  "centr": [
+    {
+      "df": 1,
+      "token": "centre"
+    },
+    {
+      "df": 1,
+      "token": "centres"
+    }
+  ],
+  "centre": [
+    {
+      "df": 1,
+      "token": "centre"
+    },
+    {
+      "df": 1,
+      "token": "centres"
+    }
+  ],
+  "centres": [
+    {
+      "df": 1,
+      "token": "centres"
+    }
+  ],
+  "cer": [
+    {
+      "df": 1,
+      "token": "certificates"
+    }
+  ],
+  "cert": [
+    {
+      "df": 1,
+      "token": "certificates"
+    }
+  ],
+  "certi": [
+    {
+      "df": 1,
+      "token": "certificates"
+    }
+  ],
+  "certif": [
+    {
+      "df": 1,
+      "token": "certificates"
+    }
+  ],
+  "certifi": [
+    {
+      "df": 1,
+      "token": "certificates"
+    }
+  ],
+  "certific": [
+    {
+      "df": 1,
+      "token": "certificates"
+    }
+  ],
+  "certifica": [
+    {
+      "df": 1,
+      "token": "certificates"
+    }
+  ],
+  "certificat": [
+    {
+      "df": 1,
+      "token": "certificates"
+    }
+  ],
+  "certificate": [
+    {
+      "df": 1,
+      "token": "certificates"
+    }
+  ],
+  "certificates": [
+    {
+      "df": 1,
+      "token": "certificates"
+    }
+  ]
+}

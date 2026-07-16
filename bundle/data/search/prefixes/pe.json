@@ -1,38 +1,90 @@
 {
-  "pen": [
+  "peo": [
     {
-      "df": 3,
-      "token": "pensions"
+      "df": 2,
+      "token": "people"
     }
   ],
-  "pens": [
+  "peop": [
     {
-      "df": 3,
-      "token": "pensions"
+      "df": 2,
+      "token": "people"
     }
   ],
-  "pensi": [
+  "peopl": [
     {
-      "df": 3,
-      "token": "pensions"
+      "df": 2,
+      "token": "people"
     }
   ],
-  "pensio": [
+  "people": [
     {
-      "df": 3,
-      "token": "pensions"
+      "df": 2,
+      "token": "people"
     }
   ],
-  "pension": [
+  "per": [
     {
-      "df": 3,
-      "token": "pensions"
+      "df": 2,
+      "token": "periods"
+    },
+    {
+      "df": 1,
+      "token": "personal"
     }
   ],
-  "pensions": [
+  "peri": [
     {
-      "df": 3,
-      "token": "pensions"
+      "df": 2,
+      "token": "periods"
+    }
+  ],
+  "perio": [
+    {
+      "df": 2,
+      "token": "periods"
+    }
+  ],
+  "period": [
+    {
+      "df": 2,
+      "token": "periods"
+    }
+  ],
+  "periods": [
+    {
+      "df": 2,
+      "token": "periods"
+    }
+  ],
+  "pers": [
+    {
+      "df": 1,
+      "token": "personal"
+    }
+  ],
+  "perso": [
+    {
+      "df": 1,
+      "token": "personal"
+    }
+  ],
+  "person": [
+    {
+      "df": 1,
+      "token": "personal"
+    }
+  ],
+  "persona": [
+    {
+      "df": 1,
+      "token": "personal"
+    }
+  ],
+  "personal": [
+    {
+      "df": 1,
+      "token": "personal"
     }
   ]
 }

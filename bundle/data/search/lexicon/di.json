@@ -1,12 +1,47 @@
 [
   {
-    "df": 2,
+    "df": 1,
+    "postings": "data/search/postings/di.json",
+    "token": "dies"
+  },
+  {
+    "df": 66,
     "postings": "data/search/postings/di.json",
     "token": "digital"
   },
   {
     "df": 1,
     "postings": "data/search/postings/di.json",
-    "token": "discovered"
+    "token": "direct"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/di.json",
+    "token": "disabilities"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/di.json",
+    "token": "disability"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/di.json",
+    "token": "disability-living-allowance-children"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/di.json",
+    "token": "disabled"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/di.json",
+    "token": "disabled-facilities-grants"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/di.json",
+    "token": "discrimination"
   }
 ]

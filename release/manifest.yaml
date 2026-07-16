@@ -19,7 +19,7 @@
     "status": "release/status.json"
   },
   "counts": {
-    "publication_records": 14
+    "publication_records": 69
   },
   "gates": {
     "aim_assessment_passed": false,
@@ -38,11 +38,11 @@
     "semantic_validation_passed": false
   },
   "publication_ready": false,
-  "release_id": "fixture-2026-07-11",
+  "release_id": "NEW-CHILD-20260715",
   "release_kind": "fixture",
   "schema": "afhf-govuk-okf-release-manifest.v1",
   "snapshot": {
-    "id": "fixture-2026-07-11",
+    "id": "NEW-CHILD-20260715",
     "kind": "fixture",
     "sampled": true
   }

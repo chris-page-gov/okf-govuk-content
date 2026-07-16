@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/ju.json",
+    "token": "junior"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ju.json",
+    "token": "junior-individual-savings-accounts"
+  }
+]

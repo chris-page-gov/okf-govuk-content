@@ -38,7 +38,7 @@ tombstone, external boundary link or explicit exception.
 At the configured 8 requests/s, universal hydration of the latest 870,398
 sitemap-unique paths has a theoretical network floor of roughly 30 hours 13
 minutes before retries or Search-only additions. That is now a comparison, not
-the default plan. ADR-008 acquires expanded Search metadata first, then selects
+the default plan. ADR-009 acquires expanded Search metadata first, then selects
 Content API requests for missing identities, structure, explicit lifecycle
 dispositions and a deterministic audit sample. Attachment/resource families
 and historic Search records are explicitly deferred pending an authoritative

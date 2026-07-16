@@ -1,44 +1,84 @@
 {
   "edu": [
     {
-      "df": 2,
+      "df": 9,
       "token": "education"
+    },
+    {
+      "df": 2,
+      "token": "educational"
     }
   ],
   "educ": [
     {
-      "df": 2,
+      "df": 9,
       "token": "education"
+    },
+    {
+      "df": 2,
+      "token": "educational"
     }
   ],
   "educa": [
     {
-      "df": 2,
+      "df": 9,
       "token": "education"
+    },
+    {
+      "df": 2,
+      "token": "educational"
     }
   ],
   "educat": [
     {
-      "df": 2,
+      "df": 9,
       "token": "education"
+    },
+    {
+      "df": 2,
+      "token": "educational"
     }
   ],
   "educati": [
     {
-      "df": 2,
+      "df": 9,
       "token": "education"
+    },
+    {
+      "df": 2,
+      "token": "educational"
     }
   ],
   "educatio": [
     {
-      "df": 2,
+      "df": 9,
       "token": "education"
+    },
+    {
+      "df": 2,
+      "token": "educational"
     }
   ],
   "education": [
     {
-      "df": 2,
+      "df": 9,
       "token": "education"
+    },
+    {
+      "df": 2,
+      "token": "educational"
+    }
+  ],
+  "educationa": [
+    {
+      "df": 2,
+      "token": "educational"
+    }
+  ],
+  "educational": [
+    {
+      "df": 2,
+      "token": "educational"
     }
   ]
 }

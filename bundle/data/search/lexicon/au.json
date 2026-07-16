@@ -1,0 +1,22 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/au.json",
+    "token": "au"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/au.json",
+    "token": "au-pairs-employment-law"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/au.json",
+    "token": "authorisation"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/au.json",
+    "token": "authoritys"
+  }
+]

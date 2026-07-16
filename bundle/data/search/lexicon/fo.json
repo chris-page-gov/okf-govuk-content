@@ -2,11 +2,16 @@
   {
     "df": 1,
     "postings": "data/search/postings/fo.json",
-    "token": "foreign"
+    "token": "foods"
+  },
+  {
+    "df": 9,
+    "postings": "data/search/postings/fo.json",
+    "token": "form"
   },
   {
     "df": 1,
     "postings": "data/search/postings/fo.json",
-    "token": "foreign-travel-advice"
+    "token": "forms"
   }
 ]

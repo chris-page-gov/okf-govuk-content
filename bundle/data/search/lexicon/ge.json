@@ -1,0 +1,22 @@
+[
+  {
+    "df": 21,
+    "postings": "data/search/postings/ge.json",
+    "token": "get"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ge.json",
+    "token": "get-childcare"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ge.json",
+    "token": "get-extra-early-years-funding"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ge.json",
+    "token": "gets"
+  }
+]

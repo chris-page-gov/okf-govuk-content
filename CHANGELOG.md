@@ -7,7 +7,7 @@ semantic versioning.
 
 ### Added
 
-- ADR-008 bulk-first acquisition: expanded Search metadata, deterministic
+- ADR-009 bulk-first acquisition: expanded Search metadata, deterministic
   selective Content API enrichment, a queryable external SQLite/FTS5 extract
   database with organisation/taxon/world-location relationships, EXTSSD cache
   detection and a 10 GiB minimum-free-space brake replacing the former retained
@@ -15,6 +15,28 @@ semantic versioning.
   records and policy v2 selected 170,468 for immediate enrichment while keeping
   465,865 deferred field gaps visible. Public corpus and release projections
   remain body-free.
+- Bounded `NEW-CHILD-20260715` demonstrator with an exact 69-identity Search
+  API seed denominator across pregnancy and birth, financial help for children
+  and childcare; every seed has allowlisted Content API metadata and every
+  direct out-of-cohort target remains an evidence-bearing typed boundary.
+- Dedicated deep-linkable Explorer `New child journey` view with 69/69 closure,
+  acquisition ceilings, source-query evidence, journey groups, computed
+  publisher evidence, record provenance, explicit boundary samples and AI
+  handoff links. The view remains visibly non-authoritative and does not claim
+  complete GOV.UK or personalised eligibility coverage.
+- Model-independent AI input: a single portable Markdown/JSON evidence pack,
+  deterministic query/context CLI and Python adapter, plus five bounded,
+  read-only, closed-world MCP tools and three resources built with the stable
+  official Python SDK. The adapter makes no model calls, writes or arbitrary
+  URL requests.
+- Immutable body-free acquisition envelopes, exact programme/local request
+  intervals, network-free reconstruction, tamper checks and a separate
+  250-record/500-attempt demonstrator contract. Complete page bodies, rendered
+  pages and attachment bytes remain excluded.
+- Screenshot-illustrated Explorer and AI walkthrough documentation, including
+  stable deep links, evidence interpretation and client setup examples.
+- ADR-008 records why the bounded demonstrator is a review milestone rather
+  than a substitute for the T1-closed full-corpus release.
 - Controlling brief, execution contract, requirements register and traceability
   crosswalk.
 - Repository working agreement, explicit `main` bootstrap and public GitHub
@@ -125,6 +147,24 @@ semantic versioning.
 
 ### Fixed
 
+- Fail closed on incomplete or expanding demonstrator seed sets, nested Content
+  API link targets, unclassified relationship targets, unsafe snapshot paths
+  and mismatched descriptor/data-manifest demonstrator integrity.
+- Rejected and quarantined the first 124-request demonstrator attempt after
+  independent review, then reacquired the exact 69-record seed set in 127
+  successful attempts with per-attempt receipts, transitive identity checks,
+  opening/closing group reconciliation, shallow link allowlists and atomic
+  pre-promotion validation.
+- Reject generic bundles at the AI adapter boundary, verify every finite search,
+  record, route and adjacency shard before serving MCP, delimit untrusted
+  Markdown, and distinguish local stdio clients from ChatGPT remote MCP or
+  Secure MCP Tunnel setup.
+- Make the full browser audit data-derived rather than coupled to the historical
+  `welcome`/Government Digital Service fixture, while retaining exact gzip,
+  range-pack, deep-route, accessibility and performance assertions.
+- Keep all generated Explorer entrypoints string-valued while adding the
+  demonstrator hash under `entrypoint_integrity`, preserving shared Explorer
+  compatibility.
 - Assigned the sitemap/routing topology decision its unique `ADR-007`
   identity, leaving the search-sharding decision as `ADR-006`, and synchronized
   architecture and status references.

@@ -1,183 +1,119 @@
 {
   "document_type": [
     {
+      "count": 32,
+      "value": "guide"
+    },
+    {
+      "count": 21,
+      "value": "answer"
+    },
+    {
+      "count": 8,
+      "value": "local_transaction"
+    },
+    {
+      "count": 3,
+      "value": "transaction"
+    },
+    {
       "count": 2,
-      "value": "taxon"
+      "value": "smart_answer"
     },
     {
       "count": 1,
-      "value": "document_collection"
+      "value": "detailed_guide"
     },
     {
       "count": 1,
-      "value": "external_content"
-    },
-    {
-      "count": 1,
-      "value": "guidance"
-    },
-    {
-      "count": 1,
-      "value": "homepage"
-    },
-    {
-      "count": 1,
-      "value": "mainstream_browse_page"
-    },
-    {
-      "count": 1,
-      "value": "organisation"
-    },
-    {
-      "count": 1,
-      "value": "redirect"
-    },
-    {
-      "count": 1,
-      "value": "redirect_destination"
+      "value": "place"
     },
     {
       "count": 1,
       "value": "step_by_step_nav"
-    },
-    {
-      "count": 1,
-      "value": "transaction"
-    },
-    {
-      "count": 1,
-      "value": "travel_advice"
-    },
-    {
-      "count": 1,
-      "value": "world_location"
     }
   ],
   "language": [
     {
-      "count": 13,
+      "count": 69,
       "value": "en"
-    },
-    {
-      "count": 1,
-      "value": "cy"
     }
   ],
   "lifecycle": [
     {
-      "count": 13,
+      "count": 69,
       "value": "published"
-    },
-    {
-      "count": 1,
-      "value": "redirect"
     }
   ],
   "publisher": [
     {
-      "count": 7,
-      "value": "Publisher not available from admitted source"
-    },
-    {
-      "count": 2,
+      "count": 66,
       "value": "Government Digital Service"
     },
     {
-      "count": 1,
-      "value": "Department for Work and Pensions"
+      "count": 2,
+      "value": "Publisher not available from admitted source"
     },
     {
       "count": 1,
-      "value": "Driver and Vehicle Standards Agency"
-    },
-    {
-      "count": 1,
-      "value": "Foreign, Commonwealth & Development Office"
-    },
-    {
-      "count": 1,
-      "value": "The National Archives"
-    },
-    {
-      "count": 1,
-      "value": "UK Hydrographic Office"
+      "value": "Ofsted"
     }
   ],
   "schema": "okf-facets.v1",
   "schema_name": [
     {
+      "count": 32,
+      "value": "guide"
+    },
+    {
+      "count": 21,
+      "value": "answer"
+    },
+    {
+      "count": 8,
+      "value": "local_transaction"
+    },
+    {
+      "count": 3,
+      "value": "transaction"
+    },
+    {
       "count": 2,
-      "value": "taxon"
+      "value": "smart_answer"
     },
     {
       "count": 1,
-      "value": "document_collection"
+      "value": "detailed_guide"
     },
     {
       "count": 1,
-      "value": "external_content"
-    },
-    {
-      "count": 1,
-      "value": "homepage"
-    },
-    {
-      "count": 1,
-      "value": "mainstream_browse_page"
-    },
-    {
-      "count": 1,
-      "value": "organisation"
-    },
-    {
-      "count": 1,
-      "value": "publication"
-    },
-    {
-      "count": 1,
-      "value": "redirect"
+      "value": "place"
     },
     {
       "count": 1,
       "value": "step_by_step_nav"
-    },
-    {
-      "count": 1,
-      "value": "transaction"
-    },
-    {
-      "count": 1,
-      "value": "travel_advice"
-    },
-    {
-      "count": 1,
-      "value": "unknown"
-    },
-    {
-      "count": 1,
-      "value": "world_location"
     }
   ],
   "source_membership": [
     {
-      "count": 10,
-      "value": "fixture-content-api"
+      "count": 69,
+      "value": "new-child-demo-search-seed"
     },
     {
-      "count": 1,
-      "value": "fixture-organisations-api"
+      "count": 69,
+      "value": "structured-content-api"
     },
     {
-      "count": 1,
-      "value": "fixture-search-api"
+      "count": 47,
+      "value": "mainstream-browse:childcare-parenting/financial-help-children"
     },
     {
-      "count": 1,
-      "value": "redirect-destination"
+      "count": 23,
+      "value": "mainstream-browse:childcare-parenting/childcare"
     },
     {
-      "count": 1,
-      "value": "structured-linked-content"
+      "count": 15,
+      "value": "mainstream-browse:childcare-parenting/pregnancy-birth"
     }
   ]
 }

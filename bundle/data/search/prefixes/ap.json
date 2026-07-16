@@ -1,68 +1,300 @@
 {
-  "api": [
-    {
-      "df": 1,
-      "token": "api"
-    }
-  ],
   "app": [
     {
+      "df": 13,
+      "token": "apply"
+    },
+    {
+      "df": 2,
+      "token": "appeal"
+    },
+    {
+      "df": 2,
+      "token": "appointees"
+    },
+    {
+      "df": 2,
+      "token": "approved"
+    },
+    {
       "df": 1,
-      "token": "apply.example.service.gov.uk"
+      "token": "appeals"
+    },
+    {
+      "df": 1,
+      "token": "apply-free-school-meals"
+    },
+    {
+      "df": 1,
+      "token": "apply-school-transport-for-child-with-special-educational-needs-sen"
+    },
+    {
+      "df": 1,
+      "token": "appointments"
+    }
+  ],
+  "appe": [
+    {
+      "df": 2,
+      "token": "appeal"
+    },
+    {
+      "df": 1,
+      "token": "appeals"
+    }
+  ],
+  "appea": [
+    {
+      "df": 2,
+      "token": "appeal"
+    },
+    {
+      "df": 1,
+      "token": "appeals"
+    }
+  ],
+  "appeal": [
+    {
+      "df": 2,
+      "token": "appeal"
+    },
+    {
+      "df": 1,
+      "token": "appeals"
+    }
+  ],
+  "appeals": [
+    {
+      "df": 1,
+      "token": "appeals"
     }
   ],
   "appl": [
     {
+      "df": 13,
+      "token": "apply"
+    },
+    {
       "df": 1,
-      "token": "apply.example.service.gov.uk"
+      "token": "apply-free-school-meals"
+    },
+    {
+      "df": 1,
+      "token": "apply-school-transport-for-child-with-special-educational-needs-sen"
     }
   ],
   "apply": [
     {
-      "df": 1,
-      "token": "apply.example.service.gov.uk"
-    }
-  ],
-  "apply.": [
+      "df": 13,
+      "token": "apply"
+    },
     {
       "df": 1,
-      "token": "apply.example.service.gov.uk"
-    }
-  ],
-  "apply.e": [
+      "token": "apply-free-school-meals"
+    },
     {
       "df": 1,
-      "token": "apply.example.service.gov.uk"
+      "token": "apply-school-transport-for-child-with-special-educational-needs-sen"
     }
   ],
-  "apply.ex": [
+  "apply-": [
     {
       "df": 1,
-      "token": "apply.example.service.gov.uk"
+      "token": "apply-free-school-meals"
+    },
+    {
+      "df": 1,
+      "token": "apply-school-transport-for-child-with-special-educational-needs-sen"
     }
   ],
-  "apply.exa": [
+  "apply-f": [
     {
       "df": 1,
-      "token": "apply.example.service.gov.uk"
+      "token": "apply-free-school-meals"
     }
   ],
-  "apply.exam": [
+  "apply-fr": [
     {
       "df": 1,
-      "token": "apply.example.service.gov.uk"
+      "token": "apply-free-school-meals"
     }
   ],
-  "apply.examp": [
+  "apply-fre": [
     {
       "df": 1,
-      "token": "apply.example.service.gov.uk"
+      "token": "apply-free-school-meals"
     }
   ],
-  "apply.exampl": [
+  "apply-free": [
     {
       "df": 1,
-      "token": "apply.example.service.gov.uk"
+      "token": "apply-free-school-meals"
+    }
+  ],
+  "apply-free-": [
+    {
+      "df": 1,
+      "token": "apply-free-school-meals"
+    }
+  ],
+  "apply-free-s": [
+    {
+      "df": 1,
+      "token": "apply-free-school-meals"
+    }
+  ],
+  "apply-s": [
+    {
+      "df": 1,
+      "token": "apply-school-transport-for-child-with-special-educational-needs-sen"
+    }
+  ],
+  "apply-sc": [
+    {
+      "df": 1,
+      "token": "apply-school-transport-for-child-with-special-educational-needs-sen"
+    }
+  ],
+  "apply-sch": [
+    {
+      "df": 1,
+      "token": "apply-school-transport-for-child-with-special-educational-needs-sen"
+    }
+  ],
+  "apply-scho": [
+    {
+      "df": 1,
+      "token": "apply-school-transport-for-child-with-special-educational-needs-sen"
+    }
+  ],
+  "apply-schoo": [
+    {
+      "df": 1,
+      "token": "apply-school-transport-for-child-with-special-educational-needs-sen"
+    }
+  ],
+  "apply-school": [
+    {
+      "df": 1,
+      "token": "apply-school-transport-for-child-with-special-educational-needs-sen"
+    }
+  ],
+  "appo": [
+    {
+      "df": 2,
+      "token": "appointees"
+    },
+    {
+      "df": 1,
+      "token": "appointments"
+    }
+  ],
+  "appoi": [
+    {
+      "df": 2,
+      "token": "appointees"
+    },
+    {
+      "df": 1,
+      "token": "appointments"
+    }
+  ],
+  "appoin": [
+    {
+      "df": 2,
+      "token": "appointees"
+    },
+    {
+      "df": 1,
+      "token": "appointments"
+    }
+  ],
+  "appoint": [
+    {
+      "df": 2,
+      "token": "appointees"
+    },
+    {
+      "df": 1,
+      "token": "appointments"
+    }
+  ],
+  "appointe": [
+    {
+      "df": 2,
+      "token": "appointees"
+    }
+  ],
+  "appointee": [
+    {
+      "df": 2,
+      "token": "appointees"
+    }
+  ],
+  "appointees": [
+    {
+      "df": 2,
+      "token": "appointees"
+    }
+  ],
+  "appointm": [
+    {
+      "df": 1,
+      "token": "appointments"
+    }
+  ],
+  "appointme": [
+    {
+      "df": 1,
+      "token": "appointments"
+    }
+  ],
+  "appointmen": [
+    {
+      "df": 1,
+      "token": "appointments"
+    }
+  ],
+  "appointment": [
+    {
+      "df": 1,
+      "token": "appointments"
+    }
+  ],
+  "appointments": [
+    {
+      "df": 1,
+      "token": "appointments"
+    }
+  ],
+  "appr": [
+    {
+      "df": 2,
+      "token": "approved"
+    }
+  ],
+  "appro": [
+    {
+      "df": 2,
+      "token": "approved"
+    }
+  ],
+  "approv": [
+    {
+      "df": 2,
+      "token": "approved"
+    }
+  ],
+  "approve": [
+    {
+      "df": 2,
+      "token": "approved"
+    }
+  ],
+  "approved": [
+    {
+      "df": 2,
+      "token": "approved"
     }
   ]
 }

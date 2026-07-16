@@ -2,6 +2,46 @@
   {
     "df": 1,
     "postings": "data/search/postings/be.json",
-    "token": "best"
+    "token": "because"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/be.json",
+    "token": "been"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/be.json",
+    "token": "before"
+  },
+  {
+    "df": 15,
+    "postings": "data/search/postings/be.json",
+    "token": "benefit"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/be.json",
+    "token": "benefits"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/be.json",
+    "token": "bereaved"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/be.json",
+    "token": "bereaved-partners-paternity-leave"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/be.json",
+    "token": "bereavement"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/be.json",
+    "token": "better"
   }
 ]

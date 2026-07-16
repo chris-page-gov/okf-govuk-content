@@ -2,27 +2,23 @@
   "bundle": "bundle",
   "json_schema": {
     "by_type": {
-      "govuk:Assertion": 16,
-      "govuk:Attachment": 1,
-      "govuk:Collection": 1,
-      "govuk:ContentItem": 10,
-      "govuk:ContentType": 13,
-      "govuk:Document": 10,
-      "govuk:Evidence": 38,
+      "govuk:Assertion": 392,
+      "govuk:ContentItem": 69,
+      "govuk:ContentType": 8,
+      "govuk:Document": 69,
+      "govuk:Evidence": 476,
       "govuk:InferenceActivity": 1,
-      "govuk:MainstreamBrowsePage": 1,
-      "govuk:Organisation": 6,
-      "govuk:Route": 14,
-      "govuk:SchemaFamily": 13,
-      "govuk:Taxon": 2
+      "govuk:Organisation": 14,
+      "govuk:Route": 69,
+      "govuk:SchemaFamily": 8
     },
     "draft": "2020-12",
-    "nodes": 126,
+    "nodes": 1106,
     "passed": true
   },
   "passed": true,
   "rdfc": {
-    "aggregate_sha256": "77a4a26dfebefa002e9ed828693b7b5dde42076efa5bf8a6ee5ba199d7b13a00",
+    "aggregate_sha256": "922e22d5eba7c55a290298191bd4c8d35d3b8bd010eee890cf7582d4dd8dcd42",
     "algorithm": "RDFC-1.0",
     "implementation": {
       "jsonld": "9.0.0",
@@ -33,33 +29,27 @@
     "passed": true,
     "shards": [
       {
-        "canonical_nquads_sha256": "4e7fd5208dd7f2fca84bc2d69b74ba7e080c6f243fffa37fa6c163224c74c597",
-        "canonical_nquads_statements": 464,
-        "expanded_sha256": "8491088081c98e2d274d0b547da9c16649d89ffc6d727ebe8ed1f86c98f2d64d",
+        "canonical_nquads_sha256": "a1b9ff2e4f039dea3d7f947ccfaf266fe665d8d927e028737e9f39b3f0a0f81b",
+        "canonical_nquads_statements": 11368,
+        "expanded_sha256": "d3e8a53d7881c91305fbfb8b81caa8ea4012732d900bdaed0f19381327412d33",
         "path": "data/semantic/assertions-0.jsonld.gz"
       },
       {
-        "canonical_nquads_sha256": "1fb13ed9d3e2c2e1c614d8d01e2fb38caccaa2c6ab5dcfa4ac09a1dbd46cfef1",
-        "canonical_nquads_statements": 688,
-        "expanded_sha256": "ffd0920d7f19dda89f313d59f28b0c5e0426df1253120d28d6311ae0ac856c47",
+        "canonical_nquads_sha256": "9acaa076c95ddc0577c253815e037d97925deddb4cc2c536727f52b8daafb670",
+        "canonical_nquads_statements": 3657,
+        "expanded_sha256": "39b367144b3c0ac8fa2652cc0763161198b674c9dba5e2723deb75fde3caec97",
         "path": "data/semantic/entities-0.jsonld.gz"
       },
       {
-        "canonical_nquads_sha256": "8010993a8ad627d0ba662d405055aa9f21bb4dc97cab82666ec977e35872a781",
-        "canonical_nquads_statements": 162,
-        "expanded_sha256": "a01a4d460ff423721891979a3db7ad544e8835713e3bb86d0eac5262987531a7",
+        "canonical_nquads_sha256": "0b961e497bfee18fac9d0b89b6cf623a339fb2d6dec0ba69d3f5641d959f3983",
+        "canonical_nquads_statements": 378,
+        "expanded_sha256": "9a1ef26767c9733ac16f36f45206f1e31aed5bd8fb1c3ce5e0181d4d74d94485",
         "path": "data/semantic/publishers-0.jsonld.gz"
       },
       {
-        "canonical_nquads_sha256": "9eef40b73d2326d1f846b2d8c666d78d59dbfadc383907186197d95ef386057f",
-        "canonical_nquads_statements": 32,
-        "expanded_sha256": "3264a0793f1971f8bfa587b601725f0dd80c5da67ee6a4bf8e5d306bab435cbc",
-        "path": "data/semantic/resources-0.jsonld.gz"
-      },
-      {
-        "canonical_nquads_sha256": "49c5f85b2350266fa2d9976f972a4000f0b5884b548987abbaa62b3253bd8b5b",
-        "canonical_nquads_statements": 313,
-        "expanded_sha256": "95474c182d12aaa66bd1e7f33f00073cdb97d2bd7873a31672441a2f6395719c",
+        "canonical_nquads_sha256": "9f59ac10c896d208ba05404eafb26d8e86fddc27cf146ff754ae47c9b0875ede",
+        "canonical_nquads_statements": 203,
+        "expanded_sha256": "5ab8640be4d87e7e0c1dfced8f1ea38b323bf069170de38caf13867099c97344",
         "path": "data/semantic/vocabulary.jsonld"
       }
     ],
@@ -69,38 +59,33 @@
     "passed": true,
     "unresolved_local_references": 0
   },
-  "report_sha256": "4d57d81acc4ae960c853ff97ac37462d3e05219beea25105822352f42f563164",
+  "report_sha256": "88fbb3153f194d866f7cf5cf7b6ca5d371544d411eae09002c5d57836b4a270b",
   "schema": "govuk-okf-semantic-validation.v1",
   "semantic_manifest": {
     "path": "data/semantic/manifest.json",
     "schema": "govuk-okf-semantic-projection.v1",
-    "sha256": "0d7161f7b84d6f67904f80e00d14b90b2971241afa6a379b2ee896d1efc50a08"
+    "sha256": "a1e50c26fd20df53f1858db7ac3127b093b1e89df84fc40dc5c56daaca2debf7"
   },
   "shacl": {
     "bounded_focus_runs": [
       {
         "conforms": true,
-        "focus_nodes": 32,
+        "focus_nodes": 784,
         "path": "data/semantic/assertions-0.jsonld.gz"
       },
       {
         "conforms": true,
-        "focus_nodes": 52,
+        "focus_nodes": 276,
         "path": "data/semantic/entities-0.jsonld.gz"
       },
       {
         "conforms": true,
-        "focus_nodes": 12,
+        "focus_nodes": 28,
         "path": "data/semantic/publishers-0.jsonld.gz"
       },
       {
         "conforms": true,
-        "focus_nodes": 2,
-        "path": "data/semantic/resources-0.jsonld.gz"
-      },
-      {
-        "conforms": true,
-        "focus_nodes": 28,
+        "focus_nodes": 18,
         "path": "data/semantic/vocabulary.jsonld"
       }
     ],
@@ -108,7 +93,7 @@
     "shape_graph": "semantic/shapes/govuk-okf-shapes.ttl",
     "shape_graph_sha256": "be18a0ad0aa9dd153f79e1f69618dc73ef150b06da0b498395d905c073b18075"
   },
-  "snapshot": "fixture-2026-07-11",
+  "snapshot": "NEW-CHILD-20260715",
   "yaml_json_ld_equivalence": {
     "algorithm": "RDFC-1.0",
     "complexityControls": {
@@ -121,20 +106,20 @@
       "node": "v25.9.0",
       "rdfCanonize": "5.0.0"
     },
-    "jsonLdSha256": "74abaf7487a296cb99c3bf20e624572d6b59513b295d5759affb36b504e41fda",
+    "jsonLdSha256": "77bb5b8fb28e10f889abcdd72de6833c6c073e4c73cdc51afd55db1c088cb1f3",
     "left": {
-      "canonicalNQuadsSha256": "102403f455b90c7b55ee976d2a95a631f0f6c41ade2398940ee31e047a3361bd",
-      "canonicalNQuadsStatements": 25,
-      "expandedSha256": "608c6164c88315d0ceae1dd848321a07b90147e149bbd5858479581f688767ae"
+      "canonicalNQuadsSha256": "60796cd0eb1567873eb6438a2c012aa61c379b4fe0783fb61dd344daecccddf8",
+      "canonicalNQuadsStatements": 27,
+      "expandedSha256": "262fdde4acc0f04580e2adbe481084cd5dd5598e3f9af7948895d1a0af585b0d"
     },
     "networkAccess": false,
     "offlineContext": "/Users/crpage/repos/okf-govuk-content/bundle/context/govuk-okf-v1.jsonld",
     "right": {
-      "canonicalNQuadsSha256": "102403f455b90c7b55ee976d2a95a631f0f6c41ade2398940ee31e047a3361bd",
-      "canonicalNQuadsStatements": 25,
-      "expandedSha256": "608c6164c88315d0ceae1dd848321a07b90147e149bbd5858479581f688767ae"
+      "canonicalNQuadsSha256": "60796cd0eb1567873eb6438a2c012aa61c379b4fe0783fb61dd344daecccddf8",
+      "canonicalNQuadsStatements": 27,
+      "expandedSha256": "262fdde4acc0f04580e2adbe481084cd5dd5598e3f9af7948895d1a0af585b0d"
     },
     "schema": "govuk-okf-rdfc-equivalence.v1",
-    "yamlLdSha256": "352768dc1350495f7d2b67a682e2a32f812e197d2d5e337bf2fcc74eda1c64d2"
+    "yamlLdSha256": "54a8580516b2dd48174299215f8782d2cfe26f4e21e49cf27b5c8a576d9c2a85"
   }
 }

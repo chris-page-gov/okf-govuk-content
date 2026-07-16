@@ -1,38 +1,34 @@
 {
-  "his": [
+  "hig": [
+    {
+      "df": 2,
+      "token": "high"
+    },
     {
       "df": 1,
-      "token": "historic"
+      "token": "higher"
     }
   ],
-  "hist": [
+  "high": [
+    {
+      "df": 2,
+      "token": "high"
+    },
     {
       "df": 1,
-      "token": "historic"
+      "token": "higher"
     }
   ],
-  "histo": [
+  "highe": [
     {
       "df": 1,
-      "token": "historic"
+      "token": "higher"
     }
   ],
-  "histor": [
+  "higher": [
     {
       "df": 1,
-      "token": "historic"
-    }
-  ],
-  "histori": [
-    {
-      "df": 1,
-      "token": "historic"
-    }
-  ],
-  "historic": [
-    {
-      "df": 1,
-      "token": "historic"
+      "token": "higher"
     }
   ]
 }

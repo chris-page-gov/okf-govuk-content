@@ -1,26 +1,26 @@
 {
   "cardinality": {
-    "datasets": 14,
-    "document_types": 13,
-    "languages": 2,
-    "publishers": 6,
-    "records": 14,
-    "relationships": 16,
-    "resources": 1,
-    "schema_families": 13
+    "datasets": 69,
+    "document_types": 8,
+    "languages": 1,
+    "publishers": 14,
+    "records": 69,
+    "relationships": 392,
+    "resources": 0,
+    "schema_families": 8
   },
   "coverage": {
     "authoritative_destination": "https://www.gov.uk/",
-    "boundary": "frozen union of verified official public enumerators",
+    "boundary": "bounded 69-record new-child Search API seed denominator",
     "page_bodies": "not mirrored",
-    "source_records": 12,
+    "source_records": 69,
     "unexplained_omissions": 0
   },
-  "generated_at": "2026-07-11T23:30:00Z",
+  "generated_at": "2026-07-15T06:25:17Z",
   "long_tail": {
-    "document_types": 13,
-    "publishers": 7,
-    "schema_families": 13
+    "document_types": 8,
+    "publishers": 3,
+    "schema_families": 8
   },
   "performance": {
     "bootstrap_compressed_budget_bytes": 2097152,
@@ -33,44 +33,44 @@
   "routing_overview": {
     "counts": {
       "cross_host_redirect_rules": 0,
-      "gov_uk_domain_boundary_hosts": 1,
-      "hosts": 2,
-      "main_publishing_estate_records": 13,
+      "gov_uk_domain_boundary_hosts": 0,
+      "hosts": 1,
+      "main_publishing_estate_records": 69,
       "other_external_boundary_hosts": 0,
-      "published_records": 14,
-      "redirect_records": 1,
-      "redirect_rules": 1,
-      "relationship_assertions": 16,
-      "source_records": 12,
-      "stable_content_identifiers": 10
+      "published_records": 69,
+      "redirect_records": 0,
+      "redirect_rules": 0,
+      "relationship_assertions": 392,
+      "source_records": 69,
+      "stable_content_identifiers": 69
     },
     "mechanisms": [
       {
-        "count": 14,
+        "count": 69,
         "full_detail": "data/records-*.json.gz via the route index",
         "id": "canonical_url",
         "label": "Canonical and observed URLs"
       },
       {
-        "count": 10,
+        "count": 69,
         "full_detail": "data/routes/manifest.json",
         "id": "stable_content_identifier",
         "label": "Stable GOV.UK content identifiers"
       },
       {
-        "count": 1,
+        "count": 0,
         "full_detail": "redirects on each record plus redirects-to adjacency",
         "id": "redirect_rule",
         "label": "Source-declared redirect rules"
       },
       {
-        "count": 1,
+        "count": 0,
         "full_detail": "external-boundary records and host inventory",
         "id": "external_boundary",
         "label": "Routes to independently operated sites"
       },
       {
-        "count": 16,
+        "count": 392,
         "full_detail": "data/adjacency/manifest.json",
         "id": "typed_relationship",
         "label": "Structured navigation and routing relationships"
@@ -78,5 +78,5 @@
     ]
   },
   "schema": "okf-explorer-analysis.v1",
-  "snapshot": "fixture-2026-07-11"
+  "snapshot": "NEW-CHILD-20260715"
 }

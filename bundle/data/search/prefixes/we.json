@@ -1,60 +1,32 @@
 {
-  "wel": [
+  "web": [
     {
       "df": 1,
-      "token": "welcome"
-    },
-    {
-      "df": 1,
-      "token": "welfare"
+      "token": "website"
     }
   ],
-  "welc": [
+  "webs": [
     {
       "df": 1,
-      "token": "welcome"
+      "token": "website"
     }
   ],
-  "welco": [
+  "websi": [
     {
       "df": 1,
-      "token": "welcome"
+      "token": "website"
     }
   ],
-  "welcom": [
+  "websit": [
     {
       "df": 1,
-      "token": "welcome"
+      "token": "website"
     }
   ],
-  "welcome": [
+  "website": [
     {
       "df": 1,
-      "token": "welcome"
-    }
-  ],
-  "welf": [
-    {
-      "df": 1,
-      "token": "welfare"
-    }
-  ],
-  "welfa": [
-    {
-      "df": 1,
-      "token": "welfare"
-    }
-  ],
-  "welfar": [
-    {
-      "df": 1,
-      "token": "welfare"
-    }
-  ],
-  "welfare": [
-    {
-      "df": 1,
-      "token": "welfare"
+      "token": "website"
     }
   ]
 }

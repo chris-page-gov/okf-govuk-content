@@ -1,0 +1,92 @@
+{
+  "sch": [
+    {
+      "df": 8,
+      "token": "school"
+    },
+    {
+      "df": 1,
+      "token": "scheme"
+    },
+    {
+      "df": 1,
+      "token": "schemes"
+    },
+    {
+      "df": 1,
+      "token": "schools"
+    }
+  ],
+  "sche": [
+    {
+      "df": 1,
+      "token": "scheme"
+    },
+    {
+      "df": 1,
+      "token": "schemes"
+    }
+  ],
+  "schem": [
+    {
+      "df": 1,
+      "token": "scheme"
+    },
+    {
+      "df": 1,
+      "token": "schemes"
+    }
+  ],
+  "scheme": [
+    {
+      "df": 1,
+      "token": "scheme"
+    },
+    {
+      "df": 1,
+      "token": "schemes"
+    }
+  ],
+  "schemes": [
+    {
+      "df": 1,
+      "token": "schemes"
+    }
+  ],
+  "scho": [
+    {
+      "df": 8,
+      "token": "school"
+    },
+    {
+      "df": 1,
+      "token": "schools"
+    }
+  ],
+  "schoo": [
+    {
+      "df": 8,
+      "token": "school"
+    },
+    {
+      "df": 1,
+      "token": "schools"
+    }
+  ],
+  "school": [
+    {
+      "df": 8,
+      "token": "school"
+    },
+    {
+      "df": 1,
+      "token": "schools"
+    }
+  ],
+  "schools": [
+    {
+      "df": 1,
+      "token": "schools"
+    }
+  ]
+}

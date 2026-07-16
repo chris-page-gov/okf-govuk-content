@@ -1,27 +1,42 @@
 [
   {
-    "df": 3,
+    "df": 2,
+    "postings": "data/search/postings/de.json",
+    "token": "deal"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/de.json",
+    "token": "dealing"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/de.json",
+    "token": "dealing-tax-credits-someone-else"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/de.json",
+    "token": "death"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/de.json",
+    "token": "decision"
+  },
+  {
+    "df": 2,
     "postings": "data/search/postings/de.json",
     "token": "department"
   },
   {
     "df": 1,
     "postings": "data/search/postings/de.json",
-    "token": "department-for-education"
+    "token": "detailed_guide"
   },
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings/de.json",
-    "token": "department-for-work-pensions"
-  },
-  {
-    "df": 1,
-    "postings": "data/search/postings/de.json",
-    "token": "destination"
-  },
-  {
-    "df": 1,
-    "postings": "data/search/postings/de.json",
-    "token": "development"
+    "token": "details"
   }
 ]

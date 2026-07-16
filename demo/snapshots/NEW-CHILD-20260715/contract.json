@@ -1,0 +1,123 @@
+{
+  "acceptance": {
+    "all_edges_resolved_or_boundary_classified": true,
+    "all_seed_content_api_records_required": true,
+    "canonical_output_order": "content_id then canonical_url",
+    "frozen_rebuild_without_network": true,
+    "seed_records": 69,
+    "unexplained_seed_omissions": 0
+  },
+  "authoritative_source": "GOV.UK",
+  "cohort_id": "new-child-support",
+  "content_api": {
+    "boundary_policy": "Every typed target outside the 69 seeds is represented as an evidence-bearing boundary reference. Only organisation predicates may additionally remain as compiler publisher links.",
+    "closure_depth": 1,
+    "endpoint_prefix": "https://www.gov.uk/api/content",
+    "hydrate_predicates": [
+      "available_translations",
+      "lead_organisations",
+      "mainstream_browse_pages",
+      "organisations",
+      "original_primary_publishing_organisation",
+      "owning_organisation",
+      "pages_part_of_step_nav",
+      "pages_related_to_step_nav",
+      "pages_secondary_to_step_nav",
+      "part_of_step_navs",
+      "primary_publishing_organisation",
+      "related_to_step_navs"
+    ],
+    "official_request_attempt_ceiling": 500,
+    "publisher_link_predicates": [
+      "lead_organisations",
+      "organisations",
+      "original_primary_publishing_organisation",
+      "owning_organisation",
+      "primary_publishing_organisation"
+    ],
+    "recursion_policy": "Seed records may discover one-hop metadata targets. One-hop records are never expanded recursively.",
+    "requests_per_second": 4.0,
+    "retained_record_ceiling": 250,
+    "seed_policy": "Every seed must return one valid public Content API metadata record."
+  },
+  "derived_non_authoritative": true,
+  "journey_groups": [
+    {
+      "id": "new-child-overview",
+      "membership": "all-seeds",
+      "title": "New child support overview"
+    },
+    {
+      "id": "pregnancy-and-birth",
+      "membership": "childcare-parenting/pregnancy-birth",
+      "title": "Pregnancy and birth"
+    },
+    {
+      "id": "financial-help-for-children",
+      "membership": "childcare-parenting/financial-help-children",
+      "title": "Financial help for children"
+    },
+    {
+      "id": "childcare",
+      "membership": "childcare-parenting/childcare",
+      "title": "Childcare"
+    }
+  ],
+  "retention": {
+    "allowed": [
+      "source-native metadata fields",
+      "typed links",
+      "ordered step titles and link targets",
+      "attachment metadata",
+      "HTTP observation metadata",
+      "transfer hashes"
+    ],
+    "attachments_downloaded": false,
+    "complete_page_bodies": false,
+    "forbidden_keys_recursive": [
+      "body",
+      "govspeak",
+      "html",
+      "rendered_body"
+    ],
+    "rendered_pages": false
+  },
+  "rights": {
+    "fair_use_trigger": "No complete page body or attachment is retained; any later body, image or third-party asset use requires separate item-level review.",
+    "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+    "source": "official-public-govuk",
+    "status": "metadata-and-links-only-subject-to-item-specific-exceptions"
+  },
+  "schema": "govuk-okf-new-child-cohort-contract.v1",
+  "scope_statement": "A reproducible, metadata-only demonstrator. Completeness is claimed only for the frozen Search API seed result and the declared one-hop metadata closure, never for all GOV.UK or all policy relevant to a new child.",
+  "search": {
+    "browse_paths": [
+      "childcare-parenting/pregnancy-birth",
+      "childcare-parenting/financial-help-children",
+      "childcare-parenting/childcare"
+    ],
+    "deduplication": [
+      "content_id",
+      "canonical_link"
+    ],
+    "endpoint": "https://www.gov.uk/api/search.json",
+    "expected_seed_denominator": 69,
+    "fields": [
+      "title",
+      "link",
+      "description",
+      "format",
+      "content_store_document_type",
+      "public_timestamp",
+      "content_id",
+      "mainstream_browse_pages",
+      "organisation_content_ids"
+    ],
+    "filter_name": "filter_mainstream_browse_pages",
+    "filter_semantics": "Repeated filter values are OR alternatives in one Search API v1 request.",
+    "maximum_page_size": 1500,
+    "stability_check": "Repeat the exact combined result query after hydration and require the same 69 identities."
+  },
+  "status": "bounded-demonstrator",
+  "title": "New child: pregnancy, financial help and childcare"
+}

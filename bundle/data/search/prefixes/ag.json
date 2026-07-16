@@ -1,26 +1,112 @@
 {
-  "age": [
+  "aga": [
     {
       "df": 1,
+      "token": "against"
+    }
+  ],
+  "agai": [
+    {
+      "df": 1,
+      "token": "against"
+    }
+  ],
+  "again": [
+    {
+      "df": 1,
+      "token": "against"
+    }
+  ],
+  "agains": [
+    {
+      "df": 1,
+      "token": "against"
+    }
+  ],
+  "against": [
+    {
+      "df": 1,
+      "token": "against"
+    }
+  ],
+  "age": [
+    {
+      "df": 2,
       "token": "agency"
+    },
+    {
+      "df": 1,
+      "token": "age"
+    },
+    {
+      "df": 1,
+      "token": "aged"
+    }
+  ],
+  "aged": [
+    {
+      "df": 1,
+      "token": "aged"
     }
   ],
   "agen": [
     {
-      "df": 1,
+      "df": 2,
       "token": "agency"
     }
   ],
   "agenc": [
     {
-      "df": 1,
+      "df": 2,
       "token": "agency"
     }
   ],
   "agency": [
     {
-      "df": 1,
+      "df": 2,
       "token": "agency"
+    }
+  ],
+  "agr": [
+    {
+      "df": 1,
+      "token": "agreement"
+    }
+  ],
+  "agre": [
+    {
+      "df": 1,
+      "token": "agreement"
+    }
+  ],
+  "agree": [
+    {
+      "df": 1,
+      "token": "agreement"
+    }
+  ],
+  "agreem": [
+    {
+      "df": 1,
+      "token": "agreement"
+    }
+  ],
+  "agreeme": [
+    {
+      "df": 1,
+      "token": "agreement"
+    }
+  ],
+  "agreemen": [
+    {
+      "df": 1,
+      "token": "agreement"
+    }
+  ],
+  "agreement": [
+    {
+      "df": 1,
+      "token": "agreement"
     }
   ]
 }

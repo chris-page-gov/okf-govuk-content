@@ -1,116 +1,96 @@
 {
-  "exa": [
+  "exp": [
     {
       "df": 1,
-      "token": "example"
+      "token": "explore"
     }
   ],
-  "exam": [
+  "expl": [
     {
       "df": 1,
-      "token": "example"
+      "token": "explore"
     }
   ],
-  "examp": [
+  "explo": [
     {
       "df": 1,
-      "token": "example"
+      "token": "explore"
     }
   ],
-  "exampl": [
+  "explor": [
     {
       "df": 1,
-      "token": "example"
+      "token": "explore"
     }
   ],
-  "example": [
+  "explore": [
     {
       "df": 1,
-      "token": "example"
+      "token": "explore"
     }
   ],
   "ext": [
     {
-      "df": 1,
-      "token": "external"
+      "df": 2,
+      "token": "extra"
     },
     {
       "df": 1,
-      "token": "external_content"
+      "token": "extensions"
     }
   ],
   "exte": [
     {
       "df": 1,
-      "token": "external"
-    },
-    {
-      "df": 1,
-      "token": "external_content"
+      "token": "extensions"
     }
   ],
-  "exter": [
+  "exten": [
     {
       "df": 1,
-      "token": "external"
-    },
-    {
-      "df": 1,
-      "token": "external_content"
+      "token": "extensions"
     }
   ],
-  "extern": [
+  "extens": [
     {
       "df": 1,
-      "token": "external"
-    },
-    {
-      "df": 1,
-      "token": "external_content"
+      "token": "extensions"
     }
   ],
-  "externa": [
+  "extensi": [
     {
       "df": 1,
-      "token": "external"
-    },
-    {
-      "df": 1,
-      "token": "external_content"
+      "token": "extensions"
     }
   ],
-  "external": [
+  "extensio": [
     {
       "df": 1,
-      "token": "external"
-    },
-    {
-      "df": 1,
-      "token": "external_content"
+      "token": "extensions"
     }
   ],
-  "external_": [
+  "extension": [
     {
       "df": 1,
-      "token": "external_content"
+      "token": "extensions"
     }
   ],
-  "external_c": [
+  "extensions": [
     {
       "df": 1,
-      "token": "external_content"
+      "token": "extensions"
     }
   ],
-  "external_co": [
+  "extr": [
     {
-      "df": 1,
-      "token": "external_content"
+      "df": 2,
+      "token": "extra"
     }
   ],
-  "external_con": [
+  "extra": [
     {
-      "df": 1,
-      "token": "external_content"
+      "df": 2,
+      "token": "extra"
     }
   ]
 }

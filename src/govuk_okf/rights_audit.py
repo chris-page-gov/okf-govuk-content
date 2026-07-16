@@ -1343,20 +1343,25 @@ def audit_release(
                     records = 0
                     relative = path.relative_to(bundle_root).as_posix()
                     source_kind = primary_assets.get(path)
-                    for record in _iter_json_records(path, limits):
-                        records += 1
-                        uncompressed_records += 1
-                        if uncompressed_records > limits.max_records:
-                            raise RightsAuditError(f"record count exceeds {limits.max_records}")
-                        _scan_record_safety(record, relative, limits, finding_counts, finding_examples)
-                        if source_kind:
-                            _insert_item(
-                                connection,
-                                _record_fingerprint(record),
-                                source_kind,
-                                _trigger_mask(record, source_kind, limits),
-                            )
-                            records_by_source[f"publication:{source_kind}"] += 1
+                    # Integrity-bind portable Markdown handoffs, but scan the
+                    # equivalent structured JSON records rather than parsing
+                    # human documentation as JSON. No Markdown asset is a
+                    # primary publication record source.
+                    if path.suffix.lower() not in {".md", ".markdown"}:
+                        for record in _iter_json_records(path, limits):
+                            records += 1
+                            uncompressed_records += 1
+                            if uncompressed_records > limits.max_records:
+                                raise RightsAuditError(f"record count exceeds {limits.max_records}")
+                            _scan_record_safety(record, relative, limits, finding_counts, finding_examples)
+                            if source_kind:
+                                _insert_item(
+                                    connection,
+                                    _record_fingerprint(record),
+                                    source_kind,
+                                    _trigger_mask(record, source_kind, limits),
+                                )
+                                records_by_source[f"publication:{source_kind}"] += 1
                     expected_uncompressed = metadata.get("uncompressed_bytes")
                     if expected_uncompressed is not None:
                         opener = gzip.open if path.suffix == ".gz" else open

@@ -1,0 +1,56 @@
+{
+  "num": [
+    {
+      "df": 1,
+      "token": "number"
+    }
+  ],
+  "numb": [
+    {
+      "df": 1,
+      "token": "number"
+    }
+  ],
+  "numbe": [
+    {
+      "df": 1,
+      "token": "number"
+    }
+  ],
+  "number": [
+    {
+      "df": 1,
+      "token": "number"
+    }
+  ],
+  "nur": [
+    {
+      "df": 2,
+      "token": "nursery"
+    }
+  ],
+  "nurs": [
+    {
+      "df": 2,
+      "token": "nursery"
+    }
+  ],
+  "nurse": [
+    {
+      "df": 2,
+      "token": "nursery"
+    }
+  ],
+  "nurser": [
+    {
+      "df": 2,
+      "token": "nursery"
+    }
+  ],
+  "nursery": [
+    {
+      "df": 2,
+      "token": "nursery"
+    }
+  ]
+}

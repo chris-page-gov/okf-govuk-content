@@ -2,6 +2,26 @@
   {
     "df": 1,
     "postings": "data/search/postings/ac.json",
+    "token": "access"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ac.json",
+    "token": "accommodation"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ac.json",
     "token": "account"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/ac.json",
+    "token": "accounts"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/ac.json",
+    "token": "across"
   }
 ]

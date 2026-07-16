@@ -1,16 +1,34 @@
 {
   "schema": "afhf-govuk-okf-source-request-budget.v1",
-  "recorded_at": "2026-07-12T08:20:20.561388Z",
+  "recorded_at": "2026-07-15T07:05:33Z",
   "snapshot_id": "T0-20260712",
   "status": "open_checkpoint",
   "authorised_ceiling": 1000000,
-  "consumed_attempts_at_observation": 5752,
-  "remaining_attempts_at_observation": 994248,
+  "consumed_attempts_at_observation": 80944,
+  "remaining_attempts_at_observation": 919056,
   "preflight_attempts": 127,
   "live_ledger": ".tmp/request-budget/official-sources.count",
   "preflight_evidence": "research/source-preflight.json",
-  "scope": "The shared acquisition counter records authorised official-source attempts. T0 census is complete at this checkpoint; hydration, T1 and closing remain pending. Citation-verification requests remain evidenced in research/evidence.jsonl and citation-policy access history and are not silently added to model cost.",
+  "scope": "The shared acquisition counter records authorised official-source attempts. This remains an open programme checkpoint: T0 census is complete, the full-corpus hydration was stopped with its checkpoint preserved, and T1 and closing remain pending. The bounded new-child demonstrator used 251 attributed attempts across one superseded run and one accepted run. Citation-verification requests remain evidenced in research/evidence.jsonl and citation-policy access history and are not silently added to model cost.",
   "included_in_model_cost": false,
+  "new_child_demonstrator": {
+    "snapshot_id": "NEW-CHILD-20260715",
+    "total_attempts": 251,
+    "superseded_attempts": 124,
+    "accepted_attempts": 127,
+    "superseded_interval": {
+      "first": 76018,
+      "last": 76141
+    },
+    "accepted_attribution": {
+      "kind": "exact_interleaving_safe_sequences",
+      "first_owned_sequence": 76786,
+      "last_owned_sequence": 76969,
+      "owned_sequences": 127
+    },
+    "evidence": "provenance/new-child-acquisition-attempts.json; demo/snapshots/NEW-CHILD-20260715/publication/cohort-manifest.json#/retrieval/programme_request_sequences",
+    "included_in_model_cost": false
+  },
   "final_entries_required": [
     "Append the terminal T0 acquisition activity with its exact counter interval.",
     "Append the terminal T0 hydration activity with its exact counter interval.",

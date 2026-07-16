@@ -1,12 +1,12 @@
 [
   {
-    "df": 7,
+    "df": 6,
     "postings": "data/search/postings/no.json",
     "token": "not"
   },
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings/no.json",
-    "token": "note"
+    "token": "notice"
   }
 ]

@@ -1,0 +1,104 @@
+{
+  "fac": [
+    {
+      "df": 1,
+      "token": "facilities"
+    }
+  ],
+  "faci": [
+    {
+      "df": 1,
+      "token": "facilities"
+    }
+  ],
+  "facil": [
+    {
+      "df": 1,
+      "token": "facilities"
+    }
+  ],
+  "facili": [
+    {
+      "df": 1,
+      "token": "facilities"
+    }
+  ],
+  "facilit": [
+    {
+      "df": 1,
+      "token": "facilities"
+    }
+  ],
+  "faciliti": [
+    {
+      "df": 1,
+      "token": "facilities"
+    }
+  ],
+  "facilitie": [
+    {
+      "df": 1,
+      "token": "facilities"
+    }
+  ],
+  "facilities": [
+    {
+      "df": 1,
+      "token": "facilities"
+    }
+  ],
+  "fam": [
+    {
+      "df": 2,
+      "token": "families"
+    },
+    {
+      "df": 2,
+      "token": "family"
+    }
+  ],
+  "fami": [
+    {
+      "df": 2,
+      "token": "families"
+    },
+    {
+      "df": 2,
+      "token": "family"
+    }
+  ],
+  "famil": [
+    {
+      "df": 2,
+      "token": "families"
+    },
+    {
+      "df": 2,
+      "token": "family"
+    }
+  ],
+  "famili": [
+    {
+      "df": 2,
+      "token": "families"
+    }
+  ],
+  "familie": [
+    {
+      "df": 2,
+      "token": "families"
+    }
+  ],
+  "families": [
+    {
+      "df": 2,
+      "token": "families"
+    }
+  ],
+  "family": [
+    {
+      "df": 2,
+      "token": "family"
+    }
+  ]
+}

@@ -9,14 +9,26 @@ people, software and retrieval agents.
 
 ## Current status
 
-The checked-in publication is a **representative fixture and pre-release
-foundation**, not the complete GOV.UK bundle and not a machine release
-candidate. It contains 14 fixture records so that semantics, deterministic
-sharding, static search, route adjacency, Explorer and read-only discovery can
-be tested while the full corpus is hydrated and closed. The unsampled T0 union
-census is now closed at 848,977 candidate keys and 836,998 publication records,
-with six redirects and zero unexplained omissions; it is not yet the T1-closed
-release corpus.
+The checked-in publication is now a **69-record new-child demonstrator and
+pre-release foundation**, not the complete GOV.UK bundle and not a machine
+release candidate. One reproducible Search API seed denominator spans
+pregnancy and birth, financial help for children and childcare. All 69 seed
+identities have allowlisted Content API metadata, zero unexplained seed
+omissions and typed evidence where the bounded bundle stops. No complete page
+bodies, rendered pages or attachment bytes are retained.
+
+The dedicated Explorer journey view, illustrated walkthrough and exact source
+boundary are documented in
+[`docs/new-child-demonstrator.md`](docs/new-child-demonstrator.md). The same
+checksummed bundle can be given to an AI as one portable Markdown/JSON context
+file, queried deterministically, or exposed through five bounded read-only MCP
+tools; see [`docs/ai-input.md`](docs/ai-input.md).
+
+This bounded milestone does not replace the Release 1 contract. The unsampled
+T0 union census remains closed at 848,977 candidate keys and 836,998
+publication records, with six redirects and zero unexplained omissions; it is
+not yet the T1-closed release corpus. The earlier full hydration was stopped
+and preserved rather than being promoted as complete.
 
 The fixture now also publishes a first-class, lazy `Sitemap & routing` view and
 `govuk-site-topology.v1` machine projection. It inventories every observed host
@@ -80,6 +92,14 @@ for the finalized release; `v1.0.0` is not the initial publication tag.
 - `bundle/data/manifest.json` — immutable record/search/adjacency manifest
 - `bundle/data/site-topology.json` — snapshot host, sitemap, redirect and
   routing-mechanism control plane
+- `bundle/data/demonstrator.json` — exact 69-record seed denominator, journey
+  groups, direct typed boundaries and AI handoff entrypoints
+- `bundle/ai/new-child-context.md` and `.json` — integrity-bound full 69-record
+  demonstrator bulk/archive handoffs; generate a smaller question-specific
+  context with the deterministic query command for normal AI use
+- `bundle/ai/mcp.json` — local read-only MCP server recipe
+- `demo/snapshots/NEW-CHILD-20260715/` — immutable, content-addressed official-
+  source envelopes and network-free 69-record reproduction input
 - `bundle/data/semantic/manifest.json` — lazy JSON-LD entity, evidence,
   vocabulary and reified-assertion shards with per-shard integrity metadata
 - `release/manifest.yaml` — snapshot, checksums and release status
@@ -137,6 +157,17 @@ python3 scripts/audit_rights_privacy.py --check
 python3 scripts/check_release.py
 (cd explorer && npm test)
 (cd explorer && npm run test:browser)
+```
+
+The checked-in demonstrator can be rebuilt and queried without network access:
+
+```sh
+python3 scripts/acquire_new_child_demo.py check \
+  demo/snapshots/NEW-CHILD-20260715
+python3 scripts/build_bundle.py --check
+uv run govuk-okf-demo-query --bundle bundle search "help after having a baby"
+uv run govuk-okf-demo-query --bundle bundle context \
+  "Which financial support routes should I investigate?" --format markdown
 ```
 
 The browser command requires installed Chrome/Chromium and an ephemeral
@@ -202,9 +233,9 @@ Running the network preflight itself requires `python3
 scripts/preflight_sources.py --live`; the normal CI check is offline and verifies
 the frozen response metadata, counts, hashes and explicit failures.
 
-The default `build_bundle.py` input is deliberately the representative fixture.
-It must not be used as a release command. The complete acquisition, hydration,
-release-question and publication sequence is documented in
+The default `build_bundle.py` input is deliberately the bounded 69-record
+demonstrator fixture. It must not be used as a complete-corpus release command.
+The complete acquisition, hydration, release-question and publication sequence is documented in
 [`docs/architecture.md`](docs/architecture.md).
 
 
@@ -215,6 +246,9 @@ copyright metadata is attributed and made available under the Open Government
 Licence v3.0 where that licence applies. Item-level third-party or restricted
 material remains governed by its source terms and is not silently republished.
 The rights/privacy evidence records structural item-review triggers with hashed
-examples only; complete body or credential retention is always a hard failure.
+examples when any are present; complete body or credential retention is always
+a hard failure. The bounded new-child checkpoint has zero such triggers and
+zero retention/secret violations, without converting a sampled audit into a
+release-passing rights determination.
 See [LICENSE.md](LICENSE.md), the machine-readable constraint ledger and
 `release/rights-privacy-audit.json`.

@@ -12,6 +12,15 @@
       "source_id": "SRC-F6B5739716A2D036"
     },
     {
+      "citation_id": "CIT-030DEFC12BB9E800",
+      "claim_id": "CLM-04D3DD10171DEFD0",
+      "problems": [
+        "missing evidence observation",
+        "missing independent semantic-support review"
+      ],
+      "source_id": "SRC-86C7F909ED4A1F9E"
+    },
+    {
       "citation_id": "CIT-0487204FB8E6D2CB",
       "claim_id": "CLM-C18778AF2DC29996",
       "problems": [
@@ -63,6 +72,14 @@
         "missing independent semantic-support review"
       ],
       "source_id": "SRC-8FBF3F9C2FF045BA"
+    },
+    {
+      "citation_id": "CIT-1D8CDDC0B124D60C",
+      "claim_id": "CLM-6540208EA225B6AC",
+      "problems": [
+        "source_evidence: claim-specific evidence set does not exactly match source citations"
+      ],
+      "source_id": "SRC-0327381847788538"
     },
     {
       "citation_id": "CIT-215429D84F677D75",
@@ -126,6 +143,15 @@
       "source_id": "SRC-BB77C21AC344914D"
     },
     {
+      "citation_id": "CIT-38932DD008F504A0",
+      "claim_id": "CLM-04210927BB2BDF38",
+      "problems": [
+        "missing evidence observation",
+        "missing independent semantic-support review"
+      ],
+      "source_id": "SRC-CC16690AD5FAAE89"
+    },
+    {
       "citation_id": "CIT-40BBBCB77256338B",
       "claim_id": "CLM-E816A48EE6B73D1E",
       "problems": [
@@ -151,6 +177,14 @@
         "missing independent semantic-support review"
       ],
       "source_id": "SRC-DBA67E9AA3C8366A"
+    },
+    {
+      "citation_id": "CIT-56340E7D9901A41D",
+      "claim_id": "CLM-DF501CBF2DA9833C",
+      "problems": [
+        "source_evidence: claim-specific evidence set does not exactly match source citations"
+      ],
+      "source_id": "SRC-BFBA858067CC3EB5"
     },
     {
       "citation_id": "CIT-59D95F7D400EA000",
@@ -202,6 +236,15 @@
         "source_evidence: claim-specific evidence set does not exactly match source citations"
       ],
       "source_id": "SRC-BB77C21AC344914D"
+    },
+    {
+      "citation_id": "CIT-86CE9F2E5B342C4F",
+      "claim_id": "CLM-FE84B273AE921271",
+      "problems": [
+        "missing evidence observation",
+        "missing independent semantic-support review"
+      ],
+      "source_id": "SRC-937FAE6437B3FC36"
     },
     {
       "citation_id": "CIT-8A79E16323E0AF39",
@@ -267,6 +310,15 @@
       "source_id": "SRC-0A7311FBE44A723F"
     },
     {
+      "citation_id": "CIT-B6A5B4971C8AA270",
+      "claim_id": "CLM-352DF3F2C3145C79",
+      "problems": [
+        "missing evidence observation",
+        "missing independent semantic-support review"
+      ],
+      "source_id": "SRC-B275EC28FDDD14C2"
+    },
+    {
       "citation_id": "CIT-C89D295331814C1D",
       "claim_id": "CLM-CEE1BF36C514D277",
       "problems": [
@@ -282,6 +334,25 @@
         "source_evidence: claim-specific evidence set does not exactly match source citations"
       ],
       "source_id": "SRC-BB77C21AC344914D"
+    },
+    {
+      "citation_id": "CIT-D4B3F6113706C245",
+      "claim_id": "CLM-C4E555CDAFC4CCD3",
+      "problems": [
+        "missing evidence observation",
+        "missing independent semantic-support review"
+      ],
+      "source_id": "SRC-5A74F649300C7670"
+    },
+    {
+      "citation_id": "CIT-D55240B8BC2C3C80",
+      "claim_id": "CLM-1609CE9F7703ABC6",
+      "problems": [
+        "source_evidence: claim-specific evidence set does not exactly match source citations",
+        "missing or duplicate claim-specific locator evidence",
+        "missing independent semantic-support review"
+      ],
+      "source_id": "SRC-0327381847788538"
     },
     {
       "citation_id": "CIT-DA2859BB0FDED4D7",
@@ -302,12 +373,40 @@
       "source_id": "SRC-DBA67E9AA3C8366A"
     },
     {
+      "citation_id": "CIT-E97EC07AA1F49843",
+      "claim_id": "CLM-0C3E44E06C1805F2",
+      "problems": [
+        "missing evidence observation",
+        "missing independent semantic-support review"
+      ],
+      "source_id": "SRC-86C7F909ED4A1F9E"
+    },
+    {
+      "citation_id": "CIT-EE9EF4FF9C6965AF",
+      "claim_id": "CLM-2ACF4CEF2821A03E",
+      "problems": [
+        "missing evidence observation",
+        "missing independent semantic-support review"
+      ],
+      "source_id": "SRC-8F086A24D994E466"
+    },
+    {
       "citation_id": "CIT-F059C705BB0D40D0",
       "claim_id": "CLM-CAFAFAE6749859CF",
       "problems": [
         "source_evidence: claim-specific evidence set does not exactly match source citations"
       ],
       "source_id": "SRC-1BE5A93C1802658B"
+    },
+    {
+      "citation_id": "CIT-F53F3DFD47E4473A",
+      "claim_id": "CLM-A312A8ED04EE6ECD",
+      "problems": [
+        "source_evidence: claim-specific evidence set does not exactly match source citations",
+        "missing or duplicate claim-specific locator evidence",
+        "missing independent semantic-support review"
+      ],
+      "source_id": "SRC-BFBA858067CC3EB5"
     },
     {
       "citation_id": "CIT-FA497B072CF7E505",
@@ -344,16 +443,16 @@
     }
   ],
   "input_digests": {
-    "citations_sha256": "25c1ff9eae5f43027e7d3005debb98616b44dee213f68ceb3b0b562dcd4c6750",
+    "citations_sha256": "9ca4536a2f8a1e649d580e629040a9f154a6532a1e94087a19a66d93e75da47b",
     "claim_reviews_sha256": "ad0b024f1a539521ce527169de078d3370ca3237216e93562b5d528c2e130193",
-    "claims_sha256": "4b9a0a038a1943895cce56c415a5a11d7c034a13f46bebec81835e7e6cbdb4bf",
+    "claims_sha256": "15b336ed6afd277209379efe49533129832a612ff9eaaf8f24f959b1ef50cd57",
     "evidence_sha256": "bc497eba231a6c6582180610448c1d33a535505bf04467fecc7fb306aa14221c",
     "policy_sha256": "8920891a060bc1d6ffdc586bcce665c18f88d518e41e237199a2ba296438758a",
     "reviews_sha256": "ab19c80d5fdd894e6dc420071e61bbac037b48a4e75590b0624cd6bd3b2abe7b",
     "waivers_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
   },
   "schema_version": "1.0",
-  "snapshot_id": "T0-20260712",
+  "snapshot_id": "NEW-CHILD-20260715",
   "source_access_history": [
     {
       "checked_at": "2026-07-11T23:21:00Z",
@@ -393,17 +492,17 @@
     }
   ],
   "summary": {
-    "blocking_failures": 40,
-    "citations_failed": 36,
-    "citations_passed": 160,
+    "blocking_failures": 51,
+    "citations_failed": 47,
+    "citations_passed": 158,
     "citations_waived_non_dependent": 0,
     "joint_claim_reviews_failed": 4,
     "joint_claim_reviews_passed": 40,
     "joint_claim_reviews_required": 44,
-    "material_claims": 67,
-    "released_citations": 196,
-    "released_claims": 128,
-    "unique_sources": 111
+    "material_claims": 76,
+    "released_citations": 205,
+    "released_claims": 137,
+    "unique_sources": 117
   },
   "verified_at": "2026-07-12T07:54:31Z"
 }

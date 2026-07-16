@@ -1,14 +1,80 @@
 {
-  "lin": [
+  "lif": [
     {
       "df": 1,
-      "token": "link"
+      "token": "life"
     }
   ],
-  "link": [
+  "life": [
     {
       "df": 1,
-      "token": "link"
+      "token": "life"
+    }
+  ],
+  "lim": [
+    {
+      "df": 1,
+      "token": "limit"
+    }
+  ],
+  "limi": [
+    {
+      "df": 1,
+      "token": "limit"
+    }
+  ],
+  "limit": [
+    {
+      "df": 1,
+      "token": "limit"
+    }
+  ],
+  "liv": [
+    {
+      "df": 3,
+      "token": "live"
+    },
+    {
+      "df": 1,
+      "token": "lives"
+    },
+    {
+      "df": 1,
+      "token": "living"
+    }
+  ],
+  "live": [
+    {
+      "df": 3,
+      "token": "live"
+    },
+    {
+      "df": 1,
+      "token": "lives"
+    }
+  ],
+  "lives": [
+    {
+      "df": 1,
+      "token": "lives"
+    }
+  ],
+  "livi": [
+    {
+      "df": 1,
+      "token": "living"
+    }
+  ],
+  "livin": [
+    {
+      "df": 1,
+      "token": "living"
+    }
+  ],
+  "living": [
+    {
+      "df": 1,
+      "token": "living"
     }
   ]
 }

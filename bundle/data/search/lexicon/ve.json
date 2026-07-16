@@ -1,7 +1,7 @@
 [
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings/ve.json",
-    "token": "vehicle"
+    "token": "ve"
   }
 ]

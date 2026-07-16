@@ -1,0 +1,17 @@
+[
+  {
+    "df": 2,
+    "postings": "data/search/postings/gr.json",
+    "token": "grant"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/gr.json",
+    "token": "grants"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/gr.json",
+    "token": "groups"
+  }
+]

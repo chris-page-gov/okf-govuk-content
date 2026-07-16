@@ -1,12 +1,17 @@
 [
   {
-    "df": 1,
+    "df": 3,
     "postings": "data/search/postings/do.json",
     "token": "do"
   },
   {
     "df": 1,
     "postings": "data/search/postings/do.json",
-    "token": "document_collection"
+    "token": "does"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/do.json",
+    "token": "down"
   }
 ]

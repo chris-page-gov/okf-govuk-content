@@ -1,10 +1,17 @@
 {
   "tokens": {
-    "latest": [
+    "law": [
       [
-        7,
-        5,
-        4
+        20,
+        21,
+        5
+      ]
+    ],
+    "law-on-leaving-your-child-home-alone": [
+      [
+        20,
+        2,
+        64
       ]
     ]
   }

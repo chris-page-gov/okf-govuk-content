@@ -1,0 +1,26 @@
+{
+  "rul": [
+    {
+      "df": 1,
+      "token": "rules"
+    }
+  ],
+  "rule": [
+    {
+      "df": 1,
+      "token": "rules"
+    }
+  ],
+  "rules": [
+    {
+      "df": 1,
+      "token": "rules"
+    }
+  ],
+  "run": [
+    {
+      "df": 1,
+      "token": "run"
+    }
+  ]
+}

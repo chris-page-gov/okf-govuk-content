@@ -1,6 +1,6 @@
 # Post-hydration closing and release runbook
 
-This is the fail-closed continuation after a new ADR-008 opening census and its
+This is the fail-closed continuation after a new ADR-009 opening census and its
 selective enrichment command exit zero and export
 `corpus/reconciliation/<OPENING>-hydrated.json`. The historical universal
 `T0-20260712` checkpoint is preserved as evidence, not migrated in place. A

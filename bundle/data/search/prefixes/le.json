@@ -1,74 +1,134 @@
 {
   "lea": [
     {
+      "df": 12,
+      "token": "leave"
+    },
+    {
+      "df": 2,
+      "token": "learning"
+    },
+    {
       "df": 1,
       "token": "learn"
     },
     {
       "df": 1,
-      "token": "learn-to-drive-a-car"
+      "token": "learner"
+    },
+    {
+      "df": 1,
+      "token": "leaving"
     }
   ],
   "lear": [
     {
+      "df": 2,
+      "token": "learning"
+    },
+    {
       "df": 1,
       "token": "learn"
     },
     {
       "df": 1,
-      "token": "learn-to-drive-a-car"
+      "token": "learner"
     }
   ],
   "learn": [
     {
+      "df": 2,
+      "token": "learning"
+    },
+    {
       "df": 1,
       "token": "learn"
     },
     {
       "df": 1,
-      "token": "learn-to-drive-a-car"
+      "token": "learner"
     }
   ],
-  "learn-": [
+  "learne": [
     {
       "df": 1,
-      "token": "learn-to-drive-a-car"
+      "token": "learner"
     }
   ],
-  "learn-t": [
+  "learner": [
     {
       "df": 1,
-      "token": "learn-to-drive-a-car"
+      "token": "learner"
     }
   ],
-  "learn-to": [
+  "learni": [
     {
-      "df": 1,
-      "token": "learn-to-drive-a-car"
+      "df": 2,
+      "token": "learning"
     }
   ],
-  "learn-to-": [
+  "learnin": [
     {
-      "df": 1,
-      "token": "learn-to-drive-a-car"
+      "df": 2,
+      "token": "learning"
     }
   ],
-  "learn-to-d": [
+  "learning": [
     {
-      "df": 1,
-      "token": "learn-to-drive-a-car"
+      "df": 2,
+      "token": "learning"
     }
   ],
-  "learn-to-dr": [
+  "leav": [
+    {
+      "df": 12,
+      "token": "leave"
+    },
     {
       "df": 1,
-      "token": "learn-to-drive-a-car"
+      "token": "leaving"
     }
   ],
-  "learn-to-dri": [
+  "leave": [
+    {
+      "df": 12,
+      "token": "leave"
+    }
+  ],
+  "leavi": [
     {
       "df": 1,
-      "token": "learn-to-drive-a-car"
+      "token": "leaving"
+    }
+  ],
+  "leavin": [
+    {
+      "df": 1,
+      "token": "leaving"
+    }
+  ],
+  "leaving": [
+    {
+      "df": 1,
+      "token": "leaving"
+    }
+  ],
+  "leg": [
+    {
+      "df": 1,
+      "token": "legal"
+    }
+  ],
+  "lega": [
+    {
+      "df": 1,
+      "token": "legal"
+    }
+  ],
+  "legal": [
+    {
+      "df": 1,
+      "token": "legal"
     }
   ]
 }

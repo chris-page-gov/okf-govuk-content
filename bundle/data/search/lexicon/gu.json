@@ -2,6 +2,21 @@
   {
     "df": 1,
     "postings": "data/search/postings/gu.json",
+    "token": "guardian"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/gu.json",
+    "token": "guardians-allowance"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/gu.json",
     "token": "guidance"
+  },
+  {
+    "df": 32,
+    "postings": "data/search/postings/gu.json",
+    "token": "guide"
   }
 ]

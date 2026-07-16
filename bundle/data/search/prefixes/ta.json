@@ -1,20 +1,250 @@
 {
+  "tak": [
+    {
+      "df": 1,
+      "token": "take"
+    },
+    {
+      "df": 1,
+      "token": "taken"
+    },
+    {
+      "df": 1,
+      "token": "taking"
+    }
+  ],
+  "take": [
+    {
+      "df": 1,
+      "token": "take"
+    },
+    {
+      "df": 1,
+      "token": "taken"
+    }
+  ],
+  "taken": [
+    {
+      "df": 1,
+      "token": "taken"
+    }
+  ],
+  "taki": [
+    {
+      "df": 1,
+      "token": "taking"
+    }
+  ],
+  "takin": [
+    {
+      "df": 1,
+      "token": "taking"
+    }
+  ],
+  "taking": [
+    {
+      "df": 1,
+      "token": "taking"
+    }
+  ],
   "tax": [
     {
-      "df": 2,
-      "token": "taxon"
+      "df": 7,
+      "token": "tax"
+    },
+    {
+      "df": 4,
+      "token": "tax-free"
+    },
+    {
+      "df": 1,
+      "token": "tax-credits-appeals-complaints"
+    },
+    {
+      "df": 1,
+      "token": "tax-credits-overpayments"
+    },
+    {
+      "df": 1,
+      "token": "tax-free-childcare"
+    },
+    {
+      "df": 1,
+      "token": "taxed"
     }
   ],
-  "taxo": [
+  "tax-": [
     {
-      "df": 2,
-      "token": "taxon"
+      "df": 4,
+      "token": "tax-free"
+    },
+    {
+      "df": 1,
+      "token": "tax-credits-appeals-complaints"
+    },
+    {
+      "df": 1,
+      "token": "tax-credits-overpayments"
+    },
+    {
+      "df": 1,
+      "token": "tax-free-childcare"
     }
   ],
-  "taxon": [
+  "tax-c": [
     {
-      "df": 2,
-      "token": "taxon"
+      "df": 1,
+      "token": "tax-credits-appeals-complaints"
+    },
+    {
+      "df": 1,
+      "token": "tax-credits-overpayments"
+    }
+  ],
+  "tax-cr": [
+    {
+      "df": 1,
+      "token": "tax-credits-appeals-complaints"
+    },
+    {
+      "df": 1,
+      "token": "tax-credits-overpayments"
+    }
+  ],
+  "tax-cre": [
+    {
+      "df": 1,
+      "token": "tax-credits-appeals-complaints"
+    },
+    {
+      "df": 1,
+      "token": "tax-credits-overpayments"
+    }
+  ],
+  "tax-cred": [
+    {
+      "df": 1,
+      "token": "tax-credits-appeals-complaints"
+    },
+    {
+      "df": 1,
+      "token": "tax-credits-overpayments"
+    }
+  ],
+  "tax-credi": [
+    {
+      "df": 1,
+      "token": "tax-credits-appeals-complaints"
+    },
+    {
+      "df": 1,
+      "token": "tax-credits-overpayments"
+    }
+  ],
+  "tax-credit": [
+    {
+      "df": 1,
+      "token": "tax-credits-appeals-complaints"
+    },
+    {
+      "df": 1,
+      "token": "tax-credits-overpayments"
+    }
+  ],
+  "tax-credits": [
+    {
+      "df": 1,
+      "token": "tax-credits-appeals-complaints"
+    },
+    {
+      "df": 1,
+      "token": "tax-credits-overpayments"
+    }
+  ],
+  "tax-credits-": [
+    {
+      "df": 1,
+      "token": "tax-credits-appeals-complaints"
+    },
+    {
+      "df": 1,
+      "token": "tax-credits-overpayments"
+    }
+  ],
+  "tax-f": [
+    {
+      "df": 4,
+      "token": "tax-free"
+    },
+    {
+      "df": 1,
+      "token": "tax-free-childcare"
+    }
+  ],
+  "tax-fr": [
+    {
+      "df": 4,
+      "token": "tax-free"
+    },
+    {
+      "df": 1,
+      "token": "tax-free-childcare"
+    }
+  ],
+  "tax-fre": [
+    {
+      "df": 4,
+      "token": "tax-free"
+    },
+    {
+      "df": 1,
+      "token": "tax-free-childcare"
+    }
+  ],
+  "tax-free": [
+    {
+      "df": 4,
+      "token": "tax-free"
+    },
+    {
+      "df": 1,
+      "token": "tax-free-childcare"
+    }
+  ],
+  "tax-free-": [
+    {
+      "df": 1,
+      "token": "tax-free-childcare"
+    }
+  ],
+  "tax-free-c": [
+    {
+      "df": 1,
+      "token": "tax-free-childcare"
+    }
+  ],
+  "tax-free-ch": [
+    {
+      "df": 1,
+      "token": "tax-free-childcare"
+    }
+  ],
+  "tax-free-chi": [
+    {
+      "df": 1,
+      "token": "tax-free-childcare"
+    }
+  ],
+  "taxe": [
+    {
+      "df": 1,
+      "token": "taxed"
+    }
+  ],
+  "taxed": [
+    {
+      "df": 1,
+      "token": "taxed"
     }
   ]
 }

@@ -1,0 +1,56 @@
+{
+  "ask": [
+    {
+      "df": 1,
+      "token": "ask"
+    }
+  ],
+  "ass": [
+    {
+      "df": 1,
+      "token": "assistants"
+    }
+  ],
+  "assi": [
+    {
+      "df": 1,
+      "token": "assistants"
+    }
+  ],
+  "assis": [
+    {
+      "df": 1,
+      "token": "assistants"
+    }
+  ],
+  "assist": [
+    {
+      "df": 1,
+      "token": "assistants"
+    }
+  ],
+  "assista": [
+    {
+      "df": 1,
+      "token": "assistants"
+    }
+  ],
+  "assistan": [
+    {
+      "df": 1,
+      "token": "assistants"
+    }
+  ],
+  "assistant": [
+    {
+      "df": 1,
+      "token": "assistants"
+    }
+  ],
+  "assistants": [
+    {
+      "df": 1,
+      "token": "assistants"
+    }
+  ]
+}

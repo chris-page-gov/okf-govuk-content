@@ -1,18 +1,14 @@
 {
   "by_type": {
-    "govuk:Assertion": 16,
-    "govuk:Attachment": 1,
-    "govuk:Collection": 1,
-    "govuk:ContentItem": 10,
-    "govuk:ContentType": 13,
-    "govuk:Document": 10,
-    "govuk:Evidence": 38,
+    "govuk:Assertion": 392,
+    "govuk:ContentItem": 69,
+    "govuk:ContentType": 8,
+    "govuk:Document": 69,
+    "govuk:Evidence": 476,
     "govuk:InferenceActivity": 1,
-    "govuk:MainstreamBrowsePage": 1,
-    "govuk:Organisation": 6,
-    "govuk:Route": 14,
-    "govuk:SchemaFamily": 13,
-    "govuk:Taxon": 2
+    "govuk:Organisation": 14,
+    "govuk:Route": 69,
+    "govuk:SchemaFamily": 8
   },
   "chunks": {
     "assertions": [
@@ -24,21 +20,19 @@
     "publishers": [
       "data/semantic/publishers-0.jsonld.gz"
     ],
-    "resources": [
-      "data/semantic/resources-0.jsonld.gz"
-    ]
+    "resources": []
   },
   "context": "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v1.jsonld",
   "counts": {
     "activity_nodes": 1,
-    "assertion_nodes": 16,
-    "entity_nodes": 71,
-    "evidence_nodes": 38,
-    "source_datasets": 14,
-    "source_publishers": 6,
-    "source_relationships": 16,
-    "source_resources": 1,
-    "total_nodes": 126
+    "assertion_nodes": 392,
+    "entity_nodes": 237,
+    "evidence_nodes": 476,
+    "source_datasets": 69,
+    "source_publishers": 14,
+    "source_relationships": 392,
+    "source_resources": 0,
+    "total_nodes": 1106
   },
   "entrypoints": {
     "assertion_schema": "semantic/schemas/assertion.schema.json",
@@ -50,7 +44,7 @@
     "shapes": "semantic/shapes/govuk-okf-shapes.ttl",
     "vocabulary": "data/semantic/vocabulary.jsonld"
   },
-  "generated_at": "2026-07-11T23:30:00Z",
+  "generated_at": "2026-07-15T06:25:17Z",
   "identity": {
     "assertion": "urn:govuk:assertion-{sha256}",
     "content_item": "urn:govuk:content-item:{content_id}",
@@ -58,84 +52,70 @@
   },
   "profile": "semantic/profile/govuk-okf-profile-v1.yamlld",
   "schema": "govuk-okf-semantic-projection.v1",
-  "shard_manifest_sha256": "d19d10ecde6001fc1340b59ec44bf99ef5abb84d9044bf4bddad1158b63b10d8",
+  "shard_manifest_sha256": "e67cecf229d45bd4d08e0fd10cd4849b0e670ff9d5ec99fe88845194dcc66c05",
   "shards": {
     "assertions": [
       {
-        "compressed_bytes": 3333,
+        "compressed_bytes": 52268,
         "compression": "gzip",
-        "count": 32,
-        "first_key": "urn:govuk:assertion-20a0496c464f468129567554fce3654abfaa8cd77d906f49c186d6b714f5a72f",
-        "last_key": "urn:govuk:evidence:ffbdadcf2c9f6bdcc588e2b5eb14a85ae0010515b4fbe26a69cef3535fbfe912",
+        "count": 784,
+        "first_key": "urn:govuk:assertion-0008f20ff8a09dcc137162fca06657e79208b9737d551d937d57aee49026589f",
+        "last_key": "urn:govuk:evidence:fe93a374b2864e15702b81fcf0c347eb34d7c5e894d83bccd9a2879e97da47d5",
         "path": "data/semantic/assertions-0.jsonld.gz",
         "schema": "govuk-okf-semantic-shard.v1",
-        "sha256": "35f87b5a8c58e6b4b5c3c29a48024fa691d061017b4dd27df2df59162bcd8f2a",
-        "snapshot": "fixture-2026-07-11",
-        "source_row_count": 16,
-        "uncompressed_bytes": 27481
+        "sha256": "44f28de8ff5b18034663d74e398534a84ea5871126f360433c9572892af41481",
+        "snapshot": "NEW-CHILD-20260715",
+        "source_row_count": 392,
+        "uncompressed_bytes": 686268
       }
     ],
     "entities": [
       {
-        "compressed_bytes": 4292,
+        "compressed_bytes": 24506,
         "compression": "gzip",
-        "count": 52,
-        "first_key": "https://chris-page-gov.github.io/okf-govuk-content/id/dataset/00000000-0000-4000-8000-000000000001-en",
-        "last_key": "urn:govuk:route:fd03ca4653b65cfa5cc40720312ea644e4719b898253ce3afc02133f4059a8ab",
+        "count": 276,
+        "first_key": "https://chris-page-gov.github.io/okf-govuk-content/id/dataset/03cad033-6800-4db2-92b4-87e9a6021272-en",
+        "last_key": "urn:govuk:route:ff9c3a45c2bad5b0797d295217b06bb725bab3340e908eddd5f4d8d46cfd8582",
         "path": "data/semantic/entities-0.jsonld.gz",
         "schema": "govuk-okf-semantic-shard.v1",
-        "sha256": "8fd58652555aa22500e0874b903f42714870a0dfa1907619fa9e1234551899aa",
-        "snapshot": "fixture-2026-07-11",
-        "source_row_count": 14,
-        "uncompressed_bytes": 37250
+        "sha256": "f126f5f318000b552a1e7f570f2514dacd343953bb2a49c3bd4d986952535796",
+        "snapshot": "NEW-CHILD-20260715",
+        "source_row_count": 69,
+        "uncompressed_bytes": 220397
       }
     ],
     "publishers": [
       {
-        "compressed_bytes": 1538,
+        "compressed_bytes": 2969,
         "compression": "gzip",
-        "count": 12,
-        "first_key": "https://chris-page-gov.github.io/okf-govuk-content/id/publisher/department-for-work-pensions",
-        "last_key": "urn:govuk:evidence:e48be25af3029c665e83a9f4f29ea101c4decd5a6ada28545033a13483e9caed",
+        "count": 28,
+        "first_key": "https://chris-page-gov.github.io/okf-govuk-content/id/publisher/department-for-business-and-trade",
+        "last_key": "urn:govuk:evidence:ff29fcef858fdf2255c3241a23db430df374d1f92494d7350c754dd71ade0a40",
         "path": "data/semantic/publishers-0.jsonld.gz",
         "schema": "govuk-okf-semantic-shard.v1",
-        "sha256": "a1b7af14fc21fbea3ebd3b50349b7bc4b3cb5acdc42de7bc7dfb83740687aaa5",
-        "snapshot": "fixture-2026-07-11",
-        "source_row_count": 6,
-        "uncompressed_bytes": 8592
+        "sha256": "141ea01b40e705d0b3761dc5e40292febeb7e88f12fb097b0341eb49de9c6fc0",
+        "snapshot": "NEW-CHILD-20260715",
+        "source_row_count": 14,
+        "uncompressed_bytes": 20297
       }
     ],
-    "resources": [
-      {
-        "compressed_bytes": 808,
-        "compression": "gzip",
-        "count": 2,
-        "first_key": "https://chris-page-gov.github.io/okf-govuk-content/id/resource/11111111-1111-4111-8111-111111111111",
-        "last_key": "urn:govuk:evidence:f021fdf01093840f76695110165fb3ece2ccbd091e1192137699448cb90fedd9",
-        "path": "data/semantic/resources-0.jsonld.gz",
-        "schema": "govuk-okf-semantic-shard.v1",
-        "sha256": "bef89c3f87c46d173bc1efbe9f560c77c057ce2239297eb4e0199f2b56ba22d4",
-        "snapshot": "fixture-2026-07-11",
-        "source_row_count": 1,
-        "uncompressed_bytes": 1768
-      }
-    ],
+    "resources": [],
     "vocabulary": [
       {
-        "compressed_bytes": 20871,
+        "compressed_bytes": 13458,
         "compression": "identity",
-        "count": 28,
-        "first_key": "urn:govuk:content-type:document_collection",
-        "last_key": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:world_location",
+        "count": 18,
+        "first_key": "urn:govuk:content-type:answer",
+        "last_key": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:transaction",
         "path": "data/semantic/vocabulary.jsonld",
         "schema": "govuk-okf-semantic-shard.v1",
-        "sha256": "316acd2badcc3b428e025d8a497bfa7d8a4793573226be00124d0737e5c14a73",
-        "snapshot": "fixture-2026-07-11",
-        "source_row_count": 28,
-        "uncompressed_bytes": 20871
+        "sha256": "02eb3ade603b4d03c0bf091956cc314b47c5a2c093b91eeb74e73c9e6edd0ce8",
+        "snapshot": "NEW-CHILD-20260715",
+        "source_row_count": 18,
+        "uncompressed_bytes": 13458
       }
     ]
   },
-  "snapshot": "fixture-2026-07-11",
+  "snapshot": "NEW-CHILD-20260715",
   "startup": "lazy"
 }

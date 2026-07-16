@@ -1,0 +1,22 @@
+[
+  {
+    "df": 2,
+    "postings": "data/search/postings/fu.json",
+    "token": "full-time"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/fu.json",
+    "token": "fund"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/fu.json",
+    "token": "funding"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/fu.json",
+    "token": "further"
+  }
+]

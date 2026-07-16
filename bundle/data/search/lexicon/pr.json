@@ -1,0 +1,57 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/pr.json",
+    "token": "pregnancy"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings/pr.json",
+    "token": "pregnant"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pr.json",
+    "token": "premium"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pr.json",
+    "token": "private"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/pr.json",
+    "token": "process"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pr.json",
+    "token": "proof"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pr.json",
+    "token": "protection"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pr.json",
+    "token": "prove"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/pr.json",
+    "token": "provide"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/pr.json",
+    "token": "provider"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/pr.json",
+    "token": "providers"
+  }
+]

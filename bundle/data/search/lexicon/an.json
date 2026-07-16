@@ -1,0 +1,17 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/an.json",
+    "token": "annual"
+  },
+  {
+    "df": 21,
+    "postings": "data/search/postings/an.json",
+    "token": "answer"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/an.json",
+    "token": "antenatal"
+  }
+]

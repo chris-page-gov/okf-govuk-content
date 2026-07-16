@@ -1,7 +1,22 @@
 [
   {
+    "df": 2,
+    "postings": "data/search/postings/sh.json",
+    "token": "shared"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/sh.json",
+    "token": "shared-parental-leave-and-pay"
+  },
+  {
     "df": 1,
     "postings": "data/search/postings/sh.json",
     "token": "short"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/sh.json",
+    "token": "shpp"
   }
 ]

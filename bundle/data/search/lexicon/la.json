@@ -2,6 +2,11 @@
   {
     "df": 1,
     "postings": "data/search/postings/la.json",
-    "token": "latest"
+    "token": "law"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/la.json",
+    "token": "law-on-leaving-your-child-home-alone"
   }
 ]

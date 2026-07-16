@@ -2,6 +2,16 @@
   {
     "df": 1,
     "postings": "data/search/postings/na.json",
+    "token": "nannies"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/na.json",
+    "token": "nanny"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/na.json",
     "token": "national"
   }
 ]

@@ -1,24 +1,29 @@
 {
   "tokens": {
-    "example": [
+    "explore": [
       [
-        10,
-        18,
-        65
-      ]
-    ],
-    "external": [
-      [
-        10,
+        50,
         16,
         1
       ]
     ],
-    "external_content": [
+    "extensions": [
+      [
+        53,
+        5,
+        4
+      ]
+    ],
+    "extra": [
+      [
+        0,
+        21,
+        5
+      ],
       [
         10,
-        11,
-        56
+        5,
+        4
       ]
     ]
   }

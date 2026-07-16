@@ -1,0 +1,12 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/qu.json",
+    "token": "qualifies"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings/qu.json",
+    "token": "qualify"
+  }
+]

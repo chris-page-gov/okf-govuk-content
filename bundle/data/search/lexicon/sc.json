@@ -1,0 +1,22 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/sc.json",
+    "token": "scheme"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/sc.json",
+    "token": "schemes"
+  },
+  {
+    "df": 8,
+    "postings": "data/search/postings/sc.json",
+    "token": "school"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/sc.json",
+    "token": "schools"
+  }
+]

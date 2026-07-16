@@ -1,0 +1,68 @@
+{
+  "dat": [
+    {
+      "df": 1,
+      "token": "date"
+    },
+    {
+      "df": 1,
+      "token": "dates"
+    }
+  ],
+  "date": [
+    {
+      "df": 1,
+      "token": "date"
+    },
+    {
+      "df": 1,
+      "token": "dates"
+    }
+  ],
+  "dates": [
+    {
+      "df": 1,
+      "token": "dates"
+    }
+  ],
+  "day": [
+    {
+      "df": 2,
+      "token": "daycare"
+    },
+    {
+      "df": 1,
+      "token": "days"
+    }
+  ],
+  "dayc": [
+    {
+      "df": 2,
+      "token": "daycare"
+    }
+  ],
+  "dayca": [
+    {
+      "df": 2,
+      "token": "daycare"
+    }
+  ],
+  "daycar": [
+    {
+      "df": 2,
+      "token": "daycare"
+    }
+  ],
+  "daycare": [
+    {
+      "df": 2,
+      "token": "daycare"
+    }
+  ],
+  "days": [
+    {
+      "df": 1,
+      "token": "days"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "end": [
+    {
+      "df": 1,
+      "token": "ends"
+    }
+  ],
+  "ends": [
+    {
+      "df": 1,
+      "token": "ends"
+    }
+  ],
+  "eng": [
+    {
+      "df": 2,
+      "token": "england"
+    }
+  ],
+  "engl": [
+    {
+      "df": 2,
+      "token": "england"
+    }
+  ],
+  "engla": [
+    {
+      "df": 2,
+      "token": "england"
+    }
+  ],
+  "englan": [
+    {
+      "df": 2,
+      "token": "england"
+    }
+  ],
+  "england": [
+    {
+      "df": 2,
+      "token": "england"
+    }
+  ],
+  "ent": [
+    {
+      "df": 1,
+      "token": "entitled"
+    },
+    {
+      "df": 1,
+      "token": "entitlement"
+    }
+  ],
+  "enti": [
+    {
+      "df": 1,
+      "token": "entitled"
+    },
+    {
+      "df": 1,
+      "token": "entitlement"
+    }
+  ],
+  "entit": [
+    {
+      "df": 1,
+      "token": "entitled"
+    },
+    {
+      "df": 1,
+      "token": "entitlement"
+    }
+  ],
+  "entitl": [
+    {
+      "df": 1,
+      "token": "entitled"
+    },
+    {
+      "df": 1,
+      "token": "entitlement"
+    }
+  ],
+  "entitle": [
+    {
+      "df": 1,
+      "token": "entitled"
+    },
+    {
+      "df": 1,
+      "token": "entitlement"
+    }
+  ],
+  "entitled": [
+    {
+      "df": 1,
+      "token": "entitled"
+    }
+  ],
+  "entitlem": [
+    {
+      "df": 1,
+      "token": "entitlement"
+    }
+  ],
+  "entitleme": [
+    {
+      "df": 1,
+      "token": "entitlement"
+    }
+  ],
+  "entitlemen": [
+    {
+      "df": 1,
+      "token": "entitlement"
+    }
+  ],
+  "entitlement": [
+    {
+      "df": 1,
+      "token": "entitlement"
+    }
+  ]
+}

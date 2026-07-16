@@ -1,0 +1,17 @@
+[
+  {
+    "df": 1,
+    "postings": "data/search/postings/wa.json",
+    "token": "wage"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/wa.json",
+    "token": "walk"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings/wa.json",
+    "token": "was"
+  }
+]

@@ -1,17 +1,12 @@
 [
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings/un.json",
-    "token": "united"
+    "token": "under"
   },
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings/un.json",
-    "token": "universal"
-  },
-  {
-    "df": 1,
-    "postings": "data/search/postings/un.json",
-    "token": "unknown"
+    "token": "unpaid"
   }
 ]
