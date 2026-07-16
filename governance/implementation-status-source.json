@@ -115,7 +115,15 @@
       "evidence": [
         "scripts/acquire_corpus.py",
         "scripts/hydrate_corpus.py",
+        "scripts/check_storage.py",
+        "scripts/plan_hydration.py",
+        "scripts/probe_search_extracts.py",
+        "scripts/query_extracts.py",
         "src/govuk_okf/hydration.py",
+        "src/govuk_okf/hydration_policy.py",
+        "src/govuk_okf/search_extracts.py",
+        "src/govuk_okf/storage.py",
+        "tests/test_bulk_first.py",
         "src/govuk_okf/new_child_demo.py",
         "scripts/acquire_new_child_demo.py",
         "demo/new-child-cohort.json",
@@ -123,7 +131,11 @@
         "demo/snapshots/NEW-CHILD-20260715/publication/cohort-manifest.json",
         "corpus/source-manifests/T0-20260712/manifest.json",
         "corpus/reconciliation/T0-20260712.json",
+        "corpus/source-manifests/T0R-20260715/manifest.json",
+        "corpus/source-manifests/T0R-20260715/hydration-selection.json",
+        "corpus/reconciliation/T0R-20260715.json",
         "governance/decisions/ADR-007-sitemap-routing-topology.md",
+        "governance/decisions/ADR-009-bulk-first-selective-enrichment.md",
         "docs/sitemap-routing.md",
         "src/govuk_okf/publication.py",
         "governance/decisions/ADR-004-rendered-gap-request-reserve.md",
@@ -141,7 +153,7 @@
         "reports/publication-scale.md",
         "release/status.json"
       ],
-      "qualification": "The unsampled T0 union census is closed and integrity-checked: 848,977 candidate keys, 836,998 publication records, 137 opposing-pass Search partitions, 35 byte-stable sitemap shards, closed organisations/navigation, six redirects and zero unexplained omissions. The long full-corpus hydration was stopped and its checkpoint preserved because it could not close within the demonstration window; it is not promoted as release evidence. Instead, the separately contracted new-child acquisition verifies an exact 69-record Search seed, retains allowlisted Content API metadata and typed one-hop boundary evidence, uses zero model calls and a hard 250-record/500-attempt ceiling, and reproduces from content-addressed envelopes without network access. That bounded success does not satisfy T1 closing. The first exact T0 capacity build failed closed at 6,712,946 bytes against the 5,242,880-byte postings limit; ADR-006 partitions by exact bytes, but exact T0/full-closing capacity remains unresolved. Full hydration, T1 re-enumeration, closing delta and final zero-omission release reconciliation remain future release work."
+      "qualification": "The historical unsampled T0 union is closed and integrity-checked at 848,977 candidate keys and 836,998 publication records. The latest unsampled T0R-20260715 bulk-first census is also closed: 3,029,380 source-native candidate identities, 874,507 publication records, 715,902 Search source rows, 35 byte-stable sitemap shards, closed organisations and 3,995 navigation records, six redirects and zero unexplained omissions. A same-day refreeze observed the sitemap expand from 668,475 to 870,398 unique URLs while Search retained 715,898 unique routes, so the closing T1 union remains mandatory. The separately contracted new-child acquisition verifies an exact 69-record Search seed, retains allowlisted Content API metadata and typed one-hop boundary evidence, uses zero model calls and a hard 250-record/500-attempt ceiling, and reproduces from content-addressed envelopes without network access. Its bounded demonstrator is the checked-in Explorer fixture; neither it nor the opening census is a full-corpus release claim. ADR-009 replaces universal Content API lookup with expanded Search metadata plus the versioned govuk-okf-selective-hydration.v2 policy. It selects 170,468 records (19.49%) for missing identity, structure, explicit lifecycle dispositions, structured-link closure and deterministic audit, reducing the theoretical eight-request-per-second network floor to about 5.9 hours. It visibly defers 465,865 attachment/resource or historic records pending an authoritative bulk source or targeted pass; another 233,727 are represented by bulk metadata. Search part extracts are queryable only in an external SQLite/FTS5 analytical cache; the new census stored 449 extracts from 239 multi-part documents while public source records and release outputs remained body-free. Acquisition and hydration reserve writes only when every active repository/cache filesystem will retain at least 10 GiB free, replacing the former retained-metadata ceiling. The old hydration checkpoint is preserved and a new census label is required. The first exact T0 capacity build ran 44,342.28 seconds and failed closed when the ca postings file reached 6,712,946 bytes against 5,242,880. ADR-006 now deterministically partitions complete tokens by exact physical bytes and chunks the document map without changing logical lookup; fast skew, legacy, tamper, discovery and packaging tests pass. Repository-native publication packages virtual shards into bounded, dual-hash, same-origin Pages .pack.gz ranges, mirrors identical assets in a draft-first immutable Release transaction, verifies live byte ranges, and fails closed at 950,000,000 Pages bytes. Capacity remains unresolved until immediate enrichment, deferred-field disposition, exact full build, T1 closing and final zero-omission release reconciliation complete."
     },
     {
       "name": "release_question_matrix",

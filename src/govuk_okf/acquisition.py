@@ -20,6 +20,8 @@ from pathlib import Path
 from typing import Any, Callable, Iterable, Iterator
 from urllib.parse import parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
+from .search_extracts import SearchExtractStore, part_metadata
+from .storage import StoragePolicy, assert_minimum_free_disk, load_storage_policy
 from .util import canonical_json_bytes, pretty_json, sha256_bytes, slugify
 from .webprobe import Probe, fetch_probe
 
@@ -30,6 +32,7 @@ ORGANISATIONS_URL = "https://www.gov.uk/api/organisations"
 CONTENT_API_ROOT = "https://www.gov.uk/api/content"
 SEARCH_PAGE_SIZE = 1500
 SEARCH_FIELDS = [
+    "content_id",
     "title",
     "link",
     "description",
@@ -37,8 +40,13 @@ SEARCH_FIELDS = [
     "content_store_document_type",
     "public_timestamp",
     "organisation_content_ids",
+    "organisations",
     "taxons",
     "world_locations",
+    "parts",
+    "is_historic",
+    "content_purpose_supergroup",
+    "content_purpose_subgroup",
 ]
 NAVIGATION_LINKS = {
     "level_one_taxons",
@@ -477,7 +485,46 @@ def search_result_record(
         values = result.get(predicate) or []
         if isinstance(values, list):
             links[predicate] = [item for item in values if isinstance(item, dict)]
+    organisations = result.get("organisations") or []
+    safe_organisations: list[dict[str, Any]] = []
+    if isinstance(organisations, list):
+        for organisation in organisations:
+            if not isinstance(organisation, dict):
+                continue
+            safe_organisations.append(
+                {
+                    key: organisation.get(key)
+                    for key in (
+                        "content_id",
+                        "link",
+                        "title",
+                        "slug",
+                        "acronym",
+                        "organisation_type",
+                        "organisation_state",
+                        "parent_organisations",
+                        "child_organisations",
+                        "superseding_organisations",
+                        "superseded_organisations",
+                    )
+                    if organisation.get(key) is not None
+                }
+            )
+    if safe_organisations:
+        links["organisations"] = safe_organisations
+    parts = result.get("parts") or []
+    safe_parts = [part_metadata(part) for part in parts if isinstance(part, dict)] if isinstance(parts, list) else []
     document_type = str(result.get("content_store_document_type") or result.get("format") or "unknown")
+    organisation_content_ids = {
+        str(value)
+        for value in result.get("organisation_content_ids", [])
+        if value
+    }
+    organisation_content_ids.update(
+        str(row["content_id"])
+        for row in safe_organisations
+        if row.get("content_id")
+    )
     return {
         "candidate_key": candidate_key(url, "en", "external_boundary" if host != "www.gov.uk" else "route"),
         "entity_class": "external_boundary" if host != "www.gov.uk" else "route",
@@ -487,6 +534,7 @@ def search_result_record(
         "source_id": "search-api-v1",
         "source_memberships": [membership],
         "coverage_disposition": "represented",
+        "content_id": result.get("content_id"),
         "canonical_url": url,
         "base_path": urlparse(url).path,
         "title": str(result.get("title") or urlparse(url).path),
@@ -495,8 +543,12 @@ def search_result_record(
         "schema_name": document_type,
         "locale": "en",
         "public_updated_at": result.get("public_timestamp"),
+        "is_historic": result.get("is_historic"),
+        "content_purpose_supergroup": result.get("content_purpose_supergroup"),
+        "content_purpose_subgroup": result.get("content_purpose_subgroup"),
+        "parts": safe_parts,
         "links": links,
-        "organisation_content_ids": [str(value) for value in result.get("organisation_content_ids", []) if value],
+        "organisation_content_ids": sorted(organisation_content_ids),
         "retrieved_at": retrieved_at,
         "evidence_url": evidence.get("requested_url") or SEARCH_URL,
         "evidence_sha256": evidence.get("sha256"),
@@ -809,11 +861,37 @@ def build_candidate_ledger(records: Iterable[dict[str, Any]], snapshot_id: str) 
 
 
 class SnapshotBuilder:
-    def __init__(self, root: Path, label: str, *, search_rate: float = 2.0, content_rate: float = 8.0) -> None:
+    def __init__(
+        self,
+        root: Path,
+        label: str,
+        *,
+        search_rate: float = 2.0,
+        content_rate: float = 8.0,
+        cache_root: Path | None = None,
+        extract_database: Path | None = None,
+        storage_policy: StoragePolicy | None = None,
+    ) -> None:
         self.root = root
         self.label = label
-        self.cache = root / "corpus" / "cache" / label
+        self.storage_policy = storage_policy or load_storage_policy(root)
         self.manifest_root = root / "corpus" / "source-manifests" / label
+        if (self.manifest_root / "manifest.json").is_file():
+            raise AcquisitionError(
+                f"snapshot {label} is already complete and immutable; use a new label "
+                "and, if appropriate, an explicit --cache-root"
+            )
+        self.cache = cache_root or self.storage_policy.cache_root(label, "acquisition")
+        extract_path = extract_database or self.storage_policy.extract_database(label)
+        self.extract_store = (
+            SearchExtractStore(
+                extract_path,
+                label,
+                minimum_free_bytes=self.storage_policy.minimum_free_bytes,
+            )
+            if extract_path is not None
+            else None
+        )
         self.inventory_root = root / "corpus" / "inventory"
         shared_rate = min(search_rate, content_rate)
         self.govuk_limiter = HostLimiter(
@@ -831,6 +909,20 @@ class SnapshotBuilder:
         self.organisations_proof: dict[str, Any] = {}
         self.navigation_proof: dict[str, Any] = {}
         self.started_at = datetime.now(timezone.utc).isoformat()
+
+    def reserve_write(self, path: Path, reserve_bytes: int, phase: str) -> None:
+        assert_minimum_free_disk(
+            path,
+            self.storage_policy.minimum_free_bytes,
+            reserve_bytes=reserve_bytes,
+            phase=phase,
+        )
+
+    def close(self) -> None:
+        if self.extract_store is not None:
+            self.extract_store.write_sidecar_manifest()
+            self.extract_store.close()
+            self.extract_store = None
 
     def cached_json(self, path: Path, url: str, limiter: HostLimiter) -> tuple[Any, dict[str, Any]]:
         if path.is_file():
@@ -851,6 +943,12 @@ class SnapshotBuilder:
             except (gzip.BadGzipFile, EOFError, OSError, UnicodeDecodeError, json.JSONDecodeError):
                 path.unlink(missing_ok=True)
         body, evidence = request_bytes(url, limiter=limiter)
+        assert_minimum_free_disk(
+            self.cache,
+            self.storage_policy.minimum_free_bytes,
+            reserve_bytes=max(len(body) * 2, 8 * 1024 * 1024),
+            phase="acquisition cache write",
+        )
         path.parent.mkdir(parents=True, exist_ok=True)
         temporary = path.with_name(f".{path.name}.tmp")
         with temporary.open("wb") as raw:
@@ -974,8 +1072,23 @@ class SnapshotBuilder:
                         raise AcquisitionError(
                             f"Search partition {value} page {start} total changed: {page_total} != {expected}"
                         )
-                    returned += len(rows)
-                    for result_index, row in enumerate(rows):
+                    safe_rows = (
+                        self.extract_store.ingest_results(rows, evidence)
+                        if self.extract_store is not None
+                        else [
+                            {
+                                **row,
+                                "parts": [
+                                    part_metadata(part)
+                                    for part in row.get("parts", [])
+                                    if isinstance(part, dict)
+                                ],
+                            }
+                            for row in rows
+                        ]
+                    )
+                    returned += len(safe_rows)
+                    for result_index, row in enumerate(safe_rows):
                         record = search_result_record(
                             row,
                             f"search-{value}-{pass_name}",
@@ -991,13 +1104,13 @@ class SnapshotBuilder:
                             "source": f"search-api-v1-{pass_name}",
                             "partition": value,
                             "page_start": start,
-                            "returned": len(rows),
+                            "returned": len(safe_rows),
                             **evidence,
                         }
                     )
-                    if len(rows) != page_count:
+                    if len(safe_rows) != page_count:
                         raise AcquisitionError(
-                            f"Search partition {value} returned short page at {start}: {len(rows)} != {page_count}"
+                            f"Search partition {value} returned short page at {start}: {len(safe_rows)} != {page_count}"
                         )
                 if returned != expected:
                     raise AcquisitionError(f"Search partition {value} did not close: {returned} != {expected}")
@@ -1257,9 +1370,11 @@ class SnapshotBuilder:
             self.source_events.append({"source": "content-api-navigation", "path": path, **evidence})
             if len(visited) % 100 == 0:
                 checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+                self.reserve_write(self.cache, 72 * 1024 * 1024, "navigation checkpoint write")
                 write_text_atomic(checkpoint_path, pretty_json({"queue": list(queue), "visited": sorted(visited)}))
                 write_jsonl_gzip(records_path, (records[key] for key in sorted(records)))
         checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+        self.reserve_write(self.cache, 72 * 1024 * 1024, "navigation checkpoint write")
         write_text_atomic(checkpoint_path, pretty_json({"queue": list(queue), "visited": sorted(visited)}))
         write_jsonl_gzip(records_path, (records[key] for key in sorted(records)))
         self.navigation_proof = {
@@ -1336,11 +1451,17 @@ class SnapshotBuilder:
             snapshot_inventory_root,
             "candidates",
             (candidate_ledger[key] for key in sorted(candidate_ledger)),
+            before_write=lambda path, reserve: self.reserve_write(
+                path, reserve, "candidate inventory write"
+            ),
         )
         inventory_output = write_jsonl_gzip_shards(
             snapshot_inventory_root,
             "source-records",
             (publication_records[key] for key in sorted(publication_records)),
+            before_write=lambda path, reserve: self.reserve_write(
+                path, reserve, "source-record inventory write"
+            ),
         )
         candidate_count = int(candidate_output["records"])
         candidate_digest = str(candidate_output["canonical_sha256"])
@@ -1398,7 +1519,13 @@ class SnapshotBuilder:
             raise AcquisitionError("candidate reconciliation did not close")
         reconciliation_path = self.root / "corpus" / "reconciliation" / f"{self.label}.json"
         reconciliation_path.parent.mkdir(parents=True, exist_ok=True)
-        write_text_atomic(reconciliation_path, pretty_json(reconciliation))
+        reconciliation_text = pretty_json(reconciliation)
+        self.reserve_write(
+            reconciliation_path,
+            len(reconciliation_text.encode("utf-8")),
+            "reconciliation write",
+        )
+        write_text_atomic(reconciliation_path, reconciliation_text)
         manifest = {
             "schema_version": 1,
             "snapshot": self.label,
@@ -1406,8 +1533,19 @@ class SnapshotBuilder:
             "completed_at": datetime.now(timezone.utc).isoformat(),
             "sources": self.source_events,
             "search_partition_proofs": self.search_partition_proofs,
+            "storage_preflight": self.storage_policy.preflight(disclose_paths=False),
+            "local_search_extract_cache": (
+                self.extract_store.summary() if self.extract_store is not None else None
+            ),
             "reconciliation": reconciliation,
         }
         self.manifest_root.mkdir(parents=True, exist_ok=True)
-        write_text_atomic(self.manifest_root / "manifest.json", pretty_json(manifest))
+        manifest_path = self.manifest_root / "manifest.json"
+        manifest_text = pretty_json(manifest)
+        self.reserve_write(
+            manifest_path,
+            len(manifest_text.encode("utf-8")),
+            "source manifest write",
+        )
+        write_text_atomic(manifest_path, manifest_text)
         return manifest

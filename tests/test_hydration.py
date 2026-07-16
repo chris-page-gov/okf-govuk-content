@@ -39,6 +39,10 @@ class HydrationTests(unittest.TestCase):
         }
 
     def write_source(self, root: Path, records: list[dict[str, object]]) -> Path:
+        launch = root / "governance" / "launch-manifest.yaml"
+        launch.parent.mkdir(parents=True, exist_ok=True)
+        if not launch.exists():
+            launch.write_text("ceilings:\n  minimum_free_disk_gib: 1\n", encoding="utf-8")
         path = root / "corpus" / "inventory" / "T0-source-records.jsonl.gz"
         path.parent.mkdir(parents=True, exist_ok=True)
         with gzip.open(path, "wt", encoding="utf-8") as stream:
@@ -49,7 +53,7 @@ class HydrationTests(unittest.TestCase):
     def source(self, root: Path) -> Path:
         launch = root / "governance" / "launch-manifest.yaml"
         launch.parent.mkdir(parents=True, exist_ok=True)
-        launch.write_text("ceilings:\n  retained_metadata_storage_gib: 1\n", encoding="utf-8")
+        launch.write_text("ceilings:\n  minimum_free_disk_gib: 1\n", encoding="utf-8")
         return self.write_source(root, [self.record()])
 
     @staticmethod
@@ -142,7 +146,7 @@ class HydrationTests(unittest.TestCase):
                 [row["canonical_url"] for row in rows],
             )
             self.assertTrue(all("body" not in row.get("details", {}) for row in rows))
-            self.assertTrue(reconciliation["storage_accounting"]["within_authorised_ceiling"])
+            self.assertTrue(reconciliation["storage_accounting"]["minimum_free_disk_satisfied"])
             with sqlite3.connect(checkpoint) as connection:
                 self.assertEqual(
                     [("complete", 1), ("complete", 1)],
@@ -208,7 +212,7 @@ class HydrationTests(unittest.TestCase):
             finally:
                 connection.close()
 
-    def test_storage_ceiling_stops_before_network(self) -> None:
+    def test_minimum_free_disk_stops_before_network(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             hydrator = CorpusHydrator(
@@ -216,10 +220,12 @@ class HydrationTests(unittest.TestCase):
                 "T0",
                 self.source(root),
                 requests_per_second=100000,
-                retained_storage_bytes=1024,
+                minimum_free_disk_bytes=1024,
             )
-            with patch("govuk_okf.hydration.request_observation") as request:
-                with self.assertRaisesRegex(HydrationError, "retained metadata storage"):
+            with patch("govuk_okf.storage.free_disk_bytes", return_value=1023), patch(
+                "govuk_okf.hydration.request_observation"
+            ) as request:
+                with self.assertRaisesRegex(HydrationError, "insufficient free disk"):
                     hydrator.run()
             request.assert_not_called()
 
@@ -289,9 +295,18 @@ class HydrationTests(unittest.TestCase):
                 "T0",
                 source,
                 requests_per_second=100000,
-                retained_storage_bytes=16 * 1024 * 1024,
+                minimum_free_disk_bytes=16 * 1024 * 1024,
             )
-            with patch("govuk_okf.hydration.request_observation") as request:
+            original_assert = hydrator._assert_retained_storage
+
+            def reject_prepare(*, phase: str, **kwargs: object) -> int:
+                if phase == "hydration preparation pre-write":
+                    raise HydrationError("hydration preparation pre-write")
+                return original_assert(phase=phase, **kwargs)
+
+            with patch.object(
+                hydrator, "_assert_retained_storage", side_effect=reject_prepare
+            ), patch("govuk_okf.hydration.request_observation") as request:
                 with self.assertRaisesRegex(HydrationError, "hydration preparation pre-write"):
                     hydrator.run()
             request.assert_not_called()
@@ -309,7 +324,7 @@ class HydrationTests(unittest.TestCase):
                 "T0",
                 source,
                 requests_per_second=100000,
-                retained_storage_bytes=1024**3,
+                minimum_free_disk_bytes=1024**3,
             )
             with patch("govuk_okf.hydration.request_observation") as request:
                 with self.assertRaises(sqlite3.IntegrityError):
@@ -328,7 +343,7 @@ class HydrationTests(unittest.TestCase):
                 "T0",
                 source,
                 requests_per_second=100000,
-                retained_storage_bytes=1024**3,
+                minimum_free_disk_bytes=1024**3,
             )
             with patch("govuk_okf.hydration.request_observation") as request:
                 with self.assertRaises(sqlite3.IntegrityError):
@@ -368,9 +383,20 @@ class HydrationTests(unittest.TestCase):
                 "T0",
                 source,
                 requests_per_second=100000,
-                retained_storage_bytes=12 * 1024 * 1024,
+                minimum_free_disk_bytes=12 * 1024 * 1024,
             )
-            with self.assertRaisesRegex(HydrationError, "legacy hydration queue migration reservation"):
+            original_assert = hydrator._assert_retained_storage
+
+            def reject_migration(*, phase: str, **kwargs: object) -> int:
+                if phase == "legacy hydration queue migration reservation":
+                    raise HydrationError("legacy hydration queue migration reservation")
+                return original_assert(phase=phase, **kwargs)
+
+            with patch.object(
+                hydrator, "_assert_retained_storage", side_effect=reject_migration
+            ), self.assertRaisesRegex(
+                HydrationError, "legacy hydration queue migration reservation"
+            ):
                 hydrator._connect()
             with sqlite3.connect(database) as connection:
                 input_column = next(
@@ -400,7 +426,8 @@ class HydrationTests(unittest.TestCase):
             constrained_usage = type(usage)(
                 usage.total,
                 usage.used,
-                hydration_module._TRANSIENT_SPOOL_MINIMUM_FREE
+                hydrator.minimum_free_disk_bytes
+                + hydration_module._TRANSIENT_SPOOL_MINIMUM_FREE
                 + hydration_module._TRANSIENT_SPOOL_RESERVE_PER_REQUEST
                 - 1,
             )
@@ -422,7 +449,7 @@ class HydrationTests(unittest.TestCase):
                 requests_per_second=100000,
                 workers=2,
                 batch_size=2,
-                retained_storage_bytes=1024**3,
+                minimum_free_disk_bytes=1024**3,
             )
 
             def one_failure(url: str, **_: object):
@@ -448,7 +475,7 @@ class HydrationTests(unittest.TestCase):
                 requests_per_second=100000,
                 workers=2,
                 batch_size=2,
-                retained_storage_bytes=1024**3,
+                minimum_free_disk_bytes=1024**3,
             )
             with patch("govuk_okf.hydration.request_observation", side_effect=resume_observation):
                 self.assertTrue(resumed.run()["closed"])
@@ -499,9 +526,20 @@ class HydrationTests(unittest.TestCase):
                 "T0",
                 source,
                 requests_per_second=100000,
-                retained_storage_bytes=20 * 1024 * 1024,
+                minimum_free_disk_bytes=20 * 1024 * 1024,
             )
-            with patch("govuk_okf.hydration.request_observation", side_effect=large_observation) as request:
+            original_assert = constrained._assert_retained_storage
+
+            def reject_batch(*, phase: str, **kwargs: object) -> int:
+                if phase == "hydration batch reservation":
+                    raise HydrationError("hydration batch reservation")
+                return original_assert(phase=phase, **kwargs)
+
+            with patch.object(
+                constrained, "_assert_retained_storage", side_effect=reject_batch
+            ), patch(
+                "govuk_okf.hydration.request_observation", side_effect=large_observation
+            ) as request:
                 with self.assertRaisesRegex(HydrationError, "hydration batch reservation"):
                     constrained.run()
             self.assertEqual(1, request.call_count)
@@ -512,7 +550,7 @@ class HydrationTests(unittest.TestCase):
                 "T0",
                 source,
                 requests_per_second=100000,
-                retained_storage_bytes=100 * 1024 * 1024,
+                minimum_free_disk_bytes=100 * 1024 * 1024,
             )
             with patch("govuk_okf.hydration.request_observation") as request:
                 progress = resumed.run()
@@ -550,12 +588,21 @@ class HydrationTests(unittest.TestCase):
                 "T0",
                 self.write_source(root, [record]),
                 requests_per_second=100000,
-                retained_storage_bytes=90 * 1024 * 1024,
+                minimum_free_disk_bytes=90 * 1024 * 1024,
             )
             with patch("govuk_okf.hydration.request_observation") as request:
                 self.assertTrue(hydrator.run()["closed"])
             request.assert_not_called()
-            with self.assertRaisesRegex(HydrationError, "candidate materialization pre-write"):
+            original_reservation = hydrator._assert_sqlite_write_storage
+
+            def reject_candidate(*, phase: str, **kwargs: object) -> int:
+                if phase == "candidate materialization pre-write":
+                    raise HydrationError("candidate materialization pre-write")
+                return original_reservation(phase=phase, **kwargs)
+
+            with patch.object(
+                hydrator, "_assert_sqlite_write_storage", side_effect=reject_candidate
+            ), self.assertRaisesRegex(HydrationError, "candidate materialization pre-write"):
                 hydrator.export()
             self.assertFalse(any(hydrator.records_root.glob("source-records-*")))
             with sqlite3.connect(hydrator.database_path) as connection:
@@ -582,7 +629,7 @@ class HydrationTests(unittest.TestCase):
                 "T0",
                 self.write_source(root, records),
                 requests_per_second=100000,
-                retained_storage_bytes=1024**3,
+                minimum_free_disk_bytes=1024**3,
             )
             with patch("govuk_okf.hydration.request_observation") as request:
                 self.assertTrue(hydrator.run()["closed"])
@@ -687,6 +734,9 @@ class HydrationTests(unittest.TestCase):
             marker = orphan / "marker.txt"
             marker.write_text("keep", encoding="utf-8")
             (root / "corpus").symlink_to(outside_root, target_is_directory=True)
+            launch = root / "governance" / "launch-manifest.yaml"
+            launch.parent.mkdir(parents=True)
+            launch.write_text("ceilings:\n  minimum_free_disk_gib: 1\n", encoding="utf-8")
             source = root / "source.jsonl"
             source.write_text(json.dumps(self.record()) + "\n", encoding="utf-8")
             hydrator = CorpusHydrator(
@@ -694,7 +744,7 @@ class HydrationTests(unittest.TestCase):
                 "T0",
                 source,
                 requests_per_second=100000,
-                retained_storage_bytes=1024**3,
+                minimum_free_disk_bytes=1024**3,
             )
 
             with self.assertRaisesRegex(HydrationError, "root cannot be a symbolic link"):

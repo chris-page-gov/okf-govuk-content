@@ -2,7 +2,7 @@ schema_version: 1
 budgets:
   model_external_paid_gbp: 0
   official_source_requests: 1000000
-  retained_metadata_bytes: 10737418240
+  minimum_free_disk_bytes: 10737418240
   bootstrap_compressed_bytes: 2097152
   ordinary_shard_compressed_bytes: 5242880
   warm_search_p95_ms: 500
@@ -15,4 +15,3 @@ brakes:
   optional_enrichment_stop_percent: 80
   billable_task_start_stop_percent: 95
   hard_checkpoint_percent: 100
-

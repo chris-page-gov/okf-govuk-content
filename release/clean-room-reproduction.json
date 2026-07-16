@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "c119f49ba76bad43624918b4e49a4db391957c45ee70e77608febae670e9fb5c",
-    "before_sha256": "c119f49ba76bad43624918b4e49a4db391957c45ee70e77608febae670e9fb5c",
+    "after_sha256": "9a7f1f4810cea906ae4365a590af69e24136e1ce13ab875145f2668906d4738d",
+    "before_sha256": "9a7f1f4810cea906ae4365a590af69e24136e1ce13ab875145f2668906d4738d",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -97,12 +97,12 @@
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-07-15T08:28:18Z",
+  "ended_at": "2026-07-16T04:30:30Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python": {
-      "executable": "/Users/crpage/tmp/okf-new-child-demonstrator/.venv/bin/python",
+      "executable": "/Users/crpage/repos/okf-govuk-content/.venv/bin/python",
       "implementation": "CPython",
       "version": "3.12.11"
     },
@@ -241,10 +241,10 @@
         "tree_sha256": "5074788418fb13578520e4b3e81fbadf54ddded0d913b2eb9509b35150ac8ea0"
       },
       {
-        "bytes": 2286,
+        "bytes": 2966,
         "file_count": 1,
         "path": "governance/launch-manifest.yaml",
-        "tree_sha256": "80bf3e74c882063fb2eb98d991671d657ad8c2d2a35fb7636fbcb9d78926d7ef"
+        "tree_sha256": "cf1a570a9d6eef18ab8597d5ae1c67577d727858cbbca375f6863d34e6c811ab"
       },
       {
         "bytes": 1798,
@@ -271,10 +271,10 @@
         "tree_sha256": "b3b38afed18911b8f425db57349510925c4df3aba346712465b9f9a2ce44821b"
       },
       {
-        "bytes": 103511,
+        "bytes": 119420,
         "file_count": 1,
         "path": "provenance/activity-ledger.jsonl",
-        "tree_sha256": "8b6339c8e360dff350500e2c6cf597e14fb0795ef38ec9ac7c800dc6335262d8"
+        "tree_sha256": "a66b6262b78d70fdc3fb9665b518e2500fd79e0a455f7a712a611565620240cd"
       },
       {
         "bytes": 8590,
@@ -295,10 +295,10 @@
         "tree_sha256": "822b52dfb6f1b384877969a96e016966f2e7bb4d8600b0416a35e8637d0e736c"
       },
       {
-        "bytes": 12745,
+        "bytes": 12845,
         "file_count": 1,
         "path": "release/provenance-validation.json",
-        "tree_sha256": "d8acdabed91e79c1c4c585d90097b33e39f7f3056eb66462b97ee35d20d81b34"
+        "tree_sha256": "ce805fd774b4cd964ac7e46017717f2f1ebb251f726f8512ce8ec030a47837d6"
       },
       {
         "bytes": 1574,
@@ -307,22 +307,22 @@
         "tree_sha256": "61995a5884f78c252055af4aca2b4faf12a3c893911f2f3953de0eec027dd6f7"
       },
       {
-        "bytes": 7423,
+        "bytes": 9505,
         "file_count": 1,
         "path": "research/official-source-audit.md",
-        "tree_sha256": "b70a3f1dee5904b1ae50dadbb25e8673087887355f126613608144c995acc6ec"
+        "tree_sha256": "77f2c8b0a976eddb3c2e68acff160834a0f78afa3acf95a72b2fff5394553d06"
       },
       {
-        "bytes": 4329,
+        "bytes": 5170,
         "file_count": 1,
         "path": "research/source-constraints.json",
-        "tree_sha256": "2710ab6cef995ba152168c2b1777cf2615b8ea3bd575f51e4e7c5fec55515366"
+        "tree_sha256": "5b11cd86be9b4923fab1009f4124bb01b0600f8222524265cf1b43c24960e901"
       },
       {
-        "bytes": 1286271,
-        "file_count": 31,
+        "bytes": 1333543,
+        "file_count": 34,
         "path": "src",
-        "tree_sha256": "14e54d3ce561729af8354c520ca91e935b9495b23e1fbff17d6fb1ef882a51da"
+        "tree_sha256": "ef223501e4ccf2c74c0766ff92afb454b2fe5d60cc2c630417614068ab862091"
       },
       {
         "bytes": 1751,
@@ -429,21 +429,21 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "3d4358f677bf06f17887864b13d202f882c841225ddfa64cff8e702b3146353a"
+    "tree_sha256": "0d064678e41f3b5a7196053c29a5e56dccc483a3afe424ab42b6cf8a6a8e6599"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
-      "activities": 33,
-      "activities_with_unavailable_cost": 27,
-      "activities_with_unavailable_tokens": 27,
+      "activities": 36,
+      "activities_with_unavailable_cost": 30,
+      "activities_with_unavailable_tokens": 30,
       "external_paid_model_api_calls": 0,
       "external_paid_model_cost_gbp": 0.0,
       "external_paid_model_input_tokens": 0,
       "external_paid_model_output_tokens": 0,
       "known_cost_gbp": 0.0,
       "known_tokens": 0,
-      "latest_source_request_checkpoint": 4283,
-      "ledger_sha256": "ef8e284e5adc62fda840c7bcc7a352ce948840a2c7751f16b07d32825bf45f42",
+      "latest_source_request_checkpoint": 81798,
+      "ledger_sha256": "b07608a476fd9a41545cad616040c8e76c10ee35a65a484d2412a7dd4a860448",
       "source_request_activities_pending_final_count": 2,
       "source_request_exact_attempts": 11831,
       "source_requests_included_in_model_cost": false
@@ -494,7 +494,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-15T08:28:18Z",
+  "recorded_at": "2026-07-16T04:30:30Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
@@ -554,7 +554,7 @@
     }
   ],
   "source_binding": null,
-  "started_at": "2026-07-15T08:28:17Z",
+  "started_at": "2026-07-16T04:30:29Z",
   "test_evidence": null,
   "validators": {
     "passed": true,

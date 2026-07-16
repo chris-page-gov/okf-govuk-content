@@ -16,12 +16,12 @@ child.
 | Area | Current state | What remains before machine RC |
 |---|---|---|
 | Contract and controller | 95 requirements, 11 gates and 36 task contracts imported; controller checks pass | Accepted run evidence and terminal requirement dispositions |
-| Official sources | Dated 32-source and 93-URL plan preflight retained; T0 closed from 137 opposing-pass Search partitions, 35 byte-stable sitemap shards and closed organisations/navigation | T0 hydration, T1 union closure and final rights/citation snapshot binding |
+| Official sources | Dated 32-source and 93-URL plan preflight retained; the new T0R-20260715 union closed from 715,902 opposing-pass Search rows, 35 byte-stable sitemap shards and closed organisations/navigation | Immediate enrichment, deferred-field disposition, T1 union closure and final rights/citation snapshot binding |
 | Semantic profile | YAML-LD profile, JSON schemas, crosswalks, shapes and JSON-LD fixture projection produced | Release-snapshot equivalence, integrity and provenance evidence |
-| Bundle and Explorer | Accepted body-free snapshot closes 69/69 seeds with zero unexplained omissions, 118 bounded metadata observations, 753 direct typed boundaries and 127 individually receipted HTTP 200 attempts; static search, route index, adjacency, dedicated journey view, source-query evidence, query/hash replay, Pages fallback and read-only discovery are produced; exact-byte postings partitions and 1,000-record document maps preserve logical lookup and legacy manifests while bounding physical files | Finish screenshot evidence and focused security review for this bounded PR; separately rerun full-corpus capacity/closing and its accessibility/security/performance gates; axe, accessibility-expert and screen-reader review remain open |
+| Bundle and Explorer | Accepted body-free snapshot closes 69/69 seeds with zero unexplained omissions, 118 bounded metadata observations, 753 direct typed boundaries and 127 individually receipted HTTP 200 attempts; static search, route index, adjacency, dedicated journey view, source-query evidence, query/hash replay, Pages fallback and read-only discovery are produced; exact-byte postings partitions and 1,000-record document maps preserve logical lookup and legacy manifests while bounding physical files | The illustrated bounded review and focused security remediation are complete; separately rerun full-corpus capacity/closing and its accessibility/security/performance gates; axe, accessibility-expert and screen-reader review remain open |
 | AI handoff | Question-specific Markdown/JSON export is the universal default; the full portable pack is labelled bulk/archive. The deterministic Python/CLI adapter and official-SDK MCP server expose five read-only, idempotent, closed-world bounded tools, validate the 69-record identity and finite data-plane hashes, and make no model calls or arbitrary URL fetches | Retain the rule that metadata supports discovery, not eligibility or substantive guidance. Local stdio and SDK round trips pass; a remote MCP service would additionally require TLS, authentication, authorisation, Origin validation, rate limits and audit logging |
 | Security | Completed repository-wide scan recorded 14 findings; its remediation diff scan confirmed those fixes and found three residual low issues, all fixed at `27890dc`; 32 focused post-fix tests pass | Run and hash-bind a new full-repository scan after the hydrated release snapshot and publication artefacts are frozen; `security_scan_passed` remains false |
-| Census and hydration | Unsampled T0 closed at 848,977 candidates and 836,998 publication records; 848,971 represented plus six redirects, with zero exceptions/unexplained omissions; every shard digest passes; the resumable checkpoint enforces the authorised 10 GiB retained-metadata ceiling, durably spools successful responses, admits all writes before mutation and rejects duplicate source identities/path escapes | The long full hydration was stopped and its checkpoint preserved because it could not complete within the demonstration window. Resume only as a separate full-release operation, then re-enumerate T1, close drift and retain zero unexplained omissions |
+| Census and hydration | Unsampled T0R-20260715 closed at 3,029,380 source-native candidate identities and 874,507 publication records with zero unexplained omissions. V2 selects 170,468 records (19.49%), defers 465,865 attachment/resource or historic records and represents 233,727 by bulk metadata. The external cache has 449 local-only extracts from 239 documents, and all active filesystems retain at least 10 GiB free. | Complete immediate enrichment, resolve or explicitly accept deferred field coverage, re-enumerate T1, close drift and retain zero unexplained omissions |
 | Personas and stories | Machine-applicable saturation passes for 48 primary persona hypotheses, 17 overlays, 11 dimensions, 83 schema families, 136 overlay pairs, five high-risk t-way scenarios and two successive no-new challenge passes | Authorised human validation and final-snapshot regeneration of six release-v2 stories per persona; UI preference remains not yet testable |
 | Questions | v2 corpus-anchored generator and separate verifier produced | Run against the closed snapshot and independently pass all gold/leakage/split checks |
 | Evaluation and aims | Deterministic SQLite/FTS harness, matched baselines/ablations, raw-trace and analysis contracts produced and fixture-tested | Complete 28,800-question release run against the closed snapshot and aim scorecard |
@@ -85,13 +85,16 @@ fails projection generation.
 
 ## Active blockers and constraints
 
-- Full-corpus hydration and closing remain long-running public-source operations. The
-  836,543 initial GOV.UK routes have a theoretical minimum of about 29 hours at
-  8 Content API requests/s, before retries, linked discoveries and T1. ADR-004
-  limits the deterministic rendered-link detector to 75,000 pages and preserves
-  a 76,952-attempt lower-bound reserve for retries, discoveries and closing.
-  The prior hydration job has been stopped; the bounded demonstrator does not
-  imply that this full-release blocker has passed.
+- Universal hydration would remain a long-running public-source operation: the
+  historical 836,543-route queue has a theoretical minimum of about 29 hours at
+  8 Content API requests/s. ADR-009 replaces that default with expanded Search
+  metadata and a versioned two-tier enrichment manifest. The new opening census
+  selects 170,468 records, a theoretical minimum of about 5.9 hours, while
+  separately exposing 465,865 deferred attachment/resource or historic records.
+  ADR-004 still limits the deterministic rendered-link detector to 75,000 pages
+  and preserves the shared retry/discovery/closing reserve. The prior universal
+  hydration job has been stopped and preserved; the bounded demonstrator does
+  not imply that this full-release blocker has passed.
 - The first exact T0 capacity build ran 44,342.28 seconds and failed closed on
   a 6,712,946-byte `ca` postings file. ADR-006 implements deterministic bounded
   physical partitions and its failure-shaped regression passes, but the exact

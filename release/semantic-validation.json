@@ -59,7 +59,7 @@
     "passed": true,
     "unresolved_local_references": 0
   },
-  "report_sha256": "a2615fc694bd1f7ca9dc4e3671a5db33adc08e9de905f882271aa66a18fbfc64",
+  "report_sha256": "88fbb3153f194d866f7cf5cf7b6ca5d371544d411eae09002c5d57836b4a270b",
   "schema": "govuk-okf-semantic-validation.v1",
   "semantic_manifest": {
     "path": "data/semantic/manifest.json",
@@ -113,7 +113,7 @@
       "expandedSha256": "262fdde4acc0f04580e2adbe481084cd5dd5598e3f9af7948895d1a0af585b0d"
     },
     "networkAccess": false,
-    "offlineContext": "/Users/crpage/tmp/okf-new-child-demonstrator/bundle/context/govuk-okf-v1.jsonld",
+    "offlineContext": "/Users/crpage/repos/okf-govuk-content/bundle/context/govuk-okf-v1.jsonld",
     "right": {
       "canonicalNQuadsSha256": "60796cd0eb1567873eb6438a2c012aa61c379b4fe0783fb61dd344daecccddf8",
       "canonicalNQuadsStatements": 27,

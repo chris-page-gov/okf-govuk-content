@@ -242,7 +242,7 @@
           "operator": "json_equals",
           "path": "release/rights-privacy-audit.json",
           "pointer": "/rights_privacy_audit_passed",
-          "sha256": "bbb4f9d06226d9270c7a1a4e359fee51fc0806fd89a0463de974f6e4bc11403e"
+          "sha256": "59ceffde12c9ad7330cfa9677a347bb2846bca423cc892ec37ff96846b3b144f"
         }
       ],
       "exceptions": [],
@@ -625,7 +625,7 @@
           "operator": "json_equals",
           "path": "release/semantic-validation.json",
           "pointer": "/passed",
-          "sha256": "949cce1349e7bb0a881ebf425e7370a4887aba9d0deb2cd1e239dee47c4f9330"
+          "sha256": "3a333ce3dab784d0509e5a3ca344e82f97d2a672984ae586d83aa342e0ebeadf"
         },
         {
           "check_id": "E-STATIC-SEARCH",
@@ -1071,7 +1071,7 @@
           "operator": "json_equals",
           "path": "release/semantic-validation.json",
           "pointer": "/passed",
-          "sha256": "949cce1349e7bb0a881ebf425e7370a4887aba9d0deb2cd1e239dee47c4f9330"
+          "sha256": "3a333ce3dab784d0509e5a3ca344e82f97d2a672984ae586d83aa342e0ebeadf"
         },
         {
           "check_id": "E-SEMANTIC-RELEASE",
@@ -1206,7 +1206,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "provenance/activity-ledger.jsonl",
-          "sha256": "ef8e284e5adc62fda840c7bcc7a352ce948840a2c7751f16b07d32825bf45f42"
+          "sha256": "b07608a476fd9a41545cad616040c8e76c10ee35a65a484d2412a7dd4a860448"
         },
         {
           "check_id": "E-REQUIREMENT-COVERAGE",
@@ -1217,7 +1217,7 @@
           "operator": "json_equals",
           "path": "governance/requirements-status.json",
           "pointer": "/counts/requirements",
-          "sha256": "339629a660f85292ad8c9c9713f696d70f9bfa48f9db50eca2133acb541509bb"
+          "sha256": "779b3678f0e2310a66f6d05ad59fe7f2ff47089d476e98dafa211d67ade7eb77"
         },
         {
           "check_id": "E-TRACEABILITY-COVERAGE",
@@ -1228,7 +1228,7 @@
           "operator": "json_equals",
           "path": "governance/traceability-status.json",
           "pointer": "/counts/clauses",
-          "sha256": "e4a5e331b80cbe2bfcedd5f8059ae00bb4211007c9f85f10746c34eb9ccc32e7"
+          "sha256": "fd459a4556a7c25e1fc3dd55e106f3769d6884a4447868c6523136b6755f3cd5"
         },
         {
           "check_id": "E-CLEAN-ROOM-FIXTURE",
@@ -1239,7 +1239,7 @@
           "operator": "json_equals",
           "path": "release/clean-room-reproduction.json",
           "pointer": "/fixture_reproduction_passed",
-          "sha256": "1b72f45c0c1850b3912e1032d14bac5f3c8bab4ce7706d578415f182cf990414"
+          "sha256": "fd45dad1a1eed49ee72aaa60e6c07cc813426b636f6080b0fe5ba166c7850831"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -1489,7 +1489,7 @@
         "operator": "json_equals",
         "path": "release/rights-privacy-audit.json",
         "pointer": "/rights_privacy_audit_passed",
-        "sha256": "bbb4f9d06226d9270c7a1a4e359fee51fc0806fd89a0463de974f6e4bc11403e"
+        "sha256": "59ceffde12c9ad7330cfa9677a347bb2846bca423cc892ec37ff96846b3b144f"
       }
     ],
     "passed": false,

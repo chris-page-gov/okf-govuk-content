@@ -7,6 +7,14 @@ semantic versioning.
 
 ### Added
 
+- ADR-009 bulk-first acquisition: expanded Search metadata, deterministic
+  selective Content API enrichment, a queryable external SQLite/FTS5 extract
+  database with organisation/taxon/world-location relationships, EXTSSD cache
+  detection and a 10 GiB minimum-free-space brake replacing the former retained
+  metadata ceiling. The latest unsampled opening census closed at 874,507 publication
+  records and policy v2 selected 170,468 for immediate enrichment while keeping
+  465,865 deferred field gaps visible. Public corpus and release projections
+  remain body-free.
 - Bounded `NEW-CHILD-20260715` demonstrator with an exact 69-identity Search
   API seed denominator across pregnancy and birth, financial help for children
   and childcare; every seed has allowlisted Content API metadata and every

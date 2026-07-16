@@ -1,7 +1,9 @@
 # Official-source audit
 
-Status: verified source contract  
-Observation window: 2026-07-11 22:45:09Z–23:21:00Z  
+Status: verified source contract with 2026-07-15 Search-field update
+
+Observation window: 2026-07-11 22:45:09Z–2026-07-15 11:35:00Z
+
 Machine evidence: `source-preflight.json`
 
 ## Conclusion and bounded completeness
@@ -23,7 +25,7 @@ tombstone, external boundary link or explicit exception.
 | Source | Observed result | Contract and constraint |
 |---|---|---|
 | [Content API overview](https://content-api.publishing.service.gov.uk/) and [v1.0.0 reference](https://content-api.publishing.service.gov.uk/reference.html) | Public path lookup at `https://www.gov.uk/api/content/{path}`; no authentication; root exposes 20 level-one taxons; documented 10 requests/s/client | Path-addressed, beta, `www.gov.uk` HTML-backed content only; no enumeration, direct asset bytes, dynamic or historic-content API. Shared acquisition ceiling is 8 requests/s. |
-| [Search API v1](https://www.gov.uk/api/search.json) and [usage documentation](https://docs.publishing.service.gov.uk/repos/search-api/using-the-search-api.html) | T0 count-only root at `2026-07-12T07:15:57Z`: `total=715467`; 137 content-store document types; 461 external source rows; maximum page size 1,500 | Unsupported public interface, English/selected formats, no redirects/gone inventory and no immutable cursor. Use opposing timestamp passes, source-row identities, canonical-route alias accounting, deduplication and T1 repeat; 477 maximum-sized requests is only an offset-walk estimate. |
+| [Search API v1](https://www.gov.uk/api/search.json) and [usage documentation](https://docs.publishing.service.gov.uk/repos/search-api/using-the-search-api.html) | T0 count-only root at `2026-07-12T07:15:57Z`: `total=715467`; 137 content-store document types; 461 external source rows; maximum page size 1,500. A bounded 15 July live probe accepted `content_id`, `parts`, organisations, taxons, world locations, `is_historic` and content-purpose fields; `withdrawn` returned HTTP 422. | Unsupported public interface, English/selected formats, no complete redirects/gone inventory and no immutable cursor. Use opposing timestamp passes, source-row identities, canonical-route alias accounting, deduplication and T1 repeat. Treat `parts[].body` as a truncated Search extract: normalise it into the external local-only index, but retain only part identity metadata in the public corpus. |
 | [Sitemap index](https://www.gov.uk/sitemap.xml) and [generation documentation](https://docs.publishing.service.gov.uk/manual/govuk-sitemap.html) | 35 shards; 869,875 raw entries; 683,070 unique URLs; 186,759 duplicate URL keys | GOV.UK describes coverage as the “majority”. Shard 35 changed during the preflight; store/hash/refetch every shard and reject mixed snapshots. |
 | [Organisations API](https://www.gov.uk/api/organisations) and [documentation](https://docs.publishing.service.gov.uk/manual/organisations-api.html) | 1,256 records, 63 pages of 20; includes live, closed and exempt bodies plus hierarchy/supersession | Use as organisation inventory. Preserve the smaller public navigation index as a separate view, not a denominator. |
 | [Topic taxonomy](https://docs.publishing.service.gov.uk/manual/taxonomy.html) | Content API root has 20 `level_one_taxons` | Recursively traverse typed parent/child/translation fields. Search’s taxon count is a gap detector only. |
@@ -33,10 +35,34 @@ tombstone, external boundary link or explicit exception.
 | Public Atom feeds | Two tested feeds returned 20 entries and no next link | Recent-delta corroboration only; not a census. |
 | Search API v2, GovSearch/GovGraph, Content Data | Documentation is public; query/data surfaces require internal or authenticated access | Comparator-only. They are not hidden dependencies and are not admitted without explicit authority. |
 
-At the configured 8 requests/s, hydrating only the 683,070 sitemap-unique
-paths has a theoretical network floor of roughly 23 hours 43 minutes before
-retries or Search-only additions. The acquisition pipeline is resumable and
-checkpointed accordingly.
+At the configured 8 requests/s, universal hydration of the latest 870,398
+sitemap-unique paths has a theoretical network floor of roughly 30 hours 13
+minutes before retries or Search-only additions. That is now a comparison, not
+the default plan. ADR-009 acquires expanded Search metadata first, then selects
+Content API requests for missing identities, structure, explicit lifecycle
+dispositions and a deterministic audit sample. Attachment/resource families
+and historic Search records are explicitly deferred pending an authoritative
+bulk source or separately scheduled targeted pass. The selection manifest
+publishes both immediate and deferred denominators; it does not convert
+unselected records into falsely enriched records.
+
+The latest unsampled `T0R-20260715` freeze measured 874,507 publication records.
+Policy v2 selects 170,468 (19.49%) for immediate enrichment, explicitly defers 465,865
+attachment/resource or historic records, and represents 233,727 by bulk
+metadata. At eight requests per second the selected network floor is about 5.9
+hours, an 80.5% request reduction relative to universal lookup before retries or
+linked discoveries.
+
+A same-day refreeze observed a material sitemap expansion from 668,475 to
+870,398 unique URLs while Search remained at 715,898 unique routes. That drift
+is preserved in the dated census evidence and is why a closing T1 union remains
+mandatory; it is not flattened into a claim that either public enumeration
+surface is individually complete.
+
+The authenticated GovSearch/GovGraph bulk route remains blocked. A source
+request is planned for the GOV.UK team meeting on 20 July 2026, but the current
+implementation works from public reproducible sources and does not assume that
+request will be granted.
 
 ## Robots, rate and operational policy
 
@@ -61,6 +87,10 @@ third-party credits, logos/crests/Royal Arms/insignia, patents/trademarks/design
 rights, identity documents, complete page/attachment/image bytes or a specific
 licence notice. The safe release default is metadata, source-native
 relationships and authoritative links with a derived/non-official notice.
+Search extracts are therefore local analytical cache material only. They are
+source-hashed and queryable for concept/topic and relationship work, but are
+excluded from public source records, bundle shards, release packages and clean
+reproduction.
 
 ## Pinned official source versions
 

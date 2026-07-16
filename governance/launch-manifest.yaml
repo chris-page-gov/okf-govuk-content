@@ -1,9 +1,11 @@
 schema_version: 1
-recorded_date: "2026-07-11"
-authority_basis: explicit user instruction in the initiating Codex task
+recorded_date: "2026-07-15"
+authority_basis: explicit user instructions in the initiating task and the 15 July 2026 bulk-first migration instruction
 publication_authorisation: true
 authenticated_source_permission: false
-external_storage_permission: false
+external_storage_permission: true
+external_cache_required_for_body_extracts: true
+external_cache_relative_path: okf-govuk-content
 repository_native_github_release_assets_permission: true
 github_pages_same_origin_pack_delivery_permission: true
 human_study_authorisation: false
@@ -16,7 +18,7 @@ ceilings:
   external_paid_model_cost_gbp: 0
   external_paid_model_tokens: 0
   official_source_requests: 1000000
-  retained_metadata_storage_gib: 10
+  minimum_free_disk_gib: 10
   wall_time_hours: null
   wall_time_status: no_numeric_user_ceiling_recorded
   product_session_usage: product_managed_not_exposed
@@ -36,6 +38,9 @@ notes:
   - No external paid model fan-out is authorised; deterministic generation and the current Codex session remain available.
   - Product-session tokens, exact backend build, parameters and marginal cost are not exposed; record them as unavailable rather than zero.
   - The official-source request ceiling is an execution-approval limit and is accounted separately from model usage and cost.
+  - At least 10 GiB must remain free on every active repository or cache filesystem after each reserved write; this replaces the former 10 GiB retained-metadata ceiling.
+  - A mounted EXTSSD or ExtSSD-Data volume is authorised for resumable acquisition caches and a local-only Search part extract database under okf-govuk-content/.
+  - Search parts.body values are truncated search extracts for local concept/topic/relationship analysis; they are excluded from the checked-in and published corpus, and complete page bodies remain out of scope.
   - The explicit request authorises public repository, Pages, release and registry publication.
   - Repository-native GitHub Release assets are authorised as the immutable offline mirror; they are not external storage and are not a browser CORS fallback.
   - GitHub Pages range-pack delivery remains subject to the 950,000,000-byte fail-closed package gate.

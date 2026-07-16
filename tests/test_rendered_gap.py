@@ -18,6 +18,12 @@ from govuk_okf.hydration import HydrationError  # noqa: E402
 
 
 class RenderedGapTests(unittest.TestCase):
+    @staticmethod
+    def authorise_storage(root: Path) -> None:
+        launch = root / "governance" / "launch-manifest.yaml"
+        launch.parent.mkdir(parents=True, exist_ok=True)
+        launch.write_text("ceilings:\n  minimum_free_disk_gib: 1\n", encoding="utf-8")
+
     def policy(self):
         return parse_robots(
             b"User-agent: *\nDisallow: /search*\nDisallow: /blocked\nAllow: /blocked/allowed\n",
@@ -71,6 +77,7 @@ class RenderedGapTests(unittest.TestCase):
     def test_complete_hydrator_closes_rendered_links_without_body_retention(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
+            self.authorise_storage(root)
             source = root / "corpus/inventory/T0-source-records.jsonl.gz"
             source.parent.mkdir(parents=True)
             with gzip.open(source, "wt", encoding="utf-8") as stream:
@@ -138,7 +145,7 @@ class RenderedGapTests(unittest.TestCase):
                 requests_per_second=100000,
                 workers=2,
                 max_queue_records=10,
-                retained_storage_bytes=1024**3,
+                minimum_free_disk_bytes=1024**3,
             )
             with patch("govuk_okf.closure_hydration.request_observation", side_effect=observation), patch(
                 "govuk_okf.hydration.request_observation", side_effect=observation
@@ -154,6 +161,7 @@ class RenderedGapTests(unittest.TestCase):
     def test_rendered_gap_detector_publishes_bounded_sample_denominator(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
+            self.authorise_storage(root)
             source = root / "corpus/inventory/T0-source-records.jsonl.gz"
             source.parent.mkdir(parents=True)
             with gzip.open(source, "wt", encoding="utf-8") as stream:
@@ -219,7 +227,7 @@ class RenderedGapTests(unittest.TestCase):
                 workers=2,
                 max_queue_records=10,
                 max_rendered_requests=1,
-                retained_storage_bytes=1024**3,
+                minimum_free_disk_bytes=1024**3,
             )
             with patch("govuk_okf.closure_hydration.request_observation", side_effect=observation), patch(
                 "govuk_okf.hydration.request_observation", side_effect=observation
@@ -235,6 +243,7 @@ class RenderedGapTests(unittest.TestCase):
     def test_rendered_proof_failure_rolls_back_base_export_and_controls(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
+            self.authorise_storage(root)
             source = root / "corpus/inventory/T0-source-records.jsonl.gz"
             source.parent.mkdir(parents=True)
             with gzip.open(source, "wt", encoding="utf-8") as stream:
@@ -295,7 +304,7 @@ class RenderedGapTests(unittest.TestCase):
                 source,
                 requests_per_second=100000,
                 rendered_requests_per_second=100000,
-                retained_storage_bytes=1024**3,
+                minimum_free_disk_bytes=1024**3,
             )
             with patch("govuk_okf.closure_hydration.request_observation", side_effect=observation), patch(
                 "govuk_okf.hydration.request_observation", side_effect=observation
@@ -333,9 +342,10 @@ class RenderedGapTests(unittest.TestCase):
             with sqlite3.connect(hydrator.database_path) as connection:
                 self.assertEqual(0, connection.execute("SELECT COUNT(*) FROM candidates").fetchone()[0])
 
-    def test_storage_ceiling_stops_before_robots_request(self) -> None:
+    def test_minimum_free_disk_stops_before_robots_request(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
+            self.authorise_storage(root)
             source = root / "corpus/inventory/T0-source-records.jsonl.gz"
             source.parent.mkdir(parents=True)
             with gzip.open(source, "wt", encoding="utf-8") as stream:
@@ -364,10 +374,12 @@ class RenderedGapTests(unittest.TestCase):
                 "T0",
                 source,
                 requests_per_second=100000,
-                retained_storage_bytes=1,
+                minimum_free_disk_bytes=1,
             )
-            with patch("govuk_okf.closure_hydration.request_observation") as request:
-                with self.assertRaisesRegex(HydrationError, "retained metadata storage"):
+            with patch("govuk_okf.storage.free_disk_bytes", return_value=0), patch(
+                "govuk_okf.closure_hydration.request_observation"
+            ) as request:
+                with self.assertRaisesRegex(HydrationError, "insufficient free disk"):
                     hydrator.run()
             request.assert_not_called()
 

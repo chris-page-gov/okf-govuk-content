@@ -30,5 +30,14 @@ risks:
     title: Public content carries active instructions or unsafe markup
     likelihood: medium
     impact: high
-    mitigation: Treat source text as data, retain metadata only, escape rendered values, CSP and read-only agent operations.
-
+    mitigation: Treat source text as untrusted data, retain Search extracts only in the external local analytical cache, exclude them from publication, escape rendered values, use CSP and keep agent operations read-only.
+  - id: RISK-007
+    title: External analytical cache is unavailable or lost
+    likelihood: medium
+    impact: medium
+    mitigation: Detect EXTSSD or ExtSSD-Data before acquisition, fail closed when extract retention is requested, keep caches resumable and make frozen body-free records independent of the cache.
+  - id: RISK-008
+    title: Public Search fields or snippet semantics drift
+    likelihood: medium
+    impact: high
+    mitigation: Keep the field list versioned, fail closed on invalid response shapes, retain evidence hashes, repeat the bounded live probe and preserve Content API audit sampling.
