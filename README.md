@@ -24,6 +24,15 @@ checksummed bundle can be given to an AI as one portable Markdown/JSON context
 file, queried deterministically, or exposed through five bounded read-only MCP
 tools; see [`docs/ai-input.md`](docs/ai-input.md).
 
+The publication now declares and validates **OKF v0.2**. Canonical typed
+Markdown concepts live under `bundle/concepts/`; the existing YAML-LD,
+JSON-LD, assertion, search, route, facet and Explorer surfaces remain additive
+profile projections. No verification or expiry event was invented during the
+migration, and generation, official-source modification and retrieval times
+remain distinct. See
+[`docs/okf-v02-conformance.md`](docs/okf-v02-conformance.md) and
+[`ADR-010`](governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md).
+
 This bounded milestone does not replace the Release 1 contract. The unsampled
 T0 union census remains closed at 848,977 candidate keys and 836,998
 publication records, with six redirects and zero unexplained omissions; it is
@@ -86,6 +95,7 @@ for the finalized release; `v1.0.0` is not the initial publication tag.
 
 ## Canonical outputs
 
+- `bundle/index.md` and `bundle/concepts/` — canonical OKF v0.2 Markdown tree
 - `bundle/okf-bundle.yamlld` — semantic source document
 - `bundle/okf-bundle.jsonld` — equivalent JSON-LD projection
 - `bundle/okf-explorer.json` — Explorer descriptor
@@ -149,6 +159,7 @@ python3 scripts/check_repository_policy.py
 python3 scripts/check_provenance.py
 python3 scripts/build_bundle.py --check
 python3 -m unittest discover -s tests -v
+python3 scripts/check_okf_v02.py
 python3 scripts/check_publication.py
 python3 scripts/build_checksums.py --check
 python3 scripts/build_sbom.py --check

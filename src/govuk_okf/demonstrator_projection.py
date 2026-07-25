@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any, Sequence
 from urllib.parse import urlparse
 
+from .okf_v02 import GENERATOR_ACTOR, render_frontmatter
 from .util import canonical_json_bytes, pretty_json
 
 
@@ -801,7 +802,34 @@ def write_ai_handoff(
     )
     fence = "`" * max(3, longest_backtick_run + 1)
     markdown = (
-        "# GOV.UK new-child demonstrator: bulk AI context\n\n"
+        render_frontmatter(
+            {
+                "type": "AI Context",
+                "title": "GOV.UK new-child demonstrator: bulk AI context",
+                "description": (
+                    "Portable, bounded discovery context generated from the frozen "
+                    "new-child demonstrator."
+                ),
+                "tags": ["ai-context", "govuk", "snapshot"],
+                "generated": {
+                    "by": GENERATOR_ACTOR,
+                    "at": demonstrator["generated_at"],
+                },
+                "sources": [
+                    {
+                        "id": "demonstrator",
+                        "resource": "../data/demonstrator.json",
+                        "title": "Bounded new-child demonstrator projection",
+                    }
+                ],
+                "status": "draft",
+                "govuk": {
+                    "snapshot": demonstrator["snapshot"],
+                    "trust_tier": "unverified",
+                },
+            }
+        )
+        + "# GOV.UK new-child demonstrator: bulk AI context\n\n"
         "This bulk/archive context is about 830 KB (roughly 207,000 tokens using a simple "
         "four-characters-per-token estimate), so check the target model's upload and context "
         "limits before using it. Prefer the question-specific command documented in ai/README.md "
@@ -860,7 +888,34 @@ def write_ai_handoff(
         ),
     }
     (ai / "mcp.json").write_text(pretty_json(mcp), encoding="utf-8")
-    readme = f"""# Use this bundle with an AI
+    readme = (
+        render_frontmatter(
+            {
+                "type": "Reference",
+                "title": "Use this bundle with an AI",
+                "description": (
+                    "Safe, bounded ways to use the new-child demonstrator with AI systems."
+                ),
+                "tags": ["ai", "govuk", "instructions"],
+                "generated": {
+                    "by": GENERATOR_ACTOR,
+                    "at": demonstrator["generated_at"],
+                },
+                "sources": [
+                    {
+                        "id": "demonstrator",
+                        "resource": "../data/demonstrator.json",
+                        "title": "Bounded new-child demonstrator projection",
+                    }
+                ],
+                "status": "draft",
+                "govuk": {
+                    "snapshot": demonstrator["snapshot"],
+                    "trust_tier": "unverified",
+                },
+            }
+        )
+        + f"""# Use this bundle with an AI
 
 This is a derived, non-authoritative 69-record metadata demonstrator for snapshot
 `{demonstrator['snapshot']}`. GOV.UK remains authoritative.
@@ -914,6 +969,7 @@ every turn.
 Full instructions and client examples are in the repository's
 `docs/ai-input.md`.
 """
+    )
     (ai / "README.md").write_text(readme, encoding="utf-8")
     integrity: dict[str, dict[str, Any]] = {}
     for name, relative in AI_HANDOFF_PATHS.items():

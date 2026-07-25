@@ -7,6 +7,7 @@ import gzip
 import hashlib
 import html
 import json
+import posixpath
 import re
 import shutil
 import tempfile
@@ -18,6 +19,12 @@ from typing import Any, Callable, Iterable, Iterator, Sequence
 from urllib.parse import quote, urlparse
 
 from .demonstrator_projection import build_new_child_demonstrator, write_ai_handoff
+from .okf_v02 import (
+    GENERATOR_ACTOR,
+    OKF_VERSION,
+    concept_metadata,
+    render_frontmatter,
+)
 from .util import adjacency_bucket, canonical_json_bytes, chunks, pretty_json, sha256_text, slugify, write_gzip_json, yaml_dump
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -1658,6 +1665,7 @@ def semantic_descriptor(
         "title": "What’s on GOV.UK",
         "description": "Derived, non-authoritative, snapshot-bounded semantic catalogue of the public GOV.UK metadata estate.",
         "version": "0.1.0",
+        "okfVersion": OKF_VERSION,
         "status": "preview",
         "generatedAt": generated_at,
         "snapshot": snapshot_id,
@@ -1672,6 +1680,7 @@ def semantic_descriptor(
         "sourceRegistry": {"@id": REPOSITORY_URL + "/blob/main/research/source-registry.yaml"},
         "constraintLedger": {"@id": REPOSITORY_URL + "/blob/main/research/source-constraints.json"},
         "semanticProjectionManifest": {"@id": HOME_URL + "data/semantic/manifest.json"},
+        "canonicalMarkdownIndex": {"@id": HOME_URL + "concepts/index.md"},
         "counts": dict(sorted(counts.items())),
         "extensions": [
             "govuk-okf-profile.v1",
@@ -2366,6 +2375,275 @@ def copy_static_app(output: Path) -> None:
     (output / "index.html").write_text(fallback, encoding="utf-8")
 
 
+def _concept_path(route: object) -> Path:
+    value = Path(str(route or ""))
+    if (
+        not value.parts
+        or value.is_absolute()
+        or ".." in value.parts
+        or any(not re.fullmatch(r"[A-Za-z0-9._-]+", part) for part in value.parts)
+    ):
+        raise PublicationError(f"unsafe canonical Markdown concept route: {route!r}")
+    return Path("concepts") / value.with_suffix(".md")
+
+
+def _markdown_text(value: object) -> str:
+    return (
+        html.escape(str(value or "").replace("\r", " ").replace("\n", " ").strip())
+        .replace("[", "&#91;")
+        .replace("]", "&#93;")
+    )
+
+
+def _concept_body(
+    row: dict[str, Any],
+    *,
+    concept_path: Path,
+    relationships: Sequence[dict[str, Any]],
+    path_by_route: dict[str, Path],
+    title_by_route: dict[str, str],
+) -> str:
+    title = _markdown_text(row.get("title") or row.get("name") or row.get("open"))
+    description = _markdown_text(row.get("description") or row.get("notes") or "")
+    lines = [f"# {title}", ""]
+    if description:
+        lines.extend((description, ""))
+    lines.extend(("# Source-native metadata", ""))
+    for label, key in (
+        ("Explorer route", "open"),
+        ("Canonical content ID", "canonical_content_id"),
+        ("Document type", "document_type"),
+        ("Schema family", "schema_name"),
+        ("Language", "language"),
+        ("GOV.UK lifecycle", "lifecycle"),
+        ("Retrieved", "retrieved_at"),
+    ):
+        value = row.get(key)
+        if value not in (None, "", [], {}):
+            lines.append(f"- **{label}:** `{_markdown_text(value)}`")
+    lines.append("")
+    outgoing = [
+        relation
+        for relation in relationships
+        if str(relation.get("source") or "") == str(row.get("open") or "")
+    ]
+    if outgoing:
+        lines.extend(("# Relationships", ""))
+        for relation in outgoing:
+            target_route = str(relation.get("target") or "")
+            target_path = path_by_route.get(target_route)
+            kind = _markdown_text(relation.get("kind") or "related to")
+            target_title = _markdown_text(
+                title_by_route.get(target_route) or target_route
+            )
+            if target_path is None:
+                lines.append(f"- **{kind}:** `{target_title}`")
+                continue
+            relative = posixpath.relpath(
+                target_path.as_posix(), start=concept_path.parent.as_posix()
+            )
+            lines.append(f"- **{kind}:** [{target_title}]({relative})")
+        lines.append("")
+    lines.extend(
+        (
+            "# Trust and authority",
+            "",
+            "This is an unverified, derived discovery concept from a frozen metadata "
+            "snapshot. GOV.UK remains the authoritative destination, and live content "
+            "may have changed since the recorded source observation.",
+            "",
+        )
+    )
+    return "\n".join(lines)
+
+
+def write_okf_markdown_tree(
+    output: Path,
+    datasets: Sequence[dict[str, Any]],
+    publishers: Sequence[dict[str, Any]],
+    resources: Sequence[dict[str, Any]],
+    relationships: Sequence[dict[str, Any]],
+    *,
+    generated_at: str,
+    snapshot_id: str,
+) -> dict[str, Any]:
+    """Write the canonical OKF v0.2 Markdown concepts and progressive indexes."""
+
+    groups: tuple[tuple[str, str, str, Sequence[dict[str, Any]]], ...] = (
+        ("dataset", "GOV.UK content items", "GOV.UK Content Item", datasets),
+        ("publisher", "GOV.UK organisations", "GOV.UK Organisation", publishers),
+        ("resource", "GOV.UK attachments", "GOV.UK Attachment", resources),
+    )
+    all_rows = [row for _route, _title, _type, rows in groups for row in rows]
+    path_by_route: dict[str, Path] = {}
+    title_by_route: dict[str, str] = {}
+    for row in all_rows:
+        route = str(row.get("open") or "")
+        path = _concept_path(route)
+        if route in path_by_route or path in path_by_route.values():
+            raise PublicationError(f"canonical Markdown concept path collides: {route}")
+        path_by_route[route] = path
+        title_by_route[route] = str(row.get("title") or row.get("name") or route)
+
+    for route_prefix, group_title, concept_type, rows in groups:
+        group_root = output / "concepts" / route_prefix
+        group_root.mkdir(parents=True, exist_ok=True)
+        entries: list[str] = []
+        for row in rows:
+            route = str(row["open"])
+            relative = path_by_route[route]
+            target = output / relative
+            extension = {
+                key: row[key]
+                for key in (
+                    "canonical_content_id",
+                    "content_id",
+                    "attachment_id",
+                    "document_type",
+                    "schema_name",
+                    "language",
+                    "lifecycle",
+                    "state",
+                    "retrieved_at",
+                    "source_tier",
+                    "coverage_disposition",
+                    "source_memberships",
+                )
+                if row.get(key) not in (None, "", [], {})
+            }
+            metadata = concept_metadata(
+                concept_type=concept_type,
+                title=str(row.get("title") or row.get("name") or route),
+                description=str(row.get("description") or row.get("notes") or ""),
+                resource=str(row.get("url") or row.get("@id") or ""),
+                tags=row.get("tags") or [route_prefix],
+                generated_at=generated_at,
+                snapshot_id=snapshot_id,
+                route=route,
+                evidence_url=str(row.get("evidence_url") or ""),
+                source_modified_at=row.get("public_updated_at"),
+                extension=extension,
+            )
+            body = _concept_body(
+                row,
+                concept_path=relative,
+                relationships=relationships,
+                path_by_route=path_by_route,
+                title_by_route=title_by_route,
+            )
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(render_frontmatter(metadata) + body, encoding="utf-8")
+            description = _markdown_text(
+                row.get("description") or row.get("notes") or concept_type
+            )
+            entries.append(
+                f"* [{_markdown_text(metadata['title'])}]({target.name}) - {description}"
+            )
+        index_lines = [f"# {group_title}", ""]
+        if entries:
+            index_lines.extend(entries)
+        else:
+            index_lines.append("No concepts are present in this snapshot.")
+        index_lines.append("")
+        (group_root / "index.md").write_text(
+            "\n".join(index_lines), encoding="utf-8"
+        )
+
+    concept_count = len(path_by_route)
+    concepts_index = [
+        "# Canonical OKF concepts",
+        "",
+        "These Markdown documents are the canonical OKF v0.2 knowledge layer. "
+        "The JSON, YAML-LD, search, route and graph files are deterministic "
+        "GOV.UK/Explorer profile projections.",
+        "",
+        "* [GOV.UK content items](dataset/) - canonical public content identities",
+        "* [GOV.UK organisations](publisher/) - source-observed publishing organisations",
+        "* [GOV.UK attachments](resource/) - source-observed attachment metadata",
+        "",
+    ]
+    (output / "concepts" / "index.md").write_text(
+        "\n".join(concepts_index), encoding="utf-8"
+    )
+    return {
+        "concept_count": concept_count,
+        "path_by_route": path_by_route,
+    }
+
+
+def _latest_source_observation(rows: Sequence[dict[str, Any]]) -> str | None:
+    observations: list[datetime] = []
+    for row in rows:
+        value = row.get("retrieved_at")
+        if not isinstance(value, str):
+            continue
+        try:
+            parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        except ValueError:
+            continue
+        observations.append(parsed)
+    if not observations:
+        return None
+    return max(observations).astimezone(timezone.utc).isoformat().replace(
+        "+00:00", "Z"
+    )
+
+
+def write_okf_root_documents(
+    output: Path,
+    *,
+    generated_at: str,
+    snapshot_id: str,
+    datasets: Sequence[dict[str, Any]],
+    resources: Sequence[dict[str, Any]],
+    relationships: Sequence[dict[str, Any]],
+    source_count: int,
+    semantic_projection_digest: str,
+    demonstrator: bool,
+) -> None:
+    scope_note = (
+        "This is a bounded 69-record new-child demonstrator, not a complete GOV.UK corpus."
+        if demonstrator
+        else "This bundle maps the declared public GOV.UK metadata estate."
+    )
+    index_body = (
+        "# What’s on GOV.UK\n\n"
+        "This derived, non-authoritative OKF Bundle Wiki is a discovery aid. "
+        "GOV.UK remains authoritative.\n\n"
+        f"{scope_note}\n\n"
+        f"- OKF version: `{OKF_VERSION}`\n"
+        f"- Snapshot: `{snapshot_id}`\n"
+        f"- Publication generated: `{generated_at}`\n"
+        f"- Records: {len(datasets):,}\n"
+        f"- Relationships: {len(relationships):,}\n"
+        f"- Attachments: {len(resources):,}\n\n"
+        "Open the [canonical concept index](concepts/) or the "
+        "[Explorer descriptor](okf-explorer.json). Live GOV.UK may have "
+        "changed since this governed snapshot.\n"
+    )
+    (output / "index.md").write_text(
+        render_frontmatter({"okf_version": OKF_VERSION}) + index_body,
+        encoding="utf-8",
+    )
+    try:
+        log_date = datetime.fromisoformat(
+            generated_at.replace("Z", "+00:00")
+        ).date().isoformat()
+    except ValueError as exc:
+        raise PublicationError(f"invalid publication generated_at: {generated_at}") from exc
+    (output / "log.md").write_text(
+        "# Build log\n\n"
+        f"## {log_date}\n\n"
+        f"* **Generation**: Compiled OKF v{OKF_VERSION} snapshot `{snapshot_id}` "
+        f"at `{generated_at}`.\n"
+        f"* **Projection**: Semantic projection SHA-256 "
+        f"`{semantic_projection_digest}`.\n"
+        f"* **Coverage**: {source_count} source records produced "
+        f"{len(datasets)} published records including relationship stubs.\n",
+        encoding="utf-8",
+    )
+
+
 def _emit_publication(
     datasets: Sequence[dict[str, Any]],
     publishers: Sequence[dict[str, Any]],
@@ -2777,15 +3055,77 @@ def _emit_publication(
                     semantic_source
                 )
                 semantic_target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(semantic_path, semantic_target)
+                if semantic_path == semantic_source / "README.md":
+                    semantic_target.write_text(
+                        render_frontmatter(
+                            {
+                                "type": "Reference",
+                                "title": "GOV.UK OKF semantic profile",
+                                "description": (
+                                    "Human-readable guide to the GOV.UK semantic "
+                                    "profile layered over OKF v0.2."
+                                ),
+                                "tags": ["govuk", "okf", "semantic-profile"],
+                                "generated": {
+                                    "by": GENERATOR_ACTOR,
+                                    "at": generated_at,
+                                },
+                                "sources": [
+                                    {
+                                        "id": "profile",
+                                        "resource": "profile/govuk-okf-profile-v1.yamlld",
+                                        "title": "GOV.UK OKF semantic profile v1",
+                                    }
+                                ],
+                                "status": "draft",
+                                "govuk": {
+                                    "snapshot": snapshot_id,
+                                    "trust_tier": "unverified",
+                                },
+                            }
+                        )
+                        + semantic_path.read_text(encoding="utf-8"),
+                        encoding="utf-8",
+                    )
+                else:
+                    shutil.copyfile(semantic_path, semantic_target)
     (output / "okf-bundle.yamlld").write_text(yaml_dump(semantic) + "\n", encoding="utf-8")
     (output / "okf-bundle.jsonld").write_text(pretty_json(semantic), encoding="utf-8")
     semantic_projection_digest = hashlib.sha256(canonical_json_bytes(semantic)).hexdigest()
+    markdown = write_okf_markdown_tree(
+        output,
+        datasets,
+        publishers,
+        resources,
+        relationships,
+        generated_at=generated_at,
+        snapshot_id=snapshot_id,
+    )
+    write_okf_root_documents(
+        output,
+        generated_at=generated_at,
+        snapshot_id=snapshot_id,
+        datasets=datasets,
+        resources=resources,
+        relationships=relationships,
+        source_count=source_count,
+        semantic_projection_digest=semantic_projection_digest,
+        demonstrator=demonstrator is not None,
+    )
+    markdown_concept_count = sum(
+        1
+        for path in output.rglob("*.md")
+        if path.name not in {"index.md", "log.md"}
+    )
+    latest_source_observation = _latest_source_observation(
+        [*datasets, *publishers, *resources]
+    )
     descriptor = {
         "@context": EXPLORER_CONTEXT_URL,
         "@id": HOME_URL + "okf-explorer.json",
         "schema": "okf-explorer-large-corpus.v1",
         "kind": "okf-large-corpus",
+        "okf_version": OKF_VERSION,
         "title": (
             "Having a new child: bounded GOV.UK metadata demonstrator"
             if demonstrator is not None
@@ -2801,6 +3141,14 @@ def _emit_publication(
         "status": "bounded-demonstrator" if demonstrator is not None else "preview",
         "generated_at": generated_at,
         "snapshot": snapshot_id,
+        "snapshot_state": {
+            "mode": "governed-snapshot",
+            "snapshot_id": snapshot_id,
+            "compiled_at": generated_at,
+            "latest_source_observation_at": latest_source_observation,
+            "live_authority": "https://www.gov.uk/",
+            "drift_expected": True,
+        },
         **(
             {
                 "scope": {
@@ -2831,6 +3179,7 @@ def _emit_publication(
             "route_index": "data/routes/manifest.json",
             "semantic_projection": "data/semantic/manifest.json",
             "markdown_index": "index.md",
+            "canonical_concepts": "concepts/index.md",
             **({"demonstrator": "data/demonstrator.json"} if demonstrator is not None else {}),
         },
         # The shared OKF Explorer contract requires string entrypoint paths.
@@ -2869,6 +3218,14 @@ def _emit_publication(
                 "path": "data/semantic/manifest.json",
                 "sha256": _file_sha256(output / "data" / "semantic" / "manifest.json"),
             },
+            "markdown_index": {
+                "path": "index.md",
+                "sha256": _file_sha256(output / "index.md"),
+            },
+            "canonical_concepts": {
+                "path": "concepts/index.md",
+                "sha256": _file_sha256(output / "concepts" / "index.md"),
+            },
             **(
                 {
                     "demonstrator": {
@@ -2891,6 +3248,16 @@ def _emit_publication(
             "search_placeholder": "Search GOV.UK titles, summaries, types and organisations",
         },
         "extensions": {
+            "okf-v0.2": {
+                "canonical_markdown_entrypoint": "canonical_concepts",
+                "canonical_concepts": markdown_concept_count,
+                "domain_concepts": markdown["concept_count"],
+                "documentation_concepts": (
+                    markdown_concept_count - int(markdown["concept_count"])
+                ),
+                "trust_default": "unverified",
+                "attested_computations_auto_execute": False,
+            },
             "govuk-okf-profile.v1": {"provenance_required": True, "source_native_before_inference": True},
             "okf-explorer-analysis.v1": {"entrypoint": "analysis_overview", "mode": "external"},
             "govuk-site-topology.v1": {"entrypoint": "site_topology", "full_record_detail": True},
@@ -2908,21 +3275,6 @@ def _emit_publication(
         },
     }
     (output / "okf-explorer.json").write_text(pretty_json(descriptor), encoding="utf-8")
-    scope_note = (
-        "This is a bounded 69-record new-child demonstrator, not a complete GOV.UK corpus."
-        if demonstrator is not None
-        else "This bundle maps the declared public GOV.UK metadata estate."
-    )
-    (output / "index.md").write_text(
-        "# What’s on GOV.UK\n\nThis derived, non-authoritative OKF Bundle Wiki is a discovery aid. GOV.UK remains authoritative.\n\n"
-        f"{scope_note}\n\n"
-        f"- Snapshot: `{snapshot_id}`\n- Records: {len(datasets):,}\n- Relationships: {len(relationships):,}\n- Attachments: {len(resources):,}\n",
-        encoding="utf-8",
-    )
-    (output / "log.md").write_text(
-        f"# Build log\n\n- Generated: {generated_at}\n- Snapshot: `{snapshot_id}`\n- Semantic projection SHA-256: `{semantic_projection_digest}`\n- Source records: {source_count}\n- Published records including relationship stubs: {len(datasets)}\n",
-        encoding="utf-8",
-    )
     copy_static_app(output)
     (output / ".nojekyll").write_text("", encoding="utf-8")
     return {"counts": counts, "semantic_projection_sha256": semantic_projection_digest, "manifest": manifest}

@@ -52,6 +52,7 @@
     "title": "dcterms:title",
     "description": "dcterms:description",
     "version": "schema:version",
+    "okfVersion": "okf:version",
     "status": "govuk:status",
     "generatedAt": {
       "@id": "prov:generatedAtTime",
@@ -85,6 +86,10 @@
     },
     "semanticProjectionManifest": {
       "@id": "govuk:semanticProjectionManifest",
+      "@type": "@id"
+    },
+    "canonicalMarkdownIndex": {
+      "@id": "okf:canonicalMarkdownIndex",
       "@type": "@id"
     },
     "sourceRegistry": {

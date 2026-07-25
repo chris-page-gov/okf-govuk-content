@@ -184,7 +184,7 @@
   "sampled": true,
   "scan": {
     "classification_items": 475,
-    "compressed_bytes_scanned": 3522690,
+    "compressed_bytes_scanned": 3523639,
     "files_scanned": 954,
     "limits": {
       "max_compressed_bytes_per_file": 52428800,
@@ -214,7 +214,7 @@
     "corpus_snapshot_bound": false,
     "frozen_source": null,
     "full_unsampled_snapshot": false,
-    "publication_asset_set_sha256": "ccf74cf1584ca4ff042ccc3acea0a5c92642aee5fb905ee45bf7c4fb483425fb",
+    "publication_asset_set_sha256": "0fabf57cdb7da0da33960f4fd1a57a1a27547b9c58827edf935c7f010b90e4ac",
     "publication_manifest": {
       "path": "bundle/data/manifest.json",
       "sha256": "c520daf8f2f98fdb49f37b0dd89f4145bdf59d4e36ebd091096f3da43c94eb0f"

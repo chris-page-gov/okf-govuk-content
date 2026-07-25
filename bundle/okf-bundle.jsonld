@@ -2,6 +2,9 @@
   "@context": "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v1.jsonld",
   "@id": "https://chris-page-gov.github.io/okf-govuk-content/okf-bundle.yamlld",
   "@type": "okf:Bundle",
+  "canonicalMarkdownIndex": {
+    "@id": "https://chris-page-gov.github.io/okf-govuk-content/concepts/index.md"
+  },
   "constraintLedger": {
     "@id": "https://github.com/chris-page-gov/okf-govuk-content/blob/main/research/source-constraints.json"
   },
@@ -39,6 +42,7 @@
   "license": {
     "@id": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
   },
+  "okfVersion": "0.2",
   "profile": {
     "@id": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/"
   },

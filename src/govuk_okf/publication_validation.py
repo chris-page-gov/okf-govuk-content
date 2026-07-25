@@ -26,6 +26,7 @@ from .demonstrator_projection import (
     SUBGROUP_IDS,
     SUBGROUP_MEMBERSHIP_BY_ID,
 )
+from .okf_v02 import OKF_VERSION, validate_okf_v02_bundle
 from .publication import (
     DATA_PLANE_BUDGETS,
     DATA_PLANE_SCHEMA_VERSION,
@@ -502,6 +503,8 @@ class PublicationValidator:
             return {}, {}, {}
         if any(path.name == ".DS_Store" for path in self.bundle.rglob("*")):
             self.errors.add("Finder artefact present in bundle")
+        for error in validate_okf_v02_bundle(self.bundle):
+            self.errors.add(f"OKF v{OKF_VERSION}: {error}")
         descriptor = self.load_json(
             "okf-explorer.json", label="Explorer descriptor", default={}
         )
@@ -528,6 +531,29 @@ class PublicationValidator:
             "kind"
         ) != "okf-large-corpus":
             self.errors.add("Explorer descriptor does not use the large-corpus contract")
+        if descriptor.get("okf_version") != OKF_VERSION:
+            self.errors.add(f"Explorer descriptor does not declare OKF v{OKF_VERSION}")
+        if semantic.get("okfVersion") != OKF_VERSION:
+            self.errors.add(f"semantic descriptor does not declare OKF v{OKF_VERSION}")
+        snapshot_state = descriptor.get("snapshot_state")
+        if not isinstance(snapshot_state, dict):
+            self.errors.add("Explorer descriptor has no snapshot/live state")
+        else:
+            if snapshot_state.get("mode") != "governed-snapshot":
+                self.errors.add("Explorer descriptor snapshot mode is invalid")
+            if snapshot_state.get("snapshot_id") != descriptor.get("snapshot"):
+                self.errors.add("Explorer descriptor snapshot-state identity differs")
+            if snapshot_state.get("compiled_at") != descriptor.get("generated_at"):
+                self.errors.add("Explorer descriptor snapshot compilation time differs")
+            if snapshot_state.get("live_authority") != "https://www.gov.uk/":
+                self.errors.add("Explorer descriptor live authority is invalid")
+            if snapshot_state.get("drift_expected") is not True:
+                self.errors.add("Explorer descriptor does not surface expected snapshot drift")
+            latest_observation = snapshot_state.get("latest_source_observation_at")
+            if latest_observation is not None and not _is_datetime(
+                latest_observation
+            ):
+                self.errors.add("Explorer descriptor latest source observation is invalid")
         if isinstance(descriptor.get("counts"), dict) and semantic.get("snapshot"):
             entrypoints_for_scope = descriptor.get("entrypoints")
             is_demonstrator = isinstance(entrypoints_for_scope, dict) and bool(
@@ -560,6 +586,8 @@ class PublicationValidator:
             "relationship_adjacency",
             "route_index",
             "semantic_projection",
+            "markdown_index",
+            "canonical_concepts",
         }
         entrypoints = descriptor.get("entrypoints", {})
         if not isinstance(entrypoints, dict) or not required_entrypoints <= set(entrypoints):

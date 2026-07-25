@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "9a7f1f4810cea906ae4365a590af69e24136e1ce13ab875145f2668906d4738d",
-    "before_sha256": "9a7f1f4810cea906ae4365a590af69e24136e1ce13ab875145f2668906d4738d",
+    "after_sha256": "908647b808f2dca207c64049b0a69e4bd0f2532457e3bf6c4855721f74c2aa48",
+    "before_sha256": "908647b808f2dca207c64049b0a69e4bd0f2532457e3bf6c4855721f74c2aa48",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -51,8 +51,8 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "de351c866563e6707ece0b0e9772d50a03e597742de99ac22260fd52b2a4dd79",
-      "stdout_tail": "wrote checksums for 990 files\n"
+      "stdout_sha256": "946ebf1d066357d9d140d00afa6fb6f293987536dc07e610b943485feeb3d076",
+      "stdout_tail": "wrote checksums for 1077 files\n"
     },
     {
       "command": [
@@ -65,8 +65,8 @@
       "returncode": 0,
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr_tail": "",
-      "stdout_sha256": "2e29efc8f69580bd1ff4ca581e9c49be2cbea1681efdb11a605fc7e039274ec4",
-      "stdout_tail": "checksums verified for 990 files\n"
+      "stdout_sha256": "cb43dd7c960920d08e93bb4678c12e89abeaa528ec1af32b0e7a88ec3fd74792",
+      "stdout_tail": "checksums verified for 1077 files\n"
     },
     {
       "command": [
@@ -97,7 +97,7 @@
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-07-16T04:30:30Z",
+  "ended_at": "2026-07-25T12:16:19Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.5.2-arm64-arm-64bit",
@@ -108,8 +108,8 @@
     },
     "tools": {
       "git": "git version 2.54.0",
-      "node": "v25.9.0",
-      "npm": "11.12.1",
+      "node": "v26.5.0",
+      "npm": "11.17.0",
       "uv": "uv 0.11.8 (Homebrew 2026-04-27 aarch64-apple-darwin)"
     }
   },
@@ -319,10 +319,10 @@
         "tree_sha256": "5b11cd86be9b4923fab1009f4124bb01b0600f8222524265cf1b43c24960e901"
       },
       {
-        "bytes": 1333543,
-        "file_count": 34,
+        "bytes": 1361107,
+        "file_count": 35,
         "path": "src",
-        "tree_sha256": "ef223501e4ccf2c74c0766ff92afb454b2fe5d60cc2c630417614068ab862091"
+        "tree_sha256": "4a80a5fa3506fa72b31142c60543cbee736894bb542484921b15e58af6cd0d01"
       },
       {
         "bytes": 1751,
@@ -367,16 +367,16 @@
         "tree_sha256": "c8ff05ebef7223e14fb65be8b30a1ad86da03ee659f6caa9b38fef31381090f9"
       },
       {
-        "bytes": 805,
+        "bytes": 931,
         "file_count": 1,
         "path": "semantic/README.md",
-        "tree_sha256": "c963ebc2c63c9cd4adcb7cbe11d38c2aac6294cdf48425264f5d4ab5110554f4"
+        "tree_sha256": "414d863c6d2b703254be8333ca9c0c39928443d4c04be8342b3a53d6535f4eca"
       },
       {
-        "bytes": 11252,
+        "bytes": 11388,
         "file_count": 1,
         "path": "semantic/context",
-        "tree_sha256": "d01fad251c72af1ca9860ca2c9c9e14aaffff436df980319c735f7c9d104c08d"
+        "tree_sha256": "01bdb00f102f8a2d7acc43e5bd969e89751086d201e83da53b8fa803bd8846f1"
       },
       {
         "bytes": 21197,
@@ -391,10 +391,10 @@
         "tree_sha256": "abd10b58bf7a0e152ec2027d20bc94cded585fe106faf7fb5926acfe40bd0a9f"
       },
       {
-        "bytes": 11469,
+        "bytes": 11798,
         "file_count": 2,
         "path": "semantic/profile",
-        "tree_sha256": "963916c42461a146da19c871fdae2f301f66b259c05c22f90fcf4bb3a113c62b"
+        "tree_sha256": "517156c955d0ce17e5daf42f9910ad65fc89204b8a9549660c1a8599f1730218"
       },
       {
         "bytes": 25855,
@@ -429,7 +429,7 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "0d064678e41f3b5a7196053c29a5e56dccc483a3afe424ab42b6cf8a6a8e6599"
+    "tree_sha256": "811fd0cc0f836d48ddcc47058be70581a608d946df3700a31a3af24e079ab115"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
@@ -473,17 +473,17 @@
   "outputs": {
     "bundle": {
       "actual": {
-        "bytes": 4004060,
-        "file_count": 991,
-        "tree_sha256": "03ca84908af9e5c5a120a15770617773a3411c91d0e6298fe3678a27993a097e"
+        "bytes": 4223101,
+        "file_count": 1078,
+        "tree_sha256": "8aa34afe7078b475449ddc88efd78feac5bc5ae60cb57d70b5cabbb864b4bac5"
       },
       "difference_count": 0,
       "differences": [],
       "exact_match": true,
       "expected": {
-        "bytes": 4004060,
-        "file_count": 991,
-        "tree_sha256": "03ca84908af9e5c5a120a15770617773a3411c91d0e6298fe3678a27993a097e"
+        "bytes": 4223101,
+        "file_count": 1078,
+        "tree_sha256": "8aa34afe7078b475449ddc88efd78feac5bc5ae60cb57d70b5cabbb864b4bac5"
       }
     },
     "sbom": {
@@ -494,7 +494,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-16T04:30:30Z",
+  "recorded_at": "2026-07-25T12:16:19Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
@@ -554,7 +554,7 @@
     }
   ],
   "source_binding": null,
-  "started_at": "2026-07-16T04:30:29Z",
+  "started_at": "2026-07-25T12:16:18Z",
   "test_evidence": null,
   "validators": {
     "passed": true,

@@ -10,7 +10,7 @@
     "requirements": 95
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "81cb9c80955bdee509166e25808107daa99aecf76dae53b4d2d68cc5c81ad2d2",
+  "generated_from_sha256": "4707f9ae4e45ab7762f754b7ece675d5b097d21600b15198132b3fbce10b10b6",
   "interpretation": "accepted is the contract status; implementation passed is reserved for independently verified evidence at the declared milestone, while blocked human-only evidence remains visible",
   "milestone": "t0_census_closed",
   "publication_ready": false,
@@ -69,9 +69,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -81,7 +87,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-002"
     },
     {
@@ -107,9 +113,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -119,7 +131,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-003"
     },
     {
@@ -145,9 +157,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -157,7 +175,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-004"
     },
     {
@@ -183,9 +201,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -195,7 +219,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-005"
     },
     {
@@ -221,9 +245,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -233,7 +263,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-006"
     },
     {
@@ -259,9 +289,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -271,7 +307,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-007"
     },
     {
@@ -295,9 +331,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -307,7 +349,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-008"
     },
     {
@@ -441,9 +483,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -453,7 +501,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-011"
     },
     {
@@ -481,9 +529,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -493,7 +547,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-012"
     },
     {
@@ -522,9 +576,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -534,7 +594,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-013"
     },
     {
@@ -561,9 +621,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -573,7 +639,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-014"
     },
     {
@@ -600,9 +666,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -612,7 +684,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-015"
     },
     {
@@ -639,9 +711,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -651,7 +729,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-016"
     },
     {
@@ -678,9 +756,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -690,7 +774,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-017"
     },
     {
@@ -718,9 +802,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -730,7 +820,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-018"
     },
     {
@@ -756,9 +846,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -768,7 +864,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-019"
     },
     {
@@ -794,9 +890,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -806,7 +908,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-020"
     },
     {
@@ -832,9 +934,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -844,7 +952,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-021"
     },
     {
@@ -870,9 +978,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -882,7 +996,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-022"
     },
     {
@@ -908,9 +1022,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -920,7 +1040,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-023"
     },
     {
@@ -1208,9 +1328,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1220,7 +1346,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-035"
     },
     {
@@ -1246,9 +1372,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1258,7 +1390,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-036"
     },
     {
@@ -1286,9 +1418,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1298,7 +1436,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-037"
     },
     {
@@ -1326,9 +1464,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1338,7 +1482,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-038"
     },
     {
@@ -1366,9 +1510,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1378,7 +1528,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-039"
     },
     {
@@ -1405,9 +1555,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1417,7 +1573,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-040"
     },
     {
@@ -1443,9 +1599,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1455,7 +1617,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-041"
     },
     {
@@ -1481,9 +1643,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1493,7 +1661,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-042"
     },
     {
@@ -1519,9 +1687,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1531,7 +1705,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-043"
     },
     {
@@ -1558,9 +1732,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1570,7 +1750,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-044"
     },
     {
@@ -1597,9 +1777,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1609,7 +1795,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-045"
     },
     {
@@ -1636,9 +1822,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1648,7 +1840,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-046"
     },
     {
@@ -1675,9 +1867,15 @@
         "src/govuk_okf/publication.py",
         "src/govuk_okf/publication_disk.py",
         "src/govuk_okf/publication_validation.py",
+        "src/govuk_okf/okf_v02.py",
+        "bundle/index.md",
+        "bundle/concepts/index.md",
+        "docs/okf-v02-conformance.md",
         "governance/decisions/ADR-006-byte-bounded-static-search-partitions.md",
+        "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
         "tests/test_publication_scale.py",
         "tests/test_shard_contracts.py",
+        "tests/test_okf_v02.py",
         "tests/test_demonstrator_projection.py",
         "tests/test_demo_mcp.py",
         "bundle/data/demonstrator.json",
@@ -1687,7 +1885,7 @@
         "governance/decisions/ADR-008-bounded-new-child-demonstrator.md"
       ],
       "implementation_status": "produced",
-      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
+      "qualification": "The semantic, publication, Explorer and read-only discovery foundations now run against a bounded 69-record new-child demonstrator. Its canonical Markdown layer declares OKF v0.2, keeps generated/source-modified/retrieval times distinct, remains explicitly draft and unverified, and preserves the typed semantic, search, route and Explorer projections as extensions. Its frozen Search seed closes at 69/69 with zero unexplained seed omissions; direct out-of-cohort content targets remain typed evidence boundaries and no complete page bodies are retained. The dedicated journey view exposes source queries, group membership, publisher evidence, record provenance, boundaries and portable AI/MCP handoff while remaining explicitly non-authoritative. The static-search contract preserves two-character logical lookup while exact-byte physical postings partitions and 1,000-record document-map shards keep the 5 MiB budget; validator, Explorer and Python discovery retain legacy singleton compatibility and fail closed on contract drift. The no-skip real-Chromium browser gate covers accessibility-relevant behaviour, deep links, Pages fallback, gzip and budgets. This bounded fixture does not satisfy the full GOV.UK corpus, participant, axe, accessibility-expert or screen-reader gates.",
       "requirement_id": "REQ-047"
     },
     {

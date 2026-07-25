@@ -50,14 +50,14 @@
       "sha256": "1ee8b23199141e62d734176e6d8df5d209cf7e7dd6e18bf49d8e9ec9052c7738"
     },
     "context_pack": {
-      "bytes": 830487,
+      "bytes": 830982,
       "path": "ai/new-child-context.md",
-      "sha256": "6d8f68773c78dbabfa40e5db06cd5ea8db4fcb9b837539d084fbd4a4c1cfee82"
+      "sha256": "1a5ec35a4570b62dd98b01ce3f478c8a7b756645be653db89b2ff07314b9cf76"
     },
     "documentation": {
-      "bytes": 2085,
+      "bytes": 2539,
       "path": "ai/README.md",
-      "sha256": "a634b3687a755d6c2caebc7afa7f16328762d8626da9d52efc54819f8a4b1419"
+      "sha256": "66771fd7c9f1271830c071bd237ce28ec87dcd89084b3566460875adc9fc8738"
     },
     "mcp_manifest": {
       "bytes": 938,

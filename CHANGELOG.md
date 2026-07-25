@@ -7,6 +7,15 @@ semantic versioning.
 
 ### Added
 
+- OKF v0.2 canonical Markdown publication with root version declaration,
+  generated content/organisation/attachment concepts, structured provenance
+  and honest unverified draft lifecycle; the existing GOV.UK semantic,
+  federation, Explorer, search and evidence-bearing assertion contracts remain
+  additive extensions. Descriptor snapshot/live state now separates publication
+  compilation, latest frozen source observation and the authoritative live
+  GOV.UK destination. ADR-010 and the conformance guide keep the specification,
+  implementation, tests and documentation synchronized without changing the
+  separate `0.1.0` software release train.
 - ADR-009 bulk-first acquisition: expanded Search metadata, deterministic
   selective Content API enrichment, a queryable external SQLite/FTS5 extract
   database with organisation/taxon/world-location relationships, EXTSSD cache
@@ -147,6 +156,9 @@ semantic versioning.
 
 ### Fixed
 
+- Retry removal of an exited Chrome process's ephemeral profile when the host
+  briefly reports `ENOTEMPTY`, preventing a successful real-browser assertion
+  from stranding the Node test runner in CI.
 - Fail closed on incomplete or expanding demonstrator seed sets, nested Content
   API link targets, unclassified relationship targets, unsafe snapshot paths
   and mismatched descriptor/data-manifest demonstrator integrity.

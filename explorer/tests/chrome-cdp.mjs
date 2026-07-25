@@ -263,7 +263,15 @@ export async function launchChrome() {
         ]);
         if (!killed) throw new Error("Chrome did not exit after SIGKILL");
       }
-      await rm(userDataDir, { recursive: true, force: true });
+      // Chrome can finish writing profile bookkeeping just after its process
+      // exits. Let fs.rm retry that transient ENOTEMPTY race so a successful
+      // browser assertion cannot strand the Node test runner in CI.
+      await rm(userDataDir, {
+        recursive: true,
+        force: true,
+        maxRetries: 5,
+        retryDelay: 100
+      });
     }
   };
 }

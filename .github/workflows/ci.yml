@@ -35,6 +35,8 @@ jobs:
       - run: .venv/bin/python scripts/build_aim_scorecard.py --check
       - name: Snapshot-aware deterministic reproduction gate
         run: .venv/bin/python scripts/check_ci_snapshot.py
+      - name: OKF v0.2 canonical Markdown conformance
+        run: .venv/bin/python scripts/check_okf_v02.py
       - run: .venv/bin/python scripts/check_publication.py
       - run: .venv/bin/python scripts/build_checksums.py --check
       - run: .venv/bin/python scripts/build_sbom.py --check
