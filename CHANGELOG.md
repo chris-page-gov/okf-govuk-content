@@ -156,6 +156,9 @@ semantic versioning.
 
 ### Fixed
 
+- Retry removal of an exited Chrome process's ephemeral profile when the host
+  briefly reports `ENOTEMPTY`, preventing a successful real-browser assertion
+  from stranding the Node test runner in CI.
 - Fail closed on incomplete or expanding demonstrator seed sets, nested Content
   API link targets, unclassified relationship targets, unsafe snapshot paths
   and mismatched descriptor/data-manifest demonstrator integrity.
