@@ -1,3 +1,13 @@
+---
+type: "Reference"
+title: "Use this bundle with an AI"
+description: "Safe, bounded ways to use the new-child demonstrator with AI systems."
+tags: ["ai","govuk","instructions"]
+generated: {"at":"2026-07-15T06:25:17Z","by":"govuk-okf/0.1.0"}
+sources: [{"id":"demonstrator","resource":"../data/demonstrator.json","title":"Bounded new-child demonstrator projection"}]
+status: "draft"
+govuk: {"snapshot":"NEW-CHILD-20260715","trust_tier":"unverified"}
+---
 # Use this bundle with an AI
 
 This is a derived, non-authoritative 69-record metadata demonstrator for snapshot

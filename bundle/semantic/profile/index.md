@@ -5,6 +5,12 @@ is `govuk-okf-profile-v1.yamlld`; its `@context` resolves to the checked-in
 `../context/govuk-okf-v1.jsonld`, so validation never depends on fetching a
 mutable remote context.
 
+The bundle's canonical Markdown layer targets OKF v0.2. This profile preserves
+the project's later extensions: typed evidence-bearing assertions, semantic
+projections, large-corpus indexes and explicit governed-snapshot versus live
+authority state. Those extensions do not replace or weaken v0.2's permissive
+consumer contract.
+
 ## Scope and authority
 
 This profile describes metadata for the complete, snapshot-bounded union of

@@ -11,6 +11,8 @@ nodes for every relationship.
 - `shapes/` contains the portable SHACL-like graph constraints.
 - `crosswalks/` records reversible source and standards mappings.
 
-The profile is an extension of OKF v0.1. YAML-LD, JSON-LD, typed assertions,
-PROV/SKOS/ORG/CPSV mappings and large-corpus indexes are profile features, not
-claims about guarantees made by base OKF.
+The canonical Markdown tree conforms to OKF v0.2. Structured `generated`,
+`sources`, lifecycle and trust semantics use the v0.2 core contract. YAML-LD,
+JSON-LD, typed assertions, PROV/SKOS/ORG/CPSV mappings, snapshot/live state and
+large-corpus indexes remain profile features, not claims about guarantees made
+by base OKF.

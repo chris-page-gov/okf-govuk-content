@@ -23,7 +23,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "bundle/okf-explorer.json",
-          "sha256": "3087b21a3830ec44abb10c05bf600dad37de1145b08a019f53fcf5929a07429c"
+          "sha256": "f4695b19d542789bb5f2a948921e29fc36ab4076859433cc28b73602bf8da1be"
         },
         {
           "check_id": "E-INDEPENDENT-WIKI",
@@ -34,7 +34,7 @@
           "operator": "json_string_contains",
           "path": "bundle/okf-explorer.json",
           "pointer": "/description",
-          "sha256": "3087b21a3830ec44abb10c05bf600dad37de1145b08a019f53fcf5929a07429c"
+          "sha256": "f4695b19d542789bb5f2a948921e29fc36ab4076859433cc28b73602bf8da1be"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -242,7 +242,7 @@
           "operator": "json_equals",
           "path": "release/rights-privacy-audit.json",
           "pointer": "/rights_privacy_audit_passed",
-          "sha256": "59ceffde12c9ad7330cfa9677a347bb2846bca423cc892ec37ff96846b3b144f"
+          "sha256": "e043fe8ec13c5e6a8590425290cc521baadb9da05258cdd49468346c7cf61737"
         }
       ],
       "exceptions": [],
@@ -1217,7 +1217,7 @@
           "operator": "json_equals",
           "path": "governance/requirements-status.json",
           "pointer": "/counts/requirements",
-          "sha256": "779b3678f0e2310a66f6d05ad59fe7f2ff47089d476e98dafa211d67ade7eb77"
+          "sha256": "dc50916e64b7ffd2f93140310ef163442418d9c6a45330d2bdc8b749efcd6af1"
         },
         {
           "check_id": "E-TRACEABILITY-COVERAGE",
@@ -1228,7 +1228,7 @@
           "operator": "json_equals",
           "path": "governance/traceability-status.json",
           "pointer": "/counts/clauses",
-          "sha256": "fd459a4556a7c25e1fc3dd55e106f3769d6884a4447868c6523136b6755f3cd5"
+          "sha256": "b49a0807d137474ccd3e5c60793cc06b45ff0037da7eb620a245833c0b07e737"
         },
         {
           "check_id": "E-CLEAN-ROOM-FIXTURE",
@@ -1239,7 +1239,7 @@
           "operator": "json_equals",
           "path": "release/clean-room-reproduction.json",
           "pointer": "/fixture_reproduction_passed",
-          "sha256": "fd45dad1a1eed49ee72aaa60e6c07cc813426b636f6080b0fe5ba166c7850831"
+          "sha256": "5d878e6634e4337fa0db0b194155a07907989cdbb2b8234a680ad9c491514ef2"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -1489,7 +1489,7 @@
         "operator": "json_equals",
         "path": "release/rights-privacy-audit.json",
         "pointer": "/rights_privacy_audit_passed",
-        "sha256": "59ceffde12c9ad7330cfa9677a347bb2846bca423cc892ec37ff96846b3b144f"
+        "sha256": "e043fe8ec13c5e6a8590425290cc521baadb9da05258cdd49468346c7cf61737"
       }
     ],
     "passed": false,

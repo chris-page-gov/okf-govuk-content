@@ -10,7 +10,7 @@
     "tasks": 36
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "81cb9c80955bdee509166e25808107daa99aecf76dae53b4d2d68cc5c81ad2d2",
+  "generated_from_sha256": "4707f9ae4e45ab7762f754b7ece675d5b097d21600b15198132b3fbce10b10b6",
   "interpretation": "A produced task has an artefact foundation only; accepted is reserved for a satisfied promotion gate with terminal evidence, and human-only tasks remain blocked without authority.",
   "milestone": "t0_census_closed",
   "publication_ready": false,

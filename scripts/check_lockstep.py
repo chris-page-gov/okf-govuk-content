@@ -27,6 +27,7 @@ REQUIRED = [
     "CHANGELOG.md",
     "docs/architecture.md",
     "docs/implementation-status.md",
+    "docs/okf-v02-conformance.md",
     "docs/reproducibility.md",
     "WHATS_ON_GOVUK_OKF.md",
     "planning/RUN_AFHF_GOVUK_OKF_UNATTENDED.md",
@@ -40,6 +41,7 @@ REQUIRED = [
     "governance/aim-assessment-source.json",
     "governance/aim-assessment.schema.json",
     "governance/rights-review-ledger.json",
+    "governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md",
     "governance/requirements-status.json",
     "governance/traceability-status.json",
     "governance/task-status.json",
@@ -60,6 +62,7 @@ REQUIRED = [
     "release/aim-assessment.json",
     "reports/aim-scorecard.md",
     "scripts/promote_release.py",
+    "scripts/check_okf_v02.py",
 ]
 
 

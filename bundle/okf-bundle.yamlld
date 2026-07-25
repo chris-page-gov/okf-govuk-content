@@ -4,6 +4,7 @@
 title: "Having a new child: bounded GOV.UK metadata demonstrator"
 description: "Derived, non-authoritative semantic projection of exactly 69 frozen GOV.UK new-child metadata records; it is not a complete GOV.UK corpus."
 version: "0.1.0"
+okfVersion: "0.2"
 status: "bounded-demonstrator"
 generatedAt: "2026-07-15T06:25:17Z"
 snapshot: "NEW-CHILD-20260715"
@@ -28,6 +29,8 @@ constraintLedger:
   "@id": "https://github.com/chris-page-gov/okf-govuk-content/blob/main/research/source-constraints.json"
 semanticProjectionManifest:
   "@id": "https://chris-page-gov.github.io/okf-govuk-content/data/semantic/manifest.json"
+canonicalMarkdownIndex:
+  "@id": "https://chris-page-gov.github.io/okf-govuk-content/concepts/index.md"
 counts:
   datasets: 69
   document_types: 8

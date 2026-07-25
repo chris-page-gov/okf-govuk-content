@@ -18,13 +18,21 @@
       "path": "data/analysis/overview.json",
       "sha256": "b8d11b19f1e8acb6bfd5aa74cd9378884b8439db673fa0df94821cc9657ef88c"
     },
+    "canonical_concepts": {
+      "path": "concepts/index.md",
+      "sha256": "2b5599e3faab3d67c5cde8ae3d28c4256aa57ebc1bd80bb65eea665a1e9753e4"
+    },
     "data_manifest": {
       "path": "data/manifest.json",
       "sha256": "c520daf8f2f98fdb49f37b0dd89f4145bdf59d4e36ebd091096f3da43c94eb0f"
     },
     "demonstrator": {
       "path": "data/demonstrator.json",
-      "sha256": "13499609888f23be9a1411e8abf4b1bbf02726572d9176f3cf373f3b53b36cdf"
+      "sha256": "066fa08cfeac8827e4d2190b353c4edc44ec8f0cb294fb451bd1f06bf43c4605"
+    },
+    "markdown_index": {
+      "path": "index.md",
+      "sha256": "c2dfb2eac58fd6cf47f0102c0684ce6d2097da18ccb61855616f51e0434463d5"
     },
     "overview_index": {
       "path": "data/overview.json",
@@ -53,6 +61,7 @@
   },
   "entrypoints": {
     "analysis_overview": "data/analysis/overview.json",
+    "canonical_concepts": "concepts/index.md",
     "data_manifest": "data/manifest.json",
     "demonstrator": "data/demonstrator.json",
     "markdown_index": "index.md",
@@ -81,11 +90,20 @@
     "okf-explorer-analysis.v1": {
       "entrypoint": "analysis_overview",
       "mode": "external"
+    },
+    "okf-v0.2": {
+      "attested_computations_auto_execute": false,
+      "canonical_concepts": 86,
+      "canonical_markdown_entrypoint": "canonical_concepts",
+      "documentation_concepts": 3,
+      "domain_concepts": 83,
+      "trust_default": "unverified"
     }
   },
   "generated_at": "2026-07-15T06:25:17Z",
   "kind": "okf-large-corpus",
   "license": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+  "okf_version": "0.2",
   "performance": {
     "full_record_hydration": "lazy",
     "relationship_hydration": "lazy",
@@ -104,8 +122,16 @@
     "seed_denominator": 69
   },
   "semantic_descriptor": "https://chris-page-gov.github.io/okf-govuk-content/okf-bundle.yamlld",
-  "semantic_projection_sha256": "e8b428334b250183f1460df9bc71f641ade9a84fa6d7f959cf02736ad9c73c2f",
+  "semantic_projection_sha256": "3ecddd3badb00777064e17dbda612a1bb91cb929d6f051f319e7a198d9035e62",
   "snapshot": "NEW-CHILD-20260715",
+  "snapshot_state": {
+    "compiled_at": "2026-07-15T06:25:17Z",
+    "drift_expected": true,
+    "latest_source_observation_at": "2026-07-15T06:24:51.285380Z",
+    "live_authority": "https://www.gov.uk/",
+    "mode": "governed-snapshot",
+    "snapshot_id": "NEW-CHILD-20260715"
+  },
   "status": "bounded-demonstrator",
   "title": "Having a new child: bounded GOV.UK metadata demonstrator",
   "version": "0.1.0",
