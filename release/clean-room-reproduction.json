@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "92963c0ac5f0d3b7c1518cc2e5bc36bfd258dd9b83dbdecfd76a8d9e965fd88c",
-    "before_sha256": "92963c0ac5f0d3b7c1518cc2e5bc36bfd258dd9b83dbdecfd76a8d9e965fd88c",
+    "after_sha256": "908647b808f2dca207c64049b0a69e4bd0f2532457e3bf6c4855721f74c2aa48",
+    "before_sha256": "908647b808f2dca207c64049b0a69e4bd0f2532457e3bf6c4855721f74c2aa48",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -97,7 +97,7 @@
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-07-25T11:51:57Z",
+  "ended_at": "2026-07-25T12:16:19Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.5.2-arm64-arm-64bit",
@@ -319,10 +319,10 @@
         "tree_sha256": "5b11cd86be9b4923fab1009f4124bb01b0600f8222524265cf1b43c24960e901"
       },
       {
-        "bytes": 1361065,
+        "bytes": 1361107,
         "file_count": 35,
         "path": "src",
-        "tree_sha256": "40a32161da4d1ae4ef01cd77361daac0238f818af4aaff8405edacd95b2eaba0"
+        "tree_sha256": "4a80a5fa3506fa72b31142c60543cbee736894bb542484921b15e58af6cd0d01"
       },
       {
         "bytes": 1751,
@@ -429,7 +429,7 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "65fd75a255403b35f7861e6590dd16b04b45efffda222cf82d7486a2f770b875"
+    "tree_sha256": "811fd0cc0f836d48ddcc47058be70581a608d946df3700a31a3af24e079ab115"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
@@ -494,7 +494,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-07-25T11:51:57Z",
+  "recorded_at": "2026-07-25T12:16:19Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
@@ -554,7 +554,7 @@
     }
   ],
   "source_binding": null,
-  "started_at": "2026-07-25T11:51:56Z",
+  "started_at": "2026-07-25T12:16:18Z",
   "test_evidence": null,
   "validators": {
     "passed": true,
