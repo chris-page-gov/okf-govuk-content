@@ -1,18 +1,18 @@
 {
   "schema": "govuk-okf-explorer-browser-evidence.v1",
-  "generated_at": "2026-07-14T13:08:49.502Z",
-  "snapshot": "fixture-2026-07-11",
+  "generated_at": "2026-08-16T09:24:39.750Z",
+  "snapshot": "NEW-CHILD-20260715",
   "artifact_tier": "representative_fixture",
   "data_plane_index_sha256": "",
-  "site_checksums_sha256": "",
+  "site_checksums_sha256": "e7558cff0e44891a7701a21a1d9ed02bc4960402ca7e48137506ab991d83bf77",
   "publication_ready": false,
   "browser": {
-    "name_version": "Google Chrome 150.0.7871.115",
+    "name_version": "Google Chrome 151.0.7922.138",
     "engine": "Chromium",
     "automation": "Chrome DevTools Protocol using Node built-ins",
     "platform": "darwin",
     "architecture": "arm64",
-    "node": "v25.9.0"
+    "node": "v26.7.0"
   },
   "accessibility": {
     "status": "automated_fixture_subset_pass",
@@ -57,7 +57,7 @@
     },
     "result_selection_focus": {
       "detail_heading_focused": true,
-      "canonical_hash_route": "dataset/00000000-0000-4000-8000-000000000001-en",
+      "canonical_hash_route": "dataset/03cad033-6800-4db2-92b4-87e9a6021272-en",
       "legacy_query_route_present": false
     },
     "reduced_motion": {
@@ -74,11 +74,15 @@
     "heading_outline": [
       {
         "level": 1,
-        "text": "Find GOV.UK content and connections"
+        "text": "Explore 69 GOV.UK records about having a new child"
       },
       {
         "level": 2,
-        "text": "What this catalogue covers"
+        "text": "Having a new child: a bounded GOV.UK journey demonstrator"
+      },
+      {
+        "level": 2,
+        "text": "What is included"
       },
       {
         "level": 2,
@@ -94,43 +98,43 @@
       },
       {
         "level": 3,
-        "text": "Welcome to GOV.UK"
+        "text": "Get extra funding for your early years provider"
       },
       {
         "level": 3,
-        "text": "Education, training and skills"
+        "text": "Child Benefit tax calculator"
       },
       {
         "level": 3,
-        "text": "Working, jobs and pensions"
+        "text": "Claim and deal with Child Benefit for someone else"
       },
       {
         "level": 3,
-        "text": "Department for Work and Pensions"
+        "text": "Report changes that affect your Child Benefit"
       },
       {
         "level": 3,
-        "text": "Sign in to your Universal Credit account"
+        "text": "Disabled Facilities Grants"
       },
       {
         "level": 3,
-        "text": "UKHO 1825 archives catalogue"
+        "text": "Help if you have a disabled child"
       },
       {
         "level": 3,
-        "text": "Archive catalogues"
+        "text": "Help paying for childcare"
       },
       {
         "level": 3,
-        "text": "Thailand travel advice"
+        "text": "Plan your Shared Parental Leave and Pay"
       },
       {
         "level": 3,
-        "text": "Addysg, hyfforddiant a sgiliau"
+        "text": "Check if you can get Maternity or Paternity Leave or Pay, or Maternity Allowance"
       },
       {
         "level": 3,
-        "text": "Learn to drive a car: step by step"
+        "text": "Junior Individual Savings Accounts (ISA)"
       },
       {
         "level": 2,
@@ -160,8 +164,8 @@
       "view": "sitemap",
       "heading": "Sitemap & routing",
       "mechanism_cards": 5,
-      "host_rows": 2,
-      "redirect_rows": 1,
+      "host_rows": 1,
+      "redirect_rows": 0,
       "machine_path": "/okf-govuk-content/data/site-topology.json",
       "unavailable": false
     },
@@ -177,6 +181,7 @@
       "heading": "Government Digital Service"
     },
     "direct_gzip_resources_loaded": [
+      "/okf-govuk-content/data/adjacency/19.json.gz",
       "/okf-govuk-content/data/adjacency/ef.json.gz",
       "/okf-govuk-content/data/publishers-0.json.gz",
       "/okf-govuk-content/data/routes/ef.json.gz"
@@ -185,6 +190,67 @@
     "physical_pack_resources": [],
     "range_requests": [],
     "virtual_resources_loaded": []
+  },
+  "usability": {
+    "status": "automated_task_budget_pass",
+    "pass": true,
+    "scope": "automated pointer path from a clear zero-click scope statement to search results and an opened record",
+    "thresholds": {
+      "scope_visible_without_clicks": true,
+      "search_results_max_clicks": 1,
+      "example_search_results_max_clicks": 1,
+      "record_detail_max_clicks": 2,
+      "worker_search_required": true
+    },
+    "example_searches_required": true,
+    "observed": {
+      "zero_click_state": {
+        "heading": "Explore 69 GOV.UK records about having a new child",
+        "lede": "This preview searches only the 69 records in its new-child demonstrator. It does not search all GOV.UK. Use it to review the records, their connections and their source evidence.",
+        "scope": "Derived, non-authoritative projection of exactly 69 frozen GOV.UK new-child metadata records; not a complete GOV.UK corpus.",
+        "examples": [
+          "register a birth",
+          "Child Benefit",
+          "help paying for childcare"
+        ],
+        "backend": "worker"
+      },
+      "search_results_clicks": 1,
+      "record_detail_clicks": 2,
+      "result_count": 1,
+      "result_status": "1 result in the active context.",
+      "first_result_title": "Get extra funding for your early years provider",
+      "search_ms": 11,
+      "result_focus": {
+        "detail_heading_focused": true,
+        "canonical_hash_route": "dataset/03cad033-6800-4db2-92b4-87e9a6021272-en",
+        "legacy_query_route_present": false
+      },
+      "example_searches": [
+        {
+          "query": "register a birth",
+          "clicks": 1,
+          "result_count": 2,
+          "first_result_title": "Register a birth"
+        },
+        {
+          "query": "Child Benefit",
+          "clicks": 1,
+          "result_count": 15,
+          "first_result_title": "Child Benefit tax calculator"
+        },
+        {
+          "query": "help paying for childcare",
+          "clicks": 1,
+          "result_count": 2,
+          "first_result_title": "Help paying for childcare"
+        }
+      ]
+    },
+    "qualifications": {
+      "representative_user_research_claimed": false,
+      "expert_usability_review_claimed": false
+    }
   },
   "performance": {
     "status": "fixture_budget_pass",
@@ -200,55 +266,55 @@
     },
     "samples": {
       "bootstrap_encoded_bytes": [
-        174224,
-        168521,
-        174224,
-        150790,
-        145087
+        728976,
+        729490,
+        723272,
+        728976,
+        184697
       ],
       "first_useful_render_ms": [
-        130,
-        39,
-        35,
-        37,
-        37
+        109,
+        71,
+        69,
+        68,
+        75
       ],
       "cold_search_ms": [
-        2,
-        1,
-        1,
-        1,
-        1
+        11,
+        8,
+        9,
+        8,
+        8
       ],
       "warm_search_ms": [
+        4,
         1,
         1,
-        1,
-        1,
-        1
+        2,
+        2
       ],
       "route_hydration_ms": [
-        8,
-        6,
-        7,
-        7,
-        6
+        11,
+        9,
+        9,
+        9,
+        10
       ],
       "steady_js_heap_bytes": [
-        2539160,
-        3913948,
-        4737044,
-        6480756,
-        8540324
+        4756876,
+        7892912,
+        10347392,
+        12224532,
+        14957584
       ]
     },
     "observed": {
-      "bootstrap_encoded_bytes_max": 174224,
-      "first_useful_render_p75_ms": 39,
-      "cold_search_p95_ms": 2,
-      "warm_search_p95_ms": 1,
-      "route_hydration_p95_ms": 8,
-      "steady_js_heap_bytes_max": 8540324
+      "bootstrap_encoded_bytes_max": 729490,
+      "first_useful_render_p75_ms": 75,
+      "cold_search_p95_ms": 11,
+      "warm_search_p95_ms": 4,
+      "route_hydration_p95_ms": 11,
+      "steady_js_heap_bytes_max": 14957584
     }
   },
   "console_exceptions": [],

@@ -160,6 +160,81 @@ async function submitSearch(browser, query) {
   return Number(await browser.evaluate("document.documentElement.dataset.lastSearchMs"));
 }
 
+async function pointerClick(browser, selector) {
+  const point = await browser.evaluate(`(() => {
+    const element = document.querySelector(${JSON.stringify(selector)});
+    if (!element) return null;
+    element.scrollIntoView({ block: "center", inline: "center" });
+    const rect = element.getBoundingClientRect();
+    return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+  })()`);
+  if (!point) throw new Error(`browser task could not find ${selector}`);
+  await browser.client.command("Input.dispatchMouseEvent", { type: "mousePressed", x: point.x, y: point.y, button: "left", clickCount: 1 });
+  await browser.client.command("Input.dispatchMouseEvent", { type: "mouseReleased", x: point.x, y: point.y, button: "left", clickCount: 1 });
+}
+
+async function completeFindRecordTask(browser, query) {
+  let clicks = 0;
+  const zeroClickState = await browser.evaluate(`(() => ({
+    heading: document.getElementById("page-heading")?.textContent || "",
+    lede: document.getElementById("page-lede")?.textContent || "",
+    scope: document.getElementById("scope-description")?.textContent || "",
+    examples: [...document.querySelectorAll("#search-examples [data-query]")].map((button) => button.dataset.query || ""),
+    backend: document.documentElement.dataset.searchBackend || ""
+  }))()`);
+  const searchSequence = Number(await browser.evaluate("document.documentElement.dataset.searchSequence || 0"));
+  await browser.evaluate(`(() => {
+    const input = document.getElementById("search-input");
+    input.value = ${JSON.stringify(query)};
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    return true;
+  })()`);
+  await pointerClick(browser, "#search-submit");
+  clicks += 1;
+  await browser.waitFor(`Number(document.documentElement.dataset.searchSequence || 0) > ${searchSequence} && document.querySelectorAll(".result-card").length > 0`);
+  const resultState = await browser.evaluate(`({
+    count: document.querySelectorAll(".result-card").length,
+    status: document.getElementById("load-status")?.textContent || "",
+    first_title: document.querySelector(".result-card h3 button")?.textContent || "",
+    search_ms: Number(document.documentElement.dataset.lastSearchMs || 0)
+  })`);
+  const routeSequence = Number(await browser.evaluate("document.documentElement.dataset.routeSequence || 0"));
+  await pointerClick(browser, ".result-card h3 button");
+  clicks += 1;
+  await browser.waitFor(`Number(document.documentElement.dataset.routeSequence || 0) > ${routeSequence} && document.activeElement && document.activeElement.id === "detail-heading"`);
+  const resultFocus = await browser.evaluate(`({
+    detail_heading_focused: document.activeElement.id === "detail-heading",
+    canonical_hash_route: decodeURIComponent(location.hash.slice(1)),
+    legacy_query_route_present: new URL(location.href).searchParams.has("route")
+  })`);
+  return {
+    zero_click_state: zeroClickState,
+    search_results_clicks: 1,
+    record_detail_clicks: clicks,
+    result_count: resultState.count,
+    result_status: resultState.status,
+    first_result_title: resultState.first_title,
+    search_ms: resultState.search_ms,
+    result_focus: resultFocus
+  };
+}
+
+async function completeExampleSearchTasks(browser, examples) {
+  const observations = [];
+  for (let index = 0; index < examples.length; index += 1) {
+    const sequence = Number(await browser.evaluate("document.documentElement.dataset.searchSequence || 0"));
+    await pointerClick(browser, `#search-examples button:nth-of-type(${index + 1})`);
+    await browser.waitFor(`Number(document.documentElement.dataset.searchSequence || 0) > ${sequence} && document.querySelectorAll(".result-card").length > 0`);
+    observations.push(await browser.evaluate(`({
+      query: document.getElementById("search-input")?.value || "",
+      clicks: 1,
+      result_count: document.querySelectorAll(".result-card").length,
+      first_result_title: document.querySelector(".result-card h3 button")?.textContent || ""
+    })`));
+  }
+  return observations;
+}
+
 function routeUrl(baseUrl, snapshot, route, legacy = false) {
   const url = new URL(baseUrl);
   url.searchParams.set("snapshot", snapshot);
@@ -193,6 +268,7 @@ async function resolveBrowserTarget(baseUrl) {
 
 export async function runFixtureBrowserAudit(browser, server, options = {}) {
   const iterations = Math.max(1, Number(options.iterations || 3));
+  const exampleSearchesRequired = options.exampleSearchesRequired !== false;
   const artifactTier = String(options.artifactTier || "representative_fixture");
   const fullRelease = artifactTier === "full_release_snapshot";
   if (fullRelease && options.snapshot && /fixture|sample|capacity|development|test/i.test(String(options.snapshot))) {
@@ -224,6 +300,7 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
   let forcedColors = false;
   let reflow = null;
   let sitemapRouting = null;
+  let taskCompletion = null;
 
   for (let iteration = 0; iteration < iterations; iteration += 1) {
     await browser.client.command("Network.clearBrowserCache");
@@ -264,11 +341,22 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
       await browser.client.command("Emulation.setDeviceMetricsOverride", { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false });
     }
 
-    coldSearchSamples.push(await submitSearch(browser, searchQuery));
+    if (iteration === 0) {
+      taskCompletion = await completeFindRecordTask(browser, searchQuery);
+      coldSearchSamples.push(taskCompletion.search_ms);
+      resultFocus = taskCompletion.result_focus;
+    } else {
+      coldSearchSamples.push(await submitSearch(browser, searchQuery));
+    }
     warmSearchSamples.push(await submitSearch(browser, searchQuery));
+    if (iteration === 0 && exampleSearchesRequired) {
+      taskCompletion.example_searches = await completeExampleSearchTasks(browser, taskCompletion.zero_click_state.examples);
+    } else if (iteration === 0) {
+      taskCompletion.example_searches = [];
+    }
     recordDataRequests(browser.network, directGzipPaths, packRequests);
 
-    if (iteration === 0) {
+    if (iteration === 0 && !resultFocus) {
       const sequence = Number(await browser.evaluate("document.documentElement.dataset.routeSequence || 0"));
       await browser.evaluate("document.querySelector('.result-card h3 button').click(); true");
       await browser.waitFor(`Number(document.documentElement.dataset.routeSequence || 0) > ${sequence} && document.activeElement && document.activeElement.id === 'detail-heading'`);
@@ -331,6 +419,7 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
 
   const performanceThresholds = budgets.performance;
   const accessibilityThresholds = budgets.accessibility;
+  const usabilityThresholds = budgets.usability;
   const observed = {
     bootstrap_encoded_bytes_max: Math.max(...bootstrapBytesSamples),
     first_useful_render_p75_ms: quantile(startupSamples, 0.75),
@@ -366,6 +455,20 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
     sitemapRouting.machine_path.endsWith("/data/site-topology.json") && !sitemapRouting.unavailable &&
     !legacyAlias.has_query_route && legacyAlias.hash === route && legacyAlias.heading.includes(routeTitle) &&
     pagesFallback.pathname === server.basePath && pagesFallback.hash === route && pagesFallback.view === "relationships" && pagesFallback.heading.includes(routeTitle);
+  const scopeText = `${taskCompletion?.zero_click_state?.heading || ""} ${taskCompletion?.zero_click_state?.lede || ""}`;
+  const usabilityPass = Boolean(
+    taskCompletion &&
+    (!usabilityThresholds.scope_visible_without_clicks || (/69 GOV\.UK records/i.test(scopeText) && /does not search all GOV\.UK/i.test(scopeText))) &&
+    taskCompletion.zero_click_state.backend === (usabilityThresholds.worker_search_required ? "worker" : taskCompletion.zero_click_state.backend) &&
+    taskCompletion.search_results_clicks <= usabilityThresholds.search_results_max_clicks &&
+    (!exampleSearchesRequired || (
+      taskCompletion.example_searches.length > 0 &&
+      taskCompletion.example_searches.every((example) => example.clicks <= usabilityThresholds.example_search_results_max_clicks && example.result_count > 0)
+    )) &&
+    taskCompletion.record_detail_clicks <= usabilityThresholds.record_detail_max_clicks &&
+    taskCompletion.result_count > 0 &&
+    taskCompletion.result_focus.detail_heading_focused
+  );
 
   return {
     schema: "govuk-okf-explorer-browser-evidence.v1",
@@ -374,7 +477,7 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
     artifact_tier: artifactTier,
     data_plane_index_sha256: packCoverage.indexSha256,
     site_checksums_sha256: siteChecksumsSha256,
-    publication_ready: fullRelease && accessibilityPass && routePass && performancePass && browser.consoleErrors.length === 0,
+    publication_ready: fullRelease && accessibilityPass && routePass && performancePass && usabilityPass && browser.consoleErrors.length === 0,
     browser: {
       name_version: browser.version,
       engine: "Chromium",
@@ -422,6 +525,18 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
       range_requests: packCoverage.requests,
       virtual_resources_loaded: packedVirtualPaths
     },
+    usability: {
+      status: usabilityPass ? "automated_task_budget_pass" : "failed",
+      pass: usabilityPass,
+      scope: "automated pointer path from a clear zero-click scope statement to search results and an opened record",
+      thresholds: usabilityThresholds,
+      example_searches_required: exampleSearchesRequired,
+      observed: taskCompletion,
+      qualifications: {
+        representative_user_research_claimed: false,
+        expert_usability_review_claimed: false
+      }
+    },
     performance: {
       status: performancePass ? (fullRelease ? "full_release_budget_pass" : "fixture_budget_pass") : "failed",
       pass: performancePass,
@@ -444,7 +559,7 @@ export async function runFixtureBrowserAudit(browser, server, options = {}) {
       accessibility_expert_review: "not_run",
       participant_research: "not_authorised"
     },
-    overall_status: accessibilityPass && routePass && performancePass && browser.consoleErrors.length === 0
+    overall_status: accessibilityPass && routePass && performancePass && usabilityPass && browser.consoleErrors.length === 0
       ? (fullRelease ? "automated_full_release_evidence_pass" : "automated_fixture_evidence_pass")
       : "failed"
   };

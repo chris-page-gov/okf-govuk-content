@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { gzipSync } from "node:zlib";
 
-import { descriptorCandidates, descriptorEntrypoint, fetchJson, integrityReference, LargeCorpusStore, referenceHash, referencePath, resolveReference, SearchClient } from "../src/data.js";
+import { descriptorCandidates, descriptorEntrypoint, fetchJson, integrityReference, LargeCorpusStore, referenceHash, referencePath, resolveReference, SearchClient, trustedWorkerScriptUrl } from "../src/data.js";
 import { prepareReleaseDataPlane } from "../src/release-data-plane.js";
 
 function jsonResponse(value, status = 200) {
@@ -302,4 +302,20 @@ test("search client preserves request identity and cancellation semantics", asyn
   await assert.rejects(pending, { name: "AbortError" });
   client.destroy();
   assert.equal(worker.terminated, true);
+});
+
+test("search worker URL satisfies a Trusted Types script policy", () => {
+  const calls = [];
+  const trustedTypes = {
+    createPolicy(name, rules) {
+      calls.push(name);
+      return { createScriptURL: (value) => ({ trustedScriptUrl: rules.createScriptURL(value) }) };
+    }
+  };
+  const first = trustedWorkerScriptUrl("https://example.test/search.worker.js", trustedTypes);
+  const second = trustedWorkerScriptUrl("https://example.test/other.worker.js", trustedTypes);
+  assert.deepEqual(first, { trustedScriptUrl: "https://example.test/search.worker.js" });
+  assert.deepEqual(second, { trustedScriptUrl: "https://example.test/other.worker.js" });
+  assert.deepEqual(calls, ["okf-search-worker"]);
+  assert.equal(trustedWorkerScriptUrl(new URL("https://example.test/plain.worker.js"), null), "https://example.test/plain.worker.js");
 });

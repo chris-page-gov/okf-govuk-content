@@ -175,6 +175,13 @@ test("real browser verifies fixture accessibility, routing, gzip and performance
   assert.equal(evidence.accessibility.pass, true, JSON.stringify(evidence.accessibility, null, 2));
   assert.equal(evidence.routing_and_data.pass, true, JSON.stringify(evidence.routing_and_data, null, 2));
   assert.equal(evidence.performance.pass, true, JSON.stringify(evidence.performance, null, 2));
+  assert.equal(evidence.usability.pass, true, JSON.stringify(evidence.usability, null, 2));
+  assert.equal(evidence.usability.observed.search_results_clicks, 1);
+  assert.equal(evidence.usability.observed.record_detail_clicks, 2);
+  assert.equal(evidence.usability.observed.example_searches.length, 3);
+  assert.equal(evidence.usability.observed.example_searches.every((example) => example.clicks === 1 && example.result_count > 0), true);
+  assert.equal(evidence.usability.observed.zero_click_state.backend, "worker");
+  assert.ok(evidence.usability.observed.result_count > 0);
   assert.deepEqual(evidence.console_exceptions, []);
   assert.equal(evidence.overall_status, "automated_fixture_evidence_pass");
 });
@@ -298,7 +305,8 @@ test("exact single-pack Pages fixture proves distinct virtual range requests", {
       snapshot: fixtureSnapshot,
       route: "publisher/government-digital-service",
       routeTitle: "Government Digital Service",
-      searchQuery: "welcome"
+      searchQuery: "welcome",
+      exampleSearchesRequired: false
     });
     assert.equal(evidence.routing_and_data.pass, true, JSON.stringify(evidence.routing_and_data, null, 2));
     assert.deepEqual(evidence.routing_and_data.physical_pack_resources.length, 1);

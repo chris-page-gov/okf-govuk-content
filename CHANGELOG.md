@@ -5,8 +5,21 @@ semantic versioning.
 
 ## [Unreleased]
 
+### Fixed
+
+- Restored static search under the page's Trusted Types Content Security
+  Policy by creating the search worker URL through the named
+  `okf-search-worker` policy. The public preview now states its 69-record
+  new-child boundary before interaction and replaces out-of-scope examples
+  with searches that return demonstrator records.
+
 ### Added
 
+- Real-browser task-path budgets requiring the demonstrator scope to be clear
+  without clicks, search and every visible example to produce results in at
+  most one click, and a result record to open in at most two clicks. Browser
+  warnings now fail the evidence gate; these checks do not claim participant
+  research or interface preference.
 - A manual-only, protected-main Pages preview for the exact checksummed
   69-record new-child demonstrator. Deterministic packaging and live smoke
   checks require the sampled fixture/checkpoint labels, 69-of-69 seed closure,
