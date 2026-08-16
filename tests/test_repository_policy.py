@@ -70,6 +70,21 @@ class RepositoryPolicyTests(unittest.TestCase):
         self.assertTrue(release["immutable_releases"]["draft_first"])
         self.assertTrue(release["immutable_releases"]["verify_exact_assets_before_publish"])
 
+    def test_preview_policy_is_manual_main_only_and_cannot_promote_release(self) -> None:
+        policy = json.loads((ROOT / ".github" / "repository-policy.json").read_text(encoding="utf-8"))
+        preview = policy["preview"]
+        self.assertTrue(preview["manual_only"])
+        self.assertTrue(preview["main_only"])
+        self.assertTrue(preview["exact_checked_in_bytes"])
+        self.assertTrue(preview["release_promotion_forbidden"])
+        self.assertTrue(preview["registry_entry_forbidden"])
+        self.assertEqual(preview["publication_tier"], "bounded-demonstrator-preview")
+        workflow = (ROOT / preview["workflow"]).read_text(encoding="utf-8")
+        self.assertIn("workflow_dispatch:", workflow)
+        self.assertNotIn("push:", workflow)
+        self.assertNotIn("scripts/package_release.py", workflow)
+        self.assertNotIn("scripts/check_release.py --publication-ready", workflow)
+
     def test_publication_api_readback_requires_immutable_workflow_pages(self) -> None:
         policy = json.loads((ROOT / ".github/repository-policy.json").read_text(encoding="utf-8"))
         capture = {

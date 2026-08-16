@@ -93,6 +93,33 @@ WORKFLOW_MARKERS = {
             "build_bundle.py",
         ),
     },
+    "preview-pages.yml": {
+        "required": (
+            "workflow_dispatch:",
+            '"refs/heads/main"',
+            "scripts/check_repository_policy.py",
+            "scripts/package_preview.py",
+            "--mode preview",
+            "preview-pages-${{ github.sha }}",
+            "actions/upload-artifact@",
+            "actions/download-artifact@",
+            "actions/upload-pages-artifact@",
+            "actions/deploy-pages@",
+            "scripts/smoke_preview.py",
+            "cancel-in-progress: false",
+        ),
+        "forbidden": (
+            "tags:",
+            "pull_request_target:",
+            "permissions: write-all",
+            "persist-credentials: true",
+            "build_bundle.py",
+            "scripts/package_release.py",
+            "scripts/check_release.py --publication-ready",
+            "scripts/check_release.py --finalized",
+            "gh release",
+        ),
+    },
 }
 ACTION_PATTERN = re.compile(r"^\s*-?\s*uses:\s*([^\s#]+)\s*$", re.MULTILINE)
 REMOTE_ACTION_PATTERN = re.compile(r"^(?P<owner>[^/]+)/[^@]+@(?P<ref>.+)$")
@@ -359,6 +386,22 @@ def validate_repository_policy(
     for key, expected in expected_pages.items():
         if pages.get(key) != expected:
             errors.append(f"Pages policy {key} differs from the required publication contract")
+    preview = policy.get("preview") or {}
+    expected_preview = {
+        "workflow": ".github/workflows/preview-pages.yml",
+        "expected_url": "https://chris-page-gov.github.io/okf-govuk-content/",
+        "manual_only": True,
+        "main_only": True,
+        "snapshot": "NEW-CHILD-20260715",
+        "publication_tier": "bounded-demonstrator-preview",
+        "exact_checked_in_bytes": True,
+        "release_promotion_forbidden": True,
+        "registry_entry_forbidden": True,
+        "post_deploy_smoke_required": True,
+        "site_budget_bytes": 50_000_000,
+    }
+    if preview != expected_preview:
+        errors.append("preview policy differs from the bounded demonstrator publication contract")
     _validate_citation(root, policy.get("release_metadata") or {}, policy, errors)
 
     branch_contract = policy.get("branch_protection") or {}

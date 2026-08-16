@@ -7,6 +7,12 @@ semantic versioning.
 
 ### Added
 
+- A manual-only, protected-main Pages preview for the exact checksummed
+  69-record new-child demonstrator. Deterministic packaging and live smoke
+  checks require the sampled fixture/checkpoint labels, 69-of-69 seed closure,
+  zero unexplained seed omissions and `publication_ready: false`; the preview
+  cannot create or imply a release, full-corpus claim or Explorer registry
+  entry.
 - OKF v0.2 canonical Markdown publication with root version declaration,
   generated content/organisation/attachment concepts, structured provenance
   and honest unverified draft lifecycle; the existing GOV.UK semantic,

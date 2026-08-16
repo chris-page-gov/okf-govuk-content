@@ -1217,7 +1217,7 @@
           "operator": "json_equals",
           "path": "governance/requirements-status.json",
           "pointer": "/counts/requirements",
-          "sha256": "dc50916e64b7ffd2f93140310ef163442418d9c6a45330d2bdc8b749efcd6af1"
+          "sha256": "fdee3ac98aee99df13404cfa870296aae1c9ff0ddafe4a64de781c08c8c92b13"
         },
         {
           "check_id": "E-TRACEABILITY-COVERAGE",
@@ -1228,7 +1228,7 @@
           "operator": "json_equals",
           "path": "governance/traceability-status.json",
           "pointer": "/counts/clauses",
-          "sha256": "b49a0807d137474ccd3e5c60793cc06b45ff0037da7eb620a245833c0b07e737"
+          "sha256": "36bca19cb608e86b4f95fac45e3b313ab0e8ce17e1eda542b3ff7ae5f8b5a852"
         },
         {
           "check_id": "E-CLEAN-ROOM-FIXTURE",
@@ -1239,7 +1239,7 @@
           "operator": "json_equals",
           "path": "release/clean-room-reproduction.json",
           "pointer": "/fixture_reproduction_passed",
-          "sha256": "b04a929729880e9bc97986f2c31a4c6b8a0094443709e6465e41edaffb0c6f94"
+          "sha256": "f3bb572f6a03ba2f927266449f4c4bce4ab58527a3d51ce1fc92a68869f5d44e"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",

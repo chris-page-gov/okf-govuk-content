@@ -15,17 +15,18 @@ const bundle = resolve(option("--bundle", new URL("../../bundle", import.meta.ur
 const mode = option("--mode", "fixture");
 const iterations = Number(option("--iterations", "5"));
 const generatedAt = option("--generated-at", new Date().toISOString());
-if (!["fixture", "release"].includes(mode)) throw new Error("--mode must be fixture or release");
+if (!["fixture", "preview", "release"].includes(mode)) throw new Error("--mode must be fixture, preview or release");
 const dataManifest = JSON.parse(await readFile(join(bundle, "data", "manifest.json"), "utf8"));
 const snapshot = String(option("--snapshot", dataManifest.snapshot || ""));
 if (!snapshot) throw new Error("bundle data manifest has no snapshot");
 const artifactTier = mode === "release" ? "full_release_snapshot" : "representative_fixture";
 const expectedStatus = mode === "release" ? "automated_full_release_evidence_pass" : "automated_fixture_evidence_pass";
-// Release evidence must exercise the exact packaged shell and data bytes. The
-// fixture path deliberately keeps the editable Explorer source as its shell.
+// Release and public-preview evidence must exercise the exact packaged shell
+// and data bytes. The local fixture path deliberately keeps the editable
+// Explorer source as its shell.
 const server = await startFixtureServer({
   root: bundle,
-  staticRoot: mode === "release" ? bundle : undefined
+  staticRoot: mode === "fixture" ? undefined : bundle
 });
 const browser = await launchChrome();
 try {
