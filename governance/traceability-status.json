@@ -427,7 +427,7 @@
     "clauses": 21
   },
   "generated_from": "governance/implementation-status-source.json",
-  "generated_from_sha256": "4707f9ae4e45ab7762f754b7ece675d5b097d21600b15198132b3fbce10b10b6",
+  "generated_from_sha256": "39b2995dfe179c8afd1175a0c5f3a267986d18f98475cbfafa297a7b77fd0e48",
   "interpretation": "Clause status is the least advanced mapped requirement status; mapping coverage does not prove implementation acceptance.",
   "milestone": "t0_census_closed",
   "publication_ready": false,

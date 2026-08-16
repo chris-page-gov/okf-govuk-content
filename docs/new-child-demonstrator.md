@@ -50,7 +50,13 @@ from the official sources, and reproduced byte-for-byte without network access.
 
 ## Explore it in the OKF Explorer
 
-Open the bundle root in a web server and select **New child journey**:
+[Open the public demonstrator preview](https://chris-page-gov.github.io/okf-govuk-content/?view=journey&mode=explore&snapshot=NEW-CHILD-20260715).
+The preview is the exact checked-in, checksummed fixture published from
+protected `main`. It remains labelled as a bounded demonstrator and does not
+promote the fixture to a release candidate or complete GOV.UK corpus.
+
+For local review, open the bundle root in a web server and select **New child
+journey**:
 
 ```bash
 python3 -m http.server 8765 --bind 127.0.0.1 --directory bundle

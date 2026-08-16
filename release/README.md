@@ -15,6 +15,20 @@ Run the structural checkpoint validation with:
 python3 scripts/check_release.py
 ```
 
+## Public bounded-demonstrator preview
+
+The fixture may be published for public review through the separate manual
+`preview-pages.yml` workflow authorised in ADR-011. This is a preview
+publication, not a release transition. The workflow requires protected `main`,
+copies the exact checked-in bundle without rebuilding, rechecks the fixture and
+sampled labels, keeps `publication_ready` false, runs the exact preview in a
+real browser and verifies critical bytes after Pages deployment.
+
+The preview workflow must not call the release packager, create a tag or GitHub
+Release, change release status, claim the full corpus, or add the bundle to the
+canonical Explorer registry. The stricter release process below remains the
+only route to a release candidate or final release.
+
 The requirement, traceability and task projections derive release identity,
 kind, checkpoint/candidate/release state and readiness from `manifest.yaml`
 and `status.json`; `governance/implementation-status-source.json` records only

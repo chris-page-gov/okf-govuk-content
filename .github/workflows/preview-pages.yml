@@ -1,0 +1,159 @@
+name: Publish bounded demonstrator preview
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  verify-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Require protected main
+        run: |
+          if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
+            echo "The public demonstrator preview can only be published from main." >&2
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: python3 -m pip install uv==0.11.8
+      - run: uv sync --frozen --cache-dir .tmp/uv-cache
+      - run: npm ci --prefix semantic
+      - name: Validate the checked-in fixture and repository controls
+        run: |
+          .venv/bin/python scripts/check_repository_policy.py
+          .venv/bin/python -m unittest discover -s tests -v
+          .venv/bin/python scripts/run_controller.py check
+          .venv/bin/python scripts/import_contract.py --check
+          .venv/bin/python scripts/preflight_sources.py --check
+          .venv/bin/python scripts/build_research_assets.py --check
+          .venv/bin/python scripts/verify_citations.py collect --check
+          .venv/bin/python scripts/build_walkthrough_inventory.py --check
+          .venv/bin/python scripts/check_persona_saturation.py
+          .venv/bin/python scripts/build_status_projections.py --check
+          .venv/bin/python scripts/build_aim_scorecard.py --check
+          .venv/bin/python scripts/check_ci_snapshot.py
+          .venv/bin/python scripts/check_okf_v02.py
+          .venv/bin/python scripts/check_publication.py
+          .venv/bin/python scripts/build_checksums.py --check
+          .venv/bin/python scripts/build_sbom.py --check
+          .venv/bin/python scripts/reproduce_release.py --check
+          .venv/bin/python scripts/check_provenance.py
+          .venv/bin/python scripts/validate_semantics.py --require-shard-metadata --check
+          .venv/bin/python scripts/audit_rights_privacy.py --check --allow-archived-inputs
+          npm test --prefix explorer
+          npm test --prefix semantic
+          .venv/bin/python scripts/check_lockstep.py
+          git diff --check
+      - name: Package exact bounded-demonstrator bytes
+        run: >-
+          .venv/bin/python scripts/package_preview.py
+          --bundle bundle
+          --output "$RUNNER_TEMP/preview"
+          --commit "$GITHUB_SHA"
+      - name: Real-browser smoke over exact preview bytes
+        run: >-
+          node explorer/tests/browser-evidence.mjs
+          --mode preview
+          --bundle "$RUNNER_TEMP/preview/site"
+          --output "$RUNNER_TEMP/preview-browser.json"
+          --iterations 5
+          --generated-at "$(git show -s --format=%cI "$GITHUB_SHA")"
+      - name: Recheck the transported preview contract
+        run: >-
+          .venv/bin/python scripts/package_preview.py
+          --check "$RUNNER_TEMP/preview"
+          --expected-commit "$GITHUB_SHA"
+      - name: Upload exact preview package
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-pages-${{ github.sha }}
+          path: ${{ runner.temp }}/preview
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+          include-hidden-files: true
+      - name: Retain pre-deployment browser evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-browser-${{ github.sha }}
+          path: ${{ runner.temp }}/preview-browser.json
+          if-no-files-found: error
+          retention-days: 90
+
+  deploy-preview:
+    needs: verify-preview
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/download-artifact@v4
+        with:
+          name: preview-pages-${{ github.sha }}
+          path: ${{ runner.temp }}/preview
+      - name: Verify preview after artefact transport
+        run: >-
+          python3 scripts/package_preview.py
+          --check "$RUNNER_TEMP/preview"
+          --expected-commit "$GITHUB_SHA"
+      - name: Repeat real-browser smoke after artefact transport
+        run: >-
+          node explorer/tests/browser-evidence.mjs
+          --mode preview
+          --bundle "$RUNNER_TEMP/preview/site"
+          --output "$RUNNER_TEMP/preview-pages-browser.json"
+          --iterations 5
+          --generated-at "$(git show -s --format=%cI "$GITHUB_SHA")"
+      - uses: actions/configure-pages@v5
+      - name: Create Pages transport artefact from verified bytes
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/preview/site
+      - name: Deploy bounded demonstrator preview
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify live preview bytes and boundary labels
+        run: >-
+          python3 scripts/smoke_preview.py
+          --base-url "${{ steps.deployment.outputs.page_url }}"
+          --preview "$RUNNER_TEMP/preview"
+          --output "$RUNNER_TEMP/preview-live-smoke.json"
+      - name: Retain deployment evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-pages-smoke-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/preview-pages-browser.json
+            ${{ runner.temp }}/preview-live-smoke.json
+          if-no-files-found: error
+          retention-days: 90

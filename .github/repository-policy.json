@@ -53,7 +53,7 @@
     "build_type": "workflow",
     "public": true,
     "https_enforced": true,
-    "source": "verified same-origin Pages site artifact only",
+    "source": "verified same-origin Pages artifact from the bounded preview or release channel only",
     "rebuild_forbidden": true,
     "post_deploy_smoke_required": true,
     "site_budget_bytes": 950000000,
@@ -61,6 +61,19 @@
     "pack_suffix": ".pack.gz",
     "browser_release_asset_fetch": false,
     "live_range_smoke_required": true
+  },
+  "preview": {
+    "workflow": ".github/workflows/preview-pages.yml",
+    "expected_url": "https://chris-page-gov.github.io/okf-govuk-content/",
+    "manual_only": true,
+    "main_only": true,
+    "snapshot": "NEW-CHILD-20260715",
+    "publication_tier": "bounded-demonstrator-preview",
+    "exact_checked_in_bytes": true,
+    "release_promotion_forbidden": true,
+    "registry_entry_forbidden": true,
+    "post_deploy_smoke_required": true,
+    "site_budget_bytes": 50000000
   },
   "workflow_policy": {
     "allowed_action_owners": [

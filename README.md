@@ -24,6 +24,17 @@ checksummed bundle can be given to an AI as one portable Markdown/JSON context
 file, queried deterministically, or exposed through five bounded read-only MCP
 tools; see [`docs/ai-input.md`](docs/ai-input.md).
 
+## Public demonstrator preview
+
+[Open the 69-record new-child demonstrator](https://chris-page-gov.github.io/okf-govuk-content/?view=journey&mode=explore&snapshot=NEW-CHILD-20260715).
+This is a public preview of the exact checked-in fixture, published for review;
+it is not Release 1, a release candidate or a complete GOV.UK corpus. The
+manual-only preview workflow requires the fixture and sampled labels,
+checkpoint release status, `publication_ready: false`, the exact 69-of-69 seed
+contract and zero unexplained seed omissions. It deploys without rebuilding and
+checks the public bytes after deployment. See
+[`ADR-011`](governance/decisions/ADR-011-public-bounded-demonstrator-preview.md).
+
 The publication now declares and validates **OKF v0.2**. Canonical typed
 Markdown concepts live under `bundle/concepts/`; the existing YAML-LD,
 JSON-LD, assertion, search, route, facet and Explorer surfaces remain additive
