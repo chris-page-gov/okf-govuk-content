@@ -27,6 +27,13 @@ test("HTML is CSP-safe and contains task-first accessible landmarks", async () =
   assert.match(html, /href="accessibility\.html"/);
   assert.match(html, /id="demonstrator-callout"/);
   assert.match(html, /data-view="journey"/);
+  assert.match(html, /trusted-types okf-search-worker/);
+  assert.match(html, /Explore 69 GOV\.UK records about having a new child/);
+  assert.match(html, /It does not search all GOV\.UK/);
+  assert.match(html, /data-query="register a birth"/);
+  assert.match(html, /data-query="Child Benefit"/);
+  assert.match(html, /data-query="help paying for childcare"/);
+  assert.doesNotMatch(html, /renew a driving licence|Welsh language guidance|withdrawn immigration guidance/);
 });
 
 test("Pages fallback preserves state without inline executable content", async () => {
@@ -99,4 +106,9 @@ test("all UX epics are explicit without claiming completed empirical acceptance"
   const budgets = JSON.parse(await readFile(join(here, "..", "requirements", "browser-budgets.json"), "utf8"));
   assert.equal(budgets.qualifications.automated_fixture_pass_is_wcag_conformance, false);
   assert.equal(budgets.performance.first_useful_render_p75_ms_max, 2500);
+  assert.equal(budgets.usability.scope_visible_without_clicks, true);
+  assert.equal(budgets.usability.search_results_max_clicks, 1);
+  assert.equal(budgets.usability.example_search_results_max_clicks, 1);
+  assert.equal(budgets.usability.record_detail_max_clicks, 2);
+  assert.equal(budgets.usability.worker_search_required, true);
 });

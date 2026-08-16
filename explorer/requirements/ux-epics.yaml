@@ -10,17 +10,17 @@ epics:
     title: Ask and find entry
     source_status: source_implemented
     acceptance_status: pending_fixture
-    implementation: Prominent static lexical search with suggestions, examples, explained matches and explicit abstention/no-result state.
+    implementation: Prominent static lexical search with suggestions, in-snapshot examples, explained matches, explicit abstention/no-result state and a one-click automated results budget.
   - id: UX-02
     title: Explain the corpus
     source_status: source_implemented
     acceptance_status: pending_full_corpus
-    implementation: Bootstrap scope, snapshot, counts, omissions and notices before record shards.
+    implementation: Bootstrap scope, snapshot, counts, omissions and notices before record shards, with the bounded demonstrator scope required to be clear before any click.
   - id: UX-03
     title: Result cards
     source_status: source_implemented
     acceptance_status: pending_fixture
-    implementation: Cards show title, summary, source type, publisher/owner, lifecycle, date, language, jurisdiction, path, match reason and canonical hand-off.
+    implementation: Cards show title, summary, source type, publisher/owner, lifecycle, date, language, jurisdiction, path, match reason and canonical hand-off, with an automated two-click budget from entry to opened record.
   - id: UX-04
     title: Global context reducer
     source_status: source_implemented

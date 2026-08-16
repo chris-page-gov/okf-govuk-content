@@ -27,6 +27,13 @@
     "keyboard_skip_target": "main-content",
     "reduced_motion_max_duration_ms": 1
   },
+  "usability": {
+    "scope_visible_without_clicks": true,
+    "search_results_max_clicks": 1,
+    "example_search_results_max_clicks": 1,
+    "record_detail_max_clicks": 2,
+    "worker_search_required": true
+  },
   "qualifications": {
     "automated_fixture_pass_is_wcag_conformance": false,
     "automated_full_release_pass_is_wcag_conformance": false,

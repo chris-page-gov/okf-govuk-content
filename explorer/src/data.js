@@ -5,6 +5,21 @@ import { prepareReleaseDataPlane, releaseDataPlaneDocument, releaseDataRequest }
 const MAX_JSON_BYTES = 64 * 1024 * 1024;
 const MAX_LARGE_SHARD_CACHE_ENTRIES = 32;
 const RETRYABLE_STATUS = new Set([408, 425, 429, 500, 502, 503, 504]);
+const SEARCH_WORKER_POLICY_NAME = "okf-search-worker";
+const SEARCH_WORKER_POLICIES = new WeakMap();
+
+export function trustedWorkerScriptUrl(url, trustedTypesApi = globalThis.trustedTypes) {
+  const value = String(url);
+  if (!trustedTypesApi || typeof trustedTypesApi.createPolicy !== "function") return value;
+  let policy = SEARCH_WORKER_POLICIES.get(trustedTypesApi);
+  if (!policy) {
+    policy = trustedTypesApi.createPolicy(SEARCH_WORKER_POLICY_NAME, {
+      createScriptURL: (candidate) => candidate
+    });
+    SEARCH_WORKER_POLICIES.set(trustedTypesApi, policy);
+  }
+  return policy.createScriptURL(value);
+}
 
 function cachedPromise(cache, key, factory, limit = MAX_LARGE_SHARD_CACHE_ENTRIES) {
   if (cache.has(key)) {
@@ -204,7 +219,10 @@ export function descriptorCandidates(documentUrl, explicitUrl = "", configuredUr
 }
 
 export class SearchClient {
-  constructor(workerFactory = () => new Worker(new URL("./search.worker.js", import.meta.url), { type: "module" })) {
+  constructor(workerFactory = () => new Worker(
+    trustedWorkerScriptUrl(new URL("./search.worker.js", import.meta.url)),
+    { type: "module" }
+  )) {
     this.worker = workerFactory();
     this.pending = new Map();
     this.nextId = 1;

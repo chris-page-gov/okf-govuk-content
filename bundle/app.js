@@ -30,14 +30,14 @@ const TRANSLATIONS = {
   en: {
     derivedLabel: "Derived, non-authoritative service",
     derivedDescription: "Use this catalogue to find and understand records, then follow the link to GOV.UK for authoritative guidance and transactions.",
-    pageEyebrow: "Public GOV.UK metadata discovery",
-    pageHeading: "Find GOV.UK content and connections",
-    pageLede: "Search titles and metadata, browse official structures, and inspect lifecycle and source evidence. This is a discovery tool, not an answer chatbot.",
-    searchLabel: "What are you trying to find?",
+    pageEyebrow: "69-record public demonstrator",
+    pageHeading: "Explore 69 GOV.UK records about having a new child",
+    pageLede: "This preview searches only the 69 records in its new-child demonstrator. It does not search all GOV.UK. Use it to review the records, their connections and their source evidence.",
+    searchLabel: "Search the 69-record demonstrator",
     searchSubmit: "Search",
-    searchHint: "Try a title, organisation, topic, service, attachment or natural-language description.",
+    searchHint: "Search titles and metadata within this new-child snapshot.",
     examples: "Examples:",
-    scopeHeading: "What this catalogue covers",
+    scopeHeading: "What is included",
     presentationHeading: "Presentation",
     filterHeading: "Filter this context",
     filterHint: "The same filters apply to results, browse, lifecycle and relationships.",
@@ -87,14 +87,14 @@ const TRANSLATIONS = {
   cy: {
     derivedLabel: "Gwasanaeth deilliadol, anawdurdodol",
     derivedDescription: "Defnyddiwch y catalog hwn i ddod o hyd i gofnodion a’u deall, yna dilynwch y ddolen i GOV.UK ar gyfer canllawiau a thrafodion awdurdodol.",
-    pageEyebrow: "Darganfod metadata cyhoeddus GOV.UK",
-    pageHeading: "Dod o hyd i gynnwys a chysylltiadau GOV.UK",
-    pageLede: "Chwiliwch deitlau a metadata, porwch strwythurau swyddogol, ac archwiliwch gylch oes a thystiolaeth ffynhonnell. Offeryn darganfod yw hwn, nid chatbot atebion.",
-    searchLabel: "Beth ydych chi’n ceisio dod o hyd iddo?",
+    pageEyebrow: "Arddangosiad cyhoeddus o 69 cofnod",
+    pageHeading: "Archwilio 69 o gofnodion GOV.UK am gael plentyn newydd",
+    pageLede: "Dim ond y 69 cofnod yn yr arddangosiad plentyn newydd y mae’r rhagolwg hwn yn eu chwilio. Nid yw’n chwilio GOV.UK i gyd. Defnyddiwch ef i adolygu’r cofnodion, eu cysylltiadau a’u tystiolaeth ffynhonnell.",
+    searchLabel: "Chwilio’r arddangosiad 69 cofnod",
     searchSubmit: "Chwilio",
-    searchHint: "Rhowch gynnig ar deitl, sefydliad, pwnc, gwasanaeth, atodiad neu ddisgrifiad iaith naturiol.",
+    searchHint: "Chwiliwch deitlau a metadata yn y ciplun plentyn newydd hwn.",
     examples: "Enghreifftiau:",
-    scopeHeading: "Beth mae’r catalog hwn yn ei gwmpasu",
+    scopeHeading: "Beth sydd wedi’i gynnwys",
     presentationHeading: "Cyflwyniad",
     filterHeading: "Hidlo’r cyd-destun hwn",
     filterHint: "Mae’r un hidlyddion yn berthnasol i ganlyniadau, pori, cylch oes a chysylltiadau.",
@@ -307,6 +307,7 @@ async function loadCatalogue() {
   document.documentElement.dataset.demonstratorReady = "false";
   document.documentElement.dataset.demonstratorRecordsReady = "false";
   document.documentElement.dataset.fatalError = "false";
+  document.documentElement.dataset.searchBackend = "loading";
   document.getElementById("fatal-error").hidden = true;
   setStatus(translation().loading);
   setBusy(true);
@@ -355,11 +356,15 @@ async function loadCatalogue() {
     try {
       searchClient = new SearchClient();
       await searchClient.init(corpusStore.baseUrl, searchReference, snapshot, corpusStore.releaseDataPlaneDocument());
+      document.documentElement.dataset.searchBackend = "worker";
     } catch (error) {
       console.warn("Static search index unavailable", error);
       if (searchClient) searchClient.destroy();
       searchClient = null;
+      document.documentElement.dataset.searchBackend = "unavailable";
     }
+  } else {
+    document.documentElement.dataset.searchBackend = "unavailable";
   }
   setBusy(false);
   renderAll();

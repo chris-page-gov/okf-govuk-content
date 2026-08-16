@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0c0c">
-  <meta name="description" content="Explore the structure, lifecycle and provenance of public GOV.UK metadata.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https:; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; manifest-src 'self'; require-trusted-types-for 'script'">
+  <meta name="description" content="Explore 69 GOV.UK metadata records about having a new child.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https:; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; manifest-src 'self'; trusted-types okf-search-worker; require-trusted-types-for 'script'">
   <title>What’s on GOV.UK</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -43,23 +43,23 @@
     </div>
 
     <section class="hero" aria-labelledby="page-heading">
-      <p class="eyebrow" id="page-eyebrow">Public GOV.UK metadata discovery</p>
-      <h1 id="page-heading">Find GOV.UK content and connections</h1>
-      <p class="lede" id="page-lede">Search titles and metadata, browse official structures, and inspect lifecycle and source evidence. This is a discovery tool, not an answer chatbot.</p>
+      <p class="eyebrow" id="page-eyebrow">69-record public demonstrator</p>
+      <h1 id="page-heading">Explore 69 GOV.UK records about having a new child</h1>
+      <p class="lede" id="page-lede">This preview searches only the 69 records in its new-child demonstrator. It does not search all GOV.UK. Use it to review the records, their connections and their source evidence.</p>
       <form id="search-form" role="search" class="search-form">
-        <label for="search-input" id="search-label">What are you trying to find?</label>
+        <label for="search-input" id="search-label">Search the 69-record demonstrator</label>
         <div class="search-row">
-          <input id="search-input" name="q" type="search" maxlength="240" autocomplete="off" aria-describedby="search-hint" aria-controls="search-suggestions">
+          <input id="search-input" name="q" type="search" maxlength="240" autocomplete="off" placeholder="For example, register a birth" aria-describedby="search-hint" aria-controls="search-suggestions">
           <button type="submit" id="search-submit">Search</button>
         </div>
-        <p class="hint" id="search-hint">Try a title, organisation, topic, service, attachment or natural-language description.</p>
+        <p class="hint" id="search-hint">Search titles and metadata within this new-child snapshot.</p>
         <div id="search-suggestions" class="suggestions" aria-live="polite"></div>
       </form>
       <div class="examples" id="search-examples" aria-label="Example searches">
         <span id="examples-label">Examples:</span>
-        <button type="button" data-query="renew a driving licence">renew a driving licence</button>
-        <button type="button" data-query="Welsh language guidance">Welsh language guidance</button>
-        <button type="button" data-query="withdrawn immigration guidance">withdrawn immigration guidance</button>
+        <button type="button" data-query="register a birth">register a birth</button>
+        <button type="button" data-query="Child Benefit">Child Benefit</button>
+        <button type="button" data-query="help paying for childcare">help paying for childcare</button>
       </div>
     </section>
 
@@ -70,7 +70,7 @@
     <section id="scope-panel" class="scope-panel" aria-labelledby="scope-heading" aria-busy="true">
       <div class="section-heading-row">
         <div>
-          <h2 id="scope-heading">What this catalogue covers</h2>
+          <h2 id="scope-heading">What is included</h2>
           <p id="scope-description">Loading the snapshot, coverage and source summary.</p>
         </div>
         <button type="button" class="secondary-button" id="scope-toggle" aria-expanded="true" aria-controls="scope-content">Hide details</button>

@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "3300433ef956ad07595ca55dc7ebceb11e9a9a6d799b92a5ba1d8ac01a13f977",
-    "before_sha256": "3300433ef956ad07595ca55dc7ebceb11e9a9a6d799b92a5ba1d8ac01a13f977",
+    "after_sha256": "e711eab8a09aca5ea0377f34b93323af787ea82f0ff6a771fdf47842043916dd",
+    "before_sha256": "e711eab8a09aca5ea0377f34b93323af787ea82f0ff6a771fdf47842043916dd",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -97,12 +97,12 @@
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-08-16T08:30:02Z",
+  "ended_at": "2026-08-16T09:27:42Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.5.2-arm64-arm-64bit",
     "python": {
-      "executable": "/private/tmp/okf-govuk-preview-01a0099e/.venv/bin/python3",
+      "executable": "/private/tmp/okf-govuk-usability-01a0099e/.venv/bin/python3",
       "implementation": "CPython",
       "version": "3.12.11"
     },
@@ -409,10 +409,10 @@
         "tree_sha256": "a856a2fc2266de8205901fae641c34d2166584b9460cd6670e5a028e0161e692"
       },
       {
-        "bytes": 210525,
+        "bytes": 214125,
         "file_count": 17,
         "path": "explorer/src",
-        "tree_sha256": "f1ae2c88a562acd9f7710cb72f178186614d44806cebe882a5e0f25138a0b2ad"
+        "tree_sha256": "9e99bfe6b8351d9930c8a92175c994fb33c483c26edec7db279a9d7a97fecd9b"
       },
       {
         "bytes": 126187,
@@ -429,7 +429,7 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "4705b6c5ba8f9ecea419abc114aa8ed4dab7b7487f6e6c418859e0e98fd37bcf"
+    "tree_sha256": "c6df7fb84a4b43c1b31551eb15c2cb8ead512d8322a0eae284548c25d40c59d6"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
@@ -473,17 +473,17 @@
   "outputs": {
     "bundle": {
       "actual": {
-        "bytes": 4223101,
+        "bytes": 4226701,
         "file_count": 1078,
-        "tree_sha256": "8aa34afe7078b475449ddc88efd78feac5bc5ae60cb57d70b5cabbb864b4bac5"
+        "tree_sha256": "88236db74692d8f72920f6b92875bf84aeddea329deef85b8de7e52099e099b0"
       },
       "difference_count": 0,
       "differences": [],
       "exact_match": true,
       "expected": {
-        "bytes": 4223101,
+        "bytes": 4226701,
         "file_count": 1078,
-        "tree_sha256": "8aa34afe7078b475449ddc88efd78feac5bc5ae60cb57d70b5cabbb864b4bac5"
+        "tree_sha256": "88236db74692d8f72920f6b92875bf84aeddea329deef85b8de7e52099e099b0"
       }
     },
     "sbom": {
@@ -494,7 +494,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-08-16T08:30:02Z",
+  "recorded_at": "2026-08-16T09:27:42Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
@@ -554,7 +554,7 @@
     }
   ],
   "source_binding": null,
-  "started_at": "2026-08-16T08:30:00Z",
+  "started_at": "2026-08-16T09:27:40Z",
   "test_evidence": null,
   "validators": {
     "passed": true,

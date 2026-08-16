@@ -194,6 +194,11 @@ export async function launchChrome() {
     responses.delete(event.requestId);
   });
   client.on("Runtime.exceptionThrown", (event) => consoleErrors.push(event.exceptionDetails?.text || "Uncaught browser exception"));
+  client.on("Runtime.consoleAPICalled", (event) => {
+    if (!["error", "warning"].includes(event.type)) return;
+    const message = (event.args || []).map((argument) => argument.value ?? argument.description ?? "").join(" ").trim();
+    consoleErrors.push(`${event.type}: ${message || "browser console message"}`);
+  });
   await Promise.all([
     client.command("Page.enable"),
     client.command("Runtime.enable"),

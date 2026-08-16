@@ -43,9 +43,9 @@
       "sha256": "1a5ec35a4570b62dd98b01ce3f478c8a7b756645be653db89b2ff07314b9cf76"
     },
     {
-      "bytes": 79875,
+      "bytes": 80173,
       "path": "app.js",
-      "sha256": "993d17fdff36162a107e6837dfcc3d0b814359f2e6dce0eb6867ec98b75c4429"
+      "sha256": "3237bcc11951a60315031ac9457aeadb46461fbc7ca50719d9a108ea8a29bc88"
     },
     {
       "bytes": 2672,
@@ -5248,9 +5248,9 @@
       "sha256": "20ae108e3c0096611e36cf1c1779bebffa868de22291ebd0d55c49785fafa508"
     },
     {
-      "bytes": 20036,
+      "bytes": 20691,
       "path": "data.js",
-      "sha256": "54a33f7244e7aad86413e64ef29f72cd0935b70042beb93854daf1edbe0ca1d6"
+      "sha256": "9557624bc9962390a11816c2a1fed09607c2e7507a7290bf72baa309bfccb497"
     },
     {
       "bytes": 10143,
@@ -5258,9 +5258,9 @@
       "sha256": "29cee9db4631abf522cb07d29d57951c4e6b0facaf4cc3e28277dea1788e544c"
     },
     {
-      "bytes": 6372,
+      "bytes": 8990,
       "path": "evidence/fixture-browser.json",
-      "sha256": "f51c11b36a16a97602e3aa7caad5d58535c089583917a34d9f96d2360252745c"
+      "sha256": "5bf38ee0175d2fdab0c8f94174942c704bb78772c619010905c63aa22aee3831"
     },
     {
       "bytes": 281,
@@ -5268,9 +5268,9 @@
       "sha256": "266641539ef4ece90b6a663141255362cd76ca3cd82cb7ab5a8130338a3e9679"
     },
     {
-      "bytes": 9116,
+      "bytes": 9145,
       "path": "index.html",
-      "sha256": "8e4854b78abc35924bf82f9a3d4d3af9edc88ef7d4efd0d52c99f9c8eed649b6"
+      "sha256": "ce0ef968674d382fccc3bb5b6aaea3bc11078a98cf918a221b6d086ecf79f051"
     },
     {
       "bytes": 540,

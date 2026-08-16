@@ -50,6 +50,14 @@ from the official sources, and reproduced byte-for-byte without network access.
 
 ## Explore it in the OKF Explorer
 
+[Open the searchable 69-record preview](https://chris-page-gov.github.io/okf-govuk-content/).
+The opening page states the demonstrator boundary before any interaction and
+offers only example searches that return records in this snapshot. The
+automated browser gate requires zero clicks to identify the scope, no more than
+one click from an entered or example query to results, and no more than two
+clicks to open a record. These are mechanical task-path checks, not participant
+research or a claim that the interface is preferred.
+
 [Open the public demonstrator preview](https://chris-page-gov.github.io/okf-govuk-content/?view=journey&mode=explore&snapshot=NEW-CHILD-20260715).
 The preview is the exact checked-in, checksummed fixture published from
 protected `main`. It remains labelled as a bounded demonstrator and does not
@@ -127,6 +135,12 @@ an AI silently fetch arbitrary URLs.
 ### 6. Search and filter the same records
 
 ![The normal Explorer results view searching the bounded bundle for a maternity record.](images/new-child-demonstrator/06-results-search.png)
+
+Search runs in a static worker under the site Content Security Policy and is
+required to report `worker` as its active backend in the real-browser gate.
+The visible examples — **register a birth**, **Child Benefit** and **help paying
+for childcare** — are checked through real pointer interactions and must each
+return at least one result in one click.
 
 The journey is not a separate presentation-only dataset. Normal static search,
 facets, browse paths, relationship, publisher and sitemap views operate over

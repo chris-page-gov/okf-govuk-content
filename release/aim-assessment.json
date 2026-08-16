@@ -336,7 +336,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "explorer/src/index.html",
-          "sha256": "8e4854b78abc35924bf82f9a3d4d3af9edc88ef7d4efd0d52c99f9c8eed649b6"
+          "sha256": "ce0ef968674d382fccc3bb5b6aaea3bc11078a98cf918a221b6d086ecf79f051"
         },
         {
           "check_id": "E-EXPLORER-NONBROWSER-TESTS",
@@ -348,7 +348,7 @@
           "operator": "json_equals",
           "path": "explorer/src/evidence/fixture-browser.json",
           "pointer": "/completed_non_browser_checks/failed",
-          "sha256": "f51c11b36a16a97602e3aa7caad5d58535c089583917a34d9f96d2360252745c"
+          "sha256": "5bf38ee0175d2fdab0c8f94174942c704bb78772c619010905c63aa22aee3831"
         },
         {
           "check_id": "E-PERSONA-FOUNDATION",
@@ -1239,7 +1239,7 @@
           "operator": "json_equals",
           "path": "release/clean-room-reproduction.json",
           "pointer": "/fixture_reproduction_passed",
-          "sha256": "f3bb572f6a03ba2f927266449f4c4bce4ab58527a3d51ce1fc92a68869f5d44e"
+          "sha256": "b37bf22f69fe1df45e18bb16ed98a3ac1ab79b186c35a69c7c83c5f18f2db792"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
