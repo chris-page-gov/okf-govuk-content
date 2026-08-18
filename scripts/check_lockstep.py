@@ -18,6 +18,7 @@ from check_provenance import (
     ProvenanceError,
     build_validation_document as build_provenance_validation,
 )
+from check_publication_contract import validate_document as validate_publication_contract
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -25,6 +26,7 @@ REQUIRED = [
     "AGENTS.md",
     "README.md",
     "CHANGELOG.md",
+    "okf.publication.json",
     "docs/architecture.md",
     "docs/implementation-status.md",
     "docs/okf-v02-conformance.md",
@@ -63,6 +65,7 @@ REQUIRED = [
     "reports/aim-scorecard.md",
     "scripts/promote_release.py",
     "scripts/check_okf_v02.py",
+    "scripts/check_publication_contract.py",
 ]
 
 
@@ -90,6 +93,15 @@ def load_json_document(path: Path, label: str, errors: list[str]) -> dict[str, o
 
 def main() -> int:
     errors = [f"missing required lockstep file: {path}" for path in REQUIRED if not (ROOT / path).is_file()]
+    publication_contract = load_json_document(
+        ROOT / "okf.publication.json",
+        "publication contract",
+        errors,
+    )
+    errors.extend(
+        f"publication contract: {error}"
+        for error in validate_publication_contract(publication_contract, ROOT)
+    )
     release_control = None
     try:
         release_control = load_release_state(ROOT)

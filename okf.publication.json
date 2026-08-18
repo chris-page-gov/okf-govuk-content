@@ -1,0 +1,201 @@
+{
+  "schema": "okf-repository-publication-contract.v1",
+  "modified": "2026-08-18",
+  "locale": "en-GB",
+  "time_zone": "Europe/London",
+  "repository": {
+    "name": "okf-govuk-content",
+    "url": "https://github.com/chris-page-gov/okf-govuk-content",
+    "role": "large-corpus-producer",
+    "root_index": "bundle/index.md",
+    "lifecycle": "active"
+  },
+  "semantic_contract": {
+    "path": "semantic/profile/govuk-okf-profile-v1.yamlld",
+    "profile": "https://chris-page-gov.github.io/okf-govuk-content/semantic/profile/v1/"
+  },
+  "source_families": [
+    {
+      "id": "govuk-public-metadata",
+      "label": "Frozen GOV.UK public metadata envelopes",
+      "description": "Content-addressed, body-free observations from the declared public GOV.UK source boundary.",
+      "kind": "structured-data-folder",
+      "paths": ["demo/snapshots/**", "corpus/**"],
+      "formats": ["application/json", "application/x-ndjson", "application/gzip", "application/x-sqlite3"],
+      "origin": "acquired",
+      "authority": "official",
+      "snapshot_policy": "content-addressed",
+      "inventory": {
+        "method": "content-addressed-manifest",
+        "manifest_path": "demo/snapshots/NEW-CHILD-20260715/snapshot-manifest.json",
+        "identity": ["relative-path", "bytes", "sha256", "source-identifier", "observed-at"]
+      },
+      "rights": {
+        "status": "mixed",
+        "evidence": ["https://www.gov.uk/help/reuse-govuk-content", "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"],
+        "limitations": ["Item-level third-party and attachment rights remain governed by the rights review ledger."]
+      },
+      "sensitivity": {
+        "status": "assessed-no-personal-data",
+        "assessment": "The retained publication inputs are allowlisted public metadata; complete page bodies, credentials and unnecessary personal data are excluded.",
+        "evidence": ["https://github.com/chris-page-gov/okf-govuk-content/blob/main/release/rights-privacy-audit.json"]
+      },
+      "extraction": {
+        "mode": "versioned-adapter",
+        "network_access": "separate-authorised-step",
+        "command_ids": ["acquire-demo"],
+        "limitations": ["Network acquisition is outside ordinary build and check commands and remains rate and authority bounded."]
+      },
+      "invalidates": ["source", "semantic", "runtime", "application", "browser", "release", "deployment"],
+      "limitations": ["The checked-in publication is a 69-record bounded demonstrator, not the complete Release 1 corpus."]
+    },
+    {
+      "id": "programme-governance",
+      "label": "Programme, semantic and release controls",
+      "description": "Authored requirements, semantic contracts, decisions, evaluation controls and release evidence.",
+      "kind": "mixed",
+      "paths": ["governance/**", "orchestration/**", "semantic/**", "release/**", "planning/**", "research/**", "provenance/**", "evaluation/**", "personas/**", "stories/**", "questions/**"],
+      "formats": ["application/json", "application/yaml", "application/ld+json", "text/markdown", "text/turtle"],
+      "origin": "authored",
+      "authority": "editorial",
+      "snapshot_policy": "pinned-revision",
+      "inventory": {
+        "method": "pinned-source-register",
+        "manifest_path": "governance/traceability.json",
+        "identity": ["relative-path", "source-identifier", "source-version"]
+      },
+      "rights": {
+        "status": "approved",
+        "evidence": ["https://github.com/chris-page-gov/okf-govuk-content/blob/main/LICENSE"],
+        "limitations": []
+      },
+      "sensitivity": {
+        "status": "public-no-personal-data",
+        "assessment": "Published controls contain public programme and technical evidence; human research data is not authorised or retained.",
+        "evidence": []
+      },
+      "extraction": {
+        "mode": "deterministic-local",
+        "network_access": "prohibited",
+        "command_ids": ["import-contract", "build-status"],
+        "limitations": []
+      },
+      "invalidates": ["source", "semantic", "documentation", "runtime", "application", "browser", "release", "deployment"],
+      "limitations": ["Human-interface preference remains not yet testable without authorised participant research."]
+    }
+  ],
+  "boundaries": {
+    "authored": [
+      {"path": "demo/snapshots/**", "role": "source-envelope", "source_family_id": "govuk-public-metadata"},
+      {"path": "corpus/**", "role": "source-envelope", "source_family_id": "govuk-public-metadata"},
+      {"path": "semantic/**", "role": "profile", "source_family_id": "programme-governance"},
+      {"path": "governance/**", "role": "policy", "source_family_id": "programme-governance"},
+      {"path": "orchestration/**", "role": "policy", "source_family_id": "programme-governance"},
+      {"path": "planning/**", "role": "policy", "source_family_id": "programme-governance"},
+      {"path": "release/**", "role": "release-authorisation", "source_family_id": "programme-governance"},
+      {"path": "src/**", "role": "generator"},
+      {"path": "scripts/**", "role": "generator"},
+      {"path": "explorer/**", "role": "generator"},
+      {"path": "tests/**", "role": "test"},
+      {"path": "docs/**", "role": "documentation"},
+      {"path": "README.md", "role": "documentation"},
+      {"path": "AGENTS.md", "role": "policy"},
+      {"path": "CHANGELOG.md", "role": "changelog"},
+      {"path": "okf.publication.json", "role": "publication-contract", "source_family_id": "programme-governance"},
+      {"path": ".github/workflows/**", "role": "workflow"}
+    ],
+    "generated": [
+      {"path": "bundle/okf-bundle.yamlld", "role": "semantic-yaml-ld", "plane": "semantic", "required": true, "build_command_ids": ["build-bundle"], "check_command_ids": ["check-semantics"]},
+      {"path": "bundle/okf-bundle.jsonld", "role": "semantic-json-ld", "plane": "semantic", "required": true, "build_command_ids": ["build-bundle"], "check_command_ids": ["check-semantics"]},
+      {"path": "bundle/data/**", "role": "semantic-shards", "plane": "runtime", "required": true, "build_command_ids": ["build-bundle"], "check_command_ids": ["check-bundle"]},
+      {"path": "bundle/okf-explorer.json", "role": "explorer-runtime", "plane": "application", "required": true, "build_command_ids": ["build-bundle"], "check_command_ids": ["check-bundle"]},
+      {"path": "bundle/checksums.json", "role": "checksum-manifest", "plane": "release", "required": true, "build_command_ids": ["build-checksums"], "check_command_ids": ["check-checksums"]},
+      {"path": "bundle/**", "role": "site", "plane": "deployment", "required": true, "build_command_ids": ["package-preview"], "check_command_ids": ["check-preview-package"]}
+    ]
+  },
+  "planes": [
+    {"id": "source", "depends_on": [], "paths": ["okf.publication.json", "demo/snapshots/**", "corpus/**", "governance/**", "orchestration/**", "planning/**", "research/**", "provenance/**", "evaluation/**", "personas/**", "stories/**", "questions/**", "semantic/**", "src/**", "scripts/**", "tests/**"], "command_ids": ["acquire-demo", "import-contract", "check-publication-contract"]},
+    {"id": "semantic", "depends_on": ["source"], "paths": ["semantic/**", "bundle/okf-bundle.yamlld", "bundle/okf-bundle.jsonld"], "command_ids": ["build-bundle", "check-semantics"]},
+    {"id": "runtime", "depends_on": ["semantic"], "paths": ["bundle/data/**", "bundle/concepts/**", "bundle/index.md"], "command_ids": ["build-bundle", "check-bundle"]},
+    {"id": "documentation", "depends_on": ["source"], "paths": ["README.md", "AGENTS.md", "CHANGELOG.md", "docs/**"], "command_ids": ["check-lockstep"]},
+    {"id": "application", "depends_on": ["runtime"], "paths": ["explorer/**", "bundle/okf-explorer.json"], "command_ids": ["test-explorer"]},
+    {"id": "browser", "depends_on": ["application", "documentation"], "paths": ["explorer/tests/**", "bundle/index.html", "bundle/app.js"], "command_ids": ["test-browser"]},
+    {"id": "release", "depends_on": ["semantic", "runtime", "documentation", "browser"], "paths": ["release/**", "bundle/checksums.json"], "command_ids": ["build-status", "build-checksums", "check-checksums"]},
+    {"id": "deployment", "depends_on": ["release"], "paths": [".github/workflows/**", "bundle/**"], "command_ids": ["package-preview", "check-preview-package", "verify-live-preview"]}
+  ],
+  "tooling": {
+    "commands": [
+      {"id": "acquire-demo", "kind": "acquire", "planes": ["source"], "command": "python3 scripts/acquire_new_child_demo.py check demo/snapshots/NEW-CHILD-20260715", "source": "README.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 5},
+      {"id": "import-contract", "kind": "check", "planes": ["source"], "command": ".venv/bin/python scripts/import_contract.py --check", "source": "AGENTS.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 5},
+      {"id": "check-publication-contract", "kind": "check", "planes": ["source", "documentation"], "command": ".venv/bin/python scripts/check_publication_contract.py", "source": "AGENTS.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 2},
+      {"id": "build-bundle", "kind": "build", "planes": ["semantic", "runtime", "application"], "command": ".venv/bin/python scripts/build_bundle.py", "source": "README.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "generated-only", "timeout_minutes": 15},
+      {"id": "check-bundle", "kind": "check", "planes": ["runtime", "application"], "command": ".venv/bin/python scripts/build_bundle.py --check", "source": "AGENTS.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 15},
+      {"id": "check-semantics", "kind": "check", "planes": ["semantic"], "command": ".venv/bin/python scripts/validate_semantics.py --require-shard-metadata --check", "source": "AGENTS.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 10},
+      {"id": "test-explorer", "kind": "test", "planes": ["application"], "command": "npm test --prefix explorer", "source": "README.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 10},
+      {"id": "test-browser", "kind": "test", "planes": ["browser"], "command": "npm run test:browser --prefix explorer", "source": "README.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 10},
+      {"id": "build-status", "kind": "check", "planes": ["release"], "command": ".venv/bin/python scripts/build_status_projections.py --check", "source": "AGENTS.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 5},
+      {"id": "build-checksums", "kind": "build", "planes": ["release"], "command": ".venv/bin/python scripts/build_checksums.py", "source": "README.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "generated-only", "timeout_minutes": 5},
+      {"id": "check-checksums", "kind": "check", "planes": ["release"], "command": ".venv/bin/python scripts/build_checksums.py --check", "source": "AGENTS.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 5},
+      {"id": "check-lockstep", "kind": "check", "planes": ["documentation", "release"], "command": ".venv/bin/python scripts/check_lockstep.py", "source": "AGENTS.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 10},
+      {"id": "package-preview", "kind": "build", "planes": ["deployment"], "command": ".venv/bin/python scripts/package_preview.py --bundle bundle --output $RUNNER_TEMP/preview --commit $GITHUB_SHA", "source": ".github/workflows/preview-pages.yml", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "generated-only", "timeout_minutes": 5},
+      {"id": "check-preview-package", "kind": "check", "planes": ["deployment"], "command": ".venv/bin/python scripts/package_preview.py --check $RUNNER_TEMP/preview --expected-commit $GITHUB_SHA", "source": ".github/workflows/preview-pages.yml", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 5},
+      {"id": "verify-live-preview", "kind": "verify", "planes": ["deployment", "browser"], "command": "python3 scripts/smoke_preview.py --base-url $PAGES_URL --preview $RUNNER_TEMP/preview --output $RUNNER_TEMP/preview-live-smoke.json", "source": ".github/workflows/preview-pages.yml", "review_status": "reviewed-local-guidance", "network": "bounded-read", "mutates": "none", "timeout_minutes": 5}
+    ]
+  },
+  "lockstep": {
+    "controlled_paths": ["okf.publication.json", "semantic/**", "demo/snapshots/**", "corpus/**", "src/**", "scripts/**", "explorer/**", "release/**", "governance/**", ".github/workflows/**"],
+    "documentation_paths": ["README.md", "AGENTS.md", "docs/**"],
+    "changelog_path": "CHANGELOG.md",
+    "check_command_id": "check-lockstep",
+    "dependency_update_policy": "assess-release-bound-bytes-no-blanket-exemption",
+    "unknown_path_policy": "fail-closed"
+  },
+  "ci": {
+    "provider": "github-actions",
+    "workflow_paths": [".github/workflows/ci.yml", ".github/workflows/pages.yml", ".github/workflows/preview-pages.yml", ".github/workflows/release.yml"],
+    "impact_routing": "full-suite",
+    "parallelism": "serial",
+    "unknown_path_policy": "full-suite",
+    "browser": {
+      "ordinary": {"policy": "installed-chrome", "engines": ["chrome"], "command_ids": ["test-browser"]},
+      "cross_engine": {"policy": "not-applicable", "engines": [], "command_ids": [], "installation": {"policy": "none", "command_ids": []}}
+    }
+  },
+  "publication": {
+    "mode": "manual",
+    "scope": "bounded-demonstrator",
+    "authority": {
+      "decision": "ADR-011 authorises only the exact checked-in 69-record demonstrator preview; release publication remains separately gated.",
+      "evidence_paths": ["governance/decisions/ADR-011-public-bounded-demonstrator-preview.md", "release/manifest.yaml"]
+    },
+    "candidate_policy": "promote-exact-assured-bytes-without-rebuild",
+    "targets": [
+      {"id": "bounded-preview-pages", "kind": "github-pages", "workflow_path": ".github/workflows/preview-pages.yml", "public_base_url": "https://chris-page-gov.github.io/okf-govuk-content/", "exact_commit_required": true, "promote_without_rebuild": true},
+      {"id": "verified-release", "kind": "github-release", "workflow_path": ".github/workflows/release.yml", "public_base_url": "https://github.com/chris-page-gov/okf-govuk-content/releases", "exact_commit_required": true, "promote_without_rebuild": true}
+    ]
+  },
+  "verification": {
+    "required": true,
+    "browser": "real-browser",
+    "exact_commit_required": true,
+    "identity_checks": ["commit", "descriptor", "snapshot", "sha256", "record-count", "route"],
+    "journeys": [
+      {
+        "id": "new-child-demonstrator",
+        "url": "https://chris-page-gov.github.io/okf-govuk-content/?view=journey&mode=explore&snapshot=NEW-CHILD-20260715",
+        "expected_identity": "The bounded new-child demonstrator for snapshot NEW-CHILD-20260715 with exactly 69 represented seed records.",
+        "steps": ["Confirm the bounded-demonstrator label and 69-record identity.", "Search using a visible example and open a result.", "Open the source evidence and AI handoff entry points.", "Require no browser console errors."],
+        "checks": [
+          {"id": "descriptor-link", "kind": "linked-json", "href_contains": "okf-explorer.json", "expected_schema": "okf-explorer-bundle.v1"}
+        ]
+      }
+    ],
+    "console_policy": "no-errors",
+    "command_ids": ["test-browser", "check-preview-package", "verify-live-preview"]
+  },
+  "limitations": [
+    "This contract records the checked-in bounded demonstrator and the separately gated release mechanism; it does not claim the complete Release 1 corpus.",
+    "A successful repository build does not prove live deployment identity; the exact deployed commit and journey still require real-browser verification.",
+    "Declared command strings are untrusted metadata and must be reviewed against repository guidance before execution."
+  ]
+}

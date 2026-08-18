@@ -15,6 +15,7 @@ concurrency:
 jobs:
   verify-package:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     permissions:
       contents: write
       pages: read
@@ -225,6 +226,7 @@ jobs:
       - verify-package
       - deploy-pages
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: write
       attestations: read
