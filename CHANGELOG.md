@@ -13,8 +13,19 @@ semantic versioning.
   new-child boundary before interaction and replaces out-of-scope examples
   with searches that return demonstrator records.
 
+### Changed
+
+- Run feature-branch validation once through pull requests instead of also
+  duplicating it on branch pushes. Per-ref cancellation now replaces stale
+  validation runs, while publication jobs retain non-cancelling deployment
+  concurrency and explicit time limits. Required workflow and job names remain
+  unchanged.
+
 ### Added
 
+- Add `okf.publication.json` as the machine-readable publication-method v1
+  contract, with local cross-reference, path, plane-DAG and documentation
+  lockstep tests.
 - Real-browser task-path budgets requiring the demonstrator scope to be clear
   without clicks, search and every visible example to produce results in at
   most one click, and a result record to open in at most two clicks. Browser

@@ -159,7 +159,24 @@ terminal; source milestones are coupled to every manifest/status transition.
 
 Python 3.12 or later is sufficient for the deterministic core.
 
+[`okf.publication.json`](okf.publication.json) is the machine-readable
+publication contract. It maps the frozen source families, authored and
+generated boundaries, dependency planes, reviewed command declarations,
+documentation lockstep and exact-byte publication targets. Command strings in
+the contract are declarations, not instructions to execute without review.
+Validate its local paths, cross-references and acyclic plane graph with:
+
 ```sh
+python3 scripts/check_publication_contract.py
+```
+
+Changes to a controlled source, semantic, runtime, release or workflow path
+must update the relevant documentation and this changelog in the same change.
+Unknown paths fail closed; dependency updates are assessed for their effect on
+release-bound bytes rather than receiving a blanket exemption.
+
+```sh
+python3 scripts/check_publication_contract.py
 python3 scripts/import_contract.py --check
 python3 scripts/preflight_sources.py --check
 python3 scripts/build_status_projections.py --check
