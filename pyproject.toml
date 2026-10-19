@@ -7,7 +7,7 @@ license = { text = "MIT" }
 authors = [{ name = "Chris Page" }]
 dependencies = [
   "jsonschema[format]==4.26.0",
-  "mcp==1.28.1",
+  "mcp==1.30.0",
   "pyshacl==0.40.0",
 ]
 
