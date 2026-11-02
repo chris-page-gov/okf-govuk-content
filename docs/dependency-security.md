@@ -1,12 +1,13 @@
 # Dependency security maintenance
 
-The repository locks MCP to 1.30.0, PyJWT to 2.15.0, cryptography to 50.0.0 and
-the semantic toolchain's transitive Undici to 6.29.1. The dependency SBOM is
-generated from the locks using `scripts/build_sbom.py`. Dependency changes must
-also regenerate the current fixture's clean-room receipt and dependent aim
-scorecard using their existing generators. The receipt records the
-interpreter's basename rather than exposing a machine-specific account or
-checkout path.
+The repository locks MCP to 1.30.0, PyJWT to 2.15.0, cryptography to 50.0.0,
+Certifi to 2026.10.19 and the semantic toolchain's transitive Undici to 6.29.1.
+Certifi 2026.10.19 is outside the affected range for
+`GHSA-6q48-6c7w-9gw2`. The dependency SBOM is generated from the locks using
+`scripts/build_sbom.py`. Dependency changes must also regenerate the current
+fixture's clean-room receipt and dependent aim scorecard using their existing
+generators. The receipt records the interpreter's basename rather than
+exposing a machine-specific account or checkout path.
 
 The local MCP service remains a bounded, read-only demonstrator. These
 dependency alerts do not establish exploitation of that service. The semantic

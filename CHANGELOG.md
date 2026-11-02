@@ -7,6 +7,10 @@ semantic versioning.
 
 ### Fixed
 
+- Update the locked Certifi trust store to 2026.10.19, outside the affected
+  range for `GHSA-6q48-6c7w-9gw2`, and regenerate the dependency-bound release
+  evidence without changing source records.
+
 - Update the locked MCP, PyJWT, cryptography and Undici dependencies. Add
   synthetic PyJWT options-reuse, expiry, audience and signature regression
   tests and regenerate the dependency SBOM without changing source records.

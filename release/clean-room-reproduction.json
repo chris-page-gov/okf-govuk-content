@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "33e6c6b94b5f233a6adc470b00b524cd7d1b47fc3b69de06d97b19a26304a71a",
-    "before_sha256": "33e6c6b94b5f233a6adc470b00b524cd7d1b47fc3b69de06d97b19a26304a71a",
+    "after_sha256": "e5713d2b99140410d5d62387540a6f5451062a9f7a13e032eaeb4f0bb28fdf9c",
+    "before_sha256": "e5713d2b99140410d5d62387540a6f5451062a9f7a13e032eaeb4f0bb28fdf9c",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -97,7 +97,7 @@
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-11-02T13:11:25Z",
+  "ended_at": "2026-11-02T21:30:43Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-26.6.2-arm64-arm-64bit",
@@ -415,10 +415,10 @@
         "tree_sha256": "9e99bfe6b8351d9930c8a92175c994fb33c483c26edec7db279a9d7a97fecd9b"
       },
       {
-        "bytes": 126187,
+        "bytes": 126190,
         "file_count": 1,
         "path": "uv.lock",
-        "tree_sha256": "77414d9f45fdfa3fe675fdd8048a306ae8e3d49aba25f3bfb90b71d734429dbd"
+        "tree_sha256": "de30aa7071e0e5b0fccf84f237f3e0efd0716e25d35f67ac7758aa2780b8b711"
       },
       {
         "bytes": 1117319,
@@ -429,7 +429,7 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "df483dc0fc9bdfa555e1d6049387ce8aaf52951f3432a93bc8e2418c49ea3ce7"
+    "tree_sha256": "972f64359022763de5cbd06fe2afb558378fd34ee068243f0024f538d5284384"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
@@ -488,13 +488,13 @@
     },
     "sbom": {
       "exact_match": true,
-      "expected_sha256": "7b725ccc3358e1d90a6d3347aab8987c451bb8954259232e66ab0e31ce0ff6b9",
+      "expected_sha256": "bbcc1a127c7472f7e15ea4c5ef6ba2c2bea71d7d588d08676ae0bf2535f62c17",
       "path": "release/sbom.cdx.json",
-      "reproduced_sha256": "7b725ccc3358e1d90a6d3347aab8987c451bb8954259232e66ab0e31ce0ff6b9"
+      "reproduced_sha256": "bbcc1a127c7472f7e15ea4c5ef6ba2c2bea71d7d588d08676ae0bf2535f62c17"
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-11-02T13:11:25Z",
+  "recorded_at": "2026-11-02T21:30:43Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
@@ -554,7 +554,7 @@
     }
   ],
   "source_binding": null,
-  "started_at": "2026-11-02T13:11:24Z",
+  "started_at": "2026-11-02T21:30:42Z",
   "test_evidence": null,
   "validators": {
     "passed": true,
