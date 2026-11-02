@@ -14,7 +14,7 @@ permissions:
   contents: read
 
 jobs:
-  validate:
+  core:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -50,10 +50,35 @@ jobs:
       - run: .venv/bin/python scripts/validate_semantics.py --require-shard-metadata --check
       - run: .venv/bin/python scripts/audit_rights_privacy.py --check --allow-archived-inputs
       - run: npm test --prefix explorer
-      - name: Real-browser Explorer gate
-        run: npm run test:browser --prefix explorer
       - run: npm test --prefix semantic
       - run: .venv/bin/python scripts/check_lockstep.py
       - name: Clean bounded-demonstrator generation
         run: .venv/bin/python scripts/build_bundle.py --source demo/snapshots/NEW-CHILD-20260715/publication/source-records.jsonl --output "$RUNNER_TEMP/bundle" --generated-at 2026-07-15T06:25:17Z --snapshot-id NEW-CHILD-20260715
       - run: git diff --check
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Real-browser Explorer gate
+        run: npm run test:browser --prefix explorer
+
+  validate:
+    if: always()
+    needs:
+      - core
+      - browser
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Require every validation plane to pass
+        env:
+          BROWSER_RESULT: ${{ needs.browser.result }}
+          CORE_RESULT: ${{ needs.core.result }}
+        run: |
+          test "$CORE_RESULT" = "success"
+          test "$BROWSER_RESULT" = "success"

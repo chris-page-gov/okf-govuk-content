@@ -23,6 +23,11 @@ semantic versioning.
 
 ### Changed
 
+- Separate pull-request core and real-browser validation into independent jobs,
+  with the existing required `validate` status retained as a fail-closed
+  aggregator. Re-running a browser-only failure no longer repeats the full
+  Python and deterministic validation suite.
+
 - Run feature-branch validation once through pull requests instead of also
   duplicating it on branch pushes. Per-ref cancellation now replaces stale
   validation runs, while publication jobs retain non-cancelling deployment
