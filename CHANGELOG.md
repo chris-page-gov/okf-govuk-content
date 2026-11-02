@@ -7,6 +7,10 @@ semantic versioning.
 
 ### Fixed
 
+- Update the locked MCP, PyJWT, cryptography and Undici dependencies. Add
+  synthetic PyJWT options-reuse, expiry, audience and signature regression
+  tests and regenerate the dependency SBOM without changing source records.
+
 - Restored static search under the page's Trusted Types Content Security
   Policy by creating the search worker URL through the named
   `okf-search-worker` policy. The public preview now states its 69-record

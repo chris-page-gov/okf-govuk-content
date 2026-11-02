@@ -9,6 +9,10 @@ people, software and retrieval agents.
 
 ## Current status
 
+The dependency security maintenance and its regression controls are described
+in [`docs/dependency-security.md`](docs/dependency-security.md). They preserve
+the bounded demonstrator and do not authorise acquisition or publication.
+
 The checked-in publication is now a **69-record new-child demonstrator and
 pre-release foundation**, not the complete GOV.UK bundle and not a machine
 release candidate. One reproducible Search API seed denominator spans

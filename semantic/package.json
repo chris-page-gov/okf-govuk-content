@@ -6,6 +6,9 @@
     "jsonld": "9.0.0",
     "rdf-canonize": "5.0.0"
   },
+  "overrides": {
+    "undici": "6.29.1"
+  },
   "scripts": {
     "test": "node --test tests/*.test.mjs"
   }
