@@ -1239,7 +1239,7 @@
           "operator": "json_equals",
           "path": "release/clean-room-reproduction.json",
           "pointer": "/fixture_reproduction_passed",
-          "sha256": "942782624e6620c06669e4132cc06ada7ad524527aefbd4f94dec34889cbcf56"
+          "sha256": "332b4cf71ed901dc725222e3fff548d6b1d4415d9a974b7123ccb54eaab841d7"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",

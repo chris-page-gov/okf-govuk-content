@@ -443,7 +443,7 @@
       "version": "26.1.0"
     },
     {
-      "bom-ref": "pkg:pypi/certifi@2026.6.17",
+      "bom-ref": "pkg:pypi/certifi@2026.10.19",
       "externalReferences": [
         {
           "type": "distribution",
@@ -453,7 +453,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "024c88eeec92ca068db80f02b8b07c9cef7b9fe261d1d535abfd5abd6f6af432"
+          "content": "035c1e85572b141bf1c3a3eff0e33a8eb74917522f2559075ff8d2fea780a1ae"
         }
       ],
       "name": "certifi",
@@ -467,9 +467,9 @@
           "value": "uv.lock"
         }
       ],
-      "purl": "pkg:pypi/certifi@2026.6.17",
+      "purl": "pkg:pypi/certifi@2026.10.19",
       "type": "library",
-      "version": "2026.6.17"
+      "version": "2026.10.19"
     },
     {
       "bom-ref": "pkg:pypi/cffi@2.1.0",
@@ -1890,7 +1890,7 @@
     },
     {
       "dependsOn": [],
-      "ref": "pkg:pypi/certifi@2026.6.17"
+      "ref": "pkg:pypi/certifi@2026.10.19"
     },
     {
       "dependsOn": [
@@ -1936,7 +1936,7 @@
     },
     {
       "dependsOn": [
-        "pkg:pypi/certifi@2026.6.17",
+        "pkg:pypi/certifi@2026.10.19",
         "pkg:pypi/h11@0.16.0"
       ],
       "ref": "pkg:pypi/httpcore@1.0.9"
@@ -1948,7 +1948,7 @@
     {
       "dependsOn": [
         "pkg:pypi/anyio@4.14.2",
-        "pkg:pypi/certifi@2026.6.17",
+        "pkg:pypi/certifi@2026.10.19",
         "pkg:pypi/httpcore@1.0.9",
         "pkg:pypi/idna@3.18"
       ],
@@ -2191,7 +2191,7 @@
     "properties": [
       {
         "name": "govuk-okf:lock:uv.sha256",
-        "value": "8b3b3e36fc042f84d0e801c34952ffc65dba6232d0796383aa69968456dcb8ef"
+        "value": "79f9a9993e2f4da36cd694c0a978c243f9400d7f1efbf0dc13125a34b9e8d0c3"
       },
       {
         "name": "govuk-okf:lock:semantic-package-lock.sha256",
@@ -2207,7 +2207,7 @@
       }
     ]
   },
-  "serialNumber": "urn:uuid:bc190a62-cd73-57f2-83c6-cb258fe09d31",
+  "serialNumber": "urn:uuid:d3a30d51-f6bb-5ad2-9833-a11bcff20a3e",
   "specVersion": "1.6",
   "version": 1
 }
