@@ -1,11 +1,12 @@
 # Dependency security maintenance
 
-This candidate updates MCP to 1.30.0, PyJWT to 2.15.0, cryptography to 50.0.0
-and the semantic toolchain's transitive Undici to 6.29.1. The dependency SBOM
-is regenerated from the locks using `scripts/build_sbom.py`. Regenerate the
-current fixture's clean-room receipt and dependent aim scorecard using their
-existing generators. The receipt records the interpreter's basename rather
-than exposing a machine-specific account or checkout path.
+The repository locks MCP to 1.30.0, PyJWT to 2.15.0, cryptography to 50.0.0 and
+the semantic toolchain's transitive Undici to 6.29.1. The dependency SBOM is
+generated from the locks using `scripts/build_sbom.py`. Dependency changes must
+also regenerate the current fixture's clean-room receipt and dependent aim
+scorecard using their existing generators. The receipt records the
+interpreter's basename rather than exposing a machine-specific account or
+checkout path.
 
 The local MCP service remains a bounded, read-only demonstrator. These
 dependency alerts do not establish exploitation of that service. The semantic
@@ -20,7 +21,7 @@ probe rejects the expired token without mutation on 2.15.0. The advisory for
 this particular behaviour has no declared first patched version, so the
 behavioural check supplements version-range reconciliation.
 
-No corpus acquisition, release, alert dismissal or deployment is included.
-Historical release evidence retains its original meaning. Run the existing
-deterministic CI gates and the new tests before considering this candidate
-for merge.
+This maintenance change did not include corpus acquisition, release, alert
+dismissal or deployment. Historical release evidence retains its original
+meaning. Run the existing deterministic CI gates and the dependency security
+tests before merging future changes to these dependency boundaries.
