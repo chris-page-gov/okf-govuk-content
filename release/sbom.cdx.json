@@ -255,17 +255,17 @@
       "version": "1.0.5"
     },
     {
-      "bom-ref": "pkg:npm/undici@6.27.0",
+      "bom-ref": "pkg:npm/undici@6.29.1",
       "externalReferences": [
         {
           "type": "distribution",
-          "url": "https://registry.npmjs.org/undici/-/undici-6.27.0.tgz"
+          "url": "https://registry.npmjs.org/undici/-/undici-6.29.1.tgz"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-512",
-          "content": "6267d5dd89c40f35d10b9959da35ad5961ca1949b5cc8b7c0217ac475b5e9ecf874cdbfe61994dfdda7a1bbdbb2cebcc27cc633fd05eed8d9276bf7a2c39bea6"
+          "content": "12f46552dfd0a8012f5dd41e44c6147f0390b1fce90f3b7292b1b6a3018413fac1381a18bfdb85dfd673b0d0e1e254c51e14ebd973998ca91882e783d7666618"
         }
       ],
       "licenses": [
@@ -286,9 +286,9 @@
           "value": "semantic/package-lock.json"
         }
       ],
-      "purl": "pkg:npm/undici@6.27.0",
+      "purl": "pkg:npm/undici@6.29.1",
       "type": "library",
-      "version": "6.27.0"
+      "version": "6.29.1"
     },
     {
       "bom-ref": "pkg:npm/yallist@4.0.0",
@@ -559,7 +559,7 @@
       "version": "0.4.6"
     },
     {
-      "bom-ref": "pkg:pypi/cryptography@49.0.0",
+      "bom-ref": "pkg:pypi/cryptography@50.0.0",
       "externalReferences": [
         {
           "type": "distribution",
@@ -569,7 +569,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "f89660a348f4f78a92366240a61404e337586ef7f5909a2fef59ca88ef505493"
+          "content": "eeac2acb5a20ed25e0ad6d1df9891a520b78b404266b6d11778f25d5d691a6c9"
         }
       ],
       "name": "cryptography",
@@ -583,9 +583,9 @@
           "value": "uv.lock"
         }
       ],
-      "purl": "pkg:pypi/cryptography@49.0.0",
+      "purl": "pkg:pypi/cryptography@50.0.0",
       "type": "library",
-      "version": "49.0.0"
+      "version": "50.0.0"
     },
     {
       "bom-ref": "pkg:pypi/fqdn@1.5.1",
@@ -931,7 +931,7 @@
       "version": "4.26.0"
     },
     {
-      "bom-ref": "pkg:pypi/mcp@1.28.1",
+      "bom-ref": "pkg:pypi/mcp@1.30.0",
       "externalReferences": [
         {
           "type": "distribution",
@@ -941,7 +941,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "d51e36a5f5644faea4f85ea649bfffa6bc6c26770d42798ad6a3de3d2ba69683"
+          "content": "445414625fce5c295faa505bb11bacece661ab6f4028d57c935db57820b7a3e4"
         }
       ],
       "name": "mcp",
@@ -955,9 +955,9 @@
           "value": "uv.lock"
         }
       ],
-      "purl": "pkg:pypi/mcp@1.28.1",
+      "purl": "pkg:pypi/mcp@1.30.0",
       "type": "library",
-      "version": "1.28.1"
+      "version": "1.30.0"
     },
     {
       "bom-ref": "pkg:pypi/owlrl@7.6.2",
@@ -1163,7 +1163,7 @@
       "version": "2.13.4"
     },
     {
-      "bom-ref": "pkg:pypi/pyjwt@2.13.0",
+      "bom-ref": "pkg:pypi/pyjwt@2.15.0",
       "externalReferences": [
         {
           "type": "distribution",
@@ -1173,7 +1173,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "41571c89ca91598c79e8ef18a2d07367d4810fbbd6f637794879baf1b7703423"
+          "content": "b11c5f9791d7bf51c2b39a81ed669f6b2dbbd669df2942f6c60167e9e3d1abe4"
         }
       ],
       "name": "pyjwt",
@@ -1187,9 +1187,9 @@
           "value": "uv.lock"
         }
       ],
-      "purl": "pkg:pypi/pyjwt@2.13.0",
+      "purl": "pkg:pypi/pyjwt@2.15.0",
       "type": "library",
-      "version": "2.13.0"
+      "version": "2.15.0"
     },
     {
       "bom-ref": "pkg:pypi/pyparsing@3.3.2",
@@ -1821,7 +1821,7 @@
     {
       "dependsOn": [
         "pkg:npm/ky@1.14.3",
-        "pkg:npm/undici@6.27.0"
+        "pkg:npm/undici@6.29.1"
       ],
       "ref": "pkg:npm/%40digitalbazaar/http-client@4.3.0"
     },
@@ -1860,7 +1860,7 @@
     },
     {
       "dependsOn": [],
-      "ref": "pkg:npm/undici@6.27.0"
+      "ref": "pkg:npm/undici@6.29.1"
     },
     {
       "dependsOn": [],
@@ -1912,7 +1912,7 @@
       "dependsOn": [
         "pkg:pypi/cffi@2.1.0"
       ],
-      "ref": "pkg:pypi/cryptography@49.0.0"
+      "ref": "pkg:pypi/cryptography@50.0.0"
     },
     {
       "dependsOn": [],
@@ -1921,7 +1921,7 @@
     {
       "dependsOn": [
         "pkg:pypi/jsonschema@4.26.0",
-        "pkg:pypi/mcp@1.28.1",
+        "pkg:pypi/mcp@1.30.0",
         "pkg:pypi/pyshacl@0.40.0"
       ],
       "ref": "pkg:pypi/govuk-okf@0.1.0"
@@ -1991,7 +1991,7 @@
         "pkg:pypi/jsonschema@4.26.0",
         "pkg:pypi/pydantic-settings@2.14.2",
         "pkg:pypi/pydantic@2.13.4",
-        "pkg:pypi/pyjwt@2.13.0",
+        "pkg:pypi/pyjwt@2.15.0",
         "pkg:pypi/python-multipart@0.0.32",
         "pkg:pypi/pywin32@312",
         "pkg:pypi/sse-starlette@3.4.5",
@@ -2000,7 +2000,7 @@
         "pkg:pypi/typing-inspection@0.4.2",
         "pkg:pypi/uvicorn@0.51.0"
       ],
-      "ref": "pkg:pypi/mcp@1.28.1"
+      "ref": "pkg:pypi/mcp@1.30.0"
     },
     {
       "dependsOn": [
@@ -2047,7 +2047,7 @@
     },
     {
       "dependsOn": [],
-      "ref": "pkg:pypi/pyjwt@2.13.0"
+      "ref": "pkg:pypi/pyjwt@2.15.0"
     },
     {
       "dependsOn": [],
@@ -2191,15 +2191,15 @@
     "properties": [
       {
         "name": "govuk-okf:lock:uv.sha256",
-        "value": "b559f73fcdd85d93116969e0137585512bdaad206b312952c243634dde07d5e5"
+        "value": "8b3b3e36fc042f84d0e801c34952ffc65dba6232d0796383aa69968456dcb8ef"
       },
       {
         "name": "govuk-okf:lock:semantic-package-lock.sha256",
-        "value": "8b0c1b1644e9c3f05bea5f8f6aa406c75fdd01f00848f7f39287dd1307fb4795"
+        "value": "b6e00af33180c8c5bf232596e29f3b61b813e1c1244ab7ba079d1f5f12ef1a95"
       },
       {
         "name": "govuk-okf:input:pyproject.sha256",
-        "value": "8273b20dc4349176c9b42df65f8f02e5d9d68c8e7aede35b51d3842f8476a892"
+        "value": "e175f1c89f976c32251992793531310ebc028ada22aa2336bef7c8eca08d13c4"
       },
       {
         "name": "govuk-okf:generator",
@@ -2207,7 +2207,7 @@
       }
     ]
   },
-  "serialNumber": "urn:uuid:9c8f4c01-363a-5877-884e-ae095238234f",
+  "serialNumber": "urn:uuid:bc190a62-cd73-57f2-83c6-cb258fe09d31",
   "specVersion": "1.6",
   "version": 1
 }

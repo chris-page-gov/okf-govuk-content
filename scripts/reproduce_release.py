@@ -776,7 +776,8 @@ def reproduce(args: argparse.Namespace) -> dict[str, Any]:
             "python": {
                 "implementation": platform.python_implementation(),
                 "version": platform.python_version(),
-                "executable": sys.executable,
+                # Public receipts must not expose a local account or checkout path.
+                "executable": Path(sys.executable).name,
             },
             "platform": platform.platform(),
             "machine": platform.machine(),
