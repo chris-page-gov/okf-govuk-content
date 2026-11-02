@@ -90,6 +90,12 @@ evidence. A checkpoint or mixed state cannot select either path. Its packed
 single-pack browser regression generates a dedicated tiny fixture, while the
 tag workflow alone measures the checked full release bytes.
 
+Pull-request CI runs deterministic core validation and the real-browser gate
+as separate jobs. The required `validate` status is a small fail-closed
+aggregator over both results, preserving the protected-branch contract. If a
+browser-only failure is rerun, GitHub repeats the browser job and aggregator
+without repeating an already successful core job.
+
 GitHub's short-lived OIDC identity creates signed SLSA provenance attestations
 for the verified manifest, every Release asset and the exact-asset expectation.
 That expectation binds the annotated tag, its independently validated
