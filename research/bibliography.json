@@ -323,6 +323,27 @@
       "version_or_commit": null
     },
     {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "raw.githubusercontent.com"
+      ],
+      "expected_identity_terms": [
+        "machine readable register"
+      ],
+      "labels": [
+        "machine-readable register"
+      ],
+      "locator_hint": {
+        "kind": "commit_lines",
+        "value": "okf-explorer@main:registry/okf-standards.json"
+      },
+      "publisher": "Version-pinned upstream repository",
+      "requested_url": "https://raw.githubusercontent.com/chris-page-gov/okf-explorer/main/registry/okf-standards.json",
+      "schema_version": "1.0",
+      "source_id": "SRC-1EF8BEB8A11FCB74",
+      "version_or_commit": null
+    },
+    {
       "authority_class": "official_primary",
       "expected_hosts": [
         "www.gov.uk"
@@ -664,6 +685,27 @@
       "schema_version": "1.0",
       "source_id": "SRC-3BF55F0E7CFA434E",
       "version_or_commit": "b1e987aa7b3e62c105ff2b2db87667f7638726f8"
+    },
+    {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "github.com"
+      ],
+      "expected_identity_terms": [
+        "central standards register"
+      ],
+      "labels": [
+        "central standards register"
+      ],
+      "locator_hint": {
+        "kind": "commit_lines",
+        "value": "okf-explorer@main:docs/okf-standards.md"
+      },
+      "publisher": "Version-pinned upstream repository",
+      "requested_url": "https://github.com/chris-page-gov/okf-explorer/blob/main/docs/okf-standards.md",
+      "schema_version": "1.0",
+      "source_id": "SRC-3E9EBE542855D786",
+      "version_or_commit": null
     },
     {
       "authority_class": "official_primary",
