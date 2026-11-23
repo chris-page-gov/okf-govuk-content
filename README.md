@@ -295,3 +295,7 @@ zero retention/secret violations, without converting a sampled audit into a
 release-passing rights determination.
 See [LICENSE.md](LICENSE.md), the machine-readable constraint ledger and
 `release/rights-privacy-audit.json`.
+
+## OKF standards and bundle discovery
+
+The [central standards register](https://github.com/chris-page-gov/okf-explorer/blob/main/docs/okf-standards.md) records current and historical OKF specifications, version-specific pins and the public bundle catalogue. Use the [machine-readable register](https://raw.githubusercontent.com/chris-page-gov/okf-explorer/main/registry/okf-standards.json) to resolve the version implemented by this repository.

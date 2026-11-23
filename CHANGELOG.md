@@ -23,6 +23,8 @@ semantic versioning.
 
 ### Changed
 
+- Link the central current and historical OKF standards register and public
+  bundle catalogue, and regenerate the citation inventory from those links.
 - Separate pull-request core and real-browser validation into independent jobs,
   with the existing required `validate` status retained as a fail-closed
   aggregator. Re-running a browser-only failure no longer repeats the full
