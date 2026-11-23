@@ -58,3 +58,11 @@
 - Develop on focused `agent/*` branches, merge through reviewed pull requests,
   keep `main` protected, and publish Pages, registry projections, checksums,
   SBOM, tags, and GitHub Releases from verified commits only.
+
+<!-- okf-standards:start -->
+## OKF standards references
+
+Read [the central standards and bundle catalogue reference](https://github.com/chris-page-gov/okf-explorer/blob/main/docs/okf-standards.md)
+before changing specification links or an OKF version declaration. Resolve the
+implemented version through the shared register and preserve historical pins.
+<!-- okf-standards:end -->

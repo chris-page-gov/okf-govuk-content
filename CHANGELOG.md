@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased — standards references
+
+- Link the central current and historical OKF standards register and public bundle catalogue.
+
+
 All notable changes are recorded here. Dates use UTC and releases follow
 semantic versioning.
 
