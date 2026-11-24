@@ -85,6 +85,10 @@ class PublicationTests(unittest.TestCase):
             output = Path(directory) / "bundle"
             self.build(output)
             self.assertTrue((output / "semantic/context/govuk-okf-v1.jsonld").is_file())
+            self.assertEqual(
+                (ROOT / "semantic/context/govuk-okf-v1.jsonld").read_bytes(),
+                (output / "context/govuk-okf-v1.jsonld").read_bytes(),
+            )
             self.assertTrue((output / "semantic/shapes/govuk-okf-shapes.ttl").is_file())
             self.assertFalse((output / "semantic/node_modules").exists())
             self.assertFalse((output / "semantic/package-lock.json").exists())

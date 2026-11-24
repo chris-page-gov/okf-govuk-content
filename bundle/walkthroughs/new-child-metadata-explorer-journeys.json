@@ -1,0 +1,102 @@
+{
+  "bundle_descriptor": "okf-explorer.json",
+  "expected_identity": {
+    "id": "https://chris-page-gov.github.io/okf-govuk-content/okf-explorer.json",
+    "schema": "okf-explorer-large-corpus.v1",
+    "snapshot": "NEW-CHILD-20260715",
+    "version": "0.1.0"
+  },
+  "journeys": [
+    {
+      "actions": [
+        {
+          "hash": "#dataset/1de204a4-466c-4641-8b93-7c8e6b60ee39-en",
+          "params": {
+            "view": "graph"
+          },
+          "type": "goto"
+        },
+        {
+          "selector": "svg.graph .graph-node[data-route=\"dataset/dc68775c-3df8-4930-ad22-bde7bfbb3b61-en\"]",
+          "type": "wait_for"
+        },
+        {
+          "selector": "svg.graph .graph-node[data-route=\"dataset/dc68775c-3df8-4930-ad22-bde7bfbb3b61-en\"]",
+          "type": "click"
+        },
+        {
+          "selector": "aside[aria-label=\"Record details\"] h2:has-text(\"dc68775c-3df8-4930-ad22-bde7bfbb3b61-en\")",
+          "type": "wait_for"
+        }
+      ],
+      "assertions": [
+        {
+          "includes": "dc68775c-3df8-4930-ad22-bde7bfbb3b61-en",
+          "selector": "aside[aria-label=\"Record details\"]",
+          "type": "text"
+        },
+        {
+          "equals": "#dataset/dc68775c-3df8-4930-ad22-bde7bfbb3b61-en",
+          "type": "url_hash"
+        },
+        {
+          "includes": "/okf-explorer.json",
+          "type": "requested"
+        },
+        {
+          "type": "console_clean"
+        }
+      ],
+      "id": "new-child-related-edge"
+    },
+    {
+      "actions": [
+        {
+          "hash": "#dataset/1de204a4-466c-4641-8b93-7c8e6b60ee39-en",
+          "params": {
+            "view": "reader"
+          },
+          "type": "goto"
+        },
+        {
+          "selector": ".search-input",
+          "type": "fill",
+          "value": "Plan your Shared Parental Leave and Pay"
+        },
+        {
+          "selector": ".result-open:has(h2:text-is(\"Plan your Shared Parental Leave and Pay\"))",
+          "type": "wait_for"
+        },
+        {
+          "selector": ".result-open:has(h2:text-is(\"Plan your Shared Parental Leave and Pay\"))",
+          "type": "click"
+        },
+        {
+          "selector": "aside[aria-label=\"Record details\"] h2:has-text(\"Plan your Shared Parental Leave and Pay\")",
+          "type": "wait_for"
+        }
+      ],
+      "assertions": [
+        {
+          "includes": "Plan your Shared Parental Leave and Pay",
+          "selector": "aside[aria-label=\"Record details\"]",
+          "type": "text"
+        },
+        {
+          "includes": "Government Digital Service",
+          "selector": "aside[aria-label=\"Record details\"]",
+          "type": "text"
+        },
+        {
+          "equals": "#dataset/1de204a4-466c-4641-8b93-7c8e6b60ee39-en",
+          "type": "url_hash"
+        },
+        {
+          "type": "console_clean"
+        }
+      ],
+      "id": "new-child-source-record-search"
+    }
+  ],
+  "schema": "okf-explorer-journeys.v1"
+}

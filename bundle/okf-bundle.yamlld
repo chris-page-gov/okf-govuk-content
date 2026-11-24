@@ -1,10 +1,10 @@
-"@context": "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v1.jsonld"
+"@context": "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v2.jsonld"
 "@id": "https://chris-page-gov.github.io/okf-govuk-content/okf-bundle.yamlld"
 "@type": "okf:Bundle"
 title: "Having a new child: bounded GOV.UK metadata demonstrator"
 description: "Derived, non-authoritative semantic projection of exactly 69 frozen GOV.UK new-child metadata records; it is not a complete GOV.UK corpus."
 version: "0.1.0"
-okfVersion: "0.2"
+okfVersion: "0.3"
 status: "bounded-demonstrator"
 generatedAt: "2026-07-15T06:25:17Z"
 snapshot: "NEW-CHILD-20260715"
@@ -16,7 +16,7 @@ semanticDescriptor:
 home:
   "@id": "https://chris-page-gov.github.io/okf-govuk-content/"
 profile:
-  "@id": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/"
+  "@id": "https://chris-page-gov.github.io/okf-govuk-content/semantic/profile/v2/"
 publisher:
   "@id": "https://github.com/chris-page-gov"
 license:
@@ -41,7 +41,7 @@ counts:
   resources: 0
   schema_families: 8
 extensions:
-  - "govuk-okf-profile.v1"
+  - "govuk-okf-profile.v2"
   - "govuk-okf-semantic-projection.v1"
   - "okf-explorer-large-corpus.v1"
   - "okf-static-search.v1"

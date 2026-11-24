@@ -19,19 +19,20 @@ from typing import Any, Callable, Iterable, Iterator, Sequence
 from urllib.parse import quote, urlparse
 
 from .demonstrator_projection import build_new_child_demonstrator, write_ai_handoff
-from .okf_v02 import (
+from .okf_v03 import (
     GENERATOR_ACTOR,
     OKF_VERSION,
     concept_metadata,
     render_frontmatter,
 )
 from .util import adjacency_bucket, canonical_json_bytes, chunks, pretty_json, sha256_text, slugify, write_gzip_json, yaml_dump
+from .walkthrough import build_walkthrough
 
 ROOT = Path(__file__).resolve().parents[2]
-PROFILE_URL = "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/"
-EXPLORER_CONTEXT_URL = PROFILE_URL + "context.jsonld"
+PROFILE_URL = "https://chris-page-gov.github.io/okf-govuk-content/semantic/profile/v2/"
+EXPLORER_CONTEXT_URL = "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/context.jsonld"
 HOME_URL = "https://chris-page-gov.github.io/okf-govuk-content/"
-GOVUK_CONTEXT_URL = HOME_URL + "context/govuk-okf-v1.jsonld"
+GOVUK_CONTEXT_URL = HOME_URL + "context/govuk-okf-v2.jsonld"
 REPOSITORY_URL = "https://github.com/chris-page-gov/okf-govuk-content"
 OGL_URL = "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
 RECORD_CHUNK_SIZE = 1000
@@ -1683,7 +1684,7 @@ def semantic_descriptor(
         "canonicalMarkdownIndex": {"@id": HOME_URL + "concepts/index.md"},
         "counts": dict(sorted(counts.items())),
         "extensions": [
-            "govuk-okf-profile.v1",
+            "govuk-okf-profile.v2",
             "govuk-okf-semantic-projection.v1",
             "okf-explorer-large-corpus.v1",
             "okf-static-search.v1",
@@ -1803,6 +1804,7 @@ def _semantic_common(
         "sourceSystem": source_system or "govuk_public_metadata",
         "snapshotId": snapshot_id,
         "authority": "source_native",
+        "core_role": "extension",
         "evidence": [{"@id": evidence_id}],
         "retrievedAt": str(row.get("retrieved_at")),
     }
@@ -1841,6 +1843,7 @@ def dataset_semantic_nodes(row: dict[str, Any], snapshot_id: str) -> list[dict[s
         )
         item.update(
             {
+                "core_role": "concept",
                 "contentId": content_id,
                 "basePath": base_path,
                 "canonicalUrl": url,
@@ -2000,6 +2003,7 @@ def publisher_semantic_nodes(row: dict[str, Any], snapshot_id: str) -> list[dict
             "slug": str(row["name"]),
             "canonicalUrl": row["url"],
             "organisationStatus": state,
+            "core_role": "concept",
         }
     )
     return [evidence, node]
@@ -2203,7 +2207,7 @@ def write_semantic_projection(
         lambda row: resource_semantic_nodes(row, snapshot_id),
     )
 
-    profile_path = ROOT / "semantic" / "profile" / "govuk-okf-profile-v1.yamlld"
+    profile_path = ROOT / "semantic" / "profile" / "govuk-okf-profile-v2.yamlld"
     profile_digest = hashlib.sha256(profile_path.read_bytes()).hexdigest()
     profile_evidence_id = "urn:govuk:evidence:profile:" + profile_digest
     activity_id = "urn:govuk:inference:compile:" + hashlib.sha256(
@@ -2214,12 +2218,12 @@ def write_semantic_projection(
         "@type": "govuk:Evidence",
         "title": "GOV.UK OKF profile and pinned Publishing API schema crosswalk",
         "evidenceUrl": REPOSITORY_URL
-        + "/blob/main/semantic/profile/govuk-okf-profile-v1.yamlld",
+        + "/blob/main/semantic/profile/govuk-okf-profile-v2.yamlld",
         "sourceSystem": "govuk_okf_profile",
         "sourceAuthority": "unknown",
         "locator": {
             "locatorKind": "schema_path",
-            "locatorValue": "semantic/profile/govuk-okf-profile-v1.yamlld",
+            "locatorValue": "semantic/profile/govuk-okf-profile-v2.yamlld",
         },
         "retrievedAt": generated_at,
         "sha256": profile_digest,
@@ -2331,7 +2335,7 @@ def write_semantic_projection(
     manifest = {
         "schema": "govuk-okf-semantic-projection.v1",
         "context": GOVUK_CONTEXT_URL,
-        "profile": "semantic/profile/govuk-okf-profile-v1.yamlld",
+        "profile": "semantic/profile/govuk-okf-profile-v2.yamlld",
         "snapshot": snapshot_id,
         "generated_at": generated_at,
         "startup": "lazy",
@@ -2344,7 +2348,7 @@ def write_semantic_projection(
             "entity_schema": "semantic/schemas/entity.schema.json",
             "evidence_schema": "semantic/schemas/evidence.schema.json",
             "assertion_schema": "semantic/schemas/assertion.schema.json",
-            "profile": "semantic/profile/govuk-okf-profile-v1.yamlld",
+            "profile": "semantic/profile/govuk-okf-profile-v2.yamlld",
             "entity_crosswalk": "semantic/crosswalks/entity-crosswalk.yamlld",
             "relationship_crosswalk": "semantic/crosswalks/relationship-crosswalk.yamlld",
             "shapes": "semantic/shapes/govuk-okf-shapes.ttl",
@@ -2467,7 +2471,7 @@ def write_okf_markdown_tree(
     generated_at: str,
     snapshot_id: str,
 ) -> dict[str, Any]:
-    """Write the canonical OKF v0.2 Markdown concepts and progressive indexes."""
+    """Write the canonical OKF core 0.3 Markdown concepts and progressive indexes."""
 
     groups: tuple[tuple[str, str, str, Sequence[dict[str, Any]]], ...] = (
         ("dataset", "GOV.UK content items", "GOV.UK Content Item", datasets),
@@ -2553,7 +2557,7 @@ def write_okf_markdown_tree(
     concepts_index = [
         "# Canonical OKF concepts",
         "",
-        "These Markdown documents are the canonical OKF v0.2 knowledge layer. "
+        "These Markdown documents are the canonical OKF core 0.3 knowledge layer. "
         "The JSON, YAML-LD, search, route and graph files are deterministic "
         "GOV.UK/Explorer profile projections.",
         "",
@@ -2685,7 +2689,7 @@ def _emit_publication(
     }
     dataset_paths: list[str] = []
     for index, block in enumerate(chunks(datasets, RECORD_CHUNK_SIZE)):
-        block_rows = list(block)
+        block_rows = [{**row, "core_role": "concept"} for row in block]
         path = output / "data" / f"records-{index}.json.gz"
         write_gzip_json(path, block_rows)
         dataset_paths.append(path.relative_to(output).as_posix())
@@ -2705,7 +2709,7 @@ def _emit_publication(
         )
     publisher_paths: list[str] = []
     for index, block in enumerate(chunks(publishers, RECORD_CHUNK_SIZE)):
-        block_rows = list(block)
+        block_rows = [{**row, "core_role": "concept"} for row in block]
         path = output / "data" / f"publishers-{index}.json.gz"
         write_gzip_json(path, block_rows)
         publisher_paths.append(path.relative_to(output).as_posix())
@@ -2742,7 +2746,7 @@ def _emit_publication(
         )
     resource_paths: list[str] = []
     for index, block in enumerate(chunks(resources, RECORD_CHUNK_SIZE)):
-        block_rows = list(block)
+        block_rows = [{**row, "core_role": "concept"} for row in block]
         path = output / "data" / f"resources-{index}.json.gz"
         write_gzip_json(path, block_rows)
         resource_paths.append(path.relative_to(output).as_posix())
@@ -3029,9 +3033,14 @@ def _emit_publication(
         snapshot_id,
         demonstrator=demonstrator is not None,
     )
-    local_context = ROOT / "semantic" / "context" / "govuk-okf-v1.jsonld"
+    frozen_v1_context = ROOT / "semantic" / "context" / "govuk-okf-v1.jsonld"
+    if frozen_v1_context.is_file():
+        legacy_context_target = output / "context" / "govuk-okf-v1.jsonld"
+        legacy_context_target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(frozen_v1_context, legacy_context_target)
+    local_context = ROOT / "semantic" / "context" / "govuk-okf-v2.jsonld"
     if local_context.is_file():
-        context_target = output / "context" / "govuk-okf-v1.jsonld"
+        context_target = output / "context" / "govuk-okf-v2.jsonld"
         context_target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(local_context, context_target)
     semantic_source = ROOT / "semantic"
@@ -3063,7 +3072,7 @@ def _emit_publication(
                                 "title": "GOV.UK OKF semantic profile",
                                 "description": (
                                     "Human-readable guide to the GOV.UK semantic "
-                                    "profile layered over OKF v0.2."
+                                    "profile layered over OKF core 0.3."
                                 ),
                                 "tags": ["govuk", "okf", "semantic-profile"],
                                 "generated": {
@@ -3073,8 +3082,8 @@ def _emit_publication(
                                 "sources": [
                                     {
                                         "id": "profile",
-                                        "resource": "profile/govuk-okf-profile-v1.yamlld",
-                                        "title": "GOV.UK OKF semantic profile v1",
+                                        "resource": "profile/govuk-okf-profile-v2.yamlld",
+                                        "title": "GOV.UK OKF semantic profile v2",
                                     }
                                 ],
                                 "status": "draft",
@@ -3111,6 +3120,11 @@ def _emit_publication(
         source_count=source_count,
         semantic_projection_digest=semantic_projection_digest,
         demonstrator=demonstrator is not None,
+    )
+    walkthrough_outputs = (
+        build_walkthrough(output, datasets, publishers, relationships, snapshot_id)
+        if demonstrator is not None
+        else {}
     )
     markdown_concept_count = sum(
         1
@@ -3180,6 +3194,14 @@ def _emit_publication(
             "semantic_projection": "data/semantic/manifest.json",
             "markdown_index": "index.md",
             "canonical_concepts": "concepts/index.md",
+            **(
+                {
+                    name: reference["path"]
+                    for name, reference in walkthrough_outputs.items()
+                }
+                if walkthrough_outputs
+                else {}
+            ),
             **({"demonstrator": "data/demonstrator.json"} if demonstrator is not None else {}),
         },
         # The shared OKF Explorer contract requires string entrypoint paths.
@@ -3226,6 +3248,7 @@ def _emit_publication(
                 "path": "concepts/index.md",
                 "sha256": _file_sha256(output / "concepts" / "index.md"),
             },
+            **walkthrough_outputs,
             **(
                 {
                     "demonstrator": {
@@ -3248,7 +3271,7 @@ def _emit_publication(
             "search_placeholder": "Search GOV.UK titles, summaries, types and organisations",
         },
         "extensions": {
-            "okf-v0.2": {
+            "okf-v0.3": {
                 "canonical_markdown_entrypoint": "canonical_concepts",
                 "canonical_concepts": markdown_concept_count,
                 "domain_concepts": markdown["concept_count"],
@@ -3258,7 +3281,7 @@ def _emit_publication(
                 "trust_default": "unverified",
                 "attested_computations_auto_execute": False,
             },
-            "govuk-okf-profile.v1": {"provenance_required": True, "source_native_before_inference": True},
+            "govuk-okf-profile.v2": {"provenance_required": True, "source_native_before_inference": True},
             "okf-explorer-analysis.v1": {"entrypoint": "analysis_overview", "mode": "external"},
             "govuk-site-topology.v1": {"entrypoint": "site_topology", "full_record_detail": True},
             **(

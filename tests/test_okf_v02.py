@@ -11,20 +11,22 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from govuk_okf.okf_v02 import (  # noqa: E402
-    OKF_VERSION,
     parse_frontmatter,
     render_frontmatter,
     validate_concept_metadata,
-    validate_okf_v02_bundle,
+)
+from govuk_okf.okf_v03 import (  # noqa: E402
+    OKF_VERSION,
+    validate_okf_v03_bundle,
 )
 from govuk_okf.publication import build_publication, load_jsonl  # noqa: E402
 from govuk_okf.util import read_gzip_json  # noqa: E402
 
 
-class OkfV02Tests(unittest.TestCase):
+class OkfV03Tests(unittest.TestCase):
     fixture = ROOT / "tests" / "fixtures" / "corpus" / "source-records.jsonl"
     generated_at = "2026-07-25T09:30:00Z"
-    snapshot = "fixture-okf-v02"
+    snapshot = "fixture-okf-v03"
 
     def build(self, output: Path) -> None:
         build_publication(
@@ -38,7 +40,7 @@ class OkfV02Tests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "bundle"
             self.build(output)
-            self.assertEqual([], validate_okf_v02_bundle(output))
+            self.assertEqual([], validate_okf_v03_bundle(output))
             root, _body = parse_frontmatter(
                 (output / "index.md").read_text(encoding="utf-8")
             )
@@ -94,6 +96,8 @@ class OkfV02Tests(unittest.TestCase):
                 (output / "okf-bundle.jsonld").read_text(encoding="utf-8")
             )
             self.assertEqual(OKF_VERSION, descriptor["okf_version"])
+            self.assertEqual("0.3", OKF_VERSION)
+            self.assertEqual("https://chris-page-gov.github.io/okf-govuk-content/semantic/profile/v2/", descriptor["profile"])
             self.assertEqual(OKF_VERSION, semantic["okfVersion"])
             self.assertEqual(
                 "concepts/index.md",
@@ -107,8 +111,28 @@ class OkfV02Tests(unittest.TestCase):
                 descriptor["snapshot_state"]["live_authority"],
             )
             self.assertTrue(descriptor["snapshot_state"]["drift_expected"])
-            self.assertIn("govuk-okf-profile.v1", descriptor["extensions"])
-            self.assertIn("okf-v0.2", descriptor["extensions"])
+            self.assertIn("govuk-okf-profile.v2", descriptor["extensions"])
+            self.assertIn("okf-v0.3", descriptor["extensions"])
+            self.assertGreater(descriptor["extensions"]["okf-v0.3"]["domain_concepts"], 0)
+
+            manifest = json.loads((output / "data/semantic/manifest.json").read_text(encoding="utf-8"))
+            entity_path = output / manifest["chunks"]["entities"][0]
+            semantic_nodes = read_gzip_json(entity_path)["@graph"]
+            concepts = [node for node in semantic_nodes if node.get("@type") == "govuk:ContentItem"]
+            self.assertTrue(concepts)
+            self.assertTrue(all(node.get("core_role") == "concept" for node in concepts))
+            self.assertTrue(
+                all(
+                    node.get("core_role") == "extension"
+                    for node in semantic_nodes
+                    if node.get("@type") in {"govuk:Document", "govuk:Route"}
+                )
+            )
+            data_manifest = json.loads((output / "data/manifest.json").read_text(encoding="utf-8"))
+            dataset_rows = read_gzip_json(output / data_manifest["chunks"]["datasets"][0])
+            publisher_rows = read_gzip_json(output / data_manifest["chunks"]["publishers"][0])
+            self.assertTrue(all(row.get("core_role") == "concept" for row in dataset_rows))
+            self.assertTrue(all(row.get("core_role") == "concept" for row in publisher_rows))
 
     def test_canonical_concept_links_and_descriptor_counts_resolve(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -122,8 +146,13 @@ class OkfV02Tests(unittest.TestCase):
                 for path in output.rglob("*.md")
                 if path.name not in {"index.md", "log.md"}
             ]
-            extension = descriptor["extensions"]["okf-v0.2"]
+            extension = descriptor["extensions"]["okf-v0.3"]
             self.assertEqual(len(concept_files), extension["canonical_concepts"])
+            self.assertGreater(extension["domain_concepts"], 0)
+            self.assertEqual(
+                extension["canonical_concepts"],
+                extension["domain_concepts"] + extension["documentation_concepts"],
+            )
             domain_concepts = list(
                 (output / "concepts").rglob("*.md")
             )
@@ -176,7 +205,7 @@ class OkfV02Tests(unittest.TestCase):
             validate_concept_metadata(concept, label="future.md"),
         )
 
-    def test_missing_type_and_invalid_attested_computation_fail(self) -> None:
+    def test_ancillary_without_type_is_allowed_and_invalid_computation_fails(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             bundle = Path(directory)
             (bundle / "index.md").write_text(
@@ -186,7 +215,8 @@ class OkfV02Tests(unittest.TestCase):
             (bundle / "broken.md").write_text(
                 render_frontmatter(
                     {
-                        "title": "Missing type",
+                        "type": "Attested Computation",
+                        "title": "Missing runtime",
                         "generated": {
                             "by": "producer/1.0",
                             "at": "2026-07-25T09:30:00Z",
@@ -196,13 +226,19 @@ class OkfV02Tests(unittest.TestCase):
                 + "# Broken\n",
                 encoding="utf-8",
             )
-            errors = validate_okf_v02_bundle(bundle)
-            self.assertTrue(any("type must be" in error for error in errors))
-        errors = validate_concept_metadata(
-            {"type": "Attested Computation"},
-            label="computation.md",
-        )
-        self.assertTrue(any("requires runtime" in error for error in errors))
+            (bundle / "guide.md").write_text("# Unclassified helper\n", encoding="utf-8")
+            errors = validate_okf_v03_bundle(bundle)
+            self.assertTrue(any("requires runtime" in error for error in errors))
+
+    def test_ancillary_markdown_without_type_is_not_a_core_concept(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            bundle = Path(directory)
+            (bundle / "index.md").write_text(
+                render_frontmatter({"okf_version": OKF_VERSION}) + "# Bundle\n",
+                encoding="utf-8",
+            )
+            (bundle / "guide.md").write_text("# Guide\n\nPlain documentation.\n", encoding="utf-8")
+            self.assertEqual([], validate_okf_v03_bundle(bundle))
 
 
 if __name__ == "__main__":

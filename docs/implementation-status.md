@@ -4,14 +4,20 @@
 - Milestone: T0 census closed; bounded new-child demonstrator produced
 - Publication ready: **no**
 
-The bounded publication now conforms to the OKF v0.2 Markdown contract. It
+The metrics in this programme status record remain dated 16 August 2026. A
+separate local implementation candidate dated 24 November 2026 migrates the
+bounded demonstrator's Markdown and generated Reader projections to OKF core
+0.3; it does not refresh the data snapshot or advance programme release status.
+
+The bounded publication now conforms to the OKF core 0.3 Markdown contract. It
 retains the existing GOV.UK/Explorer profile extensions, makes canonical
 concepts progressively discoverable under `bundle/concepts/`, and exposes the
 governed snapshot versus live GOV.UK distinction. No `verified` or
 `stale_after` evidence was created by the format migration; current generated
 concepts remain explicitly draft and unverified. This is a format and trust
 surface improvement, not a change to the full-corpus or release-readiness
-status. See `docs/okf-v02-conformance.md` and ADR-010.
+status. See `docs/okf-v03-migration.md` for the active candidate and ADR-010
+for the historical v0.2 decision.
 
 The repository has a working deterministic 69-record new-child demonstrator
 and the main release-oriented implementations, but it has not completed the
@@ -40,7 +46,7 @@ user research remains unauthorised and is not claimed.
 |---|---|---|
 | Contract and controller | 95 requirements, 11 gates and 36 task contracts imported; controller checks pass | Accepted run evidence and terminal requirement dispositions |
 | Official sources | Dated 32-source and 93-URL plan preflight retained; the new T0R-20260715 union closed from 715,902 opposing-pass Search rows, 35 byte-stable sitemap shards and closed organisations/navigation | Immediate enrichment, deferred-field disposition, T1 union closure and final rights/citation snapshot binding |
-| Semantic profile | OKF v0.2 canonical Markdown plus YAML-LD profile, JSON schemas, crosswalks, shapes and JSON-LD fixture projection produced; generated/source/retrieval times remain distinct and trust is explicitly unverified | Release-snapshot equivalence, integrity and provenance evidence; real verification/review events where authorised |
+| Semantic profile | Local OKF core 0.3 migration candidate over the frozen 15 July bounded source; custom GOV.UK profile v2 and additive core roles; central v1 dependencies preserved | Exact candidate CI, independent full graph parity, real-browser/AI traversal, release-snapshot equivalence and authorised human evaluation; programme release remains unready |
 | Bundle and Explorer | Accepted body-free snapshot closes 69/69 seeds with zero unexplained omissions, 118 bounded metadata observations, 753 direct typed boundaries and 127 individually receipted HTTP 200 attempts; static search, route index, adjacency, dedicated journey view, source-query evidence, query/hash replay, Pages fallback and read-only discovery are produced; exact-byte postings partitions and 1,000-record document maps preserve logical lookup and legacy manifests while bounding physical files. The preview search worker satisfies its Trusted Types policy, visible examples are in scope, and automated pointer tests enforce zero-click scope, one-click results and two-click record-detail budgets. A separate manual-only preview packages and publishes the exact checked-in fixture while retaining checkpoint and non-release labels | Retain successful artefact-transport, browser and live-byte evidence for each preview deployment; separately rerun full-corpus capacity/closing and its accessibility/security/performance gates; axe, accessibility-expert, screen-reader and representative-user review remain open |
 | AI handoff | Question-specific Markdown/JSON export is the universal default; the full portable pack is labelled bulk/archive. The deterministic Python/CLI adapter and official-SDK MCP server expose five read-only, idempotent, closed-world bounded tools, validate the 69-record identity and finite data-plane hashes, and make no model calls or arbitrary URL fetches | Retain the rule that metadata supports discovery, not eligibility or substantive guidance. Local stdio and SDK round trips pass; a remote MCP service would additionally require TLS, authentication, authorisation, Origin validation, rate limits and audit logging |
 | Security | Completed repository-wide scan recorded 14 findings; its remediation diff scan confirmed those fixes and found three residual low issues, all fixed at `27890dc`; 32 focused post-fix tests pass | Run and hash-bind a new full-repository scan after the hydrated release snapshot and publication artefacts are frozen; `security_scan_passed` remains false |

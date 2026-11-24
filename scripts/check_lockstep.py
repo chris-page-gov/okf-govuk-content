@@ -65,6 +65,7 @@ REQUIRED = [
     "reports/aim-scorecard.md",
     "scripts/promote_release.py",
     "scripts/check_okf_v02.py",
+    "scripts/check_okf_v03.py",
     "scripts/check_publication_contract.py",
 ]
 

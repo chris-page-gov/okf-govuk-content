@@ -26,7 +26,7 @@ from .demonstrator_projection import (
     SUBGROUP_IDS,
     SUBGROUP_MEMBERSHIP_BY_ID,
 )
-from .okf_v02 import OKF_VERSION, validate_okf_v02_bundle
+from .okf_v03 import OKF_VERSION, validate_okf_v03_bundle
 from .publication import (
     DATA_PLANE_BUDGETS,
     DATA_PLANE_SCHEMA_VERSION,
@@ -503,7 +503,7 @@ class PublicationValidator:
             return {}, {}, {}
         if any(path.name == ".DS_Store" for path in self.bundle.rglob("*")):
             self.errors.add("Finder artefact present in bundle")
-        for error in validate_okf_v02_bundle(self.bundle):
+        for error in validate_okf_v03_bundle(self.bundle):
             self.errors.add(f"OKF v{OKF_VERSION}: {error}")
         descriptor = self.load_json(
             "okf-explorer.json", label="Explorer descriptor", default={}

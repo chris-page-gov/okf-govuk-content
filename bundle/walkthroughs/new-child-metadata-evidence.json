@@ -1,0 +1,113 @@
+{
+  "answer_scope": "frozen metadata discovery only; not current entitlement or advice",
+  "assertions": [
+    {
+      "assertion_id": "assertion-b4f67ed7f571f6f3a567d48a3b0861711f9a181f283dbbc9c8139f2c0fddd631",
+      "evidence_locator": "/links/organisations",
+      "evidence_sha256": "383feea61b6c57ce27865acc25ba5ec3de8aac87da433564ae29c3e9a14f3ca6",
+      "evidence_url": "https://www.gov.uk/api/content/plan-shared-parental-leave-pay",
+      "kind": "associated with organisation",
+      "target": "publisher/department-for-business-and-trade"
+    },
+    {
+      "assertion_id": "assertion-eeb79a0157e02c1b857652dd1cd14c2cd573cc1f3437ea9fb99b4a9c255c6d91",
+      "evidence_locator": "/links/organisations",
+      "evidence_sha256": "383feea61b6c57ce27865acc25ba5ec3de8aac87da433564ae29c3e9a14f3ca6",
+      "evidence_url": "https://www.gov.uk/api/content/plan-shared-parental-leave-pay",
+      "kind": "associated with organisation",
+      "target": "publisher/department-for-business-energy-and-industrial-strategy"
+    },
+    {
+      "assertion_id": "assertion-6a4a978a398753795d3fd3d4f04e4244c18383ce044d8061edc1a52d9ac81c55",
+      "evidence_locator": "/links/primary_publishing_organisation",
+      "evidence_sha256": "383feea61b6c57ce27865acc25ba5ec3de8aac87da433564ae29c3e9a14f3ca6",
+      "evidence_url": "https://www.gov.uk/api/content/plan-shared-parental-leave-pay",
+      "kind": "published by",
+      "target": "publisher/government-digital-service"
+    },
+    {
+      "assertion_id": "assertion-f8949a93e163f0fc2f995826d02001cab39f5c358dcf180733f82c11832171b7",
+      "evidence_locator": "/links/ordered_related_items",
+      "evidence_sha256": "383feea61b6c57ce27865acc25ba5ec3de8aac87da433564ae29c3e9a14f3ca6",
+      "evidence_url": "https://www.gov.uk/api/content/plan-shared-parental-leave-pay",
+      "kind": "related to",
+      "target": "dataset/dc68775c-3df8-4930-ad22-bde7bfbb3b61-en"
+    }
+  ],
+  "case_id": "new-child-cross-route-parental-leave",
+  "case_sha256": "ece87269b1f53ca4db69cb6361f67f2837eb1c6f44c92b131a7f647cde70f5c8",
+  "diagrams": {
+    "desktop": {
+      "path": "walkthroughs/new-child-metadata-desktop.svg",
+      "sha256": "f35cd60bb3053a394e936317b1c56345cb3c6e0dbcb31e6e1853ec73a8f6275f"
+    },
+    "mobile": {
+      "path": "walkthroughs/new-child-metadata-mobile.svg",
+      "sha256": "d0b14f51a98e300d1dc8b224a3f6dfc676f865be4ce807a99c189287a097d8f4"
+    }
+  },
+  "limitations": [
+    "The record is from snapshot NEW-CHILD-20260715, retrieved on 15 July 2026; live GOV.UK may have changed.",
+    "The source metadata does not establish current eligibility or payment amounts.",
+    "The associated organisation records are retained metadata links and do not establish present responsibility."
+  ],
+  "question": "In this frozen demonstrator, which parental-leave item is listed under both pregnancy and birth and financial help for children? Which page is linked to it, who is shown as publisher, which organisations are associated with it, and can this snapshot establish a family's current entitlement or pay?",
+  "reader_link": "https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-govuk-content%2Fokf-explorer.json&view=reader&q=Plan%20your%20Shared%20Parental%20Leave%20and%20Pay#dataset/1de204a4-466c-4641-8b93-7c8e6b60ee39-en",
+  "records": {
+    "associated_organisations": [
+      {
+        "path": "concepts/publisher/department-for-business-and-trade.md",
+        "route": "publisher/department-for-business-and-trade",
+        "sha256": "c96a0a710a60b9ec39700d284766551276299b495d653c5ae4e33aeaef79d28a",
+        "title": "Department for Business and Trade"
+      },
+      {
+        "path": "concepts/publisher/department-for-business-energy-and-industrial-strategy.md",
+        "route": "publisher/department-for-business-energy-and-industrial-strategy",
+        "sha256": "8c90e183b3616e3472df1ad3a9e3359a2b0dc61109f8b64292e695f3b5c0143a",
+        "title": "Department for Business, Energy & Industrial Strategy"
+      }
+    ],
+    "negative_control": {
+      "path": "concepts/dataset/6e2a4012-2448-47fd-b7ec-a47396e4b114-en.md",
+      "route": "dataset/6e2a4012-2448-47fd-b7ec-a47396e4b114-en",
+      "sha256": "4af8b4f9fe0835a8efc7cdb3e237f6f185faba00ca036c9e0354a9ecd5265031",
+      "source_memberships": [
+        "mainstream-browse:childcare-parenting/childcare",
+        "mainstream-browse:childcare-parenting/financial-help-children",
+        "new-child-demo-search-seed",
+        "structured-content-api"
+      ],
+      "title": "Tax-Free Childcare"
+    },
+    "primary": {
+      "evidence_sha256": "383feea61b6c57ce27865acc25ba5ec3de8aac87da433564ae29c3e9a14f3ca6",
+      "modified_at": "2021-06-17T07:39:25+01:00",
+      "path": "concepts/dataset/1de204a4-466c-4641-8b93-7c8e6b60ee39-en.md",
+      "retrieved_at": "2026-07-15T06:24:22.536117+00:00",
+      "route": "dataset/1de204a4-466c-4641-8b93-7c8e6b60ee39-en",
+      "sha256": "f67f2de772e185f62471115296a973f38d3c1eb51038bceec3df79888f694f84",
+      "source_memberships": [
+        "mainstream-browse:childcare-parenting/financial-help-children",
+        "mainstream-browse:childcare-parenting/pregnancy-birth",
+        "new-child-demo-search-seed",
+        "structured-content-api"
+      ],
+      "title": "Plan your Shared Parental Leave and Pay"
+    },
+    "publisher": {
+      "path": "concepts/publisher/government-digital-service.md",
+      "route": "publisher/government-digital-service",
+      "sha256": "b922d0c245ab569c34608299e2dbce34e1eda424eefdbf6dd9cf33a0a86f0da8",
+      "title": "Government Digital Service"
+    },
+    "related": {
+      "path": "concepts/dataset/dc68775c-3df8-4930-ad22-bde7bfbb3b61-en.md",
+      "route": "dataset/dc68775c-3df8-4930-ad22-bde7bfbb3b61-en",
+      "sha256": "92c557389e3ec3b339f25cf07cccf514f0ba88b0fd7c091495c9802357e56149",
+      "title": "Shared Parental Leave and Pay"
+    }
+  },
+  "schema": "govuk-okf-walkthrough-evidence.v1",
+  "snapshot": "NEW-CHILD-20260715"
+}

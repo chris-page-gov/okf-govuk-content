@@ -57,6 +57,7 @@ COPY_INPUTS = (
     "release/manifest.yaml",
     "research/official-source-audit.md",
     "research/source-constraints.json",
+    "questions/new-child-metadata-walkthrough.json",
     "src",
     "scripts/build_bundle.py",
     "scripts/build_checksums.py",

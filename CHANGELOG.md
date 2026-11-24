@@ -5,6 +5,28 @@ semantic versioning.
 
 ## [Unreleased]
 
+### Changed
+
+- Include the authored walkthrough case in clean-room reproduction inputs and
+  refresh the fixture's reproduction and rights/privacy audit bindings after
+  the 0.3 build. The sampled audit retains its checkpoint status.
+
+- Regenerate the citation inventory for the pinned core 0.3 specification and
+  updated profile references. Keep reference collection separate from source
+  verification and domain claim acceptance.
+
+- Run the active core 0.3 validator in CI and bounded-preview publication;
+  retain the core 0.2 helper for historical compatibility checks. Include the
+  new validator in documentation lockstep controls.
+
+- Migrate the active bounded demonstrator from OKF core 0.2 to core 0.3 using
+  the unchanged 15 July 2026 source snapshot. Keep the frozen v0.2 helper and
+  all version 1 profile schemas and contexts byte-identical; add a distinct
+  GOV.UK semantic profile v2, path-aware validation, and explicit core roles
+  on generated runtime and semantic entities. The source-linked walkthrough's
+  primary and related links now open the matching source title in Explorer
+  Reader view. This is not a full-corpus or human-evaluation completion claim.
+
 ### Fixed
 
 - Update the locked Certifi trust store to 2026.10.19, outside the affected

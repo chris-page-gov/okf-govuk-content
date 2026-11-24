@@ -1,5 +1,5 @@
 ---
-okf_version: "0.2"
+okf_version: "0.3"
 ---
 # What’s on GOV.UK
 
@@ -7,7 +7,7 @@ This derived, non-authoritative OKF Bundle Wiki is a discovery aid. GOV.UK remai
 
 This is a bounded 69-record new-child demonstrator, not a complete GOV.UK corpus.
 
-- OKF version: `0.2`
+- OKF version: `0.3`
 - Snapshot: `NEW-CHILD-20260715`
 - Publication generated: `2026-07-15T06:25:17Z`
 - Records: 69

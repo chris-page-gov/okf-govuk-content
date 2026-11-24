@@ -230,7 +230,7 @@ def descriptor_equivalence(bundle: Path) -> dict[str, Any]:
                 "rdfc-equivalence.mjs",
                 str(yaml_json),
                 str(json_path),
-                str(bundle / "context" / "govuk-okf-v1.jsonld"),
+                str(bundle / "context" / "govuk-okf-v2.jsonld"),
             ],
             cwd=ROOT / "semantic",
             capture_output=True,
@@ -256,8 +256,8 @@ def run_validation(bundle: Path, *, require_shard_metadata: bool) -> dict[str, A
     if manifest.get("schema") != "govuk-okf-semantic-projection.v1":
         raise SemanticValidationError("unsupported semantic projection manifest")
     expected_context = str(manifest.get("context") or "")
-    local_context = safe_path(bundle, "context/govuk-okf-v1.jsonld")
-    copied_context = safe_path(bundle, "semantic/context/govuk-okf-v1.jsonld")
+    local_context = safe_path(bundle, "context/govuk-okf-v2.jsonld")
+    copied_context = safe_path(bundle, "semantic/context/govuk-okf-v2.jsonld")
     if sha256_file(local_context) != sha256_file(copied_context):
         raise SemanticValidationError("published and profile JSON-LD contexts differ")
 
