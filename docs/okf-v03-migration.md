@@ -11,6 +11,10 @@ manifest has SHA-256
 Source observation and retrieval dates remain those recorded in the snapshot;
 this implementation date does not update them.
 
+CI and bounded-preview publication validate the active source with
+`scripts/check_okf_v03.py`. The retained `scripts/check_okf_v02.py` helper
+is for historical compatibility, not the active 0.3 tree.
+
 ## Core and profile boundaries
 
 The generated source tree has 86 typed Markdown concepts: 83 content-item and

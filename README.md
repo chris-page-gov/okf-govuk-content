@@ -196,7 +196,7 @@ python3 scripts/check_repository_policy.py
 python3 scripts/check_provenance.py
 python3 scripts/build_bundle.py --check
 python3 -m unittest discover -s tests -v
-python3 scripts/check_okf_v02.py
+python3 scripts/check_okf_v03.py
 python3 scripts/check_publication.py
 python3 scripts/build_checksums.py --check
 python3 scripts/build_sbom.py --check

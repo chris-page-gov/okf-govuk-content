@@ -7,6 +7,10 @@ semantic versioning.
 
 ### Changed
 
+- Run the active core 0.3 validator in CI and bounded-preview publication;
+  retain the core 0.2 helper for historical compatibility checks. Include the
+  new validator in documentation lockstep controls.
+
 - Migrate the active bounded demonstrator from OKF core 0.2 to core 0.3 using
   the unchanged 15 July 2026 source snapshot. Keep the frozen v0.2 helper and
   all version 1 profile schemas and contexts byte-identical; add a distinct

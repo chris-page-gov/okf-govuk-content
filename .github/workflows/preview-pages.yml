@@ -47,7 +47,7 @@ jobs:
           .venv/bin/python scripts/build_status_projections.py --check
           .venv/bin/python scripts/build_aim_scorecard.py --check
           .venv/bin/python scripts/check_ci_snapshot.py
-          .venv/bin/python scripts/check_okf_v02.py
+          .venv/bin/python scripts/check_okf_v03.py
           .venv/bin/python scripts/check_publication.py
           .venv/bin/python scripts/build_checksums.py --check
           .venv/bin/python scripts/build_sbom.py --check
