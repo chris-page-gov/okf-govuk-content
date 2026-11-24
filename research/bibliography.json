@@ -1789,6 +1789,27 @@
       "version_or_commit": "2025-11-25"
     },
     {
+      "authority_class": "maintainer_primary",
+      "expected_hosts": [
+        "github.com"
+      ],
+      "expected_identity_terms": [
+        "okf core"
+      ],
+      "labels": [
+        "OKF core 0.3"
+      ],
+      "locator_hint": {
+        "kind": "commit_lines",
+        "value": "open-knowledge-format@527e81aff55992be21507e97004286789126f88c:SPEC.md"
+      },
+      "publisher": "Version-pinned upstream repository",
+      "requested_url": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md",
+      "schema_version": "1.0",
+      "source_id": "SRC-950C1E9A4A5B3FAE",
+      "version_or_commit": "527e81aff55992be21507e97004286789126f88c"
+    },
+    {
       "authority_class": "official_primary",
       "expected_hosts": [
         "www.gov.uk"
@@ -1911,16 +1932,18 @@
         "www.w3.org"
       ],
       "expected_identity_terms": [
+        "yaml working draft",
         "yaml document",
         "yaml"
       ],
       "labels": [
+        "YAML-LD 1.0 Working Draft",
         "YAML-LD 1.0 document",
         "YAML-LD 1.0"
       ],
       "locator_hint": {
         "kind": "heading_text_fingerprint",
-        "value": "YAML-LD 1.0 document"
+        "value": "YAML-LD 1.0 Working Draft"
       },
       "publisher": "World Wide Web Consortium",
       "requested_url": "https://www.w3.org/TR/2026/WD-yaml-ld-10-20260708/",

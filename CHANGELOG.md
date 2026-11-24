@@ -7,6 +7,14 @@ semantic versioning.
 
 ### Changed
 
+- Include the authored walkthrough case in clean-room reproduction inputs and
+  refresh the fixture's reproduction and rights/privacy audit bindings after
+  the 0.3 build. The sampled audit retains its checkpoint status.
+
+- Regenerate the citation inventory for the pinned core 0.3 specification and
+  updated profile references. Keep reference collection separate from source
+  verification and domain claim acceptance.
+
 - Run the active core 0.3 validator in CI and bounded-preview publication;
   retain the core 0.2 helper for historical compatibility checks. Include the
   new validator in documentation lockstep controls.

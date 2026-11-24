@@ -242,7 +242,7 @@
           "operator": "json_equals",
           "path": "release/rights-privacy-audit.json",
           "pointer": "/rights_privacy_audit_passed",
-          "sha256": "e043fe8ec13c5e6a8590425290cc521baadb9da05258cdd49468346c7cf61737"
+          "sha256": "90f943e672ab3e4d977cb74dad90cceb502a1819cc363419d68bfbca80948f76"
         }
       ],
       "exceptions": [],
@@ -1239,7 +1239,7 @@
           "operator": "json_equals",
           "path": "release/clean-room-reproduction.json",
           "pointer": "/fixture_reproduction_passed",
-          "sha256": "332b4cf71ed901dc725222e3fff548d6b1d4415d9a974b7123ccb54eaab841d7"
+          "sha256": "ddfd377e11d45764e889651998ee490a281f767fa21eca57a9d2933898a084de"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -1489,7 +1489,7 @@
         "operator": "json_equals",
         "path": "release/rights-privacy-audit.json",
         "pointer": "/rights_privacy_audit_passed",
-        "sha256": "e043fe8ec13c5e6a8590425290cc521baadb9da05258cdd49468346c7cf61737"
+        "sha256": "90f943e672ab3e4d977cb74dad90cceb502a1819cc363419d68bfbca80948f76"
       }
     ],
     "passed": false,

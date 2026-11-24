@@ -2,6 +2,16 @@
 
 Status: local candidate implementation, 24 November 2026.
 
+The citation inventory includes the pinned core 0.3 specification and current
+profile references. Collection runs offline from the reviewed repository
+documents. Source verification and domain claim acceptance remain separate
+gates.
+
+Clean-room reproduction copies the authored walkthrough case alongside the
+builder. Reproduction evidence and the sampled rights/privacy audit bind the
+current publication manifest. The sampled audit remains a checkpoint with
+the full-product rights and review gates still open.
+
 The active generated bundle declares OKF core 0.3. Its source remains the
 unchanged `NEW-CHILD-20260715` snapshot, not a newly acquired GOV.UK dataset.
 The snapshot `source-records.jsonl` has SHA-256
