@@ -1,22 +1,22 @@
 {
-  "@context": "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v1.jsonld",
+  "@context": "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v2.jsonld",
   "@graph": [
     {
-      "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8",
+      "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967",
       "@type": "govuk:Evidence",
       "authority": "source_native",
-      "evidenceUrl": "https://github.com/chris-page-gov/okf-govuk-content/blob/main/semantic/profile/govuk-okf-profile-v1.yamlld",
+      "evidenceUrl": "https://github.com/chris-page-gov/okf-govuk-content/blob/main/semantic/profile/govuk-okf-profile-v2.yamlld",
       "license": {
         "@id": "https://github.com/chris-page-gov/okf-govuk-content/blob/main/LICENSE.md"
       },
       "locator": {
         "locatorKind": "schema_path",
-        "locatorValue": "semantic/profile/govuk-okf-profile-v1.yamlld"
+        "locatorValue": "semantic/profile/govuk-okf-profile-v2.yamlld"
       },
       "mediaType": "application/yaml",
       "retrievedAt": "2026-07-15T06:25:17Z",
       "rightsStatus": "source_declared",
-      "sha256": "897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8",
+      "sha256": "3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967",
       "snapshotId": "NEW-CHILD-20260715",
       "sourceAuthority": "unknown",
       "sourceSystem": "govuk_okf_profile",
@@ -31,7 +31,7 @@
       "endedAt": "2026-07-15T06:25:17Z",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -48,7 +48,7 @@
       "description": "Source-native GOV.UK document type.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -65,7 +65,7 @@
       "description": "Source-native GOV.UK document type.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -82,7 +82,7 @@
       "description": "Source-native GOV.UK document type.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -99,7 +99,7 @@
       "description": "Source-native GOV.UK document type.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -116,7 +116,7 @@
       "description": "Source-native GOV.UK document type.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -133,7 +133,7 @@
       "description": "Source-native GOV.UK document type.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -150,7 +150,7 @@
       "description": "Source-native GOV.UK document type.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -167,7 +167,7 @@
       "description": "Source-native GOV.UK document type.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -184,7 +184,7 @@
       "description": "Version-pinned GOV.UK Publishing API schema family.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -203,7 +203,7 @@
       "description": "Version-pinned GOV.UK Publishing API schema family.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -222,7 +222,7 @@
       "description": "Version-pinned GOV.UK Publishing API schema family.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -241,7 +241,7 @@
       "description": "Version-pinned GOV.UK Publishing API schema family.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -260,7 +260,7 @@
       "description": "Version-pinned GOV.UK Publishing API schema family.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -279,7 +279,7 @@
       "description": "Version-pinned GOV.UK Publishing API schema family.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -298,7 +298,7 @@
       "description": "Version-pinned GOV.UK Publishing API schema family.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",
@@ -317,7 +317,7 @@
       "description": "Version-pinned GOV.UK Publishing API schema family.",
       "evidence": [
         {
-          "@id": "urn:govuk:evidence:profile:897430cb44849f3b6e96d8f7ad9b7f9f5242b4f3fcd0df4ec445f55d5221daf8"
+          "@id": "urn:govuk:evidence:profile:3fa40741654bf1cc8fd63c4b9329c65a1e1366cf0d8f745cdd31dc72807ec967"
         }
       ],
       "retrievedAt": "2026-07-15T06:25:17Z",

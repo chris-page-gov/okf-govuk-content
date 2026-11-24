@@ -1,5 +1,5 @@
 {
-  "@context": "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v1.jsonld",
+  "@context": "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v2.jsonld",
   "@id": "https://chris-page-gov.github.io/okf-govuk-content/okf-bundle.yamlld",
   "@type": "okf:Bundle",
   "canonicalMarkdownIndex": {
@@ -27,7 +27,7 @@
     "@id": "https://chris-page-gov.github.io/okf-govuk-content/okf-explorer.json"
   },
   "extensions": [
-    "govuk-okf-profile.v1",
+    "govuk-okf-profile.v2",
     "govuk-okf-semantic-projection.v1",
     "okf-explorer-large-corpus.v1",
     "okf-static-search.v1",
@@ -42,9 +42,9 @@
   "license": {
     "@id": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
   },
-  "okfVersion": "0.2",
+  "okfVersion": "0.3",
   "profile": {
-    "@id": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/"
+    "@id": "https://chris-page-gov.github.io/okf-govuk-content/semantic/profile/v2/"
   },
   "publisher": {
     "@id": "https://github.com/chris-page-gov"

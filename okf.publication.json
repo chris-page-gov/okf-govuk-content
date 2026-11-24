@@ -11,8 +11,8 @@
     "lifecycle": "active"
   },
   "semantic_contract": {
-    "path": "semantic/profile/govuk-okf-profile-v1.yamlld",
-    "profile": "https://chris-page-gov.github.io/okf-govuk-content/semantic/profile/v1/"
+    "path": "semantic/profile/govuk-okf-profile-v2.yamlld",
+    "profile": "https://chris-page-gov.github.io/okf-govuk-content/semantic/profile/v2/"
   },
   "source_families": [
     {
@@ -102,6 +102,7 @@
       {"path": "AGENTS.md", "role": "policy"},
       {"path": "CHANGELOG.md", "role": "changelog"},
       {"path": "okf.publication.json", "role": "publication-contract", "source_family_id": "programme-governance"},
+      {"path": "okf.semantic.json", "role": "semantic-contract", "source_family_id": "programme-governance"},
       {"path": ".github/workflows/**", "role": "workflow"}
     ],
     "generated": [
@@ -109,17 +110,21 @@
       {"path": "bundle/okf-bundle.jsonld", "role": "semantic-json-ld", "plane": "semantic", "required": true, "build_command_ids": ["build-bundle"], "check_command_ids": ["check-semantics"]},
       {"path": "bundle/data/**", "role": "semantic-shards", "plane": "runtime", "required": true, "build_command_ids": ["build-bundle"], "check_command_ids": ["check-bundle"]},
       {"path": "bundle/okf-explorer.json", "role": "explorer-runtime", "plane": "application", "required": true, "build_command_ids": ["build-bundle"], "check_command_ids": ["check-bundle"]},
+      {"path": "bundle/walkthroughs/new-child-metadata.html", "role": "other", "plane": "application", "required": true, "build_command_ids": ["build-bundle"], "check_command_ids": ["check-walkthrough"]},
+      {"path": "bundle/walkthroughs/new-child-metadata-*.svg", "role": "other", "plane": "application", "required": true, "build_command_ids": ["build-bundle"], "check_command_ids": ["check-walkthrough"]},
+      {"path": "bundle/walkthroughs/new-child-metadata-evidence.json", "role": "other", "plane": "browser", "required": true, "build_command_ids": ["build-bundle"], "check_command_ids": ["check-walkthrough"]},
+      {"path": "bundle/walkthroughs/new-child-metadata-explorer-journeys.json", "role": "other", "plane": "browser", "required": true, "build_command_ids": ["build-bundle"], "check_command_ids": ["check-walkthrough"]},
       {"path": "bundle/checksums.json", "role": "checksum-manifest", "plane": "release", "required": true, "build_command_ids": ["build-checksums"], "check_command_ids": ["check-checksums"]},
       {"path": "bundle/**", "role": "site", "plane": "deployment", "required": true, "build_command_ids": ["package-preview"], "check_command_ids": ["check-preview-package"]}
     ]
   },
   "planes": [
-    {"id": "source", "depends_on": [], "paths": ["okf.publication.json", "demo/snapshots/**", "corpus/**", "governance/**", "orchestration/**", "planning/**", "research/**", "provenance/**", "evaluation/**", "personas/**", "stories/**", "questions/**", "semantic/**", "src/**", "scripts/**", "tests/**"], "command_ids": ["acquire-demo", "import-contract", "check-publication-contract"]},
+    {"id": "source", "depends_on": [], "paths": ["okf.publication.json", "okf.semantic.json", "demo/snapshots/**", "corpus/**", "governance/**", "orchestration/**", "planning/**", "research/**", "provenance/**", "evaluation/**", "personas/**", "stories/**", "questions/**", "semantic/**", "src/**", "scripts/**", "tests/**"], "command_ids": ["acquire-demo", "import-contract", "check-publication-contract"]},
     {"id": "semantic", "depends_on": ["source"], "paths": ["semantic/**", "bundle/okf-bundle.yamlld", "bundle/okf-bundle.jsonld"], "command_ids": ["build-bundle", "check-semantics"]},
     {"id": "runtime", "depends_on": ["semantic"], "paths": ["bundle/data/**", "bundle/concepts/**", "bundle/index.md"], "command_ids": ["build-bundle", "check-bundle"]},
     {"id": "documentation", "depends_on": ["source"], "paths": ["README.md", "AGENTS.md", "CHANGELOG.md", "docs/**"], "command_ids": ["check-lockstep"]},
-    {"id": "application", "depends_on": ["runtime"], "paths": ["explorer/**", "bundle/okf-explorer.json"], "command_ids": ["test-explorer"]},
-    {"id": "browser", "depends_on": ["application", "documentation"], "paths": ["explorer/tests/**", "bundle/index.html", "bundle/app.js"], "command_ids": ["test-browser"]},
+    {"id": "application", "depends_on": ["runtime"], "paths": ["explorer/**", "bundle/okf-explorer.json", "bundle/walkthroughs/**"], "command_ids": ["test-explorer", "check-walkthrough"]},
+    {"id": "browser", "depends_on": ["application", "documentation"], "paths": ["explorer/tests/**", "bundle/index.html", "bundle/app.js", "bundle/walkthroughs/**"], "command_ids": ["test-browser", "check-walkthrough"]},
     {"id": "release", "depends_on": ["semantic", "runtime", "documentation", "browser"], "paths": ["release/**", "bundle/checksums.json"], "command_ids": ["build-status", "build-checksums", "check-checksums"]},
     {"id": "deployment", "depends_on": ["release"], "paths": [".github/workflows/**", "bundle/**"], "command_ids": ["package-preview", "check-preview-package", "verify-live-preview"]}
   ],
@@ -130,6 +135,7 @@
       {"id": "check-publication-contract", "kind": "check", "planes": ["source", "documentation"], "command": ".venv/bin/python scripts/check_publication_contract.py", "source": "AGENTS.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 2},
       {"id": "build-bundle", "kind": "build", "planes": ["semantic", "runtime", "application"], "command": ".venv/bin/python scripts/build_bundle.py", "source": "README.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "generated-only", "timeout_minutes": 15},
       {"id": "check-bundle", "kind": "check", "planes": ["runtime", "application"], "command": ".venv/bin/python scripts/build_bundle.py --check", "source": "AGENTS.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 15},
+      {"id": "check-walkthrough", "kind": "check", "planes": ["application", "browser"], "command": ".venv/bin/python scripts/check_walkthrough.py", "source": "okf.publication.json", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 2},
       {"id": "check-semantics", "kind": "check", "planes": ["semantic"], "command": ".venv/bin/python scripts/validate_semantics.py --require-shard-metadata --check", "source": "AGENTS.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 10},
       {"id": "test-explorer", "kind": "test", "planes": ["application"], "command": "npm test --prefix explorer", "source": "README.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 10},
       {"id": "test-browser", "kind": "test", "planes": ["browser"], "command": "npm run test:browser --prefix explorer", "source": "README.md", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 10},
@@ -143,7 +149,7 @@
     ]
   },
   "lockstep": {
-    "controlled_paths": ["okf.publication.json", "semantic/**", "demo/snapshots/**", "corpus/**", "src/**", "scripts/**", "explorer/**", "release/**", "governance/**", ".github/workflows/**"],
+    "controlled_paths": ["okf.publication.json", "okf.semantic.json", "semantic/**", "demo/snapshots/**", "corpus/**", "src/**", "scripts/**", "explorer/**", "release/**", "governance/**", ".github/workflows/**"],
     "documentation_paths": ["README.md", "AGENTS.md", "docs/**"],
     "changelog_path": "CHANGELOG.md",
     "check_command_id": "check-lockstep",
@@ -188,10 +194,20 @@
         "checks": [
           {"id": "descriptor-link", "kind": "linked-json", "href_contains": "okf-explorer.json", "expected_schema": "okf-explorer-bundle.v1"}
         ]
+      },
+      {
+        "id": "new-child-metadata-walkthrough",
+        "url": "https://chris-page-gov.github.io/okf-govuk-content/walkthroughs/new-child-metadata.html",
+        "expected_identity": "Source-linked complex question for snapshot NEW-CHILD-20260715; one 69-record bundle and its exact generated Explorer descriptor.",
+        "steps": ["Read the source-bounded question, answer, negative control and limitations.", "Open the primary source Markdown and inspect its published-by, related-to and associated-organisation assertions.", "Click the visible OKF Explorer deep link and confirm the selected record identity.", "Open the related record through the graph and search for the primary record.", "Require no browser console errors."],
+        "checks": [
+          {"id": "walkthrough-source-digests", "kind": "linked-json", "href_contains": "new-child-metadata-evidence.json", "expected_schema": "govuk-okf-walkthrough-evidence.v1"},
+          {"id": "reader-journeys", "kind": "linked-json", "href_contains": "new-child-metadata-explorer-journeys.json", "expected_schema": "okf-explorer-journeys.v1"}
+        ]
       }
     ],
     "console_policy": "no-errors",
-    "command_ids": ["test-browser", "check-preview-package", "verify-live-preview"]
+    "command_ids": ["test-browser", "check-walkthrough", "check-preview-package", "verify-live-preview"]
   },
   "limitations": [
     "This contract records the checked-in bounded demonstrator and the separately gated release mechanism; it does not claim the complete Release 1 corpus.",

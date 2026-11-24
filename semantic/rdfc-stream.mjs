@@ -11,7 +11,7 @@ const [contextPath] = process.argv.slice(2);
 if (!contextPath) throw new Error("usage: rdfc-stream.mjs <offline-context.jsonld>");
 const contextDocument = JSON.parse(await readFile(resolve(contextPath), "utf8"));
 const loader = async (url) => {
-  if (String(url).endsWith("/context/govuk-okf-v1.jsonld")) {
+  if (/\/context\/govuk-okf-v[12]\.jsonld$/.test(String(url))) {
     return { contextUrl: null, document: contextDocument, documentUrl: url };
   }
   throw new Error(`network and undeclared JSON-LD context are forbidden: ${url}`);

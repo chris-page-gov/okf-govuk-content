@@ -5,6 +5,16 @@ semantic versioning.
 
 ## [Unreleased]
 
+### Changed
+
+- Migrate the active bounded demonstrator from OKF core 0.2 to core 0.3 using
+  the unchanged 15 July 2026 source snapshot. Keep the frozen v0.2 helper and
+  all version 1 profile schemas and contexts byte-identical; add a distinct
+  GOV.UK semantic profile v2, path-aware validation, and explicit core roles
+  on generated runtime and semantic entities. The source-linked walkthrough's
+  primary and related links now open the matching source title in Explorer
+  Reader view. This is not a full-corpus or human-evaluation completion claim.
+
 ### Fixed
 
 - Update the locked Certifi trust store to 2026.10.19, outside the affected

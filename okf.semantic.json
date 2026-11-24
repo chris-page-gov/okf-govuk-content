@@ -1,0 +1,66 @@
+{
+  "schema": "okf-repository-semantic-contract.v2",
+  "repository": {
+    "name": "okf-govuk-content",
+    "role": "large-corpus-producer",
+    "root_index": "bundle/index.md"
+  },
+  "okf_core": {
+    "version": "0.3",
+    "specification": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md",
+    "status": "migration"
+  },
+  "semantic_layer": {
+    "profile": "https://chris-page-gov.github.io/okf-govuk-content/semantic/profile/v2/",
+    "state": "generated-yaml-ld-sharded-graph",
+    "authoritative_inputs": [
+      "demo/snapshots/NEW-CHILD-20260715/publication/source-records.jsonl",
+      "src/govuk_okf/publication.py",
+      "src/govuk_okf/okf_v03.py",
+      "semantic/profile/govuk-okf-profile-v2.yamlld",
+      "semantic/context/govuk-okf-v2.jsonld",
+      "scripts/build_bundle.py"
+    ],
+    "outputs": [
+      {"path": "bundle/okf-bundle.yamlld", "role": "semantic-yaml-ld", "generated": true, "required": true},
+      {"path": "bundle/okf-bundle.jsonld", "role": "semantic-json-ld", "generated": true, "required": true},
+      {"path": "bundle/data/semantic/manifest.json", "role": "semantic-manifest", "generated": true, "required": true},
+      {"path": "bundle/data/semantic/*.jsonld.gz", "role": "semantic-json-ld-shards", "generated": true, "required": true},
+      {"path": "bundle/okf-explorer.json", "role": "explorer-runtime", "generated": true, "required": true}
+    ],
+    "context_policy": "pinned-local-contexts-no-browser-remote-expansion",
+    "identity_policy": "absolute-semantic-iri-plus-validated-local-route",
+    "limitations": [
+      "The active source is the frozen NEW-CHILD-20260715 bounded 69-record demonstrator, not a complete GOV.UK corpus.",
+      "There are 86 typed Markdown concepts in total: 83 content-item and organisation concepts plus three supporting reference documents. The business concepts are separate from derived Document, Route, vocabulary, Evidence and Assertion metadata entities.",
+      "Source membership, related content and publishing organisation claims describe the frozen metadata snapshot and do not establish current eligibility, current page wording or present organisational responsibility.",
+      "Full-corpus reconciliation, zero unexplained omissions for the national corpus, machine release criteria and authorised human evaluation remain incomplete."
+    ]
+  },
+  "relationship_contract": {
+    "schema": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/semantic-assertion.schema.json",
+    "authoring": "generated-yaml-ld-sharded-assertion-graph",
+    "direct_triple_policy": "generated-from-one-assertion-source-across-pinned-shards",
+    "predicate_policy": "absolute-iri",
+    "required_fields": ["id", "source", "target", "kind", "source_native_predicate", "evidence_url", "evidence_locator", "observed_at", "assertion_status", "derivation_method"]
+  },
+  "tooling": {
+    "setup": ["uv sync --locked"],
+    "build": ["uv run --locked python scripts/build_bundle.py"],
+    "check": [
+      "uv run --locked python scripts/build_bundle.py --check",
+      "uv run --locked python scripts/check_okf_v03.py",
+      "uv run --locked python scripts/validate_semantics.py --require-shard-metadata --check",
+      "uv run --locked python -m unittest discover -s tests -v",
+      "uv run --locked python scripts/check_publication_contract.py",
+      "uv run --locked python scripts/check_lockstep.py"
+    ]
+  },
+  "reader": {
+    "consumer": "https://chris-page-gov.github.io/okf-explorer/",
+    "delivery": "json-large-corpus-chunks",
+    "core_markdown": {"descriptor": "bundle/okf-explorer.json", "entrypoint": "concepts/index.md", "typed_concepts": 86, "domain_data_concepts": 83, "supporting_reference_concepts": 3},
+    "metadata_graph": {"entrypoint": "data/semantic/manifest.json", "assertion_count": 392},
+    "preserves": ["semantic-identities", "local-routes", "direction", "assertion-identities", "evidence-digests", "authority", "derivation", "source-native-predicates"]
+  }
+}

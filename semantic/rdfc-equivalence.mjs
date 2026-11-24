@@ -21,9 +21,11 @@ const contextDocument = JSON.parse(await readFile(resolve(contextPath), "utf8"))
 const contextNames = new Set([
   "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v1.jsonld",
   "https://chris-page-gov.github.io/okf-govuk-content/semantic/context/govuk-okf-v1.jsonld",
+  "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v2.jsonld",
+  "https://chris-page-gov.github.io/okf-govuk-content/semantic/context/govuk-okf-v2.jsonld",
 ]);
 const documentLoader = async (url) => {
-  if (contextNames.has(url) || String(url).endsWith("/context/govuk-okf-v1.jsonld")) {
+  if (contextNames.has(url) || /\/context\/govuk-okf-v[12]\.jsonld$/.test(String(url))) {
     return { contextUrl: null, document: contextDocument, documentUrl: url };
   }
   throw new Error(`network and undeclared JSON-LD context are forbidden: ${url}`);

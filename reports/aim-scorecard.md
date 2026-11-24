@@ -37,8 +37,8 @@ Boundary: A fixture demonstrates the pipeline but cannot fulfil an independent f
 
 Evidence:
 
-- `E-BUNDLE-DESCRIPTOR` — pass; `bundle/okf-explorer.json`; SHA-256 `f4695b19d542789bb5f2a948921e29fc36ab4076859433cc28b73602bf8da1be`; observed `true`.
-- `E-INDEPENDENT-WIKI` — pass; `bundle/okf-explorer.json/description`; SHA-256 `f4695b19d542789bb5f2a948921e29fc36ab4076859433cc28b73602bf8da1be`; observed `"Derived, non-authoritative projection of exactly 69 frozen GOV.UK new-child metadata records; not a complete GOV.UK corpus."`.
+- `E-BUNDLE-DESCRIPTOR` — pass; `bundle/okf-explorer.json`; SHA-256 `f4d0f775ef81a9faa6c0afb1d75ba2fbb5a89401add89895186a20701afff193`; observed `true`.
+- `E-INDEPENDENT-WIKI` — pass; `bundle/okf-explorer.json/description`; SHA-256 `f4d0f775ef81a9faa6c0afb1d75ba2fbb5a89401add89895186a20701afff193`; observed `"Derived, non-authoritative projection of exactly 69 frozen GOV.UK new-child metadata records; not a complete GOV.UK corpus."`.
 - `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c`; observed `"fixture"`.
 - `E-SNAPSHOT-UNSAMPLED` — not met; `release/manifest.yaml/snapshot/sampled`; SHA-256 `bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c`; observed `true`.
 - `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.

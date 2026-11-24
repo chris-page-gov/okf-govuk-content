@@ -22,7 +22,7 @@
     ],
     "resources": []
   },
-  "context": "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v1.jsonld",
+  "context": "https://chris-page-gov.github.io/okf-govuk-content/context/govuk-okf-v2.jsonld",
   "counts": {
     "activity_nodes": 1,
     "assertion_nodes": 392,
@@ -39,7 +39,7 @@
     "entity_crosswalk": "semantic/crosswalks/entity-crosswalk.yamlld",
     "entity_schema": "semantic/schemas/entity.schema.json",
     "evidence_schema": "semantic/schemas/evidence.schema.json",
-    "profile": "semantic/profile/govuk-okf-profile-v1.yamlld",
+    "profile": "semantic/profile/govuk-okf-profile-v2.yamlld",
     "relationship_crosswalk": "semantic/crosswalks/relationship-crosswalk.yamlld",
     "shapes": "semantic/shapes/govuk-okf-shapes.ttl",
     "vocabulary": "data/semantic/vocabulary.jsonld"
@@ -50,9 +50,9 @@
     "content_item": "urn:govuk:content-item:{content_id}",
     "explorer_route": "https://chris-page-gov.github.io/okf-govuk-content/id/{route}"
   },
-  "profile": "semantic/profile/govuk-okf-profile-v1.yamlld",
+  "profile": "semantic/profile/govuk-okf-profile-v2.yamlld",
   "schema": "govuk-okf-semantic-projection.v1",
-  "shard_manifest_sha256": "e67cecf229d45bd4d08e0fd10cd4849b0e670ff9d5ec99fe88845194dcc66c05",
+  "shard_manifest_sha256": "4431d3e99fdb05392d7caa9fc27785381bafadd9e36067cbee6ab2bedd748af1",
   "shards": {
     "assertions": [
       {
@@ -63,7 +63,7 @@
         "last_key": "urn:govuk:evidence:fe93a374b2864e15702b81fcf0c347eb34d7c5e894d83bccd9a2879e97da47d5",
         "path": "data/semantic/assertions-0.jsonld.gz",
         "schema": "govuk-okf-semantic-shard.v1",
-        "sha256": "44f28de8ff5b18034663d74e398534a84ea5871126f360433c9572892af41481",
+        "sha256": "76547db05b16d25d4331e8de447f4050d8d951b6b698f8bc113e923fc98deea5",
         "snapshot": "NEW-CHILD-20260715",
         "source_row_count": 392,
         "uncompressed_bytes": 686268
@@ -71,32 +71,32 @@
     ],
     "entities": [
       {
-        "compressed_bytes": 24506,
+        "compressed_bytes": 24725,
         "compression": "gzip",
         "count": 276,
         "first_key": "https://chris-page-gov.github.io/okf-govuk-content/id/dataset/03cad033-6800-4db2-92b4-87e9a6021272-en",
         "last_key": "urn:govuk:route:ff9c3a45c2bad5b0797d295217b06bb725bab3340e908eddd5f4d8d46cfd8582",
         "path": "data/semantic/entities-0.jsonld.gz",
         "schema": "govuk-okf-semantic-shard.v1",
-        "sha256": "f126f5f318000b552a1e7f570f2514dacd343953bb2a49c3bd4d986952535796",
+        "sha256": "2a7303bbe0716df4b936e49ec055f95e949ae7465d72dda3fff62df53bd2041c",
         "snapshot": "NEW-CHILD-20260715",
         "source_row_count": 69,
-        "uncompressed_bytes": 220397
+        "uncompressed_bytes": 225227
       }
     ],
     "publishers": [
       {
-        "compressed_bytes": 2969,
+        "compressed_bytes": 2986,
         "compression": "gzip",
         "count": 28,
         "first_key": "https://chris-page-gov.github.io/okf-govuk-content/id/publisher/department-for-business-and-trade",
         "last_key": "urn:govuk:evidence:ff29fcef858fdf2255c3241a23db430df374d1f92494d7350c754dd71ade0a40",
         "path": "data/semantic/publishers-0.jsonld.gz",
         "schema": "govuk-okf-semantic-shard.v1",
-        "sha256": "141ea01b40e705d0b3761dc5e40292febeb7e88f12fb097b0341eb49de9c6fc0",
+        "sha256": "a4c738d0d7f263c7ce6a994729e9bf20d6a68b2df850b0d3095ac899ccfaede0",
         "snapshot": "NEW-CHILD-20260715",
         "source_row_count": 14,
-        "uncompressed_bytes": 20297
+        "uncompressed_bytes": 20605
       }
     ],
     "resources": [],
@@ -109,7 +109,7 @@
         "last_key": "urn:govuk:schema-family:b1e987aa7b3e62c105ff2b2db87667f7638726f8:transaction",
         "path": "data/semantic/vocabulary.jsonld",
         "schema": "govuk-okf-semantic-shard.v1",
-        "sha256": "02eb3ade603b4d03c0bf091956cc314b47c5a2c093b91eeb74e73c9e6edd0ce8",
+        "sha256": "1dea884b7158cd29904f33075c0bbf3d84f5fbd2c4dd601ccf355814f4afabe3",
         "snapshot": "NEW-CHILD-20260715",
         "source_row_count": 18,
         "uncompressed_bytes": 13458

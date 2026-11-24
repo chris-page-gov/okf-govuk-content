@@ -51,8 +51,8 @@
     "adjacency_shard_manifest_sha256": "5f7b348c3fb361daaa97389d15d22b98e29b0dfef51bb6921bf2dedf2e2c2a02",
     "algorithm": "sha256-canonical-shard-leaves-v1",
     "leaf_count": 935,
-    "manifest_root_sha256": "99a114006c9d5c33774352d9b8f5c2513d978229372d06ab1d3f822b0a81f5dc",
-    "record_shard_manifest_sha256": "b20d7332b2f9a06b0b132a89e561cd2a4aff79601c6efb4e31b483d17c996e6c",
+    "manifest_root_sha256": "f149ccbfa99abd3d5b28067c9e28c1692b69111af5faea5fda34c9b945638bc3",
+    "record_shard_manifest_sha256": "f720498975b4b3ec2f484440aa1ec0997e4282f2c80df336d12904c21c249ab5",
     "route_shard_manifest_sha256": "55facefaa86a94dac04217c051edd798ffc574733c32dc356ad093c72cce8606",
     "schema": "okf-data-plane-integrity.v1",
     "schema_version": "1.0",
@@ -83,7 +83,7 @@
   "shards": {
     "datasets": [
       {
-        "compressed_bytes": 17114,
+        "compressed_bytes": 17179,
         "compression": "gzip",
         "count": 69,
         "first_key": "dataset/03cad033-6800-4db2-92b4-87e9a6021272-en",
@@ -93,14 +93,14 @@
         "path": "data/records-0.json.gz",
         "schema": "okf-record-shard.v1",
         "schema_version": "1.0",
-        "sha256": "c915290d532a88bd899fa81ee6373e148c9ebba4ab0b8078b22f8b3f6e2b7a5e",
+        "sha256": "0355a250d556e9892f3ad099c9e313dd70fc298ed747376ea5515e0b39f6246c",
         "snapshot": "NEW-CHILD-20260715",
-        "uncompressed_bytes": 136290
+        "uncompressed_bytes": 137808
       }
     ],
     "publishers": [
       {
-        "compressed_bytes": 1963,
+        "compressed_bytes": 1983,
         "compression": "gzip",
         "count": 14,
         "first_key": "publisher/department-for-business-and-trade",
@@ -110,9 +110,9 @@
         "path": "data/publishers-0.json.gz",
         "schema": "okf-publisher-shard.v1",
         "schema_version": "1.0",
-        "sha256": "4f2d361b3937c524b75c3d69723039db8fcee22b16a59600a9daf5aceea0d863",
+        "sha256": "520f5c5e0cd2990d52a54424b9b05384ac7ce29b3c3a830ec0a55f9987194501",
         "snapshot": "NEW-CHILD-20260715",
-        "uncompressed_bytes": 10065
+        "uncompressed_bytes": 10373
       }
     ],
     "relationships": [

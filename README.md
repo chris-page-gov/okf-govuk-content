@@ -39,14 +39,19 @@ contract and zero unexplained seed omissions. It deploys without rebuilding and
 checks the public bytes after deployment. See
 [`ADR-011`](governance/decisions/ADR-011-public-bounded-demonstrator-preview.md).
 
-The publication now declares and validates **OKF v0.2**. Canonical typed
+The publication now declares and validates **OKF core 0.3**. The frozen
+`NEW-CHILD-20260715` source snapshot and its GOV.UK metadata profile remain
+unchanged; v0.3 path, frontmatter and Reader projections are regenerated from
+those pinned inputs. Canonical typed
 Markdown concepts live under `bundle/concepts/`; the existing YAML-LD,
 JSON-LD, assertion, search, route, facet and Explorer surfaces remain additive
 profile projections. No verification or expiry event was invented during the
 migration, and generation, official-source modification and retrieval times
-remain distinct. See
-[`docs/okf-v02-conformance.md`](docs/okf-v02-conformance.md) and
+remain distinct. See the
+[`OKF 0.3 migration note`](docs/okf-v03-migration.md) for the active contract;
+the historical v0.2 decision remains in
 [`ADR-010`](governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md).
+The frozen GOV.UK v1 context remains available at its legacy bundle path.
 
 This bounded milestone does not replace the Release 1 contract. The unsampled
 T0 union census remains closed at 848,977 candidate keys and 836,998
@@ -110,7 +115,7 @@ for the finalized release; `v1.0.0` is not the initial publication tag.
 
 ## Canonical outputs
 
-- `bundle/index.md` and `bundle/concepts/` — canonical OKF v0.2 Markdown tree
+- `bundle/index.md` and `bundle/concepts/` — canonical OKF core 0.3 Markdown tree
 - `bundle/okf-bundle.yamlld` — semantic source document
 - `bundle/okf-bundle.jsonld` — equivalent JSON-LD projection
 - `bundle/okf-explorer.json` — Explorer descriptor
