@@ -312,7 +312,7 @@ def build_walkthrough(
     journey_path.write_text(pretty_json(journey_manifest), encoding="utf-8")
     html_path = directory / "new-child-metadata.html"
     html_text = f'''<!doctype html>
-<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,">
 <title>{html.escape(case['title'])}</title><style>
 body{{font:1rem/1.55 system-ui,sans-serif;max-width:70rem;margin:auto;padding:1rem;color:#142b3b}}
 main{{display:grid;gap:1rem}}.answer,.control,.limits{{padding:1rem;border-radius:.6rem}}.answer{{background:#e4f1fa}}.control{{background:#fff2dc}}

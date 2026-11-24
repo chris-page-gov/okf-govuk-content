@@ -29,6 +29,14 @@ semantic versioning.
 
 ### Fixed
 
+- Give the generated walkthrough an explicit empty favicon after the deployed
+  guide requested an absent icon from the GitHub Pages owner root. Preserve
+  all frozen source records and graph assertions.
+
+- Give the synthetic sibling-recovery test explicit space for both requests.
+  Low host disk space can correctly limit admission to the failing request;
+  keep production disk admission and durable spooling controls unchanged.
+
 - Update the locked Certifi trust store to 2026.10.19, outside the affected
   range for `GHSA-6q48-6c7w-9gw2`, and regenerate the dependency-bound release
   evidence without changing source records.

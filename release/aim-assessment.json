@@ -23,7 +23,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "bundle/okf-explorer.json",
-          "sha256": "f4d0f775ef81a9faa6c0afb1d75ba2fbb5a89401add89895186a20701afff193"
+          "sha256": "bada064e275ed2746766b2c5522ce1f5cc2171f8773e581dcdcb3fdf89b3bcc5"
         },
         {
           "check_id": "E-INDEPENDENT-WIKI",
@@ -34,7 +34,7 @@
           "operator": "json_string_contains",
           "path": "bundle/okf-explorer.json",
           "pointer": "/description",
-          "sha256": "f4d0f775ef81a9faa6c0afb1d75ba2fbb5a89401add89895186a20701afff193"
+          "sha256": "bada064e275ed2746766b2c5522ce1f5cc2171f8773e581dcdcb3fdf89b3bcc5"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
@@ -1239,7 +1239,7 @@
           "operator": "json_equals",
           "path": "release/clean-room-reproduction.json",
           "pointer": "/fixture_reproduction_passed",
-          "sha256": "ddfd377e11d45764e889651998ee490a281f767fa21eca57a9d2933898a084de"
+          "sha256": "02d3677f64135d1a384ee6cf5f2e7ee54fb6e65d364a2ab68fdfbee839d60b27"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",
