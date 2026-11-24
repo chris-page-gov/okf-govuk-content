@@ -52,6 +52,8 @@ remain distinct. See the
 the historical v0.2 decision remains in
 [`ADR-010`](governance/decisions/ADR-010-okf-v0.2-core-with-govuk-extensions.md).
 The frozen GOV.UK v1 context remains available at its legacy bundle path.
+The generated walkthrough declares its own empty favicon so browsers do not
+request a missing icon from the GitHub Pages owner root.
 
 This bounded milestone does not replace the Release 1 contract. The unsampled
 T0 union census remains closed at 848,977 candidate keys and 836,998

@@ -457,7 +457,19 @@ class HydrationTests(unittest.TestCase):
                     raise RuntimeError("injected request failure")
                 return self.observation(url)
 
-            with patch("govuk_okf.hydration.request_observation", side_effect=one_failure):
+            # This recovery case needs both requests admitted. A host with
+            # little free space can legitimately admit only the failing one.
+            usage = shutil.disk_usage(root)
+            free = (
+                hydrator.minimum_free_disk_bytes
+                + hydration_module._TRANSIENT_SPOOL_MINIMUM_FREE
+                + 2 * hydration_module._TRANSIENT_SPOOL_RESERVE_PER_REQUEST
+                + hydration_module._SQLITE_WRITE_FIXED_RESERVE
+            )
+            admitted_usage = type(usage)(max(usage.total, free), 0, free)
+            with patch("govuk_okf.hydration.shutil.disk_usage", return_value=admitted_usage), patch(
+                "govuk_okf.hydration.request_observation", side_effect=one_failure
+            ):
                 with self.assertRaisesRegex(RuntimeError, "injected request failure"):
                     hydrator.run()
             self.assertEqual(1, len(list(hydrator.spool_root.glob("*.json"))))
