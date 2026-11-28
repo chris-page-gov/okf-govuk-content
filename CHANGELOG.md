@@ -29,6 +29,10 @@ semantic versioning.
 
 ### Fixed
 
+- Let the source-linked walkthrough reflow at phone widths while retaining
+  both full SHA-256 digests. Check the packaged guide in Chrome at 320 and
+  390 CSS pixels before deploying the preview.
+
 - Give the generated walkthrough an explicit empty favicon after the deployed
   guide requested an absent icon from the GitHub Pages owner root. Preserve
   all frozen source records and graph assertions.

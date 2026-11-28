@@ -37,8 +37,8 @@ Boundary: A fixture demonstrates the pipeline but cannot fulfil an independent f
 
 Evidence:
 
-- `E-BUNDLE-DESCRIPTOR` — pass; `bundle/okf-explorer.json`; SHA-256 `bada064e275ed2746766b2c5522ce1f5cc2171f8773e581dcdcb3fdf89b3bcc5`; observed `true`.
-- `E-INDEPENDENT-WIKI` — pass; `bundle/okf-explorer.json/description`; SHA-256 `bada064e275ed2746766b2c5522ce1f5cc2171f8773e581dcdcb3fdf89b3bcc5`; observed `"Derived, non-authoritative projection of exactly 69 frozen GOV.UK new-child metadata records; not a complete GOV.UK corpus."`.
+- `E-BUNDLE-DESCRIPTOR` — pass; `bundle/okf-explorer.json`; SHA-256 `4059de17e0e72d82619772694de6d92767a0137a2c091fb25ff6828e7d816430`; observed `true`.
+- `E-INDEPENDENT-WIKI` — pass; `bundle/okf-explorer.json/description`; SHA-256 `4059de17e0e72d82619772694de6d92767a0137a2c091fb25ff6828e7d816430`; observed `"Derived, non-authoritative projection of exactly 69 frozen GOV.UK new-child metadata records; not a complete GOV.UK corpus."`.
 - `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c`; observed `"fixture"`.
 - `E-SNAPSHOT-UNSAMPLED` — not met; `release/manifest.yaml/snapshot/sampled`; SHA-256 `bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c`; observed `true`.
 - `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
@@ -282,7 +282,7 @@ Evidence:
 - `E-ACTIVITY-LEDGER` — pass; `provenance/activity-ledger.jsonl`; SHA-256 `b07608a476fd9a41545cad616040c8e76c10ee35a65a484d2412a7dd4a860448`; observed `true`.
 - `E-REQUIREMENT-COVERAGE` — pass; `governance/requirements-status.json/counts/requirements`; SHA-256 `fdee3ac98aee99df13404cfa870296aae1c9ff0ddafe4a64de781c08c8c92b13`; observed `95`.
 - `E-TRACEABILITY-COVERAGE` — pass; `governance/traceability-status.json/counts/clauses`; SHA-256 `36bca19cb608e86b4f95fac45e3b313ab0e8ce17e1eda542b3ff7ae5f8b5a852`; observed `21`.
-- `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `02d3677f64135d1a384ee6cf5f2e7ee54fb6e65d364a2ab68fdfbee839d60b27`; observed `true`.
+- `E-CLEAN-ROOM-FIXTURE` — pass; `release/clean-room-reproduction.json/fixture_reproduction_passed`; SHA-256 `cb132e7072ce23a589e75d51649b0a9a018fddce8c07c119cc3896b9126105fa`; observed `true`.
 - `E-SNAPSHOT-FULL` — not met; `release/manifest.yaml/snapshot/kind`; SHA-256 `bcea2d349ec60514c544113ab47f6dd94ac746fd8127bd69b03714f3c5033d8c`; observed `"fixture"`.
 - `E-CLEAN-ROOM-RELEASE` — not met; `release/status.json/clean_room_reproduction_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.
 - `E-CHECKSUMS-RELEASE` — not met; `release/status.json/checksum_validation_passed`; SHA-256 `cdd3001dc6a5da5fa98dbbd5a2bb1358d39ca90a8c1bc639d78a980099d81b85`; observed `false`.

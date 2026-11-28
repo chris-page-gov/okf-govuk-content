@@ -1,7 +1,7 @@
 {
   "checkout": {
-    "after_sha256": "d80c86d457d59a37a42e7e62cbd13c4e99ca5e30f38798df10987639c8e48e91",
-    "before_sha256": "d80c86d457d59a37a42e7e62cbd13c4e99ca5e30f38798df10987639c8e48e91",
+    "after_sha256": "9804ae2ce7e4e7b84809b583d4afd8d3f0b143b9038ff5e797ce4370ef0bff03",
+    "before_sha256": "9804ae2ce7e4e7b84809b583d4afd8d3f0b143b9038ff5e797ce4370ef0bff03",
     "unchanged": true,
     "verification_mode_mutates_checkout": false
   },
@@ -97,7 +97,7 @@
     }
   ],
   "compiler": "auto",
-  "ended_at": "2026-11-24T12:11:27Z",
+  "ended_at": "2026-11-28T06:12:24Z",
   "environment": {
     "machine": "arm64",
     "platform": "macOS-27.2.1-arm64-arm-64bit",
@@ -110,7 +110,7 @@
       "git": "git version 2.55.0",
       "node": "v26.7.0",
       "npm": "11.19.0",
-      "uv": "uv 0.13.4 (7456b60bc 2026-10-20 aarch64-apple-darwin)"
+      "uv": "uv 0.12.2 (Homebrew 2026-08-05 aarch64-apple-darwin)"
     }
   },
   "fallbacks": [
@@ -325,10 +325,10 @@
         "tree_sha256": "d4f150a25bc505a1e4ab1e38589e7f9e5eb855b7e3642d425115891df17dea1b"
       },
       {
-        "bytes": 1396735,
+        "bytes": 1396794,
         "file_count": 38,
         "path": "src",
-        "tree_sha256": "6aafd9ba2329999893602023685968795ffb9138e6a2525d117d36712475ec3b"
+        "tree_sha256": "7e31d8590f1e64b35df87d425308b8ebafa902e16659e24071af89774bace313"
       },
       {
         "bytes": 1751,
@@ -435,7 +435,7 @@
       }
     ],
     "schema": "afhf-govuk-okf-reproduction-input-manifest.v1",
-    "tree_sha256": "34dacc8872dedfd0ae61bccaee10235f023c52511864195e014bcb9bbc257e84"
+    "tree_sha256": "b5bf9d4574a0bee538ca5f77074e1b6fe7eee55ac9d07970ded5cda39fd8ab35"
   },
   "model_and_cost": {
     "activity_ledger_summary": {
@@ -479,17 +479,17 @@
   "outputs": {
     "bundle": {
       "actual": {
-        "bytes": 4382125,
+        "bytes": 4382184,
         "file_count": 1105,
-        "tree_sha256": "de70a040b7dc28169623b5c2ffc4b9ce0d96c733252e5289c432648aa0868d56"
+        "tree_sha256": "4e64e78ed2ac4d3fe40e846af6cbc96df3b8f74e0155a7c70b2085a06866080d"
       },
       "difference_count": 0,
       "differences": [],
       "exact_match": true,
       "expected": {
-        "bytes": 4382125,
+        "bytes": 4382184,
         "file_count": 1105,
-        "tree_sha256": "de70a040b7dc28169623b5c2ffc4b9ce0d96c733252e5289c432648aa0868d56"
+        "tree_sha256": "4e64e78ed2ac4d3fe40e846af6cbc96df3b8f74e0155a7c70b2085a06866080d"
       }
     },
     "sbom": {
@@ -500,7 +500,7 @@
     }
   },
   "reason": "Clean temporary rebuild exactly matched the checked publication and locked-dependency SBOM, but this is a representative fixture checkpoint and cannot pass the full-corpus release gate.",
-  "recorded_at": "2026-11-24T12:11:27Z",
+  "recorded_at": "2026-11-28T06:12:24Z",
   "release_control": null,
   "release_input_failures": [
     "release kind is a fixture checkpoint",
@@ -560,7 +560,7 @@
     }
   ],
   "source_binding": null,
-  "started_at": "2026-11-24T12:11:26Z",
+  "started_at": "2026-11-28T06:12:22Z",
   "test_evidence": null,
   "validators": {
     "passed": true,
