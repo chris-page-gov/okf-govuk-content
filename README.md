@@ -38,6 +38,8 @@ checkpoint release status, `publication_ready: false`, the exact 69-of-69 seed
 contract and zero unexplained seed omissions. It deploys without rebuilding and
 checks the public bytes after deployment. See
 [`ADR-011`](governance/decisions/ADR-011-public-bounded-demonstrator-preview.md).
+The preview browser check also verifies that the walkthrough and its full
+source digests fit at phone widths of 320 and 390 CSS pixels.
 
 The publication now declares and validates **OKF core 0.3**. The frozen
 `NEW-CHILD-20260715` source snapshot and its GOV.UK metadata profile remain

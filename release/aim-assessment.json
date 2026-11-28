@@ -23,7 +23,7 @@
           "observed": true,
           "operator": "path_exists",
           "path": "bundle/okf-explorer.json",
-          "sha256": "bada064e275ed2746766b2c5522ce1f5cc2171f8773e581dcdcb3fdf89b3bcc5"
+          "sha256": "4059de17e0e72d82619772694de6d92767a0137a2c091fb25ff6828e7d816430"
         },
         {
           "check_id": "E-INDEPENDENT-WIKI",
@@ -34,7 +34,7 @@
           "operator": "json_string_contains",
           "path": "bundle/okf-explorer.json",
           "pointer": "/description",
-          "sha256": "bada064e275ed2746766b2c5522ce1f5cc2171f8773e581dcdcb3fdf89b3bcc5"
+          "sha256": "4059de17e0e72d82619772694de6d92767a0137a2c091fb25ff6828e7d816430"
         },
         {
           "check_id": "E-SNAPSHOT-FULL",

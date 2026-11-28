@@ -1,3 +1,4 @@
+import assert from "node:assert/strict";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 
@@ -31,6 +32,23 @@ const server = await startFixtureServer({
 const browser = await launchChrome();
 try {
   const evidence = await runFixtureBrowserAudit(browser, server, { iterations, generatedAt, snapshot, artifactTier });
+  if (mode === "preview") {
+    const guide = new URL("walkthroughs/new-child-metadata.html", server.baseUrl);
+    for (const width of [320, 390]) {
+      await browser.client.command("Emulation.setDeviceMetricsOverride", {
+        width, height: 844, deviceScaleFactor: 1, mobile: true,
+      });
+      await browser.navigate(guide.href, "document.querySelectorAll('main code').length === 2");
+      const layout = await browser.evaluate(`({
+        viewport: document.documentElement.clientWidth,
+        content: document.documentElement.scrollWidth,
+        digests: [...document.querySelectorAll('main code')].map(element => element.textContent),
+      })`);
+      assert.equal(layout.viewport, width);
+      assert.ok(layout.content <= width + 1, `Walkthrough overflows at ${width} CSS pixels`);
+      assert.ok(layout.digests.every(digest => /^[a-f0-9]{64}$/.test(digest)), "Incomplete source digests in walkthrough");
+    }
+  }
   await mkdir(dirname(output), { recursive: true });
   await writeFile(output, JSON.stringify(evidence, null, 2) + "\n", "utf8");
   process.stdout.write(`${evidence.overall_status}: ${output}\n`);

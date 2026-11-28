@@ -5305,7 +5305,7 @@
     {
       "bytes": 6886,
       "path": "okf-explorer.json",
-      "sha256": "bada064e275ed2746766b2c5522ce1f5cc2171f8773e581dcdcb3fdf89b3bcc5"
+      "sha256": "4059de17e0e72d82619772694de6d92767a0137a2c091fb25ff6828e7d816430"
     },
     {
       "bytes": 919,
@@ -5518,9 +5518,9 @@
       "sha256": "d0b14f51a98e300d1dc8b224a3f6dfc676f865be4ce807a99c189287a097d8f4"
     },
     {
-      "bytes": 4929,
+      "bytes": 4988,
       "path": "walkthroughs/new-child-metadata.html",
-      "sha256": "4ac8635ced4deaa66a8d380864aecb86a668b7c7f3b8abe79dc8baa41f0a179c"
+      "sha256": "9d63458c4f38c97edfc83da0daf85b51d08834d3a72a337081802107d519cb34"
     }
   ],
   "schema": "okf-checksums.v1"
